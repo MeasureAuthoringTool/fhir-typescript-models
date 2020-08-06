@@ -1,0 +1,107 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  BackboneElement,
+  CodeableConcept,
+  Extension,
+  IImmunizationProtocolApplied,
+  PrimitivePositiveInt,
+  PrimitiveString,
+  Reference,
+} from "../internal";
+
+export class ImmunizationProtocolApplied extends BackboneElement {
+  static readonly baseType: string = "FHIR.BackboneElement";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "Immunization.ProtocolApplied";
+
+  public series?: PrimitiveString;
+
+  public authority?: Reference;
+
+  public targetDisease?: Array<CodeableConcept>;
+
+  public doseNumber?: PrimitivePositiveInt | PrimitiveString;
+
+  public seriesDoses?: PrimitivePositiveInt | PrimitiveString;
+
+  public static parse(
+    json: IImmunizationProtocolApplied,
+    providedInstance: ImmunizationProtocolApplied = new ImmunizationProtocolApplied()
+  ): ImmunizationProtocolApplied {
+    const newInstance: ImmunizationProtocolApplied = BackboneElement.parse(json, providedInstance);
+  
+    if (json.series) {
+      newInstance.series = PrimitiveString.parsePrimitive(json.series, json._series);
+    }
+    if (json.authority) {
+      newInstance.authority = Reference.parse(json.authority);
+    }
+    if (json.targetDisease) {
+      newInstance.targetDisease = json.targetDisease.map((x) => CodeableConcept.parse(x));
+    }
+    if (json.doseNumberPositiveInt) {
+      newInstance.doseNumber = PrimitivePositiveInt.parsePrimitive(json.doseNumberPositiveInt, json._doseNumberPositiveInt);
+    }
+    if (json.doseNumberString) {
+      newInstance.doseNumber = PrimitiveString.parsePrimitive(json.doseNumberString, json._doseNumberString);
+    }
+    if (json.seriesDosesPositiveInt) {
+      newInstance.seriesDoses = PrimitivePositiveInt.parsePrimitive(json.seriesDosesPositiveInt, json._seriesDosesPositiveInt);
+    }
+    if (json.seriesDosesString) {
+      newInstance.seriesDoses = PrimitiveString.parsePrimitive(json.seriesDosesString, json._seriesDosesString);
+    }
+    return newInstance;
+  }
+
+  public static isImmunizationProtocolApplied(input?: unknown): input is ImmunizationProtocolApplied {
+    const castInput = input as ImmunizationProtocolApplied;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "ImmunizationProtocolApplied";
+  }
+
+  public toJSON(): IImmunizationProtocolApplied {
+    const result: IImmunizationProtocolApplied = super.toJSON();
+
+    if (this.series) {
+      result.series = this.series.value;
+      result._series = Extension.serializePrimitiveExtension(this.series);
+    }
+
+    if (this.authority) {
+      result.authority = this.authority.toJSON();
+    }
+
+    if (this.targetDisease) {
+      result.targetDisease = this.targetDisease.map((x) => x.toJSON());
+    }
+
+    if (this.doseNumber && PrimitivePositiveInt.isPrimitivePositiveInt(this.doseNumber)) {
+      result.doseNumberPositiveInt = this.doseNumber.value;
+      result._doseNumberPositiveInt = Extension.serializePrimitiveExtension(this.doseNumber);
+    }
+
+    if (this.doseNumber && PrimitiveString.isPrimitiveString(this.doseNumber)) {
+      result.doseNumberString = this.doseNumber.value;
+      result._doseNumberString = Extension.serializePrimitiveExtension(this.doseNumber);
+    }
+
+    if (this.seriesDoses && PrimitivePositiveInt.isPrimitivePositiveInt(this.seriesDoses)) {
+      result.seriesDosesPositiveInt = this.seriesDoses.value;
+      result._seriesDosesPositiveInt = Extension.serializePrimitiveExtension(this.seriesDoses);
+    }
+
+    if (this.seriesDoses && PrimitiveString.isPrimitiveString(this.seriesDoses)) {
+      result.seriesDosesString = this.seriesDoses.value;
+      result._seriesDosesString = Extension.serializePrimitiveExtension(this.seriesDoses);
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "ImmunizationProtocolApplied";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

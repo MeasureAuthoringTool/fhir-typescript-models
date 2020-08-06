@@ -1,0 +1,142 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  Address,
+  AdministrativeGender,
+  Attachment,
+  ContactPoint,
+  DomainResource,
+  Extension,
+  HumanName,
+  Identifier,
+  IPerson,
+  PersonLink,
+  PrimitiveBoolean,
+  PrimitiveDate,
+  Reference,
+} from "../internal";
+
+export class Person extends DomainResource {
+  static readonly baseType: string = "FHIR.DomainResource";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "Person";
+
+  public identifier?: Array<Identifier>;
+
+  public name?: Array<HumanName>;
+
+  public telecom?: Array<ContactPoint>;
+
+  public gender?: AdministrativeGender;
+
+  public birthDate?: PrimitiveDate;
+
+  public address?: Array<Address>;
+
+  public photo?: Attachment;
+
+  public managingOrganization?: Reference;
+
+  public active?: PrimitiveBoolean;
+
+  public link?: Array<PersonLink>;
+
+  public static parse(
+    json: IPerson,
+    providedInstance: Person = new Person()
+  ): Person {
+    const newInstance: Person = DomainResource.parse(json, providedInstance);
+  
+    if (json.identifier) {
+      newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
+    }
+    if (json.name) {
+      newInstance.name = json.name.map((x) => HumanName.parse(x));
+    }
+    if (json.telecom) {
+      newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));
+    }
+    if (json.gender) {
+      newInstance.gender = AdministrativeGender.parsePrimitive(json.gender, json._gender);
+    }
+    if (json.birthDate) {
+      newInstance.birthDate = PrimitiveDate.parsePrimitive(json.birthDate, json._birthDate);
+    }
+    if (json.address) {
+      newInstance.address = json.address.map((x) => Address.parse(x));
+    }
+    if (json.photo) {
+      newInstance.photo = Attachment.parse(json.photo);
+    }
+    if (json.managingOrganization) {
+      newInstance.managingOrganization = Reference.parse(json.managingOrganization);
+    }
+    if (json.active) {
+      newInstance.active = PrimitiveBoolean.parsePrimitive(json.active, json._active);
+    }
+    if (json.link) {
+      newInstance.link = json.link.map((x) => PersonLink.parse(x));
+    }
+    return newInstance;
+  }
+
+  public static isPerson(input?: unknown): input is Person {
+    const castInput = input as Person;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "Person";
+  }
+
+  public toJSON(): IPerson {
+    const result: IPerson = super.toJSON();
+
+    if (this.identifier) {
+      result.identifier = this.identifier.map((x) => x.toJSON());
+    }
+
+    if (this.name) {
+      result.name = this.name.map((x) => x.toJSON());
+    }
+
+    if (this.telecom) {
+      result.telecom = this.telecom.map((x) => x.toJSON());
+    }
+
+    if (this.gender) {
+      result.gender = this.gender.value;
+      result._gender = Extension.serializePrimitiveExtension(this.gender);
+    }
+
+    if (this.birthDate) {
+      result.birthDate = this.birthDate.value;
+      result._birthDate = Extension.serializePrimitiveExtension(this.birthDate);
+    }
+
+    if (this.address) {
+      result.address = this.address.map((x) => x.toJSON());
+    }
+
+    if (this.photo) {
+      result.photo = this.photo.toJSON();
+    }
+
+    if (this.managingOrganization) {
+      result.managingOrganization = this.managingOrganization.toJSON();
+    }
+
+    if (this.active) {
+      result.active = this.active.value;
+      result._active = Extension.serializePrimitiveExtension(this.active);
+    }
+
+    if (this.link) {
+      result.link = this.link.map((x) => x.toJSON());
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "Person";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

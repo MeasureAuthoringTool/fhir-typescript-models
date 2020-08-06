@@ -1,0 +1,71 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  BackboneElement,
+  Extension,
+  ICapabilityStatementImplementation,
+  PrimitiveString,
+  PrimitiveUrl,
+  Reference,
+} from "../internal";
+
+export class CapabilityStatementImplementation extends BackboneElement {
+  static readonly baseType: string = "FHIR.BackboneElement";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "CapabilityStatement.Implementation";
+
+  public description?: PrimitiveString;
+
+  public url?: PrimitiveUrl;
+
+  public custodian?: Reference;
+
+  public static parse(
+    json: ICapabilityStatementImplementation,
+    providedInstance: CapabilityStatementImplementation = new CapabilityStatementImplementation()
+  ): CapabilityStatementImplementation {
+    const newInstance: CapabilityStatementImplementation = BackboneElement.parse(json, providedInstance);
+  
+    if (json.description) {
+      newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
+    }
+    if (json.url) {
+      newInstance.url = PrimitiveUrl.parsePrimitive(json.url, json._url);
+    }
+    if (json.custodian) {
+      newInstance.custodian = Reference.parse(json.custodian);
+    }
+    return newInstance;
+  }
+
+  public static isCapabilityStatementImplementation(input?: unknown): input is CapabilityStatementImplementation {
+    const castInput = input as CapabilityStatementImplementation;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "CapabilityStatementImplementation";
+  }
+
+  public toJSON(): ICapabilityStatementImplementation {
+    const result: ICapabilityStatementImplementation = super.toJSON();
+
+    if (this.description) {
+      result.description = this.description.value;
+      result._description = Extension.serializePrimitiveExtension(this.description);
+    }
+
+    if (this.url) {
+      result.url = this.url.value;
+      result._url = Extension.serializePrimitiveExtension(this.url);
+    }
+
+    if (this.custodian) {
+      result.custodian = this.custodian.toJSON();
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "CapabilityStatementImplementation";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

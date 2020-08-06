@@ -1,0 +1,30 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  PrimitiveCode,
+} from "../internal";
+
+export class HTTPVerb extends PrimitiveCode {
+  static readonly baseType: string = "FHIR.Element";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "HTTPVerb";
+
+  public static parsePrimitive(
+    value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],
+    extension?: Parameters<typeof PrimitiveCode.parsePrimitive>[1],
+    providedInstance: HTTPVerb = new HTTPVerb()
+  ): HTTPVerb {
+      return PrimitiveCode.parsePrimitive(value, extension, providedInstance);
+  }
+
+  public static isHTTPVerb(input?: unknown): input is HTTPVerb {
+    const castInput = input as HTTPVerb;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "HTTPVerb";
+  }
+  
+  public getTypeName(): string {
+    return "HTTPVerb";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

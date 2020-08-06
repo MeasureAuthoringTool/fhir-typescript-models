@@ -1,0 +1,78 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  BackboneElement,
+  IMedicationKnowledgeRegulatory,
+  MedicationKnowledgeRegulatoryMaxDispense,
+  MedicationKnowledgeRegulatorySchedule,
+  MedicationKnowledgeRegulatorySubstitution,
+  Reference,
+} from "../internal";
+
+export class MedicationKnowledgeRegulatory extends BackboneElement {
+  static readonly baseType: string = "FHIR.BackboneElement";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "MedicationKnowledge.Regulatory";
+
+  public regulatoryAuthority?: Reference;
+
+  public substitution?: Array<MedicationKnowledgeRegulatorySubstitution>;
+
+  public schedule?: Array<MedicationKnowledgeRegulatorySchedule>;
+
+  public maxDispense?: MedicationKnowledgeRegulatoryMaxDispense;
+
+  public static parse(
+    json: IMedicationKnowledgeRegulatory,
+    providedInstance: MedicationKnowledgeRegulatory = new MedicationKnowledgeRegulatory()
+  ): MedicationKnowledgeRegulatory {
+    const newInstance: MedicationKnowledgeRegulatory = BackboneElement.parse(json, providedInstance);
+  
+    if (json.regulatoryAuthority) {
+      newInstance.regulatoryAuthority = Reference.parse(json.regulatoryAuthority);
+    }
+    if (json.substitution) {
+      newInstance.substitution = json.substitution.map((x) => MedicationKnowledgeRegulatorySubstitution.parse(x));
+    }
+    if (json.schedule) {
+      newInstance.schedule = json.schedule.map((x) => MedicationKnowledgeRegulatorySchedule.parse(x));
+    }
+    if (json.maxDispense) {
+      newInstance.maxDispense = MedicationKnowledgeRegulatoryMaxDispense.parse(json.maxDispense);
+    }
+    return newInstance;
+  }
+
+  public static isMedicationKnowledgeRegulatory(input?: unknown): input is MedicationKnowledgeRegulatory {
+    const castInput = input as MedicationKnowledgeRegulatory;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "MedicationKnowledgeRegulatory";
+  }
+
+  public toJSON(): IMedicationKnowledgeRegulatory {
+    const result: IMedicationKnowledgeRegulatory = super.toJSON();
+
+    if (this.regulatoryAuthority) {
+      result.regulatoryAuthority = this.regulatoryAuthority.toJSON();
+    }
+
+    if (this.substitution) {
+      result.substitution = this.substitution.map((x) => x.toJSON());
+    }
+
+    if (this.schedule) {
+      result.schedule = this.schedule.map((x) => x.toJSON());
+    }
+
+    if (this.maxDispense) {
+      result.maxDispense = this.maxDispense.toJSON();
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "MedicationKnowledgeRegulatory";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

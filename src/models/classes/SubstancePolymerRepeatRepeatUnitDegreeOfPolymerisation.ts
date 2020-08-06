@@ -1,0 +1,58 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  BackboneElement,
+  CodeableConcept,
+  ISubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation,
+  SubstanceAmount,
+} from "../internal";
+
+export class SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation extends BackboneElement {
+  static readonly baseType: string = "FHIR.BackboneElement";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "SubstancePolymer.Repeat.RepeatUnit.DegreeOfPolymerisation";
+
+  public degree?: CodeableConcept;
+
+  public amount?: SubstanceAmount;
+
+  public static parse(
+    json: ISubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation,
+    providedInstance: SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation = new SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation()
+  ): SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation {
+    const newInstance: SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation = BackboneElement.parse(json, providedInstance);
+  
+    if (json.degree) {
+      newInstance.degree = CodeableConcept.parse(json.degree);
+    }
+    if (json.amount) {
+      newInstance.amount = SubstanceAmount.parse(json.amount);
+    }
+    return newInstance;
+  }
+
+  public static isSubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation(input?: unknown): input is SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation {
+    const castInput = input as SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation";
+  }
+
+  public toJSON(): ISubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation {
+    const result: ISubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation = super.toJSON();
+
+    if (this.degree) {
+      result.degree = this.degree.toJSON();
+    }
+
+    if (this.amount) {
+      result.amount = this.amount.toJSON();
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

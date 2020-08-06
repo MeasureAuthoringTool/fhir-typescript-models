@@ -1,0 +1,30 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  PrimitiveCode,
+} from "../internal";
+
+export class DeviceMetricColor extends PrimitiveCode {
+  static readonly baseType: string = "FHIR.Element";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "DeviceMetricColor";
+
+  public static parsePrimitive(
+    value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],
+    extension?: Parameters<typeof PrimitiveCode.parsePrimitive>[1],
+    providedInstance: DeviceMetricColor = new DeviceMetricColor()
+  ): DeviceMetricColor {
+      return PrimitiveCode.parsePrimitive(value, extension, providedInstance);
+  }
+
+  public static isDeviceMetricColor(input?: unknown): input is DeviceMetricColor {
+    const castInput = input as DeviceMetricColor;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "DeviceMetricColor";
+  }
+  
+  public getTypeName(): string {
+    return "DeviceMetricColor";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */
