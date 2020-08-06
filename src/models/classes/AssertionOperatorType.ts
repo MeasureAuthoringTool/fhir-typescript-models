@@ -1,0 +1,30 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  PrimitiveCode,
+} from "../internal";
+
+export class AssertionOperatorType extends PrimitiveCode {
+  static readonly baseType: string = "FHIR.Element";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "AssertionOperatorType";
+
+  public static parsePrimitive(
+    value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],
+    extension?: Parameters<typeof PrimitiveCode.parsePrimitive>[1],
+    providedInstance: AssertionOperatorType = new AssertionOperatorType()
+  ): AssertionOperatorType {
+      return PrimitiveCode.parsePrimitive(value, extension, providedInstance);
+  }
+
+  public static isAssertionOperatorType(input?: unknown): input is AssertionOperatorType {
+    const castInput = input as AssertionOperatorType;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "AssertionOperatorType";
+  }
+  
+  public getTypeName(): string {
+    return "AssertionOperatorType";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

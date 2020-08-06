@@ -1,0 +1,198 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  DomainResource,
+  Extension,
+  Identifier,
+  IMolecularSequence,
+  MolecularSequenceQuality,
+  MolecularSequenceReferenceSeq,
+  MolecularSequenceRepository,
+  MolecularSequenceStructureVariant,
+  MolecularSequenceVariant,
+  PrimitiveInteger,
+  PrimitiveString,
+  Quantity,
+  Reference,
+  SequenceType,
+} from "../internal";
+
+export class MolecularSequence extends DomainResource {
+  static readonly baseType: string = "FHIR.DomainResource";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "MolecularSequence";
+
+  public identifier?: Array<Identifier>;
+
+  public type?: SequenceType;
+
+  public coordinateSystem?: PrimitiveInteger;
+
+  public patient?: Reference;
+
+  public specimen?: Reference;
+
+  public device?: Reference;
+
+  public performer?: Reference;
+
+  public quantity?: Quantity;
+
+  public referenceSeq?: MolecularSequenceReferenceSeq;
+
+  public variant?: Array<MolecularSequenceVariant>;
+
+  public observedSeq?: PrimitiveString;
+
+  public quality?: Array<MolecularSequenceQuality>;
+
+  public readCoverage?: PrimitiveInteger;
+
+  public repository?: Array<MolecularSequenceRepository>;
+
+  public pointer?: Array<Reference>;
+
+  public structureVariant?: Array<MolecularSequenceStructureVariant>;
+
+  public static parse(
+    json: IMolecularSequence,
+    providedInstance: MolecularSequence = new MolecularSequence()
+  ): MolecularSequence {
+    const newInstance: MolecularSequence = DomainResource.parse(json, providedInstance);
+  
+    if (json.identifier) {
+      newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
+    }
+    if (json.type) {
+      newInstance.type = SequenceType.parsePrimitive(json.type, json._type);
+    }
+    if (json.coordinateSystem) {
+      newInstance.coordinateSystem = PrimitiveInteger.parsePrimitive(json.coordinateSystem, json._coordinateSystem);
+    }
+    if (json.patient) {
+      newInstance.patient = Reference.parse(json.patient);
+    }
+    if (json.specimen) {
+      newInstance.specimen = Reference.parse(json.specimen);
+    }
+    if (json.device) {
+      newInstance.device = Reference.parse(json.device);
+    }
+    if (json.performer) {
+      newInstance.performer = Reference.parse(json.performer);
+    }
+    if (json.quantity) {
+      newInstance.quantity = Quantity.parse(json.quantity);
+    }
+    if (json.referenceSeq) {
+      newInstance.referenceSeq = MolecularSequenceReferenceSeq.parse(json.referenceSeq);
+    }
+    if (json.variant) {
+      newInstance.variant = json.variant.map((x) => MolecularSequenceVariant.parse(x));
+    }
+    if (json.observedSeq) {
+      newInstance.observedSeq = PrimitiveString.parsePrimitive(json.observedSeq, json._observedSeq);
+    }
+    if (json.quality) {
+      newInstance.quality = json.quality.map((x) => MolecularSequenceQuality.parse(x));
+    }
+    if (json.readCoverage) {
+      newInstance.readCoverage = PrimitiveInteger.parsePrimitive(json.readCoverage, json._readCoverage);
+    }
+    if (json.repository) {
+      newInstance.repository = json.repository.map((x) => MolecularSequenceRepository.parse(x));
+    }
+    if (json.pointer) {
+      newInstance.pointer = json.pointer.map((x) => Reference.parse(x));
+    }
+    if (json.structureVariant) {
+      newInstance.structureVariant = json.structureVariant.map((x) => MolecularSequenceStructureVariant.parse(x));
+    }
+    return newInstance;
+  }
+
+  public static isMolecularSequence(input?: unknown): input is MolecularSequence {
+    const castInput = input as MolecularSequence;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "MolecularSequence";
+  }
+
+  public toJSON(): IMolecularSequence {
+    const result: IMolecularSequence = super.toJSON();
+
+    if (this.identifier) {
+      result.identifier = this.identifier.map((x) => x.toJSON());
+    }
+
+    if (this.type) {
+      result.type = this.type.value;
+      result._type = Extension.serializePrimitiveExtension(this.type);
+    }
+
+    if (this.coordinateSystem) {
+      result.coordinateSystem = this.coordinateSystem.value;
+      result._coordinateSystem = Extension.serializePrimitiveExtension(this.coordinateSystem);
+    }
+
+    if (this.patient) {
+      result.patient = this.patient.toJSON();
+    }
+
+    if (this.specimen) {
+      result.specimen = this.specimen.toJSON();
+    }
+
+    if (this.device) {
+      result.device = this.device.toJSON();
+    }
+
+    if (this.performer) {
+      result.performer = this.performer.toJSON();
+    }
+
+    if (this.quantity) {
+      result.quantity = this.quantity.toJSON();
+    }
+
+    if (this.referenceSeq) {
+      result.referenceSeq = this.referenceSeq.toJSON();
+    }
+
+    if (this.variant) {
+      result.variant = this.variant.map((x) => x.toJSON());
+    }
+
+    if (this.observedSeq) {
+      result.observedSeq = this.observedSeq.value;
+      result._observedSeq = Extension.serializePrimitiveExtension(this.observedSeq);
+    }
+
+    if (this.quality) {
+      result.quality = this.quality.map((x) => x.toJSON());
+    }
+
+    if (this.readCoverage) {
+      result.readCoverage = this.readCoverage.value;
+      result._readCoverage = Extension.serializePrimitiveExtension(this.readCoverage);
+    }
+
+    if (this.repository) {
+      result.repository = this.repository.map((x) => x.toJSON());
+    }
+
+    if (this.pointer) {
+      result.pointer = this.pointer.map((x) => x.toJSON());
+    }
+
+    if (this.structureVariant) {
+      result.structureVariant = this.structureVariant.map((x) => x.toJSON());
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "MolecularSequence";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

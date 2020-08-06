@@ -1,0 +1,76 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  BackboneElement,
+  CodeableConcept,
+  IMedicinalProductIngredientSpecifiedSubstance,
+  MedicinalProductIngredientSpecifiedSubstanceStrength,
+} from "../internal";
+
+export class MedicinalProductIngredientSpecifiedSubstance extends BackboneElement {
+  static readonly baseType: string = "FHIR.BackboneElement";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "MedicinalProductIngredient.SpecifiedSubstance";
+
+  public code?: CodeableConcept;
+
+  public group?: CodeableConcept;
+
+  public confidentiality?: CodeableConcept;
+
+  public strength?: Array<MedicinalProductIngredientSpecifiedSubstanceStrength>;
+
+  public static parse(
+    json: IMedicinalProductIngredientSpecifiedSubstance,
+    providedInstance: MedicinalProductIngredientSpecifiedSubstance = new MedicinalProductIngredientSpecifiedSubstance()
+  ): MedicinalProductIngredientSpecifiedSubstance {
+    const newInstance: MedicinalProductIngredientSpecifiedSubstance = BackboneElement.parse(json, providedInstance);
+  
+    if (json.code) {
+      newInstance.code = CodeableConcept.parse(json.code);
+    }
+    if (json.group) {
+      newInstance.group = CodeableConcept.parse(json.group);
+    }
+    if (json.confidentiality) {
+      newInstance.confidentiality = CodeableConcept.parse(json.confidentiality);
+    }
+    if (json.strength) {
+      newInstance.strength = json.strength.map((x) => MedicinalProductIngredientSpecifiedSubstanceStrength.parse(x));
+    }
+    return newInstance;
+  }
+
+  public static isMedicinalProductIngredientSpecifiedSubstance(input?: unknown): input is MedicinalProductIngredientSpecifiedSubstance {
+    const castInput = input as MedicinalProductIngredientSpecifiedSubstance;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "MedicinalProductIngredientSpecifiedSubstance";
+  }
+
+  public toJSON(): IMedicinalProductIngredientSpecifiedSubstance {
+    const result: IMedicinalProductIngredientSpecifiedSubstance = super.toJSON();
+
+    if (this.code) {
+      result.code = this.code.toJSON();
+    }
+
+    if (this.group) {
+      result.group = this.group.toJSON();
+    }
+
+    if (this.confidentiality) {
+      result.confidentiality = this.confidentiality.toJSON();
+    }
+
+    if (this.strength) {
+      result.strength = this.strength.map((x) => x.toJSON());
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "MedicinalProductIngredientSpecifiedSubstance";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

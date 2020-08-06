@@ -1,0 +1,70 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  BackboneElement,
+  Extension,
+  IProvenanceEntity,
+  ProvenanceAgent,
+  ProvenanceEntityRole,
+  Reference,
+} from "../internal";
+
+export class ProvenanceEntity extends BackboneElement {
+  static readonly baseType: string = "FHIR.BackboneElement";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "Provenance.Entity";
+
+  public role?: ProvenanceEntityRole;
+
+  public what?: Reference;
+
+  public agent?: Array<ProvenanceAgent>;
+
+  public static parse(
+    json: IProvenanceEntity,
+    providedInstance: ProvenanceEntity = new ProvenanceEntity()
+  ): ProvenanceEntity {
+    const newInstance: ProvenanceEntity = BackboneElement.parse(json, providedInstance);
+  
+    if (json.role) {
+      newInstance.role = ProvenanceEntityRole.parsePrimitive(json.role, json._role);
+    }
+    if (json.what) {
+      newInstance.what = Reference.parse(json.what);
+    }
+    if (json.agent) {
+      newInstance.agent = json.agent.map((x) => ProvenanceAgent.parse(x));
+    }
+    return newInstance;
+  }
+
+  public static isProvenanceEntity(input?: unknown): input is ProvenanceEntity {
+    const castInput = input as ProvenanceEntity;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "ProvenanceEntity";
+  }
+
+  public toJSON(): IProvenanceEntity {
+    const result: IProvenanceEntity = super.toJSON();
+
+    if (this.role) {
+      result.role = this.role.value;
+      result._role = Extension.serializePrimitiveExtension(this.role);
+    }
+
+    if (this.what) {
+      result.what = this.what.toJSON();
+    }
+
+    if (this.agent) {
+      result.agent = this.agent.map((x) => x.toJSON());
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "ProvenanceEntity";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

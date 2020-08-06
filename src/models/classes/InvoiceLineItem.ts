@@ -1,0 +1,78 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  BackboneElement,
+  CodeableConcept,
+  Extension,
+  IInvoiceLineItem,
+  InvoiceLineItemPriceComponent,
+  PrimitivePositiveInt,
+  Reference,
+} from "../internal";
+
+export class InvoiceLineItem extends BackboneElement {
+  static readonly baseType: string = "FHIR.BackboneElement";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "Invoice.LineItem";
+
+  public sequence?: PrimitivePositiveInt;
+
+  public chargeItem?: Reference | CodeableConcept;
+
+  public priceComponent?: Array<InvoiceLineItemPriceComponent>;
+
+  public static parse(
+    json: IInvoiceLineItem,
+    providedInstance: InvoiceLineItem = new InvoiceLineItem()
+  ): InvoiceLineItem {
+    const newInstance: InvoiceLineItem = BackboneElement.parse(json, providedInstance);
+  
+    if (json.sequence) {
+      newInstance.sequence = PrimitivePositiveInt.parsePrimitive(json.sequence, json._sequence);
+    }
+    if (json.chargeItemReference) {
+      newInstance.chargeItem = Reference.parse(json.chargeItemReference);
+    }
+    if (json.chargeItemCodeableConcept) {
+      newInstance.chargeItem = CodeableConcept.parse(json.chargeItemCodeableConcept);
+    }
+    if (json.priceComponent) {
+      newInstance.priceComponent = json.priceComponent.map((x) => InvoiceLineItemPriceComponent.parse(x));
+    }
+    return newInstance;
+  }
+
+  public static isInvoiceLineItem(input?: unknown): input is InvoiceLineItem {
+    const castInput = input as InvoiceLineItem;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "InvoiceLineItem";
+  }
+
+  public toJSON(): IInvoiceLineItem {
+    const result: IInvoiceLineItem = super.toJSON();
+
+    if (this.sequence) {
+      result.sequence = this.sequence.value;
+      result._sequence = Extension.serializePrimitiveExtension(this.sequence);
+    }
+
+    if (this.chargeItem && Reference.isReference(this.chargeItem)) {
+      result.chargeItemReference = this.chargeItem.toJSON();
+    }
+
+    if (this.chargeItem && CodeableConcept.isCodeableConcept(this.chargeItem)) {
+      result.chargeItemCodeableConcept = this.chargeItem.toJSON();
+    }
+
+    if (this.priceComponent) {
+      result.priceComponent = this.priceComponent.map((x) => x.toJSON());
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "InvoiceLineItem";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

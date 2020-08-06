@@ -1,0 +1,30 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  PrimitiveCode,
+} from "../internal";
+
+export class MessageheaderResponseRequest extends PrimitiveCode {
+  static readonly baseType: string = "FHIR.Element";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "Messageheader_Response_Request";
+
+  public static parsePrimitive(
+    value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],
+    extension?: Parameters<typeof PrimitiveCode.parsePrimitive>[1],
+    providedInstance: MessageheaderResponseRequest = new MessageheaderResponseRequest()
+  ): MessageheaderResponseRequest {
+      return PrimitiveCode.parsePrimitive(value, extension, providedInstance);
+  }
+
+  public static isMessageheaderResponseRequest(input?: unknown): input is MessageheaderResponseRequest {
+    const castInput = input as MessageheaderResponseRequest;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "MessageheaderResponseRequest";
+  }
+  
+  public getTypeName(): string {
+    return "MessageheaderResponseRequest";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

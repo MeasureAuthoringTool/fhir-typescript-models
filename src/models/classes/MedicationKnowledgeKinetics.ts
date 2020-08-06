@@ -1,0 +1,67 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  BackboneElement,
+  Duration,
+  IMedicationKnowledgeKinetics,
+  SimpleQuantity,
+} from "../internal";
+
+export class MedicationKnowledgeKinetics extends BackboneElement {
+  static readonly baseType: string = "FHIR.BackboneElement";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "MedicationKnowledge.Kinetics";
+
+  public areaUnderCurve?: Array<SimpleQuantity>;
+
+  public lethalDose50?: Array<SimpleQuantity>;
+
+  public halfLifePeriod?: Duration;
+
+  public static parse(
+    json: IMedicationKnowledgeKinetics,
+    providedInstance: MedicationKnowledgeKinetics = new MedicationKnowledgeKinetics()
+  ): MedicationKnowledgeKinetics {
+    const newInstance: MedicationKnowledgeKinetics = BackboneElement.parse(json, providedInstance);
+  
+    if (json.areaUnderCurve) {
+      newInstance.areaUnderCurve = json.areaUnderCurve.map((x) => SimpleQuantity.parse(x));
+    }
+    if (json.lethalDose50) {
+      newInstance.lethalDose50 = json.lethalDose50.map((x) => SimpleQuantity.parse(x));
+    }
+    if (json.halfLifePeriod) {
+      newInstance.halfLifePeriod = Duration.parse(json.halfLifePeriod);
+    }
+    return newInstance;
+  }
+
+  public static isMedicationKnowledgeKinetics(input?: unknown): input is MedicationKnowledgeKinetics {
+    const castInput = input as MedicationKnowledgeKinetics;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "MedicationKnowledgeKinetics";
+  }
+
+  public toJSON(): IMedicationKnowledgeKinetics {
+    const result: IMedicationKnowledgeKinetics = super.toJSON();
+
+    if (this.areaUnderCurve) {
+      result.areaUnderCurve = this.areaUnderCurve.map((x) => x.toJSON());
+    }
+
+    if (this.lethalDose50) {
+      result.lethalDose50 = this.lethalDose50.map((x) => x.toJSON());
+    }
+
+    if (this.halfLifePeriod) {
+      result.halfLifePeriod = this.halfLifePeriod.toJSON();
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "MedicationKnowledgeKinetics";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

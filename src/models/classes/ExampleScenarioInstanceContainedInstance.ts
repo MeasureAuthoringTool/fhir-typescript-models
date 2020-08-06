@@ -1,0 +1,60 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  BackboneElement,
+  Extension,
+  IExampleScenarioInstanceContainedInstance,
+  PrimitiveString,
+} from "../internal";
+
+export class ExampleScenarioInstanceContainedInstance extends BackboneElement {
+  static readonly baseType: string = "FHIR.BackboneElement";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "ExampleScenario.Instance.ContainedInstance";
+
+  public resourceId?: PrimitiveString;
+
+  public versionId?: PrimitiveString;
+
+  public static parse(
+    json: IExampleScenarioInstanceContainedInstance,
+    providedInstance: ExampleScenarioInstanceContainedInstance = new ExampleScenarioInstanceContainedInstance()
+  ): ExampleScenarioInstanceContainedInstance {
+    const newInstance: ExampleScenarioInstanceContainedInstance = BackboneElement.parse(json, providedInstance);
+  
+    if (json.resourceId) {
+      newInstance.resourceId = PrimitiveString.parsePrimitive(json.resourceId, json._resourceId);
+    }
+    if (json.versionId) {
+      newInstance.versionId = PrimitiveString.parsePrimitive(json.versionId, json._versionId);
+    }
+    return newInstance;
+  }
+
+  public static isExampleScenarioInstanceContainedInstance(input?: unknown): input is ExampleScenarioInstanceContainedInstance {
+    const castInput = input as ExampleScenarioInstanceContainedInstance;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "ExampleScenarioInstanceContainedInstance";
+  }
+
+  public toJSON(): IExampleScenarioInstanceContainedInstance {
+    const result: IExampleScenarioInstanceContainedInstance = super.toJSON();
+
+    if (this.resourceId) {
+      result.resourceId = this.resourceId.value;
+      result._resourceId = Extension.serializePrimitiveExtension(this.resourceId);
+    }
+
+    if (this.versionId) {
+      result.versionId = this.versionId.value;
+      result._versionId = Extension.serializePrimitiveExtension(this.versionId);
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "ExampleScenarioInstanceContainedInstance";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

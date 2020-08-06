@@ -1,0 +1,145 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  AddressType,
+  AddressUse,
+  Element,
+  Extension,
+  IAddress,
+  Period,
+  PrimitiveString,
+} from "../internal";
+
+export class Address extends Element {
+  static readonly baseType: string = "FHIR.Element";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "Address";
+
+  public use?: AddressUse;
+
+  public type?: AddressType;
+
+  public text?: PrimitiveString;
+
+  public line?: Array<PrimitiveString>;
+
+  public city?: PrimitiveString;
+
+  public district?: PrimitiveString;
+
+  public state?: PrimitiveString;
+
+  public postalCode?: PrimitiveString;
+
+  public country?: PrimitiveString;
+
+  public period?: Period;
+
+  public static parse(
+    json: IAddress,
+    providedInstance: Address = new Address()
+  ): Address {
+    const newInstance: Address = Element.parse(json, providedInstance);
+  
+    if (json.use) {
+      newInstance.use = AddressUse.parsePrimitive(json.use, json._use);
+    }
+    if (json.type) {
+      newInstance.type = AddressType.parsePrimitive(json.type, json._type);
+    }
+    if (json.text) {
+      newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
+    }
+    if (json.line) {
+      newInstance.line = json.line.map((x, i) => {
+        const ext = json._line && json._line[i];
+        return PrimitiveString.parsePrimitive(x, ext);
+      });
+    }
+    if (json.city) {
+      newInstance.city = PrimitiveString.parsePrimitive(json.city, json._city);
+    }
+    if (json.district) {
+      newInstance.district = PrimitiveString.parsePrimitive(json.district, json._district);
+    }
+    if (json.state) {
+      newInstance.state = PrimitiveString.parsePrimitive(json.state, json._state);
+    }
+    if (json.postalCode) {
+      newInstance.postalCode = PrimitiveString.parsePrimitive(json.postalCode, json._postalCode);
+    }
+    if (json.country) {
+      newInstance.country = PrimitiveString.parsePrimitive(json.country, json._country);
+    }
+    if (json.period) {
+      newInstance.period = Period.parse(json.period);
+    }
+    return newInstance;
+  }
+
+  public static isAddress(input?: unknown): input is Address {
+    const castInput = input as Address;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "Address";
+  }
+
+  public toJSON(): IAddress {
+    const result: IAddress = super.toJSON();
+
+    if (this.use) {
+      result.use = this.use.value;
+      result._use = Extension.serializePrimitiveExtension(this.use);
+    }
+
+    if (this.type) {
+      result.type = this.type.value;
+      result._type = Extension.serializePrimitiveExtension(this.type);
+    }
+
+    if (this.text) {
+      result.text = this.text.value;
+      result._text = Extension.serializePrimitiveExtension(this.text);
+    }
+
+    if (this.line) {
+      result.line = this.line.filter(x => !!x).map(x => x.value) as typeof result.line;
+      result._line = Extension.serializePrimitiveExtensionArray(this.line);
+    }
+
+    if (this.city) {
+      result.city = this.city.value;
+      result._city = Extension.serializePrimitiveExtension(this.city);
+    }
+
+    if (this.district) {
+      result.district = this.district.value;
+      result._district = Extension.serializePrimitiveExtension(this.district);
+    }
+
+    if (this.state) {
+      result.state = this.state.value;
+      result._state = Extension.serializePrimitiveExtension(this.state);
+    }
+
+    if (this.postalCode) {
+      result.postalCode = this.postalCode.value;
+      result._postalCode = Extension.serializePrimitiveExtension(this.postalCode);
+    }
+
+    if (this.country) {
+      result.country = this.country.value;
+      result._country = Extension.serializePrimitiveExtension(this.country);
+    }
+
+    if (this.period) {
+      result.period = this.period.toJSON();
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "Address";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

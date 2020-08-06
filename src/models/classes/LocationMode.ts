@@ -1,0 +1,30 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  PrimitiveCode,
+} from "../internal";
+
+export class LocationMode extends PrimitiveCode {
+  static readonly baseType: string = "FHIR.Element";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "LocationMode";
+
+  public static parsePrimitive(
+    value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],
+    extension?: Parameters<typeof PrimitiveCode.parsePrimitive>[1],
+    providedInstance: LocationMode = new LocationMode()
+  ): LocationMode {
+      return PrimitiveCode.parsePrimitive(value, extension, providedInstance);
+  }
+
+  public static isLocationMode(input?: unknown): input is LocationMode {
+    const castInput = input as LocationMode;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "LocationMode";
+  }
+  
+  public getTypeName(): string {
+    return "LocationMode";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

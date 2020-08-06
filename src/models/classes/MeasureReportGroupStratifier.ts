@@ -1,0 +1,58 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  BackboneElement,
+  CodeableConcept,
+  IMeasureReportGroupStratifier,
+  MeasureReportGroupStratifierStratum,
+} from "../internal";
+
+export class MeasureReportGroupStratifier extends BackboneElement {
+  static readonly baseType: string = "FHIR.BackboneElement";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "MeasureReport.Group.Stratifier";
+
+  public code?: Array<CodeableConcept>;
+
+  public stratum?: Array<MeasureReportGroupStratifierStratum>;
+
+  public static parse(
+    json: IMeasureReportGroupStratifier,
+    providedInstance: MeasureReportGroupStratifier = new MeasureReportGroupStratifier()
+  ): MeasureReportGroupStratifier {
+    const newInstance: MeasureReportGroupStratifier = BackboneElement.parse(json, providedInstance);
+  
+    if (json.code) {
+      newInstance.code = json.code.map((x) => CodeableConcept.parse(x));
+    }
+    if (json.stratum) {
+      newInstance.stratum = json.stratum.map((x) => MeasureReportGroupStratifierStratum.parse(x));
+    }
+    return newInstance;
+  }
+
+  public static isMeasureReportGroupStratifier(input?: unknown): input is MeasureReportGroupStratifier {
+    const castInput = input as MeasureReportGroupStratifier;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "MeasureReportGroupStratifier";
+  }
+
+  public toJSON(): IMeasureReportGroupStratifier {
+    const result: IMeasureReportGroupStratifier = super.toJSON();
+
+    if (this.code) {
+      result.code = this.code.map((x) => x.toJSON());
+    }
+
+    if (this.stratum) {
+      result.stratum = this.stratum.map((x) => x.toJSON());
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "MeasureReportGroupStratifier";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

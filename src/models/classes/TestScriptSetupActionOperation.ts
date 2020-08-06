@@ -1,0 +1,216 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  BackboneElement,
+  Coding,
+  Extension,
+  FHIRDefinedType,
+  ITestScriptSetupActionOperation,
+  MimeType,
+  PrimitiveBoolean,
+  PrimitiveId,
+  PrimitiveInteger,
+  PrimitiveString,
+  TestScriptRequestMethodCode,
+  TestScriptSetupActionOperationRequestHeader,
+} from "../internal";
+
+export class TestScriptSetupActionOperation extends BackboneElement {
+  static readonly baseType: string = "FHIR.BackboneElement";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "TestScript.Setup.Action.Operation";
+
+  public type?: Coding;
+
+  public resource?: FHIRDefinedType;
+
+  public label?: PrimitiveString;
+
+  public description?: PrimitiveString;
+
+  public accept?: MimeType;
+
+  public contentType?: MimeType;
+
+  public destination?: PrimitiveInteger;
+
+  public encodeRequestUrl?: PrimitiveBoolean;
+
+  public method?: TestScriptRequestMethodCode;
+
+  public origin?: PrimitiveInteger;
+
+  public params?: PrimitiveString;
+
+  public requestHeader?: Array<TestScriptSetupActionOperationRequestHeader>;
+
+  public requestId?: PrimitiveId;
+
+  public responseId?: PrimitiveId;
+
+  public sourceId?: PrimitiveId;
+
+  public targetId?: PrimitiveId;
+
+  public url?: PrimitiveString;
+
+  public static parse(
+    json: ITestScriptSetupActionOperation,
+    providedInstance: TestScriptSetupActionOperation = new TestScriptSetupActionOperation()
+  ): TestScriptSetupActionOperation {
+    const newInstance: TestScriptSetupActionOperation = BackboneElement.parse(json, providedInstance);
+  
+    if (json.type) {
+      newInstance.type = Coding.parse(json.type);
+    }
+    if (json.resource) {
+      newInstance.resource = FHIRDefinedType.parsePrimitive(json.resource, json._resource);
+    }
+    if (json.label) {
+      newInstance.label = PrimitiveString.parsePrimitive(json.label, json._label);
+    }
+    if (json.description) {
+      newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
+    }
+    if (json.accept) {
+      newInstance.accept = MimeType.parsePrimitive(json.accept, json._accept);
+    }
+    if (json.contentType) {
+      newInstance.contentType = MimeType.parsePrimitive(json.contentType, json._contentType);
+    }
+    if (json.destination) {
+      newInstance.destination = PrimitiveInteger.parsePrimitive(json.destination, json._destination);
+    }
+    if (json.encodeRequestUrl) {
+      newInstance.encodeRequestUrl = PrimitiveBoolean.parsePrimitive(json.encodeRequestUrl, json._encodeRequestUrl);
+    }
+    if (json.method) {
+      newInstance.method = TestScriptRequestMethodCode.parsePrimitive(json.method, json._method);
+    }
+    if (json.origin) {
+      newInstance.origin = PrimitiveInteger.parsePrimitive(json.origin, json._origin);
+    }
+    if (json.params) {
+      newInstance.params = PrimitiveString.parsePrimitive(json.params, json._params);
+    }
+    if (json.requestHeader) {
+      newInstance.requestHeader = json.requestHeader.map((x) => TestScriptSetupActionOperationRequestHeader.parse(x));
+    }
+    if (json.requestId) {
+      newInstance.requestId = PrimitiveId.parsePrimitive(json.requestId, json._requestId);
+    }
+    if (json.responseId) {
+      newInstance.responseId = PrimitiveId.parsePrimitive(json.responseId, json._responseId);
+    }
+    if (json.sourceId) {
+      newInstance.sourceId = PrimitiveId.parsePrimitive(json.sourceId, json._sourceId);
+    }
+    if (json.targetId) {
+      newInstance.targetId = PrimitiveId.parsePrimitive(json.targetId, json._targetId);
+    }
+    if (json.url) {
+      newInstance.url = PrimitiveString.parsePrimitive(json.url, json._url);
+    }
+    return newInstance;
+  }
+
+  public static isTestScriptSetupActionOperation(input?: unknown): input is TestScriptSetupActionOperation {
+    const castInput = input as TestScriptSetupActionOperation;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "TestScriptSetupActionOperation";
+  }
+
+  public toJSON(): ITestScriptSetupActionOperation {
+    const result: ITestScriptSetupActionOperation = super.toJSON();
+
+    if (this.type) {
+      result.type = this.type.toJSON();
+    }
+
+    if (this.resource) {
+      result.resource = this.resource.value;
+      result._resource = Extension.serializePrimitiveExtension(this.resource);
+    }
+
+    if (this.label) {
+      result.label = this.label.value;
+      result._label = Extension.serializePrimitiveExtension(this.label);
+    }
+
+    if (this.description) {
+      result.description = this.description.value;
+      result._description = Extension.serializePrimitiveExtension(this.description);
+    }
+
+    if (this.accept) {
+      result.accept = this.accept.value;
+      result._accept = Extension.serializePrimitiveExtension(this.accept);
+    }
+
+    if (this.contentType) {
+      result.contentType = this.contentType.value;
+      result._contentType = Extension.serializePrimitiveExtension(this.contentType);
+    }
+
+    if (this.destination) {
+      result.destination = this.destination.value;
+      result._destination = Extension.serializePrimitiveExtension(this.destination);
+    }
+
+    if (this.encodeRequestUrl) {
+      result.encodeRequestUrl = this.encodeRequestUrl.value;
+      result._encodeRequestUrl = Extension.serializePrimitiveExtension(this.encodeRequestUrl);
+    }
+
+    if (this.method) {
+      result.method = this.method.value;
+      result._method = Extension.serializePrimitiveExtension(this.method);
+    }
+
+    if (this.origin) {
+      result.origin = this.origin.value;
+      result._origin = Extension.serializePrimitiveExtension(this.origin);
+    }
+
+    if (this.params) {
+      result.params = this.params.value;
+      result._params = Extension.serializePrimitiveExtension(this.params);
+    }
+
+    if (this.requestHeader) {
+      result.requestHeader = this.requestHeader.map((x) => x.toJSON());
+    }
+
+    if (this.requestId) {
+      result.requestId = this.requestId.value;
+      result._requestId = Extension.serializePrimitiveExtension(this.requestId);
+    }
+
+    if (this.responseId) {
+      result.responseId = this.responseId.value;
+      result._responseId = Extension.serializePrimitiveExtension(this.responseId);
+    }
+
+    if (this.sourceId) {
+      result.sourceId = this.sourceId.value;
+      result._sourceId = Extension.serializePrimitiveExtension(this.sourceId);
+    }
+
+    if (this.targetId) {
+      result.targetId = this.targetId.value;
+      result._targetId = Extension.serializePrimitiveExtension(this.targetId);
+    }
+
+    if (this.url) {
+      result.url = this.url.value;
+      result._url = Extension.serializePrimitiveExtension(this.url);
+    }
+
+    return result;
+  }
+  
+  public getTypeName(): string {
+    return "TestScriptSetupActionOperation";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */
