@@ -1,5 +1,5 @@
 import "jest-extended";
-import {Bundle, IBundle, Patient, Resource} from "../src/models/fhir";
+import {Bundle, IBundle, Resource} from "../src/models/fhir";
 import bundleContents from "./resources/EXM104-9.1.000-bundle.json";
 
 describe("Parsing a FHIR bundle", () => {
