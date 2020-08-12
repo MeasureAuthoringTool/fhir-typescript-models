@@ -1,5 +1,5 @@
-import {StatementReference} from "./StatementReference";
 import {PopulationMap} from "./PopulationMap";
+import {StatementReference} from "./StatementReference";
 
 /**
  * The population map for a continuous variable population set.
