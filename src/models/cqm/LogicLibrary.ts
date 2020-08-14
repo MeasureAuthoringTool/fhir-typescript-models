@@ -41,7 +41,7 @@ export class CqmLogicLibrary {
     if (json.elm_annotations) {
       newInstance.elm_annotations = json.elm_annotations;
     }
-    if (!!json.is_main_library) {
+    if (json.is_main_library != null) {
       newInstance.is_main_library = json.is_main_library;
     }
     if (json.statement_dependencies) {
@@ -68,7 +68,7 @@ export class CqmLogicLibrary {
     if (this.elm_annotations) {
       result.elm_annotations = this.elm_annotations;
     }
-    if (!!this.is_main_library) {
+    if (this.is_main_library != null) {
       result.is_main_library = this.is_main_library;
     }
     if (this.statement_dependencies) {

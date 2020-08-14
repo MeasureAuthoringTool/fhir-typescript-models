@@ -22,7 +22,7 @@ export class RatioPopulationMap extends PopulationMap {
     providedInstance: RatioPopulationMap = new RatioPopulationMap()
   ): RatioPopulationMap {
     const newInstance: RatioPopulationMap = providedInstance;
-    newInstance.resource_type = 'RatioPopulationMap';
+    newInstance.resource_type = "RatioPopulationMap";
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);
     }

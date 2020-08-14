@@ -9,12 +9,12 @@ import {StatementReference} from "../src/models/cqm/StatementReference";
 
 describe("Populations", () => {
   it("", () => {
-    expect(lookupPopulationMapSubclass('unknown')).toBeUndefined();
-    expect(lookupPopulationMapSubclass('CohortPopulationMap')).toBeDefined();
-    expect(lookupPopulationMapSubclass('CohortPopulationMap')).toEqual(CohortPopulationMap);
-    expect(lookupPopulationMapSubclass('ContinuousVariablePopulationMap')).toEqual(ContinuousVariablePopulationMap);
-    expect(lookupPopulationMapSubclass('ProportionPopulationMap')).toEqual(ProportionPopulationMap);
-    expect(lookupPopulationMapSubclass('RatioPopulationMap')).toEqual(RatioPopulationMap);
+    expect(lookupPopulationMapSubclass("unknown")).toBeUndefined();
+    expect(lookupPopulationMapSubclass("CohortPopulationMap")).toBeDefined();
+    expect(lookupPopulationMapSubclass("CohortPopulationMap")).toEqual(CohortPopulationMap);
+    expect(lookupPopulationMapSubclass("ContinuousVariablePopulationMap")).toEqual(ContinuousVariablePopulationMap);
+    expect(lookupPopulationMapSubclass("ProportionPopulationMap")).toEqual(ProportionPopulationMap);
+    expect(lookupPopulationMapSubclass("RatioPopulationMap")).toEqual(RatioPopulationMap);
   });
 
   it("can serialize/deserialize CQM::StatementReference", () => {

@@ -15,7 +15,7 @@ export class CohortPopulationMap extends PopulationMap {
     providedInstance: CohortPopulationMap = new CohortPopulationMap()
   ): CohortPopulationMap {
     const newInstance: CohortPopulationMap = providedInstance;
-    newInstance.resource_type = 'CohortPopulationMap';
+    newInstance.resource_type = "CohortPopulationMap";
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);
     }

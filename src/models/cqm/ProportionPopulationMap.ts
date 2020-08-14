@@ -24,7 +24,7 @@ export class ProportionPopulationMap extends PopulationMap {
     providedInstance: ProportionPopulationMap = new ProportionPopulationMap()
   ): ProportionPopulationMap {
     const newInstance: ProportionPopulationMap = providedInstance;
-    newInstance.resource_type = 'ProportionPopulationMap';
+    newInstance.resource_type = "ProportionPopulationMap";
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);
     }

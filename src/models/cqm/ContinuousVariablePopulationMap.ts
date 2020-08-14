@@ -18,7 +18,7 @@ export class ContinuousVariablePopulationMap extends PopulationMap {
     providedInstance: ContinuousVariablePopulationMap = new ContinuousVariablePopulationMap()
   ): ContinuousVariablePopulationMap {
     const newInstance: ContinuousVariablePopulationMap = providedInstance;
-    newInstance.resource_type = 'ContinuousVariablePopulationMap';
+    newInstance.resource_type = "ContinuousVariablePopulationMap";
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);
     }

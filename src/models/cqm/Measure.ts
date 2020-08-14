@@ -64,7 +64,7 @@ export class CqmMeasure {
     if (json.calculation_method) {
       newInstance.calculation_method = json.calculation_method;
     }
-    if (!!json.calculate_sdes) {
+    if (json.calculate_sdes != null) {
       newInstance.calculate_sdes = json.calculate_sdes;
     }
     if (json.fhir_measure) {
@@ -122,7 +122,7 @@ export class CqmMeasure {
     if (this.calculation_method) {
       result.calculation_method = this.calculation_method;
     }
-    if (!!this.calculate_sdes) {
+    if (this.calculate_sdes != null) {
       result.calculate_sdes = this.calculate_sdes;
     }
     if (this.fhir_measure) {
