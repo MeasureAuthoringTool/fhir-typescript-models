@@ -1,7 +1,7 @@
 import {DomainResource} from "../classes/DomainResource";
 import {Resource} from "../classes/Resource";
 
-export class CqmDataElement {
+export class DataElement {
 
   public codeListId?: string;
   public valueSetTitle?: string;
@@ -11,9 +11,9 @@ export class CqmDataElement {
 
   public static parse(
     json: any,
-    providedInstance: CqmDataElement = new CqmDataElement()
-  ): CqmDataElement {
-    const newInstance: CqmDataElement = providedInstance;
+    providedInstance: DataElement = new DataElement()
+  ): DataElement {
+    const newInstance: DataElement = providedInstance;
 
     if (json.codeListId) {
       newInstance.codeListId = json.codeListId;

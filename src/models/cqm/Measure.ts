@@ -3,10 +3,12 @@ import {Measure} from "../classes/Measure";
 import {ValueSet} from "../classes/ValueSet";
 import {ILibrary} from "../interfaces/ILibrary";
 import {IValueSet} from "../interfaces/IValueSet";
-import {CqmDataElement} from "./DataElement";
+import {DataElement} from "./DataElement";
 import {CqmLogicLibrary} from "./LogicLibrary";
+import {PopulationSet} from "./PopulationSet";
 
 export class CqmMeasure {
+  // MongoDB ID
   public id?: string;
   // tslint:disable-next-line:variable-name
   public cms_id?: string;
@@ -28,9 +30,13 @@ export class CqmMeasure {
   // tslint:disable-next-line:variable-name
   public main_cql_library?: string;
   // tslint:disable-next-line:variable-name
-  public source_data_criteria?: Array<CqmDataElement>;
+  public source_data_criteria?: Array<DataElement>;
+  // tslint:disable-next-line:variable-name
+  public population_sets?: Array<PopulationSet>;
+  // mongoid created timestamp
   // tslint:disable-next-line:variable-name
   public created_at?: string;
+  // mongoid updated timestamp
   // tslint:disable-next-line:variable-name
   public updated_at?: string;
 
@@ -71,8 +77,7 @@ export class CqmMeasure {
       newInstance.value_sets = json.value_sets.map((x: IValueSet) => ValueSet.parse(x));
     }
     if (json.cql_libraries) {
-      // @ts-ignore
-      newInstance.cql_libraries = json.cql_libraries.map((x) => CqmLogicLibrary.parse(x));
+      newInstance.cql_libraries = json.cql_libraries.map((x: any) => CqmLogicLibrary.parse(x));
     }
     if (json.main_cql_library) {
       newInstance.main_cql_library = json.main_cql_library;
@@ -84,8 +89,10 @@ export class CqmMeasure {
       newInstance.updated_at = json.updated_at;
     }
     if (json.source_data_criteria) {
-      // @ts-ignore
-      newInstance.source_data_criteria = json.source_data_criteria.map((x) => CqmDataElement.parse(x));
+      newInstance.source_data_criteria = json.source_data_criteria.map((x: any) => DataElement.parse(x));
+    }
+    if (json.population_sets) {
+      newInstance.population_sets = json.population_sets.map((x: any) => PopulationSet.parse(x));
     }
 
     return newInstance;
@@ -135,6 +142,9 @@ export class CqmMeasure {
     }
     if (this.source_data_criteria) {
       result.source_data_criteria = this.source_data_criteria.map((x) => x.toJSON());
+    }
+    if (this.population_sets) {
+      result.population_sets = this.population_sets.map((x) => x.toJSON());
     }
     if (this.created_at) {
       result.created_at = this.created_at;

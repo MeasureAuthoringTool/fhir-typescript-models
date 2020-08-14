@@ -11,9 +11,9 @@ export class CqmLogicLibrary {
   // tslint:disable-next-line:variable-name
   public library_version?: string;
   public cql?: string;
-  public elm?: Map<string, any>;
+  public elm?: Map<string, unknown>;
   // tslint:disable-next-line:variable-name
-  public elm_annotations?: Map<string, any>;
+  public elm_annotations?: Map<string, unknown>;
   // tslint:disable-next-line:variable-name
   public is_main_library?: boolean;
 
@@ -24,13 +24,57 @@ export class CqmLogicLibrary {
     json: any,
     providedInstance: CqmLogicLibrary = new CqmLogicLibrary()
   ): CqmLogicLibrary {
-    // TODO
     const newInstance: CqmLogicLibrary = providedInstance;
+
+    if (json.library_name) {
+      newInstance.library_name = json.library_name;
+    }
+    if (json.library_version) {
+      newInstance.library_version = json.library_version;
+    }
+    if (json.cql) {
+      newInstance.cql = json.cql;
+    }
+    if (json.elm) {
+      newInstance.elm = json.elm;
+    }
+    if (json.elm_annotations) {
+      newInstance.elm_annotations = json.elm_annotations;
+    }
+    if (!!json.is_main_library) {
+      newInstance.is_main_library = json.is_main_library;
+    }
+    if (json.statement_dependencies) {
+      newInstance.statement_dependencies = json.statement_dependencies.map((x: any) => StatementDependency.parse(x));
+    }
     return newInstance;
   }
 
   toJSON(): any {
-    // TODO
     const result: any = {};
+
+    if (this.library_name) {
+      result.library_name = this.library_name;
+    }
+    if (this.library_version) {
+      result.library_version = this.library_version;
+    }
+    if (this.cql) {
+      result.cql = this.cql;
+    }
+    if (this.elm) {
+      result.elm = this.elm;
+    }
+    if (this.elm_annotations) {
+      result.elm_annotations = this.elm_annotations;
+    }
+    if (!!this.is_main_library) {
+      result.is_main_library = this.is_main_library;
+    }
+    if (this.statement_dependencies) {
+      result.statement_dependencies = this.statement_dependencies.map((x: StatementDependency) => x.toJSON());
+    }
+    return result;
   }
+
 }

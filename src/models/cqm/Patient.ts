@@ -1,7 +1,8 @@
 import {Patient} from "../classes/Patient";
-import {CqmDataElement} from "./DataElement";
+import {DataElement} from "./DataElement";
 
 export class CqmPatient {
+  // MongoDB ID
   public id?: string;
   // tslint:disable-next-line:variable-name
   public expected_values?: Array<any>;
@@ -12,9 +13,11 @@ export class CqmPatient {
   // tslint:disable-next-line:variable-name
   public fhir_patient?: Patient;
   // tslint:disable-next-line:variable-name
-  public data_elements?: Array<CqmDataElement>;
+  public data_elements?: Array<DataElement>;
+  // mongoid created timestamp
   // tslint:disable-next-line:variable-name
   public created_at?: string;
+  // mongoid updated timestamp
   // tslint:disable-next-line:variable-name
   public updated_at?: string;
 
@@ -41,7 +44,7 @@ export class CqmPatient {
     }
     if (json.data_elements) {
       // @ts-ignore
-      newInstance.data_elements = json.data_elements.map((x) => CqmDataElement.parse(x));
+      newInstance.data_elements = json.data_elements.map((x) => DataElement.parse(x));
     }
     if (json.created_at) {
       newInstance.created_at = json.created_at;
@@ -81,4 +84,5 @@ export class CqmPatient {
     }
     return result;
   }
+
 }
