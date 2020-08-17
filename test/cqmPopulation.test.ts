@@ -47,7 +47,6 @@ describe("Populations", () => {
       "stratifications": [{
         "title": "title_Stratification",
         "stratification_id": "random_stratification_id",
-        "set_id": "random_set_id",
         "statement": {"library_name": "library_Stratification", "statement_name": "name_Stratification"}
       }],
       "supplemental_data_elements": [{
