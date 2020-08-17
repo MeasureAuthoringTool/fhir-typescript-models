@@ -7,8 +7,6 @@ export class Stratification {
   public title?: string;
   // tslint:disable-next-line:variable-name
   public stratification_id?: string;
-  // tslint:disable-next-line:variable-name
-  public set_id?: string;
   public statement?: StatementReference;
 
   public static parse(
@@ -21,9 +19,6 @@ export class Stratification {
     }
     if (json.stratification_id) {
       newInstance.stratification_id = json.stratification_id;
-    }
-    if (json.set_id) {
-      newInstance.set_id = json.set_id;
     }
     if (json.statement) {
       newInstance.statement = StatementReference.parse(json.statement);
@@ -39,9 +34,6 @@ export class Stratification {
     }
     if (this.stratification_id) {
       result.stratification_id = this.stratification_id;
-    }
-    if (this.set_id) {
-      result.set_id = this.set_id;
     }
     if (this.statement) {
       result.statement = this.statement.toJSON();
