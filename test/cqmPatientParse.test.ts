@@ -32,8 +32,6 @@ describe("Parsing CQM Patient JSON", () => {
     expect(bundleJson.entry[1]).toBeDefined();
     expect(bundleJson.entry[1].resource).toBeDefined();
     expect(bundleJson.entry[1].resource.resourceType).toEqual('Condition');
-
-    // console.info(bundle);
   });
 
 
