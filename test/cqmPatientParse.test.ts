@@ -10,6 +10,38 @@ describe("Parsing CQM Patient JSON", () => {
   });
 
   it("Should parse a CQM Patient with FHIR Resources as Data Elements", () => {
+    const updatedPatientJson = patientJsonWithDataElement();
+    const cqmPatient: CqmPatient = CqmPatient.parse(updatedPatientJson);
+    expect(cqmPatient).toBeDefined();
+    expect(cqmPatient.data_elements).toBeDefined();
+    expect(cqmPatient.toJSON()).toEqual(updatedPatientJson);
+  });
+
+  it("Should serialize CQM patient into a FHIR bundle with data elements", () => {
+    const updatedPatientJson = patientJsonWithDataElement();
+    const cqmPatient: CqmPatient = CqmPatient.parse(updatedPatientJson);
+    expect(cqmPatient).toBeDefined();
+    const bundle: any = cqmPatient.toBundle();
+    expect(bundle).toBeDefined();
+    const bundleJson = bundle.toJSON();
+    expect(bundleJson.id).toEqual('5f342d77b7b4da36487fde73');
+    expect(bundleJson.entry).toBeDefined();
+    expect(bundleJson.entry[0]).toBeDefined();
+    expect(bundleJson.entry[0].resource).toBeDefined();
+    expect(bundleJson.entry[0].resource.resourceType).toEqual('Patient');
+    expect(bundleJson.entry[1]).toBeDefined();
+    expect(bundleJson.entry[1].resource).toBeDefined();
+    expect(bundleJson.entry[1].resource.resourceType).toEqual('Condition');
+
+    // console.info(bundle);
+  });
+
+
+  function cloneJson(json: any): any {
+    return JSON.parse(JSON.stringify(json));
+  }
+
+  function patientJsonWithDataElement() {
     const updatedPatientJson = cloneJson(patientJson);
     const dataElement = {
       "fhir_resource": {
@@ -41,14 +73,6 @@ describe("Parsing CQM Patient JSON", () => {
       }
     };
     updatedPatientJson.data_elements = [dataElement];
-    const cqmPatient: CqmPatient = CqmPatient.parse(updatedPatientJson);
-    expect(cqmPatient).toBeDefined();
-    expect(cqmPatient.data_elements).toBeDefined();
-    expect(cqmPatient.toJSON()).toEqual(updatedPatientJson);
-  });
-
-  function cloneJson(json: any): any {
-    return JSON.parse(JSON.stringify(json));
+    return updatedPatientJson;
   }
-
 });

@@ -1,7 +1,7 @@
 /**
  * Representation of a population set (aka. PopulationCriteria)
  */
-import {Observation} from "./Observation";
+import {CqmObservation} from "./CqmObservation";
 import {PopulationMap} from "./PopulationMap";
 import {lookupPopulationMapSubclass} from "./PopulationMapping";
 import {StatementReference} from "./StatementReference";
@@ -12,7 +12,7 @@ export class PopulationSet {
   public stratifications?: Array<Stratification>;
   // tslint:disable-next-line:variable-name
   public supplemental_data_elements?: Array<StatementReference>;
-  public observations?: Array<Observation>;
+  public observations?: Array<CqmObservation>;
   public title?: string;
   // tslint:disable-next-line:variable-name
   public population_set_id?: string;
@@ -37,7 +37,7 @@ export class PopulationSet {
       newInstance.supplemental_data_elements = json.supplemental_data_elements.map((x: any) => StatementReference.parse(x));
     }
     if (json.observations) {
-      newInstance.observations = json.observations.map((x: any) => Observation.parse(x));
+      newInstance.observations = json.observations.map((x: any) => CqmObservation.parse(x));
     }
     if (json.title) {
       newInstance.title = json.title;

@@ -33,6 +33,8 @@ export class CqmMeasure {
   public source_data_criteria?: Array<DataElement>;
   // tslint:disable-next-line:variable-name
   public population_sets?: Array<PopulationSet>;
+  // tslint:disable-next-line:variable-name
+  public measure_period?: any;
   // mongoid created timestamp
   // tslint:disable-next-line:variable-name
   public created_at?: string;
@@ -81,6 +83,9 @@ export class CqmMeasure {
     }
     if (json.main_cql_library) {
       newInstance.main_cql_library = json.main_cql_library;
+    }
+    if (json.measure_period) {
+      newInstance.measure_period = json.measure_period;
     }
     if (json.created_at) {
       newInstance.created_at = json.created_at;
@@ -145,6 +150,9 @@ export class CqmMeasure {
     }
     if (this.population_sets) {
       result.population_sets = this.population_sets.map((x) => x.toJSON());
+    }
+    if (this.measure_period) {
+      result.measure_period = this.measure_period;
     }
     if (this.created_at) {
       result.created_at = this.created_at;

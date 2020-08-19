@@ -1,3 +1,6 @@
+import {Bundle} from "../classes/Bundle";
+import {BundleEntry} from "../classes/BundleEntry";
+import {BundleType} from "../classes/BundleType";
 import {Patient} from "../classes/Patient";
 import {DataElement} from "./DataElement";
 
@@ -83,6 +86,33 @@ export class CqmPatient {
       result.updated_at = this.updated_at;
     }
     return result;
+  }
+
+  public toBundle(): Bundle {
+    const bundle: Bundle = new Bundle();
+    bundle.id = this.id;
+    bundle.type = new BundleType();
+    bundle.type.value = 'collection';
+    bundle.entry = [];
+    if (this.fhir_patient) {
+      const patientEntry: BundleEntry = new BundleEntry();
+      patientEntry.resource = this.fhir_patient;
+      bundle.entry.push(patientEntry);
+    }
+    if (this.data_elements) {
+      const dataElementsEntries: Array<BundleEntry> = this.data_elements
+        .filter(d => d.fhir_resource)
+        .map(d => d.fhir_resource)
+        .map((r) => {
+          const de: BundleEntry = new BundleEntry();
+          de.resource = r;
+          return de;
+        });
+      if (dataElementsEntries) {
+        bundle.entry = bundle.entry?.concat(dataElementsEntries);
+      }
+    }
+    return bundle;
   }
 
 }
