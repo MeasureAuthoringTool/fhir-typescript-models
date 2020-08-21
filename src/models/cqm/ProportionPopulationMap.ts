@@ -6,6 +6,7 @@ import {StatementReference} from "./StatementReference";
  * The population map for a porportion population set.
  */
 export class ProportionPopulationMap extends PopulationMap {
+
   // tslint:disable-next-line:variable-name
   public IPP?: StatementReference;
   // tslint:disable-next-line:variable-name
@@ -19,12 +20,16 @@ export class ProportionPopulationMap extends PopulationMap {
   // tslint:disable-next-line:variable-name
   public DENEXCEP?: StatementReference;
 
+  constructor() {
+    super();
+    this.resource_type = "ProportionPopulationMap";
+  }
+
   public static parse(
     json: any,
     providedInstance: ProportionPopulationMap = new ProportionPopulationMap()
   ): ProportionPopulationMap {
-    const newInstance: ProportionPopulationMap = providedInstance;
-    newInstance.resource_type = "ProportionPopulationMap";
+    const newInstance: ProportionPopulationMap = PopulationMap.parse(json, providedInstance);
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);
     }
@@ -47,8 +52,7 @@ export class ProportionPopulationMap extends PopulationMap {
   }
 
   public toJSON(): any {
-    const result: any = {};
-    result.resource_type = 'ProportionPopulationMap';
+    const result: any = super.toJSON();
     if (this.IPP) {
       result.IPP = this.IPP.toJSON();
     }

@@ -6,6 +6,7 @@ import {StatementReference} from "./StatementReference";
  * The population map for a ratio population set.
  */
 export class RatioPopulationMap extends PopulationMap {
+
   // tslint:disable-next-line:variable-name
   public IPP?: StatementReference;
   // tslint:disable-next-line:variable-name
@@ -17,12 +18,16 @@ export class RatioPopulationMap extends PopulationMap {
   // tslint:disable-next-line:variable-name
   public DENEX?: StatementReference;
 
+  constructor() {
+    super();
+    this.resource_type = "RatioPopulationMap";
+  }
+
   public static parse(
     json: any,
     providedInstance: RatioPopulationMap = new RatioPopulationMap()
   ): RatioPopulationMap {
-    const newInstance: RatioPopulationMap = providedInstance;
-    newInstance.resource_type = "RatioPopulationMap";
+    const newInstance: RatioPopulationMap = PopulationMap.parse(json, providedInstance);
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);
     }
@@ -42,8 +47,7 @@ export class RatioPopulationMap extends PopulationMap {
   }
 
   public toJSON(): any {
-    const result: any = {};
-    result.resource_type = 'RatioPopulationMap';
+    const result: any = super.toJSON();
     if (this.IPP) {
       result.IPP = this.IPP.toJSON();
     }

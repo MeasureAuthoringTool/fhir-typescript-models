@@ -13,12 +13,16 @@ export class ContinuousVariablePopulationMap extends PopulationMap {
   // tslint:disable-next-line:variable-name
   public MSRPOPLEX?: StatementReference;
 
+  constructor() {
+    super();
+    this.resource_type = "ContinuousVariablePopulationMap";
+  }
+
   public static parse(
     json: any,
     providedInstance: ContinuousVariablePopulationMap = new ContinuousVariablePopulationMap()
   ): ContinuousVariablePopulationMap {
-    const newInstance: ContinuousVariablePopulationMap = providedInstance;
-    newInstance.resource_type = "ContinuousVariablePopulationMap";
+    const newInstance: ContinuousVariablePopulationMap = PopulationMap.parse(json, providedInstance);
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);
     }
@@ -32,8 +36,7 @@ export class ContinuousVariablePopulationMap extends PopulationMap {
   }
 
   public toJSON(): any {
-    const result: any = {};
-    result.resource_type = 'ContinuousVariablePopulationMap';
+    const result: any = super.toJSON();
     if (this.IPP) {
       result.IPP = this.IPP.toJSON();
     }

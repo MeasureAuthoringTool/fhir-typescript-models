@@ -4,7 +4,7 @@ export * from "./cqm/DataElement";
 export * from "./cqm/LogicLibrary";
 export * from "./cqm/CqmMeasure";
 export * from "./cqm/CqmObservation";
-export * from "./cqm/Patient";
+export * from "./cqm/CqmPatient";
 export * from "./cqm/PopulationMap";
 export * from "./cqm/PopulationSet";
 export * from "./cqm/ProportionPopulationMap";

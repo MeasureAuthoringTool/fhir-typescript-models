@@ -163,4 +163,26 @@ export class CqmMeasure {
 
     return result;
   }
+
+  get allPopulationSetsAndStratifications(): Array<PopulationSet> {
+    return this.population_sets?.concat(this.stratificationsAsPopulationSets) || [];
+  }
+
+  get stratificationsAsPopulationSets(): Array<PopulationSet> {
+    const stratificationsAsPopulationSets: Array<PopulationSet> = [];
+    this.population_sets?.forEach(populationSet => {
+      if (populationSet.stratifications) {
+        populationSet.stratifications.forEach(stratification => {
+          const clonedSet = PopulationSet.parse(populationSet.toJSON());
+          clonedSet.population_set_id = stratification.stratification_id;
+          if (clonedSet.populations) {
+            clonedSet.populations.STRAT = stratification.statement;
+          }
+          stratificationsAsPopulationSets.push(clonedSet);
+        });
+      }
+    });
+    return stratificationsAsPopulationSets;
+  }
+
 }

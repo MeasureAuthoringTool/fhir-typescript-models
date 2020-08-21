@@ -8,7 +8,7 @@ import {RatioPopulationMap} from "../src/models/cqm/RatioPopulationMap";
 import {StatementReference} from "../src/models/cqm/StatementReference";
 
 describe("Populations", () => {
-  it("", () => {
+  it("can lookup population map subclasses", () => {
     expect(lookupPopulationMapSubclass("unknown")).toBeUndefined();
     expect(lookupPopulationMapSubclass("CohortPopulationMap")).toBeDefined();
     expect(lookupPopulationMapSubclass("CohortPopulationMap")).toEqual(CohortPopulationMap);
@@ -23,6 +23,7 @@ describe("Populations", () => {
     expect(it.library_name).toEqual('library1');
     expect(it.statement_name).toEqual('name1');
     expect(it.toJSON()).toEqual(itJson);
+
   });
 
   it("can serialize/deserialize CQM::CohortPopulationMap", () => {
@@ -36,6 +37,7 @@ describe("Populations", () => {
     expect(it.IPP?.library_name).toEqual('library1');
     expect(it.IPP?.statement_name).toEqual('name1');
     expect(it.toJSON()).toEqual(itJson);
+    expect(it.codes).toEqual(["IPP"]);
   });
 
   it("can serialize/deserialize CQM::PopulationSet", () => {
@@ -80,5 +82,16 @@ describe("Populations", () => {
     const it: PopulationSet = PopulationSet.parse(itJson);
     expect(it).toBeDefined();
     expect(it.toJSON()).toEqual(itJson);
+    expect(it.populations).toBeDefined();
+    expect(it.populations?.resource_type).toEqual('CohortPopulationMap');
+    expect(it.populations?.codes).toEqual(["IPP"]);
+  });
+  it("ProportionPopulationMap has all codes", () => {
+    const it: ProportionPopulationMap = new ProportionPopulationMap();
+    it.DENEX = new StatementReference();
+    it.DENEXCEP = new StatementReference();
+    it.IPP = new StatementReference();
+    it.NUMER = new StatementReference();
+    expect(it.codes).toEqual(["DENEX", "DENEXCEP", "IPP", "NUMER"]);
   });
 });
