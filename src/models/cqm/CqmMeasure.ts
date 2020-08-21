@@ -1,11 +1,11 @@
-import {Library} from "../classes/Library";
-import {Measure} from "../classes/Measure";
-import {ValueSet} from "../classes/ValueSet";
-import {ILibrary} from "../interfaces/ILibrary";
-import {IValueSet} from "../interfaces/IValueSet";
-import {DataElement} from "./DataElement";
-import {CqmLogicLibrary} from "./LogicLibrary";
-import {PopulationSet} from "./PopulationSet";
+import { Library } from "../classes/Library";
+import { Measure } from "../classes/Measure";
+import { ValueSet } from "../classes/ValueSet";
+import { ILibrary } from "../interfaces/ILibrary";
+import { IValueSet } from "../interfaces/IValueSet";
+import { DataElement } from "./DataElement";
+import { CqmLogicLibrary } from "./LogicLibrary";
+import { PopulationSet } from "./PopulationSet";
 
 export class CqmMeasure {
   // MongoDB ID
@@ -33,6 +33,8 @@ export class CqmMeasure {
   public source_data_criteria?: Array<DataElement>;
   // tslint:disable-next-line:variable-name
   public population_sets?: Array<PopulationSet>;
+  // tslint:disable-next-line:variable-name
+  public measure_period?: any;
   // mongoid created timestamp
   // tslint:disable-next-line:variable-name
   public created_at?: string;
@@ -71,16 +73,25 @@ export class CqmMeasure {
       newInstance.fhir_measure = Measure.parse(json.fhir_measure);
     }
     if (json.libraries) {
-      newInstance.libraries = json.libraries.map((x: ILibrary) => Library.parse(x));
+      newInstance.libraries = json.libraries.map((x: ILibrary) =>
+        Library.parse(x)
+      );
     }
     if (json.value_sets) {
-      newInstance.value_sets = json.value_sets.map((x: IValueSet) => ValueSet.parse(x));
+      newInstance.value_sets = json.value_sets.map((x: IValueSet) =>
+        ValueSet.parse(x)
+      );
     }
     if (json.cql_libraries) {
-      newInstance.cql_libraries = json.cql_libraries.map((x: any) => CqmLogicLibrary.parse(x));
+      newInstance.cql_libraries = json.cql_libraries.map((x: any) =>
+        CqmLogicLibrary.parse(x)
+      );
     }
     if (json.main_cql_library) {
       newInstance.main_cql_library = json.main_cql_library;
+    }
+    if (json.measure_period) {
+      newInstance.measure_period = json.measure_period;
     }
     if (json.created_at) {
       newInstance.created_at = json.created_at;
@@ -89,10 +100,14 @@ export class CqmMeasure {
       newInstance.updated_at = json.updated_at;
     }
     if (json.source_data_criteria) {
-      newInstance.source_data_criteria = json.source_data_criteria.map((x: any) => DataElement.parse(x));
+      newInstance.source_data_criteria = json.source_data_criteria.map(
+        (x: any) => DataElement.parse(x)
+      );
     }
     if (json.population_sets) {
-      newInstance.population_sets = json.population_sets.map((x: any) => PopulationSet.parse(x));
+      newInstance.population_sets = json.population_sets.map((x: any) =>
+        PopulationSet.parse(x)
+      );
     }
 
     return newInstance;
@@ -141,10 +156,15 @@ export class CqmMeasure {
       result.main_cql_library = this.main_cql_library;
     }
     if (this.source_data_criteria) {
-      result.source_data_criteria = this.source_data_criteria.map((x) => x.toJSON());
+      result.source_data_criteria = this.source_data_criteria.map((x) =>
+        x.toJSON()
+      );
     }
     if (this.population_sets) {
       result.population_sets = this.population_sets.map((x) => x.toJSON());
+    }
+    if (this.measure_period) {
+      result.measure_period = this.measure_period;
     }
     if (this.created_at) {
       result.created_at = this.created_at;
@@ -154,5 +174,28 @@ export class CqmMeasure {
     }
 
     return result;
+  }
+
+  get allPopulationSetsAndStratifications(): Array<PopulationSet> {
+    return (
+      this.population_sets?.concat(this.stratificationsAsPopulationSets) || []
+    );
+  }
+
+  get stratificationsAsPopulationSets(): Array<PopulationSet> {
+    const stratificationsAsPopulationSets: Array<PopulationSet> = [];
+    this.population_sets?.forEach((populationSet) => {
+      if (populationSet.stratifications) {
+        populationSet.stratifications.forEach((stratification) => {
+          const clonedSet = PopulationSet.parse(populationSet.toJSON());
+          clonedSet.population_set_id = stratification.stratification_id;
+          if (clonedSet.populations) {
+            clonedSet.populations.STRAT = stratification.statement;
+          }
+          stratificationsAsPopulationSets.push(clonedSet);
+        });
+      }
+    });
+    return stratificationsAsPopulationSets;
   }
 }

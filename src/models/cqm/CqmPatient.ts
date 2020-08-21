@@ -1,5 +1,8 @@
-import {Patient} from "../classes/Patient";
-import {DataElement} from "./DataElement";
+import { Bundle } from "../classes/Bundle";
+import { BundleEntry } from "../classes/BundleEntry";
+import { BundleType } from "../classes/BundleType";
+import { Patient } from "../classes/Patient";
+import { DataElement } from "./DataElement";
 
 export class CqmPatient {
   // MongoDB ID
@@ -44,7 +47,9 @@ export class CqmPatient {
     }
     if (json.data_elements) {
       // @ts-ignore
-      newInstance.data_elements = json.data_elements.map((x) => DataElement.parse(x));
+      newInstance.data_elements = json.data_elements.map((x) =>
+        DataElement.parse(x)
+      );
     }
     if (json.created_at) {
       newInstance.created_at = json.created_at;
@@ -85,4 +90,30 @@ export class CqmPatient {
     return result;
   }
 
+  public toBundle(): Bundle {
+    const bundle: Bundle = new Bundle();
+    bundle.id = this.id;
+    bundle.type = new BundleType();
+    bundle.type.value = "collection";
+    bundle.entry = [];
+    if (this.fhir_patient) {
+      const patientEntry: BundleEntry = new BundleEntry();
+      patientEntry.resource = this.fhir_patient;
+      bundle.entry.push(patientEntry);
+    }
+    if (this.data_elements) {
+      const dataElementsEntries: Array<BundleEntry> = this.data_elements
+        .filter((d) => d.fhir_resource)
+        .map((d) => d.fhir_resource)
+        .map((r) => {
+          const de: BundleEntry = new BundleEntry();
+          de.resource = r;
+          return de;
+        });
+      if (dataElementsEntries) {
+        bundle.entry = bundle.entry?.concat(dataElementsEntries);
+      }
+    }
+    return bundle;
+  }
 }

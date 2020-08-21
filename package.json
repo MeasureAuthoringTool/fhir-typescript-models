@@ -9,6 +9,7 @@
   "files": [
     "dist/**/*"
   ],
+  "main": "dist/src/models/all.js",
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "tsc",

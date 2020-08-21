@@ -1,8 +1,7 @@
-import {DomainResource} from "../classes/DomainResource";
-import {Resource} from "../classes/Resource";
+import { DomainResource } from "../classes/DomainResource";
+import { Resource } from "../classes/Resource";
 
 export class DataElement {
-
   public codeListId?: string;
   public valueSetTitle?: string;
   public description?: string;
@@ -48,5 +47,4 @@ export class DataElement {
 
     return result;
   }
-
 }

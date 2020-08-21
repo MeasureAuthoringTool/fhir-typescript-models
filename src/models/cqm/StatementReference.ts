@@ -34,5 +34,4 @@ export class StatementReference {
     }
     return result;
   }
-  
 }

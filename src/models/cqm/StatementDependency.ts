@@ -1,4 +1,4 @@
-import {StatementReference} from "./StatementReference";
+import { StatementReference } from "./StatementReference";
 
 /**
  * Statement is a given CQL Statement within a CQL Library, which has many dependencies.
@@ -20,7 +20,9 @@ export class StatementDependency {
     }
 
     if (json.statement_references) {
-      newInstance.statement_references = json.statement_references.map((x: any) => StatementReference.parse(x));
+      newInstance.statement_references = json.statement_references.map(
+        (x: any) => StatementReference.parse(x)
+      );
     }
     return newInstance;
   }
@@ -32,9 +34,10 @@ export class StatementDependency {
       result.statement_name = this.statement_name;
     }
     if (this.statement_references) {
-      result.statement_references = this.statement_references.map((x: StatementReference) => x.toJSON());
+      result.statement_references = this.statement_references.map(
+        (x: StatementReference) => x.toJSON()
+      );
     }
     return result;
   }
-
 }

@@ -1,9 +1,9 @@
-import {StatementReference} from "./StatementReference";
+import { StatementReference } from "./StatementReference";
 
 /**
  * Observation info
  */
-export class Observation {
+export class CqmObservation {
   // tslint:disable-next-line:variable-name
   public observation_function?: StatementReference;
   // tslint:disable-next-line:variable-name
@@ -15,15 +15,19 @@ export class Observation {
 
   public static parse(
     json: any,
-    providedInstance: Observation = new Observation()
-  ): Observation {
-    const newInstance: Observation = providedInstance;
+    providedInstance: CqmObservation = new CqmObservation()
+  ): CqmObservation {
+    const newInstance: CqmObservation = providedInstance;
 
     if (json.observation_function) {
-      newInstance.observation_function = StatementReference.parse(json.observation_function);
+      newInstance.observation_function = StatementReference.parse(
+        json.observation_function
+      );
     }
     if (json.observation_parameter) {
-      newInstance.observation_parameter = StatementReference.parse(json.observation_parameter);
+      newInstance.observation_parameter = StatementReference.parse(
+        json.observation_parameter
+      );
     }
     if (json.aggregation_type) {
       newInstance.aggregation_type = json.aggregation_type;
