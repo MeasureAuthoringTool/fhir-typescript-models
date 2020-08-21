@@ -1,5 +1,5 @@
 import "jest-extended";
-import {CqmPatient} from "../src/models/cqm/CqmPatient";
+import { CqmPatient } from "../src/models/cqm/CqmPatient";
 import patientJson from "./resources/cqm-patient.json";
 
 describe("Parsing CQM Patient JSON", () => {
@@ -24,16 +24,15 @@ describe("Parsing CQM Patient JSON", () => {
     const bundle: any = cqmPatient.toBundle();
     expect(bundle).toBeDefined();
     const bundleJson = bundle.toJSON();
-    expect(bundleJson.id).toEqual('5f342d77b7b4da36487fde73');
+    expect(bundleJson.id).toEqual("5f342d77b7b4da36487fde73");
     expect(bundleJson.entry).toBeDefined();
     expect(bundleJson.entry[0]).toBeDefined();
     expect(bundleJson.entry[0].resource).toBeDefined();
-    expect(bundleJson.entry[0].resource.resourceType).toEqual('Patient');
+    expect(bundleJson.entry[0].resource.resourceType).toEqual("Patient");
     expect(bundleJson.entry[1]).toBeDefined();
     expect(bundleJson.entry[1].resource).toBeDefined();
-    expect(bundleJson.entry[1].resource.resourceType).toEqual('Condition');
+    expect(bundleJson.entry[1].resource.resourceType).toEqual("Condition");
   });
-
 
   function cloneJson(json: any): any {
     return JSON.parse(JSON.stringify(json));
@@ -42,33 +41,47 @@ describe("Parsing CQM Patient JSON", () => {
   function patientJsonWithDataElement() {
     const updatedPatientJson = cloneJson(patientJson);
     const dataElement = {
-      "fhir_resource": {
-        "meta": {"profile": ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"]},
-        "resourceType": "Condition",
-        "verificationStatus": {
-          "coding": [{
-            "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-            "code": "confirmed",
-            "display": "Confirmed"
-          }]
+      fhir_resource: {
+        meta: {
+          profile: [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition",
+          ],
         },
-        "category": [{
-          "coding": [{
-            "system": "http://terminology.hl7.org/CodeSystem/condition-category",
-            "code": "encounter-diagnosis",
-            "display": "Encounter Diagnosis"
-          }]
-        }],
-        "code": {
-          "coding": [{
-            "system": "http://snomed.info/sct",
-            "code": "116288000",
-            "display": "Paralytic stroke (disorder)"
-          }]
+        resourceType: "Condition",
+        verificationStatus: {
+          coding: [
+            {
+              system:
+                "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              code: "confirmed",
+              display: "Confirmed",
+            },
+          ],
         },
-        "subject": {"reference": "Patient/denom-EXM104"},
-        "id": "denom-EXM104-1"
-      }
+        category: [
+          {
+            coding: [
+              {
+                system:
+                  "http://terminology.hl7.org/CodeSystem/condition-category",
+                code: "encounter-diagnosis",
+                display: "Encounter Diagnosis",
+              },
+            ],
+          },
+        ],
+        code: {
+          coding: [
+            {
+              system: "http://snomed.info/sct",
+              code: "116288000",
+              display: "Paralytic stroke (disorder)",
+            },
+          ],
+        },
+        subject: { reference: "Patient/denom-EXM104" },
+        id: "denom-EXM104-1",
+      },
     };
     updatedPatientJson.data_elements = [dataElement];
     return updatedPatientJson;
