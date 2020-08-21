@@ -1,11 +1,10 @@
-import {StatementDependency} from "./StatementDependency";
+import { StatementDependency } from "./StatementDependency";
 
 /**
  *  CqlElmLibrary encapsulates what used to be a Hash in Ruby, by explicitly specifying
  * a library ID, and the CQL string for that library
  */
 export class CqmLogicLibrary {
-
   // tslint:disable-next-line:variable-name
   public library_name?: string;
   // tslint:disable-next-line:variable-name
@@ -45,7 +44,9 @@ export class CqmLogicLibrary {
       newInstance.is_main_library = json.is_main_library;
     }
     if (json.statement_dependencies) {
-      newInstance.statement_dependencies = json.statement_dependencies.map((x: any) => StatementDependency.parse(x));
+      newInstance.statement_dependencies = json.statement_dependencies.map(
+        (x: any) => StatementDependency.parse(x)
+      );
     }
     return newInstance;
   }
@@ -72,9 +73,10 @@ export class CqmLogicLibrary {
       result.is_main_library = this.is_main_library;
     }
     if (this.statement_dependencies) {
-      result.statement_dependencies = this.statement_dependencies.map((x: StatementDependency) => x.toJSON());
+      result.statement_dependencies = this.statement_dependencies.map(
+        (x: StatementDependency) => x.toJSON()
+      );
     }
     return result;
   }
-
 }

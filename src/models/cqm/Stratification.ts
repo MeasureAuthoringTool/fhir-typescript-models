@@ -1,4 +1,4 @@
-import {StatementReference} from "./StatementReference";
+import { StatementReference } from "./StatementReference";
 
 /**
  * Stratification info
@@ -40,5 +40,4 @@ export class Stratification {
     }
     return result;
   }
-
 }

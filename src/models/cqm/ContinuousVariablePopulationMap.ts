@@ -1,11 +1,10 @@
-import {PopulationMap} from "./PopulationMap";
-import {StatementReference} from "./StatementReference";
+import { PopulationMap } from "./PopulationMap";
+import { StatementReference } from "./StatementReference";
 
 /**
  * The population map for a continuous variable population set.
  */
 export class ContinuousVariablePopulationMap extends PopulationMap {
-
   // tslint:disable-next-line:variable-name
   public IPP?: StatementReference;
   // tslint:disable-next-line:variable-name
@@ -22,7 +21,10 @@ export class ContinuousVariablePopulationMap extends PopulationMap {
     json: any,
     providedInstance: ContinuousVariablePopulationMap = new ContinuousVariablePopulationMap()
   ): ContinuousVariablePopulationMap {
-    const newInstance: ContinuousVariablePopulationMap = PopulationMap.parse(json, providedInstance);
+    const newInstance: ContinuousVariablePopulationMap = PopulationMap.parse(
+      json,
+      providedInstance
+    );
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);
     }

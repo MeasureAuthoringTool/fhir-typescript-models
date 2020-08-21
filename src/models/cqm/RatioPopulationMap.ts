@@ -1,12 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import {PopulationMap} from "./PopulationMap";
-import {StatementReference} from "./StatementReference";
+import { PopulationMap } from "./PopulationMap";
+import { StatementReference } from "./StatementReference";
 
 /**
  * The population map for a ratio population set.
  */
 export class RatioPopulationMap extends PopulationMap {
-
   // tslint:disable-next-line:variable-name
   public IPP?: StatementReference;
   // tslint:disable-next-line:variable-name
@@ -27,7 +26,10 @@ export class RatioPopulationMap extends PopulationMap {
     json: any,
     providedInstance: RatioPopulationMap = new RatioPopulationMap()
   ): RatioPopulationMap {
-    const newInstance: RatioPopulationMap = PopulationMap.parse(json, providedInstance);
+    const newInstance: RatioPopulationMap = PopulationMap.parse(
+      json,
+      providedInstance
+    );
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);
     }

@@ -1,11 +1,11 @@
 /**
  * Representation of a population set (aka. PopulationCriteria)
  */
-import {CqmObservation} from "./CqmObservation";
-import {PopulationMap} from "./PopulationMap";
-import {lookupPopulationMapSubclass} from "./PopulationMapping";
-import {StatementReference} from "./StatementReference";
-import {Stratification} from "./Stratification";
+import { CqmObservation } from "./CqmObservation";
+import { PopulationMap } from "./PopulationMap";
+import { lookupPopulationMapSubclass } from "./PopulationMapping";
+import { StatementReference } from "./StatementReference";
+import { Stratification } from "./Stratification";
 
 export class PopulationSet {
   public populations?: PopulationMap;
@@ -25,19 +25,27 @@ export class PopulationSet {
     if (json.populations && json.populations.resource_type) {
       // Circular dependency workaround: invoke a lookup method directly,
       // than indirectly through PopulationSet::parse
-      const subclass = lookupPopulationMapSubclass(json.populations.resource_type);
+      const subclass = lookupPopulationMapSubclass(
+        json.populations.resource_type
+      );
       if (subclass) {
         newInstance.populations = subclass.parse(json.populations);
       }
     }
     if (json.stratifications) {
-      newInstance.stratifications = json.stratifications.map((x: any) => Stratification.parse(x));
+      newInstance.stratifications = json.stratifications.map((x: any) =>
+        Stratification.parse(x)
+      );
     }
     if (json.supplemental_data_elements) {
-      newInstance.supplemental_data_elements = json.supplemental_data_elements.map((x: any) => StatementReference.parse(x));
+      newInstance.supplemental_data_elements = json.supplemental_data_elements.map(
+        (x: any) => StatementReference.parse(x)
+      );
     }
     if (json.observations) {
-      newInstance.observations = json.observations.map((x: any) => CqmObservation.parse(x));
+      newInstance.observations = json.observations.map((x: any) =>
+        CqmObservation.parse(x)
+      );
     }
     if (json.title) {
       newInstance.title = json.title;
@@ -57,7 +65,9 @@ export class PopulationSet {
       result.stratifications = this.stratifications.map((x) => x.toJSON());
     }
     if (this.supplemental_data_elements) {
-      result.supplemental_data_elements = this.supplemental_data_elements.map((x) => x.toJSON());
+      result.supplemental_data_elements = this.supplemental_data_elements.map(
+        (x) => x.toJSON()
+      );
     }
     if (this.observations) {
       result.observations = this.observations.map((x) => x.toJSON());
