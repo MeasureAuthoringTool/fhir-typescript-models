@@ -1,0 +1,39 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  PrimitiveCode,
+} from "../internal";
+
+export class AuditEventAction extends PrimitiveCode {
+  static readonly baseType: string = "FHIR.Element";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "AuditEventAction";
+
+  public static parsePrimitive(
+    value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],
+    extension?: Parameters<typeof PrimitiveCode.parsePrimitive>[1],
+    providedInstance: AuditEventAction = new AuditEventAction()
+  ): AuditEventAction {
+      return PrimitiveCode.parsePrimitive(value, extension, providedInstance);
+  }
+
+  public static isAuditEventAction(input?: unknown): input is AuditEventAction {
+    const castInput = input as AuditEventAction;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "AuditEventAction";
+  }
+
+  public clone(): AuditEventAction {
+    const result = new AuditEventAction();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
+  public getTypeName(): string {
+    return "AuditEventAction";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

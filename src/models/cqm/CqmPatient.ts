@@ -1,7 +1,4 @@
-import { Bundle } from "../classes/Bundle";
-import { BundleEntry } from "../classes/BundleEntry";
-import { BundleType } from "../classes/BundleType";
-import { Patient } from "../classes/Patient";
+import { Bundle, BundleEntry, BundleType, Patient } from "../fhir/internal";
 import { DataElement } from "./DataElement";
 
 export class CqmPatient {

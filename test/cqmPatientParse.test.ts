@@ -1,5 +1,5 @@
 import "jest-extended";
-import { CqmPatient } from "../src/models/cqm/CqmPatient";
+import { CqmPatient } from "../src/models/cqm";
 import patientJson from "./resources/cqm-patient.json";
 
 describe("Parsing CQM Patient JSON", () => {

@@ -1,0 +1,39 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { 
+  PrimitiveCode,
+} from "../internal";
+
+export class AllergyIntoleranceType extends PrimitiveCode {
+  static readonly baseType: string = "FHIR.Element";
+
+  static readonly namespace: string = "FHIR";
+
+  static readonly typeName: string = "AllergyIntoleranceType";
+
+  public static parsePrimitive(
+    value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],
+    extension?: Parameters<typeof PrimitiveCode.parsePrimitive>[1],
+    providedInstance: AllergyIntoleranceType = new AllergyIntoleranceType()
+  ): AllergyIntoleranceType {
+      return PrimitiveCode.parsePrimitive(value, extension, providedInstance);
+  }
+
+  public static isAllergyIntoleranceType(input?: unknown): input is AllergyIntoleranceType {
+    const castInput = input as AllergyIntoleranceType;
+    return !!input && castInput.getTypeName && castInput.getTypeName() === "AllergyIntoleranceType";
+  }
+
+  public clone(): AllergyIntoleranceType {
+    const result = new AllergyIntoleranceType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
+  public getTypeName(): string {
+    return "AllergyIntoleranceType";
+  }
+}
+/* eslint-enable import/prefer-default-export, import/no-cycle */

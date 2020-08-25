@@ -1,8 +1,10 @@
-import { Library } from "../classes/Library";
-import { Measure } from "../classes/Measure";
-import { ValueSet } from "../classes/ValueSet";
-import { ILibrary } from "../interfaces/ILibrary";
-import { IValueSet } from "../interfaces/IValueSet";
+import {
+  ILibrary,
+  IValueSet,
+  Library,
+  Measure,
+  ValueSet,
+} from "../fhir/internal";
 import { CqmLogicLibrary } from "./CqmLogicLibrary";
 import { DataElement } from "./DataElement";
 import { PopulationSet } from "./PopulationSet";

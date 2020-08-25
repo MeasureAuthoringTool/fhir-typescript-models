@@ -1,5 +1,5 @@
 import "jest-extended";
-import { CqmMeasure } from "../src/models/cqm/CqmMeasure";
+import { CqmMeasure } from "../src/models/cqm";
 import measureJson from "./resources/cqm-measure.json";
 
 describe("Parsing CQM Measure JSON", () => {

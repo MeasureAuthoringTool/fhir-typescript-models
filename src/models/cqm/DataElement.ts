@@ -1,5 +1,4 @@
-import { DomainResource } from "../classes/DomainResource";
-import { Resource } from "../classes/Resource";
+import { DomainResource, Resource } from "../fhir/internal";
 
 export class DataElement {
   public codeListId?: string;
