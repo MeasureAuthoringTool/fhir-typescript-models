@@ -13,7 +13,7 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "tsc",
-    "generate-models": "rm -rf src/models; npx generateTypeScriptTypes -o $PWD/src/models",
+    "generate-models": "rm -rf src/models/fhir; npx generateTypeScriptTypes -o $PWD/src/models/fhir -f ./resources/fhir-modelinfo-4.0.1.xml",
     "lint": "npx tslint -c tslint.json '**/*.ts'",
     "test": "npx jest",
     "coverage": "npx jest --coverage"
