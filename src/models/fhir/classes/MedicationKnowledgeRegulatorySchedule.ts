@@ -20,7 +20,7 @@ export class MedicationKnowledgeRegulatorySchedule extends BackboneElement {
   ): MedicationKnowledgeRegulatorySchedule {
     const newInstance: MedicationKnowledgeRegulatorySchedule = BackboneElement.parse(json, providedInstance);
   
-    if (json.schedule) {
+    if (json.schedule !== undefined) {
       newInstance.schedule = CodeableConcept.parse(json.schedule);
     }
     return newInstance;
@@ -40,7 +40,11 @@ export class MedicationKnowledgeRegulatorySchedule extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationKnowledgeRegulatorySchedule {
+    return MedicationKnowledgeRegulatorySchedule.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationKnowledgeRegulatorySchedule";
   }

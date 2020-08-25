@@ -22,7 +22,16 @@ export class CodeSearchSupport extends PrimitiveCode {
     const castInput = input as CodeSearchSupport;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CodeSearchSupport";
   }
-  
+
+  public clone(): CodeSearchSupport {
+    const result = new CodeSearchSupport();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CodeSearchSupport";
   }

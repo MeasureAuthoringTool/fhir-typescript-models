@@ -40,28 +40,28 @@ export class AppointmentResponse extends DomainResource {
   ): AppointmentResponse {
     const newInstance: AppointmentResponse = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.appointment) {
+    if (json.appointment !== undefined) {
       newInstance.appointment = Reference.parse(json.appointment);
     }
-    if (json.start) {
+    if (json.start !== undefined) {
       newInstance.start = PrimitiveInstant.parsePrimitive(json.start, json._start);
     }
-    if (json.end) {
+    if (json.end !== undefined) {
       newInstance.end = PrimitiveInstant.parsePrimitive(json.end, json._end);
     }
-    if (json.participantType) {
+    if (json.participantType !== undefined) {
       newInstance.participantType = json.participantType.map((x) => CodeableConcept.parse(x));
     }
-    if (json.actor) {
+    if (json.actor !== undefined) {
       newInstance.actor = Reference.parse(json.actor);
     }
-    if (json.participantStatus) {
+    if (json.participantStatus !== undefined) {
       newInstance.participantStatus = ParticipantStatus.parsePrimitive(json.participantStatus, json._participantStatus);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
     return newInstance;
@@ -113,7 +113,11 @@ export class AppointmentResponse extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): AppointmentResponse {
+    return AppointmentResponse.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AppointmentResponse";
   }

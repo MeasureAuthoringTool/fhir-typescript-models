@@ -24,10 +24,10 @@ export class DiagnosticReportMedia extends BackboneElement {
   ): DiagnosticReportMedia {
     const newInstance: DiagnosticReportMedia = BackboneElement.parse(json, providedInstance);
   
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
-    if (json.link) {
+    if (json.link !== undefined) {
       newInstance.link = Reference.parse(json.link);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class DiagnosticReportMedia extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DiagnosticReportMedia {
+    return DiagnosticReportMedia.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DiagnosticReportMedia";
   }

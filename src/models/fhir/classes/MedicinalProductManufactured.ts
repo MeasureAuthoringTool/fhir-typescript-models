@@ -35,25 +35,25 @@ export class MedicinalProductManufactured extends DomainResource {
   ): MedicinalProductManufactured {
     const newInstance: MedicinalProductManufactured = DomainResource.parse(json, providedInstance);
   
-    if (json.manufacturedDoseForm) {
+    if (json.manufacturedDoseForm !== undefined) {
       newInstance.manufacturedDoseForm = CodeableConcept.parse(json.manufacturedDoseForm);
     }
-    if (json.unitOfPresentation) {
+    if (json.unitOfPresentation !== undefined) {
       newInstance.unitOfPresentation = CodeableConcept.parse(json.unitOfPresentation);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = Quantity.parse(json.quantity);
     }
-    if (json.manufacturer) {
+    if (json.manufacturer !== undefined) {
       newInstance.manufacturer = json.manufacturer.map((x) => Reference.parse(x));
     }
-    if (json.ingredient) {
+    if (json.ingredient !== undefined) {
       newInstance.ingredient = json.ingredient.map((x) => Reference.parse(x));
     }
-    if (json.physicalCharacteristics) {
+    if (json.physicalCharacteristics !== undefined) {
       newInstance.physicalCharacteristics = ProdCharacteristic.parse(json.physicalCharacteristics);
     }
-    if (json.otherCharacteristics) {
+    if (json.otherCharacteristics !== undefined) {
       newInstance.otherCharacteristics = json.otherCharacteristics.map((x) => CodeableConcept.parse(x));
     }
     return newInstance;
@@ -97,7 +97,11 @@ export class MedicinalProductManufactured extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductManufactured {
+    return MedicinalProductManufactured.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductManufactured";
   }

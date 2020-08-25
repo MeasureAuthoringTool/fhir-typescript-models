@@ -22,7 +22,16 @@ export class ChargeItemDefinitionPriceComponentType extends PrimitiveCode {
     const castInput = input as ChargeItemDefinitionPriceComponentType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ChargeItemDefinitionPriceComponentType";
   }
-  
+
+  public clone(): ChargeItemDefinitionPriceComponentType {
+    const result = new ChargeItemDefinitionPriceComponentType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ChargeItemDefinitionPriceComponentType";
   }

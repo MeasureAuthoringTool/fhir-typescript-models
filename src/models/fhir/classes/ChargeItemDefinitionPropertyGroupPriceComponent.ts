@@ -30,16 +30,16 @@ export class ChargeItemDefinitionPropertyGroupPriceComponent extends BackboneEle
   ): ChargeItemDefinitionPropertyGroupPriceComponent {
     const newInstance: ChargeItemDefinitionPropertyGroupPriceComponent = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = ChargeItemDefinitionPriceComponentType.parsePrimitive(json.type, json._type);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.factor) {
+    if (json.factor !== undefined) {
       newInstance.factor = PrimitiveDecimal.parsePrimitive(json.factor, json._factor);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = Money.parse(json.amount);
     }
     return newInstance;
@@ -73,7 +73,11 @@ export class ChargeItemDefinitionPropertyGroupPriceComponent extends BackboneEle
 
     return result;
   }
-  
+
+  public clone(): ChargeItemDefinitionPropertyGroupPriceComponent {
+    return ChargeItemDefinitionPropertyGroupPriceComponent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ChargeItemDefinitionPropertyGroupPriceComponent";
   }

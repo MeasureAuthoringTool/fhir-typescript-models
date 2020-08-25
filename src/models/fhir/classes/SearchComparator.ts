@@ -22,7 +22,16 @@ export class SearchComparator extends PrimitiveCode {
     const castInput = input as SearchComparator;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SearchComparator";
   }
-  
+
+  public clone(): SearchComparator {
+    const result = new SearchComparator();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SearchComparator";
   }

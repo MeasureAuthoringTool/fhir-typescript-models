@@ -22,7 +22,16 @@ export class EncounterStatus extends PrimitiveCode {
     const castInput = input as EncounterStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "EncounterStatus";
   }
-  
+
+  public clone(): EncounterStatus {
+    const result = new EncounterStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "EncounterStatus";
   }

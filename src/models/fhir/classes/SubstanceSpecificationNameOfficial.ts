@@ -26,13 +26,13 @@ export class SubstanceSpecificationNameOfficial extends BackboneElement {
   ): SubstanceSpecificationNameOfficial {
     const newInstance: SubstanceSpecificationNameOfficial = BackboneElement.parse(json, providedInstance);
   
-    if (json.authority) {
+    if (json.authority !== undefined) {
       newInstance.authority = CodeableConcept.parse(json.authority);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CodeableConcept.parse(json.status);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
     return newInstance;
@@ -61,7 +61,11 @@ export class SubstanceSpecificationNameOfficial extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSpecificationNameOfficial {
+    return SubstanceSpecificationNameOfficial.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSpecificationNameOfficial";
   }

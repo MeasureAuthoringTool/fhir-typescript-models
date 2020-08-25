@@ -28,19 +28,19 @@ export class DataRequirementDateFilter extends Element {
   ): DataRequirementDateFilter {
     const newInstance: DataRequirementDateFilter = Element.parse(json, providedInstance);
   
-    if (json.path) {
+    if (json.path !== undefined) {
       newInstance.path = PrimitiveString.parsePrimitive(json.path, json._path);
     }
-    if (json.searchParam) {
+    if (json.searchParam !== undefined) {
       newInstance.searchParam = PrimitiveString.parsePrimitive(json.searchParam, json._searchParam);
     }
-    if (json.valueDateTime) {
+    if (json.valueDateTime !== undefined) {
       newInstance.value = PrimitiveDateTime.parsePrimitive(json.valueDateTime, json._valueDateTime);
     }
-    if (json.valuePeriod) {
+    if (json.valuePeriod !== undefined) {
       newInstance.value = Period.parse(json.valuePeriod);
     }
-    if (json.valueDuration) {
+    if (json.valueDuration !== undefined) {
       newInstance.value = Duration.parse(json.valueDuration);
     }
     return newInstance;
@@ -79,7 +79,11 @@ export class DataRequirementDateFilter extends Element {
 
     return result;
   }
-  
+
+  public clone(): DataRequirementDateFilter {
+    return DataRequirementDateFilter.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DataRequirementDateFilter";
   }

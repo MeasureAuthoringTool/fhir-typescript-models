@@ -30,16 +30,16 @@ export class SubscriptionChannel extends BackboneElement {
   ): SubscriptionChannel {
     const newInstance: SubscriptionChannel = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = SubscriptionChannelType.parsePrimitive(json.type, json._type);
     }
-    if (json.endpoint) {
+    if (json.endpoint !== undefined) {
       newInstance.endpoint = PrimitiveUrl.parsePrimitive(json.endpoint, json._endpoint);
     }
-    if (json.payload) {
+    if (json.payload !== undefined) {
       newInstance.payload = MimeType.parsePrimitive(json.payload, json._payload);
     }
-    if (json.header) {
+    if (json.header !== undefined) {
       newInstance.header = json.header.map((x, i) => {
         const ext = json._header && json._header[i];
         return PrimitiveString.parsePrimitive(x, ext);
@@ -78,7 +78,11 @@ export class SubscriptionChannel extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubscriptionChannel {
+    return SubscriptionChannel.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubscriptionChannel";
   }

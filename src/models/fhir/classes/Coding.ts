@@ -32,19 +32,19 @@ export class Coding extends Element {
   ): Coding {
     const newInstance: Coding = Element.parse(json, providedInstance);
   
-    if (json.system) {
+    if (json.system !== undefined) {
       newInstance.system = PrimitiveUri.parsePrimitive(json.system, json._system);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.display) {
+    if (json.display !== undefined) {
       newInstance.display = PrimitiveString.parsePrimitive(json.display, json._display);
     }
-    if (json.userSelected) {
+    if (json.userSelected !== undefined) {
       newInstance.userSelected = PrimitiveBoolean.parsePrimitive(json.userSelected, json._userSelected);
     }
     return newInstance;
@@ -85,7 +85,11 @@ export class Coding extends Element {
 
     return result;
   }
-  
+
+  public clone(): Coding {
+    return Coding.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Coding";
   }

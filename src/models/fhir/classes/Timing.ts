@@ -27,16 +27,16 @@ export class Timing extends BackboneElement {
   ): Timing {
     const newInstance: Timing = BackboneElement.parse(json, providedInstance);
   
-    if (json.event) {
+    if (json.event !== undefined) {
       newInstance.event = json.event.map((x, i) => {
         const ext = json._event && json._event[i];
         return PrimitiveDateTime.parsePrimitive(x, ext);
       });
     }
-    if (json.repeat) {
+    if (json.repeat !== undefined) {
       newInstance.repeat = TimingRepeat.parse(json.repeat);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
     return newInstance;
@@ -65,7 +65,11 @@ export class Timing extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): Timing {
+    return Timing.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Timing";
   }

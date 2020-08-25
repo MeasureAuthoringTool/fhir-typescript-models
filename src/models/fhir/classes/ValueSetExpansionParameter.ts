@@ -29,28 +29,28 @@ export class ValueSetExpansionParameter extends BackboneElement {
   ): ValueSetExpansionParameter {
     const newInstance: ValueSetExpansionParameter = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.valueString) {
+    if (json.valueString !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.valueString, json._valueString);
     }
-    if (json.valueBoolean) {
+    if (json.valueBoolean !== undefined) {
       newInstance.value = PrimitiveBoolean.parsePrimitive(json.valueBoolean, json._valueBoolean);
     }
-    if (json.valueInteger) {
+    if (json.valueInteger !== undefined) {
       newInstance.value = PrimitiveInteger.parsePrimitive(json.valueInteger, json._valueInteger);
     }
-    if (json.valueDecimal) {
+    if (json.valueDecimal !== undefined) {
       newInstance.value = PrimitiveDecimal.parsePrimitive(json.valueDecimal, json._valueDecimal);
     }
-    if (json.valueUri) {
+    if (json.valueUri !== undefined) {
       newInstance.value = PrimitiveUri.parsePrimitive(json.valueUri, json._valueUri);
     }
-    if (json.valueCode) {
+    if (json.valueCode !== undefined) {
       newInstance.value = PrimitiveCode.parsePrimitive(json.valueCode, json._valueCode);
     }
-    if (json.valueDateTime) {
+    if (json.valueDateTime !== undefined) {
       newInstance.value = PrimitiveDateTime.parsePrimitive(json.valueDateTime, json._valueDateTime);
     }
     return newInstance;
@@ -106,7 +106,11 @@ export class ValueSetExpansionParameter extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ValueSetExpansionParameter {
+    return ValueSetExpansionParameter.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ValueSetExpansionParameter";
   }

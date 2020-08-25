@@ -73,70 +73,70 @@ export class Appointment extends DomainResource {
   ): Appointment {
     const newInstance: Appointment = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = AppointmentStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.cancelationReason) {
+    if (json.cancelationReason !== undefined) {
       newInstance.cancelationReason = CodeableConcept.parse(json.cancelationReason);
     }
-    if (json.serviceCategory) {
+    if (json.serviceCategory !== undefined) {
       newInstance.serviceCategory = json.serviceCategory.map((x) => CodeableConcept.parse(x));
     }
-    if (json.serviceType) {
+    if (json.serviceType !== undefined) {
       newInstance.serviceType = json.serviceType.map((x) => CodeableConcept.parse(x));
     }
-    if (json.specialty) {
+    if (json.specialty !== undefined) {
       newInstance.specialty = json.specialty.map((x) => CodeableConcept.parse(x));
     }
-    if (json.appointmentType) {
+    if (json.appointmentType !== undefined) {
       newInstance.appointmentType = CodeableConcept.parse(json.appointmentType);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = PrimitiveUnsignedInt.parsePrimitive(json.priority, json._priority);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.supportingInformation) {
+    if (json.supportingInformation !== undefined) {
       newInstance.supportingInformation = json.supportingInformation.map((x) => Reference.parse(x));
     }
-    if (json.start) {
+    if (json.start !== undefined) {
       newInstance.start = PrimitiveInstant.parsePrimitive(json.start, json._start);
     }
-    if (json.end) {
+    if (json.end !== undefined) {
       newInstance.end = PrimitiveInstant.parsePrimitive(json.end, json._end);
     }
-    if (json.minutesDuration) {
+    if (json.minutesDuration !== undefined) {
       newInstance.minutesDuration = PrimitivePositiveInt.parsePrimitive(json.minutesDuration, json._minutesDuration);
     }
-    if (json.slot) {
+    if (json.slot !== undefined) {
       newInstance.slot = json.slot.map((x) => Reference.parse(x));
     }
-    if (json.created) {
+    if (json.created !== undefined) {
       newInstance.created = PrimitiveDateTime.parsePrimitive(json.created, json._created);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
-    if (json.patientInstruction) {
+    if (json.patientInstruction !== undefined) {
       newInstance.patientInstruction = PrimitiveString.parsePrimitive(json.patientInstruction, json._patientInstruction);
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.participant) {
+    if (json.participant !== undefined) {
       newInstance.participant = json.participant.map((x) => AppointmentParticipant.parse(x));
     }
-    if (json.requestedPeriod) {
+    if (json.requestedPeriod !== undefined) {
       newInstance.requestedPeriod = json.requestedPeriod.map((x) => Period.parse(x));
     }
     return newInstance;
@@ -249,7 +249,11 @@ export class Appointment extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Appointment {
+    return Appointment.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Appointment";
   }

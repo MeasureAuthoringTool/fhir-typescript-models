@@ -22,7 +22,16 @@ export class Use extends PrimitiveCode {
     const castInput = input as Use;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "Use";
   }
-  
+
+  public clone(): Use {
+    const result = new Use();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "Use";
   }

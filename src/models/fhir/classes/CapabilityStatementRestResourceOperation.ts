@@ -27,13 +27,13 @@ export class CapabilityStatementRestResourceOperation extends BackboneElement {
   ): CapabilityStatementRestResourceOperation {
     const newInstance: CapabilityStatementRestResourceOperation = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.definition) {
+    if (json.definition !== undefined) {
       newInstance.definition = PrimitiveCanonical.parsePrimitive(json.definition, json._definition);
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveMarkdown.parsePrimitive(json.documentation, json._documentation);
     }
     return newInstance;
@@ -64,7 +64,11 @@ export class CapabilityStatementRestResourceOperation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatementRestResourceOperation {
+    return CapabilityStatementRestResourceOperation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementRestResourceOperation";
   }

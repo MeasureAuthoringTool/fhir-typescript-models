@@ -25,13 +25,13 @@ export class BiologicallyDerivedProductManipulation extends BackboneElement {
   ): BiologicallyDerivedProductManipulation {
     const newInstance: BiologicallyDerivedProductManipulation = BackboneElement.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.timeDateTime) {
+    if (json.timeDateTime !== undefined) {
       newInstance.time = PrimitiveDateTime.parsePrimitive(json.timeDateTime, json._timeDateTime);
     }
-    if (json.timePeriod) {
+    if (json.timePeriod !== undefined) {
       newInstance.time = Period.parse(json.timePeriod);
     }
     return newInstance;
@@ -61,7 +61,11 @@ export class BiologicallyDerivedProductManipulation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): BiologicallyDerivedProductManipulation {
+    return BiologicallyDerivedProductManipulation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "BiologicallyDerivedProductManipulation";
   }

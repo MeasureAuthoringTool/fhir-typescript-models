@@ -34,25 +34,25 @@ export class OperationOutcomeIssue extends BackboneElement {
   ): OperationOutcomeIssue {
     const newInstance: OperationOutcomeIssue = BackboneElement.parse(json, providedInstance);
   
-    if (json.severity) {
+    if (json.severity !== undefined) {
       newInstance.severity = IssueSeverity.parsePrimitive(json.severity, json._severity);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = IssueType.parsePrimitive(json.code, json._code);
     }
-    if (json.details) {
+    if (json.details !== undefined) {
       newInstance.details = CodeableConcept.parse(json.details);
     }
-    if (json.diagnostics) {
+    if (json.diagnostics !== undefined) {
       newInstance.diagnostics = PrimitiveString.parsePrimitive(json.diagnostics, json._diagnostics);
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = json.location.map((x, i) => {
         const ext = json._location && json._location[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.expression) {
+    if (json.expression !== undefined) {
       newInstance.expression = json.expression.map((x, i) => {
         const ext = json._expression && json._expression[i];
         return PrimitiveString.parsePrimitive(x, ext);
@@ -100,7 +100,11 @@ export class OperationOutcomeIssue extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): OperationOutcomeIssue {
+    return OperationOutcomeIssue.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "OperationOutcomeIssue";
   }

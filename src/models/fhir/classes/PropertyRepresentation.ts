@@ -22,7 +22,16 @@ export class PropertyRepresentation extends PrimitiveCode {
     const castInput = input as PropertyRepresentation;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PropertyRepresentation";
   }
-  
+
+  public clone(): PropertyRepresentation {
+    const result = new PropertyRepresentation();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PropertyRepresentation";
   }

@@ -22,7 +22,16 @@ export class CatalogEntryRelationType extends PrimitiveCode {
     const castInput = input as CatalogEntryRelationType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CatalogEntryRelationType";
   }
-  
+
+  public clone(): CatalogEntryRelationType {
+    const result = new CatalogEntryRelationType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CatalogEntryRelationType";
   }

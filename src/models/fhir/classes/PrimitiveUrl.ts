@@ -22,7 +22,16 @@ export class PrimitiveUrl extends PrimitiveUri {
     const castInput = input as PrimitiveUrl;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveUrl";
   }
-  
+
+  public clone(): PrimitiveUrl {
+    const result = new PrimitiveUrl();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveUrl";
   }

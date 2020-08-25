@@ -22,7 +22,16 @@ export class ConsentProvisionType extends PrimitiveCode {
     const castInput = input as ConsentProvisionType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ConsentProvisionType";
   }
-  
+
+  public clone(): ConsentProvisionType {
+    const result = new ConsentProvisionType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ConsentProvisionType";
   }

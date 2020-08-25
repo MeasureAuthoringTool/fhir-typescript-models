@@ -72,73 +72,73 @@ export class CommunicationRequest extends DomainResource {
   ): CommunicationRequest {
     const newInstance: CommunicationRequest = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.replaces) {
+    if (json.replaces !== undefined) {
       newInstance.replaces = json.replaces.map((x) => Reference.parse(x));
     }
-    if (json.groupIdentifier) {
+    if (json.groupIdentifier !== undefined) {
       newInstance.groupIdentifier = Identifier.parse(json.groupIdentifier);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CommunicationRequestStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.statusReason) {
+    if (json.statusReason !== undefined) {
       newInstance.statusReason = CodeableConcept.parse(json.statusReason);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = CommunicationPriority.parsePrimitive(json.priority, json._priority);
     }
-    if (json.doNotPerform) {
+    if (json.doNotPerform !== undefined) {
       newInstance.doNotPerform = PrimitiveBoolean.parsePrimitive(json.doNotPerform, json._doNotPerform);
     }
-    if (json.medium) {
+    if (json.medium !== undefined) {
       newInstance.medium = json.medium.map((x) => CodeableConcept.parse(x));
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.about) {
+    if (json.about !== undefined) {
       newInstance.about = json.about.map((x) => Reference.parse(x));
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.payload) {
+    if (json.payload !== undefined) {
       newInstance.payload = json.payload.map((x) => CommunicationRequestPayload.parse(x));
     }
-    if (json.occurrenceDateTime) {
+    if (json.occurrenceDateTime !== undefined) {
       newInstance.occurrence = PrimitiveDateTime.parsePrimitive(json.occurrenceDateTime, json._occurrenceDateTime);
     }
-    if (json.occurrencePeriod) {
+    if (json.occurrencePeriod !== undefined) {
       newInstance.occurrence = Period.parse(json.occurrencePeriod);
     }
-    if (json.authoredOn) {
+    if (json.authoredOn !== undefined) {
       newInstance.authoredOn = PrimitiveDateTime.parsePrimitive(json.authoredOn, json._authoredOn);
     }
-    if (json.requester) {
+    if (json.requester !== undefined) {
       newInstance.requester = Reference.parse(json.requester);
     }
-    if (json.recipient) {
+    if (json.recipient !== undefined) {
       newInstance.recipient = json.recipient.map((x) => Reference.parse(x));
     }
-    if (json.sender) {
+    if (json.sender !== undefined) {
       newInstance.sender = Reference.parse(json.sender);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -251,7 +251,11 @@ export class CommunicationRequest extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): CommunicationRequest {
+    return CommunicationRequest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CommunicationRequest";
   }

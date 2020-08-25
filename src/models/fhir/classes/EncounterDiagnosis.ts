@@ -27,13 +27,13 @@ export class EncounterDiagnosis extends BackboneElement {
   ): EncounterDiagnosis {
     const newInstance: EncounterDiagnosis = BackboneElement.parse(json, providedInstance);
   
-    if (json.condition) {
+    if (json.condition !== undefined) {
       newInstance.condition = Reference.parse(json.condition);
     }
-    if (json.use) {
+    if (json.use !== undefined) {
       newInstance.use = CodeableConcept.parse(json.use);
     }
-    if (json.rank) {
+    if (json.rank !== undefined) {
       newInstance.rank = PrimitivePositiveInt.parsePrimitive(json.rank, json._rank);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class EncounterDiagnosis extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): EncounterDiagnosis {
+    return EncounterDiagnosis.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EncounterDiagnosis";
   }

@@ -22,7 +22,16 @@ export class SearchParamType extends PrimitiveCode {
     const castInput = input as SearchParamType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SearchParamType";
   }
-  
+
+  public clone(): SearchParamType {
+    const result = new SearchParamType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SearchParamType";
   }

@@ -22,7 +22,16 @@ export class ResourceType extends PrimitiveCode {
     const castInput = input as ResourceType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ResourceType";
   }
-  
+
+  public clone(): ResourceType {
+    const result = new ResourceType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ResourceType";
   }

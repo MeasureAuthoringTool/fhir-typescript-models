@@ -21,7 +21,7 @@ export class TerminologyCapabilitiesTranslation extends BackboneElement {
   ): TerminologyCapabilitiesTranslation {
     const newInstance: TerminologyCapabilitiesTranslation = BackboneElement.parse(json, providedInstance);
   
-    if (json.needsMap) {
+    if (json.needsMap !== undefined) {
       newInstance.needsMap = PrimitiveBoolean.parsePrimitive(json.needsMap, json._needsMap);
     }
     return newInstance;
@@ -42,7 +42,11 @@ export class TerminologyCapabilitiesTranslation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TerminologyCapabilitiesTranslation {
+    return TerminologyCapabilitiesTranslation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TerminologyCapabilitiesTranslation";
   }

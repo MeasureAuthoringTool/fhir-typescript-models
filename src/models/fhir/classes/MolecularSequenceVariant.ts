@@ -33,22 +33,22 @@ export class MolecularSequenceVariant extends BackboneElement {
   ): MolecularSequenceVariant {
     const newInstance: MolecularSequenceVariant = BackboneElement.parse(json, providedInstance);
   
-    if (json.start) {
+    if (json.start !== undefined) {
       newInstance.start = PrimitiveInteger.parsePrimitive(json.start, json._start);
     }
-    if (json.end) {
+    if (json.end !== undefined) {
       newInstance.end = PrimitiveInteger.parsePrimitive(json.end, json._end);
     }
-    if (json.observedAllele) {
+    if (json.observedAllele !== undefined) {
       newInstance.observedAllele = PrimitiveString.parsePrimitive(json.observedAllele, json._observedAllele);
     }
-    if (json.referenceAllele) {
+    if (json.referenceAllele !== undefined) {
       newInstance.referenceAllele = PrimitiveString.parsePrimitive(json.referenceAllele, json._referenceAllele);
     }
-    if (json.cigar) {
+    if (json.cigar !== undefined) {
       newInstance.cigar = PrimitiveString.parsePrimitive(json.cigar, json._cigar);
     }
-    if (json.variantPointer) {
+    if (json.variantPointer !== undefined) {
       newInstance.variantPointer = Reference.parse(json.variantPointer);
     }
     return newInstance;
@@ -93,7 +93,11 @@ export class MolecularSequenceVariant extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MolecularSequenceVariant {
+    return MolecularSequenceVariant.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MolecularSequenceVariant";
   }

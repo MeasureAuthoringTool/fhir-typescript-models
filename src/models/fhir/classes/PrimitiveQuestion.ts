@@ -22,7 +22,16 @@ export class PrimitiveQuestion extends PrimitiveString {
     const castInput = input as PrimitiveQuestion;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveQuestion";
   }
-  
+
+  public clone(): PrimitiveQuestion {
+    const result = new PrimitiveQuestion();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveQuestion";
   }

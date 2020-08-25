@@ -27,13 +27,13 @@ export class ExplanationOfBenefitInsurance extends BackboneElement {
   ): ExplanationOfBenefitInsurance {
     const newInstance: ExplanationOfBenefitInsurance = BackboneElement.parse(json, providedInstance);
   
-    if (json.focal) {
+    if (json.focal !== undefined) {
       newInstance.focal = PrimitiveBoolean.parsePrimitive(json.focal, json._focal);
     }
-    if (json.coverage) {
+    if (json.coverage !== undefined) {
       newInstance.coverage = Reference.parse(json.coverage);
     }
-    if (json.preAuthRef) {
+    if (json.preAuthRef !== undefined) {
       newInstance.preAuthRef = json.preAuthRef.map((x, i) => {
         const ext = json._preAuthRef && json._preAuthRef[i];
         return PrimitiveString.parsePrimitive(x, ext);
@@ -66,7 +66,11 @@ export class ExplanationOfBenefitInsurance extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExplanationOfBenefitInsurance {
+    return ExplanationOfBenefitInsurance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExplanationOfBenefitInsurance";
   }

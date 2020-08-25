@@ -30,16 +30,16 @@ export class CapabilityStatementMessaging extends BackboneElement {
   ): CapabilityStatementMessaging {
     const newInstance: CapabilityStatementMessaging = BackboneElement.parse(json, providedInstance);
   
-    if (json.endpoint) {
+    if (json.endpoint !== undefined) {
       newInstance.endpoint = json.endpoint.map((x) => CapabilityStatementMessagingEndpoint.parse(x));
     }
-    if (json.reliableCache) {
+    if (json.reliableCache !== undefined) {
       newInstance.reliableCache = PrimitiveUnsignedInt.parsePrimitive(json.reliableCache, json._reliableCache);
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveMarkdown.parsePrimitive(json.documentation, json._documentation);
     }
-    if (json.supportedMessage) {
+    if (json.supportedMessage !== undefined) {
       newInstance.supportedMessage = json.supportedMessage.map((x) => CapabilityStatementMessagingSupportedMessage.parse(x));
     }
     return newInstance;
@@ -73,7 +73,11 @@ export class CapabilityStatementMessaging extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatementMessaging {
+    return CapabilityStatementMessaging.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementMessaging";
   }

@@ -53,43 +53,43 @@ export class NamingSystem extends DomainResource {
   ): NamingSystem {
     const newInstance: NamingSystem = DomainResource.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.kind) {
+    if (json.kind !== undefined) {
       newInstance.kind = NamingSystemType.parsePrimitive(json.kind, json._kind);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.responsible) {
+    if (json.responsible !== undefined) {
       newInstance.responsible = PrimitiveString.parsePrimitive(json.responsible, json._responsible);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.usage) {
+    if (json.usage !== undefined) {
       newInstance.usage = PrimitiveString.parsePrimitive(json.usage, json._usage);
     }
-    if (json.uniqueId) {
+    if (json.uniqueId !== undefined) {
       newInstance.uniqueId = json.uniqueId.map((x) => NamingSystemUniqueId.parse(x));
     }
     return newInstance;
@@ -165,7 +165,11 @@ export class NamingSystem extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): NamingSystem {
+    return NamingSystem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "NamingSystem";
   }

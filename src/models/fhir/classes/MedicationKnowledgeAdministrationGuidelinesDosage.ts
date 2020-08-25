@@ -23,10 +23,10 @@ export class MedicationKnowledgeAdministrationGuidelinesDosage extends BackboneE
   ): MedicationKnowledgeAdministrationGuidelinesDosage {
     const newInstance: MedicationKnowledgeAdministrationGuidelinesDosage = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.dosage) {
+    if (json.dosage !== undefined) {
       newInstance.dosage = json.dosage.map((x) => Dosage.parse(x));
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class MedicationKnowledgeAdministrationGuidelinesDosage extends BackboneE
 
     return result;
   }
-  
+
+  public clone(): MedicationKnowledgeAdministrationGuidelinesDosage {
+    return MedicationKnowledgeAdministrationGuidelinesDosage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationKnowledgeAdministrationGuidelinesDosage";
   }

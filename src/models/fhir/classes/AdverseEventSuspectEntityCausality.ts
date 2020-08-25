@@ -29,16 +29,16 @@ export class AdverseEventSuspectEntityCausality extends BackboneElement {
   ): AdverseEventSuspectEntityCausality {
     const newInstance: AdverseEventSuspectEntityCausality = BackboneElement.parse(json, providedInstance);
   
-    if (json.assessment) {
+    if (json.assessment !== undefined) {
       newInstance.assessment = CodeableConcept.parse(json.assessment);
     }
-    if (json.productRelatedness) {
+    if (json.productRelatedness !== undefined) {
       newInstance.productRelatedness = PrimitiveString.parsePrimitive(json.productRelatedness, json._productRelatedness);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = Reference.parse(json.author);
     }
-    if (json.method) {
+    if (json.method !== undefined) {
       newInstance.method = CodeableConcept.parse(json.method);
     }
     return newInstance;
@@ -71,7 +71,11 @@ export class AdverseEventSuspectEntityCausality extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): AdverseEventSuspectEntityCausality {
+    return AdverseEventSuspectEntityCausality.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AdverseEventSuspectEntityCausality";
   }

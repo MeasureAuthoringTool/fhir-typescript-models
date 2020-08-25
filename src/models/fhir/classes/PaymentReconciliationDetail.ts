@@ -43,34 +43,34 @@ export class PaymentReconciliationDetail extends BackboneElement {
   ): PaymentReconciliationDetail {
     const newInstance: PaymentReconciliationDetail = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.predecessor) {
+    if (json.predecessor !== undefined) {
       newInstance.predecessor = Identifier.parse(json.predecessor);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.request) {
+    if (json.request !== undefined) {
       newInstance.request = Reference.parse(json.request);
     }
-    if (json.submitter) {
+    if (json.submitter !== undefined) {
       newInstance.submitter = Reference.parse(json.submitter);
     }
-    if (json.response) {
+    if (json.response !== undefined) {
       newInstance.response = Reference.parse(json.response);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDate.parsePrimitive(json.date, json._date);
     }
-    if (json.responsible) {
+    if (json.responsible !== undefined) {
       newInstance.responsible = Reference.parse(json.responsible);
     }
-    if (json.payee) {
+    if (json.payee !== undefined) {
       newInstance.payee = Reference.parse(json.payee);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = Money.parse(json.amount);
     }
     return newInstance;
@@ -127,7 +127,11 @@ export class PaymentReconciliationDetail extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PaymentReconciliationDetail {
+    return PaymentReconciliationDetail.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PaymentReconciliationDetail";
   }

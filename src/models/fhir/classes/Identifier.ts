@@ -36,22 +36,22 @@ export class Identifier extends Element {
   ): Identifier {
     const newInstance: Identifier = Element.parse(json, providedInstance);
   
-    if (json.use) {
+    if (json.use !== undefined) {
       newInstance.use = IdentifierUse.parsePrimitive(json.use, json._use);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.system) {
+    if (json.system !== undefined) {
       newInstance.system = PrimitiveUri.parsePrimitive(json.system, json._system);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.value, json._value);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.assigner) {
+    if (json.assigner !== undefined) {
       newInstance.assigner = Reference.parse(json.assigner);
     }
     return newInstance;
@@ -94,7 +94,11 @@ export class Identifier extends Element {
 
     return result;
   }
-  
+
+  public clone(): Identifier {
+    return Identifier.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Identifier";
   }

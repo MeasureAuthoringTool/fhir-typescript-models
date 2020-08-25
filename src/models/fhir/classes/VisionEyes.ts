@@ -22,7 +22,16 @@ export class VisionEyes extends PrimitiveCode {
     const castInput = input as VisionEyes;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "VisionEyes";
   }
-  
+
+  public clone(): VisionEyes {
+    const result = new VisionEyes();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "VisionEyes";
   }

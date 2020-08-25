@@ -84,76 +84,76 @@ export class TerminologyCapabilities extends DomainResource {
   ): TerminologyCapabilities {
     const newInstance: TerminologyCapabilities = DomainResource.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.experimental) {
+    if (json.experimental !== undefined) {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = PrimitiveMarkdown.parsePrimitive(json.purpose, json._purpose);
     }
-    if (json.copyright) {
+    if (json.copyright !== undefined) {
       newInstance.copyright = PrimitiveMarkdown.parsePrimitive(json.copyright, json._copyright);
     }
-    if (json.kind) {
+    if (json.kind !== undefined) {
       newInstance.kind = CapabilityStatementKind.parsePrimitive(json.kind, json._kind);
     }
-    if (json.software) {
+    if (json.software !== undefined) {
       newInstance.software = TerminologyCapabilitiesSoftware.parse(json.software);
     }
-    if (json.implementation) {
+    if (json.implementation !== undefined) {
       newInstance.implementation = TerminologyCapabilitiesImplementation.parse(json.implementation);
     }
-    if (json.lockedDate) {
+    if (json.lockedDate !== undefined) {
       newInstance.lockedDate = PrimitiveBoolean.parsePrimitive(json.lockedDate, json._lockedDate);
     }
-    if (json.codeSystem) {
+    if (json.codeSystem !== undefined) {
       newInstance.codeSystem = json.codeSystem.map((x) => TerminologyCapabilitiesCodeSystem.parse(x));
     }
-    if (json.expansion) {
+    if (json.expansion !== undefined) {
       newInstance.expansion = TerminologyCapabilitiesExpansion.parse(json.expansion);
     }
-    if (json.codeSearch) {
+    if (json.codeSearch !== undefined) {
       newInstance.codeSearch = CodeSearchSupport.parsePrimitive(json.codeSearch, json._codeSearch);
     }
-    if (json.validateCode) {
+    if (json.validateCode !== undefined) {
       newInstance.validateCode = TerminologyCapabilitiesValidateCode.parse(json.validateCode);
     }
-    if (json.translation) {
+    if (json.translation !== undefined) {
       newInstance.translation = TerminologyCapabilitiesTranslation.parse(json.translation);
     }
-    if (json.closure) {
+    if (json.closure !== undefined) {
       newInstance.closure = TerminologyCapabilitiesClosure.parse(json.closure);
     }
     return newInstance;
@@ -279,7 +279,11 @@ export class TerminologyCapabilities extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): TerminologyCapabilities {
+    return TerminologyCapabilities.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TerminologyCapabilities";
   }

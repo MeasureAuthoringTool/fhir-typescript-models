@@ -39,28 +39,28 @@ export class ObservationDefinitionQualifiedInterval extends BackboneElement {
   ): ObservationDefinitionQualifiedInterval {
     const newInstance: ObservationDefinitionQualifiedInterval = BackboneElement.parse(json, providedInstance);
   
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = ObservationRangeCategory.parsePrimitive(json.category, json._category);
     }
-    if (json.range) {
+    if (json.range !== undefined) {
       newInstance.range = Range.parse(json.range);
     }
-    if (json.context) {
+    if (json.context !== undefined) {
       newInstance.context = CodeableConcept.parse(json.context);
     }
-    if (json.appliesTo) {
+    if (json.appliesTo !== undefined) {
       newInstance.appliesTo = json.appliesTo.map((x) => CodeableConcept.parse(x));
     }
-    if (json.gender) {
+    if (json.gender !== undefined) {
       newInstance.gender = AdministrativeGender.parsePrimitive(json.gender, json._gender);
     }
-    if (json.age) {
+    if (json.age !== undefined) {
       newInstance.age = Range.parse(json.age);
     }
-    if (json.gestationalAge) {
+    if (json.gestationalAge !== undefined) {
       newInstance.gestationalAge = Range.parse(json.gestationalAge);
     }
-    if (json.condition) {
+    if (json.condition !== undefined) {
       newInstance.condition = PrimitiveString.parsePrimitive(json.condition, json._condition);
     }
     return newInstance;
@@ -111,7 +111,11 @@ export class ObservationDefinitionQualifiedInterval extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ObservationDefinitionQualifiedInterval {
+    return ObservationDefinitionQualifiedInterval.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ObservationDefinitionQualifiedInterval";
   }

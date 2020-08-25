@@ -24,10 +24,10 @@ export class MedicinalProductNameNamePart extends BackboneElement {
   ): MedicinalProductNameNamePart {
     const newInstance: MedicinalProductNameNamePart = BackboneElement.parse(json, providedInstance);
   
-    if (json.part) {
+    if (json.part !== undefined) {
       newInstance.part = PrimitiveString.parsePrimitive(json.part, json._part);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = Coding.parse(json.type);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class MedicinalProductNameNamePart extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductNameNamePart {
+    return MedicinalProductNameNamePart.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductNameNamePart";
   }

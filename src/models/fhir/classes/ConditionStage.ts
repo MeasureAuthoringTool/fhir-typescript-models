@@ -25,13 +25,13 @@ export class ConditionStage extends BackboneElement {
   ): ConditionStage {
     const newInstance: ConditionStage = BackboneElement.parse(json, providedInstance);
   
-    if (json.summary) {
+    if (json.summary !== undefined) {
       newInstance.summary = CodeableConcept.parse(json.summary);
     }
-    if (json.assessment) {
+    if (json.assessment !== undefined) {
       newInstance.assessment = json.assessment.map((x) => Reference.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
     return newInstance;
@@ -59,7 +59,11 @@ export class ConditionStage extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ConditionStage {
+    return ConditionStage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ConditionStage";
   }

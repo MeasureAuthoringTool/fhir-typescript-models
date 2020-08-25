@@ -78,76 +78,76 @@ export class ResearchStudy extends DomainResource {
   ): ResearchStudy {
     const newInstance: ResearchStudy = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.protocol) {
+    if (json.protocol !== undefined) {
       newInstance.protocol = json.protocol.map((x) => Reference.parse(x));
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = json.partOf.map((x) => Reference.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ResearchStudyStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.primaryPurposeType) {
+    if (json.primaryPurposeType !== undefined) {
       newInstance.primaryPurposeType = CodeableConcept.parse(json.primaryPurposeType);
     }
-    if (json.phase) {
+    if (json.phase !== undefined) {
       newInstance.phase = CodeableConcept.parse(json.phase);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.focus) {
+    if (json.focus !== undefined) {
       newInstance.focus = json.focus.map((x) => CodeableConcept.parse(x));
     }
-    if (json.condition) {
+    if (json.condition !== undefined) {
       newInstance.condition = json.condition.map((x) => CodeableConcept.parse(x));
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.relatedArtifact) {
+    if (json.relatedArtifact !== undefined) {
       newInstance.relatedArtifact = json.relatedArtifact.map((x) => RelatedArtifact.parse(x));
     }
-    if (json.keyword) {
+    if (json.keyword !== undefined) {
       newInstance.keyword = json.keyword.map((x) => CodeableConcept.parse(x));
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = json.location.map((x) => CodeableConcept.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.enrollment) {
+    if (json.enrollment !== undefined) {
       newInstance.enrollment = json.enrollment.map((x) => Reference.parse(x));
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.sponsor) {
+    if (json.sponsor !== undefined) {
       newInstance.sponsor = Reference.parse(json.sponsor);
     }
-    if (json.principalInvestigator) {
+    if (json.principalInvestigator !== undefined) {
       newInstance.principalInvestigator = Reference.parse(json.principalInvestigator);
     }
-    if (json.site) {
+    if (json.site !== undefined) {
       newInstance.site = json.site.map((x) => Reference.parse(x));
     }
-    if (json.reasonStopped) {
+    if (json.reasonStopped !== undefined) {
       newInstance.reasonStopped = CodeableConcept.parse(json.reasonStopped);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.arm) {
+    if (json.arm !== undefined) {
       newInstance.arm = json.arm.map((x) => ResearchStudyArm.parse(x));
     }
-    if (json.objective) {
+    if (json.objective !== undefined) {
       newInstance.objective = json.objective.map((x) => ResearchStudyObjective.parse(x));
     }
     return newInstance;
@@ -262,7 +262,11 @@ export class ResearchStudy extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ResearchStudy {
+    return ResearchStudy.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ResearchStudy";
   }

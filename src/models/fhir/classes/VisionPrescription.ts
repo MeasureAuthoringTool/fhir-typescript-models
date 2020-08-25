@@ -39,28 +39,28 @@ export class VisionPrescription extends DomainResource {
   ): VisionPrescription {
     const newInstance: VisionPrescription = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = VisionStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.created) {
+    if (json.created !== undefined) {
       newInstance.created = PrimitiveDateTime.parsePrimitive(json.created, json._created);
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.dateWritten) {
+    if (json.dateWritten !== undefined) {
       newInstance.dateWritten = PrimitiveDateTime.parsePrimitive(json.dateWritten, json._dateWritten);
     }
-    if (json.prescriber) {
+    if (json.prescriber !== undefined) {
       newInstance.prescriber = Reference.parse(json.prescriber);
     }
-    if (json.lensSpecification) {
+    if (json.lensSpecification !== undefined) {
       newInstance.lensSpecification = json.lensSpecification.map((x) => VisionPrescriptionLensSpecification.parse(x));
     }
     return newInstance;
@@ -111,7 +111,11 @@ export class VisionPrescription extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): VisionPrescription {
+    return VisionPrescription.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "VisionPrescription";
   }

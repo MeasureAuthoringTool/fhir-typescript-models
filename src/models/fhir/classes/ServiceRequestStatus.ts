@@ -22,7 +22,16 @@ export class ServiceRequestStatus extends PrimitiveCode {
     const castInput = input as ServiceRequestStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ServiceRequestStatus";
   }
-  
+
+  public clone(): ServiceRequestStatus {
+    const result = new ServiceRequestStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ServiceRequestStatus";
   }

@@ -61,55 +61,55 @@ export class TestScriptSetupActionOperation extends BackboneElement {
   ): TestScriptSetupActionOperation {
     const newInstance: TestScriptSetupActionOperation = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = Coding.parse(json.type);
     }
-    if (json.resource) {
+    if (json.resource !== undefined) {
       newInstance.resource = FHIRDefinedType.parsePrimitive(json.resource, json._resource);
     }
-    if (json.label) {
+    if (json.label !== undefined) {
       newInstance.label = PrimitiveString.parsePrimitive(json.label, json._label);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.accept) {
+    if (json.accept !== undefined) {
       newInstance.accept = MimeType.parsePrimitive(json.accept, json._accept);
     }
-    if (json.contentType) {
+    if (json.contentType !== undefined) {
       newInstance.contentType = MimeType.parsePrimitive(json.contentType, json._contentType);
     }
-    if (json.destination) {
+    if (json.destination !== undefined) {
       newInstance.destination = PrimitiveInteger.parsePrimitive(json.destination, json._destination);
     }
-    if (json.encodeRequestUrl) {
+    if (json.encodeRequestUrl !== undefined) {
       newInstance.encodeRequestUrl = PrimitiveBoolean.parsePrimitive(json.encodeRequestUrl, json._encodeRequestUrl);
     }
-    if (json.method) {
+    if (json.method !== undefined) {
       newInstance.method = TestScriptRequestMethodCode.parsePrimitive(json.method, json._method);
     }
-    if (json.origin) {
+    if (json.origin !== undefined) {
       newInstance.origin = PrimitiveInteger.parsePrimitive(json.origin, json._origin);
     }
-    if (json.params) {
+    if (json.params !== undefined) {
       newInstance.params = PrimitiveString.parsePrimitive(json.params, json._params);
     }
-    if (json.requestHeader) {
+    if (json.requestHeader !== undefined) {
       newInstance.requestHeader = json.requestHeader.map((x) => TestScriptSetupActionOperationRequestHeader.parse(x));
     }
-    if (json.requestId) {
+    if (json.requestId !== undefined) {
       newInstance.requestId = PrimitiveId.parsePrimitive(json.requestId, json._requestId);
     }
-    if (json.responseId) {
+    if (json.responseId !== undefined) {
       newInstance.responseId = PrimitiveId.parsePrimitive(json.responseId, json._responseId);
     }
-    if (json.sourceId) {
+    if (json.sourceId !== undefined) {
       newInstance.sourceId = PrimitiveId.parsePrimitive(json.sourceId, json._sourceId);
     }
-    if (json.targetId) {
+    if (json.targetId !== undefined) {
       newInstance.targetId = PrimitiveId.parsePrimitive(json.targetId, json._targetId);
     }
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveString.parsePrimitive(json.url, json._url);
     }
     return newInstance;
@@ -208,7 +208,11 @@ export class TestScriptSetupActionOperation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TestScriptSetupActionOperation {
+    return TestScriptSetupActionOperation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestScriptSetupActionOperation";
   }

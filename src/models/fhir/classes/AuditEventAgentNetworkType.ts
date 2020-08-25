@@ -22,7 +22,16 @@ export class AuditEventAgentNetworkType extends PrimitiveCode {
     const castInput = input as AuditEventAgentNetworkType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "AuditEventAgentNetworkType";
   }
-  
+
+  public clone(): AuditEventAgentNetworkType {
+    const result = new AuditEventAgentNetworkType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "AuditEventAgentNetworkType";
   }

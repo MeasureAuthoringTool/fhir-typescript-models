@@ -47,40 +47,40 @@ export class AuditEventAgent extends BackboneElement {
   ): AuditEventAgent {
     const newInstance: AuditEventAgent = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.role) {
+    if (json.role !== undefined) {
       newInstance.role = json.role.map((x) => CodeableConcept.parse(x));
     }
-    if (json.who) {
+    if (json.who !== undefined) {
       newInstance.who = Reference.parse(json.who);
     }
-    if (json.altId) {
+    if (json.altId !== undefined) {
       newInstance.altId = PrimitiveString.parsePrimitive(json.altId, json._altId);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.requestor) {
+    if (json.requestor !== undefined) {
       newInstance.requestor = PrimitiveBoolean.parsePrimitive(json.requestor, json._requestor);
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = Reference.parse(json.location);
     }
-    if (json.policy) {
+    if (json.policy !== undefined) {
       newInstance.policy = json.policy.map((x, i) => {
         const ext = json._policy && json._policy[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.media) {
+    if (json.media !== undefined) {
       newInstance.media = Coding.parse(json.media);
     }
-    if (json.network) {
+    if (json.network !== undefined) {
       newInstance.network = AuditEventAgentNetwork.parse(json.network);
     }
-    if (json.purposeOfUse) {
+    if (json.purposeOfUse !== undefined) {
       newInstance.purposeOfUse = json.purposeOfUse.map((x) => CodeableConcept.parse(x));
     }
     return newInstance;
@@ -144,7 +144,11 @@ export class AuditEventAgent extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): AuditEventAgent {
+    return AuditEventAgent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AuditEventAgent";
   }

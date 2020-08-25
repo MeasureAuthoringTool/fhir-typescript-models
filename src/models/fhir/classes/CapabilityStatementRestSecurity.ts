@@ -27,13 +27,13 @@ export class CapabilityStatementRestSecurity extends BackboneElement {
   ): CapabilityStatementRestSecurity {
     const newInstance: CapabilityStatementRestSecurity = BackboneElement.parse(json, providedInstance);
   
-    if (json.cors) {
+    if (json.cors !== undefined) {
       newInstance.cors = PrimitiveBoolean.parsePrimitive(json.cors, json._cors);
     }
-    if (json.service) {
+    if (json.service !== undefined) {
       newInstance.service = json.service.map((x) => CodeableConcept.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class CapabilityStatementRestSecurity extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatementRestSecurity {
+    return CapabilityStatementRestSecurity.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementRestSecurity";
   }

@@ -23,10 +23,10 @@ export class MedicationRequestDispenseRequestInitialFill extends BackboneElement
   ): MedicationRequestDispenseRequestInitialFill {
     const newInstance: MedicationRequestDispenseRequestInitialFill = BackboneElement.parse(json, providedInstance);
   
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.duration) {
+    if (json.duration !== undefined) {
       newInstance.duration = Duration.parse(json.duration);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class MedicationRequestDispenseRequestInitialFill extends BackboneElement
 
     return result;
   }
-  
+
+  public clone(): MedicationRequestDispenseRequestInitialFill {
+    return MedicationRequestDispenseRequestInitialFill.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationRequestDispenseRequestInitialFill";
   }

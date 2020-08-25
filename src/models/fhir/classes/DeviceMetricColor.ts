@@ -22,7 +22,16 @@ export class DeviceMetricColor extends PrimitiveCode {
     const castInput = input as DeviceMetricColor;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "DeviceMetricColor";
   }
-  
+
+  public clone(): DeviceMetricColor {
+    const result = new DeviceMetricColor();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "DeviceMetricColor";
   }

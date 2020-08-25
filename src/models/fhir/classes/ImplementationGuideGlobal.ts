@@ -24,10 +24,10 @@ export class ImplementationGuideGlobal extends BackboneElement {
   ): ImplementationGuideGlobal {
     const newInstance: ImplementationGuideGlobal = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = ResourceType.parsePrimitive(json.type, json._type);
     }
-    if (json.profile) {
+    if (json.profile !== undefined) {
       newInstance.profile = PrimitiveCanonical.parsePrimitive(json.profile, json._profile);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class ImplementationGuideGlobal extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImplementationGuideGlobal {
+    return ImplementationGuideGlobal.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImplementationGuideGlobal";
   }

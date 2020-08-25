@@ -22,7 +22,16 @@ export class NarrativeStatus extends PrimitiveCode {
     const castInput = input as NarrativeStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "NarrativeStatus";
   }
-  
+
+  public clone(): NarrativeStatus {
+    const result = new NarrativeStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "NarrativeStatus";
   }

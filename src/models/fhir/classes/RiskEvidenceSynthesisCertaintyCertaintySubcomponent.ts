@@ -25,13 +25,13 @@ export class RiskEvidenceSynthesisCertaintyCertaintySubcomponent extends Backbon
   ): RiskEvidenceSynthesisCertaintyCertaintySubcomponent {
     const newInstance: RiskEvidenceSynthesisCertaintyCertaintySubcomponent = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.rating) {
+    if (json.rating !== undefined) {
       newInstance.rating = json.rating.map((x) => CodeableConcept.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -59,7 +59,11 @@ export class RiskEvidenceSynthesisCertaintyCertaintySubcomponent extends Backbon
 
     return result;
   }
-  
+
+  public clone(): RiskEvidenceSynthesisCertaintyCertaintySubcomponent {
+    return RiskEvidenceSynthesisCertaintyCertaintySubcomponent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "RiskEvidenceSynthesisCertaintyCertaintySubcomponent";
   }

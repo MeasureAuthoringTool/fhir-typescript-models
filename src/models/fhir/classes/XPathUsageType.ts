@@ -22,7 +22,16 @@ export class XPathUsageType extends PrimitiveCode {
     const castInput = input as XPathUsageType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "XPathUsageType";
   }
-  
+
+  public clone(): XPathUsageType {
+    const result = new XPathUsageType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "XPathUsageType";
   }

@@ -27,13 +27,13 @@ export class AuditEventSource extends BackboneElement {
   ): AuditEventSource {
     const newInstance: AuditEventSource = BackboneElement.parse(json, providedInstance);
   
-    if (json.site) {
+    if (json.site !== undefined) {
       newInstance.site = PrimitiveString.parsePrimitive(json.site, json._site);
     }
-    if (json.observer) {
+    if (json.observer !== undefined) {
       newInstance.observer = Reference.parse(json.observer);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => Coding.parse(x));
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class AuditEventSource extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): AuditEventSource {
+    return AuditEventSource.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AuditEventSource";
   }

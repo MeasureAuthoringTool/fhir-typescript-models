@@ -22,7 +22,16 @@ export class TestReportParticipantType extends PrimitiveCode {
     const castInput = input as TestReportParticipantType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "TestReportParticipantType";
   }
-  
+
+  public clone(): TestReportParticipantType {
+    const result = new TestReportParticipantType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "TestReportParticipantType";
   }

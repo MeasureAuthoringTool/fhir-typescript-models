@@ -22,7 +22,16 @@ export class ConceptMapEquivalence extends PrimitiveCode {
     const castInput = input as ConceptMapEquivalence;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ConceptMapEquivalence";
   }
-  
+
+  public clone(): ConceptMapEquivalence {
+    const result = new ConceptMapEquivalence();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ConceptMapEquivalence";
   }

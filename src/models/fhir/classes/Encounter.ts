@@ -77,73 +77,73 @@ export class Encounter extends DomainResource {
   ): Encounter {
     const newInstance: Encounter = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = EncounterStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.statusHistory) {
+    if (json.statusHistory !== undefined) {
       newInstance.statusHistory = json.statusHistory.map((x) => EncounterStatusHistory.parse(x));
     }
-    if (json.class) {
+    if (json.class !== undefined) {
       newInstance.class = Coding.parse(json.class);
     }
-    if (json.classHistory) {
+    if (json.classHistory !== undefined) {
       newInstance.classHistory = json.classHistory.map((x) => EncounterClassHistory.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.serviceType) {
+    if (json.serviceType !== undefined) {
       newInstance.serviceType = CodeableConcept.parse(json.serviceType);
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = CodeableConcept.parse(json.priority);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.episodeOfCare) {
+    if (json.episodeOfCare !== undefined) {
       newInstance.episodeOfCare = json.episodeOfCare.map((x) => Reference.parse(x));
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.participant) {
+    if (json.participant !== undefined) {
       newInstance.participant = json.participant.map((x) => EncounterParticipant.parse(x));
     }
-    if (json.appointment) {
+    if (json.appointment !== undefined) {
       newInstance.appointment = json.appointment.map((x) => Reference.parse(x));
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.length) {
+    if (json.length !== undefined) {
       newInstance.length = Duration.parse(json.length);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.diagnosis) {
+    if (json.diagnosis !== undefined) {
       newInstance.diagnosis = json.diagnosis.map((x) => EncounterDiagnosis.parse(x));
     }
-    if (json.account) {
+    if (json.account !== undefined) {
       newInstance.account = json.account.map((x) => Reference.parse(x));
     }
-    if (json.hospitalization) {
+    if (json.hospitalization !== undefined) {
       newInstance.hospitalization = EncounterHospitalization.parse(json.hospitalization);
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = json.location.map((x) => EncounterLocation.parse(x));
     }
-    if (json.serviceProvider) {
+    if (json.serviceProvider !== undefined) {
       newInstance.serviceProvider = Reference.parse(json.serviceProvider);
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = Reference.parse(json.partOf);
     }
     return newInstance;
@@ -252,7 +252,11 @@ export class Encounter extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Encounter {
+    return Encounter.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Encounter";
   }

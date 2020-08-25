@@ -24,10 +24,10 @@ export class DataRequirementSort extends Element {
   ): DataRequirementSort {
     const newInstance: DataRequirementSort = Element.parse(json, providedInstance);
   
-    if (json.path) {
+    if (json.path !== undefined) {
       newInstance.path = PrimitiveString.parsePrimitive(json.path, json._path);
     }
-    if (json.direction) {
+    if (json.direction !== undefined) {
       newInstance.direction = SortDirection.parsePrimitive(json.direction, json._direction);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class DataRequirementSort extends Element {
 
     return result;
   }
-  
+
+  public clone(): DataRequirementSort {
+    return DataRequirementSort.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DataRequirementSort";
   }

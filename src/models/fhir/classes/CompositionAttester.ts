@@ -27,13 +27,13 @@ export class CompositionAttester extends BackboneElement {
   ): CompositionAttester {
     const newInstance: CompositionAttester = BackboneElement.parse(json, providedInstance);
   
-    if (json.mode) {
+    if (json.mode !== undefined) {
       newInstance.mode = CompositionAttestationMode.parsePrimitive(json.mode, json._mode);
     }
-    if (json.time) {
+    if (json.time !== undefined) {
       newInstance.time = PrimitiveDateTime.parsePrimitive(json.time, json._time);
     }
-    if (json.party) {
+    if (json.party !== undefined) {
       newInstance.party = Reference.parse(json.party);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class CompositionAttester extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CompositionAttester {
+    return CompositionAttester.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CompositionAttester";
   }

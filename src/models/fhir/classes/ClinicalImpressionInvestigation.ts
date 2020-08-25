@@ -23,10 +23,10 @@ export class ClinicalImpressionInvestigation extends BackboneElement {
   ): ClinicalImpressionInvestigation {
     const newInstance: ClinicalImpressionInvestigation = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.item) {
+    if (json.item !== undefined) {
       newInstance.item = json.item.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class ClinicalImpressionInvestigation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClinicalImpressionInvestigation {
+    return ClinicalImpressionInvestigation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClinicalImpressionInvestigation";
   }

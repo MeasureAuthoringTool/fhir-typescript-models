@@ -24,10 +24,10 @@ export class OperationDefinitionParameterBinding extends BackboneElement {
   ): OperationDefinitionParameterBinding {
     const newInstance: OperationDefinitionParameterBinding = BackboneElement.parse(json, providedInstance);
   
-    if (json.strength) {
+    if (json.strength !== undefined) {
       newInstance.strength = BindingStrength.parsePrimitive(json.strength, json._strength);
     }
-    if (json.valueSet) {
+    if (json.valueSet !== undefined) {
       newInstance.valueSet = PrimitiveCanonical.parsePrimitive(json.valueSet, json._valueSet);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class OperationDefinitionParameterBinding extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): OperationDefinitionParameterBinding {
+    return OperationDefinitionParameterBinding.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "OperationDefinitionParameterBinding";
   }

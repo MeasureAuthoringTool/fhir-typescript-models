@@ -22,7 +22,16 @@ export class ResearchStudyStatus extends PrimitiveCode {
     const castInput = input as ResearchStudyStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ResearchStudyStatus";
   }
-  
+
+  public clone(): ResearchStudyStatus {
+    const result = new ResearchStudyStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ResearchStudyStatus";
   }

@@ -58,64 +58,64 @@ export class TimingRepeat extends Element {
   ): TimingRepeat {
     const newInstance: TimingRepeat = Element.parse(json, providedInstance);
   
-    if (json.boundsDuration) {
+    if (json.boundsDuration !== undefined) {
       newInstance.bounds = Duration.parse(json.boundsDuration);
     }
-    if (json.boundsRange) {
+    if (json.boundsRange !== undefined) {
       newInstance.bounds = Range.parse(json.boundsRange);
     }
-    if (json.boundsPeriod) {
+    if (json.boundsPeriod !== undefined) {
       newInstance.bounds = Period.parse(json.boundsPeriod);
     }
-    if (json.count) {
+    if (json.count !== undefined) {
       newInstance.count = PrimitivePositiveInt.parsePrimitive(json.count, json._count);
     }
-    if (json.countMax) {
+    if (json.countMax !== undefined) {
       newInstance.countMax = PrimitivePositiveInt.parsePrimitive(json.countMax, json._countMax);
     }
-    if (json.duration) {
+    if (json.duration !== undefined) {
       newInstance.duration = PrimitiveDecimal.parsePrimitive(json.duration, json._duration);
     }
-    if (json.durationMax) {
+    if (json.durationMax !== undefined) {
       newInstance.durationMax = PrimitiveDecimal.parsePrimitive(json.durationMax, json._durationMax);
     }
-    if (json.durationUnit) {
+    if (json.durationUnit !== undefined) {
       newInstance.durationUnit = UnitsOfTime.parsePrimitive(json.durationUnit, json._durationUnit);
     }
-    if (json.frequency) {
+    if (json.frequency !== undefined) {
       newInstance.frequency = PrimitivePositiveInt.parsePrimitive(json.frequency, json._frequency);
     }
-    if (json.frequencyMax) {
+    if (json.frequencyMax !== undefined) {
       newInstance.frequencyMax = PrimitivePositiveInt.parsePrimitive(json.frequencyMax, json._frequencyMax);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = PrimitiveDecimal.parsePrimitive(json.period, json._period);
     }
-    if (json.periodMax) {
+    if (json.periodMax !== undefined) {
       newInstance.periodMax = PrimitiveDecimal.parsePrimitive(json.periodMax, json._periodMax);
     }
-    if (json.periodUnit) {
+    if (json.periodUnit !== undefined) {
       newInstance.periodUnit = UnitsOfTime.parsePrimitive(json.periodUnit, json._periodUnit);
     }
-    if (json.dayOfWeek) {
+    if (json.dayOfWeek !== undefined) {
       newInstance.dayOfWeek = json.dayOfWeek.map((x, i) => {
         const ext = json._dayOfWeek && json._dayOfWeek[i];
         return DayOfWeek.parsePrimitive(x, ext);
       });
     }
-    if (json.timeOfDay) {
+    if (json.timeOfDay !== undefined) {
       newInstance.timeOfDay = json.timeOfDay.map((x, i) => {
         const ext = json._timeOfDay && json._timeOfDay[i];
         return PrimitiveTime.parsePrimitive(x, ext);
       });
     }
-    if (json.when) {
+    if (json.when !== undefined) {
       newInstance.when = json.when.map((x, i) => {
         const ext = json._when && json._when[i];
         return EventTiming.parsePrimitive(x, ext);
       });
     }
-    if (json.offset) {
+    if (json.offset !== undefined) {
       newInstance.offset = PrimitiveUnsignedInt.parsePrimitive(json.offset, json._offset);
     }
     return newInstance;
@@ -213,7 +213,11 @@ export class TimingRepeat extends Element {
 
     return result;
   }
-  
+
+  public clone(): TimingRepeat {
+    return TimingRepeat.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TimingRepeat";
   }

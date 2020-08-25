@@ -27,13 +27,13 @@ export class ProvenanceEntity extends BackboneElement {
   ): ProvenanceEntity {
     const newInstance: ProvenanceEntity = BackboneElement.parse(json, providedInstance);
   
-    if (json.role) {
+    if (json.role !== undefined) {
       newInstance.role = ProvenanceEntityRole.parsePrimitive(json.role, json._role);
     }
-    if (json.what) {
+    if (json.what !== undefined) {
       newInstance.what = Reference.parse(json.what);
     }
-    if (json.agent) {
+    if (json.agent !== undefined) {
       newInstance.agent = json.agent.map((x) => ProvenanceAgent.parse(x));
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class ProvenanceEntity extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ProvenanceEntity {
+    return ProvenanceEntity.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ProvenanceEntity";
   }

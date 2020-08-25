@@ -22,7 +22,16 @@ export class TaskPriority extends PrimitiveCode {
     const castInput = input as TaskPriority;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "TaskPriority";
   }
-  
+
+  public clone(): TaskPriority {
+    const result = new TaskPriority();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "TaskPriority";
   }

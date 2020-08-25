@@ -24,10 +24,10 @@ export class BundleLink extends BackboneElement {
   ): BundleLink {
     const newInstance: BundleLink = BackboneElement.parse(json, providedInstance);
   
-    if (json.relation) {
+    if (json.relation !== undefined) {
       newInstance.relation = PrimitiveString.parsePrimitive(json.relation, json._relation);
     }
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class BundleLink extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): BundleLink {
+    return BundleLink.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "BundleLink";
   }

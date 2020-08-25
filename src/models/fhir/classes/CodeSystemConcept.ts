@@ -34,22 +34,22 @@ export class CodeSystemConcept extends BackboneElement {
   ): CodeSystemConcept {
     const newInstance: CodeSystemConcept = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.display) {
+    if (json.display !== undefined) {
       newInstance.display = PrimitiveString.parsePrimitive(json.display, json._display);
     }
-    if (json.definition) {
+    if (json.definition !== undefined) {
       newInstance.definition = PrimitiveString.parsePrimitive(json.definition, json._definition);
     }
-    if (json.designation) {
+    if (json.designation !== undefined) {
       newInstance.designation = json.designation.map((x) => CodeSystemConceptDesignation.parse(x));
     }
-    if (json.property) {
+    if (json.property !== undefined) {
       newInstance.property = json.property.map((x) => CodeSystemConceptProperty.parse(x));
     }
-    if (json.concept) {
+    if (json.concept !== undefined) {
       newInstance.concept = json.concept.map((x) => CodeSystemConcept.parse(x));
     }
     return newInstance;
@@ -92,7 +92,11 @@ export class CodeSystemConcept extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CodeSystemConcept {
+    return CodeSystemConcept.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CodeSystemConcept";
   }

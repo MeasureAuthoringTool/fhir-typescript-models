@@ -54,46 +54,46 @@ export class VisionPrescriptionLensSpecification extends BackboneElement {
   ): VisionPrescriptionLensSpecification {
     const newInstance: VisionPrescriptionLensSpecification = BackboneElement.parse(json, providedInstance);
   
-    if (json.product) {
+    if (json.product !== undefined) {
       newInstance.product = CodeableConcept.parse(json.product);
     }
-    if (json.eye) {
+    if (json.eye !== undefined) {
       newInstance.eye = VisionEyes.parsePrimitive(json.eye, json._eye);
     }
-    if (json.sphere) {
+    if (json.sphere !== undefined) {
       newInstance.sphere = PrimitiveDecimal.parsePrimitive(json.sphere, json._sphere);
     }
-    if (json.cylinder) {
+    if (json.cylinder !== undefined) {
       newInstance.cylinder = PrimitiveDecimal.parsePrimitive(json.cylinder, json._cylinder);
     }
-    if (json.axis) {
+    if (json.axis !== undefined) {
       newInstance.axis = PrimitiveInteger.parsePrimitive(json.axis, json._axis);
     }
-    if (json.prism) {
+    if (json.prism !== undefined) {
       newInstance.prism = json.prism.map((x) => VisionPrescriptionLensSpecificationPrism.parse(x));
     }
-    if (json.add) {
+    if (json.add !== undefined) {
       newInstance.add = PrimitiveDecimal.parsePrimitive(json.add, json._add);
     }
-    if (json.power) {
+    if (json.power !== undefined) {
       newInstance.power = PrimitiveDecimal.parsePrimitive(json.power, json._power);
     }
-    if (json.backCurve) {
+    if (json.backCurve !== undefined) {
       newInstance.backCurve = PrimitiveDecimal.parsePrimitive(json.backCurve, json._backCurve);
     }
-    if (json.diameter) {
+    if (json.diameter !== undefined) {
       newInstance.diameter = PrimitiveDecimal.parsePrimitive(json.diameter, json._diameter);
     }
-    if (json.duration) {
+    if (json.duration !== undefined) {
       newInstance.duration = SimpleQuantity.parse(json.duration);
     }
-    if (json.color) {
+    if (json.color !== undefined) {
       newInstance.color = PrimitiveString.parsePrimitive(json.color, json._color);
     }
-    if (json.brand) {
+    if (json.brand !== undefined) {
       newInstance.brand = PrimitiveString.parsePrimitive(json.brand, json._brand);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -175,7 +175,11 @@ export class VisionPrescriptionLensSpecification extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): VisionPrescriptionLensSpecification {
+    return VisionPrescriptionLensSpecification.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "VisionPrescriptionLensSpecification";
   }

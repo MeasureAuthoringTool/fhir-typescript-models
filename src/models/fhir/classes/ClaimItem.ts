@@ -70,88 +70,88 @@ export class ClaimItem extends BackboneElement {
   ): ClaimItem {
     const newInstance: ClaimItem = BackboneElement.parse(json, providedInstance);
   
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitivePositiveInt.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.careTeamSequence) {
+    if (json.careTeamSequence !== undefined) {
       newInstance.careTeamSequence = json.careTeamSequence.map((x, i) => {
         const ext = json._careTeamSequence && json._careTeamSequence[i];
         return PrimitivePositiveInt.parsePrimitive(x, ext);
       });
     }
-    if (json.diagnosisSequence) {
+    if (json.diagnosisSequence !== undefined) {
       newInstance.diagnosisSequence = json.diagnosisSequence.map((x, i) => {
         const ext = json._diagnosisSequence && json._diagnosisSequence[i];
         return PrimitivePositiveInt.parsePrimitive(x, ext);
       });
     }
-    if (json.procedureSequence) {
+    if (json.procedureSequence !== undefined) {
       newInstance.procedureSequence = json.procedureSequence.map((x, i) => {
         const ext = json._procedureSequence && json._procedureSequence[i];
         return PrimitivePositiveInt.parsePrimitive(x, ext);
       });
     }
-    if (json.informationSequence) {
+    if (json.informationSequence !== undefined) {
       newInstance.informationSequence = json.informationSequence.map((x, i) => {
         const ext = json._informationSequence && json._informationSequence[i];
         return PrimitivePositiveInt.parsePrimitive(x, ext);
       });
     }
-    if (json.revenue) {
+    if (json.revenue !== undefined) {
       newInstance.revenue = CodeableConcept.parse(json.revenue);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.productOrService) {
+    if (json.productOrService !== undefined) {
       newInstance.productOrService = CodeableConcept.parse(json.productOrService);
     }
-    if (json.modifier) {
+    if (json.modifier !== undefined) {
       newInstance.modifier = json.modifier.map((x) => CodeableConcept.parse(x));
     }
-    if (json.programCode) {
+    if (json.programCode !== undefined) {
       newInstance.programCode = json.programCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.servicedDate) {
+    if (json.servicedDate !== undefined) {
       newInstance.serviced = PrimitiveDate.parsePrimitive(json.servicedDate, json._servicedDate);
     }
-    if (json.servicedPeriod) {
+    if (json.servicedPeriod !== undefined) {
       newInstance.serviced = Period.parse(json.servicedPeriod);
     }
-    if (json.locationCodeableConcept) {
+    if (json.locationCodeableConcept !== undefined) {
       newInstance.location = CodeableConcept.parse(json.locationCodeableConcept);
     }
-    if (json.locationAddress) {
+    if (json.locationAddress !== undefined) {
       newInstance.location = Address.parse(json.locationAddress);
     }
-    if (json.locationReference) {
+    if (json.locationReference !== undefined) {
       newInstance.location = Reference.parse(json.locationReference);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.unitPrice) {
+    if (json.unitPrice !== undefined) {
       newInstance.unitPrice = Money.parse(json.unitPrice);
     }
-    if (json.factor) {
+    if (json.factor !== undefined) {
       newInstance.factor = PrimitiveDecimal.parsePrimitive(json.factor, json._factor);
     }
-    if (json.net) {
+    if (json.net !== undefined) {
       newInstance.net = Money.parse(json.net);
     }
-    if (json.udi) {
+    if (json.udi !== undefined) {
       newInstance.udi = json.udi.map((x) => Reference.parse(x));
     }
-    if (json.bodySite) {
+    if (json.bodySite !== undefined) {
       newInstance.bodySite = CodeableConcept.parse(json.bodySite);
     }
-    if (json.subSite) {
+    if (json.subSite !== undefined) {
       newInstance.subSite = json.subSite.map((x) => CodeableConcept.parse(x));
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = json.encounter.map((x) => Reference.parse(x));
     }
-    if (json.detail) {
+    if (json.detail !== undefined) {
       newInstance.detail = json.detail.map((x) => ClaimItemDetail.parse(x));
     }
     return newInstance;
@@ -270,7 +270,11 @@ export class ClaimItem extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimItem {
+    return ClaimItem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimItem";
   }

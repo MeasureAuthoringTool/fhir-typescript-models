@@ -35,25 +35,25 @@ export class Meta extends Element {
   ): Meta {
     const newInstance: Meta = Element.parse(json, providedInstance);
   
-    if (json.versionId) {
+    if (json.versionId !== undefined) {
       newInstance.versionId = PrimitiveId.parsePrimitive(json.versionId, json._versionId);
     }
-    if (json.lastUpdated) {
+    if (json.lastUpdated !== undefined) {
       newInstance.lastUpdated = PrimitiveInstant.parsePrimitive(json.lastUpdated, json._lastUpdated);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = PrimitiveUri.parsePrimitive(json.source, json._source);
     }
-    if (json.profile) {
+    if (json.profile !== undefined) {
       newInstance.profile = json.profile.map((x, i) => {
         const ext = json._profile && json._profile[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.security) {
+    if (json.security !== undefined) {
       newInstance.security = json.security.map((x) => Coding.parse(x));
     }
-    if (json.tag) {
+    if (json.tag !== undefined) {
       newInstance.tag = json.tag.map((x) => Coding.parse(x));
     }
     return newInstance;
@@ -97,7 +97,11 @@ export class Meta extends Element {
 
     return result;
   }
-  
+
+  public clone(): Meta {
+    return Meta.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Meta";
   }

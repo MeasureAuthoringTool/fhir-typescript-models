@@ -36,28 +36,28 @@ export class MedicinalProductSpecialDesignation extends BackboneElement {
   ): MedicinalProductSpecialDesignation {
     const newInstance: MedicinalProductSpecialDesignation = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.intendedUse) {
+    if (json.intendedUse !== undefined) {
       newInstance.intendedUse = CodeableConcept.parse(json.intendedUse);
     }
-    if (json.indicationCodeableConcept) {
+    if (json.indicationCodeableConcept !== undefined) {
       newInstance.indication = CodeableConcept.parse(json.indicationCodeableConcept);
     }
-    if (json.indicationReference) {
+    if (json.indicationReference !== undefined) {
       newInstance.indication = Reference.parse(json.indicationReference);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CodeableConcept.parse(json.status);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.species) {
+    if (json.species !== undefined) {
       newInstance.species = CodeableConcept.parse(json.species);
     }
     return newInstance;
@@ -106,7 +106,11 @@ export class MedicinalProductSpecialDesignation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductSpecialDesignation {
+    return MedicinalProductSpecialDesignation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductSpecialDesignation";
   }

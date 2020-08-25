@@ -30,16 +30,16 @@ export class ImagingStudySeriesInstance extends BackboneElement {
   ): ImagingStudySeriesInstance {
     const newInstance: ImagingStudySeriesInstance = BackboneElement.parse(json, providedInstance);
   
-    if (json.uid) {
+    if (json.uid !== undefined) {
       newInstance.uid = PrimitiveId.parsePrimitive(json.uid, json._uid);
     }
-    if (json.sopClass) {
+    if (json.sopClass !== undefined) {
       newInstance.sopClass = Coding.parse(json.sopClass);
     }
-    if (json.number) {
+    if (json.number !== undefined) {
       newInstance.number = PrimitiveUnsignedInt.parsePrimitive(json.number, json._number);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
     return newInstance;
@@ -74,7 +74,11 @@ export class ImagingStudySeriesInstance extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImagingStudySeriesInstance {
+    return ImagingStudySeriesInstance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImagingStudySeriesInstance";
   }

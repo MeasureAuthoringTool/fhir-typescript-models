@@ -33,19 +33,19 @@ export class MolecularSequenceStructureVariant extends BackboneElement {
   ): MolecularSequenceStructureVariant {
     const newInstance: MolecularSequenceStructureVariant = BackboneElement.parse(json, providedInstance);
   
-    if (json.variantType) {
+    if (json.variantType !== undefined) {
       newInstance.variantType = CodeableConcept.parse(json.variantType);
     }
-    if (json.exact) {
+    if (json.exact !== undefined) {
       newInstance.exact = PrimitiveBoolean.parsePrimitive(json.exact, json._exact);
     }
-    if (json.length) {
+    if (json.length !== undefined) {
       newInstance.length = PrimitiveInteger.parsePrimitive(json.length, json._length);
     }
-    if (json.outer) {
+    if (json.outer !== undefined) {
       newInstance.outer = MolecularSequenceStructureVariantOuter.parse(json.outer);
     }
-    if (json.inner) {
+    if (json.inner !== undefined) {
       newInstance.inner = MolecularSequenceStructureVariantInner.parse(json.inner);
     }
     return newInstance;
@@ -83,7 +83,11 @@ export class MolecularSequenceStructureVariant extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MolecularSequenceStructureVariant {
+    return MolecularSequenceStructureVariant.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MolecularSequenceStructureVariant";
   }

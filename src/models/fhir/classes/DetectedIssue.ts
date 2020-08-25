@@ -53,43 +53,43 @@ export class DetectedIssue extends DomainResource {
   ): DetectedIssue {
     const newInstance: DetectedIssue = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = DetectedIssueStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.severity) {
+    if (json.severity !== undefined) {
       newInstance.severity = DetectedIssueSeverity.parsePrimitive(json.severity, json._severity);
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.identifiedDateTime) {
+    if (json.identifiedDateTime !== undefined) {
       newInstance.identified = PrimitiveDateTime.parsePrimitive(json.identifiedDateTime, json._identifiedDateTime);
     }
-    if (json.identifiedPeriod) {
+    if (json.identifiedPeriod !== undefined) {
       newInstance.identified = Period.parse(json.identifiedPeriod);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = Reference.parse(json.author);
     }
-    if (json.implicated) {
+    if (json.implicated !== undefined) {
       newInstance.implicated = json.implicated.map((x) => Reference.parse(x));
     }
-    if (json.evidence) {
+    if (json.evidence !== undefined) {
       newInstance.evidence = json.evidence.map((x) => DetectedIssueEvidence.parse(x));
     }
-    if (json.detail) {
+    if (json.detail !== undefined) {
       newInstance.detail = PrimitiveString.parsePrimitive(json.detail, json._detail);
     }
-    if (json.reference) {
+    if (json.reference !== undefined) {
       newInstance.reference = PrimitiveUri.parsePrimitive(json.reference, json._reference);
     }
-    if (json.mitigation) {
+    if (json.mitigation !== undefined) {
       newInstance.mitigation = json.mitigation.map((x) => DetectedIssueMitigation.parse(x));
     }
     return newInstance;
@@ -162,7 +162,11 @@ export class DetectedIssue extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): DetectedIssue {
+    return DetectedIssue.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DetectedIssue";
   }

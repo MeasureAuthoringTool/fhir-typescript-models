@@ -30,16 +30,16 @@ export class BiologicallyDerivedProductStorage extends BackboneElement {
   ): BiologicallyDerivedProductStorage {
     const newInstance: BiologicallyDerivedProductStorage = BackboneElement.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.temperature) {
+    if (json.temperature !== undefined) {
       newInstance.temperature = PrimitiveDecimal.parsePrimitive(json.temperature, json._temperature);
     }
-    if (json.scale) {
+    if (json.scale !== undefined) {
       newInstance.scale = BiologicallyDerivedProductStorageScale.parsePrimitive(json.scale, json._scale);
     }
-    if (json.duration) {
+    if (json.duration !== undefined) {
       newInstance.duration = Period.parse(json.duration);
     }
     return newInstance;
@@ -74,7 +74,11 @@ export class BiologicallyDerivedProductStorage extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): BiologicallyDerivedProductStorage {
+    return BiologicallyDerivedProductStorage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "BiologicallyDerivedProductStorage";
   }

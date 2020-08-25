@@ -62,52 +62,52 @@ export class Invoice extends DomainResource {
   ): Invoice {
     const newInstance: Invoice = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = InvoiceStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.cancelledReason) {
+    if (json.cancelledReason !== undefined) {
       newInstance.cancelledReason = PrimitiveString.parsePrimitive(json.cancelledReason, json._cancelledReason);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.recipient) {
+    if (json.recipient !== undefined) {
       newInstance.recipient = Reference.parse(json.recipient);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.participant) {
+    if (json.participant !== undefined) {
       newInstance.participant = json.participant.map((x) => InvoiceParticipant.parse(x));
     }
-    if (json.issuer) {
+    if (json.issuer !== undefined) {
       newInstance.issuer = Reference.parse(json.issuer);
     }
-    if (json.account) {
+    if (json.account !== undefined) {
       newInstance.account = Reference.parse(json.account);
     }
-    if (json.lineItem) {
+    if (json.lineItem !== undefined) {
       newInstance.lineItem = json.lineItem.map((x) => InvoiceLineItem.parse(x));
     }
-    if (json.totalPriceComponent) {
+    if (json.totalPriceComponent !== undefined) {
       newInstance.totalPriceComponent = json.totalPriceComponent.map((x) => InvoiceLineItemPriceComponent.parse(x));
     }
-    if (json.totalNet) {
+    if (json.totalNet !== undefined) {
       newInstance.totalNet = Money.parse(json.totalNet);
     }
-    if (json.totalGross) {
+    if (json.totalGross !== undefined) {
       newInstance.totalGross = Money.parse(json.totalGross);
     }
-    if (json.paymentTerms) {
+    if (json.paymentTerms !== undefined) {
       newInstance.paymentTerms = PrimitiveMarkdown.parsePrimitive(json.paymentTerms, json._paymentTerms);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -191,7 +191,11 @@ export class Invoice extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Invoice {
+    return Invoice.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Invoice";
   }

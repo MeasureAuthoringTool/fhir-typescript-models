@@ -24,10 +24,10 @@ export class LinkageItem extends BackboneElement {
   ): LinkageItem {
     const newInstance: LinkageItem = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = LinkageType.parsePrimitive(json.type, json._type);
     }
-    if (json.resource) {
+    if (json.resource !== undefined) {
       newInstance.resource = Reference.parse(json.resource);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class LinkageItem extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): LinkageItem {
+    return LinkageItem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "LinkageItem";
   }

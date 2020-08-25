@@ -27,13 +27,13 @@ export class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   ): TerminologyCapabilitiesCodeSystem {
     const newInstance: TerminologyCapabilitiesCodeSystem = BackboneElement.parse(json, providedInstance);
   
-    if (json.uri) {
+    if (json.uri !== undefined) {
       newInstance.uri = PrimitiveCanonical.parsePrimitive(json.uri, json._uri);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = json.version.map((x) => TerminologyCapabilitiesCodeSystemVersion.parse(x));
     }
-    if (json.subsumption) {
+    if (json.subsumption !== undefined) {
       newInstance.subsumption = PrimitiveBoolean.parsePrimitive(json.subsumption, json._subsumption);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TerminologyCapabilitiesCodeSystem {
+    return TerminologyCapabilitiesCodeSystem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TerminologyCapabilitiesCodeSystem";
   }

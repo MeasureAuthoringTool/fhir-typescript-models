@@ -22,7 +22,16 @@ export class TaskIntent extends PrimitiveCode {
     const castInput = input as TaskIntent;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "TaskIntent";
   }
-  
+
+  public clone(): TaskIntent {
+    const result = new TaskIntent();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "TaskIntent";
   }

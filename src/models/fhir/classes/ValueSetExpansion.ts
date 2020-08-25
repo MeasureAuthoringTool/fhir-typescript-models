@@ -35,22 +35,22 @@ export class ValueSetExpansion extends BackboneElement {
   ): ValueSetExpansion {
     const newInstance: ValueSetExpansion = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = PrimitiveUri.parsePrimitive(json.identifier, json._identifier);
     }
-    if (json.timestamp) {
+    if (json.timestamp !== undefined) {
       newInstance.timestamp = PrimitiveDateTime.parsePrimitive(json.timestamp, json._timestamp);
     }
-    if (json.total) {
+    if (json.total !== undefined) {
       newInstance.total = PrimitiveInteger.parsePrimitive(json.total, json._total);
     }
-    if (json.offset) {
+    if (json.offset !== undefined) {
       newInstance.offset = PrimitiveInteger.parsePrimitive(json.offset, json._offset);
     }
-    if (json.parameter) {
+    if (json.parameter !== undefined) {
       newInstance.parameter = json.parameter.map((x) => ValueSetExpansionParameter.parse(x));
     }
-    if (json.contains) {
+    if (json.contains !== undefined) {
       newInstance.contains = json.contains.map((x) => ValueSetExpansionContains.parse(x));
     }
     return newInstance;
@@ -94,7 +94,11 @@ export class ValueSetExpansion extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ValueSetExpansion {
+    return ValueSetExpansion.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ValueSetExpansion";
   }

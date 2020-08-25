@@ -29,16 +29,16 @@ export class ConceptMapGroupElementTargetDependsOn extends BackboneElement {
   ): ConceptMapGroupElementTargetDependsOn {
     const newInstance: ConceptMapGroupElementTargetDependsOn = BackboneElement.parse(json, providedInstance);
   
-    if (json.property) {
+    if (json.property !== undefined) {
       newInstance.property = PrimitiveUri.parsePrimitive(json.property, json._property);
     }
-    if (json.system) {
+    if (json.system !== undefined) {
       newInstance.system = PrimitiveCanonical.parsePrimitive(json.system, json._system);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.value, json._value);
     }
-    if (json.display) {
+    if (json.display !== undefined) {
       newInstance.display = PrimitiveString.parsePrimitive(json.display, json._display);
     }
     return newInstance;
@@ -74,7 +74,11 @@ export class ConceptMapGroupElementTargetDependsOn extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ConceptMapGroupElementTargetDependsOn {
+    return ConceptMapGroupElementTargetDependsOn.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ConceptMapGroupElementTargetDependsOn";
   }

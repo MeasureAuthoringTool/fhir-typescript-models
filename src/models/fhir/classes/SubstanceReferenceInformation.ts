@@ -33,19 +33,19 @@ export class SubstanceReferenceInformation extends DomainResource {
   ): SubstanceReferenceInformation {
     const newInstance: SubstanceReferenceInformation = DomainResource.parse(json, providedInstance);
   
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
-    if (json.gene) {
+    if (json.gene !== undefined) {
       newInstance.gene = json.gene.map((x) => SubstanceReferenceInformationGene.parse(x));
     }
-    if (json.geneElement) {
+    if (json.geneElement !== undefined) {
       newInstance.geneElement = json.geneElement.map((x) => SubstanceReferenceInformationGeneElement.parse(x));
     }
-    if (json.classification) {
+    if (json.classification !== undefined) {
       newInstance.classification = json.classification.map((x) => SubstanceReferenceInformationClassification.parse(x));
     }
-    if (json.target) {
+    if (json.target !== undefined) {
       newInstance.target = json.target.map((x) => SubstanceReferenceInformationTarget.parse(x));
     }
     return newInstance;
@@ -82,7 +82,11 @@ export class SubstanceReferenceInformation extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): SubstanceReferenceInformation {
+    return SubstanceReferenceInformation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceReferenceInformation";
   }

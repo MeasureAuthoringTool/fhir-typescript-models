@@ -27,13 +27,13 @@ export class ClinicalImpressionFinding extends BackboneElement {
   ): ClinicalImpressionFinding {
     const newInstance: ClinicalImpressionFinding = BackboneElement.parse(json, providedInstance);
   
-    if (json.itemCodeableConcept) {
+    if (json.itemCodeableConcept !== undefined) {
       newInstance.itemCodeableConcept = CodeableConcept.parse(json.itemCodeableConcept);
     }
-    if (json.itemReference) {
+    if (json.itemReference !== undefined) {
       newInstance.itemReference = Reference.parse(json.itemReference);
     }
-    if (json.basis) {
+    if (json.basis !== undefined) {
       newInstance.basis = PrimitiveString.parsePrimitive(json.basis, json._basis);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class ClinicalImpressionFinding extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClinicalImpressionFinding {
+    return ClinicalImpressionFinding.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClinicalImpressionFinding";
   }

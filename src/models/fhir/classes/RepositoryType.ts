@@ -22,7 +22,16 @@ export class RepositoryType extends PrimitiveCode {
     const castInput = input as RepositoryType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "RepositoryType";
   }
-  
+
+  public clone(): RepositoryType {
+    const result = new RepositoryType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "RepositoryType";
   }

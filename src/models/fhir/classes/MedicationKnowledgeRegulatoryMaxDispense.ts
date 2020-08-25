@@ -23,10 +23,10 @@ export class MedicationKnowledgeRegulatoryMaxDispense extends BackboneElement {
   ): MedicationKnowledgeRegulatoryMaxDispense {
     const newInstance: MedicationKnowledgeRegulatoryMaxDispense = BackboneElement.parse(json, providedInstance);
   
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Duration.parse(json.period);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class MedicationKnowledgeRegulatoryMaxDispense extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationKnowledgeRegulatoryMaxDispense {
+    return MedicationKnowledgeRegulatoryMaxDispense.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationKnowledgeRegulatoryMaxDispense";
   }

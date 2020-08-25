@@ -96,112 +96,112 @@ export class MedicationRequest extends DomainResource {
   ): MedicationRequest {
     const newInstance: MedicationRequest = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = MedicationRequestStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.statusReason) {
+    if (json.statusReason !== undefined) {
       newInstance.statusReason = CodeableConcept.parse(json.statusReason);
     }
-    if (json.intent) {
+    if (json.intent !== undefined) {
       newInstance.intent = MedicationRequestIntent.parsePrimitive(json.intent, json._intent);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = MedicationRequestPriority.parsePrimitive(json.priority, json._priority);
     }
-    if (json.doNotPerform) {
+    if (json.doNotPerform !== undefined) {
       newInstance.doNotPerform = PrimitiveBoolean.parsePrimitive(json.doNotPerform, json._doNotPerform);
     }
-    if (json.reportedBoolean) {
+    if (json.reportedBoolean !== undefined) {
       newInstance.reported = PrimitiveBoolean.parsePrimitive(json.reportedBoolean, json._reportedBoolean);
     }
-    if (json.reportedReference) {
+    if (json.reportedReference !== undefined) {
       newInstance.reported = Reference.parse(json.reportedReference);
     }
-    if (json.medicationCodeableConcept) {
+    if (json.medicationCodeableConcept !== undefined) {
       newInstance.medication = CodeableConcept.parse(json.medicationCodeableConcept);
     }
-    if (json.medicationReference) {
+    if (json.medicationReference !== undefined) {
       newInstance.medication = Reference.parse(json.medicationReference);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.supportingInformation) {
+    if (json.supportingInformation !== undefined) {
       newInstance.supportingInformation = json.supportingInformation.map((x) => Reference.parse(x));
     }
-    if (json.authoredOn) {
+    if (json.authoredOn !== undefined) {
       newInstance.authoredOn = PrimitiveDateTime.parsePrimitive(json.authoredOn, json._authoredOn);
     }
-    if (json.requester) {
+    if (json.requester !== undefined) {
       newInstance.requester = Reference.parse(json.requester);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = Reference.parse(json.performer);
     }
-    if (json.performerType) {
+    if (json.performerType !== undefined) {
       newInstance.performerType = CodeableConcept.parse(json.performerType);
     }
-    if (json.recorder) {
+    if (json.recorder !== undefined) {
       newInstance.recorder = Reference.parse(json.recorder);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.instantiatesCanonical) {
+    if (json.instantiatesCanonical !== undefined) {
       newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
         const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.instantiatesUri) {
+    if (json.instantiatesUri !== undefined) {
       newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
         const ext = json._instantiatesUri && json._instantiatesUri[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.groupIdentifier) {
+    if (json.groupIdentifier !== undefined) {
       newInstance.groupIdentifier = Identifier.parse(json.groupIdentifier);
     }
-    if (json.courseOfTherapyType) {
+    if (json.courseOfTherapyType !== undefined) {
       newInstance.courseOfTherapyType = CodeableConcept.parse(json.courseOfTherapyType);
     }
-    if (json.insurance) {
+    if (json.insurance !== undefined) {
       newInstance.insurance = json.insurance.map((x) => Reference.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.dosageInstruction) {
+    if (json.dosageInstruction !== undefined) {
       newInstance.dosageInstruction = json.dosageInstruction.map((x) => Dosage.parse(x));
     }
-    if (json.dispenseRequest) {
+    if (json.dispenseRequest !== undefined) {
       newInstance.dispenseRequest = MedicationRequestDispenseRequest.parse(json.dispenseRequest);
     }
-    if (json.substitution) {
+    if (json.substitution !== undefined) {
       newInstance.substitution = MedicationRequestSubstitution.parse(json.substitution);
     }
-    if (json.priorPrescription) {
+    if (json.priorPrescription !== undefined) {
       newInstance.priorPrescription = Reference.parse(json.priorPrescription);
     }
-    if (json.detectedIssue) {
+    if (json.detectedIssue !== undefined) {
       newInstance.detectedIssue = json.detectedIssue.map((x) => Reference.parse(x));
     }
-    if (json.eventHistory) {
+    if (json.eventHistory !== undefined) {
       newInstance.eventHistory = json.eventHistory.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -361,7 +361,11 @@ export class MedicationRequest extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicationRequest {
+    return MedicationRequest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationRequest";
   }

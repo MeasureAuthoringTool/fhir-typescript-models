@@ -36,25 +36,25 @@ export class MedicinalProductPharmaceutical extends DomainResource {
   ): MedicinalProductPharmaceutical {
     const newInstance: MedicinalProductPharmaceutical = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.administrableDoseForm) {
+    if (json.administrableDoseForm !== undefined) {
       newInstance.administrableDoseForm = CodeableConcept.parse(json.administrableDoseForm);
     }
-    if (json.unitOfPresentation) {
+    if (json.unitOfPresentation !== undefined) {
       newInstance.unitOfPresentation = CodeableConcept.parse(json.unitOfPresentation);
     }
-    if (json.ingredient) {
+    if (json.ingredient !== undefined) {
       newInstance.ingredient = json.ingredient.map((x) => Reference.parse(x));
     }
-    if (json.device) {
+    if (json.device !== undefined) {
       newInstance.device = json.device.map((x) => Reference.parse(x));
     }
-    if (json.characteristics) {
+    if (json.characteristics !== undefined) {
       newInstance.characteristics = json.characteristics.map((x) => MedicinalProductPharmaceuticalCharacteristics.parse(x));
     }
-    if (json.routeOfAdministration) {
+    if (json.routeOfAdministration !== undefined) {
       newInstance.routeOfAdministration = json.routeOfAdministration.map((x) => MedicinalProductPharmaceuticalRouteOfAdministration.parse(x));
     }
     return newInstance;
@@ -98,7 +98,11 @@ export class MedicinalProductPharmaceutical extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductPharmaceutical {
+    return MedicinalProductPharmaceutical.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductPharmaceutical";
   }

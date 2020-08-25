@@ -48,37 +48,37 @@ export class Account extends DomainResource {
   ): Account {
     const newInstance: Account = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = AccountStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = json.subject.map((x) => Reference.parse(x));
     }
-    if (json.servicePeriod) {
+    if (json.servicePeriod !== undefined) {
       newInstance.servicePeriod = Period.parse(json.servicePeriod);
     }
-    if (json.coverage) {
+    if (json.coverage !== undefined) {
       newInstance.coverage = json.coverage.map((x) => AccountCoverage.parse(x));
     }
-    if (json.owner) {
+    if (json.owner !== undefined) {
       newInstance.owner = Reference.parse(json.owner);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.guarantor) {
+    if (json.guarantor !== undefined) {
       newInstance.guarantor = json.guarantor.map((x) => AccountGuarantor.parse(x));
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = Reference.parse(json.partOf);
     }
     return newInstance;
@@ -141,7 +141,11 @@ export class Account extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Account {
+    return Account.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Account";
   }

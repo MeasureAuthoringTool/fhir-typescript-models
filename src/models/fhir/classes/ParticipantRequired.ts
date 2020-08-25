@@ -22,7 +22,16 @@ export class ParticipantRequired extends PrimitiveCode {
     const castInput = input as ParticipantRequired;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ParticipantRequired";
   }
-  
+
+  public clone(): ParticipantRequired {
+    const result = new ParticipantRequired();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ParticipantRequired";
   }

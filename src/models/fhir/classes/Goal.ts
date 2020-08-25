@@ -58,55 +58,55 @@ export class Goal extends DomainResource {
   ): Goal {
     const newInstance: Goal = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.lifecycleStatus) {
+    if (json.lifecycleStatus !== undefined) {
       newInstance.lifecycleStatus = GoalLifecycleStatus.parsePrimitive(json.lifecycleStatus, json._lifecycleStatus);
     }
-    if (json.achievementStatus) {
+    if (json.achievementStatus !== undefined) {
       newInstance.achievementStatus = CodeableConcept.parse(json.achievementStatus);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = CodeableConcept.parse(json.priority);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = CodeableConcept.parse(json.description);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.startDate) {
+    if (json.startDate !== undefined) {
       newInstance.start = PrimitiveDate.parsePrimitive(json.startDate, json._startDate);
     }
-    if (json.startCodeableConcept) {
+    if (json.startCodeableConcept !== undefined) {
       newInstance.start = CodeableConcept.parse(json.startCodeableConcept);
     }
-    if (json.target) {
+    if (json.target !== undefined) {
       newInstance.target = json.target.map((x) => GoalTarget.parse(x));
     }
-    if (json.statusDate) {
+    if (json.statusDate !== undefined) {
       newInstance.statusDate = PrimitiveDate.parsePrimitive(json.statusDate, json._statusDate);
     }
-    if (json.statusReason) {
+    if (json.statusReason !== undefined) {
       newInstance.statusReason = PrimitiveString.parsePrimitive(json.statusReason, json._statusReason);
     }
-    if (json.expressedBy) {
+    if (json.expressedBy !== undefined) {
       newInstance.expressedBy = Reference.parse(json.expressedBy);
     }
-    if (json.addresses) {
+    if (json.addresses !== undefined) {
       newInstance.addresses = json.addresses.map((x) => Reference.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.outcomeCode) {
+    if (json.outcomeCode !== undefined) {
       newInstance.outcomeCode = json.outcomeCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.outcomeReference) {
+    if (json.outcomeReference !== undefined) {
       newInstance.outcomeReference = json.outcomeReference.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -194,7 +194,11 @@ export class Goal extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Goal {
+    return Goal.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Goal";
   }

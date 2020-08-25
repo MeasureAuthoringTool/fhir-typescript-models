@@ -22,7 +22,16 @@ export class ActionCardinalityBehavior extends PrimitiveCode {
     const castInput = input as ActionCardinalityBehavior;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ActionCardinalityBehavior";
   }
-  
+
+  public clone(): ActionCardinalityBehavior {
+    const result = new ActionCardinalityBehavior();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ActionCardinalityBehavior";
   }

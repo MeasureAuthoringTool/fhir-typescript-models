@@ -22,7 +22,16 @@ export class NamingSystemIdentifierType extends PrimitiveCode {
     const castInput = input as NamingSystemIdentifierType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "NamingSystemIdentifierType";
   }
-  
+
+  public clone(): NamingSystemIdentifierType {
+    const result = new NamingSystemIdentifierType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "NamingSystemIdentifierType";
   }

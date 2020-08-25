@@ -22,7 +22,16 @@ export class SubscriptionStatus extends PrimitiveCode {
     const castInput = input as SubscriptionStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SubscriptionStatus";
   }
-  
+
+  public clone(): SubscriptionStatus {
+    const result = new SubscriptionStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SubscriptionStatus";
   }

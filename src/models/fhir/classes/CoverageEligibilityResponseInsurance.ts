@@ -30,16 +30,16 @@ export class CoverageEligibilityResponseInsurance extends BackboneElement {
   ): CoverageEligibilityResponseInsurance {
     const newInstance: CoverageEligibilityResponseInsurance = BackboneElement.parse(json, providedInstance);
   
-    if (json.coverage) {
+    if (json.coverage !== undefined) {
       newInstance.coverage = Reference.parse(json.coverage);
     }
-    if (json.inforce) {
+    if (json.inforce !== undefined) {
       newInstance.inforce = PrimitiveBoolean.parsePrimitive(json.inforce, json._inforce);
     }
-    if (json.benefitPeriod) {
+    if (json.benefitPeriod !== undefined) {
       newInstance.benefitPeriod = Period.parse(json.benefitPeriod);
     }
-    if (json.item) {
+    if (json.item !== undefined) {
       newInstance.item = json.item.map((x) => CoverageEligibilityResponseInsuranceItem.parse(x));
     }
     return newInstance;
@@ -72,7 +72,11 @@ export class CoverageEligibilityResponseInsurance extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CoverageEligibilityResponseInsurance {
+    return CoverageEligibilityResponseInsurance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CoverageEligibilityResponseInsurance";
   }

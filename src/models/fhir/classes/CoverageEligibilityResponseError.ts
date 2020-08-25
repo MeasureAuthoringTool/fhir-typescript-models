@@ -20,7 +20,7 @@ export class CoverageEligibilityResponseError extends BackboneElement {
   ): CoverageEligibilityResponseError {
     const newInstance: CoverageEligibilityResponseError = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
     return newInstance;
@@ -40,7 +40,11 @@ export class CoverageEligibilityResponseError extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CoverageEligibilityResponseError {
+    return CoverageEligibilityResponseError.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CoverageEligibilityResponseError";
   }

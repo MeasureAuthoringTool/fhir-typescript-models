@@ -26,13 +26,13 @@ export class SubstanceNucleicAcidSubunitSugar extends BackboneElement {
   ): SubstanceNucleicAcidSubunitSugar {
     const newInstance: SubstanceNucleicAcidSubunitSugar = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.residueSite) {
+    if (json.residueSite !== undefined) {
       newInstance.residueSite = PrimitiveString.parsePrimitive(json.residueSite, json._residueSite);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class SubstanceNucleicAcidSubunitSugar extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceNucleicAcidSubunitSugar {
+    return SubstanceNucleicAcidSubunitSugar.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceNucleicAcidSubunitSugar";
   }

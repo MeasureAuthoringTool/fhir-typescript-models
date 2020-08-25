@@ -52,46 +52,46 @@ export class ObservationDefinition extends DomainResource {
   ): ObservationDefinition {
     const newInstance: ObservationDefinition = DomainResource.parse(json, providedInstance);
   
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.permittedDataType) {
+    if (json.permittedDataType !== undefined) {
       newInstance.permittedDataType = json.permittedDataType.map((x, i) => {
         const ext = json._permittedDataType && json._permittedDataType[i];
         return ObservationDataType.parsePrimitive(x, ext);
       });
     }
-    if (json.multipleResultsAllowed) {
+    if (json.multipleResultsAllowed !== undefined) {
       newInstance.multipleResultsAllowed = PrimitiveBoolean.parsePrimitive(json.multipleResultsAllowed, json._multipleResultsAllowed);
     }
-    if (json.method) {
+    if (json.method !== undefined) {
       newInstance.method = CodeableConcept.parse(json.method);
     }
-    if (json.preferredReportName) {
+    if (json.preferredReportName !== undefined) {
       newInstance.preferredReportName = PrimitiveString.parsePrimitive(json.preferredReportName, json._preferredReportName);
     }
-    if (json.quantitativeDetails) {
+    if (json.quantitativeDetails !== undefined) {
       newInstance.quantitativeDetails = ObservationDefinitionQuantitativeDetails.parse(json.quantitativeDetails);
     }
-    if (json.qualifiedInterval) {
+    if (json.qualifiedInterval !== undefined) {
       newInstance.qualifiedInterval = json.qualifiedInterval.map((x) => ObservationDefinitionQualifiedInterval.parse(x));
     }
-    if (json.validCodedValueSet) {
+    if (json.validCodedValueSet !== undefined) {
       newInstance.validCodedValueSet = Reference.parse(json.validCodedValueSet);
     }
-    if (json.normalCodedValueSet) {
+    if (json.normalCodedValueSet !== undefined) {
       newInstance.normalCodedValueSet = Reference.parse(json.normalCodedValueSet);
     }
-    if (json.abnormalCodedValueSet) {
+    if (json.abnormalCodedValueSet !== undefined) {
       newInstance.abnormalCodedValueSet = Reference.parse(json.abnormalCodedValueSet);
     }
-    if (json.criticalCodedValueSet) {
+    if (json.criticalCodedValueSet !== undefined) {
       newInstance.criticalCodedValueSet = Reference.parse(json.criticalCodedValueSet);
     }
     return newInstance;
@@ -162,7 +162,11 @@ export class ObservationDefinition extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ObservationDefinition {
+    return ObservationDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ObservationDefinition";
   }

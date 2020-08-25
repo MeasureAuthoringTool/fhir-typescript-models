@@ -34,25 +34,25 @@ export class MedicationAdministrationDosage extends BackboneElement {
   ): MedicationAdministrationDosage {
     const newInstance: MedicationAdministrationDosage = BackboneElement.parse(json, providedInstance);
   
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
-    if (json.site) {
+    if (json.site !== undefined) {
       newInstance.site = CodeableConcept.parse(json.site);
     }
-    if (json.route) {
+    if (json.route !== undefined) {
       newInstance.route = CodeableConcept.parse(json.route);
     }
-    if (json.method) {
+    if (json.method !== undefined) {
       newInstance.method = CodeableConcept.parse(json.method);
     }
-    if (json.dose) {
+    if (json.dose !== undefined) {
       newInstance.dose = SimpleQuantity.parse(json.dose);
     }
-    if (json.rateRatio) {
+    if (json.rateRatio !== undefined) {
       newInstance.rate = Ratio.parse(json.rateRatio);
     }
-    if (json.rateSimpleQuantity) {
+    if (json.rateSimpleQuantity !== undefined) {
       newInstance.rate = SimpleQuantity.parse(json.rateSimpleQuantity);
     }
     return newInstance;
@@ -97,7 +97,11 @@ export class MedicationAdministrationDosage extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationAdministrationDosage {
+    return MedicationAdministrationDosage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationAdministrationDosage";
   }

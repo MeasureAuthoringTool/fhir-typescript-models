@@ -22,7 +22,16 @@ export class TypeDerivationRule extends PrimitiveCode {
     const castInput = input as TypeDerivationRule;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "TypeDerivationRule";
   }
-  
+
+  public clone(): TypeDerivationRule {
+    const result = new TypeDerivationRule();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "TypeDerivationRule";
   }

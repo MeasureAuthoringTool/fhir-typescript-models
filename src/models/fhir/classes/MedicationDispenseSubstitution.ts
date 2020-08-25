@@ -29,16 +29,16 @@ export class MedicationDispenseSubstitution extends BackboneElement {
   ): MedicationDispenseSubstitution {
     const newInstance: MedicationDispenseSubstitution = BackboneElement.parse(json, providedInstance);
   
-    if (json.wasSubstituted) {
+    if (json.wasSubstituted !== undefined) {
       newInstance.wasSubstituted = PrimitiveBoolean.parsePrimitive(json.wasSubstituted, json._wasSubstituted);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.reason) {
+    if (json.reason !== undefined) {
       newInstance.reason = json.reason.map((x) => CodeableConcept.parse(x));
     }
-    if (json.responsibleParty) {
+    if (json.responsibleParty !== undefined) {
       newInstance.responsibleParty = json.responsibleParty.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -71,7 +71,11 @@ export class MedicationDispenseSubstitution extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationDispenseSubstitution {
+    return MedicationDispenseSubstitution.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationDispenseSubstitution";
   }

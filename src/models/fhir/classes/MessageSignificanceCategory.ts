@@ -22,7 +22,16 @@ export class MessageSignificanceCategory extends PrimitiveCode {
     const castInput = input as MessageSignificanceCategory;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "MessageSignificanceCategory";
   }
-  
+
+  public clone(): MessageSignificanceCategory {
+    const result = new MessageSignificanceCategory();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "MessageSignificanceCategory";
   }

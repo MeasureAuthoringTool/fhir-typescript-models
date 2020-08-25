@@ -23,10 +23,10 @@ export class DetectedIssueEvidence extends BackboneElement {
   ): DetectedIssueEvidence {
     const newInstance: DetectedIssueEvidence = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = json.code.map((x) => CodeableConcept.parse(x));
     }
-    if (json.detail) {
+    if (json.detail !== undefined) {
       newInstance.detail = json.detail.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class DetectedIssueEvidence extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DetectedIssueEvidence {
+    return DetectedIssueEvidence.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DetectedIssueEvidence";
   }

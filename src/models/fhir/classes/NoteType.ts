@@ -22,7 +22,16 @@ export class NoteType extends PrimitiveCode {
     const castInput = input as NoteType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "NoteType";
   }
-  
+
+  public clone(): NoteType {
+    const result = new NoteType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "NoteType";
   }

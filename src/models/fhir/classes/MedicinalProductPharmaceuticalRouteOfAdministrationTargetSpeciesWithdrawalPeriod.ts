@@ -27,13 +27,13 @@ export class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWit
   ): MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod {
     const newInstance: MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod = BackboneElement.parse(json, providedInstance);
   
-    if (json.tissue) {
+    if (json.tissue !== undefined) {
       newInstance.tissue = CodeableConcept.parse(json.tissue);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = Quantity.parse(json.value);
     }
-    if (json.supportingInformation) {
+    if (json.supportingInformation !== undefined) {
       newInstance.supportingInformation = PrimitiveString.parsePrimitive(json.supportingInformation, json._supportingInformation);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWit
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod {
+    return MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod";
   }

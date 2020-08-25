@@ -30,7 +30,11 @@ export class Age extends Quantity {
 
     return result;
   }
-  
+
+  public clone(): Age {
+    return Age.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Age";
   }

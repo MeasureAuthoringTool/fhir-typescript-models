@@ -32,19 +32,19 @@ export class Basic extends DomainResource {
   ): Basic {
     const newInstance: Basic = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.created) {
+    if (json.created !== undefined) {
       newInstance.created = PrimitiveDate.parsePrimitive(json.created, json._created);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = Reference.parse(json.author);
     }
     return newInstance;
@@ -81,7 +81,11 @@ export class Basic extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Basic {
+    return Basic.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Basic";
   }

@@ -36,25 +36,25 @@ export class MedicinalProductInteraction extends DomainResource {
   ): MedicinalProductInteraction {
     const newInstance: MedicinalProductInteraction = DomainResource.parse(json, providedInstance);
   
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = json.subject.map((x) => Reference.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.interactant) {
+    if (json.interactant !== undefined) {
       newInstance.interactant = json.interactant.map((x) => MedicinalProductInteractionInteractant.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.effect) {
+    if (json.effect !== undefined) {
       newInstance.effect = CodeableConcept.parse(json.effect);
     }
-    if (json.incidence) {
+    if (json.incidence !== undefined) {
       newInstance.incidence = CodeableConcept.parse(json.incidence);
     }
-    if (json.management) {
+    if (json.management !== undefined) {
       newInstance.management = CodeableConcept.parse(json.management);
     }
     return newInstance;
@@ -99,7 +99,11 @@ export class MedicinalProductInteraction extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductInteraction {
+    return MedicinalProductInteraction.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductInteraction";
   }

@@ -24,10 +24,10 @@ export class CodeableConcept extends Element {
   ): CodeableConcept {
     const newInstance: CodeableConcept = Element.parse(json, providedInstance);
   
-    if (json.coding) {
+    if (json.coding !== undefined) {
       newInstance.coding = json.coding.map((x) => Coding.parse(x));
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class CodeableConcept extends Element {
 
     return result;
   }
-  
+
+  public clone(): CodeableConcept {
+    return CodeableConcept.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CodeableConcept";
   }

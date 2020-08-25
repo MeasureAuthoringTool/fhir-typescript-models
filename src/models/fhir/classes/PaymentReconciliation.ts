@@ -60,49 +60,49 @@ export class PaymentReconciliation extends DomainResource {
   ): PaymentReconciliation {
     const newInstance: PaymentReconciliation = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PaymentReconciliationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.created) {
+    if (json.created !== undefined) {
       newInstance.created = PrimitiveDateTime.parsePrimitive(json.created, json._created);
     }
-    if (json.paymentIssuer) {
+    if (json.paymentIssuer !== undefined) {
       newInstance.paymentIssuer = Reference.parse(json.paymentIssuer);
     }
-    if (json.request) {
+    if (json.request !== undefined) {
       newInstance.request = Reference.parse(json.request);
     }
-    if (json.requestor) {
+    if (json.requestor !== undefined) {
       newInstance.requestor = Reference.parse(json.requestor);
     }
-    if (json.outcome) {
+    if (json.outcome !== undefined) {
       newInstance.outcome = RemittanceOutcome.parsePrimitive(json.outcome, json._outcome);
     }
-    if (json.disposition) {
+    if (json.disposition !== undefined) {
       newInstance.disposition = PrimitiveString.parsePrimitive(json.disposition, json._disposition);
     }
-    if (json.paymentDate) {
+    if (json.paymentDate !== undefined) {
       newInstance.paymentDate = PrimitiveDate.parsePrimitive(json.paymentDate, json._paymentDate);
     }
-    if (json.paymentAmount) {
+    if (json.paymentAmount !== undefined) {
       newInstance.paymentAmount = Money.parse(json.paymentAmount);
     }
-    if (json.paymentIdentifier) {
+    if (json.paymentIdentifier !== undefined) {
       newInstance.paymentIdentifier = Identifier.parse(json.paymentIdentifier);
     }
-    if (json.detail) {
+    if (json.detail !== undefined) {
       newInstance.detail = json.detail.map((x) => PaymentReconciliationDetail.parse(x));
     }
-    if (json.formCode) {
+    if (json.formCode !== undefined) {
       newInstance.formCode = CodeableConcept.parse(json.formCode);
     }
-    if (json.processNote) {
+    if (json.processNote !== undefined) {
       newInstance.processNote = json.processNote.map((x) => PaymentReconciliationProcessNote.parse(x));
     }
     return newInstance;
@@ -183,7 +183,11 @@ export class PaymentReconciliation extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): PaymentReconciliation {
+    return PaymentReconciliation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PaymentReconciliation";
   }

@@ -22,7 +22,16 @@ export class DetectedIssueStatus extends PrimitiveCode {
     const castInput = input as DetectedIssueStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "DetectedIssueStatus";
   }
-  
+
+  public clone(): DetectedIssueStatus {
+    const result = new DetectedIssueStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "DetectedIssueStatus";
   }

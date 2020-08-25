@@ -85,76 +85,76 @@ export class TestScript extends DomainResource {
   ): TestScript {
     const newInstance: TestScript = DomainResource.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.experimental) {
+    if (json.experimental !== undefined) {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = PrimitiveMarkdown.parsePrimitive(json.purpose, json._purpose);
     }
-    if (json.copyright) {
+    if (json.copyright !== undefined) {
       newInstance.copyright = PrimitiveMarkdown.parsePrimitive(json.copyright, json._copyright);
     }
-    if (json.origin) {
+    if (json.origin !== undefined) {
       newInstance.origin = json.origin.map((x) => TestScriptOrigin.parse(x));
     }
-    if (json.destination) {
+    if (json.destination !== undefined) {
       newInstance.destination = json.destination.map((x) => TestScriptDestination.parse(x));
     }
-    if (json.metadata) {
+    if (json.metadata !== undefined) {
       newInstance.metadata = TestScriptMetadata.parse(json.metadata);
     }
-    if (json.fixture) {
+    if (json.fixture !== undefined) {
       newInstance.fixture = json.fixture.map((x) => TestScriptFixture.parse(x));
     }
-    if (json.profile) {
+    if (json.profile !== undefined) {
       newInstance.profile = json.profile.map((x) => Reference.parse(x));
     }
-    if (json.variable) {
+    if (json.variable !== undefined) {
       newInstance.variable = json.variable.map((x) => TestScriptVariable.parse(x));
     }
-    if (json.setup) {
+    if (json.setup !== undefined) {
       newInstance.setup = TestScriptSetup.parse(json.setup);
     }
-    if (json.test) {
+    if (json.test !== undefined) {
       newInstance.test = json.test.map((x) => TestScriptTest.parse(x));
     }
-    if (json.teardown) {
+    if (json.teardown !== undefined) {
       newInstance.teardown = TestScriptTeardown.parse(json.teardown);
     }
     return newInstance;
@@ -277,7 +277,11 @@ export class TestScript extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): TestScript {
+    return TestScript.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestScript";
   }

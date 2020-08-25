@@ -22,7 +22,16 @@ export class ObservationRangeCategory extends PrimitiveCode {
     const castInput = input as ObservationRangeCategory;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ObservationRangeCategory";
   }
-  
+
+  public clone(): ObservationRangeCategory {
+    const result = new ObservationRangeCategory();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ObservationRangeCategory";
   }

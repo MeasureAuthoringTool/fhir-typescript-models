@@ -65,64 +65,64 @@ export class RequestGroup extends DomainResource {
   ): RequestGroup {
     const newInstance: RequestGroup = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.instantiatesCanonical) {
+    if (json.instantiatesCanonical !== undefined) {
       newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
         const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.instantiatesUri) {
+    if (json.instantiatesUri !== undefined) {
       newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
         const ext = json._instantiatesUri && json._instantiatesUri[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.replaces) {
+    if (json.replaces !== undefined) {
       newInstance.replaces = json.replaces.map((x) => Reference.parse(x));
     }
-    if (json.groupIdentifier) {
+    if (json.groupIdentifier !== undefined) {
       newInstance.groupIdentifier = Identifier.parse(json.groupIdentifier);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = RequestStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.intent) {
+    if (json.intent !== undefined) {
       newInstance.intent = RequestIntent.parsePrimitive(json.intent, json._intent);
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = RequestPriority.parsePrimitive(json.priority, json._priority);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.authoredOn) {
+    if (json.authoredOn !== undefined) {
       newInstance.authoredOn = PrimitiveDateTime.parsePrimitive(json.authoredOn, json._authoredOn);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = Reference.parse(json.author);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.action) {
+    if (json.action !== undefined) {
       newInstance.action = json.action.map((x) => RequestGroupAction.parse(x));
     }
     return newInstance;
@@ -216,7 +216,11 @@ export class RequestGroup extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): RequestGroup {
+    return RequestGroup.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "RequestGroup";
   }

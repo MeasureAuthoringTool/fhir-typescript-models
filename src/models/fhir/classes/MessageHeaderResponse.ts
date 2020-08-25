@@ -27,13 +27,13 @@ export class MessageHeaderResponse extends BackboneElement {
   ): MessageHeaderResponse {
     const newInstance: MessageHeaderResponse = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = PrimitiveId.parsePrimitive(json.identifier, json._identifier);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = ResponseType.parsePrimitive(json.code, json._code);
     }
-    if (json.details) {
+    if (json.details !== undefined) {
       newInstance.details = Reference.parse(json.details);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class MessageHeaderResponse extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MessageHeaderResponse {
+    return MessageHeaderResponse.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MessageHeaderResponse";
   }

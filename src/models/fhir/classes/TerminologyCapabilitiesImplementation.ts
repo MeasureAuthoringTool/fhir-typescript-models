@@ -24,10 +24,10 @@ export class TerminologyCapabilitiesImplementation extends BackboneElement {
   ): TerminologyCapabilitiesImplementation {
     const newInstance: TerminologyCapabilitiesImplementation = BackboneElement.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUrl.parsePrimitive(json.url, json._url);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class TerminologyCapabilitiesImplementation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TerminologyCapabilitiesImplementation {
+    return TerminologyCapabilitiesImplementation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TerminologyCapabilitiesImplementation";
   }

@@ -57,52 +57,52 @@ export class CoverageEligibilityRequest extends DomainResource {
   ): CoverageEligibilityRequest {
     const newInstance: CoverageEligibilityRequest = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = EligibilityRequestStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = CodeableConcept.parse(json.priority);
     }
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = json.purpose.map((x, i) => {
         const ext = json._purpose && json._purpose[i];
         return EligibilityRequestPurpose.parsePrimitive(x, ext);
       });
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.servicedDate) {
+    if (json.servicedDate !== undefined) {
       newInstance.serviced = PrimitiveDate.parsePrimitive(json.servicedDate, json._servicedDate);
     }
-    if (json.servicedPeriod) {
+    if (json.servicedPeriod !== undefined) {
       newInstance.serviced = Period.parse(json.servicedPeriod);
     }
-    if (json.created) {
+    if (json.created !== undefined) {
       newInstance.created = PrimitiveDateTime.parsePrimitive(json.created, json._created);
     }
-    if (json.enterer) {
+    if (json.enterer !== undefined) {
       newInstance.enterer = Reference.parse(json.enterer);
     }
-    if (json.provider) {
+    if (json.provider !== undefined) {
       newInstance.provider = Reference.parse(json.provider);
     }
-    if (json.insurer) {
+    if (json.insurer !== undefined) {
       newInstance.insurer = Reference.parse(json.insurer);
     }
-    if (json.facility) {
+    if (json.facility !== undefined) {
       newInstance.facility = Reference.parse(json.facility);
     }
-    if (json.supportingInfo) {
+    if (json.supportingInfo !== undefined) {
       newInstance.supportingInfo = json.supportingInfo.map((x) => CoverageEligibilityRequestSupportingInfo.parse(x));
     }
-    if (json.insurance) {
+    if (json.insurance !== undefined) {
       newInstance.insurance = json.insurance.map((x) => CoverageEligibilityRequestInsurance.parse(x));
     }
-    if (json.item) {
+    if (json.item !== undefined) {
       newInstance.item = json.item.map((x) => CoverageEligibilityRequestItem.parse(x));
     }
     return newInstance;
@@ -182,7 +182,11 @@ export class CoverageEligibilityRequest extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): CoverageEligibilityRequest {
+    return CoverageEligibilityRequest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CoverageEligibilityRequest";
   }

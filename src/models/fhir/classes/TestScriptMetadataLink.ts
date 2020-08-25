@@ -24,10 +24,10 @@ export class TestScriptMetadataLink extends BackboneElement {
   ): TestScriptMetadataLink {
     const newInstance: TestScriptMetadataLink = BackboneElement.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class TestScriptMetadataLink extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TestScriptMetadataLink {
+    return TestScriptMetadataLink.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestScriptMetadataLink";
   }

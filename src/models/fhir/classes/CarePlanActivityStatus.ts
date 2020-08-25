@@ -22,7 +22,16 @@ export class CarePlanActivityStatus extends PrimitiveCode {
     const castInput = input as CarePlanActivityStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CarePlanActivityStatus";
   }
-  
+
+  public clone(): CarePlanActivityStatus {
+    const result = new CarePlanActivityStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CarePlanActivityStatus";
   }

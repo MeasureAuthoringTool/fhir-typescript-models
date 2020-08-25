@@ -35,25 +35,25 @@ export class SpecimenContainer extends BackboneElement {
   ): SpecimenContainer {
     const newInstance: SpecimenContainer = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.capacity) {
+    if (json.capacity !== undefined) {
       newInstance.capacity = SimpleQuantity.parse(json.capacity);
     }
-    if (json.specimenQuantity) {
+    if (json.specimenQuantity !== undefined) {
       newInstance.specimenQuantity = SimpleQuantity.parse(json.specimenQuantity);
     }
-    if (json.additiveCodeableConcept) {
+    if (json.additiveCodeableConcept !== undefined) {
       newInstance.additive = CodeableConcept.parse(json.additiveCodeableConcept);
     }
-    if (json.additiveReference) {
+    if (json.additiveReference !== undefined) {
       newInstance.additive = Reference.parse(json.additiveReference);
     }
     return newInstance;
@@ -98,7 +98,11 @@ export class SpecimenContainer extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SpecimenContainer {
+    return SpecimenContainer.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SpecimenContainer";
   }

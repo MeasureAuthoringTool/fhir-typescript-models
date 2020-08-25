@@ -22,7 +22,16 @@ export class ActionRelationshipType extends PrimitiveCode {
     const castInput = input as ActionRelationshipType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ActionRelationshipType";
   }
-  
+
+  public clone(): ActionRelationshipType {
+    const result = new ActionRelationshipType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ActionRelationshipType";
   }

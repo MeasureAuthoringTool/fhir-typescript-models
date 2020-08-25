@@ -22,7 +22,16 @@ export class DetectedIssueSeverity extends PrimitiveCode {
     const castInput = input as DetectedIssueSeverity;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "DetectedIssueSeverity";
   }
-  
+
+  public clone(): DetectedIssueSeverity {
+    const result = new DetectedIssueSeverity();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "DetectedIssueSeverity";
   }

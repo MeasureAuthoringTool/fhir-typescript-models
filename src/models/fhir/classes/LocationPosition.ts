@@ -25,13 +25,13 @@ export class LocationPosition extends BackboneElement {
   ): LocationPosition {
     const newInstance: LocationPosition = BackboneElement.parse(json, providedInstance);
   
-    if (json.longitude) {
+    if (json.longitude !== undefined) {
       newInstance.longitude = PrimitiveDecimal.parsePrimitive(json.longitude, json._longitude);
     }
-    if (json.latitude) {
+    if (json.latitude !== undefined) {
       newInstance.latitude = PrimitiveDecimal.parsePrimitive(json.latitude, json._latitude);
     }
-    if (json.altitude) {
+    if (json.altitude !== undefined) {
       newInstance.altitude = PrimitiveDecimal.parsePrimitive(json.altitude, json._altitude);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class LocationPosition extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): LocationPosition {
+    return LocationPosition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "LocationPosition";
   }

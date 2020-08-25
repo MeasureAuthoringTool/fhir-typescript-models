@@ -35,43 +35,43 @@ export class QuestionnaireResponseItemAnswer extends BackboneElement {
   ): QuestionnaireResponseItemAnswer {
     const newInstance: QuestionnaireResponseItemAnswer = BackboneElement.parse(json, providedInstance);
   
-    if (json.valueBoolean) {
+    if (json.valueBoolean !== undefined) {
       newInstance.value = PrimitiveBoolean.parsePrimitive(json.valueBoolean, json._valueBoolean);
     }
-    if (json.valueDecimal) {
+    if (json.valueDecimal !== undefined) {
       newInstance.value = PrimitiveDecimal.parsePrimitive(json.valueDecimal, json._valueDecimal);
     }
-    if (json.valueInteger) {
+    if (json.valueInteger !== undefined) {
       newInstance.value = PrimitiveInteger.parsePrimitive(json.valueInteger, json._valueInteger);
     }
-    if (json.valueDate) {
+    if (json.valueDate !== undefined) {
       newInstance.value = PrimitiveDate.parsePrimitive(json.valueDate, json._valueDate);
     }
-    if (json.valueDateTime) {
+    if (json.valueDateTime !== undefined) {
       newInstance.value = PrimitiveDateTime.parsePrimitive(json.valueDateTime, json._valueDateTime);
     }
-    if (json.valueTime) {
+    if (json.valueTime !== undefined) {
       newInstance.value = PrimitiveTime.parsePrimitive(json.valueTime, json._valueTime);
     }
-    if (json.valueString) {
+    if (json.valueString !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.valueString, json._valueString);
     }
-    if (json.valueUri) {
+    if (json.valueUri !== undefined) {
       newInstance.value = PrimitiveUri.parsePrimitive(json.valueUri, json._valueUri);
     }
-    if (json.valueAttachment) {
+    if (json.valueAttachment !== undefined) {
       newInstance.value = Attachment.parse(json.valueAttachment);
     }
-    if (json.valueCoding) {
+    if (json.valueCoding !== undefined) {
       newInstance.value = Coding.parse(json.valueCoding);
     }
-    if (json.valueQuantity) {
+    if (json.valueQuantity !== undefined) {
       newInstance.value = Quantity.parse(json.valueQuantity);
     }
-    if (json.valueReference) {
+    if (json.valueReference !== undefined) {
       newInstance.value = Reference.parse(json.valueReference);
     }
-    if (json.item) {
+    if (json.item !== undefined) {
       newInstance.item = json.item.map((x) => QuestionnaireResponseItem.parse(x));
     }
     return newInstance;
@@ -147,7 +147,11 @@ export class QuestionnaireResponseItemAnswer extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): QuestionnaireResponseItemAnswer {
+    return QuestionnaireResponseItemAnswer.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "QuestionnaireResponseItemAnswer";
   }

@@ -29,16 +29,16 @@ export class ExampleScenarioActor extends BackboneElement {
   ): ExampleScenarioActor {
     const newInstance: ExampleScenarioActor = BackboneElement.parse(json, providedInstance);
   
-    if (json.actorId) {
+    if (json.actorId !== undefined) {
       newInstance.actorId = PrimitiveString.parsePrimitive(json.actorId, json._actorId);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = ExampleScenarioActorType.parsePrimitive(json.type, json._type);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
     return newInstance;
@@ -74,7 +74,11 @@ export class ExampleScenarioActor extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExampleScenarioActor {
+    return ExampleScenarioActor.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExampleScenarioActor";
   }

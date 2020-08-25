@@ -29,16 +29,16 @@ export class ImmunizationEducation extends BackboneElement {
   ): ImmunizationEducation {
     const newInstance: ImmunizationEducation = BackboneElement.parse(json, providedInstance);
   
-    if (json.documentType) {
+    if (json.documentType !== undefined) {
       newInstance.documentType = PrimitiveString.parsePrimitive(json.documentType, json._documentType);
     }
-    if (json.reference) {
+    if (json.reference !== undefined) {
       newInstance.reference = PrimitiveUri.parsePrimitive(json.reference, json._reference);
     }
-    if (json.publicationDate) {
+    if (json.publicationDate !== undefined) {
       newInstance.publicationDate = PrimitiveDateTime.parsePrimitive(json.publicationDate, json._publicationDate);
     }
-    if (json.presentationDate) {
+    if (json.presentationDate !== undefined) {
       newInstance.presentationDate = PrimitiveDateTime.parsePrimitive(json.presentationDate, json._presentationDate);
     }
     return newInstance;
@@ -74,7 +74,11 @@ export class ImmunizationEducation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImmunizationEducation {
+    return ImmunizationEducation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImmunizationEducation";
   }

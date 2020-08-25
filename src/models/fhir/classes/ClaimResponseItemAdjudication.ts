@@ -29,16 +29,16 @@ export class ClaimResponseItemAdjudication extends BackboneElement {
   ): ClaimResponseItemAdjudication {
     const newInstance: ClaimResponseItemAdjudication = BackboneElement.parse(json, providedInstance);
   
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.reason) {
+    if (json.reason !== undefined) {
       newInstance.reason = CodeableConcept.parse(json.reason);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = Money.parse(json.amount);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveDecimal.parsePrimitive(json.value, json._value);
     }
     return newInstance;
@@ -71,7 +71,11 @@ export class ClaimResponseItemAdjudication extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimResponseItemAdjudication {
+    return ClaimResponseItemAdjudication.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimResponseItemAdjudication";
   }

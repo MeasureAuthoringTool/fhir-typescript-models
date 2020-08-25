@@ -22,7 +22,16 @@ export class AssertionOperatorType extends PrimitiveCode {
     const castInput = input as AssertionOperatorType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "AssertionOperatorType";
   }
-  
+
+  public clone(): AssertionOperatorType {
+    const result = new AssertionOperatorType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "AssertionOperatorType";
   }

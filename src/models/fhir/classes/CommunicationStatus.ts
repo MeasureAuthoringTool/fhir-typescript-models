@@ -22,7 +22,16 @@ export class CommunicationStatus extends PrimitiveCode {
     const castInput = input as CommunicationStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CommunicationStatus";
   }
-  
+
+  public clone(): CommunicationStatus {
+    const result = new CommunicationStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CommunicationStatus";
   }

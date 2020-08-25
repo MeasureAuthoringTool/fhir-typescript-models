@@ -22,7 +22,16 @@ export class QuestionnaireItemOperator extends PrimitiveCode {
     const castInput = input as QuestionnaireItemOperator;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "QuestionnaireItemOperator";
   }
-  
+
+  public clone(): QuestionnaireItemOperator {
+    const result = new QuestionnaireItemOperator();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "QuestionnaireItemOperator";
   }

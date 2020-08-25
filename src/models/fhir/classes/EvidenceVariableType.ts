@@ -22,7 +22,16 @@ export class EvidenceVariableType extends PrimitiveCode {
     const castInput = input as EvidenceVariableType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "EvidenceVariableType";
   }
-  
+
+  public clone(): EvidenceVariableType {
+    const result = new EvidenceVariableType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "EvidenceVariableType";
   }

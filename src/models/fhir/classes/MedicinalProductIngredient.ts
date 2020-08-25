@@ -36,22 +36,22 @@ export class MedicinalProductIngredient extends DomainResource {
   ): MedicinalProductIngredient {
     const newInstance: MedicinalProductIngredient = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.role) {
+    if (json.role !== undefined) {
       newInstance.role = CodeableConcept.parse(json.role);
     }
-    if (json.allergenicIndicator) {
+    if (json.allergenicIndicator !== undefined) {
       newInstance.allergenicIndicator = PrimitiveBoolean.parsePrimitive(json.allergenicIndicator, json._allergenicIndicator);
     }
-    if (json.manufacturer) {
+    if (json.manufacturer !== undefined) {
       newInstance.manufacturer = json.manufacturer.map((x) => Reference.parse(x));
     }
-    if (json.specifiedSubstance) {
+    if (json.specifiedSubstance !== undefined) {
       newInstance.specifiedSubstance = json.specifiedSubstance.map((x) => MedicinalProductIngredientSpecifiedSubstance.parse(x));
     }
-    if (json.substance) {
+    if (json.substance !== undefined) {
       newInstance.substance = MedicinalProductIngredientSubstance.parse(json.substance);
     }
     return newInstance;
@@ -92,7 +92,11 @@ export class MedicinalProductIngredient extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductIngredient {
+    return MedicinalProductIngredient.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductIngredient";
   }

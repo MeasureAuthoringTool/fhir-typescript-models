@@ -22,7 +22,16 @@ export class PrimitiveMarkdown extends PrimitiveString {
     const castInput = input as PrimitiveMarkdown;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveMarkdown";
   }
-  
+
+  public clone(): PrimitiveMarkdown {
+    const result = new PrimitiveMarkdown();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveMarkdown";
   }

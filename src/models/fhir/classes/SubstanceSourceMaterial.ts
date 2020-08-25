@@ -50,49 +50,49 @@ export class SubstanceSourceMaterial extends DomainResource {
   ): SubstanceSourceMaterial {
     const newInstance: SubstanceSourceMaterial = DomainResource.parse(json, providedInstance);
   
-    if (json.sourceMaterialClass) {
+    if (json.sourceMaterialClass !== undefined) {
       newInstance.sourceMaterialClass = CodeableConcept.parse(json.sourceMaterialClass);
     }
-    if (json.sourceMaterialType) {
+    if (json.sourceMaterialType !== undefined) {
       newInstance.sourceMaterialType = CodeableConcept.parse(json.sourceMaterialType);
     }
-    if (json.sourceMaterialState) {
+    if (json.sourceMaterialState !== undefined) {
       newInstance.sourceMaterialState = CodeableConcept.parse(json.sourceMaterialState);
     }
-    if (json.organismId) {
+    if (json.organismId !== undefined) {
       newInstance.organismId = Identifier.parse(json.organismId);
     }
-    if (json.organismName) {
+    if (json.organismName !== undefined) {
       newInstance.organismName = PrimitiveString.parsePrimitive(json.organismName, json._organismName);
     }
-    if (json.parentSubstanceId) {
+    if (json.parentSubstanceId !== undefined) {
       newInstance.parentSubstanceId = json.parentSubstanceId.map((x) => Identifier.parse(x));
     }
-    if (json.parentSubstanceName) {
+    if (json.parentSubstanceName !== undefined) {
       newInstance.parentSubstanceName = json.parentSubstanceName.map((x, i) => {
         const ext = json._parentSubstanceName && json._parentSubstanceName[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.countryOfOrigin) {
+    if (json.countryOfOrigin !== undefined) {
       newInstance.countryOfOrigin = json.countryOfOrigin.map((x) => CodeableConcept.parse(x));
     }
-    if (json.geographicalLocation) {
+    if (json.geographicalLocation !== undefined) {
       newInstance.geographicalLocation = json.geographicalLocation.map((x, i) => {
         const ext = json._geographicalLocation && json._geographicalLocation[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.developmentStage) {
+    if (json.developmentStage !== undefined) {
       newInstance.developmentStage = CodeableConcept.parse(json.developmentStage);
     }
-    if (json.fractionDescription) {
+    if (json.fractionDescription !== undefined) {
       newInstance.fractionDescription = json.fractionDescription.map((x) => SubstanceSourceMaterialFractionDescription.parse(x));
     }
-    if (json.organism) {
+    if (json.organism !== undefined) {
       newInstance.organism = SubstanceSourceMaterialOrganism.parse(json.organism);
     }
-    if (json.partDescription) {
+    if (json.partDescription !== undefined) {
       newInstance.partDescription = json.partDescription.map((x) => SubstanceSourceMaterialPartDescription.parse(x));
     }
     return newInstance;
@@ -163,7 +163,11 @@ export class SubstanceSourceMaterial extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSourceMaterial {
+    return SubstanceSourceMaterial.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSourceMaterial";
   }

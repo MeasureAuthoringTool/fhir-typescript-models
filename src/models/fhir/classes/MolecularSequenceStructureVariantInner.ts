@@ -23,10 +23,10 @@ export class MolecularSequenceStructureVariantInner extends BackboneElement {
   ): MolecularSequenceStructureVariantInner {
     const newInstance: MolecularSequenceStructureVariantInner = BackboneElement.parse(json, providedInstance);
   
-    if (json.start) {
+    if (json.start !== undefined) {
       newInstance.start = PrimitiveInteger.parsePrimitive(json.start, json._start);
     }
-    if (json.end) {
+    if (json.end !== undefined) {
       newInstance.end = PrimitiveInteger.parsePrimitive(json.end, json._end);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class MolecularSequenceStructureVariantInner extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MolecularSequenceStructureVariantInner {
+    return MolecularSequenceStructureVariantInner.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MolecularSequenceStructureVariantInner";
   }

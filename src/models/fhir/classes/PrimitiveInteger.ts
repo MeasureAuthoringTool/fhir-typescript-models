@@ -21,7 +21,7 @@ export class PrimitiveInteger extends Element {
       let newInstance: PrimitiveInteger;
   
       if (extension) {
-        newInstance = Element.parse(extension);
+        newInstance = Element.parse(extension, providedInstance);
       } else {
         newInstance = providedInstance;
       }
@@ -35,7 +35,16 @@ export class PrimitiveInteger extends Element {
     const castInput = input as PrimitiveInteger;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveInteger";
   }
-  
+
+  public clone(): PrimitiveInteger {
+    const result = new PrimitiveInteger();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveInteger";
   }

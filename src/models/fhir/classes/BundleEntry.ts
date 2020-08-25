@@ -36,22 +36,22 @@ export class BundleEntry extends BackboneElement {
   ): BundleEntry {
     const newInstance: BundleEntry = BackboneElement.parse(json, providedInstance);
   
-    if (json.link) {
+    if (json.link !== undefined) {
       newInstance.link = json.link.map((x) => BundleLink.parse(x));
     }
-    if (json.fullUrl) {
+    if (json.fullUrl !== undefined) {
       newInstance.fullUrl = PrimitiveUri.parsePrimitive(json.fullUrl, json._fullUrl);
     }
-    if (json.resource) {
+    if (json.resource !== undefined) {
       newInstance.resource = Resource.parse(json.resource);
     }
-    if (json.search) {
+    if (json.search !== undefined) {
       newInstance.search = BundleEntrySearch.parse(json.search);
     }
-    if (json.request) {
+    if (json.request !== undefined) {
       newInstance.request = BundleEntryRequest.parse(json.request);
     }
-    if (json.response) {
+    if (json.response !== undefined) {
       newInstance.response = BundleEntryResponse.parse(json.response);
     }
     return newInstance;
@@ -92,7 +92,11 @@ export class BundleEntry extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): BundleEntry {
+    return BundleEntry.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "BundleEntry";
   }

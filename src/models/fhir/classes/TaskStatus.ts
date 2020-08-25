@@ -22,7 +22,16 @@ export class TaskStatus extends PrimitiveCode {
     const castInput = input as TaskStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "TaskStatus";
   }
-  
+
+  public clone(): TaskStatus {
+    const result = new TaskStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "TaskStatus";
   }

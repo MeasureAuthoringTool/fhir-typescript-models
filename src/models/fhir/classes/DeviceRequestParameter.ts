@@ -26,19 +26,19 @@ export class DeviceRequestParameter extends BackboneElement {
   ): DeviceRequestParameter {
     const newInstance: DeviceRequestParameter = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.valueCodeableConcept) {
+    if (json.valueCodeableConcept !== undefined) {
       newInstance.value = CodeableConcept.parse(json.valueCodeableConcept);
     }
-    if (json.valueQuantity) {
+    if (json.valueQuantity !== undefined) {
       newInstance.value = Quantity.parse(json.valueQuantity);
     }
-    if (json.valueRange) {
+    if (json.valueRange !== undefined) {
       newInstance.value = Range.parse(json.valueRange);
     }
-    if (json.valueBoolean) {
+    if (json.valueBoolean !== undefined) {
       newInstance.value = PrimitiveBoolean.parsePrimitive(json.valueBoolean, json._valueBoolean);
     }
     return newInstance;
@@ -75,7 +75,11 @@ export class DeviceRequestParameter extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DeviceRequestParameter {
+    return DeviceRequestParameter.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceRequestParameter";
   }

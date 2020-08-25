@@ -44,37 +44,37 @@ export class CoverageEligibilityRequestItem extends BackboneElement {
   ): CoverageEligibilityRequestItem {
     const newInstance: CoverageEligibilityRequestItem = BackboneElement.parse(json, providedInstance);
   
-    if (json.supportingInfoSequence) {
+    if (json.supportingInfoSequence !== undefined) {
       newInstance.supportingInfoSequence = json.supportingInfoSequence.map((x, i) => {
         const ext = json._supportingInfoSequence && json._supportingInfoSequence[i];
         return PrimitivePositiveInt.parsePrimitive(x, ext);
       });
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.productOrService) {
+    if (json.productOrService !== undefined) {
       newInstance.productOrService = CodeableConcept.parse(json.productOrService);
     }
-    if (json.modifier) {
+    if (json.modifier !== undefined) {
       newInstance.modifier = json.modifier.map((x) => CodeableConcept.parse(x));
     }
-    if (json.provider) {
+    if (json.provider !== undefined) {
       newInstance.provider = Reference.parse(json.provider);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.unitPrice) {
+    if (json.unitPrice !== undefined) {
       newInstance.unitPrice = Money.parse(json.unitPrice);
     }
-    if (json.facility) {
+    if (json.facility !== undefined) {
       newInstance.facility = Reference.parse(json.facility);
     }
-    if (json.diagnosis) {
+    if (json.diagnosis !== undefined) {
       newInstance.diagnosis = json.diagnosis.map((x) => CoverageEligibilityRequestItemDiagnosis.parse(x));
     }
-    if (json.detail) {
+    if (json.detail !== undefined) {
       newInstance.detail = json.detail.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -131,7 +131,11 @@ export class CoverageEligibilityRequestItem extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CoverageEligibilityRequestItem {
+    return CoverageEligibilityRequestItem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CoverageEligibilityRequestItem";
   }

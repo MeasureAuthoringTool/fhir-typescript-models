@@ -40,31 +40,31 @@ export class ExplanationOfBenefitAddItemDetailSubDetail extends BackboneElement 
   ): ExplanationOfBenefitAddItemDetailSubDetail {
     const newInstance: ExplanationOfBenefitAddItemDetailSubDetail = BackboneElement.parse(json, providedInstance);
   
-    if (json.productOrService) {
+    if (json.productOrService !== undefined) {
       newInstance.productOrService = CodeableConcept.parse(json.productOrService);
     }
-    if (json.modifier) {
+    if (json.modifier !== undefined) {
       newInstance.modifier = json.modifier.map((x) => CodeableConcept.parse(x));
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.unitPrice) {
+    if (json.unitPrice !== undefined) {
       newInstance.unitPrice = Money.parse(json.unitPrice);
     }
-    if (json.factor) {
+    if (json.factor !== undefined) {
       newInstance.factor = PrimitiveDecimal.parsePrimitive(json.factor, json._factor);
     }
-    if (json.net) {
+    if (json.net !== undefined) {
       newInstance.net = Money.parse(json.net);
     }
-    if (json.noteNumber) {
+    if (json.noteNumber !== undefined) {
       newInstance.noteNumber = json.noteNumber.map((x, i) => {
         const ext = json._noteNumber && json._noteNumber[i];
         return PrimitivePositiveInt.parsePrimitive(x, ext);
       });
     }
-    if (json.adjudication) {
+    if (json.adjudication !== undefined) {
       newInstance.adjudication = json.adjudication.map((x) => ExplanationOfBenefitItemAdjudication.parse(x));
     }
     return newInstance;
@@ -114,7 +114,11 @@ export class ExplanationOfBenefitAddItemDetailSubDetail extends BackboneElement 
 
     return result;
   }
-  
+
+  public clone(): ExplanationOfBenefitAddItemDetailSubDetail {
+    return ExplanationOfBenefitAddItemDetailSubDetail.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExplanationOfBenefitAddItemDetailSubDetail";
   }

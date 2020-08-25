@@ -39,28 +39,28 @@ export class VerificationResultAttestation extends BackboneElement {
   ): VerificationResultAttestation {
     const newInstance: VerificationResultAttestation = BackboneElement.parse(json, providedInstance);
   
-    if (json.who) {
+    if (json.who !== undefined) {
       newInstance.who = Reference.parse(json.who);
     }
-    if (json.onBehalfOf) {
+    if (json.onBehalfOf !== undefined) {
       newInstance.onBehalfOf = Reference.parse(json.onBehalfOf);
     }
-    if (json.communicationMethod) {
+    if (json.communicationMethod !== undefined) {
       newInstance.communicationMethod = CodeableConcept.parse(json.communicationMethod);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDate.parsePrimitive(json.date, json._date);
     }
-    if (json.sourceIdentityCertificate) {
+    if (json.sourceIdentityCertificate !== undefined) {
       newInstance.sourceIdentityCertificate = PrimitiveString.parsePrimitive(json.sourceIdentityCertificate, json._sourceIdentityCertificate);
     }
-    if (json.proxyIdentityCertificate) {
+    if (json.proxyIdentityCertificate !== undefined) {
       newInstance.proxyIdentityCertificate = PrimitiveString.parsePrimitive(json.proxyIdentityCertificate, json._proxyIdentityCertificate);
     }
-    if (json.proxySignature) {
+    if (json.proxySignature !== undefined) {
       newInstance.proxySignature = Signature.parse(json.proxySignature);
     }
-    if (json.sourceSignature) {
+    if (json.sourceSignature !== undefined) {
       newInstance.sourceSignature = Signature.parse(json.sourceSignature);
     }
     return newInstance;
@@ -111,7 +111,11 @@ export class VerificationResultAttestation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): VerificationResultAttestation {
+    return VerificationResultAttestation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "VerificationResultAttestation";
   }

@@ -34,43 +34,43 @@ export class MolecularSequenceQualityRoc extends BackboneElement {
   ): MolecularSequenceQualityRoc {
     const newInstance: MolecularSequenceQualityRoc = BackboneElement.parse(json, providedInstance);
   
-    if (json.score) {
+    if (json.score !== undefined) {
       newInstance.score = json.score.map((x, i) => {
         const ext = json._score && json._score[i];
         return PrimitiveInteger.parsePrimitive(x, ext);
       });
     }
-    if (json.numTP) {
+    if (json.numTP !== undefined) {
       newInstance.numTP = json.numTP.map((x, i) => {
         const ext = json._numTP && json._numTP[i];
         return PrimitiveInteger.parsePrimitive(x, ext);
       });
     }
-    if (json.numFP) {
+    if (json.numFP !== undefined) {
       newInstance.numFP = json.numFP.map((x, i) => {
         const ext = json._numFP && json._numFP[i];
         return PrimitiveInteger.parsePrimitive(x, ext);
       });
     }
-    if (json.numFN) {
+    if (json.numFN !== undefined) {
       newInstance.numFN = json.numFN.map((x, i) => {
         const ext = json._numFN && json._numFN[i];
         return PrimitiveInteger.parsePrimitive(x, ext);
       });
     }
-    if (json.precision) {
+    if (json.precision !== undefined) {
       newInstance.precision = json.precision.map((x, i) => {
         const ext = json._precision && json._precision[i];
         return PrimitiveDecimal.parsePrimitive(x, ext);
       });
     }
-    if (json.sensitivity) {
+    if (json.sensitivity !== undefined) {
       newInstance.sensitivity = json.sensitivity.map((x, i) => {
         const ext = json._sensitivity && json._sensitivity[i];
         return PrimitiveDecimal.parsePrimitive(x, ext);
       });
     }
-    if (json.fMeasure) {
+    if (json.fMeasure !== undefined) {
       newInstance.fMeasure = json.fMeasure.map((x, i) => {
         const ext = json._fMeasure && json._fMeasure[i];
         return PrimitiveDecimal.parsePrimitive(x, ext);
@@ -124,7 +124,11 @@ export class MolecularSequenceQualityRoc extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MolecularSequenceQualityRoc {
+    return MolecularSequenceQualityRoc.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MolecularSequenceQualityRoc";
   }

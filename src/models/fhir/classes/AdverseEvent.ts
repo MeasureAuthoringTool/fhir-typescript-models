@@ -64,64 +64,64 @@ export class AdverseEvent extends DomainResource {
   ): AdverseEvent {
     const newInstance: AdverseEvent = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.actuality) {
+    if (json.actuality !== undefined) {
       newInstance.actuality = AdverseEventActuality.parsePrimitive(json.actuality, json._actuality);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.event) {
+    if (json.event !== undefined) {
       newInstance.event = CodeableConcept.parse(json.event);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.detected) {
+    if (json.detected !== undefined) {
       newInstance.detected = PrimitiveDateTime.parsePrimitive(json.detected, json._detected);
     }
-    if (json.recordedDate) {
+    if (json.recordedDate !== undefined) {
       newInstance.recordedDate = PrimitiveDateTime.parsePrimitive(json.recordedDate, json._recordedDate);
     }
-    if (json.resultingCondition) {
+    if (json.resultingCondition !== undefined) {
       newInstance.resultingCondition = json.resultingCondition.map((x) => Reference.parse(x));
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = Reference.parse(json.location);
     }
-    if (json.seriousness) {
+    if (json.seriousness !== undefined) {
       newInstance.seriousness = CodeableConcept.parse(json.seriousness);
     }
-    if (json.severity) {
+    if (json.severity !== undefined) {
       newInstance.severity = CodeableConcept.parse(json.severity);
     }
-    if (json.outcome) {
+    if (json.outcome !== undefined) {
       newInstance.outcome = CodeableConcept.parse(json.outcome);
     }
-    if (json.recorder) {
+    if (json.recorder !== undefined) {
       newInstance.recorder = Reference.parse(json.recorder);
     }
-    if (json.contributor) {
+    if (json.contributor !== undefined) {
       newInstance.contributor = json.contributor.map((x) => Reference.parse(x));
     }
-    if (json.suspectEntity) {
+    if (json.suspectEntity !== undefined) {
       newInstance.suspectEntity = json.suspectEntity.map((x) => AdverseEventSuspectEntity.parse(x));
     }
-    if (json.subjectMedicalHistory) {
+    if (json.subjectMedicalHistory !== undefined) {
       newInstance.subjectMedicalHistory = json.subjectMedicalHistory.map((x) => Reference.parse(x));
     }
-    if (json.referenceDocument) {
+    if (json.referenceDocument !== undefined) {
       newInstance.referenceDocument = json.referenceDocument.map((x) => Reference.parse(x));
     }
-    if (json.study) {
+    if (json.study !== undefined) {
       newInstance.study = json.study.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -221,7 +221,11 @@ export class AdverseEvent extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): AdverseEvent {
+    return AdverseEvent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AdverseEvent";
   }

@@ -23,10 +23,10 @@ export class MedicinalProductIngredientSubstance extends BackboneElement {
   ): MedicinalProductIngredientSubstance {
     const newInstance: MedicinalProductIngredientSubstance = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.strength) {
+    if (json.strength !== undefined) {
       newInstance.strength = json.strength.map((x) => MedicinalProductIngredientSpecifiedSubstanceStrength.parse(x));
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class MedicinalProductIngredientSubstance extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductIngredientSubstance {
+    return MedicinalProductIngredientSubstance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductIngredientSubstance";
   }

@@ -22,7 +22,16 @@ export class DocumentReferenceStatus extends PrimitiveCode {
     const castInput = input as DocumentReferenceStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "DocumentReferenceStatus";
   }
-  
+
+  public clone(): DocumentReferenceStatus {
+    const result = new DocumentReferenceStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "DocumentReferenceStatus";
   }

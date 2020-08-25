@@ -35,28 +35,28 @@ export class FamilyMemberHistoryCondition extends BackboneElement {
   ): FamilyMemberHistoryCondition {
     const newInstance: FamilyMemberHistoryCondition = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.outcome) {
+    if (json.outcome !== undefined) {
       newInstance.outcome = CodeableConcept.parse(json.outcome);
     }
-    if (json.contributedToDeath) {
+    if (json.contributedToDeath !== undefined) {
       newInstance.contributedToDeath = PrimitiveBoolean.parsePrimitive(json.contributedToDeath, json._contributedToDeath);
     }
-    if (json.onsetAge) {
+    if (json.onsetAge !== undefined) {
       newInstance.onset = Age.parse(json.onsetAge);
     }
-    if (json.onsetRange) {
+    if (json.onsetRange !== undefined) {
       newInstance.onset = Range.parse(json.onsetRange);
     }
-    if (json.onsetPeriod) {
+    if (json.onsetPeriod !== undefined) {
       newInstance.onset = Period.parse(json.onsetPeriod);
     }
-    if (json.onsetString) {
+    if (json.onsetString !== undefined) {
       newInstance.onset = PrimitiveString.parsePrimitive(json.onsetString, json._onsetString);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -106,7 +106,11 @@ export class FamilyMemberHistoryCondition extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): FamilyMemberHistoryCondition {
+    return FamilyMemberHistoryCondition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "FamilyMemberHistoryCondition";
   }

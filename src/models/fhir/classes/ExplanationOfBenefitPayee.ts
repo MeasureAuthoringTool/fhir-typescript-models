@@ -23,10 +23,10 @@ export class ExplanationOfBenefitPayee extends BackboneElement {
   ): ExplanationOfBenefitPayee {
     const newInstance: ExplanationOfBenefitPayee = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.party) {
+    if (json.party !== undefined) {
       newInstance.party = Reference.parse(json.party);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class ExplanationOfBenefitPayee extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExplanationOfBenefitPayee {
+    return ExplanationOfBenefitPayee.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExplanationOfBenefitPayee";
   }

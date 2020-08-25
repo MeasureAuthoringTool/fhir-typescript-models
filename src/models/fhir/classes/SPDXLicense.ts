@@ -22,7 +22,16 @@ export class SPDXLicense extends PrimitiveCode {
     const castInput = input as SPDXLicense;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SPDXLicense";
   }
-  
+
+  public clone(): SPDXLicense {
+    const result = new SPDXLicense();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SPDXLicense";
   }

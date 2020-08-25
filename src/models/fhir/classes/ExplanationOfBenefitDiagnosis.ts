@@ -31,22 +31,22 @@ export class ExplanationOfBenefitDiagnosis extends BackboneElement {
   ): ExplanationOfBenefitDiagnosis {
     const newInstance: ExplanationOfBenefitDiagnosis = BackboneElement.parse(json, providedInstance);
   
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitivePositiveInt.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.diagnosisCodeableConcept) {
+    if (json.diagnosisCodeableConcept !== undefined) {
       newInstance.diagnosis = CodeableConcept.parse(json.diagnosisCodeableConcept);
     }
-    if (json.diagnosisReference) {
+    if (json.diagnosisReference !== undefined) {
       newInstance.diagnosis = Reference.parse(json.diagnosisReference);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.onAdmission) {
+    if (json.onAdmission !== undefined) {
       newInstance.onAdmission = CodeableConcept.parse(json.onAdmission);
     }
-    if (json.packageCode) {
+    if (json.packageCode !== undefined) {
       newInstance.packageCode = CodeableConcept.parse(json.packageCode);
     }
     return newInstance;
@@ -87,7 +87,11 @@ export class ExplanationOfBenefitDiagnosis extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExplanationOfBenefitDiagnosis {
+    return ExplanationOfBenefitDiagnosis.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExplanationOfBenefitDiagnosis";
   }

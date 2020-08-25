@@ -69,88 +69,88 @@ export class FamilyMemberHistory extends DomainResource {
   ): FamilyMemberHistory {
     const newInstance: FamilyMemberHistory = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.instantiatesCanonical) {
+    if (json.instantiatesCanonical !== undefined) {
       newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
         const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.instantiatesUri) {
+    if (json.instantiatesUri !== undefined) {
       newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
         const ext = json._instantiatesUri && json._instantiatesUri[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = FamilyHistoryStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.dataAbsentReason) {
+    if (json.dataAbsentReason !== undefined) {
       newInstance.dataAbsentReason = CodeableConcept.parse(json.dataAbsentReason);
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.relationship) {
+    if (json.relationship !== undefined) {
       newInstance.relationship = CodeableConcept.parse(json.relationship);
     }
-    if (json.sex) {
+    if (json.sex !== undefined) {
       newInstance.sex = CodeableConcept.parse(json.sex);
     }
-    if (json.bornPeriod) {
+    if (json.bornPeriod !== undefined) {
       newInstance.born = Period.parse(json.bornPeriod);
     }
-    if (json.bornDate) {
+    if (json.bornDate !== undefined) {
       newInstance.born = PrimitiveDate.parsePrimitive(json.bornDate, json._bornDate);
     }
-    if (json.bornString) {
+    if (json.bornString !== undefined) {
       newInstance.born = PrimitiveString.parsePrimitive(json.bornString, json._bornString);
     }
-    if (json.ageAge) {
+    if (json.ageAge !== undefined) {
       newInstance.age = Age.parse(json.ageAge);
     }
-    if (json.ageRange) {
+    if (json.ageRange !== undefined) {
       newInstance.age = Range.parse(json.ageRange);
     }
-    if (json.ageString) {
+    if (json.ageString !== undefined) {
       newInstance.age = PrimitiveString.parsePrimitive(json.ageString, json._ageString);
     }
-    if (json.estimatedAge) {
+    if (json.estimatedAge !== undefined) {
       newInstance.estimatedAge = PrimitiveBoolean.parsePrimitive(json.estimatedAge, json._estimatedAge);
     }
-    if (json.deceasedBoolean) {
+    if (json.deceasedBoolean !== undefined) {
       newInstance.deceased = PrimitiveBoolean.parsePrimitive(json.deceasedBoolean, json._deceasedBoolean);
     }
-    if (json.deceasedAge) {
+    if (json.deceasedAge !== undefined) {
       newInstance.deceased = Age.parse(json.deceasedAge);
     }
-    if (json.deceasedRange) {
+    if (json.deceasedRange !== undefined) {
       newInstance.deceased = Range.parse(json.deceasedRange);
     }
-    if (json.deceasedDate) {
+    if (json.deceasedDate !== undefined) {
       newInstance.deceased = PrimitiveDate.parsePrimitive(json.deceasedDate, json._deceasedDate);
     }
-    if (json.deceasedString) {
+    if (json.deceasedString !== undefined) {
       newInstance.deceased = PrimitiveString.parsePrimitive(json.deceasedString, json._deceasedString);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.condition) {
+    if (json.condition !== undefined) {
       newInstance.condition = json.condition.map((x) => FamilyMemberHistoryCondition.parse(x));
     }
     return newInstance;
@@ -282,7 +282,11 @@ export class FamilyMemberHistory extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): FamilyMemberHistory {
+    return FamilyMemberHistory.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "FamilyMemberHistory";
   }

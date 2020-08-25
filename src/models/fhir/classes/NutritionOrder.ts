@@ -64,64 +64,64 @@ export class NutritionOrder extends DomainResource {
   ): NutritionOrder {
     const newInstance: NutritionOrder = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.instantiatesCanonical) {
+    if (json.instantiatesCanonical !== undefined) {
       newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
         const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.instantiatesUri) {
+    if (json.instantiatesUri !== undefined) {
       newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
         const ext = json._instantiatesUri && json._instantiatesUri[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.instantiates) {
+    if (json.instantiates !== undefined) {
       newInstance.instantiates = json.instantiates.map((x, i) => {
         const ext = json._instantiates && json._instantiates[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = NutritionOrderStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.intent) {
+    if (json.intent !== undefined) {
       newInstance.intent = NutritiionOrderIntent.parsePrimitive(json.intent, json._intent);
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.dateTime) {
+    if (json.dateTime !== undefined) {
       newInstance.dateTime = PrimitiveDateTime.parsePrimitive(json.dateTime, json._dateTime);
     }
-    if (json.orderer) {
+    if (json.orderer !== undefined) {
       newInstance.orderer = Reference.parse(json.orderer);
     }
-    if (json.allergyIntolerance) {
+    if (json.allergyIntolerance !== undefined) {
       newInstance.allergyIntolerance = json.allergyIntolerance.map((x) => Reference.parse(x));
     }
-    if (json.foodPreferenceModifier) {
+    if (json.foodPreferenceModifier !== undefined) {
       newInstance.foodPreferenceModifier = json.foodPreferenceModifier.map((x) => CodeableConcept.parse(x));
     }
-    if (json.excludeFoodModifier) {
+    if (json.excludeFoodModifier !== undefined) {
       newInstance.excludeFoodModifier = json.excludeFoodModifier.map((x) => CodeableConcept.parse(x));
     }
-    if (json.oralDiet) {
+    if (json.oralDiet !== undefined) {
       newInstance.oralDiet = NutritionOrderOralDiet.parse(json.oralDiet);
     }
-    if (json.supplement) {
+    if (json.supplement !== undefined) {
       newInstance.supplement = json.supplement.map((x) => NutritionOrderSupplement.parse(x));
     }
-    if (json.enteralFormula) {
+    if (json.enteralFormula !== undefined) {
       newInstance.enteralFormula = NutritionOrderEnteralFormula.parse(json.enteralFormula);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -211,7 +211,11 @@ export class NutritionOrder extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): NutritionOrder {
+    return NutritionOrder.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "NutritionOrder";
   }

@@ -38,28 +38,28 @@ export class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   ): ExplanationOfBenefitBenefitBalance {
     const newInstance: ExplanationOfBenefitBenefitBalance = BackboneElement.parse(json, providedInstance);
   
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.excluded) {
+    if (json.excluded !== undefined) {
       newInstance.excluded = PrimitiveBoolean.parsePrimitive(json.excluded, json._excluded);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.network) {
+    if (json.network !== undefined) {
       newInstance.network = CodeableConcept.parse(json.network);
     }
-    if (json.unit) {
+    if (json.unit !== undefined) {
       newInstance.unit = CodeableConcept.parse(json.unit);
     }
-    if (json.term) {
+    if (json.term !== undefined) {
       newInstance.term = CodeableConcept.parse(json.term);
     }
-    if (json.financial) {
+    if (json.financial !== undefined) {
       newInstance.financial = json.financial.map((x) => ExplanationOfBenefitBenefitBalanceFinancial.parse(x));
     }
     return newInstance;
@@ -110,7 +110,11 @@ export class ExplanationOfBenefitBenefitBalance extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExplanationOfBenefitBenefitBalance {
+    return ExplanationOfBenefitBenefitBalance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExplanationOfBenefitBenefitBalance";
   }

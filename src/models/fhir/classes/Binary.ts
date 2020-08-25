@@ -27,13 +27,13 @@ export class Binary extends Resource {
   ): Binary {
     const newInstance: Binary = Resource.parse(json, providedInstance);
   
-    if (json.contentType) {
+    if (json.contentType !== undefined) {
       newInstance.contentType = MimeType.parsePrimitive(json.contentType, json._contentType);
     }
-    if (json.securityContext) {
+    if (json.securityContext !== undefined) {
       newInstance.securityContext = Reference.parse(json.securityContext);
     }
-    if (json.data) {
+    if (json.data !== undefined) {
       newInstance.data = PrimitiveBase64Binary.parsePrimitive(json.data, json._data);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class Binary extends Resource {
 
     return result;
   }
-  
+
+  public clone(): Binary {
+    return Binary.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Binary";
   }

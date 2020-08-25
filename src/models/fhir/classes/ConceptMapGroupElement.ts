@@ -27,13 +27,13 @@ export class ConceptMapGroupElement extends BackboneElement {
   ): ConceptMapGroupElement {
     const newInstance: ConceptMapGroupElement = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.display) {
+    if (json.display !== undefined) {
       newInstance.display = PrimitiveString.parsePrimitive(json.display, json._display);
     }
-    if (json.target) {
+    if (json.target !== undefined) {
       newInstance.target = json.target.map((x) => ConceptMapGroupElementTarget.parse(x));
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class ConceptMapGroupElement extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ConceptMapGroupElement {
+    return ConceptMapGroupElement.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ConceptMapGroupElement";
   }

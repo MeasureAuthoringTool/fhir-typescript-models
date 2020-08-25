@@ -22,7 +22,16 @@ export class AddressType extends PrimitiveCode {
     const castInput = input as AddressType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "AddressType";
   }
-  
+
+  public clone(): AddressType {
+    const result = new AddressType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "AddressType";
   }

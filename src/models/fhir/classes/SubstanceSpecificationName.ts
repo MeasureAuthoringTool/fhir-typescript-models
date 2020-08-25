@@ -45,37 +45,37 @@ export class SubstanceSpecificationName extends BackboneElement {
   ): SubstanceSpecificationName {
     const newInstance: SubstanceSpecificationName = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CodeableConcept.parse(json.status);
     }
-    if (json.preferred) {
+    if (json.preferred !== undefined) {
       newInstance.preferred = PrimitiveBoolean.parsePrimitive(json.preferred, json._preferred);
     }
-    if (json.language) {
+    if (json.language !== undefined) {
       newInstance.language = json.language.map((x) => CodeableConcept.parse(x));
     }
-    if (json.domain) {
+    if (json.domain !== undefined) {
       newInstance.domain = json.domain.map((x) => CodeableConcept.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.synonym) {
+    if (json.synonym !== undefined) {
       newInstance.synonym = json.synonym.map((x) => SubstanceSpecificationName.parse(x));
     }
-    if (json.translation) {
+    if (json.translation !== undefined) {
       newInstance.translation = json.translation.map((x) => SubstanceSpecificationName.parse(x));
     }
-    if (json.official) {
+    if (json.official !== undefined) {
       newInstance.official = json.official.map((x) => SubstanceSpecificationNameOfficial.parse(x));
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = json.source.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -137,7 +137,11 @@ export class SubstanceSpecificationName extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSpecificationName {
+    return SubstanceSpecificationName.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSpecificationName";
   }

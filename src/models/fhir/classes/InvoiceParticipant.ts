@@ -23,10 +23,10 @@ export class InvoiceParticipant extends BackboneElement {
   ): InvoiceParticipant {
     const newInstance: InvoiceParticipant = BackboneElement.parse(json, providedInstance);
   
-    if (json.role) {
+    if (json.role !== undefined) {
       newInstance.role = CodeableConcept.parse(json.role);
     }
-    if (json.actor) {
+    if (json.actor !== undefined) {
       newInstance.actor = Reference.parse(json.actor);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class InvoiceParticipant extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): InvoiceParticipant {
+    return InvoiceParticipant.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "InvoiceParticipant";
   }

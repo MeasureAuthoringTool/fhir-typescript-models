@@ -20,7 +20,7 @@ export class TestReportTeardownAction extends BackboneElement {
   ): TestReportTeardownAction {
     const newInstance: TestReportTeardownAction = BackboneElement.parse(json, providedInstance);
   
-    if (json.operation) {
+    if (json.operation !== undefined) {
       newInstance.operation = TestReportSetupActionOperation.parse(json.operation);
     }
     return newInstance;
@@ -40,7 +40,11 @@ export class TestReportTeardownAction extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TestReportTeardownAction {
+    return TestReportTeardownAction.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestReportTeardownAction";
   }

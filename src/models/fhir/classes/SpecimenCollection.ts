@@ -38,31 +38,31 @@ export class SpecimenCollection extends BackboneElement {
   ): SpecimenCollection {
     const newInstance: SpecimenCollection = BackboneElement.parse(json, providedInstance);
   
-    if (json.collector) {
+    if (json.collector !== undefined) {
       newInstance.collector = Reference.parse(json.collector);
     }
-    if (json.collectedDateTime) {
+    if (json.collectedDateTime !== undefined) {
       newInstance.collected = PrimitiveDateTime.parsePrimitive(json.collectedDateTime, json._collectedDateTime);
     }
-    if (json.collectedPeriod) {
+    if (json.collectedPeriod !== undefined) {
       newInstance.collected = Period.parse(json.collectedPeriod);
     }
-    if (json.duration) {
+    if (json.duration !== undefined) {
       newInstance.duration = Duration.parse(json.duration);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.method) {
+    if (json.method !== undefined) {
       newInstance.method = CodeableConcept.parse(json.method);
     }
-    if (json.bodySite) {
+    if (json.bodySite !== undefined) {
       newInstance.bodySite = CodeableConcept.parse(json.bodySite);
     }
-    if (json.fastingStatusCodeableConcept) {
+    if (json.fastingStatusCodeableConcept !== undefined) {
       newInstance.fastingStatus = CodeableConcept.parse(json.fastingStatusCodeableConcept);
     }
-    if (json.fastingStatusDuration) {
+    if (json.fastingStatusDuration !== undefined) {
       newInstance.fastingStatus = Duration.parse(json.fastingStatusDuration);
     }
     return newInstance;
@@ -115,7 +115,11 @@ export class SpecimenCollection extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SpecimenCollection {
+    return SpecimenCollection.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SpecimenCollection";
   }

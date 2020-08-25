@@ -43,37 +43,37 @@ export class DataRequirement extends Element {
   ): DataRequirement {
     const newInstance: DataRequirement = Element.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = FHIRAllTypes.parsePrimitive(json.type, json._type);
     }
-    if (json.profile) {
+    if (json.profile !== undefined) {
       newInstance.profile = json.profile.map((x, i) => {
         const ext = json._profile && json._profile[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.subjectCodeableConcept) {
+    if (json.subjectCodeableConcept !== undefined) {
       newInstance.subject = CodeableConcept.parse(json.subjectCodeableConcept);
     }
-    if (json.subjectReference) {
+    if (json.subjectReference !== undefined) {
       newInstance.subject = Reference.parse(json.subjectReference);
     }
-    if (json.mustSupport) {
+    if (json.mustSupport !== undefined) {
       newInstance.mustSupport = json.mustSupport.map((x, i) => {
         const ext = json._mustSupport && json._mustSupport[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.codeFilter) {
+    if (json.codeFilter !== undefined) {
       newInstance.codeFilter = json.codeFilter.map((x) => DataRequirementCodeFilter.parse(x));
     }
-    if (json.dateFilter) {
+    if (json.dateFilter !== undefined) {
       newInstance.dateFilter = json.dateFilter.map((x) => DataRequirementDateFilter.parse(x));
     }
-    if (json.limit) {
+    if (json.limit !== undefined) {
       newInstance.limit = PrimitivePositiveInt.parsePrimitive(json.limit, json._limit);
     }
-    if (json.sort) {
+    if (json.sort !== undefined) {
       newInstance.sort = json.sort.map((x) => DataRequirementSort.parse(x));
     }
     return newInstance;
@@ -129,7 +129,11 @@ export class DataRequirement extends Element {
 
     return result;
   }
-  
+
+  public clone(): DataRequirement {
+    return DataRequirement.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DataRequirement";
   }

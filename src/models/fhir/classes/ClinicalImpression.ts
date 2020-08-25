@@ -69,70 +69,70 @@ export class ClinicalImpression extends DomainResource {
   ): ClinicalImpression {
     const newInstance: ClinicalImpression = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ClinicalImpressionStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.statusReason) {
+    if (json.statusReason !== undefined) {
       newInstance.statusReason = CodeableConcept.parse(json.statusReason);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.effectiveDateTime) {
+    if (json.effectiveDateTime !== undefined) {
       newInstance.effective = PrimitiveDateTime.parsePrimitive(json.effectiveDateTime, json._effectiveDateTime);
     }
-    if (json.effectivePeriod) {
+    if (json.effectivePeriod !== undefined) {
       newInstance.effective = Period.parse(json.effectivePeriod);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.assessor) {
+    if (json.assessor !== undefined) {
       newInstance.assessor = Reference.parse(json.assessor);
     }
-    if (json.previous) {
+    if (json.previous !== undefined) {
       newInstance.previous = Reference.parse(json.previous);
     }
-    if (json.problem) {
+    if (json.problem !== undefined) {
       newInstance.problem = json.problem.map((x) => Reference.parse(x));
     }
-    if (json.investigation) {
+    if (json.investigation !== undefined) {
       newInstance.investigation = json.investigation.map((x) => ClinicalImpressionInvestigation.parse(x));
     }
-    if (json.protocol) {
+    if (json.protocol !== undefined) {
       newInstance.protocol = json.protocol.map((x, i) => {
         const ext = json._protocol && json._protocol[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.summary) {
+    if (json.summary !== undefined) {
       newInstance.summary = PrimitiveString.parsePrimitive(json.summary, json._summary);
     }
-    if (json.finding) {
+    if (json.finding !== undefined) {
       newInstance.finding = json.finding.map((x) => ClinicalImpressionFinding.parse(x));
     }
-    if (json.prognosisCodeableConcept) {
+    if (json.prognosisCodeableConcept !== undefined) {
       newInstance.prognosisCodeableConcept = json.prognosisCodeableConcept.map((x) => CodeableConcept.parse(x));
     }
-    if (json.prognosisReference) {
+    if (json.prognosisReference !== undefined) {
       newInstance.prognosisReference = json.prognosisReference.map((x) => Reference.parse(x));
     }
-    if (json.supportingInfo) {
+    if (json.supportingInfo !== undefined) {
       newInstance.supportingInfo = json.supportingInfo.map((x) => Reference.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -238,7 +238,11 @@ export class ClinicalImpression extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ClinicalImpression {
+    return ClinicalImpression.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClinicalImpression";
   }

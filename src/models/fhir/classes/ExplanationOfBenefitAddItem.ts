@@ -65,79 +65,79 @@ export class ExplanationOfBenefitAddItem extends BackboneElement {
   ): ExplanationOfBenefitAddItem {
     const newInstance: ExplanationOfBenefitAddItem = BackboneElement.parse(json, providedInstance);
   
-    if (json.itemSequence) {
+    if (json.itemSequence !== undefined) {
       newInstance.itemSequence = json.itemSequence.map((x, i) => {
         const ext = json._itemSequence && json._itemSequence[i];
         return PrimitivePositiveInt.parsePrimitive(x, ext);
       });
     }
-    if (json.detailSequence) {
+    if (json.detailSequence !== undefined) {
       newInstance.detailSequence = json.detailSequence.map((x, i) => {
         const ext = json._detailSequence && json._detailSequence[i];
         return PrimitivePositiveInt.parsePrimitive(x, ext);
       });
     }
-    if (json.subDetailSequence) {
+    if (json.subDetailSequence !== undefined) {
       newInstance.subDetailSequence = json.subDetailSequence.map((x, i) => {
         const ext = json._subDetailSequence && json._subDetailSequence[i];
         return PrimitivePositiveInt.parsePrimitive(x, ext);
       });
     }
-    if (json.provider) {
+    if (json.provider !== undefined) {
       newInstance.provider = json.provider.map((x) => Reference.parse(x));
     }
-    if (json.productOrService) {
+    if (json.productOrService !== undefined) {
       newInstance.productOrService = CodeableConcept.parse(json.productOrService);
     }
-    if (json.modifier) {
+    if (json.modifier !== undefined) {
       newInstance.modifier = json.modifier.map((x) => CodeableConcept.parse(x));
     }
-    if (json.programCode) {
+    if (json.programCode !== undefined) {
       newInstance.programCode = json.programCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.servicedDate) {
+    if (json.servicedDate !== undefined) {
       newInstance.serviced = PrimitiveDate.parsePrimitive(json.servicedDate, json._servicedDate);
     }
-    if (json.servicedPeriod) {
+    if (json.servicedPeriod !== undefined) {
       newInstance.serviced = Period.parse(json.servicedPeriod);
     }
-    if (json.locationCodeableConcept) {
+    if (json.locationCodeableConcept !== undefined) {
       newInstance.location = CodeableConcept.parse(json.locationCodeableConcept);
     }
-    if (json.locationAddress) {
+    if (json.locationAddress !== undefined) {
       newInstance.location = Address.parse(json.locationAddress);
     }
-    if (json.locationReference) {
+    if (json.locationReference !== undefined) {
       newInstance.location = Reference.parse(json.locationReference);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.unitPrice) {
+    if (json.unitPrice !== undefined) {
       newInstance.unitPrice = Money.parse(json.unitPrice);
     }
-    if (json.factor) {
+    if (json.factor !== undefined) {
       newInstance.factor = PrimitiveDecimal.parsePrimitive(json.factor, json._factor);
     }
-    if (json.net) {
+    if (json.net !== undefined) {
       newInstance.net = Money.parse(json.net);
     }
-    if (json.bodySite) {
+    if (json.bodySite !== undefined) {
       newInstance.bodySite = CodeableConcept.parse(json.bodySite);
     }
-    if (json.subSite) {
+    if (json.subSite !== undefined) {
       newInstance.subSite = json.subSite.map((x) => CodeableConcept.parse(x));
     }
-    if (json.noteNumber) {
+    if (json.noteNumber !== undefined) {
       newInstance.noteNumber = json.noteNumber.map((x, i) => {
         const ext = json._noteNumber && json._noteNumber[i];
         return PrimitivePositiveInt.parsePrimitive(x, ext);
       });
     }
-    if (json.adjudication) {
+    if (json.adjudication !== undefined) {
       newInstance.adjudication = json.adjudication.map((x) => ExplanationOfBenefitItemAdjudication.parse(x));
     }
-    if (json.detail) {
+    if (json.detail !== undefined) {
       newInstance.detail = json.detail.map((x) => ExplanationOfBenefitAddItemDetail.parse(x));
     }
     return newInstance;
@@ -243,7 +243,11 @@ export class ExplanationOfBenefitAddItem extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExplanationOfBenefitAddItem {
+    return ExplanationOfBenefitAddItem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExplanationOfBenefitAddItem";
   }

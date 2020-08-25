@@ -30,16 +30,16 @@ export class SimpleQuantity extends Quantity {
   ): SimpleQuantity {
     const newInstance: SimpleQuantity = Quantity.parse(json, providedInstance);
   
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveDecimal.parsePrimitive(json.value, json._value);
     }
-    if (json.unit) {
+    if (json.unit !== undefined) {
       newInstance.unit = PrimitiveString.parsePrimitive(json.unit, json._unit);
     }
-    if (json.system) {
+    if (json.system !== undefined) {
       newInstance.system = PrimitiveUri.parsePrimitive(json.system, json._system);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
     return newInstance;
@@ -75,7 +75,11 @@ export class SimpleQuantity extends Quantity {
 
     return result;
   }
-  
+
+  public clone(): SimpleQuantity {
+    return SimpleQuantity.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SimpleQuantity";
   }

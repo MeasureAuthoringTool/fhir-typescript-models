@@ -24,10 +24,10 @@ export class ActivityDefinitionParticipant extends BackboneElement {
   ): ActivityDefinitionParticipant {
     const newInstance: ActivityDefinitionParticipant = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = ActivityParticipantType.parsePrimitive(json.type, json._type);
     }
-    if (json.role) {
+    if (json.role !== undefined) {
       newInstance.role = CodeableConcept.parse(json.role);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class ActivityDefinitionParticipant extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ActivityDefinitionParticipant {
+    return ActivityDefinitionParticipant.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ActivityDefinitionParticipant";
   }

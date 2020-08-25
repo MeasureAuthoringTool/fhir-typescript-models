@@ -30,19 +30,19 @@ export class ImplementationGuideDefinitionPage extends BackboneElement {
   ): ImplementationGuideDefinitionPage {
     const newInstance: ImplementationGuideDefinitionPage = BackboneElement.parse(json, providedInstance);
   
-    if (json.nameUrl) {
+    if (json.nameUrl !== undefined) {
       newInstance.name = PrimitiveUrl.parsePrimitive(json.nameUrl, json._nameUrl);
     }
-    if (json.nameReference) {
+    if (json.nameReference !== undefined) {
       newInstance.name = Reference.parse(json.nameReference);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.generation) {
+    if (json.generation !== undefined) {
       newInstance.generation = GuidePageGeneration.parsePrimitive(json.generation, json._generation);
     }
-    if (json.page) {
+    if (json.page !== undefined) {
       newInstance.page = json.page.map((x) => ImplementationGuideDefinitionPage.parse(x));
     }
     return newInstance;
@@ -81,7 +81,11 @@ export class ImplementationGuideDefinitionPage extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImplementationGuideDefinitionPage {
+    return ImplementationGuideDefinitionPage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImplementationGuideDefinitionPage";
   }

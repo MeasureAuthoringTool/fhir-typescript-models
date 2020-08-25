@@ -27,13 +27,13 @@ export class VerificationResultValidator extends BackboneElement {
   ): VerificationResultValidator {
     const newInstance: VerificationResultValidator = BackboneElement.parse(json, providedInstance);
   
-    if (json.organization) {
+    if (json.organization !== undefined) {
       newInstance.organization = Reference.parse(json.organization);
     }
-    if (json.identityCertificate) {
+    if (json.identityCertificate !== undefined) {
       newInstance.identityCertificate = PrimitiveString.parsePrimitive(json.identityCertificate, json._identityCertificate);
     }
-    if (json.attestationSignature) {
+    if (json.attestationSignature !== undefined) {
       newInstance.attestationSignature = Signature.parse(json.attestationSignature);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class VerificationResultValidator extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): VerificationResultValidator {
+    return VerificationResultValidator.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "VerificationResultValidator";
   }

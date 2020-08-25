@@ -22,7 +22,16 @@ export class FHIRAllTypes extends PrimitiveCode {
     const castInput = input as FHIRAllTypes;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "FHIRAllTypes";
   }
-  
+
+  public clone(): FHIRAllTypes {
+    const result = new FHIRAllTypes();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "FHIRAllTypes";
   }

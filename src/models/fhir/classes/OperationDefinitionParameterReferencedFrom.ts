@@ -23,10 +23,10 @@ export class OperationDefinitionParameterReferencedFrom extends BackboneElement 
   ): OperationDefinitionParameterReferencedFrom {
     const newInstance: OperationDefinitionParameterReferencedFrom = BackboneElement.parse(json, providedInstance);
   
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = PrimitiveString.parsePrimitive(json.source, json._source);
     }
-    if (json.sourceId) {
+    if (json.sourceId !== undefined) {
       newInstance.sourceId = PrimitiveString.parsePrimitive(json.sourceId, json._sourceId);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class OperationDefinitionParameterReferencedFrom extends BackboneElement 
 
     return result;
   }
-  
+
+  public clone(): OperationDefinitionParameterReferencedFrom {
+    return OperationDefinitionParameterReferencedFrom.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "OperationDefinitionParameterReferencedFrom";
   }

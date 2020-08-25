@@ -22,7 +22,16 @@ export class MediaStatus extends PrimitiveCode {
     const castInput = input as MediaStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "MediaStatus";
   }
-  
+
+  public clone(): MediaStatus {
+    const result = new MediaStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "MediaStatus";
   }

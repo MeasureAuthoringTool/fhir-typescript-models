@@ -22,7 +22,16 @@ export class ListMode extends PrimitiveCode {
     const castInput = input as ListMode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ListMode";
   }
-  
+
+  public clone(): ListMode {
+    const result = new ListMode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ListMode";
   }

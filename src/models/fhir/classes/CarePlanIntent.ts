@@ -22,7 +22,16 @@ export class CarePlanIntent extends PrimitiveCode {
     const castInput = input as CarePlanIntent;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CarePlanIntent";
   }
-  
+
+  public clone(): CarePlanIntent {
+    const result = new CarePlanIntent();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CarePlanIntent";
   }

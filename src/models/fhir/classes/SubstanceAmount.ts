@@ -31,22 +31,22 @@ export class SubstanceAmount extends BackboneElement {
   ): SubstanceAmount {
     const newInstance: SubstanceAmount = BackboneElement.parse(json, providedInstance);
   
-    if (json.amountQuantity) {
+    if (json.amountQuantity !== undefined) {
       newInstance.amount = Quantity.parse(json.amountQuantity);
     }
-    if (json.amountRange) {
+    if (json.amountRange !== undefined) {
       newInstance.amount = Range.parse(json.amountRange);
     }
-    if (json.amountString) {
+    if (json.amountString !== undefined) {
       newInstance.amount = PrimitiveString.parsePrimitive(json.amountString, json._amountString);
     }
-    if (json.amountType) {
+    if (json.amountType !== undefined) {
       newInstance.amountType = CodeableConcept.parse(json.amountType);
     }
-    if (json.amountText) {
+    if (json.amountText !== undefined) {
       newInstance.amountText = PrimitiveString.parsePrimitive(json.amountText, json._amountText);
     }
-    if (json.referenceRange) {
+    if (json.referenceRange !== undefined) {
       newInstance.referenceRange = SubstanceAmountReferenceRange.parse(json.referenceRange);
     }
     return newInstance;
@@ -88,7 +88,11 @@ export class SubstanceAmount extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceAmount {
+    return SubstanceAmount.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceAmount";
   }

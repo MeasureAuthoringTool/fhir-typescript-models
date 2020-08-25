@@ -39,37 +39,37 @@ export class SubstanceSpecificationRelationship extends BackboneElement {
   ): SubstanceSpecificationRelationship {
     const newInstance: SubstanceSpecificationRelationship = BackboneElement.parse(json, providedInstance);
   
-    if (json.substanceReference) {
+    if (json.substanceReference !== undefined) {
       newInstance.substance = Reference.parse(json.substanceReference);
     }
-    if (json.substanceCodeableConcept) {
+    if (json.substanceCodeableConcept !== undefined) {
       newInstance.substance = CodeableConcept.parse(json.substanceCodeableConcept);
     }
-    if (json.relationship) {
+    if (json.relationship !== undefined) {
       newInstance.relationship = CodeableConcept.parse(json.relationship);
     }
-    if (json.isDefining) {
+    if (json.isDefining !== undefined) {
       newInstance.isDefining = PrimitiveBoolean.parsePrimitive(json.isDefining, json._isDefining);
     }
-    if (json.amountQuantity) {
+    if (json.amountQuantity !== undefined) {
       newInstance.amount = Quantity.parse(json.amountQuantity);
     }
-    if (json.amountRange) {
+    if (json.amountRange !== undefined) {
       newInstance.amount = Range.parse(json.amountRange);
     }
-    if (json.amountRatio) {
+    if (json.amountRatio !== undefined) {
       newInstance.amount = Ratio.parse(json.amountRatio);
     }
-    if (json.amountString) {
+    if (json.amountString !== undefined) {
       newInstance.amount = PrimitiveString.parsePrimitive(json.amountString, json._amountString);
     }
-    if (json.amountRatioLowLimit) {
+    if (json.amountRatioLowLimit !== undefined) {
       newInstance.amountRatioLowLimit = Ratio.parse(json.amountRatioLowLimit);
     }
-    if (json.amountType) {
+    if (json.amountType !== undefined) {
       newInstance.amountType = CodeableConcept.parse(json.amountType);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = json.source.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -131,7 +131,11 @@ export class SubstanceSpecificationRelationship extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSpecificationRelationship {
+    return SubstanceSpecificationRelationship.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSpecificationRelationship";
   }

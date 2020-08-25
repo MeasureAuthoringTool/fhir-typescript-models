@@ -22,7 +22,16 @@ export class ConsentState extends PrimitiveCode {
     const castInput = input as ConsentState;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ConsentState";
   }
-  
+
+  public clone(): ConsentState {
+    const result = new ConsentState();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ConsentState";
   }

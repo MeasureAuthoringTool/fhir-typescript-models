@@ -22,7 +22,16 @@ export class SlotStatus extends PrimitiveCode {
     const castInput = input as SlotStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SlotStatus";
   }
-  
+
+  public clone(): SlotStatus {
+    const result = new SlotStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SlotStatus";
   }

@@ -72,157 +72,157 @@ export class TaskOutput extends BackboneElement {
   ): TaskOutput {
     const newInstance: TaskOutput = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.valueBase64Binary) {
+    if (json.valueBase64Binary !== undefined) {
       newInstance.value = PrimitiveBase64Binary.parsePrimitive(json.valueBase64Binary, json._valueBase64Binary);
     }
-    if (json.valueBoolean) {
+    if (json.valueBoolean !== undefined) {
       newInstance.value = PrimitiveBoolean.parsePrimitive(json.valueBoolean, json._valueBoolean);
     }
-    if (json.valueCanonical) {
+    if (json.valueCanonical !== undefined) {
       newInstance.value = PrimitiveCanonical.parsePrimitive(json.valueCanonical, json._valueCanonical);
     }
-    if (json.valueCode) {
+    if (json.valueCode !== undefined) {
       newInstance.value = PrimitiveCode.parsePrimitive(json.valueCode, json._valueCode);
     }
-    if (json.valueDate) {
+    if (json.valueDate !== undefined) {
       newInstance.value = PrimitiveDate.parsePrimitive(json.valueDate, json._valueDate);
     }
-    if (json.valueDateTime) {
+    if (json.valueDateTime !== undefined) {
       newInstance.value = PrimitiveDateTime.parsePrimitive(json.valueDateTime, json._valueDateTime);
     }
-    if (json.valueDecimal) {
+    if (json.valueDecimal !== undefined) {
       newInstance.value = PrimitiveDecimal.parsePrimitive(json.valueDecimal, json._valueDecimal);
     }
-    if (json.valueId) {
+    if (json.valueId !== undefined) {
       newInstance.value = PrimitiveId.parsePrimitive(json.valueId, json._valueId);
     }
-    if (json.valueInstant) {
+    if (json.valueInstant !== undefined) {
       newInstance.value = PrimitiveInstant.parsePrimitive(json.valueInstant, json._valueInstant);
     }
-    if (json.valueInteger) {
+    if (json.valueInteger !== undefined) {
       newInstance.value = PrimitiveInteger.parsePrimitive(json.valueInteger, json._valueInteger);
     }
-    if (json.valueMarkdown) {
+    if (json.valueMarkdown !== undefined) {
       newInstance.value = PrimitiveMarkdown.parsePrimitive(json.valueMarkdown, json._valueMarkdown);
     }
-    if (json.valueOid) {
+    if (json.valueOid !== undefined) {
       newInstance.value = PrimitiveOid.parsePrimitive(json.valueOid, json._valueOid);
     }
-    if (json.valuePositiveInt) {
+    if (json.valuePositiveInt !== undefined) {
       newInstance.value = PrimitivePositiveInt.parsePrimitive(json.valuePositiveInt, json._valuePositiveInt);
     }
-    if (json.valueString) {
+    if (json.valueString !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.valueString, json._valueString);
     }
-    if (json.valueTime) {
+    if (json.valueTime !== undefined) {
       newInstance.value = PrimitiveTime.parsePrimitive(json.valueTime, json._valueTime);
     }
-    if (json.valueUnsignedInt) {
+    if (json.valueUnsignedInt !== undefined) {
       newInstance.value = PrimitiveUnsignedInt.parsePrimitive(json.valueUnsignedInt, json._valueUnsignedInt);
     }
-    if (json.valueUri) {
+    if (json.valueUri !== undefined) {
       newInstance.value = PrimitiveUri.parsePrimitive(json.valueUri, json._valueUri);
     }
-    if (json.valueUrl) {
+    if (json.valueUrl !== undefined) {
       newInstance.value = PrimitiveUrl.parsePrimitive(json.valueUrl, json._valueUrl);
     }
-    if (json.valueUuid) {
+    if (json.valueUuid !== undefined) {
       newInstance.value = PrimitiveUuid.parsePrimitive(json.valueUuid, json._valueUuid);
     }
-    if (json.valueAddress) {
+    if (json.valueAddress !== undefined) {
       newInstance.value = Address.parse(json.valueAddress);
     }
-    if (json.valueAge) {
+    if (json.valueAge !== undefined) {
       newInstance.value = Age.parse(json.valueAge);
     }
-    if (json.valueAnnotation) {
+    if (json.valueAnnotation !== undefined) {
       newInstance.value = Annotation.parse(json.valueAnnotation);
     }
-    if (json.valueAttachment) {
+    if (json.valueAttachment !== undefined) {
       newInstance.value = Attachment.parse(json.valueAttachment);
     }
-    if (json.valueCodeableConcept) {
+    if (json.valueCodeableConcept !== undefined) {
       newInstance.value = CodeableConcept.parse(json.valueCodeableConcept);
     }
-    if (json.valueCoding) {
+    if (json.valueCoding !== undefined) {
       newInstance.value = Coding.parse(json.valueCoding);
     }
-    if (json.valueContactPoint) {
+    if (json.valueContactPoint !== undefined) {
       newInstance.value = ContactPoint.parse(json.valueContactPoint);
     }
-    if (json.valueCount) {
+    if (json.valueCount !== undefined) {
       newInstance.value = Count.parse(json.valueCount);
     }
-    if (json.valueDistance) {
+    if (json.valueDistance !== undefined) {
       newInstance.value = Distance.parse(json.valueDistance);
     }
-    if (json.valueDuration) {
+    if (json.valueDuration !== undefined) {
       newInstance.value = Duration.parse(json.valueDuration);
     }
-    if (json.valueHumanName) {
+    if (json.valueHumanName !== undefined) {
       newInstance.value = HumanName.parse(json.valueHumanName);
     }
-    if (json.valueIdentifier) {
+    if (json.valueIdentifier !== undefined) {
       newInstance.value = Identifier.parse(json.valueIdentifier);
     }
-    if (json.valueMoney) {
+    if (json.valueMoney !== undefined) {
       newInstance.value = Money.parse(json.valueMoney);
     }
-    if (json.valuePeriod) {
+    if (json.valuePeriod !== undefined) {
       newInstance.value = Period.parse(json.valuePeriod);
     }
-    if (json.valueQuantity) {
+    if (json.valueQuantity !== undefined) {
       newInstance.value = Quantity.parse(json.valueQuantity);
     }
-    if (json.valueRange) {
+    if (json.valueRange !== undefined) {
       newInstance.value = Range.parse(json.valueRange);
     }
-    if (json.valueRatio) {
+    if (json.valueRatio !== undefined) {
       newInstance.value = Ratio.parse(json.valueRatio);
     }
-    if (json.valueReference) {
+    if (json.valueReference !== undefined) {
       newInstance.value = Reference.parse(json.valueReference);
     }
-    if (json.valueSampledData) {
+    if (json.valueSampledData !== undefined) {
       newInstance.value = SampledData.parse(json.valueSampledData);
     }
-    if (json.valueSignature) {
+    if (json.valueSignature !== undefined) {
       newInstance.value = Signature.parse(json.valueSignature);
     }
-    if (json.valueTiming) {
+    if (json.valueTiming !== undefined) {
       newInstance.value = Timing.parse(json.valueTiming);
     }
-    if (json.valueContactDetail) {
+    if (json.valueContactDetail !== undefined) {
       newInstance.value = ContactDetail.parse(json.valueContactDetail);
     }
-    if (json.valueContributor) {
+    if (json.valueContributor !== undefined) {
       newInstance.value = Contributor.parse(json.valueContributor);
     }
-    if (json.valueDataRequirement) {
+    if (json.valueDataRequirement !== undefined) {
       newInstance.value = DataRequirement.parse(json.valueDataRequirement);
     }
-    if (json.valueExpression) {
+    if (json.valueExpression !== undefined) {
       newInstance.value = Expression.parse(json.valueExpression);
     }
-    if (json.valueParameterDefinition) {
+    if (json.valueParameterDefinition !== undefined) {
       newInstance.value = ParameterDefinition.parse(json.valueParameterDefinition);
     }
-    if (json.valueRelatedArtifact) {
+    if (json.valueRelatedArtifact !== undefined) {
       newInstance.value = RelatedArtifact.parse(json.valueRelatedArtifact);
     }
-    if (json.valueTriggerDefinition) {
+    if (json.valueTriggerDefinition !== undefined) {
       newInstance.value = TriggerDefinition.parse(json.valueTriggerDefinition);
     }
-    if (json.valueUsageContext) {
+    if (json.valueUsageContext !== undefined) {
       newInstance.value = UsageContext.parse(json.valueUsageContext);
     }
-    if (json.valueDosage) {
+    if (json.valueDosage !== undefined) {
       newInstance.value = Dosage.parse(json.valueDosage);
     }
-    if (json.valueMeta) {
+    if (json.valueMeta !== undefined) {
       newInstance.value = Meta.parse(json.valueMeta);
     }
     return newInstance;
@@ -461,7 +461,11 @@ export class TaskOutput extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TaskOutput {
+    return TaskOutput.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TaskOutput";
   }

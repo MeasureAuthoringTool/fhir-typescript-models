@@ -22,7 +22,16 @@ export class PropertyType extends PrimitiveCode {
     const castInput = input as PropertyType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PropertyType";
   }
-  
+
+  public clone(): PropertyType {
+    const result = new PropertyType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PropertyType";
   }

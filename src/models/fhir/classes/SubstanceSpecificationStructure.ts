@@ -40,28 +40,28 @@ export class SubstanceSpecificationStructure extends BackboneElement {
   ): SubstanceSpecificationStructure {
     const newInstance: SubstanceSpecificationStructure = BackboneElement.parse(json, providedInstance);
   
-    if (json.stereochemistry) {
+    if (json.stereochemistry !== undefined) {
       newInstance.stereochemistry = CodeableConcept.parse(json.stereochemistry);
     }
-    if (json.opticalActivity) {
+    if (json.opticalActivity !== undefined) {
       newInstance.opticalActivity = CodeableConcept.parse(json.opticalActivity);
     }
-    if (json.molecularFormula) {
+    if (json.molecularFormula !== undefined) {
       newInstance.molecularFormula = PrimitiveString.parsePrimitive(json.molecularFormula, json._molecularFormula);
     }
-    if (json.molecularFormulaByMoiety) {
+    if (json.molecularFormulaByMoiety !== undefined) {
       newInstance.molecularFormulaByMoiety = PrimitiveString.parsePrimitive(json.molecularFormulaByMoiety, json._molecularFormulaByMoiety);
     }
-    if (json.isotope) {
+    if (json.isotope !== undefined) {
       newInstance.isotope = json.isotope.map((x) => SubstanceSpecificationStructureIsotope.parse(x));
     }
-    if (json.molecularWeight) {
+    if (json.molecularWeight !== undefined) {
       newInstance.molecularWeight = SubstanceSpecificationStructureIsotopeMolecularWeight.parse(json.molecularWeight);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = json.source.map((x) => Reference.parse(x));
     }
-    if (json.representation) {
+    if (json.representation !== undefined) {
       newInstance.representation = json.representation.map((x) => SubstanceSpecificationStructureRepresentation.parse(x));
     }
     return newInstance;
@@ -111,7 +111,11 @@ export class SubstanceSpecificationStructure extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSpecificationStructure {
+    return SubstanceSpecificationStructure.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSpecificationStructure";
   }

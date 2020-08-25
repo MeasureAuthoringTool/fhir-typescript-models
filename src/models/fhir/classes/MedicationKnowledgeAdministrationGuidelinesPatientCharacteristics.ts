@@ -25,13 +25,13 @@ export class MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics e
   ): MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics {
     const newInstance: MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics = BackboneElement.parse(json, providedInstance);
   
-    if (json.characteristicCodeableConcept) {
+    if (json.characteristicCodeableConcept !== undefined) {
       newInstance.characteristic = CodeableConcept.parse(json.characteristicCodeableConcept);
     }
-    if (json.characteristicSimpleQuantity) {
+    if (json.characteristicSimpleQuantity !== undefined) {
       newInstance.characteristic = SimpleQuantity.parse(json.characteristicSimpleQuantity);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = json.value.map((x, i) => {
         const ext = json._value && json._value[i];
         return PrimitiveString.parsePrimitive(x, ext);
@@ -63,7 +63,11 @@ export class MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics e
 
     return result;
   }
-  
+
+  public clone(): MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics {
+    return MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics";
   }

@@ -64,67 +64,67 @@ export class CapabilityStatementRestResource extends BackboneElement {
   ): CapabilityStatementRestResource {
     const newInstance: CapabilityStatementRestResource = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = ResourceType.parsePrimitive(json.type, json._type);
     }
-    if (json.profile) {
+    if (json.profile !== undefined) {
       newInstance.profile = PrimitiveCanonical.parsePrimitive(json.profile, json._profile);
     }
-    if (json.supportedProfile) {
+    if (json.supportedProfile !== undefined) {
       newInstance.supportedProfile = json.supportedProfile.map((x, i) => {
         const ext = json._supportedProfile && json._supportedProfile[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveMarkdown.parsePrimitive(json.documentation, json._documentation);
     }
-    if (json.interaction) {
+    if (json.interaction !== undefined) {
       newInstance.interaction = json.interaction.map((x) => CapabilityStatementRestResourceInteraction.parse(x));
     }
-    if (json.versioning) {
+    if (json.versioning !== undefined) {
       newInstance.versioning = ResourceVersionPolicy.parsePrimitive(json.versioning, json._versioning);
     }
-    if (json.readHistory) {
+    if (json.readHistory !== undefined) {
       newInstance.readHistory = PrimitiveBoolean.parsePrimitive(json.readHistory, json._readHistory);
     }
-    if (json.updateCreate) {
+    if (json.updateCreate !== undefined) {
       newInstance.updateCreate = PrimitiveBoolean.parsePrimitive(json.updateCreate, json._updateCreate);
     }
-    if (json.conditionalCreate) {
+    if (json.conditionalCreate !== undefined) {
       newInstance.conditionalCreate = PrimitiveBoolean.parsePrimitive(json.conditionalCreate, json._conditionalCreate);
     }
-    if (json.conditionalRead) {
+    if (json.conditionalRead !== undefined) {
       newInstance.conditionalRead = ConditionalReadStatus.parsePrimitive(json.conditionalRead, json._conditionalRead);
     }
-    if (json.conditionalUpdate) {
+    if (json.conditionalUpdate !== undefined) {
       newInstance.conditionalUpdate = PrimitiveBoolean.parsePrimitive(json.conditionalUpdate, json._conditionalUpdate);
     }
-    if (json.conditionalDelete) {
+    if (json.conditionalDelete !== undefined) {
       newInstance.conditionalDelete = ConditionalDeleteStatus.parsePrimitive(json.conditionalDelete, json._conditionalDelete);
     }
-    if (json.referencePolicy) {
+    if (json.referencePolicy !== undefined) {
       newInstance.referencePolicy = json.referencePolicy.map((x, i) => {
         const ext = json._referencePolicy && json._referencePolicy[i];
         return ReferenceHandlingPolicy.parsePrimitive(x, ext);
       });
     }
-    if (json.searchInclude) {
+    if (json.searchInclude !== undefined) {
       newInstance.searchInclude = json.searchInclude.map((x, i) => {
         const ext = json._searchInclude && json._searchInclude[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.searchRevInclude) {
+    if (json.searchRevInclude !== undefined) {
       newInstance.searchRevInclude = json.searchRevInclude.map((x, i) => {
         const ext = json._searchRevInclude && json._searchRevInclude[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.searchParam) {
+    if (json.searchParam !== undefined) {
       newInstance.searchParam = json.searchParam.map((x) => CapabilityStatementRestResourceSearchParam.parse(x));
     }
-    if (json.operation) {
+    if (json.operation !== undefined) {
       newInstance.operation = json.operation.map((x) => CapabilityStatementRestResourceOperation.parse(x));
     }
     return newInstance;
@@ -222,7 +222,11 @@ export class CapabilityStatementRestResource extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatementRestResource {
+    return CapabilityStatementRestResource.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementRestResource";
   }

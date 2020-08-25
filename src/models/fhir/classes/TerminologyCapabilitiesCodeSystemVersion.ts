@@ -34,25 +34,25 @@ export class TerminologyCapabilitiesCodeSystemVersion extends BackboneElement {
   ): TerminologyCapabilitiesCodeSystemVersion {
     const newInstance: TerminologyCapabilitiesCodeSystemVersion = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveString.parsePrimitive(json.code, json._code);
     }
-    if (json.isDefault) {
+    if (json.isDefault !== undefined) {
       newInstance.isDefault = PrimitiveBoolean.parsePrimitive(json.isDefault, json._isDefault);
     }
-    if (json.compositional) {
+    if (json.compositional !== undefined) {
       newInstance.compositional = PrimitiveBoolean.parsePrimitive(json.compositional, json._compositional);
     }
-    if (json.language) {
+    if (json.language !== undefined) {
       newInstance.language = json.language.map((x, i) => {
         const ext = json._language && json._language[i];
         return PrimitiveCode.parsePrimitive(x, ext);
       });
     }
-    if (json.filter) {
+    if (json.filter !== undefined) {
       newInstance.filter = json.filter.map((x) => TerminologyCapabilitiesCodeSystemVersionFilter.parse(x));
     }
-    if (json.property) {
+    if (json.property !== undefined) {
       newInstance.property = json.property.map((x, i) => {
         const ext = json._property && json._property[i];
         return PrimitiveCode.parsePrimitive(x, ext);
@@ -100,7 +100,11 @@ export class TerminologyCapabilitiesCodeSystemVersion extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TerminologyCapabilitiesCodeSystemVersion {
+    return TerminologyCapabilitiesCodeSystemVersion.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TerminologyCapabilitiesCodeSystemVersion";
   }

@@ -22,7 +22,16 @@ export class DocumentConfidentiality extends PrimitiveCode {
     const castInput = input as DocumentConfidentiality;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "DocumentConfidentiality";
   }
-  
+
+  public clone(): DocumentConfidentiality {
+    const result = new DocumentConfidentiality();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "DocumentConfidentiality";
   }

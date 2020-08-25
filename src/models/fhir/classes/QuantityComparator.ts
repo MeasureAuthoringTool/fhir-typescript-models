@@ -22,7 +22,16 @@ export class QuantityComparator extends PrimitiveCode {
     const castInput = input as QuantityComparator;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "QuantityComparator";
   }
-  
+
+  public clone(): QuantityComparator {
+    const result = new QuantityComparator();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "QuantityComparator";
   }

@@ -22,7 +22,16 @@ export class RestfulCapabilityMode extends PrimitiveCode {
     const castInput = input as RestfulCapabilityMode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "RestfulCapabilityMode";
   }
-  
+
+  public clone(): RestfulCapabilityMode {
+    const result = new RestfulCapabilityMode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "RestfulCapabilityMode";
   }

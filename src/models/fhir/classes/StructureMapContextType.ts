@@ -22,7 +22,16 @@ export class StructureMapContextType extends PrimitiveCode {
     const castInput = input as StructureMapContextType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "StructureMapContextType";
   }
-  
+
+  public clone(): StructureMapContextType {
+    const result = new StructureMapContextType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "StructureMapContextType";
   }

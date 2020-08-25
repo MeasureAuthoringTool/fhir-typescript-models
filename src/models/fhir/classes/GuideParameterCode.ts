@@ -22,7 +22,16 @@ export class GuideParameterCode extends PrimitiveCode {
     const castInput = input as GuideParameterCode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "GuideParameterCode";
   }
-  
+
+  public clone(): GuideParameterCode {
+    const result = new GuideParameterCode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "GuideParameterCode";
   }

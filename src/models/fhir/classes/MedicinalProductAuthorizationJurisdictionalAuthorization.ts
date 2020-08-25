@@ -30,19 +30,19 @@ export class MedicinalProductAuthorizationJurisdictionalAuthorization extends Ba
   ): MedicinalProductAuthorizationJurisdictionalAuthorization {
     const newInstance: MedicinalProductAuthorizationJurisdictionalAuthorization = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.country) {
+    if (json.country !== undefined) {
       newInstance.country = CodeableConcept.parse(json.country);
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.legalStatusOfSupply) {
+    if (json.legalStatusOfSupply !== undefined) {
       newInstance.legalStatusOfSupply = CodeableConcept.parse(json.legalStatusOfSupply);
     }
-    if (json.validityPeriod) {
+    if (json.validityPeriod !== undefined) {
       newInstance.validityPeriod = Period.parse(json.validityPeriod);
     }
     return newInstance;
@@ -78,7 +78,11 @@ export class MedicinalProductAuthorizationJurisdictionalAuthorization extends Ba
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductAuthorizationJurisdictionalAuthorization {
+    return MedicinalProductAuthorizationJurisdictionalAuthorization.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductAuthorizationJurisdictionalAuthorization";
   }

@@ -42,28 +42,28 @@ export class CapabilityStatementRest extends BackboneElement {
   ): CapabilityStatementRest {
     const newInstance: CapabilityStatementRest = BackboneElement.parse(json, providedInstance);
   
-    if (json.mode) {
+    if (json.mode !== undefined) {
       newInstance.mode = RestfulCapabilityMode.parsePrimitive(json.mode, json._mode);
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveMarkdown.parsePrimitive(json.documentation, json._documentation);
     }
-    if (json.security) {
+    if (json.security !== undefined) {
       newInstance.security = CapabilityStatementRestSecurity.parse(json.security);
     }
-    if (json.resource) {
+    if (json.resource !== undefined) {
       newInstance.resource = json.resource.map((x) => CapabilityStatementRestResource.parse(x));
     }
-    if (json.interaction) {
+    if (json.interaction !== undefined) {
       newInstance.interaction = json.interaction.map((x) => CapabilityStatementRestInteraction.parse(x));
     }
-    if (json.searchParam) {
+    if (json.searchParam !== undefined) {
       newInstance.searchParam = json.searchParam.map((x) => CapabilityStatementRestResourceSearchParam.parse(x));
     }
-    if (json.operation) {
+    if (json.operation !== undefined) {
       newInstance.operation = json.operation.map((x) => CapabilityStatementRestResourceOperation.parse(x));
     }
-    if (json.compartment) {
+    if (json.compartment !== undefined) {
       newInstance.compartment = json.compartment.map((x, i) => {
         const ext = json._compartment && json._compartment[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
@@ -117,7 +117,11 @@ export class CapabilityStatementRest extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatementRest {
+    return CapabilityStatementRest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementRest";
   }

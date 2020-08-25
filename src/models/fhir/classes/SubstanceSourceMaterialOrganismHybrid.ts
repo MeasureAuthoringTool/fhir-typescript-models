@@ -30,19 +30,19 @@ export class SubstanceSourceMaterialOrganismHybrid extends BackboneElement {
   ): SubstanceSourceMaterialOrganismHybrid {
     const newInstance: SubstanceSourceMaterialOrganismHybrid = BackboneElement.parse(json, providedInstance);
   
-    if (json.maternalOrganismId) {
+    if (json.maternalOrganismId !== undefined) {
       newInstance.maternalOrganismId = PrimitiveString.parsePrimitive(json.maternalOrganismId, json._maternalOrganismId);
     }
-    if (json.maternalOrganismName) {
+    if (json.maternalOrganismName !== undefined) {
       newInstance.maternalOrganismName = PrimitiveString.parsePrimitive(json.maternalOrganismName, json._maternalOrganismName);
     }
-    if (json.paternalOrganismId) {
+    if (json.paternalOrganismId !== undefined) {
       newInstance.paternalOrganismId = PrimitiveString.parsePrimitive(json.paternalOrganismId, json._paternalOrganismId);
     }
-    if (json.paternalOrganismName) {
+    if (json.paternalOrganismName !== undefined) {
       newInstance.paternalOrganismName = PrimitiveString.parsePrimitive(json.paternalOrganismName, json._paternalOrganismName);
     }
-    if (json.hybridType) {
+    if (json.hybridType !== undefined) {
       newInstance.hybridType = CodeableConcept.parse(json.hybridType);
     }
     return newInstance;
@@ -82,7 +82,11 @@ export class SubstanceSourceMaterialOrganismHybrid extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSourceMaterialOrganismHybrid {
+    return SubstanceSourceMaterialOrganismHybrid.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSourceMaterialOrganismHybrid";
   }

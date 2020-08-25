@@ -22,10 +22,10 @@ export class SubstanceAmountReferenceRange extends Element {
   ): SubstanceAmountReferenceRange {
     const newInstance: SubstanceAmountReferenceRange = Element.parse(json, providedInstance);
   
-    if (json.lowLimit) {
+    if (json.lowLimit !== undefined) {
       newInstance.lowLimit = Quantity.parse(json.lowLimit);
     }
-    if (json.highLimit) {
+    if (json.highLimit !== undefined) {
       newInstance.highLimit = Quantity.parse(json.highLimit);
     }
     return newInstance;
@@ -49,7 +49,11 @@ export class SubstanceAmountReferenceRange extends Element {
 
     return result;
   }
-  
+
+  public clone(): SubstanceAmountReferenceRange {
+    return SubstanceAmountReferenceRange.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceAmountReferenceRange";
   }

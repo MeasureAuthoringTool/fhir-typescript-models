@@ -27,13 +27,13 @@ export class CoverageEligibilityRequestInsurance extends BackboneElement {
   ): CoverageEligibilityRequestInsurance {
     const newInstance: CoverageEligibilityRequestInsurance = BackboneElement.parse(json, providedInstance);
   
-    if (json.focal) {
+    if (json.focal !== undefined) {
       newInstance.focal = PrimitiveBoolean.parsePrimitive(json.focal, json._focal);
     }
-    if (json.coverage) {
+    if (json.coverage !== undefined) {
       newInstance.coverage = Reference.parse(json.coverage);
     }
-    if (json.businessArrangement) {
+    if (json.businessArrangement !== undefined) {
       newInstance.businessArrangement = PrimitiveString.parsePrimitive(json.businessArrangement, json._businessArrangement);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class CoverageEligibilityRequestInsurance extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CoverageEligibilityRequestInsurance {
+    return CoverageEligibilityRequestInsurance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CoverageEligibilityRequestInsurance";
   }

@@ -39,28 +39,28 @@ export class ValueSetExpansionContains extends BackboneElement {
   ): ValueSetExpansionContains {
     const newInstance: ValueSetExpansionContains = BackboneElement.parse(json, providedInstance);
   
-    if (json.system) {
+    if (json.system !== undefined) {
       newInstance.system = PrimitiveUri.parsePrimitive(json.system, json._system);
     }
-    if (json.abstract) {
+    if (json.abstract !== undefined) {
       newInstance.abstract = PrimitiveBoolean.parsePrimitive(json.abstract, json._abstract);
     }
-    if (json.inactive) {
+    if (json.inactive !== undefined) {
       newInstance.inactive = PrimitiveBoolean.parsePrimitive(json.inactive, json._inactive);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.display) {
+    if (json.display !== undefined) {
       newInstance.display = PrimitiveString.parsePrimitive(json.display, json._display);
     }
-    if (json.designation) {
+    if (json.designation !== undefined) {
       newInstance.designation = json.designation.map((x) => ValueSetComposeIncludeConceptDesignation.parse(x));
     }
-    if (json.contains) {
+    if (json.contains !== undefined) {
       newInstance.contains = json.contains.map((x) => ValueSetExpansionContains.parse(x));
     }
     return newInstance;
@@ -114,7 +114,11 @@ export class ValueSetExpansionContains extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ValueSetExpansionContains {
+    return ValueSetExpansionContains.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ValueSetExpansionContains";
   }

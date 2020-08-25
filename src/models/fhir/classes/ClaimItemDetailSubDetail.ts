@@ -46,37 +46,37 @@ export class ClaimItemDetailSubDetail extends BackboneElement {
   ): ClaimItemDetailSubDetail {
     const newInstance: ClaimItemDetailSubDetail = BackboneElement.parse(json, providedInstance);
   
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitivePositiveInt.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.revenue) {
+    if (json.revenue !== undefined) {
       newInstance.revenue = CodeableConcept.parse(json.revenue);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.productOrService) {
+    if (json.productOrService !== undefined) {
       newInstance.productOrService = CodeableConcept.parse(json.productOrService);
     }
-    if (json.modifier) {
+    if (json.modifier !== undefined) {
       newInstance.modifier = json.modifier.map((x) => CodeableConcept.parse(x));
     }
-    if (json.programCode) {
+    if (json.programCode !== undefined) {
       newInstance.programCode = json.programCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.unitPrice) {
+    if (json.unitPrice !== undefined) {
       newInstance.unitPrice = Money.parse(json.unitPrice);
     }
-    if (json.factor) {
+    if (json.factor !== undefined) {
       newInstance.factor = PrimitiveDecimal.parsePrimitive(json.factor, json._factor);
     }
-    if (json.net) {
+    if (json.net !== undefined) {
       newInstance.net = Money.parse(json.net);
     }
-    if (json.udi) {
+    if (json.udi !== undefined) {
       newInstance.udi = json.udi.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -138,7 +138,11 @@ export class ClaimItemDetailSubDetail extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimItemDetailSubDetail {
+    return ClaimItemDetailSubDetail.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimItemDetailSubDetail";
   }

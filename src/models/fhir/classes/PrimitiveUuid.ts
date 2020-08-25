@@ -22,7 +22,16 @@ export class PrimitiveUuid extends PrimitiveUri {
     const castInput = input as PrimitiveUuid;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveUuid";
   }
-  
+
+  public clone(): PrimitiveUuid {
+    const result = new PrimitiveUuid();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveUuid";
   }

@@ -21,10 +21,10 @@ export class SpecimenDefinitionTypeTestedContainerAdditive extends BackboneEleme
   ): SpecimenDefinitionTypeTestedContainerAdditive {
     const newInstance: SpecimenDefinitionTypeTestedContainerAdditive = BackboneElement.parse(json, providedInstance);
   
-    if (json.additiveCodeableConcept) {
+    if (json.additiveCodeableConcept !== undefined) {
       newInstance.additive = CodeableConcept.parse(json.additiveCodeableConcept);
     }
-    if (json.additiveReference) {
+    if (json.additiveReference !== undefined) {
       newInstance.additive = Reference.parse(json.additiveReference);
     }
     return newInstance;
@@ -48,7 +48,11 @@ export class SpecimenDefinitionTypeTestedContainerAdditive extends BackboneEleme
 
     return result;
   }
-  
+
+  public clone(): SpecimenDefinitionTypeTestedContainerAdditive {
+    return SpecimenDefinitionTypeTestedContainerAdditive.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SpecimenDefinitionTypeTestedContainerAdditive";
   }

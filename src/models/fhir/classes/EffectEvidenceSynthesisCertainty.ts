@@ -26,13 +26,13 @@ export class EffectEvidenceSynthesisCertainty extends BackboneElement {
   ): EffectEvidenceSynthesisCertainty {
     const newInstance: EffectEvidenceSynthesisCertainty = BackboneElement.parse(json, providedInstance);
   
-    if (json.rating) {
+    if (json.rating !== undefined) {
       newInstance.rating = json.rating.map((x) => CodeableConcept.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.certaintySubcomponent) {
+    if (json.certaintySubcomponent !== undefined) {
       newInstance.certaintySubcomponent = json.certaintySubcomponent.map((x) => EffectEvidenceSynthesisCertaintyCertaintySubcomponent.parse(x));
     }
     return newInstance;
@@ -60,7 +60,11 @@ export class EffectEvidenceSynthesisCertainty extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): EffectEvidenceSynthesisCertainty {
+    return EffectEvidenceSynthesisCertainty.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EffectEvidenceSynthesisCertainty";
   }

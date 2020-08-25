@@ -48,40 +48,40 @@ export class MessageHeader extends DomainResource {
   ): MessageHeader {
     const newInstance: MessageHeader = DomainResource.parse(json, providedInstance);
   
-    if (json.eventCoding) {
+    if (json.eventCoding !== undefined) {
       newInstance.event = Coding.parse(json.eventCoding);
     }
-    if (json.eventUri) {
+    if (json.eventUri !== undefined) {
       newInstance.event = PrimitiveUri.parsePrimitive(json.eventUri, json._eventUri);
     }
-    if (json.destination) {
+    if (json.destination !== undefined) {
       newInstance.destination = json.destination.map((x) => MessageHeaderDestination.parse(x));
     }
-    if (json.sender) {
+    if (json.sender !== undefined) {
       newInstance.sender = Reference.parse(json.sender);
     }
-    if (json.enterer) {
+    if (json.enterer !== undefined) {
       newInstance.enterer = Reference.parse(json.enterer);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = Reference.parse(json.author);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = MessageHeaderSource.parse(json.source);
     }
-    if (json.responsible) {
+    if (json.responsible !== undefined) {
       newInstance.responsible = Reference.parse(json.responsible);
     }
-    if (json.reason) {
+    if (json.reason !== undefined) {
       newInstance.reason = CodeableConcept.parse(json.reason);
     }
-    if (json.response) {
+    if (json.response !== undefined) {
       newInstance.response = MessageHeaderResponse.parse(json.response);
     }
-    if (json.focus) {
+    if (json.focus !== undefined) {
       newInstance.focus = json.focus.map((x) => Reference.parse(x));
     }
-    if (json.definition) {
+    if (json.definition !== undefined) {
       newInstance.definition = PrimitiveCanonical.parsePrimitive(json.definition, json._definition);
     }
     return newInstance;
@@ -147,7 +147,11 @@ export class MessageHeader extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MessageHeader {
+    return MessageHeader.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MessageHeader";
   }

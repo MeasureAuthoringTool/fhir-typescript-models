@@ -37,28 +37,28 @@ export class ClaimInsurance extends BackboneElement {
   ): ClaimInsurance {
     const newInstance: ClaimInsurance = BackboneElement.parse(json, providedInstance);
   
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitivePositiveInt.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.focal) {
+    if (json.focal !== undefined) {
       newInstance.focal = PrimitiveBoolean.parsePrimitive(json.focal, json._focal);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.coverage) {
+    if (json.coverage !== undefined) {
       newInstance.coverage = Reference.parse(json.coverage);
     }
-    if (json.businessArrangement) {
+    if (json.businessArrangement !== undefined) {
       newInstance.businessArrangement = PrimitiveString.parsePrimitive(json.businessArrangement, json._businessArrangement);
     }
-    if (json.preAuthRef) {
+    if (json.preAuthRef !== undefined) {
       newInstance.preAuthRef = json.preAuthRef.map((x, i) => {
         const ext = json._preAuthRef && json._preAuthRef[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.claimResponse) {
+    if (json.claimResponse !== undefined) {
       newInstance.claimResponse = Reference.parse(json.claimResponse);
     }
     return newInstance;
@@ -106,7 +106,11 @@ export class ClaimInsurance extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimInsurance {
+    return ClaimInsurance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimInsurance";
   }

@@ -54,40 +54,40 @@ export class RelatedPerson extends DomainResource {
   ): RelatedPerson {
     const newInstance: RelatedPerson = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.active) {
+    if (json.active !== undefined) {
       newInstance.active = PrimitiveBoolean.parsePrimitive(json.active, json._active);
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.relationship) {
+    if (json.relationship !== undefined) {
       newInstance.relationship = json.relationship.map((x) => CodeableConcept.parse(x));
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = json.name.map((x) => HumanName.parse(x));
     }
-    if (json.telecom) {
+    if (json.telecom !== undefined) {
       newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));
     }
-    if (json.gender) {
+    if (json.gender !== undefined) {
       newInstance.gender = AdministrativeGender.parsePrimitive(json.gender, json._gender);
     }
-    if (json.birthDate) {
+    if (json.birthDate !== undefined) {
       newInstance.birthDate = PrimitiveDate.parsePrimitive(json.birthDate, json._birthDate);
     }
-    if (json.address) {
+    if (json.address !== undefined) {
       newInstance.address = json.address.map((x) => Address.parse(x));
     }
-    if (json.photo) {
+    if (json.photo !== undefined) {
       newInstance.photo = json.photo.map((x) => Attachment.parse(x));
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.communication) {
+    if (json.communication !== undefined) {
       newInstance.communication = json.communication.map((x) => RelatedPersonCommunication.parse(x));
     }
     return newInstance;
@@ -154,7 +154,11 @@ export class RelatedPerson extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): RelatedPerson {
+    return RelatedPerson.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "RelatedPerson";
   }

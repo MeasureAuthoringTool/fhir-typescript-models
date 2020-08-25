@@ -22,7 +22,16 @@ export class FilterOperator extends PrimitiveCode {
     const castInput = input as FilterOperator;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "FilterOperator";
   }
-  
+
+  public clone(): FilterOperator {
+    const result = new FilterOperator();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "FilterOperator";
   }

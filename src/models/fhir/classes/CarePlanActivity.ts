@@ -31,19 +31,19 @@ export class CarePlanActivity extends BackboneElement {
   ): CarePlanActivity {
     const newInstance: CarePlanActivity = BackboneElement.parse(json, providedInstance);
   
-    if (json.outcomeCodeableConcept) {
+    if (json.outcomeCodeableConcept !== undefined) {
       newInstance.outcomeCodeableConcept = json.outcomeCodeableConcept.map((x) => CodeableConcept.parse(x));
     }
-    if (json.outcomeReference) {
+    if (json.outcomeReference !== undefined) {
       newInstance.outcomeReference = json.outcomeReference.map((x) => Reference.parse(x));
     }
-    if (json.progress) {
+    if (json.progress !== undefined) {
       newInstance.progress = json.progress.map((x) => Annotation.parse(x));
     }
-    if (json.reference) {
+    if (json.reference !== undefined) {
       newInstance.reference = Reference.parse(json.reference);
     }
-    if (json.detail) {
+    if (json.detail !== undefined) {
       newInstance.detail = CarePlanActivityDetail.parse(json.detail);
     }
     return newInstance;
@@ -79,7 +79,11 @@ export class CarePlanActivity extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CarePlanActivity {
+    return CarePlanActivity.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CarePlanActivity";
   }

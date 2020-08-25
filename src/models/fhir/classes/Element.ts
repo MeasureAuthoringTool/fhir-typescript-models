@@ -22,10 +22,10 @@ export class Element extends Type {
   ): Element {
     const newInstance: Element = Type.parse(json, providedInstance);
   
-    if (json.id) {
+    if (json.id !== undefined) {
       newInstance.id = json.id;
     }
-    if (json.extension) {
+    if (json.extension !== undefined) {
       newInstance.extension = json.extension.map((x) => Extension.parse(x));
     }
     return newInstance;
@@ -49,7 +49,11 @@ export class Element extends Type {
 
     return result;
   }
-  
+
+  public clone(): Element {
+    return Element.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Element";
   }

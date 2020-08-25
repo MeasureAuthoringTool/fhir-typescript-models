@@ -30,16 +30,16 @@ export class InvoiceLineItemPriceComponent extends BackboneElement {
   ): InvoiceLineItemPriceComponent {
     const newInstance: InvoiceLineItemPriceComponent = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = InvoicePriceComponentType.parsePrimitive(json.type, json._type);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.factor) {
+    if (json.factor !== undefined) {
       newInstance.factor = PrimitiveDecimal.parsePrimitive(json.factor, json._factor);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = Money.parse(json.amount);
     }
     return newInstance;
@@ -73,7 +73,11 @@ export class InvoiceLineItemPriceComponent extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): InvoiceLineItemPriceComponent {
+    return InvoiceLineItemPriceComponent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "InvoiceLineItemPriceComponent";
   }

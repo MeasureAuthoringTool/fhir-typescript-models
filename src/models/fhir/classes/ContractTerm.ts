@@ -52,43 +52,43 @@ export class ContractTerm extends BackboneElement {
   ): ContractTerm {
     const newInstance: ContractTerm = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.issued) {
+    if (json.issued !== undefined) {
       newInstance.issued = PrimitiveDateTime.parsePrimitive(json.issued, json._issued);
     }
-    if (json.applies) {
+    if (json.applies !== undefined) {
       newInstance.applies = Period.parse(json.applies);
     }
-    if (json.topicCodeableConcept) {
+    if (json.topicCodeableConcept !== undefined) {
       newInstance.topic = CodeableConcept.parse(json.topicCodeableConcept);
     }
-    if (json.topicReference) {
+    if (json.topicReference !== undefined) {
       newInstance.topic = Reference.parse(json.topicReference);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.subType) {
+    if (json.subType !== undefined) {
       newInstance.subType = CodeableConcept.parse(json.subType);
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
-    if (json.securityLabel) {
+    if (json.securityLabel !== undefined) {
       newInstance.securityLabel = json.securityLabel.map((x) => ContractTermSecurityLabel.parse(x));
     }
-    if (json.offer) {
+    if (json.offer !== undefined) {
       newInstance.offer = ContractTermOffer.parse(json.offer);
     }
-    if (json.asset) {
+    if (json.asset !== undefined) {
       newInstance.asset = json.asset.map((x) => ContractTermAsset.parse(x));
     }
-    if (json.action) {
+    if (json.action !== undefined) {
       newInstance.action = json.action.map((x) => ContractTermAction.parse(x));
     }
-    if (json.group) {
+    if (json.group !== undefined) {
       newInstance.group = json.group.map((x) => ContractTerm.parse(x));
     }
     return newInstance;
@@ -158,7 +158,11 @@ export class ContractTerm extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractTerm {
+    return ContractTerm.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractTerm";
   }

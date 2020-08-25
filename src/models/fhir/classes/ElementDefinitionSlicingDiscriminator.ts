@@ -24,10 +24,10 @@ export class ElementDefinitionSlicingDiscriminator extends Element {
   ): ElementDefinitionSlicingDiscriminator {
     const newInstance: ElementDefinitionSlicingDiscriminator = Element.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = DiscriminatorType.parsePrimitive(json.type, json._type);
     }
-    if (json.path) {
+    if (json.path !== undefined) {
       newInstance.path = PrimitiveString.parsePrimitive(json.path, json._path);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class ElementDefinitionSlicingDiscriminator extends Element {
 
     return result;
   }
-  
+
+  public clone(): ElementDefinitionSlicingDiscriminator {
+    return ElementDefinitionSlicingDiscriminator.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ElementDefinitionSlicingDiscriminator";
   }

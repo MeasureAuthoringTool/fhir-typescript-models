@@ -24,10 +24,10 @@ export class HealthcareServiceNotAvailable extends BackboneElement {
   ): HealthcareServiceNotAvailable {
     const newInstance: HealthcareServiceNotAvailable = BackboneElement.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.during) {
+    if (json.during !== undefined) {
       newInstance.during = Period.parse(json.during);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class HealthcareServiceNotAvailable extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): HealthcareServiceNotAvailable {
+    return HealthcareServiceNotAvailable.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "HealthcareServiceNotAvailable";
   }

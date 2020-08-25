@@ -39,25 +39,25 @@ export class Bundle extends Resource {
   ): Bundle {
     const newInstance: Bundle = Resource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = BundleType.parsePrimitive(json.type, json._type);
     }
-    if (json.timestamp) {
+    if (json.timestamp !== undefined) {
       newInstance.timestamp = PrimitiveInstant.parsePrimitive(json.timestamp, json._timestamp);
     }
-    if (json.total) {
+    if (json.total !== undefined) {
       newInstance.total = PrimitiveUnsignedInt.parsePrimitive(json.total, json._total);
     }
-    if (json.link) {
+    if (json.link !== undefined) {
       newInstance.link = json.link.map((x) => BundleLink.parse(x));
     }
-    if (json.entry) {
+    if (json.entry !== undefined) {
       newInstance.entry = json.entry.map((x) => BundleEntry.parse(x));
     }
-    if (json.signature) {
+    if (json.signature !== undefined) {
       newInstance.signature = Signature.parse(json.signature);
     }
     return newInstance;
@@ -104,7 +104,11 @@ export class Bundle extends Resource {
 
     return result;
   }
-  
+
+  public clone(): Bundle {
+    return Bundle.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Bundle";
   }

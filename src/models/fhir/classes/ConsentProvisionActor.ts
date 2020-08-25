@@ -23,10 +23,10 @@ export class ConsentProvisionActor extends BackboneElement {
   ): ConsentProvisionActor {
     const newInstance: ConsentProvisionActor = BackboneElement.parse(json, providedInstance);
   
-    if (json.role) {
+    if (json.role !== undefined) {
       newInstance.role = CodeableConcept.parse(json.role);
     }
-    if (json.reference) {
+    if (json.reference !== undefined) {
       newInstance.reference = Reference.parse(json.reference);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class ConsentProvisionActor extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ConsentProvisionActor {
+    return ConsentProvisionActor.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ConsentProvisionActor";
   }

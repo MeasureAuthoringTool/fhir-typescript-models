@@ -36,25 +36,25 @@ export class MedicinalProductPharmaceuticalRouteOfAdministration extends Backbon
   ): MedicinalProductPharmaceuticalRouteOfAdministration {
     const newInstance: MedicinalProductPharmaceuticalRouteOfAdministration = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.firstDose) {
+    if (json.firstDose !== undefined) {
       newInstance.firstDose = Quantity.parse(json.firstDose);
     }
-    if (json.maxSingleDose) {
+    if (json.maxSingleDose !== undefined) {
       newInstance.maxSingleDose = Quantity.parse(json.maxSingleDose);
     }
-    if (json.maxDosePerDay) {
+    if (json.maxDosePerDay !== undefined) {
       newInstance.maxDosePerDay = Quantity.parse(json.maxDosePerDay);
     }
-    if (json.maxDosePerTreatmentPeriod) {
+    if (json.maxDosePerTreatmentPeriod !== undefined) {
       newInstance.maxDosePerTreatmentPeriod = Ratio.parse(json.maxDosePerTreatmentPeriod);
     }
-    if (json.maxTreatmentPeriod) {
+    if (json.maxTreatmentPeriod !== undefined) {
       newInstance.maxTreatmentPeriod = Duration.parse(json.maxTreatmentPeriod);
     }
-    if (json.targetSpecies) {
+    if (json.targetSpecies !== undefined) {
       newInstance.targetSpecies = json.targetSpecies.map((x) => MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies.parse(x));
     }
     return newInstance;
@@ -98,7 +98,11 @@ export class MedicinalProductPharmaceuticalRouteOfAdministration extends Backbon
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductPharmaceuticalRouteOfAdministration {
+    return MedicinalProductPharmaceuticalRouteOfAdministration.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductPharmaceuticalRouteOfAdministration";
   }

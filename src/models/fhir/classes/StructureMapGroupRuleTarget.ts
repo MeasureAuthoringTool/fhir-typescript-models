@@ -40,31 +40,31 @@ export class StructureMapGroupRuleTarget extends BackboneElement {
   ): StructureMapGroupRuleTarget {
     const newInstance: StructureMapGroupRuleTarget = BackboneElement.parse(json, providedInstance);
   
-    if (json.context) {
+    if (json.context !== undefined) {
       newInstance.context = PrimitiveId.parsePrimitive(json.context, json._context);
     }
-    if (json.contextType) {
+    if (json.contextType !== undefined) {
       newInstance.contextType = StructureMapContextType.parsePrimitive(json.contextType, json._contextType);
     }
-    if (json.element) {
+    if (json.element !== undefined) {
       newInstance.element = PrimitiveString.parsePrimitive(json.element, json._element);
     }
-    if (json.variable) {
+    if (json.variable !== undefined) {
       newInstance.variable = PrimitiveId.parsePrimitive(json.variable, json._variable);
     }
-    if (json.listMode) {
+    if (json.listMode !== undefined) {
       newInstance.listMode = json.listMode.map((x, i) => {
         const ext = json._listMode && json._listMode[i];
         return StructureMapTargetListMode.parsePrimitive(x, ext);
       });
     }
-    if (json.listRuleId) {
+    if (json.listRuleId !== undefined) {
       newInstance.listRuleId = PrimitiveId.parsePrimitive(json.listRuleId, json._listRuleId);
     }
-    if (json.transform) {
+    if (json.transform !== undefined) {
       newInstance.transform = StructureMapTransform.parsePrimitive(json.transform, json._transform);
     }
-    if (json.parameter) {
+    if (json.parameter !== undefined) {
       newInstance.parameter = json.parameter.map((x) => StructureMapGroupRuleTargetParameter.parse(x));
     }
     return newInstance;
@@ -119,7 +119,11 @@ export class StructureMapGroupRuleTarget extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): StructureMapGroupRuleTarget {
+    return StructureMapGroupRuleTarget.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "StructureMapGroupRuleTarget";
   }

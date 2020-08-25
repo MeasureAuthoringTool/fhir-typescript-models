@@ -22,7 +22,16 @@ export class ServiceRequestPriority extends PrimitiveCode {
     const castInput = input as ServiceRequestPriority;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ServiceRequestPriority";
   }
-  
+
+  public clone(): ServiceRequestPriority {
+    const result = new ServiceRequestPriority();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ServiceRequestPriority";
   }

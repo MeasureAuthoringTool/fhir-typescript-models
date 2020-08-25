@@ -32,28 +32,28 @@ export class GroupCharacteristic extends BackboneElement {
   ): GroupCharacteristic {
     const newInstance: GroupCharacteristic = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.valueCodeableConcept) {
+    if (json.valueCodeableConcept !== undefined) {
       newInstance.value = CodeableConcept.parse(json.valueCodeableConcept);
     }
-    if (json.valueBoolean) {
+    if (json.valueBoolean !== undefined) {
       newInstance.value = PrimitiveBoolean.parsePrimitive(json.valueBoolean, json._valueBoolean);
     }
-    if (json.valueQuantity) {
+    if (json.valueQuantity !== undefined) {
       newInstance.value = Quantity.parse(json.valueQuantity);
     }
-    if (json.valueRange) {
+    if (json.valueRange !== undefined) {
       newInstance.value = Range.parse(json.valueRange);
     }
-    if (json.valueReference) {
+    if (json.valueReference !== undefined) {
       newInstance.value = Reference.parse(json.valueReference);
     }
-    if (json.exclude) {
+    if (json.exclude !== undefined) {
       newInstance.exclude = PrimitiveBoolean.parsePrimitive(json.exclude, json._exclude);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -103,7 +103,11 @@ export class GroupCharacteristic extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): GroupCharacteristic {
+    return GroupCharacteristic.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "GroupCharacteristic";
   }

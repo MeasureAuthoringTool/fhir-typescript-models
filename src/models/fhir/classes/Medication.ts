@@ -41,28 +41,28 @@ export class Medication extends DomainResource {
   ): Medication {
     const newInstance: Medication = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = MedicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.manufacturer) {
+    if (json.manufacturer !== undefined) {
       newInstance.manufacturer = Reference.parse(json.manufacturer);
     }
-    if (json.form) {
+    if (json.form !== undefined) {
       newInstance.form = CodeableConcept.parse(json.form);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = Ratio.parse(json.amount);
     }
-    if (json.ingredient) {
+    if (json.ingredient !== undefined) {
       newInstance.ingredient = json.ingredient.map((x) => MedicationIngredient.parse(x));
     }
-    if (json.batch) {
+    if (json.batch !== undefined) {
       newInstance.batch = MedicationBatch.parse(json.batch);
     }
     return newInstance;
@@ -111,7 +111,11 @@ export class Medication extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Medication {
+    return Medication.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Medication";
   }

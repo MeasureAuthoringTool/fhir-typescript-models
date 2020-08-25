@@ -22,7 +22,16 @@ export class PrimitiveUnsignedInt extends PrimitiveInteger {
     const castInput = input as PrimitiveUnsignedInt;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveUnsignedInt";
   }
-  
+
+  public clone(): PrimitiveUnsignedInt {
+    const result = new PrimitiveUnsignedInt();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveUnsignedInt";
   }

@@ -25,13 +25,13 @@ export class EffectEvidenceSynthesisCertaintyCertaintySubcomponent extends Backb
   ): EffectEvidenceSynthesisCertaintyCertaintySubcomponent {
     const newInstance: EffectEvidenceSynthesisCertaintyCertaintySubcomponent = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.rating) {
+    if (json.rating !== undefined) {
       newInstance.rating = json.rating.map((x) => CodeableConcept.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -59,7 +59,11 @@ export class EffectEvidenceSynthesisCertaintyCertaintySubcomponent extends Backb
 
     return result;
   }
-  
+
+  public clone(): EffectEvidenceSynthesisCertaintyCertaintySubcomponent {
+    return EffectEvidenceSynthesisCertaintyCertaintySubcomponent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EffectEvidenceSynthesisCertaintyCertaintySubcomponent";
   }

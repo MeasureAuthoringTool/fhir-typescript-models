@@ -22,7 +22,16 @@ export class PrimitivePositiveInt extends PrimitiveInteger {
     const castInput = input as PrimitivePositiveInt;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitivePositiveInt";
   }
-  
+
+  public clone(): PrimitivePositiveInt {
+    const result = new PrimitivePositiveInt();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitivePositiveInt";
   }

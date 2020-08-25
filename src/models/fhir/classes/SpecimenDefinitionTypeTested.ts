@@ -41,28 +41,28 @@ export class SpecimenDefinitionTypeTested extends BackboneElement {
   ): SpecimenDefinitionTypeTested {
     const newInstance: SpecimenDefinitionTypeTested = BackboneElement.parse(json, providedInstance);
   
-    if (json.isDerived) {
+    if (json.isDerived !== undefined) {
       newInstance.isDerived = PrimitiveBoolean.parsePrimitive(json.isDerived, json._isDerived);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.preference) {
+    if (json.preference !== undefined) {
       newInstance.preference = SpecimenContainedPreference.parsePrimitive(json.preference, json._preference);
     }
-    if (json.container) {
+    if (json.container !== undefined) {
       newInstance.container = SpecimenDefinitionTypeTestedContainer.parse(json.container);
     }
-    if (json.requirement) {
+    if (json.requirement !== undefined) {
       newInstance.requirement = PrimitiveString.parsePrimitive(json.requirement, json._requirement);
     }
-    if (json.retentionTime) {
+    if (json.retentionTime !== undefined) {
       newInstance.retentionTime = Duration.parse(json.retentionTime);
     }
-    if (json.rejectionCriterion) {
+    if (json.rejectionCriterion !== undefined) {
       newInstance.rejectionCriterion = json.rejectionCriterion.map((x) => CodeableConcept.parse(x));
     }
-    if (json.handling) {
+    if (json.handling !== undefined) {
       newInstance.handling = json.handling.map((x) => SpecimenDefinitionTypeTestedHandling.parse(x));
     }
     return newInstance;
@@ -113,7 +113,11 @@ export class SpecimenDefinitionTypeTested extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SpecimenDefinitionTypeTested {
+    return SpecimenDefinitionTypeTested.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SpecimenDefinitionTypeTested";
   }

@@ -24,10 +24,10 @@ export class MedicationBatch extends BackboneElement {
   ): MedicationBatch {
     const newInstance: MedicationBatch = BackboneElement.parse(json, providedInstance);
   
-    if (json.lotNumber) {
+    if (json.lotNumber !== undefined) {
       newInstance.lotNumber = PrimitiveString.parsePrimitive(json.lotNumber, json._lotNumber);
     }
-    if (json.expirationDate) {
+    if (json.expirationDate !== undefined) {
       newInstance.expirationDate = PrimitiveDateTime.parsePrimitive(json.expirationDate, json._expirationDate);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class MedicationBatch extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationBatch {
+    return MedicationBatch.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationBatch";
   }

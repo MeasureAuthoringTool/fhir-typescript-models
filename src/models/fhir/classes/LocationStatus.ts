@@ -22,7 +22,16 @@ export class LocationStatus extends PrimitiveCode {
     const castInput = input as LocationStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "LocationStatus";
   }
-  
+
+  public clone(): LocationStatus {
+    const result = new LocationStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "LocationStatus";
   }

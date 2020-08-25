@@ -31,19 +31,19 @@ export class MessageHeaderSource extends BackboneElement {
   ): MessageHeaderSource {
     const newInstance: MessageHeaderSource = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.software) {
+    if (json.software !== undefined) {
       newInstance.software = PrimitiveString.parsePrimitive(json.software, json._software);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = ContactPoint.parse(json.contact);
     }
-    if (json.endpoint) {
+    if (json.endpoint !== undefined) {
       newInstance.endpoint = PrimitiveUrl.parsePrimitive(json.endpoint, json._endpoint);
     }
     return newInstance;
@@ -83,7 +83,11 @@ export class MessageHeaderSource extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MessageHeaderSource {
+    return MessageHeaderSource.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MessageHeaderSource";
   }

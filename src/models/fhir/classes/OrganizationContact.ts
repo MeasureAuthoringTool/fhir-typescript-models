@@ -29,16 +29,16 @@ export class OrganizationContact extends BackboneElement {
   ): OrganizationContact {
     const newInstance: OrganizationContact = BackboneElement.parse(json, providedInstance);
   
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = CodeableConcept.parse(json.purpose);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = HumanName.parse(json.name);
     }
-    if (json.telecom) {
+    if (json.telecom !== undefined) {
       newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));
     }
-    if (json.address) {
+    if (json.address !== undefined) {
       newInstance.address = Address.parse(json.address);
     }
     return newInstance;
@@ -70,7 +70,11 @@ export class OrganizationContact extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): OrganizationContact {
+    return OrganizationContact.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "OrganizationContact";
   }

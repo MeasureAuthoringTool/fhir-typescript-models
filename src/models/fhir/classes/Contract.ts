@@ -99,112 +99,112 @@ export class Contract extends DomainResource {
   ): Contract {
     const newInstance: Contract = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ContractStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.legalState) {
+    if (json.legalState !== undefined) {
       newInstance.legalState = CodeableConcept.parse(json.legalState);
     }
-    if (json.instantiatesCanonical) {
+    if (json.instantiatesCanonical !== undefined) {
       newInstance.instantiatesCanonical = Reference.parse(json.instantiatesCanonical);
     }
-    if (json.instantiatesUri) {
+    if (json.instantiatesUri !== undefined) {
       newInstance.instantiatesUri = PrimitiveUri.parsePrimitive(json.instantiatesUri, json._instantiatesUri);
     }
-    if (json.contentDerivative) {
+    if (json.contentDerivative !== undefined) {
       newInstance.contentDerivative = CodeableConcept.parse(json.contentDerivative);
     }
-    if (json.issued) {
+    if (json.issued !== undefined) {
       newInstance.issued = PrimitiveDateTime.parsePrimitive(json.issued, json._issued);
     }
-    if (json.applies) {
+    if (json.applies !== undefined) {
       newInstance.applies = Period.parse(json.applies);
     }
-    if (json.expirationType) {
+    if (json.expirationType !== undefined) {
       newInstance.expirationType = CodeableConcept.parse(json.expirationType);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = json.subject.map((x) => Reference.parse(x));
     }
-    if (json.authority) {
+    if (json.authority !== undefined) {
       newInstance.authority = json.authority.map((x) => Reference.parse(x));
     }
-    if (json.domain) {
+    if (json.domain !== undefined) {
       newInstance.domain = json.domain.map((x) => Reference.parse(x));
     }
-    if (json.site) {
+    if (json.site !== undefined) {
       newInstance.site = json.site.map((x) => Reference.parse(x));
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.subtitle) {
+    if (json.subtitle !== undefined) {
       newInstance.subtitle = PrimitiveString.parsePrimitive(json.subtitle, json._subtitle);
     }
-    if (json.alias) {
+    if (json.alias !== undefined) {
       newInstance.alias = json.alias.map((x, i) => {
         const ext = json._alias && json._alias[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = Reference.parse(json.author);
     }
-    if (json.scope) {
+    if (json.scope !== undefined) {
       newInstance.scope = CodeableConcept.parse(json.scope);
     }
-    if (json.topicCodeableConcept) {
+    if (json.topicCodeableConcept !== undefined) {
       newInstance.topic = CodeableConcept.parse(json.topicCodeableConcept);
     }
-    if (json.topicReference) {
+    if (json.topicReference !== undefined) {
       newInstance.topic = Reference.parse(json.topicReference);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.subType) {
+    if (json.subType !== undefined) {
       newInstance.subType = json.subType.map((x) => CodeableConcept.parse(x));
     }
-    if (json.contentDefinition) {
+    if (json.contentDefinition !== undefined) {
       newInstance.contentDefinition = ContractContentDefinition.parse(json.contentDefinition);
     }
-    if (json.term) {
+    if (json.term !== undefined) {
       newInstance.term = json.term.map((x) => ContractTerm.parse(x));
     }
-    if (json.supportingInfo) {
+    if (json.supportingInfo !== undefined) {
       newInstance.supportingInfo = json.supportingInfo.map((x) => Reference.parse(x));
     }
-    if (json.relevantHistory) {
+    if (json.relevantHistory !== undefined) {
       newInstance.relevantHistory = json.relevantHistory.map((x) => Reference.parse(x));
     }
-    if (json.signer) {
+    if (json.signer !== undefined) {
       newInstance.signer = json.signer.map((x) => ContractSigner.parse(x));
     }
-    if (json.friendly) {
+    if (json.friendly !== undefined) {
       newInstance.friendly = json.friendly.map((x) => ContractFriendly.parse(x));
     }
-    if (json.legal) {
+    if (json.legal !== undefined) {
       newInstance.legal = json.legal.map((x) => ContractLegal.parse(x));
     }
-    if (json.rule) {
+    if (json.rule !== undefined) {
       newInstance.rule = json.rule.map((x) => ContractRule.parse(x));
     }
-    if (json.legallyBindingAttachment) {
+    if (json.legallyBindingAttachment !== undefined) {
       newInstance.legallyBinding = Attachment.parse(json.legallyBindingAttachment);
     }
-    if (json.legallyBindingReference) {
+    if (json.legallyBindingReference !== undefined) {
       newInstance.legallyBinding = Reference.parse(json.legallyBindingReference);
     }
     return newInstance;
@@ -369,7 +369,11 @@ export class Contract extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Contract {
+    return Contract.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Contract";
   }

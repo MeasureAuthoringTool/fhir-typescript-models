@@ -22,7 +22,16 @@ export class PrimitiveCanonical extends PrimitiveUri {
     const castInput = input as PrimitiveCanonical;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveCanonical";
   }
-  
+
+  public clone(): PrimitiveCanonical {
+    const result = new PrimitiveCanonical();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveCanonical";
   }

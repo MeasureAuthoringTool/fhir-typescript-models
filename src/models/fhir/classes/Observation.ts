@@ -85,115 +85,115 @@ export class Observation extends DomainResource {
   ): Observation {
     const newInstance: Observation = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = json.partOf.map((x) => Reference.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ObservationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.focus) {
+    if (json.focus !== undefined) {
       newInstance.focus = json.focus.map((x) => Reference.parse(x));
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.effectiveDateTime) {
+    if (json.effectiveDateTime !== undefined) {
       newInstance.effective = PrimitiveDateTime.parsePrimitive(json.effectiveDateTime, json._effectiveDateTime);
     }
-    if (json.effectivePeriod) {
+    if (json.effectivePeriod !== undefined) {
       newInstance.effective = Period.parse(json.effectivePeriod);
     }
-    if (json.effectiveTiming) {
+    if (json.effectiveTiming !== undefined) {
       newInstance.effective = Timing.parse(json.effectiveTiming);
     }
-    if (json.effectiveInstant) {
+    if (json.effectiveInstant !== undefined) {
       newInstance.effective = PrimitiveInstant.parsePrimitive(json.effectiveInstant, json._effectiveInstant);
     }
-    if (json.issued) {
+    if (json.issued !== undefined) {
       newInstance.issued = PrimitiveInstant.parsePrimitive(json.issued, json._issued);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = json.performer.map((x) => Reference.parse(x));
     }
-    if (json.valueQuantity) {
+    if (json.valueQuantity !== undefined) {
       newInstance.value = Quantity.parse(json.valueQuantity);
     }
-    if (json.valueCodeableConcept) {
+    if (json.valueCodeableConcept !== undefined) {
       newInstance.value = CodeableConcept.parse(json.valueCodeableConcept);
     }
-    if (json.valueString) {
+    if (json.valueString !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.valueString, json._valueString);
     }
-    if (json.valueBoolean) {
+    if (json.valueBoolean !== undefined) {
       newInstance.value = PrimitiveBoolean.parsePrimitive(json.valueBoolean, json._valueBoolean);
     }
-    if (json.valueInteger) {
+    if (json.valueInteger !== undefined) {
       newInstance.value = PrimitiveInteger.parsePrimitive(json.valueInteger, json._valueInteger);
     }
-    if (json.valueRange) {
+    if (json.valueRange !== undefined) {
       newInstance.value = Range.parse(json.valueRange);
     }
-    if (json.valueRatio) {
+    if (json.valueRatio !== undefined) {
       newInstance.value = Ratio.parse(json.valueRatio);
     }
-    if (json.valueSampledData) {
+    if (json.valueSampledData !== undefined) {
       newInstance.value = SampledData.parse(json.valueSampledData);
     }
-    if (json.valueTime) {
+    if (json.valueTime !== undefined) {
       newInstance.value = PrimitiveTime.parsePrimitive(json.valueTime, json._valueTime);
     }
-    if (json.valueDateTime) {
+    if (json.valueDateTime !== undefined) {
       newInstance.value = PrimitiveDateTime.parsePrimitive(json.valueDateTime, json._valueDateTime);
     }
-    if (json.valuePeriod) {
+    if (json.valuePeriod !== undefined) {
       newInstance.value = Period.parse(json.valuePeriod);
     }
-    if (json.dataAbsentReason) {
+    if (json.dataAbsentReason !== undefined) {
       newInstance.dataAbsentReason = CodeableConcept.parse(json.dataAbsentReason);
     }
-    if (json.interpretation) {
+    if (json.interpretation !== undefined) {
       newInstance.interpretation = json.interpretation.map((x) => CodeableConcept.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.bodySite) {
+    if (json.bodySite !== undefined) {
       newInstance.bodySite = CodeableConcept.parse(json.bodySite);
     }
-    if (json.method) {
+    if (json.method !== undefined) {
       newInstance.method = CodeableConcept.parse(json.method);
     }
-    if (json.specimen) {
+    if (json.specimen !== undefined) {
       newInstance.specimen = Reference.parse(json.specimen);
     }
-    if (json.device) {
+    if (json.device !== undefined) {
       newInstance.device = Reference.parse(json.device);
     }
-    if (json.referenceRange) {
+    if (json.referenceRange !== undefined) {
       newInstance.referenceRange = json.referenceRange.map((x) => ObservationReferenceRange.parse(x));
     }
-    if (json.hasMember) {
+    if (json.hasMember !== undefined) {
       newInstance.hasMember = json.hasMember.map((x) => Reference.parse(x));
     }
-    if (json.derivedFrom) {
+    if (json.derivedFrom !== undefined) {
       newInstance.derivedFrom = json.derivedFrom.map((x) => Reference.parse(x));
     }
-    if (json.component) {
+    if (json.component !== undefined) {
       newInstance.component = json.component.map((x) => ObservationComponent.parse(x));
     }
     return newInstance;
@@ -366,7 +366,11 @@ export class Observation extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Observation {
+    return Observation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Observation";
   }

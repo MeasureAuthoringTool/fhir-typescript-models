@@ -48,34 +48,34 @@ export class Practitioner extends DomainResource {
   ): Practitioner {
     const newInstance: Practitioner = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.active) {
+    if (json.active !== undefined) {
       newInstance.active = PrimitiveBoolean.parsePrimitive(json.active, json._active);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = json.name.map((x) => HumanName.parse(x));
     }
-    if (json.telecom) {
+    if (json.telecom !== undefined) {
       newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));
     }
-    if (json.address) {
+    if (json.address !== undefined) {
       newInstance.address = json.address.map((x) => Address.parse(x));
     }
-    if (json.gender) {
+    if (json.gender !== undefined) {
       newInstance.gender = AdministrativeGender.parsePrimitive(json.gender, json._gender);
     }
-    if (json.birthDate) {
+    if (json.birthDate !== undefined) {
       newInstance.birthDate = PrimitiveDate.parsePrimitive(json.birthDate, json._birthDate);
     }
-    if (json.photo) {
+    if (json.photo !== undefined) {
       newInstance.photo = json.photo.map((x) => Attachment.parse(x));
     }
-    if (json.qualification) {
+    if (json.qualification !== undefined) {
       newInstance.qualification = json.qualification.map((x) => PractitionerQualification.parse(x));
     }
-    if (json.communication) {
+    if (json.communication !== undefined) {
       newInstance.communication = json.communication.map((x) => CodeableConcept.parse(x));
     }
     return newInstance;
@@ -134,7 +134,11 @@ export class Practitioner extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Practitioner {
+    return Practitioner.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Practitioner";
   }

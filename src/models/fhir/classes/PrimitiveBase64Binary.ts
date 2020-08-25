@@ -21,7 +21,7 @@ export class PrimitiveBase64Binary extends Element {
       let newInstance: PrimitiveBase64Binary;
   
       if (extension) {
-        newInstance = Element.parse(extension);
+        newInstance = Element.parse(extension, providedInstance);
       } else {
         newInstance = providedInstance;
       }
@@ -35,7 +35,16 @@ export class PrimitiveBase64Binary extends Element {
     const castInput = input as PrimitiveBase64Binary;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveBase64Binary";
   }
-  
+
+  public clone(): PrimitiveBase64Binary {
+    const result = new PrimitiveBase64Binary();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveBase64Binary";
   }

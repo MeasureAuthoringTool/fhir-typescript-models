@@ -28,16 +28,16 @@ export class InvoiceLineItem extends BackboneElement {
   ): InvoiceLineItem {
     const newInstance: InvoiceLineItem = BackboneElement.parse(json, providedInstance);
   
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitivePositiveInt.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.chargeItemReference) {
+    if (json.chargeItemReference !== undefined) {
       newInstance.chargeItem = Reference.parse(json.chargeItemReference);
     }
-    if (json.chargeItemCodeableConcept) {
+    if (json.chargeItemCodeableConcept !== undefined) {
       newInstance.chargeItem = CodeableConcept.parse(json.chargeItemCodeableConcept);
     }
-    if (json.priceComponent) {
+    if (json.priceComponent !== undefined) {
       newInstance.priceComponent = json.priceComponent.map((x) => InvoiceLineItemPriceComponent.parse(x));
     }
     return newInstance;
@@ -70,7 +70,11 @@ export class InvoiceLineItem extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): InvoiceLineItem {
+    return InvoiceLineItem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "InvoiceLineItem";
   }

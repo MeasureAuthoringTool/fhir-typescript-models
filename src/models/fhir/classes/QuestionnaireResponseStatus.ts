@@ -22,7 +22,16 @@ export class QuestionnaireResponseStatus extends PrimitiveCode {
     const castInput = input as QuestionnaireResponseStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "QuestionnaireResponseStatus";
   }
-  
+
+  public clone(): QuestionnaireResponseStatus {
+    const result = new QuestionnaireResponseStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "QuestionnaireResponseStatus";
   }

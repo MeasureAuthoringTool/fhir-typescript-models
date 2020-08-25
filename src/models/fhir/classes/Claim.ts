@@ -89,85 +89,85 @@ export class Claim extends DomainResource {
   ): Claim {
     const newInstance: Claim = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ClaimStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.subType) {
+    if (json.subType !== undefined) {
       newInstance.subType = CodeableConcept.parse(json.subType);
     }
-    if (json.use) {
+    if (json.use !== undefined) {
       newInstance.use = Use.parsePrimitive(json.use, json._use);
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.billablePeriod) {
+    if (json.billablePeriod !== undefined) {
       newInstance.billablePeriod = Period.parse(json.billablePeriod);
     }
-    if (json.created) {
+    if (json.created !== undefined) {
       newInstance.created = PrimitiveDateTime.parsePrimitive(json.created, json._created);
     }
-    if (json.enterer) {
+    if (json.enterer !== undefined) {
       newInstance.enterer = Reference.parse(json.enterer);
     }
-    if (json.insurer) {
+    if (json.insurer !== undefined) {
       newInstance.insurer = Reference.parse(json.insurer);
     }
-    if (json.provider) {
+    if (json.provider !== undefined) {
       newInstance.provider = Reference.parse(json.provider);
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = CodeableConcept.parse(json.priority);
     }
-    if (json.fundsReserve) {
+    if (json.fundsReserve !== undefined) {
       newInstance.fundsReserve = CodeableConcept.parse(json.fundsReserve);
     }
-    if (json.related) {
+    if (json.related !== undefined) {
       newInstance.related = json.related.map((x) => ClaimRelated.parse(x));
     }
-    if (json.prescription) {
+    if (json.prescription !== undefined) {
       newInstance.prescription = Reference.parse(json.prescription);
     }
-    if (json.originalPrescription) {
+    if (json.originalPrescription !== undefined) {
       newInstance.originalPrescription = Reference.parse(json.originalPrescription);
     }
-    if (json.payee) {
+    if (json.payee !== undefined) {
       newInstance.payee = ClaimPayee.parse(json.payee);
     }
-    if (json.referral) {
+    if (json.referral !== undefined) {
       newInstance.referral = Reference.parse(json.referral);
     }
-    if (json.facility) {
+    if (json.facility !== undefined) {
       newInstance.facility = Reference.parse(json.facility);
     }
-    if (json.careTeam) {
+    if (json.careTeam !== undefined) {
       newInstance.careTeam = json.careTeam.map((x) => ClaimCareTeam.parse(x));
     }
-    if (json.supportingInfo) {
+    if (json.supportingInfo !== undefined) {
       newInstance.supportingInfo = json.supportingInfo.map((x) => ClaimSupportingInfo.parse(x));
     }
-    if (json.diagnosis) {
+    if (json.diagnosis !== undefined) {
       newInstance.diagnosis = json.diagnosis.map((x) => ClaimDiagnosis.parse(x));
     }
-    if (json.procedure) {
+    if (json.procedure !== undefined) {
       newInstance.procedure = json.procedure.map((x) => ClaimProcedure.parse(x));
     }
-    if (json.insurance) {
+    if (json.insurance !== undefined) {
       newInstance.insurance = json.insurance.map((x) => ClaimInsurance.parse(x));
     }
-    if (json.accident) {
+    if (json.accident !== undefined) {
       newInstance.accident = ClaimAccident.parse(json.accident);
     }
-    if (json.item) {
+    if (json.item !== undefined) {
       newInstance.item = json.item.map((x) => ClaimItem.parse(x));
     }
-    if (json.total) {
+    if (json.total !== undefined) {
       newInstance.total = Money.parse(json.total);
     }
     return newInstance;
@@ -294,7 +294,11 @@ export class Claim extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Claim {
+    return Claim.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Claim";
   }

@@ -22,7 +22,16 @@ export class InvoiceStatus extends PrimitiveCode {
     const castInput = input as InvoiceStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "InvoiceStatus";
   }
-  
+
+  public clone(): InvoiceStatus {
+    const result = new InvoiceStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "InvoiceStatus";
   }

@@ -23,10 +23,10 @@ export class DocumentReferenceContent extends BackboneElement {
   ): DocumentReferenceContent {
     const newInstance: DocumentReferenceContent = BackboneElement.parse(json, providedInstance);
   
-    if (json.attachment) {
+    if (json.attachment !== undefined) {
       newInstance.attachment = Attachment.parse(json.attachment);
     }
-    if (json.format) {
+    if (json.format !== undefined) {
       newInstance.format = Coding.parse(json.format);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class DocumentReferenceContent extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DocumentReferenceContent {
+    return DocumentReferenceContent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DocumentReferenceContent";
   }

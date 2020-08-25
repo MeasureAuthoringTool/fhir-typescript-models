@@ -50,40 +50,40 @@ export class ImagingStudySeries extends BackboneElement {
   ): ImagingStudySeries {
     const newInstance: ImagingStudySeries = BackboneElement.parse(json, providedInstance);
   
-    if (json.uid) {
+    if (json.uid !== undefined) {
       newInstance.uid = PrimitiveId.parsePrimitive(json.uid, json._uid);
     }
-    if (json.number) {
+    if (json.number !== undefined) {
       newInstance.number = PrimitiveUnsignedInt.parsePrimitive(json.number, json._number);
     }
-    if (json.modality) {
+    if (json.modality !== undefined) {
       newInstance.modality = Coding.parse(json.modality);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.numberOfInstances) {
+    if (json.numberOfInstances !== undefined) {
       newInstance.numberOfInstances = PrimitiveUnsignedInt.parsePrimitive(json.numberOfInstances, json._numberOfInstances);
     }
-    if (json.endpoint) {
+    if (json.endpoint !== undefined) {
       newInstance.endpoint = json.endpoint.map((x) => Reference.parse(x));
     }
-    if (json.bodySite) {
+    if (json.bodySite !== undefined) {
       newInstance.bodySite = Coding.parse(json.bodySite);
     }
-    if (json.laterality) {
+    if (json.laterality !== undefined) {
       newInstance.laterality = Coding.parse(json.laterality);
     }
-    if (json.specimen) {
+    if (json.specimen !== undefined) {
       newInstance.specimen = json.specimen.map((x) => Reference.parse(x));
     }
-    if (json.started) {
+    if (json.started !== undefined) {
       newInstance.started = PrimitiveDateTime.parsePrimitive(json.started, json._started);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = json.performer.map((x) => ImagingStudySeriesPerformer.parse(x));
     }
-    if (json.instance) {
+    if (json.instance !== undefined) {
       newInstance.instance = json.instance.map((x) => ImagingStudySeriesInstance.parse(x));
     }
     return newInstance;
@@ -152,7 +152,11 @@ export class ImagingStudySeries extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImagingStudySeries {
+    return ImagingStudySeries.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImagingStudySeries";
   }

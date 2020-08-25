@@ -29,19 +29,19 @@ export class LocationHoursOfOperation extends BackboneElement {
   ): LocationHoursOfOperation {
     const newInstance: LocationHoursOfOperation = BackboneElement.parse(json, providedInstance);
   
-    if (json.daysOfWeek) {
+    if (json.daysOfWeek !== undefined) {
       newInstance.daysOfWeek = json.daysOfWeek.map((x, i) => {
         const ext = json._daysOfWeek && json._daysOfWeek[i];
         return DaysOfWeek.parsePrimitive(x, ext);
       });
     }
-    if (json.allDay) {
+    if (json.allDay !== undefined) {
       newInstance.allDay = PrimitiveBoolean.parsePrimitive(json.allDay, json._allDay);
     }
-    if (json.openingTime) {
+    if (json.openingTime !== undefined) {
       newInstance.openingTime = PrimitiveTime.parsePrimitive(json.openingTime, json._openingTime);
     }
-    if (json.closingTime) {
+    if (json.closingTime !== undefined) {
       newInstance.closingTime = PrimitiveTime.parsePrimitive(json.closingTime, json._closingTime);
     }
     return newInstance;
@@ -77,7 +77,11 @@ export class LocationHoursOfOperation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): LocationHoursOfOperation {
+    return LocationHoursOfOperation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "LocationHoursOfOperation";
   }

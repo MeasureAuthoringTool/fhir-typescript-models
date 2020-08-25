@@ -54,49 +54,49 @@ export class MolecularSequenceQuality extends BackboneElement {
   ): MolecularSequenceQuality {
     const newInstance: MolecularSequenceQuality = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = QualityType.parsePrimitive(json.type, json._type);
     }
-    if (json.standardSequence) {
+    if (json.standardSequence !== undefined) {
       newInstance.standardSequence = CodeableConcept.parse(json.standardSequence);
     }
-    if (json.start) {
+    if (json.start !== undefined) {
       newInstance.start = PrimitiveInteger.parsePrimitive(json.start, json._start);
     }
-    if (json.end) {
+    if (json.end !== undefined) {
       newInstance.end = PrimitiveInteger.parsePrimitive(json.end, json._end);
     }
-    if (json.score) {
+    if (json.score !== undefined) {
       newInstance.score = Quantity.parse(json.score);
     }
-    if (json.method) {
+    if (json.method !== undefined) {
       newInstance.method = CodeableConcept.parse(json.method);
     }
-    if (json.truthTP) {
+    if (json.truthTP !== undefined) {
       newInstance.truthTP = PrimitiveDecimal.parsePrimitive(json.truthTP, json._truthTP);
     }
-    if (json.queryTP) {
+    if (json.queryTP !== undefined) {
       newInstance.queryTP = PrimitiveDecimal.parsePrimitive(json.queryTP, json._queryTP);
     }
-    if (json.truthFN) {
+    if (json.truthFN !== undefined) {
       newInstance.truthFN = PrimitiveDecimal.parsePrimitive(json.truthFN, json._truthFN);
     }
-    if (json.queryFP) {
+    if (json.queryFP !== undefined) {
       newInstance.queryFP = PrimitiveDecimal.parsePrimitive(json.queryFP, json._queryFP);
     }
-    if (json.gtFP) {
+    if (json.gtFP !== undefined) {
       newInstance.gtFP = PrimitiveDecimal.parsePrimitive(json.gtFP, json._gtFP);
     }
-    if (json.precision) {
+    if (json.precision !== undefined) {
       newInstance.precision = PrimitiveDecimal.parsePrimitive(json.precision, json._precision);
     }
-    if (json.recall) {
+    if (json.recall !== undefined) {
       newInstance.recall = PrimitiveDecimal.parsePrimitive(json.recall, json._recall);
     }
-    if (json.fScore) {
+    if (json.fScore !== undefined) {
       newInstance.fScore = PrimitiveDecimal.parsePrimitive(json.fScore, json._fScore);
     }
-    if (json.roc) {
+    if (json.roc !== undefined) {
       newInstance.roc = MolecularSequenceQualityRoc.parse(json.roc);
     }
     return newInstance;
@@ -183,7 +183,11 @@ export class MolecularSequenceQuality extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MolecularSequenceQuality {
+    return MolecularSequenceQuality.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MolecularSequenceQuality";
   }

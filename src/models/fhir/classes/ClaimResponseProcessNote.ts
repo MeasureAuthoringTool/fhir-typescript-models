@@ -30,16 +30,16 @@ export class ClaimResponseProcessNote extends BackboneElement {
   ): ClaimResponseProcessNote {
     const newInstance: ClaimResponseProcessNote = BackboneElement.parse(json, providedInstance);
   
-    if (json.number) {
+    if (json.number !== undefined) {
       newInstance.number = PrimitivePositiveInt.parsePrimitive(json.number, json._number);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = NoteType.parsePrimitive(json.type, json._type);
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
-    if (json.language) {
+    if (json.language !== undefined) {
       newInstance.language = CodeableConcept.parse(json.language);
     }
     return newInstance;
@@ -74,7 +74,11 @@ export class ClaimResponseProcessNote extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimResponseProcessNote {
+    return ClaimResponseProcessNote.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimResponseProcessNote";
   }

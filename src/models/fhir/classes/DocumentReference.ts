@@ -60,52 +60,52 @@ export class DocumentReference extends DomainResource {
   ): DocumentReference {
     const newInstance: DocumentReference = DomainResource.parse(json, providedInstance);
   
-    if (json.masterIdentifier) {
+    if (json.masterIdentifier !== undefined) {
       newInstance.masterIdentifier = Identifier.parse(json.masterIdentifier);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = DocumentReferenceStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.docStatus) {
+    if (json.docStatus !== undefined) {
       newInstance.docStatus = ReferredDocumentStatus.parsePrimitive(json.docStatus, json._docStatus);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveInstant.parsePrimitive(json.date, json._date);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = json.author.map((x) => Reference.parse(x));
     }
-    if (json.authenticator) {
+    if (json.authenticator !== undefined) {
       newInstance.authenticator = Reference.parse(json.authenticator);
     }
-    if (json.custodian) {
+    if (json.custodian !== undefined) {
       newInstance.custodian = Reference.parse(json.custodian);
     }
-    if (json.relatesTo) {
+    if (json.relatesTo !== undefined) {
       newInstance.relatesTo = json.relatesTo.map((x) => DocumentReferenceRelatesTo.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.securityLabel) {
+    if (json.securityLabel !== undefined) {
       newInstance.securityLabel = json.securityLabel.map((x) => CodeableConcept.parse(x));
     }
-    if (json.content) {
+    if (json.content !== undefined) {
       newInstance.content = json.content.map((x) => DocumentReferenceContent.parse(x));
     }
-    if (json.context) {
+    if (json.context !== undefined) {
       newInstance.context = DocumentReferenceContext.parse(json.context);
     }
     return newInstance;
@@ -189,7 +189,11 @@ export class DocumentReference extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): DocumentReference {
+    return DocumentReference.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DocumentReference";
   }

@@ -74,76 +74,76 @@ export class RequestGroupAction extends BackboneElement {
   ): RequestGroupAction {
     const newInstance: RequestGroupAction = BackboneElement.parse(json, providedInstance);
   
-    if (json.prefix) {
+    if (json.prefix !== undefined) {
       newInstance.prefix = PrimitiveString.parsePrimitive(json.prefix, json._prefix);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.textEquivalent) {
+    if (json.textEquivalent !== undefined) {
       newInstance.textEquivalent = PrimitiveString.parsePrimitive(json.textEquivalent, json._textEquivalent);
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = RequestPriority.parsePrimitive(json.priority, json._priority);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = json.code.map((x) => CodeableConcept.parse(x));
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = json.documentation.map((x) => RelatedArtifact.parse(x));
     }
-    if (json.condition) {
+    if (json.condition !== undefined) {
       newInstance.condition = json.condition.map((x) => RequestGroupActionCondition.parse(x));
     }
-    if (json.relatedAction) {
+    if (json.relatedAction !== undefined) {
       newInstance.relatedAction = json.relatedAction.map((x) => RequestGroupActionRelatedAction.parse(x));
     }
-    if (json.timingDateTime) {
+    if (json.timingDateTime !== undefined) {
       newInstance.timing = PrimitiveDateTime.parsePrimitive(json.timingDateTime, json._timingDateTime);
     }
-    if (json.timingAge) {
+    if (json.timingAge !== undefined) {
       newInstance.timing = Age.parse(json.timingAge);
     }
-    if (json.timingPeriod) {
+    if (json.timingPeriod !== undefined) {
       newInstance.timing = Period.parse(json.timingPeriod);
     }
-    if (json.timingDuration) {
+    if (json.timingDuration !== undefined) {
       newInstance.timing = Duration.parse(json.timingDuration);
     }
-    if (json.timingRange) {
+    if (json.timingRange !== undefined) {
       newInstance.timing = Range.parse(json.timingRange);
     }
-    if (json.timingTiming) {
+    if (json.timingTiming !== undefined) {
       newInstance.timing = Timing.parse(json.timingTiming);
     }
-    if (json.participant) {
+    if (json.participant !== undefined) {
       newInstance.participant = json.participant.map((x) => Reference.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.groupingBehavior) {
+    if (json.groupingBehavior !== undefined) {
       newInstance.groupingBehavior = ActionGroupingBehavior.parsePrimitive(json.groupingBehavior, json._groupingBehavior);
     }
-    if (json.selectionBehavior) {
+    if (json.selectionBehavior !== undefined) {
       newInstance.selectionBehavior = ActionSelectionBehavior.parsePrimitive(json.selectionBehavior, json._selectionBehavior);
     }
-    if (json.requiredBehavior) {
+    if (json.requiredBehavior !== undefined) {
       newInstance.requiredBehavior = ActionRequiredBehavior.parsePrimitive(json.requiredBehavior, json._requiredBehavior);
     }
-    if (json.precheckBehavior) {
+    if (json.precheckBehavior !== undefined) {
       newInstance.precheckBehavior = ActionPrecheckBehavior.parsePrimitive(json.precheckBehavior, json._precheckBehavior);
     }
-    if (json.cardinalityBehavior) {
+    if (json.cardinalityBehavior !== undefined) {
       newInstance.cardinalityBehavior = ActionCardinalityBehavior.parsePrimitive(json.cardinalityBehavior, json._cardinalityBehavior);
     }
-    if (json.resource) {
+    if (json.resource !== undefined) {
       newInstance.resource = Reference.parse(json.resource);
     }
-    if (json.action) {
+    if (json.action !== undefined) {
       newInstance.action = json.action.map((x) => RequestGroupAction.parse(x));
     }
     return newInstance;
@@ -266,7 +266,11 @@ export class RequestGroupAction extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): RequestGroupAction {
+    return RequestGroupAction.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "RequestGroupAction";
   }

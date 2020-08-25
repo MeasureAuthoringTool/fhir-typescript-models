@@ -38,25 +38,25 @@ export class RelatedArtifact extends Element {
   ): RelatedArtifact {
     const newInstance: RelatedArtifact = Element.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = RelatedArtifactType.parsePrimitive(json.type, json._type);
     }
-    if (json.label) {
+    if (json.label !== undefined) {
       newInstance.label = PrimitiveString.parsePrimitive(json.label, json._label);
     }
-    if (json.display) {
+    if (json.display !== undefined) {
       newInstance.display = PrimitiveString.parsePrimitive(json.display, json._display);
     }
-    if (json.citation) {
+    if (json.citation !== undefined) {
       newInstance.citation = PrimitiveMarkdown.parsePrimitive(json.citation, json._citation);
     }
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUrl.parsePrimitive(json.url, json._url);
     }
-    if (json.document) {
+    if (json.document !== undefined) {
       newInstance.document = Attachment.parse(json.document);
     }
-    if (json.resource) {
+    if (json.resource !== undefined) {
       newInstance.resource = PrimitiveCanonical.parsePrimitive(json.resource, json._resource);
     }
     return newInstance;
@@ -106,7 +106,11 @@ export class RelatedArtifact extends Element {
 
     return result;
   }
-  
+
+  public clone(): RelatedArtifact {
+    return RelatedArtifact.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "RelatedArtifact";
   }

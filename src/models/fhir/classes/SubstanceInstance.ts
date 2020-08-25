@@ -27,13 +27,13 @@ export class SubstanceInstance extends BackboneElement {
   ): SubstanceInstance {
     const newInstance: SubstanceInstance = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.expiry) {
+    if (json.expiry !== undefined) {
       newInstance.expiry = PrimitiveDateTime.parsePrimitive(json.expiry, json._expiry);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class SubstanceInstance extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceInstance {
+    return SubstanceInstance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceInstance";
   }

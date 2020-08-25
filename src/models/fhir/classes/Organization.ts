@@ -46,37 +46,37 @@ export class Organization extends DomainResource {
   ): Organization {
     const newInstance: Organization = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.active) {
+    if (json.active !== undefined) {
       newInstance.active = PrimitiveBoolean.parsePrimitive(json.active, json._active);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.alias) {
+    if (json.alias !== undefined) {
       newInstance.alias = json.alias.map((x, i) => {
         const ext = json._alias && json._alias[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.telecom) {
+    if (json.telecom !== undefined) {
       newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));
     }
-    if (json.address) {
+    if (json.address !== undefined) {
       newInstance.address = json.address.map((x) => Address.parse(x));
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = Reference.parse(json.partOf);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => OrganizationContact.parse(x));
     }
-    if (json.endpoint) {
+    if (json.endpoint !== undefined) {
       newInstance.endpoint = json.endpoint.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -135,7 +135,11 @@ export class Organization extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Organization {
+    return Organization.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Organization";
   }

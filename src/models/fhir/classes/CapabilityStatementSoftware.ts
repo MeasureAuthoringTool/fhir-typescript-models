@@ -26,13 +26,13 @@ export class CapabilityStatementSoftware extends BackboneElement {
   ): CapabilityStatementSoftware {
     const newInstance: CapabilityStatementSoftware = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.releaseDate) {
+    if (json.releaseDate !== undefined) {
       newInstance.releaseDate = PrimitiveDateTime.parsePrimitive(json.releaseDate, json._releaseDate);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class CapabilityStatementSoftware extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatementSoftware {
+    return CapabilityStatementSoftware.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementSoftware";
   }

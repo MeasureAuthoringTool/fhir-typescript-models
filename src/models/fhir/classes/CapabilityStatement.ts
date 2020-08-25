@@ -88,97 +88,97 @@ export class CapabilityStatement extends DomainResource {
   ): CapabilityStatement {
     const newInstance: CapabilityStatement = DomainResource.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.experimental) {
+    if (json.experimental !== undefined) {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = PrimitiveMarkdown.parsePrimitive(json.purpose, json._purpose);
     }
-    if (json.copyright) {
+    if (json.copyright !== undefined) {
       newInstance.copyright = PrimitiveMarkdown.parsePrimitive(json.copyright, json._copyright);
     }
-    if (json.kind) {
+    if (json.kind !== undefined) {
       newInstance.kind = CapabilityStatementKind.parsePrimitive(json.kind, json._kind);
     }
-    if (json.instantiates) {
+    if (json.instantiates !== undefined) {
       newInstance.instantiates = json.instantiates.map((x, i) => {
         const ext = json._instantiates && json._instantiates[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.imports) {
+    if (json.imports !== undefined) {
       newInstance.imports = json.imports.map((x, i) => {
         const ext = json._imports && json._imports[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.software) {
+    if (json.software !== undefined) {
       newInstance.software = CapabilityStatementSoftware.parse(json.software);
     }
-    if (json.implementation) {
+    if (json.implementation !== undefined) {
       newInstance.implementation = CapabilityStatementImplementation.parse(json.implementation);
     }
-    if (json.fhirVersion) {
+    if (json.fhirVersion !== undefined) {
       newInstance.fhirVersion = FHIRVersion.parsePrimitive(json.fhirVersion, json._fhirVersion);
     }
-    if (json.format) {
+    if (json.format !== undefined) {
       newInstance.format = json.format.map((x, i) => {
         const ext = json._format && json._format[i];
         return MimeType.parsePrimitive(x, ext);
       });
     }
-    if (json.patchFormat) {
+    if (json.patchFormat !== undefined) {
       newInstance.patchFormat = json.patchFormat.map((x, i) => {
         const ext = json._patchFormat && json._patchFormat[i];
         return MimeType.parsePrimitive(x, ext);
       });
     }
-    if (json.implementationGuide) {
+    if (json.implementationGuide !== undefined) {
       newInstance.implementationGuide = json.implementationGuide.map((x, i) => {
         const ext = json._implementationGuide && json._implementationGuide[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.rest) {
+    if (json.rest !== undefined) {
       newInstance.rest = json.rest.map((x) => CapabilityStatementRest.parse(x));
     }
-    if (json.messaging) {
+    if (json.messaging !== undefined) {
       newInstance.messaging = json.messaging.map((x) => CapabilityStatementMessaging.parse(x));
     }
-    if (json.document) {
+    if (json.document !== undefined) {
       newInstance.document = json.document.map((x) => CapabilityStatementDocument.parse(x));
     }
     return newInstance;
@@ -316,7 +316,11 @@ export class CapabilityStatement extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatement {
+    return CapabilityStatement.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatement";
   }

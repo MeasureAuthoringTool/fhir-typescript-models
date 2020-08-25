@@ -22,7 +22,16 @@ export class PrimitiveCode extends PrimitiveString {
     const castInput = input as PrimitiveCode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveCode";
   }
-  
+
+  public clone(): PrimitiveCode {
+    const result = new PrimitiveCode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveCode";
   }

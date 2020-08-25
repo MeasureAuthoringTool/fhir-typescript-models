@@ -32,19 +32,19 @@ export class SubstanceNucleicAcid extends DomainResource {
   ): SubstanceNucleicAcid {
     const newInstance: SubstanceNucleicAcid = DomainResource.parse(json, providedInstance);
   
-    if (json.sequenceType) {
+    if (json.sequenceType !== undefined) {
       newInstance.sequenceType = CodeableConcept.parse(json.sequenceType);
     }
-    if (json.numberOfSubunits) {
+    if (json.numberOfSubunits !== undefined) {
       newInstance.numberOfSubunits = PrimitiveInteger.parsePrimitive(json.numberOfSubunits, json._numberOfSubunits);
     }
-    if (json.areaOfHybridisation) {
+    if (json.areaOfHybridisation !== undefined) {
       newInstance.areaOfHybridisation = PrimitiveString.parsePrimitive(json.areaOfHybridisation, json._areaOfHybridisation);
     }
-    if (json.oligoNucleotideType) {
+    if (json.oligoNucleotideType !== undefined) {
       newInstance.oligoNucleotideType = CodeableConcept.parse(json.oligoNucleotideType);
     }
-    if (json.subunit) {
+    if (json.subunit !== undefined) {
       newInstance.subunit = json.subunit.map((x) => SubstanceNucleicAcidSubunit.parse(x));
     }
     return newInstance;
@@ -82,7 +82,11 @@ export class SubstanceNucleicAcid extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): SubstanceNucleicAcid {
+    return SubstanceNucleicAcid.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceNucleicAcid";
   }

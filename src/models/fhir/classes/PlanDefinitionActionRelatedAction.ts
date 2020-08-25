@@ -28,16 +28,16 @@ export class PlanDefinitionActionRelatedAction extends BackboneElement {
   ): PlanDefinitionActionRelatedAction {
     const newInstance: PlanDefinitionActionRelatedAction = BackboneElement.parse(json, providedInstance);
   
-    if (json.actionId) {
+    if (json.actionId !== undefined) {
       newInstance.actionId = PrimitiveId.parsePrimitive(json.actionId, json._actionId);
     }
-    if (json.relationship) {
+    if (json.relationship !== undefined) {
       newInstance.relationship = ActionRelationshipType.parsePrimitive(json.relationship, json._relationship);
     }
-    if (json.offsetDuration) {
+    if (json.offsetDuration !== undefined) {
       newInstance.offset = Duration.parse(json.offsetDuration);
     }
-    if (json.offsetRange) {
+    if (json.offsetRange !== undefined) {
       newInstance.offset = Range.parse(json.offsetRange);
     }
     return newInstance;
@@ -71,7 +71,11 @@ export class PlanDefinitionActionRelatedAction extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PlanDefinitionActionRelatedAction {
+    return PlanDefinitionActionRelatedAction.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PlanDefinitionActionRelatedAction";
   }

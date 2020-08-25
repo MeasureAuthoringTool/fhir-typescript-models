@@ -26,13 +26,13 @@ export class EncounterParticipant extends BackboneElement {
   ): EncounterParticipant {
     const newInstance: EncounterParticipant = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.individual) {
+    if (json.individual !== undefined) {
       newInstance.individual = Reference.parse(json.individual);
     }
     return newInstance;
@@ -60,7 +60,11 @@ export class EncounterParticipant extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): EncounterParticipant {
+    return EncounterParticipant.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EncounterParticipant";
   }

@@ -30,16 +30,16 @@ export class CodeSystemProperty extends BackboneElement {
   ): CodeSystemProperty {
     const newInstance: CodeSystemProperty = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.uri) {
+    if (json.uri !== undefined) {
       newInstance.uri = PrimitiveUri.parsePrimitive(json.uri, json._uri);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = PropertyType.parsePrimitive(json.type, json._type);
     }
     return newInstance;
@@ -75,7 +75,11 @@ export class CodeSystemProperty extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CodeSystemProperty {
+    return CodeSystemProperty.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CodeSystemProperty";
   }

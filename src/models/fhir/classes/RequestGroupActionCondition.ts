@@ -24,10 +24,10 @@ export class RequestGroupActionCondition extends BackboneElement {
   ): RequestGroupActionCondition {
     const newInstance: RequestGroupActionCondition = BackboneElement.parse(json, providedInstance);
   
-    if (json.kind) {
+    if (json.kind !== undefined) {
       newInstance.kind = ActionConditionKind.parsePrimitive(json.kind, json._kind);
     }
-    if (json.expression) {
+    if (json.expression !== undefined) {
       newInstance.expression = Expression.parse(json.expression);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class RequestGroupActionCondition extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): RequestGroupActionCondition {
+    return RequestGroupActionCondition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "RequestGroupActionCondition";
   }

@@ -22,7 +22,16 @@ export class TestScriptRequestMethodCode extends PrimitiveCode {
     const castInput = input as TestScriptRequestMethodCode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "TestScriptRequestMethodCode";
   }
-  
+
+  public clone(): TestScriptRequestMethodCode {
+    const result = new TestScriptRequestMethodCode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "TestScriptRequestMethodCode";
   }

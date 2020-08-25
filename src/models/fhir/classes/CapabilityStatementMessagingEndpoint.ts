@@ -24,10 +24,10 @@ export class CapabilityStatementMessagingEndpoint extends BackboneElement {
   ): CapabilityStatementMessagingEndpoint {
     const newInstance: CapabilityStatementMessagingEndpoint = BackboneElement.parse(json, providedInstance);
   
-    if (json.protocol) {
+    if (json.protocol !== undefined) {
       newInstance.protocol = Coding.parse(json.protocol);
     }
-    if (json.address) {
+    if (json.address !== undefined) {
       newInstance.address = PrimitiveUrl.parsePrimitive(json.address, json._address);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class CapabilityStatementMessagingEndpoint extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatementMessagingEndpoint {
+    return CapabilityStatementMessagingEndpoint.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementMessagingEndpoint";
   }

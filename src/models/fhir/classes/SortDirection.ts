@@ -22,7 +22,16 @@ export class SortDirection extends PrimitiveCode {
     const castInput = input as SortDirection;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SortDirection";
   }
-  
+
+  public clone(): SortDirection {
+    const result = new SortDirection();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SortDirection";
   }

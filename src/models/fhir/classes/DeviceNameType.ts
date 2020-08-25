@@ -22,7 +22,16 @@ export class DeviceNameType extends PrimitiveCode {
     const castInput = input as DeviceNameType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "DeviceNameType";
   }
-  
+
+  public clone(): DeviceNameType {
+    const result = new DeviceNameType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "DeviceNameType";
   }

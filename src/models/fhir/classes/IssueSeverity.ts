@@ -22,7 +22,16 @@ export class IssueSeverity extends PrimitiveCode {
     const castInput = input as IssueSeverity;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "IssueSeverity";
   }
-  
+
+  public clone(): IssueSeverity {
+    const result = new IssueSeverity();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "IssueSeverity";
   }

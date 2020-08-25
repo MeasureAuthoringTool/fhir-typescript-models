@@ -22,10 +22,10 @@ export class MedicinalProductPackagedBatchIdentifier extends BackboneElement {
   ): MedicinalProductPackagedBatchIdentifier {
     const newInstance: MedicinalProductPackagedBatchIdentifier = BackboneElement.parse(json, providedInstance);
   
-    if (json.outerPackaging) {
+    if (json.outerPackaging !== undefined) {
       newInstance.outerPackaging = Identifier.parse(json.outerPackaging);
     }
-    if (json.immediatePackaging) {
+    if (json.immediatePackaging !== undefined) {
       newInstance.immediatePackaging = Identifier.parse(json.immediatePackaging);
     }
     return newInstance;
@@ -49,7 +49,11 @@ export class MedicinalProductPackagedBatchIdentifier extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductPackagedBatchIdentifier {
+    return MedicinalProductPackagedBatchIdentifier.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductPackagedBatchIdentifier";
   }

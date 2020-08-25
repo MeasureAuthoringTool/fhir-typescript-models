@@ -84,82 +84,82 @@ export class Device extends DomainResource {
   ): Device {
     const newInstance: Device = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.definition) {
+    if (json.definition !== undefined) {
       newInstance.definition = Reference.parse(json.definition);
     }
-    if (json.udiCarrier) {
+    if (json.udiCarrier !== undefined) {
       newInstance.udiCarrier = json.udiCarrier.map((x) => DeviceUdiCarrier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = FHIRDeviceStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.statusReason) {
+    if (json.statusReason !== undefined) {
       newInstance.statusReason = json.statusReason.map((x) => CodeableConcept.parse(x));
     }
-    if (json.distinctIdentifier) {
+    if (json.distinctIdentifier !== undefined) {
       newInstance.distinctIdentifier = PrimitiveString.parsePrimitive(json.distinctIdentifier, json._distinctIdentifier);
     }
-    if (json.manufacturer) {
+    if (json.manufacturer !== undefined) {
       newInstance.manufacturer = PrimitiveString.parsePrimitive(json.manufacturer, json._manufacturer);
     }
-    if (json.manufactureDate) {
+    if (json.manufactureDate !== undefined) {
       newInstance.manufactureDate = PrimitiveDateTime.parsePrimitive(json.manufactureDate, json._manufactureDate);
     }
-    if (json.expirationDate) {
+    if (json.expirationDate !== undefined) {
       newInstance.expirationDate = PrimitiveDateTime.parsePrimitive(json.expirationDate, json._expirationDate);
     }
-    if (json.lotNumber) {
+    if (json.lotNumber !== undefined) {
       newInstance.lotNumber = PrimitiveString.parsePrimitive(json.lotNumber, json._lotNumber);
     }
-    if (json.serialNumber) {
+    if (json.serialNumber !== undefined) {
       newInstance.serialNumber = PrimitiveString.parsePrimitive(json.serialNumber, json._serialNumber);
     }
-    if (json.deviceName) {
+    if (json.deviceName !== undefined) {
       newInstance.deviceName = json.deviceName.map((x) => DeviceDeviceName.parse(x));
     }
-    if (json.modelNumber) {
+    if (json.modelNumber !== undefined) {
       newInstance.modelNumber = PrimitiveString.parsePrimitive(json.modelNumber, json._modelNumber);
     }
-    if (json.partNumber) {
+    if (json.partNumber !== undefined) {
       newInstance.partNumber = PrimitiveString.parsePrimitive(json.partNumber, json._partNumber);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.specialization) {
+    if (json.specialization !== undefined) {
       newInstance.specialization = json.specialization.map((x) => DeviceSpecialization.parse(x));
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = json.version.map((x) => DeviceVersion.parse(x));
     }
-    if (json.property) {
+    if (json.property !== undefined) {
       newInstance.property = json.property.map((x) => DeviceProperty.parse(x));
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.owner) {
+    if (json.owner !== undefined) {
       newInstance.owner = Reference.parse(json.owner);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactPoint.parse(x));
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = Reference.parse(json.location);
     }
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.safety) {
+    if (json.safety !== undefined) {
       newInstance.safety = json.safety.map((x) => CodeableConcept.parse(x));
     }
-    if (json.parent) {
+    if (json.parent !== undefined) {
       newInstance.parent = Reference.parse(json.parent);
     }
     return newInstance;
@@ -289,7 +289,11 @@ export class Device extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Device {
+    return Device.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Device";
   }

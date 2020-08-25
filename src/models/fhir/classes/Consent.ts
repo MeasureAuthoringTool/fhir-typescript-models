@@ -53,46 +53,46 @@ export class Consent extends DomainResource {
   ): Consent {
     const newInstance: Consent = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ConsentState.parsePrimitive(json.status, json._status);
     }
-    if (json.scope) {
+    if (json.scope !== undefined) {
       newInstance.scope = CodeableConcept.parse(json.scope);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.dateTime) {
+    if (json.dateTime !== undefined) {
       newInstance.dateTime = PrimitiveDateTime.parsePrimitive(json.dateTime, json._dateTime);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = json.performer.map((x) => Reference.parse(x));
     }
-    if (json.organization) {
+    if (json.organization !== undefined) {
       newInstance.organization = json.organization.map((x) => Reference.parse(x));
     }
-    if (json.sourceAttachment) {
+    if (json.sourceAttachment !== undefined) {
       newInstance.source = Attachment.parse(json.sourceAttachment);
     }
-    if (json.sourceReference) {
+    if (json.sourceReference !== undefined) {
       newInstance.source = Reference.parse(json.sourceReference);
     }
-    if (json.policy) {
+    if (json.policy !== undefined) {
       newInstance.policy = json.policy.map((x) => ConsentPolicy.parse(x));
     }
-    if (json.policyRule) {
+    if (json.policyRule !== undefined) {
       newInstance.policyRule = CodeableConcept.parse(json.policyRule);
     }
-    if (json.verification) {
+    if (json.verification !== undefined) {
       newInstance.verification = json.verification.map((x) => ConsentVerification.parse(x));
     }
-    if (json.provision) {
+    if (json.provision !== undefined) {
       newInstance.provision = ConsentProvision.parse(json.provision);
     }
     return newInstance;
@@ -166,7 +166,11 @@ export class Consent extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Consent {
+    return Consent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Consent";
   }

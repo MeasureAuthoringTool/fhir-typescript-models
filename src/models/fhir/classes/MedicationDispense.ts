@@ -76,82 +76,82 @@ export class MedicationDispense extends DomainResource {
   ): MedicationDispense {
     const newInstance: MedicationDispense = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = json.partOf.map((x) => Reference.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = MedicationDispenseStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.statusReasonCodeableConcept) {
+    if (json.statusReasonCodeableConcept !== undefined) {
       newInstance.statusReason = CodeableConcept.parse(json.statusReasonCodeableConcept);
     }
-    if (json.statusReasonReference) {
+    if (json.statusReasonReference !== undefined) {
       newInstance.statusReason = Reference.parse(json.statusReasonReference);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.medicationCodeableConcept) {
+    if (json.medicationCodeableConcept !== undefined) {
       newInstance.medication = CodeableConcept.parse(json.medicationCodeableConcept);
     }
-    if (json.medicationReference) {
+    if (json.medicationReference !== undefined) {
       newInstance.medication = Reference.parse(json.medicationReference);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.context) {
+    if (json.context !== undefined) {
       newInstance.context = Reference.parse(json.context);
     }
-    if (json.supportingInformation) {
+    if (json.supportingInformation !== undefined) {
       newInstance.supportingInformation = json.supportingInformation.map((x) => Reference.parse(x));
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = json.performer.map((x) => MedicationDispensePerformer.parse(x));
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = Reference.parse(json.location);
     }
-    if (json.authorizingPrescription) {
+    if (json.authorizingPrescription !== undefined) {
       newInstance.authorizingPrescription = json.authorizingPrescription.map((x) => Reference.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.daysSupply) {
+    if (json.daysSupply !== undefined) {
       newInstance.daysSupply = SimpleQuantity.parse(json.daysSupply);
     }
-    if (json.whenPrepared) {
+    if (json.whenPrepared !== undefined) {
       newInstance.whenPrepared = PrimitiveDateTime.parsePrimitive(json.whenPrepared, json._whenPrepared);
     }
-    if (json.whenHandedOver) {
+    if (json.whenHandedOver !== undefined) {
       newInstance.whenHandedOver = PrimitiveDateTime.parsePrimitive(json.whenHandedOver, json._whenHandedOver);
     }
-    if (json.destination) {
+    if (json.destination !== undefined) {
       newInstance.destination = Reference.parse(json.destination);
     }
-    if (json.receiver) {
+    if (json.receiver !== undefined) {
       newInstance.receiver = json.receiver.map((x) => Reference.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.dosageInstruction) {
+    if (json.dosageInstruction !== undefined) {
       newInstance.dosageInstruction = json.dosageInstruction.map((x) => Dosage.parse(x));
     }
-    if (json.substitution) {
+    if (json.substitution !== undefined) {
       newInstance.substitution = MedicationDispenseSubstitution.parse(json.substitution);
     }
-    if (json.detectedIssue) {
+    if (json.detectedIssue !== undefined) {
       newInstance.detectedIssue = json.detectedIssue.map((x) => Reference.parse(x));
     }
-    if (json.eventHistory) {
+    if (json.eventHistory !== undefined) {
       newInstance.eventHistory = json.eventHistory.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -274,7 +274,11 @@ export class MedicationDispense extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicationDispense {
+    return MedicationDispense.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationDispense";
   }

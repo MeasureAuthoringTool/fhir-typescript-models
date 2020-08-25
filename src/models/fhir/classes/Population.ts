@@ -27,19 +27,19 @@ export class Population extends BackboneElement {
   ): Population {
     const newInstance: Population = BackboneElement.parse(json, providedInstance);
   
-    if (json.ageRange) {
+    if (json.ageRange !== undefined) {
       newInstance.age = Range.parse(json.ageRange);
     }
-    if (json.ageCodeableConcept) {
+    if (json.ageCodeableConcept !== undefined) {
       newInstance.age = CodeableConcept.parse(json.ageCodeableConcept);
     }
-    if (json.gender) {
+    if (json.gender !== undefined) {
       newInstance.gender = CodeableConcept.parse(json.gender);
     }
-    if (json.race) {
+    if (json.race !== undefined) {
       newInstance.race = CodeableConcept.parse(json.race);
     }
-    if (json.physiologicalCondition) {
+    if (json.physiologicalCondition !== undefined) {
       newInstance.physiologicalCondition = CodeableConcept.parse(json.physiologicalCondition);
     }
     return newInstance;
@@ -75,7 +75,11 @@ export class Population extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): Population {
+    return Population.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Population";
   }

@@ -36,28 +36,28 @@ export class TriggerDefinition extends Element {
   ): TriggerDefinition {
     const newInstance: TriggerDefinition = Element.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = TriggerType.parsePrimitive(json.type, json._type);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.timingTiming) {
+    if (json.timingTiming !== undefined) {
       newInstance.timing = Timing.parse(json.timingTiming);
     }
-    if (json.timingReference) {
+    if (json.timingReference !== undefined) {
       newInstance.timing = Reference.parse(json.timingReference);
     }
-    if (json.timingDate) {
+    if (json.timingDate !== undefined) {
       newInstance.timing = PrimitiveDate.parsePrimitive(json.timingDate, json._timingDate);
     }
-    if (json.timingDateTime) {
+    if (json.timingDateTime !== undefined) {
       newInstance.timing = PrimitiveDateTime.parsePrimitive(json.timingDateTime, json._timingDateTime);
     }
-    if (json.data) {
+    if (json.data !== undefined) {
       newInstance.data = json.data.map((x) => DataRequirement.parse(x));
     }
-    if (json.condition) {
+    if (json.condition !== undefined) {
       newInstance.condition = Expression.parse(json.condition);
     }
     return newInstance;
@@ -109,7 +109,11 @@ export class TriggerDefinition extends Element {
 
     return result;
   }
-  
+
+  public clone(): TriggerDefinition {
+    return TriggerDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TriggerDefinition";
   }

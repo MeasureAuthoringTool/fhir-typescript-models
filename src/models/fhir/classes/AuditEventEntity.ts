@@ -41,31 +41,31 @@ export class AuditEventEntity extends BackboneElement {
   ): AuditEventEntity {
     const newInstance: AuditEventEntity = BackboneElement.parse(json, providedInstance);
   
-    if (json.what) {
+    if (json.what !== undefined) {
       newInstance.what = Reference.parse(json.what);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = Coding.parse(json.type);
     }
-    if (json.role) {
+    if (json.role !== undefined) {
       newInstance.role = Coding.parse(json.role);
     }
-    if (json.lifecycle) {
+    if (json.lifecycle !== undefined) {
       newInstance.lifecycle = Coding.parse(json.lifecycle);
     }
-    if (json.securityLabel) {
+    if (json.securityLabel !== undefined) {
       newInstance.securityLabel = json.securityLabel.map((x) => Coding.parse(x));
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.query) {
+    if (json.query !== undefined) {
       newInstance.query = PrimitiveBase64Binary.parsePrimitive(json.query, json._query);
     }
-    if (json.detail) {
+    if (json.detail !== undefined) {
       newInstance.detail = json.detail.map((x) => AuditEventEntityDetail.parse(x));
     }
     return newInstance;
@@ -120,7 +120,11 @@ export class AuditEventEntity extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): AuditEventEntity {
+    return AuditEventEntity.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AuditEventEntity";
   }

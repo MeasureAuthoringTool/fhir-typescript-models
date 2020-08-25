@@ -68,64 +68,64 @@ export class ImagingStudy extends DomainResource {
   ): ImagingStudy {
     const newInstance: ImagingStudy = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ImagingStudyStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.modality) {
+    if (json.modality !== undefined) {
       newInstance.modality = json.modality.map((x) => Coding.parse(x));
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.started) {
+    if (json.started !== undefined) {
       newInstance.started = PrimitiveDateTime.parsePrimitive(json.started, json._started);
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.referrer) {
+    if (json.referrer !== undefined) {
       newInstance.referrer = Reference.parse(json.referrer);
     }
-    if (json.interpreter) {
+    if (json.interpreter !== undefined) {
       newInstance.interpreter = json.interpreter.map((x) => Reference.parse(x));
     }
-    if (json.endpoint) {
+    if (json.endpoint !== undefined) {
       newInstance.endpoint = json.endpoint.map((x) => Reference.parse(x));
     }
-    if (json.numberOfSeries) {
+    if (json.numberOfSeries !== undefined) {
       newInstance.numberOfSeries = PrimitiveUnsignedInt.parsePrimitive(json.numberOfSeries, json._numberOfSeries);
     }
-    if (json.numberOfInstances) {
+    if (json.numberOfInstances !== undefined) {
       newInstance.numberOfInstances = PrimitiveUnsignedInt.parsePrimitive(json.numberOfInstances, json._numberOfInstances);
     }
-    if (json.procedureReference) {
+    if (json.procedureReference !== undefined) {
       newInstance.procedureReference = Reference.parse(json.procedureReference);
     }
-    if (json.procedureCode) {
+    if (json.procedureCode !== undefined) {
       newInstance.procedureCode = json.procedureCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = Reference.parse(json.location);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.series) {
+    if (json.series !== undefined) {
       newInstance.series = json.series.map((x) => ImagingStudySeries.parse(x));
     }
     return newInstance;
@@ -226,7 +226,11 @@ export class ImagingStudy extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ImagingStudy {
+    return ImagingStudy.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImagingStudy";
   }

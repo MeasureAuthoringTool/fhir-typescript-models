@@ -61,58 +61,58 @@ export class RiskAssessment extends DomainResource {
   ): RiskAssessment {
     const newInstance: RiskAssessment = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = Reference.parse(json.basedOn);
     }
-    if (json.parent) {
+    if (json.parent !== undefined) {
       newInstance.parent = Reference.parse(json.parent);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = RiskAssessmentStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.method) {
+    if (json.method !== undefined) {
       newInstance.method = CodeableConcept.parse(json.method);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.occurrenceDateTime) {
+    if (json.occurrenceDateTime !== undefined) {
       newInstance.occurrence = PrimitiveDateTime.parsePrimitive(json.occurrenceDateTime, json._occurrenceDateTime);
     }
-    if (json.occurrencePeriod) {
+    if (json.occurrencePeriod !== undefined) {
       newInstance.occurrence = Period.parse(json.occurrencePeriod);
     }
-    if (json.condition) {
+    if (json.condition !== undefined) {
       newInstance.condition = Reference.parse(json.condition);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = Reference.parse(json.performer);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.basis) {
+    if (json.basis !== undefined) {
       newInstance.basis = json.basis.map((x) => Reference.parse(x));
     }
-    if (json.prediction) {
+    if (json.prediction !== undefined) {
       newInstance.prediction = json.prediction.map((x) => RiskAssessmentPrediction.parse(x));
     }
-    if (json.mitigation) {
+    if (json.mitigation !== undefined) {
       newInstance.mitigation = PrimitiveString.parsePrimitive(json.mitigation, json._mitigation);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -203,7 +203,11 @@ export class RiskAssessment extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): RiskAssessment {
+    return RiskAssessment.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "RiskAssessment";
   }

@@ -24,10 +24,10 @@ export class BundleEntrySearch extends BackboneElement {
   ): BundleEntrySearch {
     const newInstance: BundleEntrySearch = BackboneElement.parse(json, providedInstance);
   
-    if (json.mode) {
+    if (json.mode !== undefined) {
       newInstance.mode = SearchEntryMode.parsePrimitive(json.mode, json._mode);
     }
-    if (json.score) {
+    if (json.score !== undefined) {
       newInstance.score = PrimitiveDecimal.parsePrimitive(json.score, json._score);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class BundleEntrySearch extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): BundleEntrySearch {
+    return BundleEntrySearch.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "BundleEntrySearch";
   }

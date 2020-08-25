@@ -27,13 +27,13 @@ export class GroupMember extends BackboneElement {
   ): GroupMember {
     const newInstance: GroupMember = BackboneElement.parse(json, providedInstance);
   
-    if (json.entity) {
+    if (json.entity !== undefined) {
       newInstance.entity = Reference.parse(json.entity);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.inactive) {
+    if (json.inactive !== undefined) {
       newInstance.inactive = PrimitiveBoolean.parsePrimitive(json.inactive, json._inactive);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class GroupMember extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): GroupMember {
+    return GroupMember.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "GroupMember";
   }

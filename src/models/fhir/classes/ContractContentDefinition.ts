@@ -35,22 +35,22 @@ export class ContractContentDefinition extends BackboneElement {
   ): ContractContentDefinition {
     const newInstance: ContractContentDefinition = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.subType) {
+    if (json.subType !== undefined) {
       newInstance.subType = CodeableConcept.parse(json.subType);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = Reference.parse(json.publisher);
     }
-    if (json.publicationDate) {
+    if (json.publicationDate !== undefined) {
       newInstance.publicationDate = PrimitiveDateTime.parsePrimitive(json.publicationDate, json._publicationDate);
     }
-    if (json.publicationStatus) {
+    if (json.publicationStatus !== undefined) {
       newInstance.publicationStatus = ContractPublicationStatus.parsePrimitive(json.publicationStatus, json._publicationStatus);
     }
-    if (json.copyright) {
+    if (json.copyright !== undefined) {
       newInstance.copyright = PrimitiveMarkdown.parsePrimitive(json.copyright, json._copyright);
     }
     return newInstance;
@@ -93,7 +93,11 @@ export class ContractContentDefinition extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractContentDefinition {
+    return ContractContentDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractContentDefinition";
   }

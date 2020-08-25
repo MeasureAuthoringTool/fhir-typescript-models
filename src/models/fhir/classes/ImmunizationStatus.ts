@@ -22,7 +22,16 @@ export class ImmunizationStatus extends PrimitiveCode {
     const castInput = input as ImmunizationStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ImmunizationStatus";
   }
-  
+
+  public clone(): ImmunizationStatus {
+    const result = new ImmunizationStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ImmunizationStatus";
   }

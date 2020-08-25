@@ -22,7 +22,16 @@ export class SectionMode extends PrimitiveCode {
     const castInput = input as SectionMode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SectionMode";
   }
-  
+
+  public clone(): SectionMode {
+    const result = new SectionMode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SectionMode";
   }

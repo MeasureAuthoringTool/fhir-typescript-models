@@ -23,10 +23,10 @@ export class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies ex
   ): MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies {
     const newInstance: MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.withdrawalPeriod) {
+    if (json.withdrawalPeriod !== undefined) {
       newInstance.withdrawalPeriod = json.withdrawalPeriod.map((x) => MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod.parse(x));
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies ex
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies {
+    return MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies";
   }

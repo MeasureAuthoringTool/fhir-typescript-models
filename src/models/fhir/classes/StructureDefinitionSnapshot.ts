@@ -20,7 +20,7 @@ export class StructureDefinitionSnapshot extends BackboneElement {
   ): StructureDefinitionSnapshot {
     const newInstance: StructureDefinitionSnapshot = BackboneElement.parse(json, providedInstance);
   
-    if (json.element) {
+    if (json.element !== undefined) {
       newInstance.element = json.element.map((x) => ElementDefinition.parse(x));
     }
     return newInstance;
@@ -40,7 +40,11 @@ export class StructureDefinitionSnapshot extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): StructureDefinitionSnapshot {
+    return StructureDefinitionSnapshot.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "StructureDefinitionSnapshot";
   }

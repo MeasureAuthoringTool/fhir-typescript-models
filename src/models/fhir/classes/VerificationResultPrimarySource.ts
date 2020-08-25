@@ -35,25 +35,25 @@ export class VerificationResultPrimarySource extends BackboneElement {
   ): VerificationResultPrimarySource {
     const newInstance: VerificationResultPrimarySource = BackboneElement.parse(json, providedInstance);
   
-    if (json.who) {
+    if (json.who !== undefined) {
       newInstance.who = Reference.parse(json.who);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.communicationMethod) {
+    if (json.communicationMethod !== undefined) {
       newInstance.communicationMethod = json.communicationMethod.map((x) => CodeableConcept.parse(x));
     }
-    if (json.validationStatus) {
+    if (json.validationStatus !== undefined) {
       newInstance.validationStatus = CodeableConcept.parse(json.validationStatus);
     }
-    if (json.validationDate) {
+    if (json.validationDate !== undefined) {
       newInstance.validationDate = PrimitiveDateTime.parsePrimitive(json.validationDate, json._validationDate);
     }
-    if (json.canPushUpdates) {
+    if (json.canPushUpdates !== undefined) {
       newInstance.canPushUpdates = CodeableConcept.parse(json.canPushUpdates);
     }
-    if (json.pushTypeAvailable) {
+    if (json.pushTypeAvailable !== undefined) {
       newInstance.pushTypeAvailable = json.pushTypeAvailable.map((x) => CodeableConcept.parse(x));
     }
     return newInstance;
@@ -98,7 +98,11 @@ export class VerificationResultPrimarySource extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): VerificationResultPrimarySource {
+    return VerificationResultPrimarySource.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "VerificationResultPrimarySource";
   }

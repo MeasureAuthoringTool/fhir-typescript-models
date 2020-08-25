@@ -24,10 +24,10 @@ export class MedicationKnowledgeRegulatorySubstitution extends BackboneElement {
   ): MedicationKnowledgeRegulatorySubstitution {
     const newInstance: MedicationKnowledgeRegulatorySubstitution = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.allowed) {
+    if (json.allowed !== undefined) {
       newInstance.allowed = PrimitiveBoolean.parsePrimitive(json.allowed, json._allowed);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class MedicationKnowledgeRegulatorySubstitution extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationKnowledgeRegulatorySubstitution {
+    return MedicationKnowledgeRegulatorySubstitution.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationKnowledgeRegulatorySubstitution";
   }

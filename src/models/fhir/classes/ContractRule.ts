@@ -21,10 +21,10 @@ export class ContractRule extends BackboneElement {
   ): ContractRule {
     const newInstance: ContractRule = BackboneElement.parse(json, providedInstance);
   
-    if (json.contentAttachment) {
+    if (json.contentAttachment !== undefined) {
       newInstance.content = Attachment.parse(json.contentAttachment);
     }
-    if (json.contentReference) {
+    if (json.contentReference !== undefined) {
       newInstance.content = Reference.parse(json.contentReference);
     }
     return newInstance;
@@ -48,7 +48,11 @@ export class ContractRule extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractRule {
+    return ContractRule.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractRule";
   }

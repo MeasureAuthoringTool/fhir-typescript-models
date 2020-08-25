@@ -31,19 +31,19 @@ export class MarketingStatus extends BackboneElement {
   ): MarketingStatus {
     const newInstance: MarketingStatus = BackboneElement.parse(json, providedInstance);
   
-    if (json.country) {
+    if (json.country !== undefined) {
       newInstance.country = CodeableConcept.parse(json.country);
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = CodeableConcept.parse(json.jurisdiction);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CodeableConcept.parse(json.status);
     }
-    if (json.dateRange) {
+    if (json.dateRange !== undefined) {
       newInstance.dateRange = Period.parse(json.dateRange);
     }
-    if (json.restoreDate) {
+    if (json.restoreDate !== undefined) {
       newInstance.restoreDate = PrimitiveDateTime.parsePrimitive(json.restoreDate, json._restoreDate);
     }
     return newInstance;
@@ -80,7 +80,11 @@ export class MarketingStatus extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MarketingStatus {
+    return MarketingStatus.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MarketingStatus";
   }

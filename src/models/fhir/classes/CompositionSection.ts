@@ -43,34 +43,34 @@ export class CompositionSection extends BackboneElement {
   ): CompositionSection {
     const newInstance: CompositionSection = BackboneElement.parse(json, providedInstance);
   
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = json.author.map((x) => Reference.parse(x));
     }
-    if (json.focus) {
+    if (json.focus !== undefined) {
       newInstance.focus = Reference.parse(json.focus);
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = Narrative.parse(json.text);
     }
-    if (json.mode) {
+    if (json.mode !== undefined) {
       newInstance.mode = SectionMode.parsePrimitive(json.mode, json._mode);
     }
-    if (json.orderedBy) {
+    if (json.orderedBy !== undefined) {
       newInstance.orderedBy = CodeableConcept.parse(json.orderedBy);
     }
-    if (json.entry) {
+    if (json.entry !== undefined) {
       newInstance.entry = json.entry.map((x) => Reference.parse(x));
     }
-    if (json.emptyReason) {
+    if (json.emptyReason !== undefined) {
       newInstance.emptyReason = CodeableConcept.parse(json.emptyReason);
     }
-    if (json.section) {
+    if (json.section !== undefined) {
       newInstance.section = json.section.map((x) => CompositionSection.parse(x));
     }
     return newInstance;
@@ -128,7 +128,11 @@ export class CompositionSection extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CompositionSection {
+    return CompositionSection.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CompositionSection";
   }

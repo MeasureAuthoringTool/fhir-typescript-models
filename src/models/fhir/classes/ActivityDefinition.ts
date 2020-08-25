@@ -136,166 +136,166 @@ export class ActivityDefinition extends DomainResource {
   ): ActivityDefinition {
     const newInstance: ActivityDefinition = DomainResource.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.subtitle) {
+    if (json.subtitle !== undefined) {
       newInstance.subtitle = PrimitiveString.parsePrimitive(json.subtitle, json._subtitle);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.experimental) {
+    if (json.experimental !== undefined) {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
-    if (json.subjectCodeableConcept) {
+    if (json.subjectCodeableConcept !== undefined) {
       newInstance.subject = CodeableConcept.parse(json.subjectCodeableConcept);
     }
-    if (json.subjectReference) {
+    if (json.subjectReference !== undefined) {
       newInstance.subject = Reference.parse(json.subjectReference);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = PrimitiveMarkdown.parsePrimitive(json.purpose, json._purpose);
     }
-    if (json.usage) {
+    if (json.usage !== undefined) {
       newInstance.usage = PrimitiveString.parsePrimitive(json.usage, json._usage);
     }
-    if (json.copyright) {
+    if (json.copyright !== undefined) {
       newInstance.copyright = PrimitiveMarkdown.parsePrimitive(json.copyright, json._copyright);
     }
-    if (json.approvalDate) {
+    if (json.approvalDate !== undefined) {
       newInstance.approvalDate = PrimitiveDate.parsePrimitive(json.approvalDate, json._approvalDate);
     }
-    if (json.lastReviewDate) {
+    if (json.lastReviewDate !== undefined) {
       newInstance.lastReviewDate = PrimitiveDate.parsePrimitive(json.lastReviewDate, json._lastReviewDate);
     }
-    if (json.effectivePeriod) {
+    if (json.effectivePeriod !== undefined) {
       newInstance.effectivePeriod = Period.parse(json.effectivePeriod);
     }
-    if (json.topic) {
+    if (json.topic !== undefined) {
       newInstance.topic = json.topic.map((x) => CodeableConcept.parse(x));
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = json.author.map((x) => ContactDetail.parse(x));
     }
-    if (json.editor) {
+    if (json.editor !== undefined) {
       newInstance.editor = json.editor.map((x) => ContactDetail.parse(x));
     }
-    if (json.reviewer) {
+    if (json.reviewer !== undefined) {
       newInstance.reviewer = json.reviewer.map((x) => ContactDetail.parse(x));
     }
-    if (json.endorser) {
+    if (json.endorser !== undefined) {
       newInstance.endorser = json.endorser.map((x) => ContactDetail.parse(x));
     }
-    if (json.relatedArtifact) {
+    if (json.relatedArtifact !== undefined) {
       newInstance.relatedArtifact = json.relatedArtifact.map((x) => RelatedArtifact.parse(x));
     }
-    if (json.library) {
+    if (json.library !== undefined) {
       newInstance.library = json.library.map((x, i) => {
         const ext = json._library && json._library[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.kind) {
+    if (json.kind !== undefined) {
       newInstance.kind = ActivityDefinitionKind.parsePrimitive(json.kind, json._kind);
     }
-    if (json.profile) {
+    if (json.profile !== undefined) {
       newInstance.profile = PrimitiveCanonical.parsePrimitive(json.profile, json._profile);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.intent) {
+    if (json.intent !== undefined) {
       newInstance.intent = RequestIntent.parsePrimitive(json.intent, json._intent);
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = RequestPriority.parsePrimitive(json.priority, json._priority);
     }
-    if (json.doNotPerform) {
+    if (json.doNotPerform !== undefined) {
       newInstance.doNotPerform = PrimitiveBoolean.parsePrimitive(json.doNotPerform, json._doNotPerform);
     }
-    if (json.timingTiming) {
+    if (json.timingTiming !== undefined) {
       newInstance.timing = Timing.parse(json.timingTiming);
     }
-    if (json.timingDateTime) {
+    if (json.timingDateTime !== undefined) {
       newInstance.timing = PrimitiveDateTime.parsePrimitive(json.timingDateTime, json._timingDateTime);
     }
-    if (json.timingAge) {
+    if (json.timingAge !== undefined) {
       newInstance.timing = Age.parse(json.timingAge);
     }
-    if (json.timingPeriod) {
+    if (json.timingPeriod !== undefined) {
       newInstance.timing = Period.parse(json.timingPeriod);
     }
-    if (json.timingRange) {
+    if (json.timingRange !== undefined) {
       newInstance.timing = Range.parse(json.timingRange);
     }
-    if (json.timingDuration) {
+    if (json.timingDuration !== undefined) {
       newInstance.timing = Duration.parse(json.timingDuration);
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = Reference.parse(json.location);
     }
-    if (json.participant) {
+    if (json.participant !== undefined) {
       newInstance.participant = json.participant.map((x) => ActivityDefinitionParticipant.parse(x));
     }
-    if (json.productReference) {
+    if (json.productReference !== undefined) {
       newInstance.product = Reference.parse(json.productReference);
     }
-    if (json.productCodeableConcept) {
+    if (json.productCodeableConcept !== undefined) {
       newInstance.product = CodeableConcept.parse(json.productCodeableConcept);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.dosage) {
+    if (json.dosage !== undefined) {
       newInstance.dosage = json.dosage.map((x) => Dosage.parse(x));
     }
-    if (json.bodySite) {
+    if (json.bodySite !== undefined) {
       newInstance.bodySite = json.bodySite.map((x) => CodeableConcept.parse(x));
     }
-    if (json.specimenRequirement) {
+    if (json.specimenRequirement !== undefined) {
       newInstance.specimenRequirement = json.specimenRequirement.map((x) => Reference.parse(x));
     }
-    if (json.observationRequirement) {
+    if (json.observationRequirement !== undefined) {
       newInstance.observationRequirement = json.observationRequirement.map((x) => Reference.parse(x));
     }
-    if (json.observationResultRequirement) {
+    if (json.observationResultRequirement !== undefined) {
       newInstance.observationResultRequirement = json.observationResultRequirement.map((x) => Reference.parse(x));
     }
-    if (json.transform) {
+    if (json.transform !== undefined) {
       newInstance.transform = PrimitiveCanonical.parsePrimitive(json.transform, json._transform);
     }
-    if (json.dynamicValue) {
+    if (json.dynamicValue !== undefined) {
       newInstance.dynamicValue = json.dynamicValue.map((x) => ActivityDefinitionDynamicValue.parse(x));
     }
     return newInstance;
@@ -546,7 +546,11 @@ export class ActivityDefinition extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ActivityDefinition {
+    return ActivityDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ActivityDefinition";
   }

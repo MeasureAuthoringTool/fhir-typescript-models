@@ -22,7 +22,16 @@ export class RequestStatus extends PrimitiveCode {
     const castInput = input as RequestStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "RequestStatus";
   }
-  
+
+  public clone(): RequestStatus {
+    const result = new RequestStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "RequestStatus";
   }

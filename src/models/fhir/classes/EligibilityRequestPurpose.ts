@@ -22,7 +22,16 @@ export class EligibilityRequestPurpose extends PrimitiveCode {
     const castInput = input as EligibilityRequestPurpose;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "EligibilityRequestPurpose";
   }
-  
+
+  public clone(): EligibilityRequestPurpose {
+    const result = new EligibilityRequestPurpose();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "EligibilityRequestPurpose";
   }

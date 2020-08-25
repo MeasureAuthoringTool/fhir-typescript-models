@@ -25,13 +25,13 @@ export class SubstanceReferenceInformationGene extends BackboneElement {
   ): SubstanceReferenceInformationGene {
     const newInstance: SubstanceReferenceInformationGene = BackboneElement.parse(json, providedInstance);
   
-    if (json.geneSequenceOrigin) {
+    if (json.geneSequenceOrigin !== undefined) {
       newInstance.geneSequenceOrigin = CodeableConcept.parse(json.geneSequenceOrigin);
     }
-    if (json.gene) {
+    if (json.gene !== undefined) {
       newInstance.gene = CodeableConcept.parse(json.gene);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = json.source.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -59,7 +59,11 @@ export class SubstanceReferenceInformationGene extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceReferenceInformationGene {
+    return SubstanceReferenceInformationGene.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceReferenceInformationGene";
   }

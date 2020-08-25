@@ -23,13 +23,13 @@ export class OperationDefinitionOverload extends BackboneElement {
   ): OperationDefinitionOverload {
     const newInstance: OperationDefinitionOverload = BackboneElement.parse(json, providedInstance);
   
-    if (json.parameterName) {
+    if (json.parameterName !== undefined) {
       newInstance.parameterName = json.parameterName.map((x, i) => {
         const ext = json._parameterName && json._parameterName[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
     return newInstance;
@@ -55,7 +55,11 @@ export class OperationDefinitionOverload extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): OperationDefinitionOverload {
+    return OperationDefinitionOverload.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "OperationDefinitionOverload";
   }

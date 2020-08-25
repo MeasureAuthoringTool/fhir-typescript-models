@@ -27,13 +27,13 @@ export class CapabilityStatementDocument extends BackboneElement {
   ): CapabilityStatementDocument {
     const newInstance: CapabilityStatementDocument = BackboneElement.parse(json, providedInstance);
   
-    if (json.mode) {
+    if (json.mode !== undefined) {
       newInstance.mode = DocumentMode.parsePrimitive(json.mode, json._mode);
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveMarkdown.parsePrimitive(json.documentation, json._documentation);
     }
-    if (json.profile) {
+    if (json.profile !== undefined) {
       newInstance.profile = PrimitiveCanonical.parsePrimitive(json.profile, json._profile);
     }
     return newInstance;
@@ -64,7 +64,11 @@ export class CapabilityStatementDocument extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatementDocument {
+    return CapabilityStatementDocument.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementDocument";
   }

@@ -27,19 +27,19 @@ export class PlanDefinitionGoalTarget extends BackboneElement {
   ): PlanDefinitionGoalTarget {
     const newInstance: PlanDefinitionGoalTarget = BackboneElement.parse(json, providedInstance);
   
-    if (json.measure) {
+    if (json.measure !== undefined) {
       newInstance.measure = CodeableConcept.parse(json.measure);
     }
-    if (json.detailQuantity) {
+    if (json.detailQuantity !== undefined) {
       newInstance.detail = Quantity.parse(json.detailQuantity);
     }
-    if (json.detailRange) {
+    if (json.detailRange !== undefined) {
       newInstance.detail = Range.parse(json.detailRange);
     }
-    if (json.detailCodeableConcept) {
+    if (json.detailCodeableConcept !== undefined) {
       newInstance.detail = CodeableConcept.parse(json.detailCodeableConcept);
     }
-    if (json.due) {
+    if (json.due !== undefined) {
       newInstance.due = Duration.parse(json.due);
     }
     return newInstance;
@@ -75,7 +75,11 @@ export class PlanDefinitionGoalTarget extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PlanDefinitionGoalTarget {
+    return PlanDefinitionGoalTarget.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PlanDefinitionGoalTarget";
   }

@@ -22,7 +22,16 @@ export class PaymentNoticeStatus extends PrimitiveCode {
     const castInput = input as PaymentNoticeStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PaymentNoticeStatus";
   }
-  
+
+  public clone(): PaymentNoticeStatus {
+    const result = new PaymentNoticeStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PaymentNoticeStatus";
   }

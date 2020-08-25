@@ -22,7 +22,16 @@ export class ActionParticipantType extends PrimitiveCode {
     const castInput = input as ActionParticipantType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ActionParticipantType";
   }
-  
+
+  public clone(): ActionParticipantType {
+    const result = new ActionParticipantType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ActionParticipantType";
   }

@@ -29,16 +29,16 @@ export class PractitionerQualification extends BackboneElement {
   ): PractitionerQualification {
     const newInstance: PractitionerQualification = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.issuer) {
+    if (json.issuer !== undefined) {
       newInstance.issuer = Reference.parse(json.issuer);
     }
     return newInstance;
@@ -70,7 +70,11 @@ export class PractitionerQualification extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PractitionerQualification {
+    return PractitionerQualification.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PractitionerQualification";
   }

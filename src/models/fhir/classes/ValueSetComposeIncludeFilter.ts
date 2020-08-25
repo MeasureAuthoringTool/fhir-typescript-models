@@ -27,13 +27,13 @@ export class ValueSetComposeIncludeFilter extends BackboneElement {
   ): ValueSetComposeIncludeFilter {
     const newInstance: ValueSetComposeIncludeFilter = BackboneElement.parse(json, providedInstance);
   
-    if (json.property) {
+    if (json.property !== undefined) {
       newInstance.property = PrimitiveCode.parsePrimitive(json.property, json._property);
     }
-    if (json.op) {
+    if (json.op !== undefined) {
       newInstance.op = FilterOperator.parsePrimitive(json.op, json._op);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.value, json._value);
     }
     return newInstance;
@@ -64,7 +64,11 @@ export class ValueSetComposeIncludeFilter extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ValueSetComposeIncludeFilter {
+    return ValueSetComposeIncludeFilter.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ValueSetComposeIncludeFilter";
   }

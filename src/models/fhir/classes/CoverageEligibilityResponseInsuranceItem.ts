@@ -52,46 +52,46 @@ export class CoverageEligibilityResponseInsuranceItem extends BackboneElement {
   ): CoverageEligibilityResponseInsuranceItem {
     const newInstance: CoverageEligibilityResponseInsuranceItem = BackboneElement.parse(json, providedInstance);
   
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.productOrService) {
+    if (json.productOrService !== undefined) {
       newInstance.productOrService = CodeableConcept.parse(json.productOrService);
     }
-    if (json.modifier) {
+    if (json.modifier !== undefined) {
       newInstance.modifier = json.modifier.map((x) => CodeableConcept.parse(x));
     }
-    if (json.provider) {
+    if (json.provider !== undefined) {
       newInstance.provider = Reference.parse(json.provider);
     }
-    if (json.excluded) {
+    if (json.excluded !== undefined) {
       newInstance.excluded = PrimitiveBoolean.parsePrimitive(json.excluded, json._excluded);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.network) {
+    if (json.network !== undefined) {
       newInstance.network = CodeableConcept.parse(json.network);
     }
-    if (json.unit) {
+    if (json.unit !== undefined) {
       newInstance.unit = CodeableConcept.parse(json.unit);
     }
-    if (json.term) {
+    if (json.term !== undefined) {
       newInstance.term = CodeableConcept.parse(json.term);
     }
-    if (json.benefit) {
+    if (json.benefit !== undefined) {
       newInstance.benefit = json.benefit.map((x) => CoverageEligibilityResponseInsuranceItemBenefit.parse(x));
     }
-    if (json.authorizationRequired) {
+    if (json.authorizationRequired !== undefined) {
       newInstance.authorizationRequired = PrimitiveBoolean.parsePrimitive(json.authorizationRequired, json._authorizationRequired);
     }
-    if (json.authorizationSupporting) {
+    if (json.authorizationSupporting !== undefined) {
       newInstance.authorizationSupporting = json.authorizationSupporting.map((x) => CodeableConcept.parse(x));
     }
-    if (json.authorizationUrl) {
+    if (json.authorizationUrl !== undefined) {
       newInstance.authorizationUrl = PrimitiveUri.parsePrimitive(json.authorizationUrl, json._authorizationUrl);
     }
     return newInstance;
@@ -168,7 +168,11 @@ export class CoverageEligibilityResponseInsuranceItem extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CoverageEligibilityResponseInsuranceItem {
+    return CoverageEligibilityResponseInsuranceItem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CoverageEligibilityResponseInsuranceItem";
   }

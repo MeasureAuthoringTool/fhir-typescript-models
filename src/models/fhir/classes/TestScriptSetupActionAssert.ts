@@ -71,70 +71,70 @@ export class TestScriptSetupActionAssert extends BackboneElement {
   ): TestScriptSetupActionAssert {
     const newInstance: TestScriptSetupActionAssert = BackboneElement.parse(json, providedInstance);
   
-    if (json.label) {
+    if (json.label !== undefined) {
       newInstance.label = PrimitiveString.parsePrimitive(json.label, json._label);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.direction) {
+    if (json.direction !== undefined) {
       newInstance.direction = AssertionDirectionType.parsePrimitive(json.direction, json._direction);
     }
-    if (json.compareToSourceId) {
+    if (json.compareToSourceId !== undefined) {
       newInstance.compareToSourceId = PrimitiveString.parsePrimitive(json.compareToSourceId, json._compareToSourceId);
     }
-    if (json.compareToSourceExpression) {
+    if (json.compareToSourceExpression !== undefined) {
       newInstance.compareToSourceExpression = PrimitiveString.parsePrimitive(json.compareToSourceExpression, json._compareToSourceExpression);
     }
-    if (json.compareToSourcePath) {
+    if (json.compareToSourcePath !== undefined) {
       newInstance.compareToSourcePath = PrimitiveString.parsePrimitive(json.compareToSourcePath, json._compareToSourcePath);
     }
-    if (json.contentType) {
+    if (json.contentType !== undefined) {
       newInstance.contentType = MimeType.parsePrimitive(json.contentType, json._contentType);
     }
-    if (json.expression) {
+    if (json.expression !== undefined) {
       newInstance.expression = PrimitiveString.parsePrimitive(json.expression, json._expression);
     }
-    if (json.headerField) {
+    if (json.headerField !== undefined) {
       newInstance.headerField = PrimitiveString.parsePrimitive(json.headerField, json._headerField);
     }
-    if (json.minimumId) {
+    if (json.minimumId !== undefined) {
       newInstance.minimumId = PrimitiveString.parsePrimitive(json.minimumId, json._minimumId);
     }
-    if (json.navigationLinks) {
+    if (json.navigationLinks !== undefined) {
       newInstance.navigationLinks = PrimitiveBoolean.parsePrimitive(json.navigationLinks, json._navigationLinks);
     }
-    if (json.operator) {
+    if (json.operator !== undefined) {
       newInstance.operator = AssertionOperatorType.parsePrimitive(json.operator, json._operator);
     }
-    if (json.path) {
+    if (json.path !== undefined) {
       newInstance.path = PrimitiveString.parsePrimitive(json.path, json._path);
     }
-    if (json.requestMethod) {
+    if (json.requestMethod !== undefined) {
       newInstance.requestMethod = TestScriptRequestMethodCode.parsePrimitive(json.requestMethod, json._requestMethod);
     }
-    if (json.requestURL) {
+    if (json.requestURL !== undefined) {
       newInstance.requestURL = PrimitiveString.parsePrimitive(json.requestURL, json._requestURL);
     }
-    if (json.resource) {
+    if (json.resource !== undefined) {
       newInstance.resource = FHIRDefinedType.parsePrimitive(json.resource, json._resource);
     }
-    if (json.response) {
+    if (json.response !== undefined) {
       newInstance.response = AssertionResponseTypes.parsePrimitive(json.response, json._response);
     }
-    if (json.responseCode) {
+    if (json.responseCode !== undefined) {
       newInstance.responseCode = PrimitiveString.parsePrimitive(json.responseCode, json._responseCode);
     }
-    if (json.sourceId) {
+    if (json.sourceId !== undefined) {
       newInstance.sourceId = PrimitiveId.parsePrimitive(json.sourceId, json._sourceId);
     }
-    if (json.validateProfileId) {
+    if (json.validateProfileId !== undefined) {
       newInstance.validateProfileId = PrimitiveId.parsePrimitive(json.validateProfileId, json._validateProfileId);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.value, json._value);
     }
-    if (json.warningOnly) {
+    if (json.warningOnly !== undefined) {
       newInstance.warningOnly = PrimitiveBoolean.parsePrimitive(json.warningOnly, json._warningOnly);
     }
     return newInstance;
@@ -260,7 +260,11 @@ export class TestScriptSetupActionAssert extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TestScriptSetupActionAssert {
+    return TestScriptSetupActionAssert.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestScriptSetupActionAssert";
   }

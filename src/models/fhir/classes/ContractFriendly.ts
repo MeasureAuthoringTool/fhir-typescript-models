@@ -21,10 +21,10 @@ export class ContractFriendly extends BackboneElement {
   ): ContractFriendly {
     const newInstance: ContractFriendly = BackboneElement.parse(json, providedInstance);
   
-    if (json.contentAttachment) {
+    if (json.contentAttachment !== undefined) {
       newInstance.content = Attachment.parse(json.contentAttachment);
     }
-    if (json.contentReference) {
+    if (json.contentReference !== undefined) {
       newInstance.content = Reference.parse(json.contentReference);
     }
     return newInstance;
@@ -48,7 +48,11 @@ export class ContractFriendly extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractFriendly {
+    return ContractFriendly.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractFriendly";
   }

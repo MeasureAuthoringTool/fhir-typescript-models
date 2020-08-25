@@ -22,7 +22,16 @@ export class AdverseEventActuality extends PrimitiveCode {
     const castInput = input as AdverseEventActuality;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "AdverseEventActuality";
   }
-  
+
+  public clone(): AdverseEventActuality {
+    const result = new AdverseEventActuality();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "AdverseEventActuality";
   }

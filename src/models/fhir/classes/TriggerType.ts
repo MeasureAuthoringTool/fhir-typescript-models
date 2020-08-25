@@ -22,7 +22,16 @@ export class TriggerType extends PrimitiveCode {
     const castInput = input as TriggerType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "TriggerType";
   }
-  
+
+  public clone(): TriggerType {
+    const result = new TriggerType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "TriggerType";
   }

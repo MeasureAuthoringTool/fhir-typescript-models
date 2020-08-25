@@ -48,40 +48,40 @@ export class OrganizationAffiliation extends DomainResource {
   ): OrganizationAffiliation {
     const newInstance: OrganizationAffiliation = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.active) {
+    if (json.active !== undefined) {
       newInstance.active = PrimitiveBoolean.parsePrimitive(json.active, json._active);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.organization) {
+    if (json.organization !== undefined) {
       newInstance.organization = Reference.parse(json.organization);
     }
-    if (json.participatingOrganization) {
+    if (json.participatingOrganization !== undefined) {
       newInstance.participatingOrganization = Reference.parse(json.participatingOrganization);
     }
-    if (json.network) {
+    if (json.network !== undefined) {
       newInstance.network = json.network.map((x) => Reference.parse(x));
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = json.code.map((x) => CodeableConcept.parse(x));
     }
-    if (json.specialty) {
+    if (json.specialty !== undefined) {
       newInstance.specialty = json.specialty.map((x) => CodeableConcept.parse(x));
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = json.location.map((x) => Reference.parse(x));
     }
-    if (json.healthcareService) {
+    if (json.healthcareService !== undefined) {
       newInstance.healthcareService = json.healthcareService.map((x) => Reference.parse(x));
     }
-    if (json.telecom) {
+    if (json.telecom !== undefined) {
       newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));
     }
-    if (json.endpoint) {
+    if (json.endpoint !== undefined) {
       newInstance.endpoint = json.endpoint.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -146,7 +146,11 @@ export class OrganizationAffiliation extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): OrganizationAffiliation {
+    return OrganizationAffiliation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "OrganizationAffiliation";
   }

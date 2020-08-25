@@ -24,13 +24,13 @@ export class SubstanceIngredient extends BackboneElement {
   ): SubstanceIngredient {
     const newInstance: SubstanceIngredient = BackboneElement.parse(json, providedInstance);
   
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = Ratio.parse(json.quantity);
     }
-    if (json.substanceCodeableConcept) {
+    if (json.substanceCodeableConcept !== undefined) {
       newInstance.substance = CodeableConcept.parse(json.substanceCodeableConcept);
     }
-    if (json.substanceReference) {
+    if (json.substanceReference !== undefined) {
       newInstance.substance = Reference.parse(json.substanceReference);
     }
     return newInstance;
@@ -58,7 +58,11 @@ export class SubstanceIngredient extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceIngredient {
+    return SubstanceIngredient.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceIngredient";
   }

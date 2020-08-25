@@ -29,16 +29,16 @@ export class ValueSetCompose extends BackboneElement {
   ): ValueSetCompose {
     const newInstance: ValueSetCompose = BackboneElement.parse(json, providedInstance);
   
-    if (json.lockedDate) {
+    if (json.lockedDate !== undefined) {
       newInstance.lockedDate = PrimitiveDate.parsePrimitive(json.lockedDate, json._lockedDate);
     }
-    if (json.inactive) {
+    if (json.inactive !== undefined) {
       newInstance.inactive = PrimitiveBoolean.parsePrimitive(json.inactive, json._inactive);
     }
-    if (json.include) {
+    if (json.include !== undefined) {
       newInstance.include = json.include.map((x) => ValueSetComposeInclude.parse(x));
     }
-    if (json.exclude) {
+    if (json.exclude !== undefined) {
       newInstance.exclude = json.exclude.map((x) => ValueSetComposeInclude.parse(x));
     }
     return newInstance;
@@ -72,7 +72,11 @@ export class ValueSetCompose extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ValueSetCompose {
+    return ValueSetCompose.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ValueSetCompose";
   }

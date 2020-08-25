@@ -26,16 +26,16 @@ export class NutritionOrderEnteralFormulaAdministration extends BackboneElement 
   ): NutritionOrderEnteralFormulaAdministration {
     const newInstance: NutritionOrderEnteralFormulaAdministration = BackboneElement.parse(json, providedInstance);
   
-    if (json.schedule) {
+    if (json.schedule !== undefined) {
       newInstance.schedule = Timing.parse(json.schedule);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.rateSimpleQuantity) {
+    if (json.rateSimpleQuantity !== undefined) {
       newInstance.rate = SimpleQuantity.parse(json.rateSimpleQuantity);
     }
-    if (json.rateRatio) {
+    if (json.rateRatio !== undefined) {
       newInstance.rate = Ratio.parse(json.rateRatio);
     }
     return newInstance;
@@ -67,7 +67,11 @@ export class NutritionOrderEnteralFormulaAdministration extends BackboneElement 
 
     return result;
   }
-  
+
+  public clone(): NutritionOrderEnteralFormulaAdministration {
+    return NutritionOrderEnteralFormulaAdministration.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "NutritionOrderEnteralFormulaAdministration";
   }

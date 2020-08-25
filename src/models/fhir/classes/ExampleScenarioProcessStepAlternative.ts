@@ -27,13 +27,13 @@ export class ExampleScenarioProcessStepAlternative extends BackboneElement {
   ): ExampleScenarioProcessStepAlternative {
     const newInstance: ExampleScenarioProcessStepAlternative = BackboneElement.parse(json, providedInstance);
   
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.step) {
+    if (json.step !== undefined) {
       newInstance.step = json.step.map((x) => ExampleScenarioProcessStep.parse(x));
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class ExampleScenarioProcessStepAlternative extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExampleScenarioProcessStepAlternative {
+    return ExampleScenarioProcessStepAlternative.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExampleScenarioProcessStepAlternative";
   }

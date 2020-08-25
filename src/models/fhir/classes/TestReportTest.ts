@@ -26,13 +26,13 @@ export class TestReportTest extends BackboneElement {
   ): TestReportTest {
     const newInstance: TestReportTest = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.action) {
+    if (json.action !== undefined) {
       newInstance.action = json.action.map((x) => TestReportTestAction.parse(x));
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class TestReportTest extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TestReportTest {
+    return TestReportTest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestReportTest";
   }

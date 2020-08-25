@@ -22,7 +22,16 @@ export class LocationMode extends PrimitiveCode {
     const castInput = input as LocationMode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "LocationMode";
   }
-  
+
+  public clone(): LocationMode {
+    const result = new LocationMode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "LocationMode";
   }

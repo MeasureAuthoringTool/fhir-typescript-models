@@ -22,7 +22,16 @@ export class ConsentDataMeaning extends PrimitiveCode {
     const castInput = input as ConsentDataMeaning;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ConsentDataMeaning";
   }
-  
+
+  public clone(): ConsentDataMeaning {
+    const result = new ConsentDataMeaning();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ConsentDataMeaning";
   }

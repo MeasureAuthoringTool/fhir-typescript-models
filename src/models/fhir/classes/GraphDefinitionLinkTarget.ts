@@ -33,19 +33,19 @@ export class GraphDefinitionLinkTarget extends BackboneElement {
   ): GraphDefinitionLinkTarget {
     const newInstance: GraphDefinitionLinkTarget = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = ResourceType.parsePrimitive(json.type, json._type);
     }
-    if (json.params) {
+    if (json.params !== undefined) {
       newInstance.params = PrimitiveString.parsePrimitive(json.params, json._params);
     }
-    if (json.profile) {
+    if (json.profile !== undefined) {
       newInstance.profile = PrimitiveCanonical.parsePrimitive(json.profile, json._profile);
     }
-    if (json.compartment) {
+    if (json.compartment !== undefined) {
       newInstance.compartment = json.compartment.map((x) => GraphDefinitionLinkTargetCompartment.parse(x));
     }
-    if (json.link) {
+    if (json.link !== undefined) {
       newInstance.link = json.link.map((x) => GraphDefinitionLink.parse(x));
     }
     return newInstance;
@@ -84,7 +84,11 @@ export class GraphDefinitionLinkTarget extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): GraphDefinitionLinkTarget {
+    return GraphDefinitionLinkTarget.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "GraphDefinitionLinkTarget";
   }

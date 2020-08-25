@@ -28,16 +28,16 @@ export class ImplementationGuideManifestResource extends BackboneElement {
   ): ImplementationGuideManifestResource {
     const newInstance: ImplementationGuideManifestResource = BackboneElement.parse(json, providedInstance);
   
-    if (json.reference) {
+    if (json.reference !== undefined) {
       newInstance.reference = Reference.parse(json.reference);
     }
-    if (json.exampleBoolean) {
+    if (json.exampleBoolean !== undefined) {
       newInstance.example = PrimitiveBoolean.parsePrimitive(json.exampleBoolean, json._exampleBoolean);
     }
-    if (json.exampleCanonical) {
+    if (json.exampleCanonical !== undefined) {
       newInstance.example = PrimitiveCanonical.parsePrimitive(json.exampleCanonical, json._exampleCanonical);
     }
-    if (json.relativePath) {
+    if (json.relativePath !== undefined) {
       newInstance.relativePath = PrimitiveUrl.parsePrimitive(json.relativePath, json._relativePath);
     }
     return newInstance;
@@ -72,7 +72,11 @@ export class ImplementationGuideManifestResource extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImplementationGuideManifestResource {
+    return ImplementationGuideManifestResource.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImplementationGuideManifestResource";
   }

@@ -26,13 +26,13 @@ export class TestScriptFixture extends BackboneElement {
   ): TestScriptFixture {
     const newInstance: TestScriptFixture = BackboneElement.parse(json, providedInstance);
   
-    if (json.autocreate) {
+    if (json.autocreate !== undefined) {
       newInstance.autocreate = PrimitiveBoolean.parsePrimitive(json.autocreate, json._autocreate);
     }
-    if (json.autodelete) {
+    if (json.autodelete !== undefined) {
       newInstance.autodelete = PrimitiveBoolean.parsePrimitive(json.autodelete, json._autodelete);
     }
-    if (json.resource) {
+    if (json.resource !== undefined) {
       newInstance.resource = Reference.parse(json.resource);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class TestScriptFixture extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TestScriptFixture {
+    return TestScriptFixture.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestScriptFixture";
   }

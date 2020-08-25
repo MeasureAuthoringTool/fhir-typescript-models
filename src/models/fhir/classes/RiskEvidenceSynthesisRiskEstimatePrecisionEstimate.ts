@@ -28,16 +28,16 @@ export class RiskEvidenceSynthesisRiskEstimatePrecisionEstimate extends Backbone
   ): RiskEvidenceSynthesisRiskEstimatePrecisionEstimate {
     const newInstance: RiskEvidenceSynthesisRiskEstimatePrecisionEstimate = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.level) {
+    if (json.level !== undefined) {
       newInstance.level = PrimitiveDecimal.parsePrimitive(json.level, json._level);
     }
-    if (json.from) {
+    if (json.from !== undefined) {
       newInstance.from = PrimitiveDecimal.parsePrimitive(json.from, json._from);
     }
-    if (json.to) {
+    if (json.to !== undefined) {
       newInstance.to = PrimitiveDecimal.parsePrimitive(json.to, json._to);
     }
     return newInstance;
@@ -72,7 +72,11 @@ export class RiskEvidenceSynthesisRiskEstimatePrecisionEstimate extends Backbone
 
     return result;
   }
-  
+
+  public clone(): RiskEvidenceSynthesisRiskEstimatePrecisionEstimate {
+    return RiskEvidenceSynthesisRiskEstimatePrecisionEstimate.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "RiskEvidenceSynthesisRiskEstimatePrecisionEstimate";
   }

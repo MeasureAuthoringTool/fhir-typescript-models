@@ -23,10 +23,10 @@ export class ImplementationGuideDefinitionGrouping extends BackboneElement {
   ): ImplementationGuideDefinitionGrouping {
     const newInstance: ImplementationGuideDefinitionGrouping = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class ImplementationGuideDefinitionGrouping extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImplementationGuideDefinitionGrouping {
+    return ImplementationGuideDefinitionGrouping.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImplementationGuideDefinitionGrouping";
   }

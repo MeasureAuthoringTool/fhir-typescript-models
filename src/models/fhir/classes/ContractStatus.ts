@@ -22,7 +22,16 @@ export class ContractStatus extends PrimitiveCode {
     const castInput = input as ContractStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ContractStatus";
   }
-  
+
+  public clone(): ContractStatus {
+    const result = new ContractStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ContractStatus";
   }

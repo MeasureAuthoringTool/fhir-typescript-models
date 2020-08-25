@@ -57,55 +57,55 @@ export class GuidanceResponse extends DomainResource {
   ): GuidanceResponse {
     const newInstance: GuidanceResponse = DomainResource.parse(json, providedInstance);
   
-    if (json.requestIdentifier) {
+    if (json.requestIdentifier !== undefined) {
       newInstance.requestIdentifier = Identifier.parse(json.requestIdentifier);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.moduleUri) {
+    if (json.moduleUri !== undefined) {
       newInstance.module = PrimitiveUri.parsePrimitive(json.moduleUri, json._moduleUri);
     }
-    if (json.moduleCanonical) {
+    if (json.moduleCanonical !== undefined) {
       newInstance.module = PrimitiveCanonical.parsePrimitive(json.moduleCanonical, json._moduleCanonical);
     }
-    if (json.moduleCodeableConcept) {
+    if (json.moduleCodeableConcept !== undefined) {
       newInstance.module = CodeableConcept.parse(json.moduleCodeableConcept);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = GuidanceResponseStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.occurrenceDateTime) {
+    if (json.occurrenceDateTime !== undefined) {
       newInstance.occurrenceDateTime = PrimitiveDateTime.parsePrimitive(json.occurrenceDateTime, json._occurrenceDateTime);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = Reference.parse(json.performer);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.evaluationMessage) {
+    if (json.evaluationMessage !== undefined) {
       newInstance.evaluationMessage = json.evaluationMessage.map((x) => Reference.parse(x));
     }
-    if (json.outputParameters) {
+    if (json.outputParameters !== undefined) {
       newInstance.outputParameters = Reference.parse(json.outputParameters);
     }
-    if (json.result) {
+    if (json.result !== undefined) {
       newInstance.result = Reference.parse(json.result);
     }
-    if (json.dataRequirement) {
+    if (json.dataRequirement !== undefined) {
       newInstance.dataRequirement = json.dataRequirement.map((x) => DataRequirement.parse(x));
     }
     return newInstance;
@@ -193,7 +193,11 @@ export class GuidanceResponse extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): GuidanceResponse {
+    return GuidanceResponse.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "GuidanceResponse";
   }

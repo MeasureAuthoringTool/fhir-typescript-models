@@ -27,13 +27,13 @@ export class CapabilityStatementImplementation extends BackboneElement {
   ): CapabilityStatementImplementation {
     const newInstance: CapabilityStatementImplementation = BackboneElement.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUrl.parsePrimitive(json.url, json._url);
     }
-    if (json.custodian) {
+    if (json.custodian !== undefined) {
       newInstance.custodian = Reference.parse(json.custodian);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class CapabilityStatementImplementation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatementImplementation {
+    return CapabilityStatementImplementation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementImplementation";
   }

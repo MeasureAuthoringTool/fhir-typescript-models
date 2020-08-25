@@ -30,16 +30,16 @@ export class SubstancePolymerRepeat extends BackboneElement {
   ): SubstancePolymerRepeat {
     const newInstance: SubstancePolymerRepeat = BackboneElement.parse(json, providedInstance);
   
-    if (json.numberOfUnits) {
+    if (json.numberOfUnits !== undefined) {
       newInstance.numberOfUnits = PrimitiveInteger.parsePrimitive(json.numberOfUnits, json._numberOfUnits);
     }
-    if (json.averageMolecularFormula) {
+    if (json.averageMolecularFormula !== undefined) {
       newInstance.averageMolecularFormula = PrimitiveString.parsePrimitive(json.averageMolecularFormula, json._averageMolecularFormula);
     }
-    if (json.repeatUnitAmountType) {
+    if (json.repeatUnitAmountType !== undefined) {
       newInstance.repeatUnitAmountType = CodeableConcept.parse(json.repeatUnitAmountType);
     }
-    if (json.repeatUnit) {
+    if (json.repeatUnit !== undefined) {
       newInstance.repeatUnit = json.repeatUnit.map((x) => SubstancePolymerRepeatRepeatUnit.parse(x));
     }
     return newInstance;
@@ -73,7 +73,11 @@ export class SubstancePolymerRepeat extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstancePolymerRepeat {
+    return SubstancePolymerRepeat.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstancePolymerRepeat";
   }

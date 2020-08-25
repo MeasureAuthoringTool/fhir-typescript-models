@@ -32,19 +32,19 @@ export class ImmunizationRecommendation extends DomainResource {
   ): ImmunizationRecommendation {
     const newInstance: ImmunizationRecommendation = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.authority) {
+    if (json.authority !== undefined) {
       newInstance.authority = Reference.parse(json.authority);
     }
-    if (json.recommendation) {
+    if (json.recommendation !== undefined) {
       newInstance.recommendation = json.recommendation.map((x) => ImmunizationRecommendationRecommendation.parse(x));
     }
     return newInstance;
@@ -81,7 +81,11 @@ export class ImmunizationRecommendation extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ImmunizationRecommendation {
+    return ImmunizationRecommendation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImmunizationRecommendation";
   }

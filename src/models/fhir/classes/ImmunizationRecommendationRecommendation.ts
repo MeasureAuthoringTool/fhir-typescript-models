@@ -47,46 +47,46 @@ export class ImmunizationRecommendationRecommendation extends BackboneElement {
   ): ImmunizationRecommendationRecommendation {
     const newInstance: ImmunizationRecommendationRecommendation = BackboneElement.parse(json, providedInstance);
   
-    if (json.vaccineCode) {
+    if (json.vaccineCode !== undefined) {
       newInstance.vaccineCode = json.vaccineCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.targetDisease) {
+    if (json.targetDisease !== undefined) {
       newInstance.targetDisease = CodeableConcept.parse(json.targetDisease);
     }
-    if (json.contraindicatedVaccineCode) {
+    if (json.contraindicatedVaccineCode !== undefined) {
       newInstance.contraindicatedVaccineCode = json.contraindicatedVaccineCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.forecastStatus) {
+    if (json.forecastStatus !== undefined) {
       newInstance.forecastStatus = CodeableConcept.parse(json.forecastStatus);
     }
-    if (json.forecastReason) {
+    if (json.forecastReason !== undefined) {
       newInstance.forecastReason = json.forecastReason.map((x) => CodeableConcept.parse(x));
     }
-    if (json.dateCriterion) {
+    if (json.dateCriterion !== undefined) {
       newInstance.dateCriterion = json.dateCriterion.map((x) => ImmunizationRecommendationRecommendationDateCriterion.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.series) {
+    if (json.series !== undefined) {
       newInstance.series = PrimitiveString.parsePrimitive(json.series, json._series);
     }
-    if (json.doseNumberPositiveInt) {
+    if (json.doseNumberPositiveInt !== undefined) {
       newInstance.doseNumber = PrimitivePositiveInt.parsePrimitive(json.doseNumberPositiveInt, json._doseNumberPositiveInt);
     }
-    if (json.doseNumberString) {
+    if (json.doseNumberString !== undefined) {
       newInstance.doseNumber = PrimitiveString.parsePrimitive(json.doseNumberString, json._doseNumberString);
     }
-    if (json.seriesDosesPositiveInt) {
+    if (json.seriesDosesPositiveInt !== undefined) {
       newInstance.seriesDoses = PrimitivePositiveInt.parsePrimitive(json.seriesDosesPositiveInt, json._seriesDosesPositiveInt);
     }
-    if (json.seriesDosesString) {
+    if (json.seriesDosesString !== undefined) {
       newInstance.seriesDoses = PrimitiveString.parsePrimitive(json.seriesDosesString, json._seriesDosesString);
     }
-    if (json.supportingImmunization) {
+    if (json.supportingImmunization !== undefined) {
       newInstance.supportingImmunization = json.supportingImmunization.map((x) => Reference.parse(x));
     }
-    if (json.supportingPatientInformation) {
+    if (json.supportingPatientInformation !== undefined) {
       newInstance.supportingPatientInformation = json.supportingPatientInformation.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -164,7 +164,11 @@ export class ImmunizationRecommendationRecommendation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImmunizationRecommendationRecommendation {
+    return ImmunizationRecommendationRecommendation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImmunizationRecommendationRecommendation";
   }

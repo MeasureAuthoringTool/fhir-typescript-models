@@ -24,10 +24,10 @@ export class PaymentReconciliationProcessNote extends BackboneElement {
   ): PaymentReconciliationProcessNote {
     const newInstance: PaymentReconciliationProcessNote = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = NoteType.parsePrimitive(json.type, json._type);
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class PaymentReconciliationProcessNote extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PaymentReconciliationProcessNote {
+    return PaymentReconciliationProcessNote.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PaymentReconciliationProcessNote";
   }

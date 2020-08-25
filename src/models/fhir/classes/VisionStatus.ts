@@ -22,7 +22,16 @@ export class VisionStatus extends PrimitiveCode {
     const castInput = input as VisionStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "VisionStatus";
   }
-  
+
+  public clone(): VisionStatus {
+    const result = new VisionStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "VisionStatus";
   }

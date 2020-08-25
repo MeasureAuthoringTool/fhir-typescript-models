@@ -79,73 +79,73 @@ export class MedicationKnowledge extends DomainResource {
   ): MedicationKnowledge {
     const newInstance: MedicationKnowledge = DomainResource.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = MedicationKnowledgeStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.manufacturer) {
+    if (json.manufacturer !== undefined) {
       newInstance.manufacturer = Reference.parse(json.manufacturer);
     }
-    if (json.doseForm) {
+    if (json.doseForm !== undefined) {
       newInstance.doseForm = CodeableConcept.parse(json.doseForm);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = SimpleQuantity.parse(json.amount);
     }
-    if (json.synonym) {
+    if (json.synonym !== undefined) {
       newInstance.synonym = json.synonym.map((x, i) => {
         const ext = json._synonym && json._synonym[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.relatedMedicationKnowledge) {
+    if (json.relatedMedicationKnowledge !== undefined) {
       newInstance.relatedMedicationKnowledge = json.relatedMedicationKnowledge.map((x) => MedicationKnowledgeRelatedMedicationKnowledge.parse(x));
     }
-    if (json.associatedMedication) {
+    if (json.associatedMedication !== undefined) {
       newInstance.associatedMedication = json.associatedMedication.map((x) => Reference.parse(x));
     }
-    if (json.productType) {
+    if (json.productType !== undefined) {
       newInstance.productType = json.productType.map((x) => CodeableConcept.parse(x));
     }
-    if (json.monograph) {
+    if (json.monograph !== undefined) {
       newInstance.monograph = json.monograph.map((x) => MedicationKnowledgeMonograph.parse(x));
     }
-    if (json.ingredient) {
+    if (json.ingredient !== undefined) {
       newInstance.ingredient = json.ingredient.map((x) => MedicationKnowledgeIngredient.parse(x));
     }
-    if (json.preparationInstruction) {
+    if (json.preparationInstruction !== undefined) {
       newInstance.preparationInstruction = PrimitiveMarkdown.parsePrimitive(json.preparationInstruction, json._preparationInstruction);
     }
-    if (json.intendedRoute) {
+    if (json.intendedRoute !== undefined) {
       newInstance.intendedRoute = json.intendedRoute.map((x) => CodeableConcept.parse(x));
     }
-    if (json.cost) {
+    if (json.cost !== undefined) {
       newInstance.cost = json.cost.map((x) => MedicationKnowledgeCost.parse(x));
     }
-    if (json.monitoringProgram) {
+    if (json.monitoringProgram !== undefined) {
       newInstance.monitoringProgram = json.monitoringProgram.map((x) => MedicationKnowledgeMonitoringProgram.parse(x));
     }
-    if (json.administrationGuidelines) {
+    if (json.administrationGuidelines !== undefined) {
       newInstance.administrationGuidelines = json.administrationGuidelines.map((x) => MedicationKnowledgeAdministrationGuidelines.parse(x));
     }
-    if (json.medicineClassification) {
+    if (json.medicineClassification !== undefined) {
       newInstance.medicineClassification = json.medicineClassification.map((x) => MedicationKnowledgeMedicineClassification.parse(x));
     }
-    if (json.packaging) {
+    if (json.packaging !== undefined) {
       newInstance.packaging = MedicationKnowledgePackaging.parse(json.packaging);
     }
-    if (json.drugCharacteristic) {
+    if (json.drugCharacteristic !== undefined) {
       newInstance.drugCharacteristic = json.drugCharacteristic.map((x) => MedicationKnowledgeDrugCharacteristic.parse(x));
     }
-    if (json.contraindication) {
+    if (json.contraindication !== undefined) {
       newInstance.contraindication = json.contraindication.map((x) => Reference.parse(x));
     }
-    if (json.regulatory) {
+    if (json.regulatory !== undefined) {
       newInstance.regulatory = json.regulatory.map((x) => MedicationKnowledgeRegulatory.parse(x));
     }
-    if (json.kinetics) {
+    if (json.kinetics !== undefined) {
       newInstance.kinetics = json.kinetics.map((x) => MedicationKnowledgeKinetics.parse(x));
     }
     return newInstance;
@@ -252,7 +252,11 @@ export class MedicationKnowledge extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicationKnowledge {
+    return MedicationKnowledge.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationKnowledge";
   }

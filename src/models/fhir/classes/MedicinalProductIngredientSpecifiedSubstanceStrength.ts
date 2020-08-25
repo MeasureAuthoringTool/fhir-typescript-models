@@ -36,25 +36,25 @@ export class MedicinalProductIngredientSpecifiedSubstanceStrength extends Backbo
   ): MedicinalProductIngredientSpecifiedSubstanceStrength {
     const newInstance: MedicinalProductIngredientSpecifiedSubstanceStrength = BackboneElement.parse(json, providedInstance);
   
-    if (json.presentation) {
+    if (json.presentation !== undefined) {
       newInstance.presentation = Ratio.parse(json.presentation);
     }
-    if (json.presentationLowLimit) {
+    if (json.presentationLowLimit !== undefined) {
       newInstance.presentationLowLimit = Ratio.parse(json.presentationLowLimit);
     }
-    if (json.concentration) {
+    if (json.concentration !== undefined) {
       newInstance.concentration = Ratio.parse(json.concentration);
     }
-    if (json.concentrationLowLimit) {
+    if (json.concentrationLowLimit !== undefined) {
       newInstance.concentrationLowLimit = Ratio.parse(json.concentrationLowLimit);
     }
-    if (json.measurementPoint) {
+    if (json.measurementPoint !== undefined) {
       newInstance.measurementPoint = PrimitiveString.parsePrimitive(json.measurementPoint, json._measurementPoint);
     }
-    if (json.country) {
+    if (json.country !== undefined) {
       newInstance.country = json.country.map((x) => CodeableConcept.parse(x));
     }
-    if (json.referenceStrength) {
+    if (json.referenceStrength !== undefined) {
       newInstance.referenceStrength = json.referenceStrength.map((x) => MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.parse(x));
     }
     return newInstance;
@@ -99,7 +99,11 @@ export class MedicinalProductIngredientSpecifiedSubstanceStrength extends Backbo
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductIngredientSpecifiedSubstanceStrength {
+    return MedicinalProductIngredientSpecifiedSubstanceStrength.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductIngredientSpecifiedSubstanceStrength";
   }

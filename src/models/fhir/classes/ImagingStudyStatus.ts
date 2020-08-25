@@ -22,7 +22,16 @@ export class ImagingStudyStatus extends PrimitiveCode {
     const castInput = input as ImagingStudyStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ImagingStudyStatus";
   }
-  
+
+  public clone(): ImagingStudyStatus {
+    const result = new ImagingStudyStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ImagingStudyStatus";
   }

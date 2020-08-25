@@ -29,19 +29,19 @@ export class CodeSystemFilter extends BackboneElement {
   ): CodeSystemFilter {
     const newInstance: CodeSystemFilter = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.operator) {
+    if (json.operator !== undefined) {
       newInstance.operator = json.operator.map((x, i) => {
         const ext = json._operator && json._operator[i];
         return FilterOperator.parsePrimitive(x, ext);
       });
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.value, json._value);
     }
     return newInstance;
@@ -77,7 +77,11 @@ export class CodeSystemFilter extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CodeSystemFilter {
+    return CodeSystemFilter.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CodeSystemFilter";
   }

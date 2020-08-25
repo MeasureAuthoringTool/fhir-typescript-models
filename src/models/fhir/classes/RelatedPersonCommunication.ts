@@ -24,10 +24,10 @@ export class RelatedPersonCommunication extends BackboneElement {
   ): RelatedPersonCommunication {
     const newInstance: RelatedPersonCommunication = BackboneElement.parse(json, providedInstance);
   
-    if (json.language) {
+    if (json.language !== undefined) {
       newInstance.language = CodeableConcept.parse(json.language);
     }
-    if (json.preferred) {
+    if (json.preferred !== undefined) {
       newInstance.preferred = PrimitiveBoolean.parsePrimitive(json.preferred, json._preferred);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class RelatedPersonCommunication extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): RelatedPersonCommunication {
+    return RelatedPersonCommunication.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "RelatedPersonCommunication";
   }

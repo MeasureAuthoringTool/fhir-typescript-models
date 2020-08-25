@@ -22,7 +22,16 @@ export class ExtensionContextType extends PrimitiveCode {
     const castInput = input as ExtensionContextType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ExtensionContextType";
   }
-  
+
+  public clone(): ExtensionContextType {
+    const result = new ExtensionContextType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ExtensionContextType";
   }

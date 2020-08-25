@@ -22,7 +22,16 @@ export class EnableWhenBehavior extends PrimitiveCode {
     const castInput = input as EnableWhenBehavior;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "EnableWhenBehavior";
   }
-  
+
+  public clone(): EnableWhenBehavior {
+    const result = new EnableWhenBehavior();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "EnableWhenBehavior";
   }

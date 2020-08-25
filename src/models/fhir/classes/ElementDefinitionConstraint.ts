@@ -36,25 +36,25 @@ export class ElementDefinitionConstraint extends Element {
   ): ElementDefinitionConstraint {
     const newInstance: ElementDefinitionConstraint = Element.parse(json, providedInstance);
   
-    if (json.key) {
+    if (json.key !== undefined) {
       newInstance.key = PrimitiveId.parsePrimitive(json.key, json._key);
     }
-    if (json.requirements) {
+    if (json.requirements !== undefined) {
       newInstance.requirements = PrimitiveString.parsePrimitive(json.requirements, json._requirements);
     }
-    if (json.severity) {
+    if (json.severity !== undefined) {
       newInstance.severity = ConstraintSeverity.parsePrimitive(json.severity, json._severity);
     }
-    if (json.human) {
+    if (json.human !== undefined) {
       newInstance.human = PrimitiveString.parsePrimitive(json.human, json._human);
     }
-    if (json.expression) {
+    if (json.expression !== undefined) {
       newInstance.expression = PrimitiveString.parsePrimitive(json.expression, json._expression);
     }
-    if (json.xpath) {
+    if (json.xpath !== undefined) {
       newInstance.xpath = PrimitiveString.parsePrimitive(json.xpath, json._xpath);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = PrimitiveCanonical.parsePrimitive(json.source, json._source);
     }
     return newInstance;
@@ -105,7 +105,11 @@ export class ElementDefinitionConstraint extends Element {
 
     return result;
   }
-  
+
+  public clone(): ElementDefinitionConstraint {
+    return ElementDefinitionConstraint.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ElementDefinitionConstraint";
   }

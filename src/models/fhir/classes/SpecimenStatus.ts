@@ -22,7 +22,16 @@ export class SpecimenStatus extends PrimitiveCode {
     const castInput = input as SpecimenStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SpecimenStatus";
   }
-  
+
+  public clone(): SpecimenStatus {
+    const result = new SpecimenStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SpecimenStatus";
   }

@@ -22,7 +22,16 @@ export class VisionBase extends PrimitiveCode {
     const castInput = input as VisionBase;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "VisionBase";
   }
-  
+
+  public clone(): VisionBase {
+    const result = new VisionBase();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "VisionBase";
   }

@@ -26,16 +26,16 @@ export class CompartmentDefinitionResource extends BackboneElement {
   ): CompartmentDefinitionResource {
     const newInstance: CompartmentDefinitionResource = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = ResourceType.parsePrimitive(json.code, json._code);
     }
-    if (json.param) {
+    if (json.param !== undefined) {
       newInstance.param = json.param.map((x, i) => {
         const ext = json._param && json._param[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveString.parsePrimitive(json.documentation, json._documentation);
     }
     return newInstance;
@@ -66,7 +66,11 @@ export class CompartmentDefinitionResource extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CompartmentDefinitionResource {
+    return CompartmentDefinitionResource.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CompartmentDefinitionResource";
   }

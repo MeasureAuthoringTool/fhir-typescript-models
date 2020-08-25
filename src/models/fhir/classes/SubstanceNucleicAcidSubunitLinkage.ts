@@ -28,16 +28,16 @@ export class SubstanceNucleicAcidSubunitLinkage extends BackboneElement {
   ): SubstanceNucleicAcidSubunitLinkage {
     const newInstance: SubstanceNucleicAcidSubunitLinkage = BackboneElement.parse(json, providedInstance);
   
-    if (json.connectivity) {
+    if (json.connectivity !== undefined) {
       newInstance.connectivity = PrimitiveString.parsePrimitive(json.connectivity, json._connectivity);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.residueSite) {
+    if (json.residueSite !== undefined) {
       newInstance.residueSite = PrimitiveString.parsePrimitive(json.residueSite, json._residueSite);
     }
     return newInstance;
@@ -72,7 +72,11 @@ export class SubstanceNucleicAcidSubunitLinkage extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceNucleicAcidSubunitLinkage {
+    return SubstanceNucleicAcidSubunitLinkage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceNucleicAcidSubunitLinkage";
   }

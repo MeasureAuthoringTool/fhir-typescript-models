@@ -22,7 +22,16 @@ export class SearchModifierCode extends PrimitiveCode {
     const castInput = input as SearchModifierCode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SearchModifierCode";
   }
-  
+
+  public clone(): SearchModifierCode {
+    const result = new SearchModifierCode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SearchModifierCode";
   }

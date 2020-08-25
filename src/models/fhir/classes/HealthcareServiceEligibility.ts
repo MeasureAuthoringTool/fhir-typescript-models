@@ -24,10 +24,10 @@ export class HealthcareServiceEligibility extends BackboneElement {
   ): HealthcareServiceEligibility {
     const newInstance: HealthcareServiceEligibility = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveMarkdown.parsePrimitive(json.comment, json._comment);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class HealthcareServiceEligibility extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): HealthcareServiceEligibility {
+    return HealthcareServiceEligibility.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "HealthcareServiceEligibility";
   }

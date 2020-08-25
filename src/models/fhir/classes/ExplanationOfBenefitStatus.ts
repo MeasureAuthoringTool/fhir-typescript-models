@@ -22,7 +22,16 @@ export class ExplanationOfBenefitStatus extends PrimitiveCode {
     const castInput = input as ExplanationOfBenefitStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ExplanationOfBenefitStatus";
   }
-  
+
+  public clone(): ExplanationOfBenefitStatus {
+    const result = new ExplanationOfBenefitStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ExplanationOfBenefitStatus";
   }

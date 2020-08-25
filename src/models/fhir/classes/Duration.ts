@@ -30,7 +30,11 @@ export class Duration extends Quantity {
 
     return result;
   }
-  
+
+  public clone(): Duration {
+    return Duration.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Duration";
   }

@@ -87,82 +87,82 @@ export class CodeSystem extends DomainResource {
   ): CodeSystem {
     const newInstance: CodeSystem = DomainResource.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.experimental) {
+    if (json.experimental !== undefined) {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = PrimitiveMarkdown.parsePrimitive(json.purpose, json._purpose);
     }
-    if (json.copyright) {
+    if (json.copyright !== undefined) {
       newInstance.copyright = PrimitiveMarkdown.parsePrimitive(json.copyright, json._copyright);
     }
-    if (json.caseSensitive) {
+    if (json.caseSensitive !== undefined) {
       newInstance.caseSensitive = PrimitiveBoolean.parsePrimitive(json.caseSensitive, json._caseSensitive);
     }
-    if (json.valueSet) {
+    if (json.valueSet !== undefined) {
       newInstance.valueSet = PrimitiveCanonical.parsePrimitive(json.valueSet, json._valueSet);
     }
-    if (json.hierarchyMeaning) {
+    if (json.hierarchyMeaning !== undefined) {
       newInstance.hierarchyMeaning = CodeSystemHierarchyMeaning.parsePrimitive(json.hierarchyMeaning, json._hierarchyMeaning);
     }
-    if (json.compositional) {
+    if (json.compositional !== undefined) {
       newInstance.compositional = PrimitiveBoolean.parsePrimitive(json.compositional, json._compositional);
     }
-    if (json.versionNeeded) {
+    if (json.versionNeeded !== undefined) {
       newInstance.versionNeeded = PrimitiveBoolean.parsePrimitive(json.versionNeeded, json._versionNeeded);
     }
-    if (json.content) {
+    if (json.content !== undefined) {
       newInstance.content = CodeSystemContentMode.parsePrimitive(json.content, json._content);
     }
-    if (json.supplements) {
+    if (json.supplements !== undefined) {
       newInstance.supplements = PrimitiveCanonical.parsePrimitive(json.supplements, json._supplements);
     }
-    if (json.count) {
+    if (json.count !== undefined) {
       newInstance.count = PrimitiveUnsignedInt.parsePrimitive(json.count, json._count);
     }
-    if (json.filter) {
+    if (json.filter !== undefined) {
       newInstance.filter = json.filter.map((x) => CodeSystemFilter.parse(x));
     }
-    if (json.property) {
+    if (json.property !== undefined) {
       newInstance.property = json.property.map((x) => CodeSystemProperty.parse(x));
     }
-    if (json.concept) {
+    if (json.concept !== undefined) {
       newInstance.concept = json.concept.map((x) => CodeSystemConcept.parse(x));
     }
     return newInstance;
@@ -301,7 +301,11 @@ export class CodeSystem extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): CodeSystem {
+    return CodeSystem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CodeSystem";
   }

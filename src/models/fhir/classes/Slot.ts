@@ -47,37 +47,37 @@ export class Slot extends DomainResource {
   ): Slot {
     const newInstance: Slot = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.serviceCategory) {
+    if (json.serviceCategory !== undefined) {
       newInstance.serviceCategory = json.serviceCategory.map((x) => CodeableConcept.parse(x));
     }
-    if (json.serviceType) {
+    if (json.serviceType !== undefined) {
       newInstance.serviceType = json.serviceType.map((x) => CodeableConcept.parse(x));
     }
-    if (json.specialty) {
+    if (json.specialty !== undefined) {
       newInstance.specialty = json.specialty.map((x) => CodeableConcept.parse(x));
     }
-    if (json.appointmentType) {
+    if (json.appointmentType !== undefined) {
       newInstance.appointmentType = CodeableConcept.parse(json.appointmentType);
     }
-    if (json.schedule) {
+    if (json.schedule !== undefined) {
       newInstance.schedule = Reference.parse(json.schedule);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = SlotStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.start) {
+    if (json.start !== undefined) {
       newInstance.start = PrimitiveInstant.parsePrimitive(json.start, json._start);
     }
-    if (json.end) {
+    if (json.end !== undefined) {
       newInstance.end = PrimitiveInstant.parsePrimitive(json.end, json._end);
     }
-    if (json.overbooked) {
+    if (json.overbooked !== undefined) {
       newInstance.overbooked = PrimitiveBoolean.parsePrimitive(json.overbooked, json._overbooked);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
     return newInstance;
@@ -142,7 +142,11 @@ export class Slot extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Slot {
+    return Slot.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Slot";
   }

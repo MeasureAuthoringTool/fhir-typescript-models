@@ -77,76 +77,76 @@ export class HealthcareService extends DomainResource {
   ): HealthcareService {
     const newInstance: HealthcareService = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.active) {
+    if (json.active !== undefined) {
       newInstance.active = PrimitiveBoolean.parsePrimitive(json.active, json._active);
     }
-    if (json.providedBy) {
+    if (json.providedBy !== undefined) {
       newInstance.providedBy = Reference.parse(json.providedBy);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.specialty) {
+    if (json.specialty !== undefined) {
       newInstance.specialty = json.specialty.map((x) => CodeableConcept.parse(x));
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = json.location.map((x) => Reference.parse(x));
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
-    if (json.extraDetails) {
+    if (json.extraDetails !== undefined) {
       newInstance.extraDetails = PrimitiveMarkdown.parsePrimitive(json.extraDetails, json._extraDetails);
     }
-    if (json.photo) {
+    if (json.photo !== undefined) {
       newInstance.photo = Attachment.parse(json.photo);
     }
-    if (json.telecom) {
+    if (json.telecom !== undefined) {
       newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));
     }
-    if (json.coverageArea) {
+    if (json.coverageArea !== undefined) {
       newInstance.coverageArea = json.coverageArea.map((x) => Reference.parse(x));
     }
-    if (json.serviceProvisionCode) {
+    if (json.serviceProvisionCode !== undefined) {
       newInstance.serviceProvisionCode = json.serviceProvisionCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.eligibility) {
+    if (json.eligibility !== undefined) {
       newInstance.eligibility = json.eligibility.map((x) => HealthcareServiceEligibility.parse(x));
     }
-    if (json.program) {
+    if (json.program !== undefined) {
       newInstance.program = json.program.map((x) => CodeableConcept.parse(x));
     }
-    if (json.characteristic) {
+    if (json.characteristic !== undefined) {
       newInstance.characteristic = json.characteristic.map((x) => CodeableConcept.parse(x));
     }
-    if (json.communication) {
+    if (json.communication !== undefined) {
       newInstance.communication = json.communication.map((x) => CodeableConcept.parse(x));
     }
-    if (json.referralMethod) {
+    if (json.referralMethod !== undefined) {
       newInstance.referralMethod = json.referralMethod.map((x) => CodeableConcept.parse(x));
     }
-    if (json.appointmentRequired) {
+    if (json.appointmentRequired !== undefined) {
       newInstance.appointmentRequired = PrimitiveBoolean.parsePrimitive(json.appointmentRequired, json._appointmentRequired);
     }
-    if (json.availableTime) {
+    if (json.availableTime !== undefined) {
       newInstance.availableTime = json.availableTime.map((x) => HealthcareServiceAvailableTime.parse(x));
     }
-    if (json.notAvailable) {
+    if (json.notAvailable !== undefined) {
       newInstance.notAvailable = json.notAvailable.map((x) => HealthcareServiceNotAvailable.parse(x));
     }
-    if (json.availabilityExceptions) {
+    if (json.availabilityExceptions !== undefined) {
       newInstance.availabilityExceptions = PrimitiveString.parsePrimitive(json.availabilityExceptions, json._availabilityExceptions);
     }
-    if (json.endpoint) {
+    if (json.endpoint !== undefined) {
       newInstance.endpoint = json.endpoint.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -264,7 +264,11 @@ export class HealthcareService extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): HealthcareService {
+    return HealthcareService.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "HealthcareService";
   }

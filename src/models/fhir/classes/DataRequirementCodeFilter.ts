@@ -29,16 +29,16 @@ export class DataRequirementCodeFilter extends Element {
   ): DataRequirementCodeFilter {
     const newInstance: DataRequirementCodeFilter = Element.parse(json, providedInstance);
   
-    if (json.path) {
+    if (json.path !== undefined) {
       newInstance.path = PrimitiveString.parsePrimitive(json.path, json._path);
     }
-    if (json.searchParam) {
+    if (json.searchParam !== undefined) {
       newInstance.searchParam = PrimitiveString.parsePrimitive(json.searchParam, json._searchParam);
     }
-    if (json.valueSet) {
+    if (json.valueSet !== undefined) {
       newInstance.valueSet = PrimitiveCanonical.parsePrimitive(json.valueSet, json._valueSet);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = json.code.map((x) => Coding.parse(x));
     }
     return newInstance;
@@ -73,7 +73,11 @@ export class DataRequirementCodeFilter extends Element {
 
     return result;
   }
-  
+
+  public clone(): DataRequirementCodeFilter {
+    return DataRequirementCodeFilter.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DataRequirementCodeFilter";
   }

@@ -39,28 +39,28 @@ export class ResearchSubject extends DomainResource {
   ): ResearchSubject {
     const newInstance: ResearchSubject = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ResearchSubjectStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.study) {
+    if (json.study !== undefined) {
       newInstance.study = Reference.parse(json.study);
     }
-    if (json.individual) {
+    if (json.individual !== undefined) {
       newInstance.individual = Reference.parse(json.individual);
     }
-    if (json.assignedArm) {
+    if (json.assignedArm !== undefined) {
       newInstance.assignedArm = PrimitiveString.parsePrimitive(json.assignedArm, json._assignedArm);
     }
-    if (json.actualArm) {
+    if (json.actualArm !== undefined) {
       newInstance.actualArm = PrimitiveString.parsePrimitive(json.actualArm, json._actualArm);
     }
-    if (json.consent) {
+    if (json.consent !== undefined) {
       newInstance.consent = Reference.parse(json.consent);
     }
     return newInstance;
@@ -111,7 +111,11 @@ export class ResearchSubject extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ResearchSubject {
+    return ResearchSubject.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ResearchSubject";
   }

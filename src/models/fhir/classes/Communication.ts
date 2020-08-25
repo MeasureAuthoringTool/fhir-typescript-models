@@ -74,79 +74,79 @@ export class Communication extends DomainResource {
   ): Communication {
     const newInstance: Communication = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.instantiatesCanonical) {
+    if (json.instantiatesCanonical !== undefined) {
       newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
         const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.instantiatesUri) {
+    if (json.instantiatesUri !== undefined) {
       newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
         const ext = json._instantiatesUri && json._instantiatesUri[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = json.partOf.map((x) => Reference.parse(x));
     }
-    if (json.inResponseTo) {
+    if (json.inResponseTo !== undefined) {
       newInstance.inResponseTo = json.inResponseTo.map((x) => Reference.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CommunicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.statusReason) {
+    if (json.statusReason !== undefined) {
       newInstance.statusReason = CodeableConcept.parse(json.statusReason);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = CommunicationPriority.parsePrimitive(json.priority, json._priority);
     }
-    if (json.medium) {
+    if (json.medium !== undefined) {
       newInstance.medium = json.medium.map((x) => CodeableConcept.parse(x));
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.topic) {
+    if (json.topic !== undefined) {
       newInstance.topic = CodeableConcept.parse(json.topic);
     }
-    if (json.about) {
+    if (json.about !== undefined) {
       newInstance.about = json.about.map((x) => Reference.parse(x));
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.sent) {
+    if (json.sent !== undefined) {
       newInstance.sent = PrimitiveDateTime.parsePrimitive(json.sent, json._sent);
     }
-    if (json.received) {
+    if (json.received !== undefined) {
       newInstance.received = PrimitiveDateTime.parsePrimitive(json.received, json._received);
     }
-    if (json.recipient) {
+    if (json.recipient !== undefined) {
       newInstance.recipient = json.recipient.map((x) => Reference.parse(x));
     }
-    if (json.sender) {
+    if (json.sender !== undefined) {
       newInstance.sender = Reference.parse(json.sender);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.payload) {
+    if (json.payload !== undefined) {
       newInstance.payload = json.payload.map((x) => CommunicationPayload.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -260,7 +260,11 @@ export class Communication extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Communication {
+    return Communication.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Communication";
   }

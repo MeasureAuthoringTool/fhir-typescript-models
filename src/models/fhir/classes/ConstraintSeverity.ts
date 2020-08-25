@@ -22,7 +22,16 @@ export class ConstraintSeverity extends PrimitiveCode {
     const castInput = input as ConstraintSeverity;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ConstraintSeverity";
   }
-  
+
+  public clone(): ConstraintSeverity {
+    const result = new ConstraintSeverity();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ConstraintSeverity";
   }

@@ -70,91 +70,91 @@ export class ContractTermAction extends BackboneElement {
   ): ContractTermAction {
     const newInstance: ContractTermAction = BackboneElement.parse(json, providedInstance);
   
-    if (json.doNotPerform) {
+    if (json.doNotPerform !== undefined) {
       newInstance.doNotPerform = PrimitiveBoolean.parsePrimitive(json.doNotPerform, json._doNotPerform);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = json.subject.map((x) => ContractTermActionSubject.parse(x));
     }
-    if (json.intent) {
+    if (json.intent !== undefined) {
       newInstance.intent = CodeableConcept.parse(json.intent);
     }
-    if (json.linkId) {
+    if (json.linkId !== undefined) {
       newInstance.linkId = json.linkId.map((x, i) => {
         const ext = json._linkId && json._linkId[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CodeableConcept.parse(json.status);
     }
-    if (json.context) {
+    if (json.context !== undefined) {
       newInstance.context = Reference.parse(json.context);
     }
-    if (json.contextLinkId) {
+    if (json.contextLinkId !== undefined) {
       newInstance.contextLinkId = json.contextLinkId.map((x, i) => {
         const ext = json._contextLinkId && json._contextLinkId[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.occurrenceDateTime) {
+    if (json.occurrenceDateTime !== undefined) {
       newInstance.occurrence = PrimitiveDateTime.parsePrimitive(json.occurrenceDateTime, json._occurrenceDateTime);
     }
-    if (json.occurrencePeriod) {
+    if (json.occurrencePeriod !== undefined) {
       newInstance.occurrence = Period.parse(json.occurrencePeriod);
     }
-    if (json.occurrenceTiming) {
+    if (json.occurrenceTiming !== undefined) {
       newInstance.occurrence = Timing.parse(json.occurrenceTiming);
     }
-    if (json.requester) {
+    if (json.requester !== undefined) {
       newInstance.requester = json.requester.map((x) => Reference.parse(x));
     }
-    if (json.requesterLinkId) {
+    if (json.requesterLinkId !== undefined) {
       newInstance.requesterLinkId = json.requesterLinkId.map((x, i) => {
         const ext = json._requesterLinkId && json._requesterLinkId[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.performerType) {
+    if (json.performerType !== undefined) {
       newInstance.performerType = json.performerType.map((x) => CodeableConcept.parse(x));
     }
-    if (json.performerRole) {
+    if (json.performerRole !== undefined) {
       newInstance.performerRole = CodeableConcept.parse(json.performerRole);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = Reference.parse(json.performer);
     }
-    if (json.performerLinkId) {
+    if (json.performerLinkId !== undefined) {
       newInstance.performerLinkId = json.performerLinkId.map((x, i) => {
         const ext = json._performerLinkId && json._performerLinkId[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.reason) {
+    if (json.reason !== undefined) {
       newInstance.reason = json.reason.map((x, i) => {
         const ext = json._reason && json._reason[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.reasonLinkId) {
+    if (json.reasonLinkId !== undefined) {
       newInstance.reasonLinkId = json.reasonLinkId.map((x, i) => {
         const ext = json._reasonLinkId && json._reasonLinkId[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.securityLabelNumber) {
+    if (json.securityLabelNumber !== undefined) {
       newInstance.securityLabelNumber = json.securityLabelNumber.map((x, i) => {
         const ext = json._securityLabelNumber && json._securityLabelNumber[i];
         return PrimitiveUnsignedInt.parsePrimitive(x, ext);
@@ -274,7 +274,11 @@ export class ContractTermAction extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractTermAction {
+    return ContractTermAction.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractTermAction";
   }

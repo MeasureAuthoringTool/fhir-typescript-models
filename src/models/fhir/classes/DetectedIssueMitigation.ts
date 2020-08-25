@@ -27,13 +27,13 @@ export class DetectedIssueMitigation extends BackboneElement {
   ): DetectedIssueMitigation {
     const newInstance: DetectedIssueMitigation = BackboneElement.parse(json, providedInstance);
   
-    if (json.action) {
+    if (json.action !== undefined) {
       newInstance.action = CodeableConcept.parse(json.action);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = Reference.parse(json.author);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class DetectedIssueMitigation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DetectedIssueMitigation {
+    return DetectedIssueMitigation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DetectedIssueMitigation";
   }

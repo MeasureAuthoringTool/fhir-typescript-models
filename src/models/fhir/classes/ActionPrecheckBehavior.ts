@@ -22,7 +22,16 @@ export class ActionPrecheckBehavior extends PrimitiveCode {
     const castInput = input as ActionPrecheckBehavior;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ActionPrecheckBehavior";
   }
-  
+
+  public clone(): ActionPrecheckBehavior {
+    const result = new ActionPrecheckBehavior();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ActionPrecheckBehavior";
   }

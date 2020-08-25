@@ -23,10 +23,10 @@ export class AdverseEventSuspectEntity extends BackboneElement {
   ): AdverseEventSuspectEntity {
     const newInstance: AdverseEventSuspectEntity = BackboneElement.parse(json, providedInstance);
   
-    if (json.instance) {
+    if (json.instance !== undefined) {
       newInstance.instance = Reference.parse(json.instance);
     }
-    if (json.causality) {
+    if (json.causality !== undefined) {
       newInstance.causality = json.causality.map((x) => AdverseEventSuspectEntityCausality.parse(x));
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class AdverseEventSuspectEntity extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): AdverseEventSuspectEntity {
+    return AdverseEventSuspectEntity.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AdverseEventSuspectEntity";
   }

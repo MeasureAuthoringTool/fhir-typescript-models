@@ -22,7 +22,16 @@ export class GroupMeasure extends PrimitiveCode {
     const castInput = input as GroupMeasure;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "GroupMeasure";
   }
-  
+
+  public clone(): GroupMeasure {
+    const result = new GroupMeasure();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "GroupMeasure";
   }

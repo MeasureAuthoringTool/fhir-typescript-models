@@ -39,25 +39,25 @@ export class PatientContact extends BackboneElement {
   ): PatientContact {
     const newInstance: PatientContact = BackboneElement.parse(json, providedInstance);
   
-    if (json.relationship) {
+    if (json.relationship !== undefined) {
       newInstance.relationship = json.relationship.map((x) => CodeableConcept.parse(x));
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = HumanName.parse(json.name);
     }
-    if (json.telecom) {
+    if (json.telecom !== undefined) {
       newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));
     }
-    if (json.address) {
+    if (json.address !== undefined) {
       newInstance.address = Address.parse(json.address);
     }
-    if (json.gender) {
+    if (json.gender !== undefined) {
       newInstance.gender = AdministrativeGender.parsePrimitive(json.gender, json._gender);
     }
-    if (json.organization) {
+    if (json.organization !== undefined) {
       newInstance.organization = Reference.parse(json.organization);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -102,7 +102,11 @@ export class PatientContact extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PatientContact {
+    return PatientContact.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PatientContact";
   }

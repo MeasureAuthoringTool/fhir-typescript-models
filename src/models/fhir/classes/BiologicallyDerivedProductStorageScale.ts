@@ -22,7 +22,16 @@ export class BiologicallyDerivedProductStorageScale extends PrimitiveCode {
     const castInput = input as BiologicallyDerivedProductStorageScale;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "BiologicallyDerivedProductStorageScale";
   }
-  
+
+  public clone(): BiologicallyDerivedProductStorageScale {
+    const result = new BiologicallyDerivedProductStorageScale();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "BiologicallyDerivedProductStorageScale";
   }

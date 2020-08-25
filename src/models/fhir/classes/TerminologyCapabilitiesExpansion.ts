@@ -31,19 +31,19 @@ export class TerminologyCapabilitiesExpansion extends BackboneElement {
   ): TerminologyCapabilitiesExpansion {
     const newInstance: TerminologyCapabilitiesExpansion = BackboneElement.parse(json, providedInstance);
   
-    if (json.hierarchical) {
+    if (json.hierarchical !== undefined) {
       newInstance.hierarchical = PrimitiveBoolean.parsePrimitive(json.hierarchical, json._hierarchical);
     }
-    if (json.paging) {
+    if (json.paging !== undefined) {
       newInstance.paging = PrimitiveBoolean.parsePrimitive(json.paging, json._paging);
     }
-    if (json.incomplete) {
+    if (json.incomplete !== undefined) {
       newInstance.incomplete = PrimitiveBoolean.parsePrimitive(json.incomplete, json._incomplete);
     }
-    if (json.parameter) {
+    if (json.parameter !== undefined) {
       newInstance.parameter = json.parameter.map((x) => TerminologyCapabilitiesExpansionParameter.parse(x));
     }
-    if (json.textFilter) {
+    if (json.textFilter !== undefined) {
       newInstance.textFilter = PrimitiveMarkdown.parsePrimitive(json.textFilter, json._textFilter);
     }
     return newInstance;
@@ -83,7 +83,11 @@ export class TerminologyCapabilitiesExpansion extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TerminologyCapabilitiesExpansion {
+    return TerminologyCapabilitiesExpansion.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TerminologyCapabilitiesExpansion";
   }

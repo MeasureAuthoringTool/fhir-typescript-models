@@ -30,16 +30,16 @@ export class EncounterLocation extends BackboneElement {
   ): EncounterLocation {
     const newInstance: EncounterLocation = BackboneElement.parse(json, providedInstance);
   
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = Reference.parse(json.location);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = EncounterLocationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.physicalType) {
+    if (json.physicalType !== undefined) {
       newInstance.physicalType = CodeableConcept.parse(json.physicalType);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -72,7 +72,11 @@ export class EncounterLocation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): EncounterLocation {
+    return EncounterLocation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EncounterLocation";
   }

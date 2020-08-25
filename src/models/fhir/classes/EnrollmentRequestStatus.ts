@@ -22,7 +22,16 @@ export class EnrollmentRequestStatus extends PrimitiveCode {
     const castInput = input as EnrollmentRequestStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "EnrollmentRequestStatus";
   }
-  
+
+  public clone(): EnrollmentRequestStatus {
+    const result = new EnrollmentRequestStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "EnrollmentRequestStatus";
   }

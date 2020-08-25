@@ -21,10 +21,10 @@ export class MedicinalProductInteractionInteractant extends BackboneElement {
   ): MedicinalProductInteractionInteractant {
     const newInstance: MedicinalProductInteractionInteractant = BackboneElement.parse(json, providedInstance);
   
-    if (json.itemReference) {
+    if (json.itemReference !== undefined) {
       newInstance.item = Reference.parse(json.itemReference);
     }
-    if (json.itemCodeableConcept) {
+    if (json.itemCodeableConcept !== undefined) {
       newInstance.item = CodeableConcept.parse(json.itemCodeableConcept);
     }
     return newInstance;
@@ -48,7 +48,11 @@ export class MedicinalProductInteractionInteractant extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductInteractionInteractant {
+    return MedicinalProductInteractionInteractant.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductInteractionInteractant";
   }

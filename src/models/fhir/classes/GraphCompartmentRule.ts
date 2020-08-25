@@ -22,7 +22,16 @@ export class GraphCompartmentRule extends PrimitiveCode {
     const castInput = input as GraphCompartmentRule;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "GraphCompartmentRule";
   }
-  
+
+  public clone(): GraphCompartmentRule {
+    const result = new GraphCompartmentRule();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "GraphCompartmentRule";
   }

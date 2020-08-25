@@ -27,13 +27,13 @@ export class TestReportSetupActionOperation extends BackboneElement {
   ): TestReportSetupActionOperation {
     const newInstance: TestReportSetupActionOperation = BackboneElement.parse(json, providedInstance);
   
-    if (json.result) {
+    if (json.result !== undefined) {
       newInstance.result = TestReportActionResult.parsePrimitive(json.result, json._result);
     }
-    if (json.message) {
+    if (json.message !== undefined) {
       newInstance.message = PrimitiveMarkdown.parsePrimitive(json.message, json._message);
     }
-    if (json.detail) {
+    if (json.detail !== undefined) {
       newInstance.detail = PrimitiveUri.parsePrimitive(json.detail, json._detail);
     }
     return newInstance;
@@ -64,7 +64,11 @@ export class TestReportSetupActionOperation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TestReportSetupActionOperation {
+    return TestReportSetupActionOperation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestReportSetupActionOperation";
   }

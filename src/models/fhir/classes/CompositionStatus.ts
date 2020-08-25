@@ -22,7 +22,16 @@ export class CompositionStatus extends PrimitiveCode {
     const castInput = input as CompositionStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CompositionStatus";
   }
-  
+
+  public clone(): CompositionStatus {
+    const result = new CompositionStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CompositionStatus";
   }

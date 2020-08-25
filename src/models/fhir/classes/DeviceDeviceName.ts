@@ -24,10 +24,10 @@ export class DeviceDeviceName extends BackboneElement {
   ): DeviceDeviceName {
     const newInstance: DeviceDeviceName = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = DeviceNameType.parsePrimitive(json.type, json._type);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class DeviceDeviceName extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DeviceDeviceName {
+    return DeviceDeviceName.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceDeviceName";
   }

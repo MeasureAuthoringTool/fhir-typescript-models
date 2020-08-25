@@ -24,10 +24,10 @@ export class SearchParameterComponent extends BackboneElement {
   ): SearchParameterComponent {
     const newInstance: SearchParameterComponent = BackboneElement.parse(json, providedInstance);
   
-    if (json.definition) {
+    if (json.definition !== undefined) {
       newInstance.definition = PrimitiveCanonical.parsePrimitive(json.definition, json._definition);
     }
-    if (json.expression) {
+    if (json.expression !== undefined) {
       newInstance.expression = PrimitiveString.parsePrimitive(json.expression, json._expression);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class SearchParameterComponent extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SearchParameterComponent {
+    return SearchParameterComponent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SearchParameterComponent";
   }

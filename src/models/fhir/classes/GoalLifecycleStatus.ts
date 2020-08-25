@@ -22,7 +22,16 @@ export class GoalLifecycleStatus extends PrimitiveCode {
     const castInput = input as GoalLifecycleStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "GoalLifecycleStatus";
   }
-  
+
+  public clone(): GoalLifecycleStatus {
+    const result = new GoalLifecycleStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "GoalLifecycleStatus";
   }

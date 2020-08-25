@@ -27,13 +27,13 @@ export class ConsentVerification extends BackboneElement {
   ): ConsentVerification {
     const newInstance: ConsentVerification = BackboneElement.parse(json, providedInstance);
   
-    if (json.verified) {
+    if (json.verified !== undefined) {
       newInstance.verified = PrimitiveBoolean.parsePrimitive(json.verified, json._verified);
     }
-    if (json.verifiedWith) {
+    if (json.verifiedWith !== undefined) {
       newInstance.verifiedWith = Reference.parse(json.verifiedWith);
     }
-    if (json.verificationDate) {
+    if (json.verificationDate !== undefined) {
       newInstance.verificationDate = PrimitiveDateTime.parsePrimitive(json.verificationDate, json._verificationDate);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class ConsentVerification extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ConsentVerification {
+    return ConsentVerification.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ConsentVerification";
   }

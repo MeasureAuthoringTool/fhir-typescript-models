@@ -47,40 +47,40 @@ export class MedicinalProductPackagedPackageItem extends BackboneElement {
   ): MedicinalProductPackagedPackageItem {
     const newInstance: MedicinalProductPackagedPackageItem = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = Quantity.parse(json.quantity);
     }
-    if (json.material) {
+    if (json.material !== undefined) {
       newInstance.material = json.material.map((x) => CodeableConcept.parse(x));
     }
-    if (json.alternateMaterial) {
+    if (json.alternateMaterial !== undefined) {
       newInstance.alternateMaterial = json.alternateMaterial.map((x) => CodeableConcept.parse(x));
     }
-    if (json.device) {
+    if (json.device !== undefined) {
       newInstance.device = json.device.map((x) => Reference.parse(x));
     }
-    if (json.manufacturedItem) {
+    if (json.manufacturedItem !== undefined) {
       newInstance.manufacturedItem = json.manufacturedItem.map((x) => Reference.parse(x));
     }
-    if (json.packageItem) {
+    if (json.packageItem !== undefined) {
       newInstance.packageItem = json.packageItem.map((x) => MedicinalProductPackagedPackageItem.parse(x));
     }
-    if (json.physicalCharacteristics) {
+    if (json.physicalCharacteristics !== undefined) {
       newInstance.physicalCharacteristics = ProdCharacteristic.parse(json.physicalCharacteristics);
     }
-    if (json.otherCharacteristics) {
+    if (json.otherCharacteristics !== undefined) {
       newInstance.otherCharacteristics = json.otherCharacteristics.map((x) => CodeableConcept.parse(x));
     }
-    if (json.shelfLifeStorage) {
+    if (json.shelfLifeStorage !== undefined) {
       newInstance.shelfLifeStorage = json.shelfLifeStorage.map((x) => ProductShelfLife.parse(x));
     }
-    if (json.manufacturer) {
+    if (json.manufacturer !== undefined) {
       newInstance.manufacturer = json.manufacturer.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -144,7 +144,11 @@ export class MedicinalProductPackagedPackageItem extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductPackagedPackageItem {
+    return MedicinalProductPackagedPackageItem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductPackagedPackageItem";
   }

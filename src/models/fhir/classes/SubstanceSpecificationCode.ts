@@ -32,19 +32,19 @@ export class SubstanceSpecificationCode extends BackboneElement {
   ): SubstanceSpecificationCode {
     const newInstance: SubstanceSpecificationCode = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CodeableConcept.parse(json.status);
     }
-    if (json.statusDate) {
+    if (json.statusDate !== undefined) {
       newInstance.statusDate = PrimitiveDateTime.parsePrimitive(json.statusDate, json._statusDate);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = json.source.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -82,7 +82,11 @@ export class SubstanceSpecificationCode extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSpecificationCode {
+    return SubstanceSpecificationCode.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSpecificationCode";
   }

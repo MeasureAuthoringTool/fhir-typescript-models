@@ -22,7 +22,16 @@ export class SubscriptionChannelType extends PrimitiveCode {
     const castInput = input as SubscriptionChannelType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SubscriptionChannelType";
   }
-  
+
+  public clone(): SubscriptionChannelType {
+    const result = new SubscriptionChannelType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SubscriptionChannelType";
   }

@@ -27,13 +27,13 @@ export class AccountGuarantor extends BackboneElement {
   ): AccountGuarantor {
     const newInstance: AccountGuarantor = BackboneElement.parse(json, providedInstance);
   
-    if (json.party) {
+    if (json.party !== undefined) {
       newInstance.party = Reference.parse(json.party);
     }
-    if (json.onHold) {
+    if (json.onHold !== undefined) {
       newInstance.onHold = PrimitiveBoolean.parsePrimitive(json.onHold, json._onHold);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class AccountGuarantor extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): AccountGuarantor {
+    return AccountGuarantor.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AccountGuarantor";
   }

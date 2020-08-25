@@ -22,7 +22,16 @@ export class RequestPriority extends PrimitiveCode {
     const castInput = input as RequestPriority;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "RequestPriority";
   }
-  
+
+  public clone(): RequestPriority {
+    const result = new RequestPriority();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "RequestPriority";
   }

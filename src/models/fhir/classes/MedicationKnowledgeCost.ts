@@ -27,13 +27,13 @@ export class MedicationKnowledgeCost extends BackboneElement {
   ): MedicationKnowledgeCost {
     const newInstance: MedicationKnowledgeCost = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = PrimitiveString.parsePrimitive(json.source, json._source);
     }
-    if (json.cost) {
+    if (json.cost !== undefined) {
       newInstance.cost = Money.parse(json.cost);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class MedicationKnowledgeCost extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationKnowledgeCost {
+    return MedicationKnowledgeCost.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationKnowledgeCost";
   }

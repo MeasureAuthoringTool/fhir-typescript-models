@@ -30,16 +30,16 @@ export class SpecimenDefinitionTypeTestedHandling extends BackboneElement {
   ): SpecimenDefinitionTypeTestedHandling {
     const newInstance: SpecimenDefinitionTypeTestedHandling = BackboneElement.parse(json, providedInstance);
   
-    if (json.temperatureQualifier) {
+    if (json.temperatureQualifier !== undefined) {
       newInstance.temperatureQualifier = CodeableConcept.parse(json.temperatureQualifier);
     }
-    if (json.temperatureRange) {
+    if (json.temperatureRange !== undefined) {
       newInstance.temperatureRange = Range.parse(json.temperatureRange);
     }
-    if (json.maxDuration) {
+    if (json.maxDuration !== undefined) {
       newInstance.maxDuration = Duration.parse(json.maxDuration);
     }
-    if (json.instruction) {
+    if (json.instruction !== undefined) {
       newInstance.instruction = PrimitiveString.parsePrimitive(json.instruction, json._instruction);
     }
     return newInstance;
@@ -72,7 +72,11 @@ export class SpecimenDefinitionTypeTestedHandling extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SpecimenDefinitionTypeTestedHandling {
+    return SpecimenDefinitionTypeTestedHandling.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SpecimenDefinitionTypeTestedHandling";
   }

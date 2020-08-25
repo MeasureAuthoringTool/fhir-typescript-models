@@ -22,7 +22,16 @@ export class PaymentReconciliationStatus extends PrimitiveCode {
     const castInput = input as PaymentReconciliationStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PaymentReconciliationStatus";
   }
-  
+
+  public clone(): PaymentReconciliationStatus {
+    const result = new PaymentReconciliationStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PaymentReconciliationStatus";
   }

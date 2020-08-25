@@ -24,10 +24,10 @@ export class AuditEventAgentNetwork extends BackboneElement {
   ): AuditEventAgentNetwork {
     const newInstance: AuditEventAgentNetwork = BackboneElement.parse(json, providedInstance);
   
-    if (json.address) {
+    if (json.address !== undefined) {
       newInstance.address = PrimitiveString.parsePrimitive(json.address, json._address);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = AuditEventAgentNetworkType.parsePrimitive(json.type, json._type);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class AuditEventAgentNetwork extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): AuditEventAgentNetwork {
+    return AuditEventAgentNetwork.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AuditEventAgentNetwork";
   }

@@ -26,13 +26,13 @@ export class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   ): DeviceDefinitionUdiDeviceIdentifier {
     const newInstance: DeviceDefinitionUdiDeviceIdentifier = BackboneElement.parse(json, providedInstance);
   
-    if (json.deviceIdentifier) {
+    if (json.deviceIdentifier !== undefined) {
       newInstance.deviceIdentifier = PrimitiveString.parsePrimitive(json.deviceIdentifier, json._deviceIdentifier);
     }
-    if (json.issuer) {
+    if (json.issuer !== undefined) {
       newInstance.issuer = PrimitiveUri.parsePrimitive(json.issuer, json._issuer);
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = PrimitiveUri.parsePrimitive(json.jurisdiction, json._jurisdiction);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DeviceDefinitionUdiDeviceIdentifier {
+    return DeviceDefinitionUdiDeviceIdentifier.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceDefinitionUdiDeviceIdentifier";
   }

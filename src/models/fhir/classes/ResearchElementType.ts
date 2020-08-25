@@ -22,7 +22,16 @@ export class ResearchElementType extends PrimitiveCode {
     const castInput = input as ResearchElementType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ResearchElementType";
   }
-  
+
+  public clone(): ResearchElementType {
+    const result = new ResearchElementType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ResearchElementType";
   }

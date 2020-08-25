@@ -63,79 +63,79 @@ export class Condition extends DomainResource {
   ): Condition {
     const newInstance: Condition = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.clinicalStatus) {
+    if (json.clinicalStatus !== undefined) {
       newInstance.clinicalStatus = CodeableConcept.parse(json.clinicalStatus);
     }
-    if (json.verificationStatus) {
+    if (json.verificationStatus !== undefined) {
       newInstance.verificationStatus = CodeableConcept.parse(json.verificationStatus);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.severity) {
+    if (json.severity !== undefined) {
       newInstance.severity = CodeableConcept.parse(json.severity);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.bodySite) {
+    if (json.bodySite !== undefined) {
       newInstance.bodySite = json.bodySite.map((x) => CodeableConcept.parse(x));
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.onsetDateTime) {
+    if (json.onsetDateTime !== undefined) {
       newInstance.onset = PrimitiveDateTime.parsePrimitive(json.onsetDateTime, json._onsetDateTime);
     }
-    if (json.onsetAge) {
+    if (json.onsetAge !== undefined) {
       newInstance.onset = Age.parse(json.onsetAge);
     }
-    if (json.onsetPeriod) {
+    if (json.onsetPeriod !== undefined) {
       newInstance.onset = Period.parse(json.onsetPeriod);
     }
-    if (json.onsetRange) {
+    if (json.onsetRange !== undefined) {
       newInstance.onset = Range.parse(json.onsetRange);
     }
-    if (json.onsetString) {
+    if (json.onsetString !== undefined) {
       newInstance.onset = PrimitiveString.parsePrimitive(json.onsetString, json._onsetString);
     }
-    if (json.abatementDateTime) {
+    if (json.abatementDateTime !== undefined) {
       newInstance.abatement = PrimitiveDateTime.parsePrimitive(json.abatementDateTime, json._abatementDateTime);
     }
-    if (json.abatementAge) {
+    if (json.abatementAge !== undefined) {
       newInstance.abatement = Age.parse(json.abatementAge);
     }
-    if (json.abatementPeriod) {
+    if (json.abatementPeriod !== undefined) {
       newInstance.abatement = Period.parse(json.abatementPeriod);
     }
-    if (json.abatementRange) {
+    if (json.abatementRange !== undefined) {
       newInstance.abatement = Range.parse(json.abatementRange);
     }
-    if (json.abatementString) {
+    if (json.abatementString !== undefined) {
       newInstance.abatement = PrimitiveString.parsePrimitive(json.abatementString, json._abatementString);
     }
-    if (json.recordedDate) {
+    if (json.recordedDate !== undefined) {
       newInstance.recordedDate = PrimitiveDateTime.parsePrimitive(json.recordedDate, json._recordedDate);
     }
-    if (json.recorder) {
+    if (json.recorder !== undefined) {
       newInstance.recorder = Reference.parse(json.recorder);
     }
-    if (json.asserter) {
+    if (json.asserter !== undefined) {
       newInstance.asserter = Reference.parse(json.asserter);
     }
-    if (json.stage) {
+    if (json.stage !== undefined) {
       newInstance.stage = json.stage.map((x) => ConditionStage.parse(x));
     }
-    if (json.evidence) {
+    if (json.evidence !== undefined) {
       newInstance.evidence = json.evidence.map((x) => ConditionEvidence.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -256,7 +256,11 @@ export class Condition extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Condition {
+    return Condition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Condition";
   }

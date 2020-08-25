@@ -46,34 +46,34 @@ export class DeviceMetric extends DomainResource {
   ): DeviceMetric {
     const newInstance: DeviceMetric = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.unit) {
+    if (json.unit !== undefined) {
       newInstance.unit = CodeableConcept.parse(json.unit);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = Reference.parse(json.source);
     }
-    if (json.parent) {
+    if (json.parent !== undefined) {
       newInstance.parent = Reference.parse(json.parent);
     }
-    if (json.operationalStatus) {
+    if (json.operationalStatus !== undefined) {
       newInstance.operationalStatus = DeviceMetricOperationalStatus.parsePrimitive(json.operationalStatus, json._operationalStatus);
     }
-    if (json.color) {
+    if (json.color !== undefined) {
       newInstance.color = DeviceMetricColor.parsePrimitive(json.color, json._color);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = DeviceMetricCategory.parsePrimitive(json.category, json._category);
     }
-    if (json.measurementPeriod) {
+    if (json.measurementPeriod !== undefined) {
       newInstance.measurementPeriod = Timing.parse(json.measurementPeriod);
     }
-    if (json.calibration) {
+    if (json.calibration !== undefined) {
       newInstance.calibration = json.calibration.map((x) => DeviceMetricCalibration.parse(x));
     }
     return newInstance;
@@ -132,7 +132,11 @@ export class DeviceMetric extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): DeviceMetric {
+    return DeviceMetric.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceMetric";
   }

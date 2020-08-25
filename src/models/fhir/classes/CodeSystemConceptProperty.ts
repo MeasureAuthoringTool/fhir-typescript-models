@@ -29,28 +29,28 @@ export class CodeSystemConceptProperty extends BackboneElement {
   ): CodeSystemConceptProperty {
     const newInstance: CodeSystemConceptProperty = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.valueCode) {
+    if (json.valueCode !== undefined) {
       newInstance.value = PrimitiveCode.parsePrimitive(json.valueCode, json._valueCode);
     }
-    if (json.valueCoding) {
+    if (json.valueCoding !== undefined) {
       newInstance.value = Coding.parse(json.valueCoding);
     }
-    if (json.valueString) {
+    if (json.valueString !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.valueString, json._valueString);
     }
-    if (json.valueInteger) {
+    if (json.valueInteger !== undefined) {
       newInstance.value = PrimitiveInteger.parsePrimitive(json.valueInteger, json._valueInteger);
     }
-    if (json.valueBoolean) {
+    if (json.valueBoolean !== undefined) {
       newInstance.value = PrimitiveBoolean.parsePrimitive(json.valueBoolean, json._valueBoolean);
     }
-    if (json.valueDateTime) {
+    if (json.valueDateTime !== undefined) {
       newInstance.value = PrimitiveDateTime.parsePrimitive(json.valueDateTime, json._valueDateTime);
     }
-    if (json.valueDecimal) {
+    if (json.valueDecimal !== undefined) {
       newInstance.value = PrimitiveDecimal.parsePrimitive(json.valueDecimal, json._valueDecimal);
     }
     return newInstance;
@@ -105,7 +105,11 @@ export class CodeSystemConceptProperty extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CodeSystemConceptProperty {
+    return CodeSystemConceptProperty.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CodeSystemConceptProperty";
   }

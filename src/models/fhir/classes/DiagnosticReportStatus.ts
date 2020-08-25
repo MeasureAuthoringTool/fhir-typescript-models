@@ -22,7 +22,16 @@ export class DiagnosticReportStatus extends PrimitiveCode {
     const castInput = input as DiagnosticReportStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "DiagnosticReportStatus";
   }
-  
+
+  public clone(): DiagnosticReportStatus {
+    const result = new DiagnosticReportStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "DiagnosticReportStatus";
   }

@@ -22,7 +22,16 @@ export class NutritionOrderStatus extends PrimitiveCode {
     const castInput = input as NutritionOrderStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "NutritionOrderStatus";
   }
-  
+
+  public clone(): NutritionOrderStatus {
+    const result = new NutritionOrderStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "NutritionOrderStatus";
   }

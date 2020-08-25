@@ -27,13 +27,13 @@ export class DeviceVersion extends BackboneElement {
   ): DeviceVersion {
     const newInstance: DeviceVersion = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.component) {
+    if (json.component !== undefined) {
       newInstance.component = Identifier.parse(json.component);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.value, json._value);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class DeviceVersion extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DeviceVersion {
+    return DeviceVersion.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceVersion";
   }

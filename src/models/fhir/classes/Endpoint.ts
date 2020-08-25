@@ -50,40 +50,40 @@ export class Endpoint extends DomainResource {
   ): Endpoint {
     const newInstance: Endpoint = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = EndpointStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.connectionType) {
+    if (json.connectionType !== undefined) {
       newInstance.connectionType = Coding.parse(json.connectionType);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.managingOrganization) {
+    if (json.managingOrganization !== undefined) {
       newInstance.managingOrganization = Reference.parse(json.managingOrganization);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactPoint.parse(x));
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.payloadType) {
+    if (json.payloadType !== undefined) {
       newInstance.payloadType = json.payloadType.map((x) => CodeableConcept.parse(x));
     }
-    if (json.payloadMimeType) {
+    if (json.payloadMimeType !== undefined) {
       newInstance.payloadMimeType = json.payloadMimeType.map((x, i) => {
         const ext = json._payloadMimeType && json._payloadMimeType[i];
         return MimeType.parsePrimitive(x, ext);
       });
     }
-    if (json.address) {
+    if (json.address !== undefined) {
       newInstance.address = PrimitiveUrl.parsePrimitive(json.address, json._address);
     }
-    if (json.header) {
+    if (json.header !== undefined) {
       newInstance.header = json.header.map((x, i) => {
         const ext = json._header && json._header[i];
         return PrimitiveString.parsePrimitive(x, ext);
@@ -151,7 +151,11 @@ export class Endpoint extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Endpoint {
+    return Endpoint.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Endpoint";
   }

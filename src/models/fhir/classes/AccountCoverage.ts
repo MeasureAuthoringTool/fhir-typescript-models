@@ -24,10 +24,10 @@ export class AccountCoverage extends BackboneElement {
   ): AccountCoverage {
     const newInstance: AccountCoverage = BackboneElement.parse(json, providedInstance);
   
-    if (json.coverage) {
+    if (json.coverage !== undefined) {
       newInstance.coverage = Reference.parse(json.coverage);
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = PrimitivePositiveInt.parsePrimitive(json.priority, json._priority);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class AccountCoverage extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): AccountCoverage {
+    return AccountCoverage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AccountCoverage";
   }

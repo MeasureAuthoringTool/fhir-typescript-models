@@ -29,16 +29,16 @@ export class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   ): ObservationDefinitionQuantitativeDetails {
     const newInstance: ObservationDefinitionQuantitativeDetails = BackboneElement.parse(json, providedInstance);
   
-    if (json.customaryUnit) {
+    if (json.customaryUnit !== undefined) {
       newInstance.customaryUnit = CodeableConcept.parse(json.customaryUnit);
     }
-    if (json.unit) {
+    if (json.unit !== undefined) {
       newInstance.unit = CodeableConcept.parse(json.unit);
     }
-    if (json.conversionFactor) {
+    if (json.conversionFactor !== undefined) {
       newInstance.conversionFactor = PrimitiveDecimal.parsePrimitive(json.conversionFactor, json._conversionFactor);
     }
-    if (json.decimalPrecision) {
+    if (json.decimalPrecision !== undefined) {
       newInstance.decimalPrecision = PrimitiveInteger.parsePrimitive(json.decimalPrecision, json._decimalPrecision);
     }
     return newInstance;
@@ -72,7 +72,11 @@ export class ObservationDefinitionQuantitativeDetails extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ObservationDefinitionQuantitativeDetails {
+    return ObservationDefinitionQuantitativeDetails.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ObservationDefinitionQuantitativeDetails";
   }

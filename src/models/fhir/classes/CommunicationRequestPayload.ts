@@ -23,13 +23,13 @@ export class CommunicationRequestPayload extends BackboneElement {
   ): CommunicationRequestPayload {
     const newInstance: CommunicationRequestPayload = BackboneElement.parse(json, providedInstance);
   
-    if (json.contentString) {
+    if (json.contentString !== undefined) {
       newInstance.content = PrimitiveString.parsePrimitive(json.contentString, json._contentString);
     }
-    if (json.contentAttachment) {
+    if (json.contentAttachment !== undefined) {
       newInstance.content = Attachment.parse(json.contentAttachment);
     }
-    if (json.contentReference) {
+    if (json.contentReference !== undefined) {
       newInstance.content = Reference.parse(json.contentReference);
     }
     return newInstance;
@@ -58,7 +58,11 @@ export class CommunicationRequestPayload extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CommunicationRequestPayload {
+    return CommunicationRequestPayload.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CommunicationRequestPayload";
   }

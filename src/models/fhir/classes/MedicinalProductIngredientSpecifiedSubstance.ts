@@ -27,16 +27,16 @@ export class MedicinalProductIngredientSpecifiedSubstance extends BackboneElemen
   ): MedicinalProductIngredientSpecifiedSubstance {
     const newInstance: MedicinalProductIngredientSpecifiedSubstance = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.group) {
+    if (json.group !== undefined) {
       newInstance.group = CodeableConcept.parse(json.group);
     }
-    if (json.confidentiality) {
+    if (json.confidentiality !== undefined) {
       newInstance.confidentiality = CodeableConcept.parse(json.confidentiality);
     }
-    if (json.strength) {
+    if (json.strength !== undefined) {
       newInstance.strength = json.strength.map((x) => MedicinalProductIngredientSpecifiedSubstanceStrength.parse(x));
     }
     return newInstance;
@@ -68,7 +68,11 @@ export class MedicinalProductIngredientSpecifiedSubstance extends BackboneElemen
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductIngredientSpecifiedSubstance {
+    return MedicinalProductIngredientSpecifiedSubstance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductIngredientSpecifiedSubstance";
   }

@@ -51,49 +51,49 @@ export class ImmunizationEvaluation extends DomainResource {
   ): ImmunizationEvaluation {
     const newInstance: ImmunizationEvaluation = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ImmunizationEvaluationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.authority) {
+    if (json.authority !== undefined) {
       newInstance.authority = Reference.parse(json.authority);
     }
-    if (json.targetDisease) {
+    if (json.targetDisease !== undefined) {
       newInstance.targetDisease = CodeableConcept.parse(json.targetDisease);
     }
-    if (json.immunizationEvent) {
+    if (json.immunizationEvent !== undefined) {
       newInstance.immunizationEvent = Reference.parse(json.immunizationEvent);
     }
-    if (json.doseStatus) {
+    if (json.doseStatus !== undefined) {
       newInstance.doseStatus = CodeableConcept.parse(json.doseStatus);
     }
-    if (json.doseStatusReason) {
+    if (json.doseStatusReason !== undefined) {
       newInstance.doseStatusReason = json.doseStatusReason.map((x) => CodeableConcept.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.series) {
+    if (json.series !== undefined) {
       newInstance.series = PrimitiveString.parsePrimitive(json.series, json._series);
     }
-    if (json.doseNumberPositiveInt) {
+    if (json.doseNumberPositiveInt !== undefined) {
       newInstance.doseNumber = PrimitivePositiveInt.parsePrimitive(json.doseNumberPositiveInt, json._doseNumberPositiveInt);
     }
-    if (json.doseNumberString) {
+    if (json.doseNumberString !== undefined) {
       newInstance.doseNumber = PrimitiveString.parsePrimitive(json.doseNumberString, json._doseNumberString);
     }
-    if (json.seriesDosesPositiveInt) {
+    if (json.seriesDosesPositiveInt !== undefined) {
       newInstance.seriesDoses = PrimitivePositiveInt.parsePrimitive(json.seriesDosesPositiveInt, json._seriesDosesPositiveInt);
     }
-    if (json.seriesDosesString) {
+    if (json.seriesDosesString !== undefined) {
       newInstance.seriesDoses = PrimitiveString.parsePrimitive(json.seriesDosesString, json._seriesDosesString);
     }
     return newInstance;
@@ -177,7 +177,11 @@ export class ImmunizationEvaluation extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ImmunizationEvaluation {
+    return ImmunizationEvaluation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImmunizationEvaluation";
   }

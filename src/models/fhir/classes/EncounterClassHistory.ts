@@ -23,10 +23,10 @@ export class EncounterClassHistory extends BackboneElement {
   ): EncounterClassHistory {
     const newInstance: EncounterClassHistory = BackboneElement.parse(json, providedInstance);
   
-    if (json.class) {
+    if (json.class !== undefined) {
       newInstance.class = Coding.parse(json.class);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class EncounterClassHistory extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): EncounterClassHistory {
+    return EncounterClassHistory.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EncounterClassHistory";
   }

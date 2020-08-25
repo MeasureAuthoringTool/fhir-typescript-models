@@ -42,31 +42,31 @@ export class MolecularSequenceReferenceSeq extends BackboneElement {
   ): MolecularSequenceReferenceSeq {
     const newInstance: MolecularSequenceReferenceSeq = BackboneElement.parse(json, providedInstance);
   
-    if (json.chromosome) {
+    if (json.chromosome !== undefined) {
       newInstance.chromosome = CodeableConcept.parse(json.chromosome);
     }
-    if (json.genomeBuild) {
+    if (json.genomeBuild !== undefined) {
       newInstance.genomeBuild = PrimitiveString.parsePrimitive(json.genomeBuild, json._genomeBuild);
     }
-    if (json.orientation) {
+    if (json.orientation !== undefined) {
       newInstance.orientation = OrientationType.parsePrimitive(json.orientation, json._orientation);
     }
-    if (json.referenceSeqId) {
+    if (json.referenceSeqId !== undefined) {
       newInstance.referenceSeqId = CodeableConcept.parse(json.referenceSeqId);
     }
-    if (json.referenceSeqPointer) {
+    if (json.referenceSeqPointer !== undefined) {
       newInstance.referenceSeqPointer = Reference.parse(json.referenceSeqPointer);
     }
-    if (json.referenceSeqString) {
+    if (json.referenceSeqString !== undefined) {
       newInstance.referenceSeqString = PrimitiveString.parsePrimitive(json.referenceSeqString, json._referenceSeqString);
     }
-    if (json.strand) {
+    if (json.strand !== undefined) {
       newInstance.strand = StrandType.parsePrimitive(json.strand, json._strand);
     }
-    if (json.windowStart) {
+    if (json.windowStart !== undefined) {
       newInstance.windowStart = PrimitiveInteger.parsePrimitive(json.windowStart, json._windowStart);
     }
-    if (json.windowEnd) {
+    if (json.windowEnd !== undefined) {
       newInstance.windowEnd = PrimitiveInteger.parsePrimitive(json.windowEnd, json._windowEnd);
     }
     return newInstance;
@@ -124,7 +124,11 @@ export class MolecularSequenceReferenceSeq extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MolecularSequenceReferenceSeq {
+    return MolecularSequenceReferenceSeq.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MolecularSequenceReferenceSeq";
   }

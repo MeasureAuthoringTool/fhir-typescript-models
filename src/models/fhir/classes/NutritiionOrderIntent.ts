@@ -22,7 +22,16 @@ export class NutritiionOrderIntent extends PrimitiveCode {
     const castInput = input as NutritiionOrderIntent;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "NutritiionOrderIntent";
   }
-  
+
+  public clone(): NutritiionOrderIntent {
+    const result = new NutritiionOrderIntent();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "NutritiionOrderIntent";
   }

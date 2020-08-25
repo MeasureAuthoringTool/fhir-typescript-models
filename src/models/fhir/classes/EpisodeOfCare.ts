@@ -49,40 +49,40 @@ export class EpisodeOfCare extends DomainResource {
   ): EpisodeOfCare {
     const newInstance: EpisodeOfCare = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = EpisodeOfCareStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.statusHistory) {
+    if (json.statusHistory !== undefined) {
       newInstance.statusHistory = json.statusHistory.map((x) => EpisodeOfCareStatusHistory.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.diagnosis) {
+    if (json.diagnosis !== undefined) {
       newInstance.diagnosis = json.diagnosis.map((x) => EpisodeOfCareDiagnosis.parse(x));
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.managingOrganization) {
+    if (json.managingOrganization !== undefined) {
       newInstance.managingOrganization = Reference.parse(json.managingOrganization);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.referralRequest) {
+    if (json.referralRequest !== undefined) {
       newInstance.referralRequest = json.referralRequest.map((x) => Reference.parse(x));
     }
-    if (json.careManager) {
+    if (json.careManager !== undefined) {
       newInstance.careManager = Reference.parse(json.careManager);
     }
-    if (json.team) {
+    if (json.team !== undefined) {
       newInstance.team = json.team.map((x) => Reference.parse(x));
     }
-    if (json.account) {
+    if (json.account !== undefined) {
       newInstance.account = json.account.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -147,7 +147,11 @@ export class EpisodeOfCare extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): EpisodeOfCare {
+    return EpisodeOfCare.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EpisodeOfCare";
   }

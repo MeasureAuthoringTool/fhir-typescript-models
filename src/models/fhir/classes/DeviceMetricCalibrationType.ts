@@ -22,7 +22,16 @@ export class DeviceMetricCalibrationType extends PrimitiveCode {
     const castInput = input as DeviceMetricCalibrationType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "DeviceMetricCalibrationType";
   }
-  
+
+  public clone(): DeviceMetricCalibrationType {
+    const result = new DeviceMetricCalibrationType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "DeviceMetricCalibrationType";
   }

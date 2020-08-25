@@ -85,97 +85,97 @@ export class ChargeItem extends DomainResource {
   ): ChargeItem {
     const newInstance: ChargeItem = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.definitionUri) {
+    if (json.definitionUri !== undefined) {
       newInstance.definitionUri = json.definitionUri.map((x, i) => {
         const ext = json._definitionUri && json._definitionUri[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.definitionCanonical) {
+    if (json.definitionCanonical !== undefined) {
       newInstance.definitionCanonical = json.definitionCanonical.map((x, i) => {
         const ext = json._definitionCanonical && json._definitionCanonical[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ChargeItemStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = json.partOf.map((x) => Reference.parse(x));
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.context) {
+    if (json.context !== undefined) {
       newInstance.context = Reference.parse(json.context);
     }
-    if (json.occurrenceDateTime) {
+    if (json.occurrenceDateTime !== undefined) {
       newInstance.occurrence = PrimitiveDateTime.parsePrimitive(json.occurrenceDateTime, json._occurrenceDateTime);
     }
-    if (json.occurrencePeriod) {
+    if (json.occurrencePeriod !== undefined) {
       newInstance.occurrence = Period.parse(json.occurrencePeriod);
     }
-    if (json.occurrenceTiming) {
+    if (json.occurrenceTiming !== undefined) {
       newInstance.occurrence = Timing.parse(json.occurrenceTiming);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = json.performer.map((x) => ChargeItemPerformer.parse(x));
     }
-    if (json.performingOrganization) {
+    if (json.performingOrganization !== undefined) {
       newInstance.performingOrganization = Reference.parse(json.performingOrganization);
     }
-    if (json.requestingOrganization) {
+    if (json.requestingOrganization !== undefined) {
       newInstance.requestingOrganization = Reference.parse(json.requestingOrganization);
     }
-    if (json.costCenter) {
+    if (json.costCenter !== undefined) {
       newInstance.costCenter = Reference.parse(json.costCenter);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = Quantity.parse(json.quantity);
     }
-    if (json.bodysite) {
+    if (json.bodysite !== undefined) {
       newInstance.bodysite = json.bodysite.map((x) => CodeableConcept.parse(x));
     }
-    if (json.factorOverride) {
+    if (json.factorOverride !== undefined) {
       newInstance.factorOverride = PrimitiveDecimal.parsePrimitive(json.factorOverride, json._factorOverride);
     }
-    if (json.priceOverride) {
+    if (json.priceOverride !== undefined) {
       newInstance.priceOverride = Money.parse(json.priceOverride);
     }
-    if (json.overrideReason) {
+    if (json.overrideReason !== undefined) {
       newInstance.overrideReason = PrimitiveString.parsePrimitive(json.overrideReason, json._overrideReason);
     }
-    if (json.enterer) {
+    if (json.enterer !== undefined) {
       newInstance.enterer = Reference.parse(json.enterer);
     }
-    if (json.enteredDate) {
+    if (json.enteredDate !== undefined) {
       newInstance.enteredDate = PrimitiveDateTime.parsePrimitive(json.enteredDate, json._enteredDate);
     }
-    if (json.reason) {
+    if (json.reason !== undefined) {
       newInstance.reason = json.reason.map((x) => CodeableConcept.parse(x));
     }
-    if (json.service) {
+    if (json.service !== undefined) {
       newInstance.service = json.service.map((x) => Reference.parse(x));
     }
-    if (json.productReference) {
+    if (json.productReference !== undefined) {
       newInstance.product = Reference.parse(json.productReference);
     }
-    if (json.productCodeableConcept) {
+    if (json.productCodeableConcept !== undefined) {
       newInstance.product = CodeableConcept.parse(json.productCodeableConcept);
     }
-    if (json.account) {
+    if (json.account !== undefined) {
       newInstance.account = json.account.map((x) => Reference.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.supportingInformation) {
+    if (json.supportingInformation !== undefined) {
       newInstance.supportingInformation = json.supportingInformation.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -314,7 +314,11 @@ export class ChargeItem extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ChargeItem {
+    return ChargeItem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ChargeItem";
   }

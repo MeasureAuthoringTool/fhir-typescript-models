@@ -88,106 +88,106 @@ export class Procedure extends DomainResource {
   ): Procedure {
     const newInstance: Procedure = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.instantiatesCanonical) {
+    if (json.instantiatesCanonical !== undefined) {
       newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
         const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.instantiatesUri) {
+    if (json.instantiatesUri !== undefined) {
       newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
         const ext = json._instantiatesUri && json._instantiatesUri[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = json.partOf.map((x) => Reference.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ProcedureStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.statusReason) {
+    if (json.statusReason !== undefined) {
       newInstance.statusReason = CodeableConcept.parse(json.statusReason);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.performedDateTime) {
+    if (json.performedDateTime !== undefined) {
       newInstance.performed = PrimitiveDateTime.parsePrimitive(json.performedDateTime, json._performedDateTime);
     }
-    if (json.performedPeriod) {
+    if (json.performedPeriod !== undefined) {
       newInstance.performed = Period.parse(json.performedPeriod);
     }
-    if (json.performedString) {
+    if (json.performedString !== undefined) {
       newInstance.performed = PrimitiveString.parsePrimitive(json.performedString, json._performedString);
     }
-    if (json.performedAge) {
+    if (json.performedAge !== undefined) {
       newInstance.performed = Age.parse(json.performedAge);
     }
-    if (json.performedRange) {
+    if (json.performedRange !== undefined) {
       newInstance.performed = Range.parse(json.performedRange);
     }
-    if (json.recorder) {
+    if (json.recorder !== undefined) {
       newInstance.recorder = Reference.parse(json.recorder);
     }
-    if (json.asserter) {
+    if (json.asserter !== undefined) {
       newInstance.asserter = Reference.parse(json.asserter);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = json.performer.map((x) => ProcedurePerformer.parse(x));
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = Reference.parse(json.location);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.bodySite) {
+    if (json.bodySite !== undefined) {
       newInstance.bodySite = json.bodySite.map((x) => CodeableConcept.parse(x));
     }
-    if (json.outcome) {
+    if (json.outcome !== undefined) {
       newInstance.outcome = CodeableConcept.parse(json.outcome);
     }
-    if (json.report) {
+    if (json.report !== undefined) {
       newInstance.report = json.report.map((x) => Reference.parse(x));
     }
-    if (json.complication) {
+    if (json.complication !== undefined) {
       newInstance.complication = json.complication.map((x) => CodeableConcept.parse(x));
     }
-    if (json.complicationDetail) {
+    if (json.complicationDetail !== undefined) {
       newInstance.complicationDetail = json.complicationDetail.map((x) => Reference.parse(x));
     }
-    if (json.followUp) {
+    if (json.followUp !== undefined) {
       newInstance.followUp = json.followUp.map((x) => CodeableConcept.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.focalDevice) {
+    if (json.focalDevice !== undefined) {
       newInstance.focalDevice = json.focalDevice.map((x) => ProcedureFocalDevice.parse(x));
     }
-    if (json.usedReference) {
+    if (json.usedReference !== undefined) {
       newInstance.usedReference = json.usedReference.map((x) => Reference.parse(x));
     }
-    if (json.usedCode) {
+    if (json.usedCode !== undefined) {
       newInstance.usedCode = json.usedCode.map((x) => CodeableConcept.parse(x));
     }
     return newInstance;
@@ -336,7 +336,11 @@ export class Procedure extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Procedure {
+    return Procedure.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Procedure";
   }

@@ -27,16 +27,16 @@ export class ProvenanceAgent extends BackboneElement {
   ): ProvenanceAgent {
     const newInstance: ProvenanceAgent = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.role) {
+    if (json.role !== undefined) {
       newInstance.role = json.role.map((x) => CodeableConcept.parse(x));
     }
-    if (json.who) {
+    if (json.who !== undefined) {
       newInstance.who = Reference.parse(json.who);
     }
-    if (json.onBehalfOf) {
+    if (json.onBehalfOf !== undefined) {
       newInstance.onBehalfOf = Reference.parse(json.onBehalfOf);
     }
     return newInstance;
@@ -68,7 +68,11 @@ export class ProvenanceAgent extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ProvenanceAgent {
+    return ProvenanceAgent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ProvenanceAgent";
   }

@@ -28,19 +28,19 @@ export class ContractTermSecurityLabel extends BackboneElement {
   ): ContractTermSecurityLabel {
     const newInstance: ContractTermSecurityLabel = BackboneElement.parse(json, providedInstance);
   
-    if (json.number) {
+    if (json.number !== undefined) {
       newInstance.number = json.number.map((x, i) => {
         const ext = json._number && json._number[i];
         return PrimitiveUnsignedInt.parsePrimitive(x, ext);
       });
     }
-    if (json.classification) {
+    if (json.classification !== undefined) {
       newInstance.classification = Coding.parse(json.classification);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => Coding.parse(x));
     }
-    if (json.control) {
+    if (json.control !== undefined) {
       newInstance.control = json.control.map((x) => Coding.parse(x));
     }
     return newInstance;
@@ -73,7 +73,11 @@ export class ContractTermSecurityLabel extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractTermSecurityLabel {
+    return ContractTermSecurityLabel.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractTermSecurityLabel";
   }

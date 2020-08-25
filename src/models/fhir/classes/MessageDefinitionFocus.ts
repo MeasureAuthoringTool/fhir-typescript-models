@@ -30,16 +30,16 @@ export class MessageDefinitionFocus extends BackboneElement {
   ): MessageDefinitionFocus {
     const newInstance: MessageDefinitionFocus = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = ResourceType.parsePrimitive(json.code, json._code);
     }
-    if (json.profile) {
+    if (json.profile !== undefined) {
       newInstance.profile = PrimitiveCanonical.parsePrimitive(json.profile, json._profile);
     }
-    if (json.min) {
+    if (json.min !== undefined) {
       newInstance.min = PrimitiveUnsignedInt.parsePrimitive(json.min, json._min);
     }
-    if (json.max) {
+    if (json.max !== undefined) {
       newInstance.max = PrimitiveString.parsePrimitive(json.max, json._max);
     }
     return newInstance;
@@ -75,7 +75,11 @@ export class MessageDefinitionFocus extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MessageDefinitionFocus {
+    return MessageDefinitionFocus.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MessageDefinitionFocus";
   }

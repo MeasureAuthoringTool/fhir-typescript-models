@@ -30,19 +30,19 @@ export class MedicinalProductUndesirableEffect extends DomainResource {
   ): MedicinalProductUndesirableEffect {
     const newInstance: MedicinalProductUndesirableEffect = DomainResource.parse(json, providedInstance);
   
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = json.subject.map((x) => Reference.parse(x));
     }
-    if (json.symptomConditionEffect) {
+    if (json.symptomConditionEffect !== undefined) {
       newInstance.symptomConditionEffect = CodeableConcept.parse(json.symptomConditionEffect);
     }
-    if (json.classification) {
+    if (json.classification !== undefined) {
       newInstance.classification = CodeableConcept.parse(json.classification);
     }
-    if (json.frequencyOfOccurrence) {
+    if (json.frequencyOfOccurrence !== undefined) {
       newInstance.frequencyOfOccurrence = CodeableConcept.parse(json.frequencyOfOccurrence);
     }
-    if (json.population) {
+    if (json.population !== undefined) {
       newInstance.population = json.population.map((x) => Population.parse(x));
     }
     return newInstance;
@@ -78,7 +78,11 @@ export class MedicinalProductUndesirableEffect extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductUndesirableEffect {
+    return MedicinalProductUndesirableEffect.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductUndesirableEffect";
   }

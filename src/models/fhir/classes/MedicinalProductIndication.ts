@@ -40,31 +40,31 @@ export class MedicinalProductIndication extends DomainResource {
   ): MedicinalProductIndication {
     const newInstance: MedicinalProductIndication = DomainResource.parse(json, providedInstance);
   
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = json.subject.map((x) => Reference.parse(x));
     }
-    if (json.diseaseSymptomProcedure) {
+    if (json.diseaseSymptomProcedure !== undefined) {
       newInstance.diseaseSymptomProcedure = CodeableConcept.parse(json.diseaseSymptomProcedure);
     }
-    if (json.diseaseStatus) {
+    if (json.diseaseStatus !== undefined) {
       newInstance.diseaseStatus = CodeableConcept.parse(json.diseaseStatus);
     }
-    if (json.comorbidity) {
+    if (json.comorbidity !== undefined) {
       newInstance.comorbidity = json.comorbidity.map((x) => CodeableConcept.parse(x));
     }
-    if (json.intendedEffect) {
+    if (json.intendedEffect !== undefined) {
       newInstance.intendedEffect = CodeableConcept.parse(json.intendedEffect);
     }
-    if (json.duration) {
+    if (json.duration !== undefined) {
       newInstance.duration = Quantity.parse(json.duration);
     }
-    if (json.otherTherapy) {
+    if (json.otherTherapy !== undefined) {
       newInstance.otherTherapy = json.otherTherapy.map((x) => MedicinalProductIndicationOtherTherapy.parse(x));
     }
-    if (json.undesirableEffect) {
+    if (json.undesirableEffect !== undefined) {
       newInstance.undesirableEffect = json.undesirableEffect.map((x) => Reference.parse(x));
     }
-    if (json.population) {
+    if (json.population !== undefined) {
       newInstance.population = json.population.map((x) => Population.parse(x));
     }
     return newInstance;
@@ -116,7 +116,11 @@ export class MedicinalProductIndication extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductIndication {
+    return MedicinalProductIndication.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductIndication";
   }

@@ -25,13 +25,13 @@ export class CompositionRelatesTo extends BackboneElement {
   ): CompositionRelatesTo {
     const newInstance: CompositionRelatesTo = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = DocumentRelationshipType.parsePrimitive(json.code, json._code);
     }
-    if (json.targetIdentifier) {
+    if (json.targetIdentifier !== undefined) {
       newInstance.target = Identifier.parse(json.targetIdentifier);
     }
-    if (json.targetReference) {
+    if (json.targetReference !== undefined) {
       newInstance.target = Reference.parse(json.targetReference);
     }
     return newInstance;
@@ -60,7 +60,11 @@ export class CompositionRelatesTo extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CompositionRelatesTo {
+    return CompositionRelatesTo.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CompositionRelatesTo";
   }

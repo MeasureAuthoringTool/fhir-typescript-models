@@ -25,13 +25,13 @@ export class DeviceProperty extends BackboneElement {
   ): DeviceProperty {
     const newInstance: DeviceProperty = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.valueQuantity) {
+    if (json.valueQuantity !== undefined) {
       newInstance.valueQuantity = json.valueQuantity.map((x) => Quantity.parse(x));
     }
-    if (json.valueCode) {
+    if (json.valueCode !== undefined) {
       newInstance.valueCode = json.valueCode.map((x) => CodeableConcept.parse(x));
     }
     return newInstance;
@@ -59,7 +59,11 @@ export class DeviceProperty extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DeviceProperty {
+    return DeviceProperty.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceProperty";
   }

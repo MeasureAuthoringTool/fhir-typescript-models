@@ -22,7 +22,16 @@ export class CommunicationPriority extends PrimitiveCode {
     const castInput = input as CommunicationPriority;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CommunicationPriority";
   }
-  
+
+  public clone(): CommunicationPriority {
+    const result = new CommunicationPriority();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CommunicationPriority";
   }

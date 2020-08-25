@@ -22,10 +22,10 @@ export class SubstanceSourceMaterialPartDescription extends BackboneElement {
   ): SubstanceSourceMaterialPartDescription {
     const newInstance: SubstanceSourceMaterialPartDescription = BackboneElement.parse(json, providedInstance);
   
-    if (json.part) {
+    if (json.part !== undefined) {
       newInstance.part = CodeableConcept.parse(json.part);
     }
-    if (json.partLocation) {
+    if (json.partLocation !== undefined) {
       newInstance.partLocation = CodeableConcept.parse(json.partLocation);
     }
     return newInstance;
@@ -49,7 +49,11 @@ export class SubstanceSourceMaterialPartDescription extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSourceMaterialPartDescription {
+    return SubstanceSourceMaterialPartDescription.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSourceMaterialPartDescription";
   }

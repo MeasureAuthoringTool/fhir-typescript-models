@@ -35,22 +35,22 @@ export class ExampleScenarioInstance extends BackboneElement {
   ): ExampleScenarioInstance {
     const newInstance: ExampleScenarioInstance = BackboneElement.parse(json, providedInstance);
   
-    if (json.resourceId) {
+    if (json.resourceId !== undefined) {
       newInstance.resourceId = PrimitiveString.parsePrimitive(json.resourceId, json._resourceId);
     }
-    if (json.resourceType) {
+    if (json.resourceType !== undefined) {
       newInstance.resourceType = FHIRResourceType.parsePrimitive(json.resourceType, json._resourceType);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = json.version.map((x) => ExampleScenarioInstanceVersion.parse(x));
     }
-    if (json.containedInstance) {
+    if (json.containedInstance !== undefined) {
       newInstance.containedInstance = json.containedInstance.map((x) => ExampleScenarioInstanceContainedInstance.parse(x));
     }
     return newInstance;
@@ -94,7 +94,11 @@ export class ExampleScenarioInstance extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExampleScenarioInstance {
+    return ExampleScenarioInstance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExampleScenarioInstance";
   }

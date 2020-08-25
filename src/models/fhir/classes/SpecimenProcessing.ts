@@ -31,19 +31,19 @@ export class SpecimenProcessing extends BackboneElement {
   ): SpecimenProcessing {
     const newInstance: SpecimenProcessing = BackboneElement.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.procedure) {
+    if (json.procedure !== undefined) {
       newInstance.procedure = CodeableConcept.parse(json.procedure);
     }
-    if (json.additive) {
+    if (json.additive !== undefined) {
       newInstance.additive = json.additive.map((x) => Reference.parse(x));
     }
-    if (json.timeDateTime) {
+    if (json.timeDateTime !== undefined) {
       newInstance.time = PrimitiveDateTime.parsePrimitive(json.timeDateTime, json._timeDateTime);
     }
-    if (json.timePeriod) {
+    if (json.timePeriod !== undefined) {
       newInstance.time = Period.parse(json.timePeriod);
     }
     return newInstance;
@@ -81,7 +81,11 @@ export class SpecimenProcessing extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SpecimenProcessing {
+    return SpecimenProcessing.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SpecimenProcessing";
   }

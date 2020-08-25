@@ -74,73 +74,73 @@ export class Media extends DomainResource {
   ): Media {
     const newInstance: Media = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = json.partOf.map((x) => Reference.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = MediaStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.modality) {
+    if (json.modality !== undefined) {
       newInstance.modality = CodeableConcept.parse(json.modality);
     }
-    if (json.view) {
+    if (json.view !== undefined) {
       newInstance.view = CodeableConcept.parse(json.view);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.createdDateTime) {
+    if (json.createdDateTime !== undefined) {
       newInstance.created = PrimitiveDateTime.parsePrimitive(json.createdDateTime, json._createdDateTime);
     }
-    if (json.createdPeriod) {
+    if (json.createdPeriod !== undefined) {
       newInstance.created = Period.parse(json.createdPeriod);
     }
-    if (json.issued) {
+    if (json.issued !== undefined) {
       newInstance.issued = PrimitiveInstant.parsePrimitive(json.issued, json._issued);
     }
-    if (json.operator) {
+    if (json.operator !== undefined) {
       newInstance.operator = Reference.parse(json.operator);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.bodySite) {
+    if (json.bodySite !== undefined) {
       newInstance.bodySite = CodeableConcept.parse(json.bodySite);
     }
-    if (json.deviceName) {
+    if (json.deviceName !== undefined) {
       newInstance.deviceName = PrimitiveString.parsePrimitive(json.deviceName, json._deviceName);
     }
-    if (json.device) {
+    if (json.device !== undefined) {
       newInstance.device = Reference.parse(json.device);
     }
-    if (json.height) {
+    if (json.height !== undefined) {
       newInstance.height = PrimitivePositiveInt.parsePrimitive(json.height, json._height);
     }
-    if (json.width) {
+    if (json.width !== undefined) {
       newInstance.width = PrimitivePositiveInt.parsePrimitive(json.width, json._width);
     }
-    if (json.frames) {
+    if (json.frames !== undefined) {
       newInstance.frames = PrimitivePositiveInt.parsePrimitive(json.frames, json._frames);
     }
-    if (json.duration) {
+    if (json.duration !== undefined) {
       newInstance.duration = PrimitiveDecimal.parsePrimitive(json.duration, json._duration);
     }
-    if (json.content) {
+    if (json.content !== undefined) {
       newInstance.content = Attachment.parse(json.content);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -256,7 +256,11 @@ export class Media extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Media {
+    return Media.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Media";
   }

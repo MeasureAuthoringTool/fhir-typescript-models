@@ -24,10 +24,10 @@ export class ContactDetail extends Element {
   ): ContactDetail {
     const newInstance: ContactDetail = Element.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.telecom) {
+    if (json.telecom !== undefined) {
       newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class ContactDetail extends Element {
 
     return result;
   }
-  
+
+  public clone(): ContactDetail {
+    return ContactDetail.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContactDetail";
   }

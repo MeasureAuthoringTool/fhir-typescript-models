@@ -29,16 +29,16 @@ export class MeasureReportGroup extends BackboneElement {
   ): MeasureReportGroup {
     const newInstance: MeasureReportGroup = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.population) {
+    if (json.population !== undefined) {
       newInstance.population = json.population.map((x) => MeasureReportGroupPopulation.parse(x));
     }
-    if (json.measureScore) {
+    if (json.measureScore !== undefined) {
       newInstance.measureScore = Quantity.parse(json.measureScore);
     }
-    if (json.stratifier) {
+    if (json.stratifier !== undefined) {
       newInstance.stratifier = json.stratifier.map((x) => MeasureReportGroupStratifier.parse(x));
     }
     return newInstance;
@@ -70,7 +70,11 @@ export class MeasureReportGroup extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MeasureReportGroup {
+    return MeasureReportGroup.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MeasureReportGroup";
   }

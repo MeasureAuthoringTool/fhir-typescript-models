@@ -23,10 +23,10 @@ export class TestScriptSetupActionOperationRequestHeader extends BackboneElement
   ): TestScriptSetupActionOperationRequestHeader {
     const newInstance: TestScriptSetupActionOperationRequestHeader = BackboneElement.parse(json, providedInstance);
   
-    if (json.field) {
+    if (json.field !== undefined) {
       newInstance.field = PrimitiveString.parsePrimitive(json.field, json._field);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.value, json._value);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class TestScriptSetupActionOperationRequestHeader extends BackboneElement
 
     return result;
   }
-  
+
+  public clone(): TestScriptSetupActionOperationRequestHeader {
+    return TestScriptSetupActionOperationRequestHeader.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestScriptSetupActionOperationRequestHeader";
   }

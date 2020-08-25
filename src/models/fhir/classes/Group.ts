@@ -47,34 +47,34 @@ export class Group extends DomainResource {
   ): Group {
     const newInstance: Group = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.active) {
+    if (json.active !== undefined) {
       newInstance.active = PrimitiveBoolean.parsePrimitive(json.active, json._active);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = GroupType.parsePrimitive(json.type, json._type);
     }
-    if (json.actual) {
+    if (json.actual !== undefined) {
       newInstance.actual = PrimitiveBoolean.parsePrimitive(json.actual, json._actual);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = PrimitiveUnsignedInt.parsePrimitive(json.quantity, json._quantity);
     }
-    if (json.managingEntity) {
+    if (json.managingEntity !== undefined) {
       newInstance.managingEntity = Reference.parse(json.managingEntity);
     }
-    if (json.characteristic) {
+    if (json.characteristic !== undefined) {
       newInstance.characteristic = json.characteristic.map((x) => GroupCharacteristic.parse(x));
     }
-    if (json.member) {
+    if (json.member !== undefined) {
       newInstance.member = json.member.map((x) => GroupMember.parse(x));
     }
     return newInstance;
@@ -135,7 +135,11 @@ export class Group extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Group {
+    return Group.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Group";
   }

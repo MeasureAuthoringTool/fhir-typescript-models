@@ -23,10 +23,10 @@ export class ConditionEvidence extends BackboneElement {
   ): ConditionEvidence {
     const newInstance: ConditionEvidence = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = json.code.map((x) => CodeableConcept.parse(x));
     }
-    if (json.detail) {
+    if (json.detail !== undefined) {
       newInstance.detail = json.detail.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class ConditionEvidence extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ConditionEvidence {
+    return ConditionEvidence.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ConditionEvidence";
   }

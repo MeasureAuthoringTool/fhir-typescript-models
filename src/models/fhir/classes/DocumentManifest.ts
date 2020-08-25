@@ -50,40 +50,40 @@ export class DocumentManifest extends DomainResource {
   ): DocumentManifest {
     const newInstance: DocumentManifest = DomainResource.parse(json, providedInstance);
   
-    if (json.masterIdentifier) {
+    if (json.masterIdentifier !== undefined) {
       newInstance.masterIdentifier = Identifier.parse(json.masterIdentifier);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = DocumentReferenceStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.created) {
+    if (json.created !== undefined) {
       newInstance.created = PrimitiveDateTime.parsePrimitive(json.created, json._created);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = json.author.map((x) => Reference.parse(x));
     }
-    if (json.recipient) {
+    if (json.recipient !== undefined) {
       newInstance.recipient = json.recipient.map((x) => Reference.parse(x));
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = PrimitiveUri.parsePrimitive(json.source, json._source);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.content) {
+    if (json.content !== undefined) {
       newInstance.content = json.content.map((x) => Reference.parse(x));
     }
-    if (json.related) {
+    if (json.related !== undefined) {
       newInstance.related = json.related.map((x) => DocumentManifestRelated.parse(x));
     }
     return newInstance;
@@ -151,7 +151,11 @@ export class DocumentManifest extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): DocumentManifest {
+    return DocumentManifest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DocumentManifest";
   }

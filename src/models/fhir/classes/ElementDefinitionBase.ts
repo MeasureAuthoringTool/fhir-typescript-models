@@ -26,13 +26,13 @@ export class ElementDefinitionBase extends Element {
   ): ElementDefinitionBase {
     const newInstance: ElementDefinitionBase = Element.parse(json, providedInstance);
   
-    if (json.path) {
+    if (json.path !== undefined) {
       newInstance.path = PrimitiveString.parsePrimitive(json.path, json._path);
     }
-    if (json.min) {
+    if (json.min !== undefined) {
       newInstance.min = PrimitiveUnsignedInt.parsePrimitive(json.min, json._min);
     }
-    if (json.max) {
+    if (json.max !== undefined) {
       newInstance.max = PrimitiveString.parsePrimitive(json.max, json._max);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class ElementDefinitionBase extends Element {
 
     return result;
   }
-  
+
+  public clone(): ElementDefinitionBase {
+    return ElementDefinitionBase.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ElementDefinitionBase";
   }

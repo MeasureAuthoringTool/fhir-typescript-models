@@ -23,10 +23,10 @@ export class ProcedureFocalDevice extends BackboneElement {
   ): ProcedureFocalDevice {
     const newInstance: ProcedureFocalDevice = BackboneElement.parse(json, providedInstance);
   
-    if (json.action) {
+    if (json.action !== undefined) {
       newInstance.action = CodeableConcept.parse(json.action);
     }
-    if (json.manipulated) {
+    if (json.manipulated !== undefined) {
       newInstance.manipulated = Reference.parse(json.manipulated);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class ProcedureFocalDevice extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ProcedureFocalDevice {
+    return ProcedureFocalDevice.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ProcedureFocalDevice";
   }

@@ -20,7 +20,7 @@ export class StructureDefinitionDifferential extends BackboneElement {
   ): StructureDefinitionDifferential {
     const newInstance: StructureDefinitionDifferential = BackboneElement.parse(json, providedInstance);
   
-    if (json.element) {
+    if (json.element !== undefined) {
       newInstance.element = json.element.map((x) => ElementDefinition.parse(x));
     }
     return newInstance;
@@ -40,7 +40,11 @@ export class StructureDefinitionDifferential extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): StructureDefinitionDifferential {
+    return StructureDefinitionDifferential.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "StructureDefinitionDifferential";
   }

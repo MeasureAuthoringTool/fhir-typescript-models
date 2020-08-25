@@ -22,10 +22,10 @@ export class MedicinalProductPharmaceuticalCharacteristics extends BackboneEleme
   ): MedicinalProductPharmaceuticalCharacteristics {
     const newInstance: MedicinalProductPharmaceuticalCharacteristics = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CodeableConcept.parse(json.status);
     }
     return newInstance;
@@ -49,7 +49,11 @@ export class MedicinalProductPharmaceuticalCharacteristics extends BackboneEleme
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductPharmaceuticalCharacteristics {
+    return MedicinalProductPharmaceuticalCharacteristics.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductPharmaceuticalCharacteristics";
   }

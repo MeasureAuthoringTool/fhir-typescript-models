@@ -40,31 +40,31 @@ export class NutritionOrderEnteralFormula extends BackboneElement {
   ): NutritionOrderEnteralFormula {
     const newInstance: NutritionOrderEnteralFormula = BackboneElement.parse(json, providedInstance);
   
-    if (json.baseFormulaType) {
+    if (json.baseFormulaType !== undefined) {
       newInstance.baseFormulaType = CodeableConcept.parse(json.baseFormulaType);
     }
-    if (json.baseFormulaProductName) {
+    if (json.baseFormulaProductName !== undefined) {
       newInstance.baseFormulaProductName = PrimitiveString.parsePrimitive(json.baseFormulaProductName, json._baseFormulaProductName);
     }
-    if (json.additiveType) {
+    if (json.additiveType !== undefined) {
       newInstance.additiveType = CodeableConcept.parse(json.additiveType);
     }
-    if (json.additiveProductName) {
+    if (json.additiveProductName !== undefined) {
       newInstance.additiveProductName = PrimitiveString.parsePrimitive(json.additiveProductName, json._additiveProductName);
     }
-    if (json.caloricDensity) {
+    if (json.caloricDensity !== undefined) {
       newInstance.caloricDensity = SimpleQuantity.parse(json.caloricDensity);
     }
-    if (json.routeofAdministration) {
+    if (json.routeofAdministration !== undefined) {
       newInstance.routeofAdministration = CodeableConcept.parse(json.routeofAdministration);
     }
-    if (json.administration) {
+    if (json.administration !== undefined) {
       newInstance.administration = json.administration.map((x) => NutritionOrderEnteralFormulaAdministration.parse(x));
     }
-    if (json.maxVolumeToDeliver) {
+    if (json.maxVolumeToDeliver !== undefined) {
       newInstance.maxVolumeToDeliver = SimpleQuantity.parse(json.maxVolumeToDeliver);
     }
-    if (json.administrationInstruction) {
+    if (json.administrationInstruction !== undefined) {
       newInstance.administrationInstruction = PrimitiveString.parsePrimitive(json.administrationInstruction, json._administrationInstruction);
     }
     return newInstance;
@@ -119,7 +119,11 @@ export class NutritionOrderEnteralFormula extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): NutritionOrderEnteralFormula {
+    return NutritionOrderEnteralFormula.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "NutritionOrderEnteralFormula";
   }

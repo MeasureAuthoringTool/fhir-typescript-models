@@ -22,7 +22,16 @@ export class BindingStrength extends PrimitiveCode {
     const castInput = input as BindingStrength;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "BindingStrength";
   }
-  
+
+  public clone(): BindingStrength {
+    const result = new BindingStrength();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "BindingStrength";
   }

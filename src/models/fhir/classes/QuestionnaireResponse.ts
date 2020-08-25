@@ -46,37 +46,37 @@ export class QuestionnaireResponse extends DomainResource {
   ): QuestionnaireResponse {
     const newInstance: QuestionnaireResponse = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = json.partOf.map((x) => Reference.parse(x));
     }
-    if (json.questionnaire) {
+    if (json.questionnaire !== undefined) {
       newInstance.questionnaire = PrimitiveCanonical.parsePrimitive(json.questionnaire, json._questionnaire);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = QuestionnaireResponseStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.authored) {
+    if (json.authored !== undefined) {
       newInstance.authored = PrimitiveDateTime.parsePrimitive(json.authored, json._authored);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = Reference.parse(json.author);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = Reference.parse(json.source);
     }
-    if (json.item) {
+    if (json.item !== undefined) {
       newInstance.item = json.item.map((x) => QuestionnaireResponseItem.parse(x));
     }
     return newInstance;
@@ -139,7 +139,11 @@ export class QuestionnaireResponse extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): QuestionnaireResponse {
+    return QuestionnaireResponse.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "QuestionnaireResponse";
   }

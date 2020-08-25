@@ -35,40 +35,40 @@ export class QuestionnaireItemEnableWhen extends BackboneElement {
   ): QuestionnaireItemEnableWhen {
     const newInstance: QuestionnaireItemEnableWhen = BackboneElement.parse(json, providedInstance);
   
-    if (json.question) {
+    if (json.question !== undefined) {
       newInstance.question = PrimitiveString.parsePrimitive(json.question, json._question);
     }
-    if (json.operator) {
+    if (json.operator !== undefined) {
       newInstance.operator = QuestionnaireItemOperator.parsePrimitive(json.operator, json._operator);
     }
-    if (json.answerBoolean) {
+    if (json.answerBoolean !== undefined) {
       newInstance.answer = PrimitiveBoolean.parsePrimitive(json.answerBoolean, json._answerBoolean);
     }
-    if (json.answerDecimal) {
+    if (json.answerDecimal !== undefined) {
       newInstance.answer = PrimitiveDecimal.parsePrimitive(json.answerDecimal, json._answerDecimal);
     }
-    if (json.answerInteger) {
+    if (json.answerInteger !== undefined) {
       newInstance.answer = PrimitiveInteger.parsePrimitive(json.answerInteger, json._answerInteger);
     }
-    if (json.answerDate) {
+    if (json.answerDate !== undefined) {
       newInstance.answer = PrimitiveDate.parsePrimitive(json.answerDate, json._answerDate);
     }
-    if (json.answerDateTime) {
+    if (json.answerDateTime !== undefined) {
       newInstance.answer = PrimitiveDateTime.parsePrimitive(json.answerDateTime, json._answerDateTime);
     }
-    if (json.answerTime) {
+    if (json.answerTime !== undefined) {
       newInstance.answer = PrimitiveTime.parsePrimitive(json.answerTime, json._answerTime);
     }
-    if (json.answerString) {
+    if (json.answerString !== undefined) {
       newInstance.answer = PrimitiveString.parsePrimitive(json.answerString, json._answerString);
     }
-    if (json.answerCoding) {
+    if (json.answerCoding !== undefined) {
       newInstance.answer = Coding.parse(json.answerCoding);
     }
-    if (json.answerQuantity) {
+    if (json.answerQuantity !== undefined) {
       newInstance.answer = Quantity.parse(json.answerQuantity);
     }
-    if (json.answerReference) {
+    if (json.answerReference !== undefined) {
       newInstance.answer = Reference.parse(json.answerReference);
     }
     return newInstance;
@@ -141,7 +141,11 @@ export class QuestionnaireItemEnableWhen extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): QuestionnaireItemEnableWhen {
+    return QuestionnaireItemEnableWhen.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "QuestionnaireItemEnableWhen";
   }

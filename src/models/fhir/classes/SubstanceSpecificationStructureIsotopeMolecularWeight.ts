@@ -25,13 +25,13 @@ export class SubstanceSpecificationStructureIsotopeMolecularWeight extends Backb
   ): SubstanceSpecificationStructureIsotopeMolecularWeight {
     const newInstance: SubstanceSpecificationStructureIsotopeMolecularWeight = BackboneElement.parse(json, providedInstance);
   
-    if (json.method) {
+    if (json.method !== undefined) {
       newInstance.method = CodeableConcept.parse(json.method);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = Quantity.parse(json.amount);
     }
     return newInstance;
@@ -59,7 +59,11 @@ export class SubstanceSpecificationStructureIsotopeMolecularWeight extends Backb
 
     return result;
   }
-  
+
+  public clone(): SubstanceSpecificationStructureIsotopeMolecularWeight {
+    return SubstanceSpecificationStructureIsotopeMolecularWeight.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSpecificationStructureIsotopeMolecularWeight";
   }

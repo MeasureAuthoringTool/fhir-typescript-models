@@ -22,7 +22,16 @@ export class QuestionnaireItemType extends PrimitiveCode {
     const castInput = input as QuestionnaireItemType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "QuestionnaireItemType";
   }
-  
+
+  public clone(): QuestionnaireItemType {
+    const result = new QuestionnaireItemType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "QuestionnaireItemType";
   }

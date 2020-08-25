@@ -50,37 +50,37 @@ export class AuditEvent extends DomainResource {
   ): AuditEvent {
     const newInstance: AuditEvent = DomainResource.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = Coding.parse(json.type);
     }
-    if (json.subtype) {
+    if (json.subtype !== undefined) {
       newInstance.subtype = json.subtype.map((x) => Coding.parse(x));
     }
-    if (json.action) {
+    if (json.action !== undefined) {
       newInstance.action = AuditEventAction.parsePrimitive(json.action, json._action);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.recorded) {
+    if (json.recorded !== undefined) {
       newInstance.recorded = PrimitiveInstant.parsePrimitive(json.recorded, json._recorded);
     }
-    if (json.outcome) {
+    if (json.outcome !== undefined) {
       newInstance.outcome = AuditEventOutcome.parsePrimitive(json.outcome, json._outcome);
     }
-    if (json.outcomeDesc) {
+    if (json.outcomeDesc !== undefined) {
       newInstance.outcomeDesc = PrimitiveString.parsePrimitive(json.outcomeDesc, json._outcomeDesc);
     }
-    if (json.purposeOfEvent) {
+    if (json.purposeOfEvent !== undefined) {
       newInstance.purposeOfEvent = json.purposeOfEvent.map((x) => CodeableConcept.parse(x));
     }
-    if (json.agent) {
+    if (json.agent !== undefined) {
       newInstance.agent = json.agent.map((x) => AuditEventAgent.parse(x));
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = AuditEventSource.parse(json.source);
     }
-    if (json.entity) {
+    if (json.entity !== undefined) {
       newInstance.entity = json.entity.map((x) => AuditEventEntity.parse(x));
     }
     return newInstance;
@@ -144,7 +144,11 @@ export class AuditEvent extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): AuditEvent {
+    return AuditEvent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AuditEvent";
   }

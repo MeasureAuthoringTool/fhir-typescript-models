@@ -24,10 +24,10 @@ export class Money extends Element {
   ): Money {
     const newInstance: Money = Element.parse(json, providedInstance);
   
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveDecimal.parsePrimitive(json.value, json._value);
     }
-    if (json.currency) {
+    if (json.currency !== undefined) {
       newInstance.currency = CurrencyCode.parsePrimitive(json.currency, json._currency);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class Money extends Element {
 
     return result;
   }
-  
+
+  public clone(): Money {
+    return Money.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Money";
   }

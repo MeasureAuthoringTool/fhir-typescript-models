@@ -52,43 +52,43 @@ export class CatalogEntry extends DomainResource {
   ): CatalogEntry {
     const newInstance: CatalogEntry = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.orderable) {
+    if (json.orderable !== undefined) {
       newInstance.orderable = PrimitiveBoolean.parsePrimitive(json.orderable, json._orderable);
     }
-    if (json.referencedItem) {
+    if (json.referencedItem !== undefined) {
       newInstance.referencedItem = Reference.parse(json.referencedItem);
     }
-    if (json.additionalIdentifier) {
+    if (json.additionalIdentifier !== undefined) {
       newInstance.additionalIdentifier = json.additionalIdentifier.map((x) => Identifier.parse(x));
     }
-    if (json.classification) {
+    if (json.classification !== undefined) {
       newInstance.classification = json.classification.map((x) => CodeableConcept.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.validityPeriod) {
+    if (json.validityPeriod !== undefined) {
       newInstance.validityPeriod = Period.parse(json.validityPeriod);
     }
-    if (json.validTo) {
+    if (json.validTo !== undefined) {
       newInstance.validTo = PrimitiveDateTime.parsePrimitive(json.validTo, json._validTo);
     }
-    if (json.lastUpdated) {
+    if (json.lastUpdated !== undefined) {
       newInstance.lastUpdated = PrimitiveDateTime.parsePrimitive(json.lastUpdated, json._lastUpdated);
     }
-    if (json.additionalCharacteristic) {
+    if (json.additionalCharacteristic !== undefined) {
       newInstance.additionalCharacteristic = json.additionalCharacteristic.map((x) => CodeableConcept.parse(x));
     }
-    if (json.additionalClassification) {
+    if (json.additionalClassification !== undefined) {
       newInstance.additionalClassification = json.additionalClassification.map((x) => CodeableConcept.parse(x));
     }
-    if (json.relatedEntry) {
+    if (json.relatedEntry !== undefined) {
       newInstance.relatedEntry = json.relatedEntry.map((x) => CatalogEntryRelatedEntry.parse(x));
     }
     return newInstance;
@@ -160,7 +160,11 @@ export class CatalogEntry extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): CatalogEntry {
+    return CatalogEntry.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CatalogEntry";
   }

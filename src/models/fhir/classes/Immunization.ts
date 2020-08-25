@@ -88,91 +88,91 @@ export class Immunization extends DomainResource {
   ): Immunization {
     const newInstance: Immunization = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ImmunizationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.statusReason) {
+    if (json.statusReason !== undefined) {
       newInstance.statusReason = CodeableConcept.parse(json.statusReason);
     }
-    if (json.vaccineCode) {
+    if (json.vaccineCode !== undefined) {
       newInstance.vaccineCode = CodeableConcept.parse(json.vaccineCode);
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.occurrenceDateTime) {
+    if (json.occurrenceDateTime !== undefined) {
       newInstance.occurrence = PrimitiveDateTime.parsePrimitive(json.occurrenceDateTime, json._occurrenceDateTime);
     }
-    if (json.occurrenceString) {
+    if (json.occurrenceString !== undefined) {
       newInstance.occurrence = PrimitiveString.parsePrimitive(json.occurrenceString, json._occurrenceString);
     }
-    if (json.recorded) {
+    if (json.recorded !== undefined) {
       newInstance.recorded = PrimitiveDateTime.parsePrimitive(json.recorded, json._recorded);
     }
-    if (json.primarySource) {
+    if (json.primarySource !== undefined) {
       newInstance.primarySource = PrimitiveBoolean.parsePrimitive(json.primarySource, json._primarySource);
     }
-    if (json.reportOrigin) {
+    if (json.reportOrigin !== undefined) {
       newInstance.reportOrigin = CodeableConcept.parse(json.reportOrigin);
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = Reference.parse(json.location);
     }
-    if (json.manufacturer) {
+    if (json.manufacturer !== undefined) {
       newInstance.manufacturer = Reference.parse(json.manufacturer);
     }
-    if (json.lotNumber) {
+    if (json.lotNumber !== undefined) {
       newInstance.lotNumber = PrimitiveString.parsePrimitive(json.lotNumber, json._lotNumber);
     }
-    if (json.expirationDate) {
+    if (json.expirationDate !== undefined) {
       newInstance.expirationDate = PrimitiveDate.parsePrimitive(json.expirationDate, json._expirationDate);
     }
-    if (json.site) {
+    if (json.site !== undefined) {
       newInstance.site = CodeableConcept.parse(json.site);
     }
-    if (json.route) {
+    if (json.route !== undefined) {
       newInstance.route = CodeableConcept.parse(json.route);
     }
-    if (json.doseQuantity) {
+    if (json.doseQuantity !== undefined) {
       newInstance.doseQuantity = SimpleQuantity.parse(json.doseQuantity);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = json.performer.map((x) => ImmunizationPerformer.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.isSubpotent) {
+    if (json.isSubpotent !== undefined) {
       newInstance.isSubpotent = PrimitiveBoolean.parsePrimitive(json.isSubpotent, json._isSubpotent);
     }
-    if (json.subpotentReason) {
+    if (json.subpotentReason !== undefined) {
       newInstance.subpotentReason = json.subpotentReason.map((x) => CodeableConcept.parse(x));
     }
-    if (json.education) {
+    if (json.education !== undefined) {
       newInstance.education = json.education.map((x) => ImmunizationEducation.parse(x));
     }
-    if (json.programEligibility) {
+    if (json.programEligibility !== undefined) {
       newInstance.programEligibility = json.programEligibility.map((x) => CodeableConcept.parse(x));
     }
-    if (json.fundingSource) {
+    if (json.fundingSource !== undefined) {
       newInstance.fundingSource = CodeableConcept.parse(json.fundingSource);
     }
-    if (json.reaction) {
+    if (json.reaction !== undefined) {
       newInstance.reaction = json.reaction.map((x) => ImmunizationReaction.parse(x));
     }
-    if (json.protocolApplied) {
+    if (json.protocolApplied !== undefined) {
       newInstance.protocolApplied = json.protocolApplied.map((x) => ImmunizationProtocolApplied.parse(x));
     }
     return newInstance;
@@ -312,7 +312,11 @@ export class Immunization extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Immunization {
+    return Immunization.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Immunization";
   }

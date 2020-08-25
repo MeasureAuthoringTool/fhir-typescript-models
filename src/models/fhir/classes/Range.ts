@@ -22,10 +22,10 @@ export class Range extends Element {
   ): Range {
     const newInstance: Range = Element.parse(json, providedInstance);
   
-    if (json.low) {
+    if (json.low !== undefined) {
       newInstance.low = SimpleQuantity.parse(json.low);
     }
-    if (json.high) {
+    if (json.high !== undefined) {
       newInstance.high = SimpleQuantity.parse(json.high);
     }
     return newInstance;
@@ -49,7 +49,11 @@ export class Range extends Element {
 
     return result;
   }
-  
+
+  public clone(): Range {
+    return Range.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Range";
   }

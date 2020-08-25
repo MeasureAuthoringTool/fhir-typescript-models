@@ -55,52 +55,52 @@ export class ContractTermAssetValuedItem extends BackboneElement {
   ): ContractTermAssetValuedItem {
     const newInstance: ContractTermAssetValuedItem = BackboneElement.parse(json, providedInstance);
   
-    if (json.entityCodeableConcept) {
+    if (json.entityCodeableConcept !== undefined) {
       newInstance.entity = CodeableConcept.parse(json.entityCodeableConcept);
     }
-    if (json.entityReference) {
+    if (json.entityReference !== undefined) {
       newInstance.entity = Reference.parse(json.entityReference);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.effectiveTime) {
+    if (json.effectiveTime !== undefined) {
       newInstance.effectiveTime = PrimitiveDateTime.parsePrimitive(json.effectiveTime, json._effectiveTime);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.unitPrice) {
+    if (json.unitPrice !== undefined) {
       newInstance.unitPrice = Money.parse(json.unitPrice);
     }
-    if (json.factor) {
+    if (json.factor !== undefined) {
       newInstance.factor = PrimitiveDecimal.parsePrimitive(json.factor, json._factor);
     }
-    if (json.points) {
+    if (json.points !== undefined) {
       newInstance.points = PrimitiveDecimal.parsePrimitive(json.points, json._points);
     }
-    if (json.net) {
+    if (json.net !== undefined) {
       newInstance.net = Money.parse(json.net);
     }
-    if (json.payment) {
+    if (json.payment !== undefined) {
       newInstance.payment = PrimitiveString.parsePrimitive(json.payment, json._payment);
     }
-    if (json.paymentDate) {
+    if (json.paymentDate !== undefined) {
       newInstance.paymentDate = PrimitiveDateTime.parsePrimitive(json.paymentDate, json._paymentDate);
     }
-    if (json.responsible) {
+    if (json.responsible !== undefined) {
       newInstance.responsible = Reference.parse(json.responsible);
     }
-    if (json.recipient) {
+    if (json.recipient !== undefined) {
       newInstance.recipient = Reference.parse(json.recipient);
     }
-    if (json.linkId) {
+    if (json.linkId !== undefined) {
       newInstance.linkId = json.linkId.map((x, i) => {
         const ext = json._linkId && json._linkId[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.securityLabelNumber) {
+    if (json.securityLabelNumber !== undefined) {
       newInstance.securityLabelNumber = json.securityLabelNumber.map((x, i) => {
         const ext = json._securityLabelNumber && json._securityLabelNumber[i];
         return PrimitiveUnsignedInt.parsePrimitive(x, ext);
@@ -186,7 +186,11 @@ export class ContractTermAssetValuedItem extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractTermAssetValuedItem {
+    return ContractTermAssetValuedItem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractTermAssetValuedItem";
   }

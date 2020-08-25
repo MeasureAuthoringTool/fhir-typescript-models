@@ -46,37 +46,37 @@ export class ConsentProvision extends BackboneElement {
   ): ConsentProvision {
     const newInstance: ConsentProvision = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = ConsentProvisionType.parsePrimitive(json.type, json._type);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.actor) {
+    if (json.actor !== undefined) {
       newInstance.actor = json.actor.map((x) => ConsentProvisionActor.parse(x));
     }
-    if (json.action) {
+    if (json.action !== undefined) {
       newInstance.action = json.action.map((x) => CodeableConcept.parse(x));
     }
-    if (json.securityLabel) {
+    if (json.securityLabel !== undefined) {
       newInstance.securityLabel = json.securityLabel.map((x) => Coding.parse(x));
     }
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = json.purpose.map((x) => Coding.parse(x));
     }
-    if (json.class) {
+    if (json.class !== undefined) {
       newInstance.class = json.class.map((x) => Coding.parse(x));
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = json.code.map((x) => CodeableConcept.parse(x));
     }
-    if (json.dataPeriod) {
+    if (json.dataPeriod !== undefined) {
       newInstance.dataPeriod = Period.parse(json.dataPeriod);
     }
-    if (json.data) {
+    if (json.data !== undefined) {
       newInstance.data = json.data.map((x) => ConsentProvisionData.parse(x));
     }
-    if (json.provision) {
+    if (json.provision !== undefined) {
       newInstance.provision = json.provision.map((x) => ConsentProvision.parse(x));
     }
     return newInstance;
@@ -137,7 +137,11 @@ export class ConsentProvision extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ConsentProvision {
+    return ConsentProvision.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ConsentProvision";
   }

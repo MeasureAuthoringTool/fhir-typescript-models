@@ -24,10 +24,10 @@ export class ConsentProvisionData extends BackboneElement {
   ): ConsentProvisionData {
     const newInstance: ConsentProvisionData = BackboneElement.parse(json, providedInstance);
   
-    if (json.meaning) {
+    if (json.meaning !== undefined) {
       newInstance.meaning = ConsentDataMeaning.parsePrimitive(json.meaning, json._meaning);
     }
-    if (json.reference) {
+    if (json.reference !== undefined) {
       newInstance.reference = Reference.parse(json.reference);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class ConsentProvisionData extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ConsentProvisionData {
+    return ConsentProvisionData.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ConsentProvisionData";
   }

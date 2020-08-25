@@ -27,13 +27,13 @@ export class ValueSetComposeIncludeConcept extends BackboneElement {
   ): ValueSetComposeIncludeConcept {
     const newInstance: ValueSetComposeIncludeConcept = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.display) {
+    if (json.display !== undefined) {
       newInstance.display = PrimitiveString.parsePrimitive(json.display, json._display);
     }
-    if (json.designation) {
+    if (json.designation !== undefined) {
       newInstance.designation = json.designation.map((x) => ValueSetComposeIncludeConceptDesignation.parse(x));
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class ValueSetComposeIncludeConcept extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ValueSetComposeIncludeConcept {
+    return ValueSetComposeIncludeConcept.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ValueSetComposeIncludeConcept";
   }

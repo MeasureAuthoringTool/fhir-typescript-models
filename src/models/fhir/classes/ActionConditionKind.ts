@@ -22,7 +22,16 @@ export class ActionConditionKind extends PrimitiveCode {
     const castInput = input as ActionConditionKind;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ActionConditionKind";
   }
-  
+
+  public clone(): ActionConditionKind {
+    const result = new ActionConditionKind();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ActionConditionKind";
   }

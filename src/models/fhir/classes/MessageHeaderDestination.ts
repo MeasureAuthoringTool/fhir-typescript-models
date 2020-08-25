@@ -29,16 +29,16 @@ export class MessageHeaderDestination extends BackboneElement {
   ): MessageHeaderDestination {
     const newInstance: MessageHeaderDestination = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.target) {
+    if (json.target !== undefined) {
       newInstance.target = Reference.parse(json.target);
     }
-    if (json.endpoint) {
+    if (json.endpoint !== undefined) {
       newInstance.endpoint = PrimitiveUrl.parsePrimitive(json.endpoint, json._endpoint);
     }
-    if (json.receiver) {
+    if (json.receiver !== undefined) {
       newInstance.receiver = Reference.parse(json.receiver);
     }
     return newInstance;
@@ -72,7 +72,11 @@ export class MessageHeaderDestination extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MessageHeaderDestination {
+    return MessageHeaderDestination.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MessageHeaderDestination";
   }

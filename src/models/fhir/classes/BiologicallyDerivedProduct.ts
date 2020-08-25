@@ -50,37 +50,37 @@ export class BiologicallyDerivedProduct extends DomainResource {
   ): BiologicallyDerivedProduct {
     const newInstance: BiologicallyDerivedProduct = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.productCategory) {
+    if (json.productCategory !== undefined) {
       newInstance.productCategory = BiologicallyDerivedProductCategory.parsePrimitive(json.productCategory, json._productCategory);
     }
-    if (json.productCode) {
+    if (json.productCode !== undefined) {
       newInstance.productCode = CodeableConcept.parse(json.productCode);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = BiologicallyDerivedProductStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.request) {
+    if (json.request !== undefined) {
       newInstance.request = json.request.map((x) => Reference.parse(x));
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = PrimitiveInteger.parsePrimitive(json.quantity, json._quantity);
     }
-    if (json.parent) {
+    if (json.parent !== undefined) {
       newInstance.parent = json.parent.map((x) => Reference.parse(x));
     }
-    if (json.collection) {
+    if (json.collection !== undefined) {
       newInstance.collection = BiologicallyDerivedProductCollection.parse(json.collection);
     }
-    if (json.processing) {
+    if (json.processing !== undefined) {
       newInstance.processing = json.processing.map((x) => BiologicallyDerivedProductProcessing.parse(x));
     }
-    if (json.manipulation) {
+    if (json.manipulation !== undefined) {
       newInstance.manipulation = BiologicallyDerivedProductManipulation.parse(json.manipulation);
     }
-    if (json.storage) {
+    if (json.storage !== undefined) {
       newInstance.storage = json.storage.map((x) => BiologicallyDerivedProductStorage.parse(x));
     }
     return newInstance;
@@ -143,7 +143,11 @@ export class BiologicallyDerivedProduct extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): BiologicallyDerivedProduct {
+    return BiologicallyDerivedProduct.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "BiologicallyDerivedProduct";
   }

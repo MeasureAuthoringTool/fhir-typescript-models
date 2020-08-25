@@ -32,25 +32,25 @@ export class SubstanceSpecificationProperty extends BackboneElement {
   ): SubstanceSpecificationProperty {
     const newInstance: SubstanceSpecificationProperty = BackboneElement.parse(json, providedInstance);
   
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.parameters) {
+    if (json.parameters !== undefined) {
       newInstance.parameters = PrimitiveString.parsePrimitive(json.parameters, json._parameters);
     }
-    if (json.definingSubstanceReference) {
+    if (json.definingSubstanceReference !== undefined) {
       newInstance.definingSubstance = Reference.parse(json.definingSubstanceReference);
     }
-    if (json.definingSubstanceCodeableConcept) {
+    if (json.definingSubstanceCodeableConcept !== undefined) {
       newInstance.definingSubstance = CodeableConcept.parse(json.definingSubstanceCodeableConcept);
     }
-    if (json.amountQuantity) {
+    if (json.amountQuantity !== undefined) {
       newInstance.amount = Quantity.parse(json.amountQuantity);
     }
-    if (json.amountString) {
+    if (json.amountString !== undefined) {
       newInstance.amount = PrimitiveString.parsePrimitive(json.amountString, json._amountString);
     }
     return newInstance;
@@ -96,7 +96,11 @@ export class SubstanceSpecificationProperty extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSpecificationProperty {
+    return SubstanceSpecificationProperty.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSpecificationProperty";
   }

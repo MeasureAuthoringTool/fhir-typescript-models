@@ -23,10 +23,10 @@ export class SubstancePolymerMonomerSet extends BackboneElement {
   ): SubstancePolymerMonomerSet {
     const newInstance: SubstancePolymerMonomerSet = BackboneElement.parse(json, providedInstance);
   
-    if (json.ratioType) {
+    if (json.ratioType !== undefined) {
       newInstance.ratioType = CodeableConcept.parse(json.ratioType);
     }
-    if (json.startingMaterial) {
+    if (json.startingMaterial !== undefined) {
       newInstance.startingMaterial = json.startingMaterial.map((x) => SubstancePolymerMonomerSetStartingMaterial.parse(x));
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class SubstancePolymerMonomerSet extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstancePolymerMonomerSet {
+    return SubstancePolymerMonomerSet.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstancePolymerMonomerSet";
   }

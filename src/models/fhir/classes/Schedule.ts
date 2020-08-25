@@ -40,28 +40,28 @@ export class Schedule extends DomainResource {
   ): Schedule {
     const newInstance: Schedule = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.active) {
+    if (json.active !== undefined) {
       newInstance.active = PrimitiveBoolean.parsePrimitive(json.active, json._active);
     }
-    if (json.serviceCategory) {
+    if (json.serviceCategory !== undefined) {
       newInstance.serviceCategory = json.serviceCategory.map((x) => CodeableConcept.parse(x));
     }
-    if (json.serviceType) {
+    if (json.serviceType !== undefined) {
       newInstance.serviceType = json.serviceType.map((x) => CodeableConcept.parse(x));
     }
-    if (json.specialty) {
+    if (json.specialty !== undefined) {
       newInstance.specialty = json.specialty.map((x) => CodeableConcept.parse(x));
     }
-    if (json.actor) {
+    if (json.actor !== undefined) {
       newInstance.actor = json.actor.map((x) => Reference.parse(x));
     }
-    if (json.planningHorizon) {
+    if (json.planningHorizon !== undefined) {
       newInstance.planningHorizon = Period.parse(json.planningHorizon);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
     return newInstance;
@@ -111,7 +111,11 @@ export class Schedule extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Schedule {
+    return Schedule.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Schedule";
   }

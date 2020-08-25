@@ -22,7 +22,16 @@ export class FHIRDeviceStatus extends PrimitiveCode {
     const castInput = input as FHIRDeviceStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "FHIRDeviceStatus";
   }
-  
+
+  public clone(): FHIRDeviceStatus {
+    const result = new FHIRDeviceStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "FHIRDeviceStatus";
   }

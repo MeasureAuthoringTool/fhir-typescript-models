@@ -35,25 +35,25 @@ export class MedicinalProductContraindication extends DomainResource {
   ): MedicinalProductContraindication {
     const newInstance: MedicinalProductContraindication = DomainResource.parse(json, providedInstance);
   
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = json.subject.map((x) => Reference.parse(x));
     }
-    if (json.disease) {
+    if (json.disease !== undefined) {
       newInstance.disease = CodeableConcept.parse(json.disease);
     }
-    if (json.diseaseStatus) {
+    if (json.diseaseStatus !== undefined) {
       newInstance.diseaseStatus = CodeableConcept.parse(json.diseaseStatus);
     }
-    if (json.comorbidity) {
+    if (json.comorbidity !== undefined) {
       newInstance.comorbidity = json.comorbidity.map((x) => CodeableConcept.parse(x));
     }
-    if (json.therapeuticIndication) {
+    if (json.therapeuticIndication !== undefined) {
       newInstance.therapeuticIndication = json.therapeuticIndication.map((x) => Reference.parse(x));
     }
-    if (json.otherTherapy) {
+    if (json.otherTherapy !== undefined) {
       newInstance.otherTherapy = json.otherTherapy.map((x) => MedicinalProductContraindicationOtherTherapy.parse(x));
     }
-    if (json.population) {
+    if (json.population !== undefined) {
       newInstance.population = json.population.map((x) => Population.parse(x));
     }
     return newInstance;
@@ -97,7 +97,11 @@ export class MedicinalProductContraindication extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductContraindication {
+    return MedicinalProductContraindication.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductContraindication";
   }

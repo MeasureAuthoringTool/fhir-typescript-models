@@ -27,13 +27,13 @@ export class Contributor extends Element {
   ): Contributor {
     const newInstance: Contributor = Element.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = ContributorType.parsePrimitive(json.type, json._type);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class Contributor extends Element {
 
     return result;
   }
-  
+
+  public clone(): Contributor {
+    return Contributor.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Contributor";
   }

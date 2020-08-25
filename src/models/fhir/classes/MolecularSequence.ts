@@ -61,52 +61,52 @@ export class MolecularSequence extends DomainResource {
   ): MolecularSequence {
     const newInstance: MolecularSequence = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = SequenceType.parsePrimitive(json.type, json._type);
     }
-    if (json.coordinateSystem) {
+    if (json.coordinateSystem !== undefined) {
       newInstance.coordinateSystem = PrimitiveInteger.parsePrimitive(json.coordinateSystem, json._coordinateSystem);
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.specimen) {
+    if (json.specimen !== undefined) {
       newInstance.specimen = Reference.parse(json.specimen);
     }
-    if (json.device) {
+    if (json.device !== undefined) {
       newInstance.device = Reference.parse(json.device);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = Reference.parse(json.performer);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = Quantity.parse(json.quantity);
     }
-    if (json.referenceSeq) {
+    if (json.referenceSeq !== undefined) {
       newInstance.referenceSeq = MolecularSequenceReferenceSeq.parse(json.referenceSeq);
     }
-    if (json.variant) {
+    if (json.variant !== undefined) {
       newInstance.variant = json.variant.map((x) => MolecularSequenceVariant.parse(x));
     }
-    if (json.observedSeq) {
+    if (json.observedSeq !== undefined) {
       newInstance.observedSeq = PrimitiveString.parsePrimitive(json.observedSeq, json._observedSeq);
     }
-    if (json.quality) {
+    if (json.quality !== undefined) {
       newInstance.quality = json.quality.map((x) => MolecularSequenceQuality.parse(x));
     }
-    if (json.readCoverage) {
+    if (json.readCoverage !== undefined) {
       newInstance.readCoverage = PrimitiveInteger.parsePrimitive(json.readCoverage, json._readCoverage);
     }
-    if (json.repository) {
+    if (json.repository !== undefined) {
       newInstance.repository = json.repository.map((x) => MolecularSequenceRepository.parse(x));
     }
-    if (json.pointer) {
+    if (json.pointer !== undefined) {
       newInstance.pointer = json.pointer.map((x) => Reference.parse(x));
     }
-    if (json.structureVariant) {
+    if (json.structureVariant !== undefined) {
       newInstance.structureVariant = json.structureVariant.map((x) => MolecularSequenceStructureVariant.parse(x));
     }
     return newInstance;
@@ -190,7 +190,11 @@ export class MolecularSequence extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MolecularSequence {
+    return MolecularSequence.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MolecularSequence";
   }

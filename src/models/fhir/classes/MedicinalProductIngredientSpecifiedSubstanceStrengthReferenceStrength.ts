@@ -31,19 +31,19 @@ export class MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStreng
   ): MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength {
     const newInstance: MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength = BackboneElement.parse(json, providedInstance);
   
-    if (json.substance) {
+    if (json.substance !== undefined) {
       newInstance.substance = CodeableConcept.parse(json.substance);
     }
-    if (json.strength) {
+    if (json.strength !== undefined) {
       newInstance.strength = Ratio.parse(json.strength);
     }
-    if (json.strengthLowLimit) {
+    if (json.strengthLowLimit !== undefined) {
       newInstance.strengthLowLimit = Ratio.parse(json.strengthLowLimit);
     }
-    if (json.measurementPoint) {
+    if (json.measurementPoint !== undefined) {
       newInstance.measurementPoint = PrimitiveString.parsePrimitive(json.measurementPoint, json._measurementPoint);
     }
-    if (json.country) {
+    if (json.country !== undefined) {
       newInstance.country = json.country.map((x) => CodeableConcept.parse(x));
     }
     return newInstance;
@@ -80,7 +80,11 @@ export class MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStreng
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength {
+    return MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength";
   }

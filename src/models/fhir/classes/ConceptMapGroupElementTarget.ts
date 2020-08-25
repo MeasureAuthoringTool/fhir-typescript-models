@@ -34,22 +34,22 @@ export class ConceptMapGroupElementTarget extends BackboneElement {
   ): ConceptMapGroupElementTarget {
     const newInstance: ConceptMapGroupElementTarget = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.display) {
+    if (json.display !== undefined) {
       newInstance.display = PrimitiveString.parsePrimitive(json.display, json._display);
     }
-    if (json.equivalence) {
+    if (json.equivalence !== undefined) {
       newInstance.equivalence = ConceptMapEquivalence.parsePrimitive(json.equivalence, json._equivalence);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
-    if (json.dependsOn) {
+    if (json.dependsOn !== undefined) {
       newInstance.dependsOn = json.dependsOn.map((x) => ConceptMapGroupElementTargetDependsOn.parse(x));
     }
-    if (json.product) {
+    if (json.product !== undefined) {
       newInstance.product = json.product.map((x) => ConceptMapGroupElementTargetDependsOn.parse(x));
     }
     return newInstance;
@@ -93,7 +93,11 @@ export class ConceptMapGroupElementTarget extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ConceptMapGroupElementTarget {
+    return ConceptMapGroupElementTarget.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ConceptMapGroupElementTarget";
   }

@@ -22,7 +22,16 @@ export class CapabilityStatementKind extends PrimitiveCode {
     const castInput = input as CapabilityStatementKind;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CapabilityStatementKind";
   }
-  
+
+  public clone(): CapabilityStatementKind {
+    const result = new CapabilityStatementKind();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementKind";
   }

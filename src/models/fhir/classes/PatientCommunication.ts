@@ -24,10 +24,10 @@ export class PatientCommunication extends BackboneElement {
   ): PatientCommunication {
     const newInstance: PatientCommunication = BackboneElement.parse(json, providedInstance);
   
-    if (json.language) {
+    if (json.language !== undefined) {
       newInstance.language = CodeableConcept.parse(json.language);
     }
-    if (json.preferred) {
+    if (json.preferred !== undefined) {
       newInstance.preferred = PrimitiveBoolean.parsePrimitive(json.preferred, json._preferred);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class PatientCommunication extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PatientCommunication {
+    return PatientCommunication.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PatientCommunication";
   }

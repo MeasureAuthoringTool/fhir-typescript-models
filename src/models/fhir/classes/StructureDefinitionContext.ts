@@ -24,10 +24,10 @@ export class StructureDefinitionContext extends BackboneElement {
   ): StructureDefinitionContext {
     const newInstance: StructureDefinitionContext = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = ExtensionContextType.parsePrimitive(json.type, json._type);
     }
-    if (json.expression) {
+    if (json.expression !== undefined) {
       newInstance.expression = PrimitiveString.parsePrimitive(json.expression, json._expression);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class StructureDefinitionContext extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): StructureDefinitionContext {
+    return StructureDefinitionContext.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "StructureDefinitionContext";
   }

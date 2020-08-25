@@ -62,55 +62,55 @@ export class Coverage extends DomainResource {
   ): Coverage {
     const newInstance: Coverage = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CoverageStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.policyHolder) {
+    if (json.policyHolder !== undefined) {
       newInstance.policyHolder = Reference.parse(json.policyHolder);
     }
-    if (json.subscriber) {
+    if (json.subscriber !== undefined) {
       newInstance.subscriber = Reference.parse(json.subscriber);
     }
-    if (json.subscriberId) {
+    if (json.subscriberId !== undefined) {
       newInstance.subscriberId = PrimitiveString.parsePrimitive(json.subscriberId, json._subscriberId);
     }
-    if (json.beneficiary) {
+    if (json.beneficiary !== undefined) {
       newInstance.beneficiary = Reference.parse(json.beneficiary);
     }
-    if (json.dependent) {
+    if (json.dependent !== undefined) {
       newInstance.dependent = PrimitiveString.parsePrimitive(json.dependent, json._dependent);
     }
-    if (json.relationship) {
+    if (json.relationship !== undefined) {
       newInstance.relationship = CodeableConcept.parse(json.relationship);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.payor) {
+    if (json.payor !== undefined) {
       newInstance.payor = json.payor.map((x) => Reference.parse(x));
     }
-    if (json.class) {
+    if (json.class !== undefined) {
       newInstance.class = json.class.map((x) => CoverageClass.parse(x));
     }
-    if (json.order) {
+    if (json.order !== undefined) {
       newInstance.order = PrimitivePositiveInt.parsePrimitive(json.order, json._order);
     }
-    if (json.network) {
+    if (json.network !== undefined) {
       newInstance.network = PrimitiveString.parsePrimitive(json.network, json._network);
     }
-    if (json.costToBeneficiary) {
+    if (json.costToBeneficiary !== undefined) {
       newInstance.costToBeneficiary = json.costToBeneficiary.map((x) => CoverageCostToBeneficiary.parse(x));
     }
-    if (json.subrogation) {
+    if (json.subrogation !== undefined) {
       newInstance.subrogation = PrimitiveBoolean.parsePrimitive(json.subrogation, json._subrogation);
     }
-    if (json.contract) {
+    if (json.contract !== undefined) {
       newInstance.contract = json.contract.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -200,7 +200,11 @@ export class Coverage extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Coverage {
+    return Coverage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Coverage";
   }

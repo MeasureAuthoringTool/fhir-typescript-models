@@ -22,7 +22,16 @@ export class DeviceRequestStatus extends PrimitiveCode {
     const castInput = input as DeviceRequestStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "DeviceRequestStatus";
   }
-  
+
+  public clone(): DeviceRequestStatus {
+    const result = new DeviceRequestStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "DeviceRequestStatus";
   }

@@ -29,19 +29,19 @@ export class ClaimResponseItemDetail extends BackboneElement {
   ): ClaimResponseItemDetail {
     const newInstance: ClaimResponseItemDetail = BackboneElement.parse(json, providedInstance);
   
-    if (json.detailSequence) {
+    if (json.detailSequence !== undefined) {
       newInstance.detailSequence = PrimitivePositiveInt.parsePrimitive(json.detailSequence, json._detailSequence);
     }
-    if (json.noteNumber) {
+    if (json.noteNumber !== undefined) {
       newInstance.noteNumber = json.noteNumber.map((x, i) => {
         const ext = json._noteNumber && json._noteNumber[i];
         return PrimitivePositiveInt.parsePrimitive(x, ext);
       });
     }
-    if (json.adjudication) {
+    if (json.adjudication !== undefined) {
       newInstance.adjudication = json.adjudication.map((x) => ClaimResponseItemAdjudication.parse(x));
     }
-    if (json.subDetail) {
+    if (json.subDetail !== undefined) {
       newInstance.subDetail = json.subDetail.map((x) => ClaimResponseItemDetailSubDetail.parse(x));
     }
     return newInstance;
@@ -75,7 +75,11 @@ export class ClaimResponseItemDetail extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimResponseItemDetail {
+    return ClaimResponseItemDetail.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimResponseItemDetail";
   }

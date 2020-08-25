@@ -35,28 +35,28 @@ export class RiskAssessmentPrediction extends BackboneElement {
   ): RiskAssessmentPrediction {
     const newInstance: RiskAssessmentPrediction = BackboneElement.parse(json, providedInstance);
   
-    if (json.outcome) {
+    if (json.outcome !== undefined) {
       newInstance.outcome = CodeableConcept.parse(json.outcome);
     }
-    if (json.probabilityDecimal) {
+    if (json.probabilityDecimal !== undefined) {
       newInstance.probability = PrimitiveDecimal.parsePrimitive(json.probabilityDecimal, json._probabilityDecimal);
     }
-    if (json.probabilityRange) {
+    if (json.probabilityRange !== undefined) {
       newInstance.probability = Range.parse(json.probabilityRange);
     }
-    if (json.qualitativeRisk) {
+    if (json.qualitativeRisk !== undefined) {
       newInstance.qualitativeRisk = CodeableConcept.parse(json.qualitativeRisk);
     }
-    if (json.relativeRisk) {
+    if (json.relativeRisk !== undefined) {
       newInstance.relativeRisk = PrimitiveDecimal.parsePrimitive(json.relativeRisk, json._relativeRisk);
     }
-    if (json.whenPeriod) {
+    if (json.whenPeriod !== undefined) {
       newInstance.when = Period.parse(json.whenPeriod);
     }
-    if (json.whenRange) {
+    if (json.whenRange !== undefined) {
       newInstance.when = Range.parse(json.whenRange);
     }
-    if (json.rationale) {
+    if (json.rationale !== undefined) {
       newInstance.rationale = PrimitiveString.parsePrimitive(json.rationale, json._rationale);
     }
     return newInstance;
@@ -107,7 +107,11 @@ export class RiskAssessmentPrediction extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): RiskAssessmentPrediction {
+    return RiskAssessmentPrediction.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "RiskAssessmentPrediction";
   }

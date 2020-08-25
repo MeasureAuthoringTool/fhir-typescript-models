@@ -26,13 +26,13 @@ export class ClaimRelated extends BackboneElement {
   ): ClaimRelated {
     const newInstance: ClaimRelated = BackboneElement.parse(json, providedInstance);
   
-    if (json.claim) {
+    if (json.claim !== undefined) {
       newInstance.claim = Reference.parse(json.claim);
     }
-    if (json.relationship) {
+    if (json.relationship !== undefined) {
       newInstance.relationship = CodeableConcept.parse(json.relationship);
     }
-    if (json.reference) {
+    if (json.reference !== undefined) {
       newInstance.reference = Identifier.parse(json.reference);
     }
     return newInstance;
@@ -60,7 +60,11 @@ export class ClaimRelated extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimRelated {
+    return ClaimRelated.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimRelated";
   }

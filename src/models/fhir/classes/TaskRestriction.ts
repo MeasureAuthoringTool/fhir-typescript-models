@@ -27,13 +27,13 @@ export class TaskRestriction extends BackboneElement {
   ): TaskRestriction {
     const newInstance: TaskRestriction = BackboneElement.parse(json, providedInstance);
   
-    if (json.repetitions) {
+    if (json.repetitions !== undefined) {
       newInstance.repetitions = PrimitivePositiveInt.parsePrimitive(json.repetitions, json._repetitions);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.recipient) {
+    if (json.recipient !== undefined) {
       newInstance.recipient = json.recipient.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class TaskRestriction extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TaskRestriction {
+    return TaskRestriction.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TaskRestriction";
   }

@@ -22,7 +22,16 @@ export class ConceptMapGroupUnmappedMode extends PrimitiveCode {
     const castInput = input as ConceptMapGroupUnmappedMode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ConceptMapGroupUnmappedMode";
   }
-  
+
+  public clone(): ConceptMapGroupUnmappedMode {
+    const result = new ConceptMapGroupUnmappedMode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ConceptMapGroupUnmappedMode";
   }

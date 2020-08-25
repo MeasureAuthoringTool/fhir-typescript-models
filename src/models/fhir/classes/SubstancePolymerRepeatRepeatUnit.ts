@@ -33,19 +33,19 @@ export class SubstancePolymerRepeatRepeatUnit extends BackboneElement {
   ): SubstancePolymerRepeatRepeatUnit {
     const newInstance: SubstancePolymerRepeatRepeatUnit = BackboneElement.parse(json, providedInstance);
   
-    if (json.orientationOfPolymerisation) {
+    if (json.orientationOfPolymerisation !== undefined) {
       newInstance.orientationOfPolymerisation = CodeableConcept.parse(json.orientationOfPolymerisation);
     }
-    if (json.repeatUnit) {
+    if (json.repeatUnit !== undefined) {
       newInstance.repeatUnit = PrimitiveString.parsePrimitive(json.repeatUnit, json._repeatUnit);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = SubstanceAmount.parse(json.amount);
     }
-    if (json.degreeOfPolymerisation) {
+    if (json.degreeOfPolymerisation !== undefined) {
       newInstance.degreeOfPolymerisation = json.degreeOfPolymerisation.map((x) => SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation.parse(x));
     }
-    if (json.structuralRepresentation) {
+    if (json.structuralRepresentation !== undefined) {
       newInstance.structuralRepresentation = json.structuralRepresentation.map((x) => SubstancePolymerRepeatRepeatUnitStructuralRepresentation.parse(x));
     }
     return newInstance;
@@ -82,7 +82,11 @@ export class SubstancePolymerRepeatRepeatUnit extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstancePolymerRepeatRepeatUnit {
+    return SubstancePolymerRepeatRepeatUnit.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstancePolymerRepeatRepeatUnit";
   }

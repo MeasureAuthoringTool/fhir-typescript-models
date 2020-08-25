@@ -30,19 +30,19 @@ export class MedicinalProductAuthorizationProcedure extends BackboneElement {
   ): MedicinalProductAuthorizationProcedure {
     const newInstance: MedicinalProductAuthorizationProcedure = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.datePeriod) {
+    if (json.datePeriod !== undefined) {
       newInstance.date = Period.parse(json.datePeriod);
     }
-    if (json.dateDateTime) {
+    if (json.dateDateTime !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.dateDateTime, json._dateDateTime);
     }
-    if (json.application) {
+    if (json.application !== undefined) {
       newInstance.application = json.application.map((x) => MedicinalProductAuthorizationProcedure.parse(x));
     }
     return newInstance;
@@ -79,7 +79,11 @@ export class MedicinalProductAuthorizationProcedure extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductAuthorizationProcedure {
+    return MedicinalProductAuthorizationProcedure.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductAuthorizationProcedure";
   }

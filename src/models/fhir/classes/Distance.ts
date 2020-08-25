@@ -30,7 +30,11 @@ export class Distance extends Quantity {
 
     return result;
   }
-  
+
+  public clone(): Distance {
+    return Distance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Distance";
   }

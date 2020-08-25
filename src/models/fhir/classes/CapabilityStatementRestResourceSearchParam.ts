@@ -30,16 +30,16 @@ export class CapabilityStatementRestResourceSearchParam extends BackboneElement 
   ): CapabilityStatementRestResourceSearchParam {
     const newInstance: CapabilityStatementRestResourceSearchParam = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.definition) {
+    if (json.definition !== undefined) {
       newInstance.definition = PrimitiveCanonical.parsePrimitive(json.definition, json._definition);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = SearchParamType.parsePrimitive(json.type, json._type);
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveMarkdown.parsePrimitive(json.documentation, json._documentation);
     }
     return newInstance;
@@ -75,7 +75,11 @@ export class CapabilityStatementRestResourceSearchParam extends BackboneElement 
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatementRestResourceSearchParam {
+    return CapabilityStatementRestResourceSearchParam.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementRestResourceSearchParam";
   }

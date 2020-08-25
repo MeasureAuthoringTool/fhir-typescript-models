@@ -24,10 +24,10 @@ export class PlanDefinitionActionDynamicValue extends BackboneElement {
   ): PlanDefinitionActionDynamicValue {
     const newInstance: PlanDefinitionActionDynamicValue = BackboneElement.parse(json, providedInstance);
   
-    if (json.path) {
+    if (json.path !== undefined) {
       newInstance.path = PrimitiveString.parsePrimitive(json.path, json._path);
     }
-    if (json.expression) {
+    if (json.expression !== undefined) {
       newInstance.expression = Expression.parse(json.expression);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class PlanDefinitionActionDynamicValue extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PlanDefinitionActionDynamicValue {
+    return PlanDefinitionActionDynamicValue.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PlanDefinitionActionDynamicValue";
   }

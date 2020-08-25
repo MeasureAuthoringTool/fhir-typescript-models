@@ -57,52 +57,52 @@ export class MedicinalProductAuthorization extends DomainResource {
   ): MedicinalProductAuthorization {
     const newInstance: MedicinalProductAuthorization = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.country) {
+    if (json.country !== undefined) {
       newInstance.country = json.country.map((x) => CodeableConcept.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CodeableConcept.parse(json.status);
     }
-    if (json.statusDate) {
+    if (json.statusDate !== undefined) {
       newInstance.statusDate = PrimitiveDateTime.parsePrimitive(json.statusDate, json._statusDate);
     }
-    if (json.restoreDate) {
+    if (json.restoreDate !== undefined) {
       newInstance.restoreDate = PrimitiveDateTime.parsePrimitive(json.restoreDate, json._restoreDate);
     }
-    if (json.validityPeriod) {
+    if (json.validityPeriod !== undefined) {
       newInstance.validityPeriod = Period.parse(json.validityPeriod);
     }
-    if (json.dataExclusivityPeriod) {
+    if (json.dataExclusivityPeriod !== undefined) {
       newInstance.dataExclusivityPeriod = Period.parse(json.dataExclusivityPeriod);
     }
-    if (json.dateOfFirstAuthorization) {
+    if (json.dateOfFirstAuthorization !== undefined) {
       newInstance.dateOfFirstAuthorization = PrimitiveDateTime.parsePrimitive(json.dateOfFirstAuthorization, json._dateOfFirstAuthorization);
     }
-    if (json.internationalBirthDate) {
+    if (json.internationalBirthDate !== undefined) {
       newInstance.internationalBirthDate = PrimitiveDateTime.parsePrimitive(json.internationalBirthDate, json._internationalBirthDate);
     }
-    if (json.legalBasis) {
+    if (json.legalBasis !== undefined) {
       newInstance.legalBasis = CodeableConcept.parse(json.legalBasis);
     }
-    if (json.jurisdictionalAuthorization) {
+    if (json.jurisdictionalAuthorization !== undefined) {
       newInstance.jurisdictionalAuthorization = json.jurisdictionalAuthorization.map((x) => MedicinalProductAuthorizationJurisdictionalAuthorization.parse(x));
     }
-    if (json.holder) {
+    if (json.holder !== undefined) {
       newInstance.holder = Reference.parse(json.holder);
     }
-    if (json.regulator) {
+    if (json.regulator !== undefined) {
       newInstance.regulator = Reference.parse(json.regulator);
     }
-    if (json.procedure) {
+    if (json.procedure !== undefined) {
       newInstance.procedure = MedicinalProductAuthorizationProcedure.parse(json.procedure);
     }
     return newInstance;
@@ -186,7 +186,11 @@ export class MedicinalProductAuthorization extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductAuthorization {
+    return MedicinalProductAuthorization.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductAuthorization";
   }

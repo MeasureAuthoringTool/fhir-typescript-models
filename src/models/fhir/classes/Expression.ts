@@ -32,19 +32,19 @@ export class Expression extends Element {
   ): Expression {
     const newInstance: Expression = Element.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveId.parsePrimitive(json.name, json._name);
     }
-    if (json.language) {
+    if (json.language !== undefined) {
       newInstance.language = PrimitiveCode.parsePrimitive(json.language, json._language);
     }
-    if (json.expression) {
+    if (json.expression !== undefined) {
       newInstance.expression = PrimitiveString.parsePrimitive(json.expression, json._expression);
     }
-    if (json.reference) {
+    if (json.reference !== undefined) {
       newInstance.reference = PrimitiveUri.parsePrimitive(json.reference, json._reference);
     }
     return newInstance;
@@ -85,7 +85,11 @@ export class Expression extends Element {
 
     return result;
   }
-  
+
+  public clone(): Expression {
+    return Expression.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Expression";
   }

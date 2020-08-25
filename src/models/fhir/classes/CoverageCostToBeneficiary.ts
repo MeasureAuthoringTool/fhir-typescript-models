@@ -27,16 +27,16 @@ export class CoverageCostToBeneficiary extends BackboneElement {
   ): CoverageCostToBeneficiary {
     const newInstance: CoverageCostToBeneficiary = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.valueSimpleQuantity) {
+    if (json.valueSimpleQuantity !== undefined) {
       newInstance.value = SimpleQuantity.parse(json.valueSimpleQuantity);
     }
-    if (json.valueMoney) {
+    if (json.valueMoney !== undefined) {
       newInstance.value = Money.parse(json.valueMoney);
     }
-    if (json.exception) {
+    if (json.exception !== undefined) {
       newInstance.exception = json.exception.map((x) => CoverageCostToBeneficiaryException.parse(x));
     }
     return newInstance;
@@ -68,7 +68,11 @@ export class CoverageCostToBeneficiary extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CoverageCostToBeneficiary {
+    return CoverageCostToBeneficiary.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CoverageCostToBeneficiary";
   }

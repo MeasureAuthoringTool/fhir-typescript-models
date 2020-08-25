@@ -38,28 +38,28 @@ export class SubstanceProteinSubunit extends BackboneElement {
   ): SubstanceProteinSubunit {
     const newInstance: SubstanceProteinSubunit = BackboneElement.parse(json, providedInstance);
   
-    if (json.subunit) {
+    if (json.subunit !== undefined) {
       newInstance.subunit = PrimitiveInteger.parsePrimitive(json.subunit, json._subunit);
     }
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitiveString.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.length) {
+    if (json.length !== undefined) {
       newInstance.length = PrimitiveInteger.parsePrimitive(json.length, json._length);
     }
-    if (json.sequenceAttachment) {
+    if (json.sequenceAttachment !== undefined) {
       newInstance.sequenceAttachment = Attachment.parse(json.sequenceAttachment);
     }
-    if (json.nTerminalModificationId) {
+    if (json.nTerminalModificationId !== undefined) {
       newInstance.nTerminalModificationId = Identifier.parse(json.nTerminalModificationId);
     }
-    if (json.nTerminalModification) {
+    if (json.nTerminalModification !== undefined) {
       newInstance.nTerminalModification = PrimitiveString.parsePrimitive(json.nTerminalModification, json._nTerminalModification);
     }
-    if (json.cTerminalModificationId) {
+    if (json.cTerminalModificationId !== undefined) {
       newInstance.cTerminalModificationId = Identifier.parse(json.cTerminalModificationId);
     }
-    if (json.cTerminalModification) {
+    if (json.cTerminalModification !== undefined) {
       newInstance.cTerminalModification = PrimitiveString.parsePrimitive(json.cTerminalModification, json._cTerminalModification);
     }
     return newInstance;
@@ -112,7 +112,11 @@ export class SubstanceProteinSubunit extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceProteinSubunit {
+    return SubstanceProteinSubunit.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceProteinSubunit";
   }

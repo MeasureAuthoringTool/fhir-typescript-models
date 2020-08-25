@@ -30,7 +30,11 @@ export class Count extends Quantity {
 
     return result;
   }
-  
+
+  public clone(): Count {
+    return Count.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Count";
   }

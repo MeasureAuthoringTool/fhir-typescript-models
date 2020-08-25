@@ -24,10 +24,10 @@ export class PersonLink extends BackboneElement {
   ): PersonLink {
     const newInstance: PersonLink = BackboneElement.parse(json, providedInstance);
   
-    if (json.target) {
+    if (json.target !== undefined) {
       newInstance.target = Reference.parse(json.target);
     }
-    if (json.assurance) {
+    if (json.assurance !== undefined) {
       newInstance.assurance = IdentityAssuranceLevel.parsePrimitive(json.assurance, json._assurance);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class PersonLink extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PersonLink {
+    return PersonLink.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PersonLink";
   }

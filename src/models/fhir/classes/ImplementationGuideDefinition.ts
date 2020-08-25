@@ -32,19 +32,19 @@ export class ImplementationGuideDefinition extends BackboneElement {
   ): ImplementationGuideDefinition {
     const newInstance: ImplementationGuideDefinition = BackboneElement.parse(json, providedInstance);
   
-    if (json.grouping) {
+    if (json.grouping !== undefined) {
       newInstance.grouping = json.grouping.map((x) => ImplementationGuideDefinitionGrouping.parse(x));
     }
-    if (json.resource) {
+    if (json.resource !== undefined) {
       newInstance.resource = json.resource.map((x) => ImplementationGuideDefinitionResource.parse(x));
     }
-    if (json.page) {
+    if (json.page !== undefined) {
       newInstance.page = ImplementationGuideDefinitionPage.parse(json.page);
     }
-    if (json.parameter) {
+    if (json.parameter !== undefined) {
       newInstance.parameter = json.parameter.map((x) => ImplementationGuideDefinitionParameter.parse(x));
     }
-    if (json.template) {
+    if (json.template !== undefined) {
       newInstance.template = json.template.map((x) => ImplementationGuideDefinitionTemplate.parse(x));
     }
     return newInstance;
@@ -80,7 +80,11 @@ export class ImplementationGuideDefinition extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImplementationGuideDefinition {
+    return ImplementationGuideDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImplementationGuideDefinition";
   }

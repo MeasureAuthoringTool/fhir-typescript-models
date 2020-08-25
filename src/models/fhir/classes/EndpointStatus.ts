@@ -22,7 +22,16 @@ export class EndpointStatus extends PrimitiveCode {
     const castInput = input as EndpointStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "EndpointStatus";
   }
-  
+
+  public clone(): EndpointStatus {
+    const result = new EndpointStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "EndpointStatus";
   }

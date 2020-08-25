@@ -22,7 +22,16 @@ export class SystemRestfulInteraction extends PrimitiveCode {
     const castInput = input as SystemRestfulInteraction;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SystemRestfulInteraction";
   }
-  
+
+  public clone(): SystemRestfulInteraction {
+    const result = new SystemRestfulInteraction();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SystemRestfulInteraction";
   }

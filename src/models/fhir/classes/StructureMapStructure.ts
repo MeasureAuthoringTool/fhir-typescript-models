@@ -29,16 +29,16 @@ export class StructureMapStructure extends BackboneElement {
   ): StructureMapStructure {
     const newInstance: StructureMapStructure = BackboneElement.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveCanonical.parsePrimitive(json.url, json._url);
     }
-    if (json.mode) {
+    if (json.mode !== undefined) {
       newInstance.mode = StructureMapModelMode.parsePrimitive(json.mode, json._mode);
     }
-    if (json.alias) {
+    if (json.alias !== undefined) {
       newInstance.alias = PrimitiveString.parsePrimitive(json.alias, json._alias);
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveString.parsePrimitive(json.documentation, json._documentation);
     }
     return newInstance;
@@ -74,7 +74,11 @@ export class StructureMapStructure extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): StructureMapStructure {
+    return StructureMapStructure.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "StructureMapStructure";
   }

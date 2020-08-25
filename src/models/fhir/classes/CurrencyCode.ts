@@ -22,7 +22,16 @@ export class CurrencyCode extends PrimitiveCode {
     const castInput = input as CurrencyCode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CurrencyCode";
   }
-  
+
+  public clone(): CurrencyCode {
+    const result = new CurrencyCode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CurrencyCode";
   }

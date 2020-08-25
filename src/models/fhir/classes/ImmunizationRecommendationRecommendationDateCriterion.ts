@@ -24,10 +24,10 @@ export class ImmunizationRecommendationRecommendationDateCriterion extends Backb
   ): ImmunizationRecommendationRecommendationDateCriterion {
     const newInstance: ImmunizationRecommendationRecommendationDateCriterion = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveDateTime.parsePrimitive(json.value, json._value);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class ImmunizationRecommendationRecommendationDateCriterion extends Backb
 
     return result;
   }
-  
+
+  public clone(): ImmunizationRecommendationRecommendationDateCriterion {
+    return ImmunizationRecommendationRecommendationDateCriterion.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImmunizationRecommendationRecommendationDateCriterion";
   }

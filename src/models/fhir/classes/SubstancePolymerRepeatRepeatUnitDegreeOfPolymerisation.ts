@@ -23,10 +23,10 @@ export class SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation extends Back
   ): SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation {
     const newInstance: SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation = BackboneElement.parse(json, providedInstance);
   
-    if (json.degree) {
+    if (json.degree !== undefined) {
       newInstance.degree = CodeableConcept.parse(json.degree);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = SubstanceAmount.parse(json.amount);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation extends Back
 
     return result;
   }
-  
+
+  public clone(): SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation {
+    return SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation";
   }

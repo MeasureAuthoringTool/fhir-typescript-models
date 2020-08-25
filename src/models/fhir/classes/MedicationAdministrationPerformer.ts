@@ -23,10 +23,10 @@ export class MedicationAdministrationPerformer extends BackboneElement {
   ): MedicationAdministrationPerformer {
     const newInstance: MedicationAdministrationPerformer = BackboneElement.parse(json, providedInstance);
   
-    if (json.function) {
+    if (json.function !== undefined) {
       newInstance.function = CodeableConcept.parse(json.function);
     }
-    if (json.actor) {
+    if (json.actor !== undefined) {
       newInstance.actor = Reference.parse(json.actor);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class MedicationAdministrationPerformer extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationAdministrationPerformer {
+    return MedicationAdministrationPerformer.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationAdministrationPerformer";
   }

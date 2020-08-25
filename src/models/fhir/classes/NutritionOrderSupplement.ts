@@ -32,19 +32,19 @@ export class NutritionOrderSupplement extends BackboneElement {
   ): NutritionOrderSupplement {
     const newInstance: NutritionOrderSupplement = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.productName) {
+    if (json.productName !== undefined) {
       newInstance.productName = PrimitiveString.parsePrimitive(json.productName, json._productName);
     }
-    if (json.schedule) {
+    if (json.schedule !== undefined) {
       newInstance.schedule = json.schedule.map((x) => Timing.parse(x));
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.instruction) {
+    if (json.instruction !== undefined) {
       newInstance.instruction = PrimitiveString.parsePrimitive(json.instruction, json._instruction);
     }
     return newInstance;
@@ -82,7 +82,11 @@ export class NutritionOrderSupplement extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): NutritionOrderSupplement {
+    return NutritionOrderSupplement.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "NutritionOrderSupplement";
   }

@@ -32,19 +32,19 @@ export class BundleEntryResponse extends BackboneElement {
   ): BundleEntryResponse {
     const newInstance: BundleEntryResponse = BackboneElement.parse(json, providedInstance);
   
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PrimitiveString.parsePrimitive(json.status, json._status);
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = PrimitiveUri.parsePrimitive(json.location, json._location);
     }
-    if (json.etag) {
+    if (json.etag !== undefined) {
       newInstance.etag = PrimitiveString.parsePrimitive(json.etag, json._etag);
     }
-    if (json.lastModified) {
+    if (json.lastModified !== undefined) {
       newInstance.lastModified = PrimitiveInstant.parsePrimitive(json.lastModified, json._lastModified);
     }
-    if (json.outcome) {
+    if (json.outcome !== undefined) {
       newInstance.outcome = Resource.parse(json.outcome);
     }
     return newInstance;
@@ -84,7 +84,11 @@ export class BundleEntryResponse extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): BundleEntryResponse {
+    return BundleEntryResponse.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "BundleEntryResponse";
   }

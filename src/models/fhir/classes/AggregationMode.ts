@@ -22,7 +22,16 @@ export class AggregationMode extends PrimitiveCode {
     const castInput = input as AggregationMode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "AggregationMode";
   }
-  
+
+  public clone(): AggregationMode {
+    const result = new AggregationMode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "AggregationMode";
   }

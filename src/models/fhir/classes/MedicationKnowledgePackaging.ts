@@ -23,10 +23,10 @@ export class MedicationKnowledgePackaging extends BackboneElement {
   ): MedicationKnowledgePackaging {
     const newInstance: MedicationKnowledgePackaging = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class MedicationKnowledgePackaging extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationKnowledgePackaging {
+    return MedicationKnowledgePackaging.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationKnowledgePackaging";
   }

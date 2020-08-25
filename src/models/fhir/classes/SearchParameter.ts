@@ -87,97 +87,97 @@ export class SearchParameter extends DomainResource {
   ): SearchParameter {
     const newInstance: SearchParameter = DomainResource.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.derivedFrom) {
+    if (json.derivedFrom !== undefined) {
       newInstance.derivedFrom = PrimitiveCanonical.parsePrimitive(json.derivedFrom, json._derivedFrom);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.experimental) {
+    if (json.experimental !== undefined) {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = PrimitiveMarkdown.parsePrimitive(json.purpose, json._purpose);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.base) {
+    if (json.base !== undefined) {
       newInstance.base = json.base.map((x, i) => {
         const ext = json._base && json._base[i];
         return ResourceType.parsePrimitive(x, ext);
       });
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = SearchParamType.parsePrimitive(json.type, json._type);
     }
-    if (json.expression) {
+    if (json.expression !== undefined) {
       newInstance.expression = PrimitiveString.parsePrimitive(json.expression, json._expression);
     }
-    if (json.xpath) {
+    if (json.xpath !== undefined) {
       newInstance.xpath = PrimitiveString.parsePrimitive(json.xpath, json._xpath);
     }
-    if (json.xpathUsage) {
+    if (json.xpathUsage !== undefined) {
       newInstance.xpathUsage = XPathUsageType.parsePrimitive(json.xpathUsage, json._xpathUsage);
     }
-    if (json.target) {
+    if (json.target !== undefined) {
       newInstance.target = json.target.map((x, i) => {
         const ext = json._target && json._target[i];
         return ResourceType.parsePrimitive(x, ext);
       });
     }
-    if (json.multipleOr) {
+    if (json.multipleOr !== undefined) {
       newInstance.multipleOr = PrimitiveBoolean.parsePrimitive(json.multipleOr, json._multipleOr);
     }
-    if (json.multipleAnd) {
+    if (json.multipleAnd !== undefined) {
       newInstance.multipleAnd = PrimitiveBoolean.parsePrimitive(json.multipleAnd, json._multipleAnd);
     }
-    if (json.comparator) {
+    if (json.comparator !== undefined) {
       newInstance.comparator = json.comparator.map((x, i) => {
         const ext = json._comparator && json._comparator[i];
         return SearchComparator.parsePrimitive(x, ext);
       });
     }
-    if (json.modifier) {
+    if (json.modifier !== undefined) {
       newInstance.modifier = json.modifier.map((x, i) => {
         const ext = json._modifier && json._modifier[i];
         return SearchModifierCode.parsePrimitive(x, ext);
       });
     }
-    if (json.chain) {
+    if (json.chain !== undefined) {
       newInstance.chain = json.chain.map((x, i) => {
         const ext = json._chain && json._chain[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.component) {
+    if (json.component !== undefined) {
       newInstance.component = json.component.map((x) => SearchParameterComponent.parse(x));
     }
     return newInstance;
@@ -319,7 +319,11 @@ export class SearchParameter extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): SearchParameter {
+    return SearchParameter.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SearchParameter";
   }

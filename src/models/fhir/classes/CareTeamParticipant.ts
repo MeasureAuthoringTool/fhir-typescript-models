@@ -28,16 +28,16 @@ export class CareTeamParticipant extends BackboneElement {
   ): CareTeamParticipant {
     const newInstance: CareTeamParticipant = BackboneElement.parse(json, providedInstance);
   
-    if (json.role) {
+    if (json.role !== undefined) {
       newInstance.role = json.role.map((x) => CodeableConcept.parse(x));
     }
-    if (json.member) {
+    if (json.member !== undefined) {
       newInstance.member = Reference.parse(json.member);
     }
-    if (json.onBehalfOf) {
+    if (json.onBehalfOf !== undefined) {
       newInstance.onBehalfOf = Reference.parse(json.onBehalfOf);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -69,7 +69,11 @@ export class CareTeamParticipant extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CareTeamParticipant {
+    return CareTeamParticipant.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CareTeamParticipant";
   }

@@ -29,7 +29,11 @@ export class Type {
 
     return result;
   }
-  
+
+  public clone(): Type {
+    return Type.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Type";
   }

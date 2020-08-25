@@ -37,25 +37,25 @@ export class Signature extends Element {
   ): Signature {
     const newInstance: Signature = Element.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => Coding.parse(x));
     }
-    if (json.when) {
+    if (json.when !== undefined) {
       newInstance.when = PrimitiveInstant.parsePrimitive(json.when, json._when);
     }
-    if (json.who) {
+    if (json.who !== undefined) {
       newInstance.who = Reference.parse(json.who);
     }
-    if (json.onBehalfOf) {
+    if (json.onBehalfOf !== undefined) {
       newInstance.onBehalfOf = Reference.parse(json.onBehalfOf);
     }
-    if (json.targetFormat) {
+    if (json.targetFormat !== undefined) {
       newInstance.targetFormat = MimeType.parsePrimitive(json.targetFormat, json._targetFormat);
     }
-    if (json.sigFormat) {
+    if (json.sigFormat !== undefined) {
       newInstance.sigFormat = MimeType.parsePrimitive(json.sigFormat, json._sigFormat);
     }
-    if (json.data) {
+    if (json.data !== undefined) {
       newInstance.data = PrimitiveBase64Binary.parsePrimitive(json.data, json._data);
     }
     return newInstance;
@@ -103,7 +103,11 @@ export class Signature extends Element {
 
     return result;
   }
-  
+
+  public clone(): Signature {
+    return Signature.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Signature";
   }

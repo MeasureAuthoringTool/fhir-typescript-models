@@ -22,7 +22,16 @@ export class SupplyRequestStatus extends PrimitiveCode {
     const castInput = input as SupplyRequestStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SupplyRequestStatus";
   }
-  
+
+  public clone(): SupplyRequestStatus {
+    const result = new SupplyRequestStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SupplyRequestStatus";
   }

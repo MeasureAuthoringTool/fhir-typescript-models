@@ -28,16 +28,16 @@ export class ClaimAccident extends BackboneElement {
   ): ClaimAccident {
     const newInstance: ClaimAccident = BackboneElement.parse(json, providedInstance);
   
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDate.parsePrimitive(json.date, json._date);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.locationAddress) {
+    if (json.locationAddress !== undefined) {
       newInstance.location = Address.parse(json.locationAddress);
     }
-    if (json.locationReference) {
+    if (json.locationReference !== undefined) {
       newInstance.location = Reference.parse(json.locationReference);
     }
     return newInstance;
@@ -70,7 +70,11 @@ export class ClaimAccident extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimAccident {
+    return ClaimAccident.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimAccident";
   }

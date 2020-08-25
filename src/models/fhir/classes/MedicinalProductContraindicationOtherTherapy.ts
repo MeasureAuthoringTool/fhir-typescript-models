@@ -23,13 +23,13 @@ export class MedicinalProductContraindicationOtherTherapy extends BackboneElemen
   ): MedicinalProductContraindicationOtherTherapy {
     const newInstance: MedicinalProductContraindicationOtherTherapy = BackboneElement.parse(json, providedInstance);
   
-    if (json.therapyRelationshipType) {
+    if (json.therapyRelationshipType !== undefined) {
       newInstance.therapyRelationshipType = CodeableConcept.parse(json.therapyRelationshipType);
     }
-    if (json.medicationCodeableConcept) {
+    if (json.medicationCodeableConcept !== undefined) {
       newInstance.medication = CodeableConcept.parse(json.medicationCodeableConcept);
     }
-    if (json.medicationReference) {
+    if (json.medicationReference !== undefined) {
       newInstance.medication = Reference.parse(json.medicationReference);
     }
     return newInstance;
@@ -57,7 +57,11 @@ export class MedicinalProductContraindicationOtherTherapy extends BackboneElemen
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductContraindicationOtherTherapy {
+    return MedicinalProductContraindicationOtherTherapy.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductContraindicationOtherTherapy";
   }

@@ -29,16 +29,16 @@ export class MedicationKnowledgeRegulatory extends BackboneElement {
   ): MedicationKnowledgeRegulatory {
     const newInstance: MedicationKnowledgeRegulatory = BackboneElement.parse(json, providedInstance);
   
-    if (json.regulatoryAuthority) {
+    if (json.regulatoryAuthority !== undefined) {
       newInstance.regulatoryAuthority = Reference.parse(json.regulatoryAuthority);
     }
-    if (json.substitution) {
+    if (json.substitution !== undefined) {
       newInstance.substitution = json.substitution.map((x) => MedicationKnowledgeRegulatorySubstitution.parse(x));
     }
-    if (json.schedule) {
+    if (json.schedule !== undefined) {
       newInstance.schedule = json.schedule.map((x) => MedicationKnowledgeRegulatorySchedule.parse(x));
     }
-    if (json.maxDispense) {
+    if (json.maxDispense !== undefined) {
       newInstance.maxDispense = MedicationKnowledgeRegulatoryMaxDispense.parse(json.maxDispense);
     }
     return newInstance;
@@ -70,7 +70,11 @@ export class MedicationKnowledgeRegulatory extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationKnowledgeRegulatory {
+    return MedicationKnowledgeRegulatory.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationKnowledgeRegulatory";
   }

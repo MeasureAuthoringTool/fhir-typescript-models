@@ -29,25 +29,25 @@ export class QuestionnaireItemAnswerOption extends BackboneElement {
   ): QuestionnaireItemAnswerOption {
     const newInstance: QuestionnaireItemAnswerOption = BackboneElement.parse(json, providedInstance);
   
-    if (json.valueInteger) {
+    if (json.valueInteger !== undefined) {
       newInstance.value = PrimitiveInteger.parsePrimitive(json.valueInteger, json._valueInteger);
     }
-    if (json.valueDate) {
+    if (json.valueDate !== undefined) {
       newInstance.value = PrimitiveDate.parsePrimitive(json.valueDate, json._valueDate);
     }
-    if (json.valueTime) {
+    if (json.valueTime !== undefined) {
       newInstance.value = PrimitiveTime.parsePrimitive(json.valueTime, json._valueTime);
     }
-    if (json.valueString) {
+    if (json.valueString !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.valueString, json._valueString);
     }
-    if (json.valueCoding) {
+    if (json.valueCoding !== undefined) {
       newInstance.value = Coding.parse(json.valueCoding);
     }
-    if (json.valueReference) {
+    if (json.valueReference !== undefined) {
       newInstance.value = Reference.parse(json.valueReference);
     }
-    if (json.initialSelected) {
+    if (json.initialSelected !== undefined) {
       newInstance.initialSelected = PrimitiveBoolean.parsePrimitive(json.initialSelected, json._initialSelected);
     }
     return newInstance;
@@ -96,7 +96,11 @@ export class QuestionnaireItemAnswerOption extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): QuestionnaireItemAnswerOption {
+    return QuestionnaireItemAnswerOption.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "QuestionnaireItemAnswerOption";
   }

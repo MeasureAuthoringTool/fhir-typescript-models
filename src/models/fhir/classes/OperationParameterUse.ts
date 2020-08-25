@@ -22,7 +22,16 @@ export class OperationParameterUse extends PrimitiveCode {
     const castInput = input as OperationParameterUse;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "OperationParameterUse";
   }
-  
+
+  public clone(): OperationParameterUse {
+    const result = new OperationParameterUse();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "OperationParameterUse";
   }

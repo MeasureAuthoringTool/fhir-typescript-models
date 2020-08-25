@@ -55,49 +55,49 @@ export class InsurancePlan extends DomainResource {
   ): InsurancePlan {
     const newInstance: InsurancePlan = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.alias) {
+    if (json.alias !== undefined) {
       newInstance.alias = json.alias.map((x, i) => {
         const ext = json._alias && json._alias[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.ownedBy) {
+    if (json.ownedBy !== undefined) {
       newInstance.ownedBy = Reference.parse(json.ownedBy);
     }
-    if (json.administeredBy) {
+    if (json.administeredBy !== undefined) {
       newInstance.administeredBy = Reference.parse(json.administeredBy);
     }
-    if (json.coverageArea) {
+    if (json.coverageArea !== undefined) {
       newInstance.coverageArea = json.coverageArea.map((x) => Reference.parse(x));
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => InsurancePlanContact.parse(x));
     }
-    if (json.endpoint) {
+    if (json.endpoint !== undefined) {
       newInstance.endpoint = json.endpoint.map((x) => Reference.parse(x));
     }
-    if (json.network) {
+    if (json.network !== undefined) {
       newInstance.network = json.network.map((x) => Reference.parse(x));
     }
-    if (json.coverage) {
+    if (json.coverage !== undefined) {
       newInstance.coverage = json.coverage.map((x) => InsurancePlanCoverage.parse(x));
     }
-    if (json.plan) {
+    if (json.plan !== undefined) {
       newInstance.plan = json.plan.map((x) => InsurancePlanPlan.parse(x));
     }
     return newInstance;
@@ -172,7 +172,11 @@ export class InsurancePlan extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): InsurancePlan {
+    return InsurancePlan.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "InsurancePlan";
   }

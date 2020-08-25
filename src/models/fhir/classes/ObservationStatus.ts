@@ -22,7 +22,16 @@ export class ObservationStatus extends PrimitiveCode {
     const castInput = input as ObservationStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ObservationStatus";
   }
-  
+
+  public clone(): ObservationStatus {
+    const result = new ObservationStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ObservationStatus";
   }

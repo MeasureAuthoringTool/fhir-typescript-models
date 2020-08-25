@@ -27,13 +27,13 @@ export class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   ): CoverageEligibilityRequestSupportingInfo {
     const newInstance: CoverageEligibilityRequestSupportingInfo = BackboneElement.parse(json, providedInstance);
   
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitivePositiveInt.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.information) {
+    if (json.information !== undefined) {
       newInstance.information = Reference.parse(json.information);
     }
-    if (json.appliesToAll) {
+    if (json.appliesToAll !== undefined) {
       newInstance.appliesToAll = PrimitiveBoolean.parsePrimitive(json.appliesToAll, json._appliesToAll);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CoverageEligibilityRequestSupportingInfo {
+    return CoverageEligibilityRequestSupportingInfo.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CoverageEligibilityRequestSupportingInfo";
   }

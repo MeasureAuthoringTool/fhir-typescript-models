@@ -26,13 +26,13 @@ export class ContractSigner extends BackboneElement {
   ): ContractSigner {
     const newInstance: ContractSigner = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = Coding.parse(json.type);
     }
-    if (json.party) {
+    if (json.party !== undefined) {
       newInstance.party = Reference.parse(json.party);
     }
-    if (json.signature) {
+    if (json.signature !== undefined) {
       newInstance.signature = json.signature.map((x) => Signature.parse(x));
     }
     return newInstance;
@@ -60,7 +60,11 @@ export class ContractSigner extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractSigner {
+    return ContractSigner.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractSigner";
   }

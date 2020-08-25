@@ -21,10 +21,10 @@ export class CoverageEligibilityRequestItemDiagnosis extends BackboneElement {
   ): CoverageEligibilityRequestItemDiagnosis {
     const newInstance: CoverageEligibilityRequestItemDiagnosis = BackboneElement.parse(json, providedInstance);
   
-    if (json.diagnosisCodeableConcept) {
+    if (json.diagnosisCodeableConcept !== undefined) {
       newInstance.diagnosis = CodeableConcept.parse(json.diagnosisCodeableConcept);
     }
-    if (json.diagnosisReference) {
+    if (json.diagnosisReference !== undefined) {
       newInstance.diagnosis = Reference.parse(json.diagnosisReference);
     }
     return newInstance;
@@ -48,7 +48,11 @@ export class CoverageEligibilityRequestItemDiagnosis extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CoverageEligibilityRequestItemDiagnosis {
+    return CoverageEligibilityRequestItemDiagnosis.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CoverageEligibilityRequestItemDiagnosis";
   }

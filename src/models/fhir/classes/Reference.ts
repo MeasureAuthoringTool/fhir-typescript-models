@@ -29,16 +29,16 @@ export class Reference extends Element {
   ): Reference {
     const newInstance: Reference = Element.parse(json, providedInstance);
   
-    if (json.reference) {
+    if (json.reference !== undefined) {
       newInstance.reference = PrimitiveString.parsePrimitive(json.reference, json._reference);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = PrimitiveUri.parsePrimitive(json.type, json._type);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.display) {
+    if (json.display !== undefined) {
       newInstance.display = PrimitiveString.parsePrimitive(json.display, json._display);
     }
     return newInstance;
@@ -73,7 +73,11 @@ export class Reference extends Element {
 
     return result;
   }
-  
+
+  public clone(): Reference {
+    return Reference.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Reference";
   }

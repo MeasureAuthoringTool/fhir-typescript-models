@@ -34,22 +34,22 @@ export class MedicinalProductManufacturingBusinessOperation extends BackboneElem
   ): MedicinalProductManufacturingBusinessOperation {
     const newInstance: MedicinalProductManufacturingBusinessOperation = BackboneElement.parse(json, providedInstance);
   
-    if (json.operationType) {
+    if (json.operationType !== undefined) {
       newInstance.operationType = CodeableConcept.parse(json.operationType);
     }
-    if (json.authorisationReferenceNumber) {
+    if (json.authorisationReferenceNumber !== undefined) {
       newInstance.authorisationReferenceNumber = Identifier.parse(json.authorisationReferenceNumber);
     }
-    if (json.effectiveDate) {
+    if (json.effectiveDate !== undefined) {
       newInstance.effectiveDate = PrimitiveDateTime.parsePrimitive(json.effectiveDate, json._effectiveDate);
     }
-    if (json.confidentialityIndicator) {
+    if (json.confidentialityIndicator !== undefined) {
       newInstance.confidentialityIndicator = CodeableConcept.parse(json.confidentialityIndicator);
     }
-    if (json.manufacturer) {
+    if (json.manufacturer !== undefined) {
       newInstance.manufacturer = json.manufacturer.map((x) => Reference.parse(x));
     }
-    if (json.regulator) {
+    if (json.regulator !== undefined) {
       newInstance.regulator = Reference.parse(json.regulator);
     }
     return newInstance;
@@ -90,7 +90,11 @@ export class MedicinalProductManufacturingBusinessOperation extends BackboneElem
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductManufacturingBusinessOperation {
+    return MedicinalProductManufacturingBusinessOperation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductManufacturingBusinessOperation";
   }

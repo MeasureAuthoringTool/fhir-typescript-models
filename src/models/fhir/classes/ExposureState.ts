@@ -22,7 +22,16 @@ export class ExposureState extends PrimitiveCode {
     const castInput = input as ExposureState;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ExposureState";
   }
-  
+
+  public clone(): ExposureState {
+    const result = new ExposureState();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ExposureState";
   }

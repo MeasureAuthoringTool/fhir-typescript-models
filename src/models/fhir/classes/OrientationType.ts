@@ -22,7 +22,16 @@ export class OrientationType extends PrimitiveCode {
     const castInput = input as OrientationType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "OrientationType";
   }
-  
+
+  public clone(): OrientationType {
+    const result = new OrientationType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "OrientationType";
   }

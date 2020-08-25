@@ -24,10 +24,10 @@ export class EncounterStatusHistory extends BackboneElement {
   ): EncounterStatusHistory {
     const newInstance: EncounterStatusHistory = BackboneElement.parse(json, providedInstance);
   
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = EncounterStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class EncounterStatusHistory extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): EncounterStatusHistory {
+    return EncounterStatusHistory.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EncounterStatusHistory";
   }

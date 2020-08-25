@@ -22,7 +22,16 @@ export class PrimitiveId extends PrimitiveString {
     const castInput = input as PrimitiveId;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveId";
   }
-  
+
+  public clone(): PrimitiveId {
+    const result = new PrimitiveId();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveId";
   }

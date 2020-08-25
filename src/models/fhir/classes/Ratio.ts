@@ -22,10 +22,10 @@ export class Ratio extends Element {
   ): Ratio {
     const newInstance: Ratio = Element.parse(json, providedInstance);
   
-    if (json.numerator) {
+    if (json.numerator !== undefined) {
       newInstance.numerator = Quantity.parse(json.numerator);
     }
-    if (json.denominator) {
+    if (json.denominator !== undefined) {
       newInstance.denominator = Quantity.parse(json.denominator);
     }
     return newInstance;
@@ -49,7 +49,11 @@ export class Ratio extends Element {
 
     return result;
   }
-  
+
+  public clone(): Ratio {
+    return Ratio.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Ratio";
   }

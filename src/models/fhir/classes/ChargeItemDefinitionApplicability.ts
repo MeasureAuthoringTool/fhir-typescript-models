@@ -25,13 +25,13 @@ export class ChargeItemDefinitionApplicability extends BackboneElement {
   ): ChargeItemDefinitionApplicability {
     const newInstance: ChargeItemDefinitionApplicability = BackboneElement.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.language) {
+    if (json.language !== undefined) {
       newInstance.language = PrimitiveString.parsePrimitive(json.language, json._language);
     }
-    if (json.expression) {
+    if (json.expression !== undefined) {
       newInstance.expression = PrimitiveString.parsePrimitive(json.expression, json._expression);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class ChargeItemDefinitionApplicability extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ChargeItemDefinitionApplicability {
+    return ChargeItemDefinitionApplicability.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ChargeItemDefinitionApplicability";
   }

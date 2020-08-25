@@ -22,7 +22,16 @@ export class SequenceType extends PrimitiveCode {
     const castInput = input as SequenceType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SequenceType";
   }
-  
+
+  public clone(): SequenceType {
+    const result = new SequenceType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SequenceType";
   }

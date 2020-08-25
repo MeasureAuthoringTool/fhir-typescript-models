@@ -26,13 +26,13 @@ export class ImplementationGuideDefinitionTemplate extends BackboneElement {
   ): ImplementationGuideDefinitionTemplate {
     const newInstance: ImplementationGuideDefinitionTemplate = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = PrimitiveString.parsePrimitive(json.source, json._source);
     }
-    if (json.scope) {
+    if (json.scope !== undefined) {
       newInstance.scope = PrimitiveString.parsePrimitive(json.scope, json._scope);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class ImplementationGuideDefinitionTemplate extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImplementationGuideDefinitionTemplate {
+    return ImplementationGuideDefinitionTemplate.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImplementationGuideDefinitionTemplate";
   }

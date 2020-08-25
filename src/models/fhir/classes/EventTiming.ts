@@ -22,7 +22,16 @@ export class EventTiming extends PrimitiveCode {
     const castInput = input as EventTiming;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "EventTiming";
   }
-  
+
+  public clone(): EventTiming {
+    const result = new EventTiming();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "EventTiming";
   }

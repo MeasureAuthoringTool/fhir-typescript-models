@@ -29,19 +29,19 @@ export class PractitionerRoleAvailableTime extends BackboneElement {
   ): PractitionerRoleAvailableTime {
     const newInstance: PractitionerRoleAvailableTime = BackboneElement.parse(json, providedInstance);
   
-    if (json.daysOfWeek) {
+    if (json.daysOfWeek !== undefined) {
       newInstance.daysOfWeek = json.daysOfWeek.map((x, i) => {
         const ext = json._daysOfWeek && json._daysOfWeek[i];
         return DaysOfWeek.parsePrimitive(x, ext);
       });
     }
-    if (json.allDay) {
+    if (json.allDay !== undefined) {
       newInstance.allDay = PrimitiveBoolean.parsePrimitive(json.allDay, json._allDay);
     }
-    if (json.availableStartTime) {
+    if (json.availableStartTime !== undefined) {
       newInstance.availableStartTime = PrimitiveTime.parsePrimitive(json.availableStartTime, json._availableStartTime);
     }
-    if (json.availableEndTime) {
+    if (json.availableEndTime !== undefined) {
       newInstance.availableEndTime = PrimitiveTime.parsePrimitive(json.availableEndTime, json._availableEndTime);
     }
     return newInstance;
@@ -77,7 +77,11 @@ export class PractitionerRoleAvailableTime extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PractitionerRoleAvailableTime {
+    return PractitionerRoleAvailableTime.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PractitionerRoleAvailableTime";
   }

@@ -40,28 +40,28 @@ export class EnrollmentResponse extends DomainResource {
   ): EnrollmentResponse {
     const newInstance: EnrollmentResponse = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = EnrollmentResponseStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.request) {
+    if (json.request !== undefined) {
       newInstance.request = Reference.parse(json.request);
     }
-    if (json.outcome) {
+    if (json.outcome !== undefined) {
       newInstance.outcome = RemittanceOutcome.parsePrimitive(json.outcome, json._outcome);
     }
-    if (json.disposition) {
+    if (json.disposition !== undefined) {
       newInstance.disposition = PrimitiveString.parsePrimitive(json.disposition, json._disposition);
     }
-    if (json.created) {
+    if (json.created !== undefined) {
       newInstance.created = PrimitiveDateTime.parsePrimitive(json.created, json._created);
     }
-    if (json.organization) {
+    if (json.organization !== undefined) {
       newInstance.organization = Reference.parse(json.organization);
     }
-    if (json.requestProvider) {
+    if (json.requestProvider !== undefined) {
       newInstance.requestProvider = Reference.parse(json.requestProvider);
     }
     return newInstance;
@@ -113,7 +113,11 @@ export class EnrollmentResponse extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): EnrollmentResponse {
+    return EnrollmentResponse.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EnrollmentResponse";
   }

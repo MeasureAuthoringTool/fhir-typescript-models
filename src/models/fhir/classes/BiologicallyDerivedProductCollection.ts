@@ -27,16 +27,16 @@ export class BiologicallyDerivedProductCollection extends BackboneElement {
   ): BiologicallyDerivedProductCollection {
     const newInstance: BiologicallyDerivedProductCollection = BackboneElement.parse(json, providedInstance);
   
-    if (json.collector) {
+    if (json.collector !== undefined) {
       newInstance.collector = Reference.parse(json.collector);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = Reference.parse(json.source);
     }
-    if (json.collectedDateTime) {
+    if (json.collectedDateTime !== undefined) {
       newInstance.collected = PrimitiveDateTime.parsePrimitive(json.collectedDateTime, json._collectedDateTime);
     }
-    if (json.collectedPeriod) {
+    if (json.collectedPeriod !== undefined) {
       newInstance.collected = Period.parse(json.collectedPeriod);
     }
     return newInstance;
@@ -69,7 +69,11 @@ export class BiologicallyDerivedProductCollection extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): BiologicallyDerivedProductCollection {
+    return BiologicallyDerivedProductCollection.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "BiologicallyDerivedProductCollection";
   }

@@ -24,10 +24,10 @@ export class VisionPrescriptionLensSpecificationPrism extends BackboneElement {
   ): VisionPrescriptionLensSpecificationPrism {
     const newInstance: VisionPrescriptionLensSpecificationPrism = BackboneElement.parse(json, providedInstance);
   
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = PrimitiveDecimal.parsePrimitive(json.amount, json._amount);
     }
-    if (json.base) {
+    if (json.base !== undefined) {
       newInstance.base = VisionBase.parsePrimitive(json.base, json._base);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class VisionPrescriptionLensSpecificationPrism extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): VisionPrescriptionLensSpecificationPrism {
+    return VisionPrescriptionLensSpecificationPrism.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "VisionPrescriptionLensSpecificationPrism";
   }

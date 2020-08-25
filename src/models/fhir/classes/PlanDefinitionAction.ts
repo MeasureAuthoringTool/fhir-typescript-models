@@ -97,109 +97,109 @@ export class PlanDefinitionAction extends BackboneElement {
   ): PlanDefinitionAction {
     const newInstance: PlanDefinitionAction = BackboneElement.parse(json, providedInstance);
   
-    if (json.prefix) {
+    if (json.prefix !== undefined) {
       newInstance.prefix = PrimitiveString.parsePrimitive(json.prefix, json._prefix);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.textEquivalent) {
+    if (json.textEquivalent !== undefined) {
       newInstance.textEquivalent = PrimitiveString.parsePrimitive(json.textEquivalent, json._textEquivalent);
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = RequestPriority.parsePrimitive(json.priority, json._priority);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = json.code.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reason) {
+    if (json.reason !== undefined) {
       newInstance.reason = json.reason.map((x) => CodeableConcept.parse(x));
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = json.documentation.map((x) => RelatedArtifact.parse(x));
     }
-    if (json.goalId) {
+    if (json.goalId !== undefined) {
       newInstance.goalId = json.goalId.map((x, i) => {
         const ext = json._goalId && json._goalId[i];
         return PrimitiveId.parsePrimitive(x, ext);
       });
     }
-    if (json.subjectCodeableConcept) {
+    if (json.subjectCodeableConcept !== undefined) {
       newInstance.subject = CodeableConcept.parse(json.subjectCodeableConcept);
     }
-    if (json.subjectReference) {
+    if (json.subjectReference !== undefined) {
       newInstance.subject = Reference.parse(json.subjectReference);
     }
-    if (json.trigger) {
+    if (json.trigger !== undefined) {
       newInstance.trigger = json.trigger.map((x) => TriggerDefinition.parse(x));
     }
-    if (json.condition) {
+    if (json.condition !== undefined) {
       newInstance.condition = json.condition.map((x) => PlanDefinitionActionCondition.parse(x));
     }
-    if (json.input) {
+    if (json.input !== undefined) {
       newInstance.input = json.input.map((x) => DataRequirement.parse(x));
     }
-    if (json.output) {
+    if (json.output !== undefined) {
       newInstance.output = json.output.map((x) => DataRequirement.parse(x));
     }
-    if (json.relatedAction) {
+    if (json.relatedAction !== undefined) {
       newInstance.relatedAction = json.relatedAction.map((x) => PlanDefinitionActionRelatedAction.parse(x));
     }
-    if (json.timingDateTime) {
+    if (json.timingDateTime !== undefined) {
       newInstance.timing = PrimitiveDateTime.parsePrimitive(json.timingDateTime, json._timingDateTime);
     }
-    if (json.timingAge) {
+    if (json.timingAge !== undefined) {
       newInstance.timing = Age.parse(json.timingAge);
     }
-    if (json.timingPeriod) {
+    if (json.timingPeriod !== undefined) {
       newInstance.timing = Period.parse(json.timingPeriod);
     }
-    if (json.timingDuration) {
+    if (json.timingDuration !== undefined) {
       newInstance.timing = Duration.parse(json.timingDuration);
     }
-    if (json.timingRange) {
+    if (json.timingRange !== undefined) {
       newInstance.timing = Range.parse(json.timingRange);
     }
-    if (json.timingTiming) {
+    if (json.timingTiming !== undefined) {
       newInstance.timing = Timing.parse(json.timingTiming);
     }
-    if (json.participant) {
+    if (json.participant !== undefined) {
       newInstance.participant = json.participant.map((x) => PlanDefinitionActionParticipant.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.groupingBehavior) {
+    if (json.groupingBehavior !== undefined) {
       newInstance.groupingBehavior = ActionGroupingBehavior.parsePrimitive(json.groupingBehavior, json._groupingBehavior);
     }
-    if (json.selectionBehavior) {
+    if (json.selectionBehavior !== undefined) {
       newInstance.selectionBehavior = ActionSelectionBehavior.parsePrimitive(json.selectionBehavior, json._selectionBehavior);
     }
-    if (json.requiredBehavior) {
+    if (json.requiredBehavior !== undefined) {
       newInstance.requiredBehavior = ActionRequiredBehavior.parsePrimitive(json.requiredBehavior, json._requiredBehavior);
     }
-    if (json.precheckBehavior) {
+    if (json.precheckBehavior !== undefined) {
       newInstance.precheckBehavior = ActionPrecheckBehavior.parsePrimitive(json.precheckBehavior, json._precheckBehavior);
     }
-    if (json.cardinalityBehavior) {
+    if (json.cardinalityBehavior !== undefined) {
       newInstance.cardinalityBehavior = ActionCardinalityBehavior.parsePrimitive(json.cardinalityBehavior, json._cardinalityBehavior);
     }
-    if (json.definitionCanonical) {
+    if (json.definitionCanonical !== undefined) {
       newInstance.definition = PrimitiveCanonical.parsePrimitive(json.definitionCanonical, json._definitionCanonical);
     }
-    if (json.definitionUri) {
+    if (json.definitionUri !== undefined) {
       newInstance.definition = PrimitiveUri.parsePrimitive(json.definitionUri, json._definitionUri);
     }
-    if (json.transform) {
+    if (json.transform !== undefined) {
       newInstance.transform = PrimitiveCanonical.parsePrimitive(json.transform, json._transform);
     }
-    if (json.dynamicValue) {
+    if (json.dynamicValue !== undefined) {
       newInstance.dynamicValue = json.dynamicValue.map((x) => PlanDefinitionActionDynamicValue.parse(x));
     }
-    if (json.action) {
+    if (json.action !== undefined) {
       newInstance.action = json.action.map((x) => PlanDefinitionAction.parse(x));
     }
     return newInstance;
@@ -366,7 +366,11 @@ export class PlanDefinitionAction extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PlanDefinitionAction {
+    return PlanDefinitionAction.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PlanDefinitionAction";
   }

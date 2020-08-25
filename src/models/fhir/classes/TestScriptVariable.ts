@@ -36,28 +36,28 @@ export class TestScriptVariable extends BackboneElement {
   ): TestScriptVariable {
     const newInstance: TestScriptVariable = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.defaultValue) {
+    if (json.defaultValue !== undefined) {
       newInstance.defaultValue = PrimitiveString.parsePrimitive(json.defaultValue, json._defaultValue);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.expression) {
+    if (json.expression !== undefined) {
       newInstance.expression = PrimitiveString.parsePrimitive(json.expression, json._expression);
     }
-    if (json.headerField) {
+    if (json.headerField !== undefined) {
       newInstance.headerField = PrimitiveString.parsePrimitive(json.headerField, json._headerField);
     }
-    if (json.hint) {
+    if (json.hint !== undefined) {
       newInstance.hint = PrimitiveString.parsePrimitive(json.hint, json._hint);
     }
-    if (json.path) {
+    if (json.path !== undefined) {
       newInstance.path = PrimitiveString.parsePrimitive(json.path, json._path);
     }
-    if (json.sourceId) {
+    if (json.sourceId !== undefined) {
       newInstance.sourceId = PrimitiveId.parsePrimitive(json.sourceId, json._sourceId);
     }
     return newInstance;
@@ -113,7 +113,11 @@ export class TestScriptVariable extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TestScriptVariable {
+    return TestScriptVariable.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestScriptVariable";
   }

@@ -23,10 +23,10 @@ export class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   ): ChargeItemDefinitionPropertyGroup {
     const newInstance: ChargeItemDefinitionPropertyGroup = BackboneElement.parse(json, providedInstance);
   
-    if (json.applicability) {
+    if (json.applicability !== undefined) {
       newInstance.applicability = json.applicability.map((x) => ChargeItemDefinitionApplicability.parse(x));
     }
-    if (json.priceComponent) {
+    if (json.priceComponent !== undefined) {
       newInstance.priceComponent = json.priceComponent.map((x) => ChargeItemDefinitionPropertyGroupPriceComponent.parse(x));
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class ChargeItemDefinitionPropertyGroup extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ChargeItemDefinitionPropertyGroup {
+    return ChargeItemDefinitionPropertyGroup.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ChargeItemDefinitionPropertyGroup";
   }

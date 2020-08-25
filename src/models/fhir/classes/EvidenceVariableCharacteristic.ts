@@ -46,49 +46,49 @@ export class EvidenceVariableCharacteristic extends BackboneElement {
   ): EvidenceVariableCharacteristic {
     const newInstance: EvidenceVariableCharacteristic = BackboneElement.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.definitionReference) {
+    if (json.definitionReference !== undefined) {
       newInstance.definition = Reference.parse(json.definitionReference);
     }
-    if (json.definitionCanonical) {
+    if (json.definitionCanonical !== undefined) {
       newInstance.definition = PrimitiveCanonical.parsePrimitive(json.definitionCanonical, json._definitionCanonical);
     }
-    if (json.definitionCodeableConcept) {
+    if (json.definitionCodeableConcept !== undefined) {
       newInstance.definition = CodeableConcept.parse(json.definitionCodeableConcept);
     }
-    if (json.definitionExpression) {
+    if (json.definitionExpression !== undefined) {
       newInstance.definition = Expression.parse(json.definitionExpression);
     }
-    if (json.definitionDataRequirement) {
+    if (json.definitionDataRequirement !== undefined) {
       newInstance.definition = DataRequirement.parse(json.definitionDataRequirement);
     }
-    if (json.definitionTriggerDefinition) {
+    if (json.definitionTriggerDefinition !== undefined) {
       newInstance.definition = TriggerDefinition.parse(json.definitionTriggerDefinition);
     }
-    if (json.usageContext) {
+    if (json.usageContext !== undefined) {
       newInstance.usageContext = json.usageContext.map((x) => UsageContext.parse(x));
     }
-    if (json.exclude) {
+    if (json.exclude !== undefined) {
       newInstance.exclude = PrimitiveBoolean.parsePrimitive(json.exclude, json._exclude);
     }
-    if (json.participantEffectiveDateTime) {
+    if (json.participantEffectiveDateTime !== undefined) {
       newInstance.participantEffective = PrimitiveDateTime.parsePrimitive(json.participantEffectiveDateTime, json._participantEffectiveDateTime);
     }
-    if (json.participantEffectivePeriod) {
+    if (json.participantEffectivePeriod !== undefined) {
       newInstance.participantEffective = Period.parse(json.participantEffectivePeriod);
     }
-    if (json.participantEffectiveDuration) {
+    if (json.participantEffectiveDuration !== undefined) {
       newInstance.participantEffective = Duration.parse(json.participantEffectiveDuration);
     }
-    if (json.participantEffectiveTiming) {
+    if (json.participantEffectiveTiming !== undefined) {
       newInstance.participantEffective = Timing.parse(json.participantEffectiveTiming);
     }
-    if (json.timeFromStart) {
+    if (json.timeFromStart !== undefined) {
       newInstance.timeFromStart = Duration.parse(json.timeFromStart);
     }
-    if (json.groupMeasure) {
+    if (json.groupMeasure !== undefined) {
       newInstance.groupMeasure = GroupMeasure.parsePrimitive(json.groupMeasure, json._groupMeasure);
     }
     return newInstance;
@@ -169,7 +169,11 @@ export class EvidenceVariableCharacteristic extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): EvidenceVariableCharacteristic {
+    return EvidenceVariableCharacteristic.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EvidenceVariableCharacteristic";
   }

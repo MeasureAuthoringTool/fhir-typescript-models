@@ -24,10 +24,10 @@ export class EpisodeOfCareStatusHistory extends BackboneElement {
   ): EpisodeOfCareStatusHistory {
     const newInstance: EpisodeOfCareStatusHistory = BackboneElement.parse(json, providedInstance);
   
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = EpisodeOfCareStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class EpisodeOfCareStatusHistory extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): EpisodeOfCareStatusHistory {
+    return EpisodeOfCareStatusHistory.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EpisodeOfCareStatusHistory";
   }

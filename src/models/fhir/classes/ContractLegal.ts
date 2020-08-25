@@ -21,10 +21,10 @@ export class ContractLegal extends BackboneElement {
   ): ContractLegal {
     const newInstance: ContractLegal = BackboneElement.parse(json, providedInstance);
   
-    if (json.contentAttachment) {
+    if (json.contentAttachment !== undefined) {
       newInstance.content = Attachment.parse(json.contentAttachment);
     }
-    if (json.contentReference) {
+    if (json.contentReference !== undefined) {
       newInstance.content = Reference.parse(json.contentReference);
     }
     return newInstance;
@@ -48,7 +48,11 @@ export class ContractLegal extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractLegal {
+    return ContractLegal.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractLegal";
   }

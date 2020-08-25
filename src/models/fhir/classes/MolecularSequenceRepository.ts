@@ -33,22 +33,22 @@ export class MolecularSequenceRepository extends BackboneElement {
   ): MolecularSequenceRepository {
     const newInstance: MolecularSequenceRepository = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = RepositoryType.parsePrimitive(json.type, json._type);
     }
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.datasetId) {
+    if (json.datasetId !== undefined) {
       newInstance.datasetId = PrimitiveString.parsePrimitive(json.datasetId, json._datasetId);
     }
-    if (json.variantsetId) {
+    if (json.variantsetId !== undefined) {
       newInstance.variantsetId = PrimitiveString.parsePrimitive(json.variantsetId, json._variantsetId);
     }
-    if (json.readsetId) {
+    if (json.readsetId !== undefined) {
       newInstance.readsetId = PrimitiveString.parsePrimitive(json.readsetId, json._readsetId);
     }
     return newInstance;
@@ -94,7 +94,11 @@ export class MolecularSequenceRepository extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MolecularSequenceRepository {
+    return MolecularSequenceRepository.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MolecularSequenceRepository";
   }

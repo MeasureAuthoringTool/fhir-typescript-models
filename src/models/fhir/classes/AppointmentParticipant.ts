@@ -33,19 +33,19 @@ export class AppointmentParticipant extends BackboneElement {
   ): AppointmentParticipant {
     const newInstance: AppointmentParticipant = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.actor) {
+    if (json.actor !== undefined) {
       newInstance.actor = Reference.parse(json.actor);
     }
-    if (json.required) {
+    if (json.required !== undefined) {
       newInstance.required = ParticipantRequired.parsePrimitive(json.required, json._required);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ParticipationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -83,7 +83,11 @@ export class AppointmentParticipant extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): AppointmentParticipant {
+    return AppointmentParticipant.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AppointmentParticipant";
   }

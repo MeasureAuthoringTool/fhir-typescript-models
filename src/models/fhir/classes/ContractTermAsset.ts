@@ -57,55 +57,55 @@ export class ContractTermAsset extends BackboneElement {
   ): ContractTermAsset {
     const newInstance: ContractTermAsset = BackboneElement.parse(json, providedInstance);
   
-    if (json.scope) {
+    if (json.scope !== undefined) {
       newInstance.scope = CodeableConcept.parse(json.scope);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.typeReference) {
+    if (json.typeReference !== undefined) {
       newInstance.typeReference = json.typeReference.map((x) => Reference.parse(x));
     }
-    if (json.subtype) {
+    if (json.subtype !== undefined) {
       newInstance.subtype = json.subtype.map((x) => CodeableConcept.parse(x));
     }
-    if (json.relationship) {
+    if (json.relationship !== undefined) {
       newInstance.relationship = Coding.parse(json.relationship);
     }
-    if (json.context) {
+    if (json.context !== undefined) {
       newInstance.context = json.context.map((x) => ContractTermAssetContext.parse(x));
     }
-    if (json.condition) {
+    if (json.condition !== undefined) {
       newInstance.condition = PrimitiveString.parsePrimitive(json.condition, json._condition);
     }
-    if (json.periodType) {
+    if (json.periodType !== undefined) {
       newInstance.periodType = json.periodType.map((x) => CodeableConcept.parse(x));
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = json.period.map((x) => Period.parse(x));
     }
-    if (json.usePeriod) {
+    if (json.usePeriod !== undefined) {
       newInstance.usePeriod = json.usePeriod.map((x) => Period.parse(x));
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
-    if (json.linkId) {
+    if (json.linkId !== undefined) {
       newInstance.linkId = json.linkId.map((x, i) => {
         const ext = json._linkId && json._linkId[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.answer) {
+    if (json.answer !== undefined) {
       newInstance.answer = json.answer.map((x) => ContractTermOfferAnswer.parse(x));
     }
-    if (json.securityLabelNumber) {
+    if (json.securityLabelNumber !== undefined) {
       newInstance.securityLabelNumber = json.securityLabelNumber.map((x, i) => {
         const ext = json._securityLabelNumber && json._securityLabelNumber[i];
         return PrimitiveUnsignedInt.parsePrimitive(x, ext);
       });
     }
-    if (json.valuedItem) {
+    if (json.valuedItem !== undefined) {
       newInstance.valuedItem = json.valuedItem.map((x) => ContractTermAssetValuedItem.parse(x));
     }
     return newInstance;
@@ -185,7 +185,11 @@ export class ContractTermAsset extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractTermAsset {
+    return ContractTermAsset.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractTermAsset";
   }

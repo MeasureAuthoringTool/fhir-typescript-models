@@ -23,10 +23,10 @@ export class DeviceDefinitionSpecialization extends BackboneElement {
   ): DeviceDefinitionSpecialization {
     const newInstance: DeviceDefinitionSpecialization = BackboneElement.parse(json, providedInstance);
   
-    if (json.systemType) {
+    if (json.systemType !== undefined) {
       newInstance.systemType = PrimitiveString.parsePrimitive(json.systemType, json._systemType);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class DeviceDefinitionSpecialization extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DeviceDefinitionSpecialization {
+    return DeviceDefinitionSpecialization.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceDefinitionSpecialization";
   }

@@ -48,43 +48,43 @@ export class SupplyDelivery extends DomainResource {
   ): SupplyDelivery {
     const newInstance: SupplyDelivery = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = json.partOf.map((x) => Reference.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = SupplyDeliveryStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.suppliedItem) {
+    if (json.suppliedItem !== undefined) {
       newInstance.suppliedItem = SupplyDeliverySuppliedItem.parse(json.suppliedItem);
     }
-    if (json.occurrenceDateTime) {
+    if (json.occurrenceDateTime !== undefined) {
       newInstance.occurrence = PrimitiveDateTime.parsePrimitive(json.occurrenceDateTime, json._occurrenceDateTime);
     }
-    if (json.occurrencePeriod) {
+    if (json.occurrencePeriod !== undefined) {
       newInstance.occurrence = Period.parse(json.occurrencePeriod);
     }
-    if (json.occurrenceTiming) {
+    if (json.occurrenceTiming !== undefined) {
       newInstance.occurrence = Timing.parse(json.occurrenceTiming);
     }
-    if (json.supplier) {
+    if (json.supplier !== undefined) {
       newInstance.supplier = Reference.parse(json.supplier);
     }
-    if (json.destination) {
+    if (json.destination !== undefined) {
       newInstance.destination = Reference.parse(json.destination);
     }
-    if (json.receiver) {
+    if (json.receiver !== undefined) {
       newInstance.receiver = json.receiver.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -154,7 +154,11 @@ export class SupplyDelivery extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): SupplyDelivery {
+    return SupplyDelivery.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SupplyDelivery";
   }

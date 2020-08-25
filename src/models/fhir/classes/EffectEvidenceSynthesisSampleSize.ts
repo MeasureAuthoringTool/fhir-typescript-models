@@ -26,13 +26,13 @@ export class EffectEvidenceSynthesisSampleSize extends BackboneElement {
   ): EffectEvidenceSynthesisSampleSize {
     const newInstance: EffectEvidenceSynthesisSampleSize = BackboneElement.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.numberOfStudies) {
+    if (json.numberOfStudies !== undefined) {
       newInstance.numberOfStudies = PrimitiveInteger.parsePrimitive(json.numberOfStudies, json._numberOfStudies);
     }
-    if (json.numberOfParticipants) {
+    if (json.numberOfParticipants !== undefined) {
       newInstance.numberOfParticipants = PrimitiveInteger.parsePrimitive(json.numberOfParticipants, json._numberOfParticipants);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class EffectEvidenceSynthesisSampleSize extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): EffectEvidenceSynthesisSampleSize {
+    return EffectEvidenceSynthesisSampleSize.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EffectEvidenceSynthesisSampleSize";
   }

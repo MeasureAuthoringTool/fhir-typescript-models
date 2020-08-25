@@ -27,13 +27,13 @@ export class SubstancePolymerRepeatRepeatUnitStructuralRepresentation extends Ba
   ): SubstancePolymerRepeatRepeatUnitStructuralRepresentation {
     const newInstance: SubstancePolymerRepeatRepeatUnitStructuralRepresentation = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.representation) {
+    if (json.representation !== undefined) {
       newInstance.representation = PrimitiveString.parsePrimitive(json.representation, json._representation);
     }
-    if (json.attachment) {
+    if (json.attachment !== undefined) {
       newInstance.attachment = Attachment.parse(json.attachment);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class SubstancePolymerRepeatRepeatUnitStructuralRepresentation extends Ba
 
     return result;
   }
-  
+
+  public clone(): SubstancePolymerRepeatRepeatUnitStructuralRepresentation {
+    return SubstancePolymerRepeatRepeatUnitStructuralRepresentation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstancePolymerRepeatRepeatUnitStructuralRepresentation";
   }

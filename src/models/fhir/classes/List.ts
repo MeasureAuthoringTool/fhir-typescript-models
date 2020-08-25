@@ -53,43 +53,43 @@ export class List extends DomainResource {
   ): List {
     const newInstance: List = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ListStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.mode) {
+    if (json.mode !== undefined) {
       newInstance.mode = ListMode.parsePrimitive(json.mode, json._mode);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = Reference.parse(json.source);
     }
-    if (json.orderedBy) {
+    if (json.orderedBy !== undefined) {
       newInstance.orderedBy = CodeableConcept.parse(json.orderedBy);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.entry) {
+    if (json.entry !== undefined) {
       newInstance.entry = json.entry.map((x) => ListEntry.parse(x));
     }
-    if (json.emptyReason) {
+    if (json.emptyReason !== undefined) {
       newInstance.emptyReason = CodeableConcept.parse(json.emptyReason);
     }
     return newInstance;
@@ -161,7 +161,11 @@ export class List extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): List {
+    return List.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "List";
   }

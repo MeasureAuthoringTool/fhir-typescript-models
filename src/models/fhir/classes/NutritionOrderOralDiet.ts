@@ -35,22 +35,22 @@ export class NutritionOrderOralDiet extends BackboneElement {
   ): NutritionOrderOralDiet {
     const newInstance: NutritionOrderOralDiet = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.schedule) {
+    if (json.schedule !== undefined) {
       newInstance.schedule = json.schedule.map((x) => Timing.parse(x));
     }
-    if (json.nutrient) {
+    if (json.nutrient !== undefined) {
       newInstance.nutrient = json.nutrient.map((x) => NutritionOrderOralDietNutrient.parse(x));
     }
-    if (json.texture) {
+    if (json.texture !== undefined) {
       newInstance.texture = json.texture.map((x) => NutritionOrderOralDietTexture.parse(x));
     }
-    if (json.fluidConsistencyType) {
+    if (json.fluidConsistencyType !== undefined) {
       newInstance.fluidConsistencyType = json.fluidConsistencyType.map((x) => CodeableConcept.parse(x));
     }
-    if (json.instruction) {
+    if (json.instruction !== undefined) {
       newInstance.instruction = PrimitiveString.parsePrimitive(json.instruction, json._instruction);
     }
     return newInstance;
@@ -91,7 +91,11 @@ export class NutritionOrderOralDiet extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): NutritionOrderOralDiet {
+    return NutritionOrderOralDiet.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "NutritionOrderOralDiet";
   }

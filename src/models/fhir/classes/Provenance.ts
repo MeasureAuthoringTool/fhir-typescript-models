@@ -47,40 +47,40 @@ export class Provenance extends DomainResource {
   ): Provenance {
     const newInstance: Provenance = DomainResource.parse(json, providedInstance);
   
-    if (json.target) {
+    if (json.target !== undefined) {
       newInstance.target = json.target.map((x) => Reference.parse(x));
     }
-    if (json.occurredPeriod) {
+    if (json.occurredPeriod !== undefined) {
       newInstance.occurred = Period.parse(json.occurredPeriod);
     }
-    if (json.occurredDateTime) {
+    if (json.occurredDateTime !== undefined) {
       newInstance.occurred = PrimitiveDateTime.parsePrimitive(json.occurredDateTime, json._occurredDateTime);
     }
-    if (json.recorded) {
+    if (json.recorded !== undefined) {
       newInstance.recorded = PrimitiveInstant.parsePrimitive(json.recorded, json._recorded);
     }
-    if (json.policy) {
+    if (json.policy !== undefined) {
       newInstance.policy = json.policy.map((x, i) => {
         const ext = json._policy && json._policy[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = Reference.parse(json.location);
     }
-    if (json.reason) {
+    if (json.reason !== undefined) {
       newInstance.reason = json.reason.map((x) => CodeableConcept.parse(x));
     }
-    if (json.activity) {
+    if (json.activity !== undefined) {
       newInstance.activity = CodeableConcept.parse(json.activity);
     }
-    if (json.agent) {
+    if (json.agent !== undefined) {
       newInstance.agent = json.agent.map((x) => ProvenanceAgent.parse(x));
     }
-    if (json.entity) {
+    if (json.entity !== undefined) {
       newInstance.entity = json.entity.map((x) => ProvenanceEntity.parse(x));
     }
-    if (json.signature) {
+    if (json.signature !== undefined) {
       newInstance.signature = json.signature.map((x) => Signature.parse(x));
     }
     return newInstance;
@@ -143,7 +143,11 @@ export class Provenance extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Provenance {
+    return Provenance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Provenance";
   }

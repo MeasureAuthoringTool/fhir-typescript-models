@@ -64,61 +64,61 @@ export class DiagnosticReport extends DomainResource {
   ): DiagnosticReport {
     const newInstance: DiagnosticReport = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = DiagnosticReportStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.effectiveDateTime) {
+    if (json.effectiveDateTime !== undefined) {
       newInstance.effective = PrimitiveDateTime.parsePrimitive(json.effectiveDateTime, json._effectiveDateTime);
     }
-    if (json.effectivePeriod) {
+    if (json.effectivePeriod !== undefined) {
       newInstance.effective = Period.parse(json.effectivePeriod);
     }
-    if (json.issued) {
+    if (json.issued !== undefined) {
       newInstance.issued = PrimitiveInstant.parsePrimitive(json.issued, json._issued);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = json.performer.map((x) => Reference.parse(x));
     }
-    if (json.resultsInterpreter) {
+    if (json.resultsInterpreter !== undefined) {
       newInstance.resultsInterpreter = json.resultsInterpreter.map((x) => Reference.parse(x));
     }
-    if (json.specimen) {
+    if (json.specimen !== undefined) {
       newInstance.specimen = json.specimen.map((x) => Reference.parse(x));
     }
-    if (json.result) {
+    if (json.result !== undefined) {
       newInstance.result = json.result.map((x) => Reference.parse(x));
     }
-    if (json.imagingStudy) {
+    if (json.imagingStudy !== undefined) {
       newInstance.imagingStudy = json.imagingStudy.map((x) => Reference.parse(x));
     }
-    if (json.media) {
+    if (json.media !== undefined) {
       newInstance.media = json.media.map((x) => DiagnosticReportMedia.parse(x));
     }
-    if (json.conclusion) {
+    if (json.conclusion !== undefined) {
       newInstance.conclusion = PrimitiveString.parsePrimitive(json.conclusion, json._conclusion);
     }
-    if (json.conclusionCode) {
+    if (json.conclusionCode !== undefined) {
       newInstance.conclusionCode = json.conclusionCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.presentedForm) {
+    if (json.presentedForm !== undefined) {
       newInstance.presentedForm = json.presentedForm.map((x) => Attachment.parse(x));
     }
     return newInstance;
@@ -214,7 +214,11 @@ export class DiagnosticReport extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): DiagnosticReport {
+    return DiagnosticReport.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DiagnosticReport";
   }

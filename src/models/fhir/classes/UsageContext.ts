@@ -26,19 +26,19 @@ export class UsageContext extends Element {
   ): UsageContext {
     const newInstance: UsageContext = Element.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = Coding.parse(json.code);
     }
-    if (json.valueCodeableConcept) {
+    if (json.valueCodeableConcept !== undefined) {
       newInstance.value = CodeableConcept.parse(json.valueCodeableConcept);
     }
-    if (json.valueQuantity) {
+    if (json.valueQuantity !== undefined) {
       newInstance.value = Quantity.parse(json.valueQuantity);
     }
-    if (json.valueRange) {
+    if (json.valueRange !== undefined) {
       newInstance.value = Range.parse(json.valueRange);
     }
-    if (json.valueReference) {
+    if (json.valueReference !== undefined) {
       newInstance.value = Reference.parse(json.valueReference);
     }
     return newInstance;
@@ -74,7 +74,11 @@ export class UsageContext extends Element {
 
     return result;
   }
-  
+
+  public clone(): UsageContext {
+    return UsageContext.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "UsageContext";
   }

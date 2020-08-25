@@ -28,16 +28,16 @@ export class Annotation extends Element {
   ): Annotation {
     const newInstance: Annotation = Element.parse(json, providedInstance);
   
-    if (json.authorReference) {
+    if (json.authorReference !== undefined) {
       newInstance.author = Reference.parse(json.authorReference);
     }
-    if (json.authorString) {
+    if (json.authorString !== undefined) {
       newInstance.author = PrimitiveString.parsePrimitive(json.authorString, json._authorString);
     }
-    if (json.time) {
+    if (json.time !== undefined) {
       newInstance.time = PrimitiveDateTime.parsePrimitive(json.time, json._time);
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveMarkdown.parsePrimitive(json.text, json._text);
     }
     return newInstance;
@@ -72,7 +72,11 @@ export class Annotation extends Element {
 
     return result;
   }
-  
+
+  public clone(): Annotation {
+    return Annotation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Annotation";
   }

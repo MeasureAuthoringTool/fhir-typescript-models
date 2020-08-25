@@ -36,25 +36,25 @@ export class EnrollmentRequest extends DomainResource {
   ): EnrollmentRequest {
     const newInstance: EnrollmentRequest = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = EnrollmentRequestStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.created) {
+    if (json.created !== undefined) {
       newInstance.created = PrimitiveDateTime.parsePrimitive(json.created, json._created);
     }
-    if (json.insurer) {
+    if (json.insurer !== undefined) {
       newInstance.insurer = Reference.parse(json.insurer);
     }
-    if (json.provider) {
+    if (json.provider !== undefined) {
       newInstance.provider = Reference.parse(json.provider);
     }
-    if (json.candidate) {
+    if (json.candidate !== undefined) {
       newInstance.candidate = Reference.parse(json.candidate);
     }
-    if (json.coverage) {
+    if (json.coverage !== undefined) {
       newInstance.coverage = Reference.parse(json.coverage);
     }
     return newInstance;
@@ -100,7 +100,11 @@ export class EnrollmentRequest extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): EnrollmentRequest {
+    return EnrollmentRequest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EnrollmentRequest";
   }

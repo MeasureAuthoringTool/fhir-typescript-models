@@ -26,13 +26,13 @@ export class InsurancePlanCoverage extends BackboneElement {
   ): InsurancePlanCoverage {
     const newInstance: InsurancePlanCoverage = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.network) {
+    if (json.network !== undefined) {
       newInstance.network = json.network.map((x) => Reference.parse(x));
     }
-    if (json.benefit) {
+    if (json.benefit !== undefined) {
       newInstance.benefit = json.benefit.map((x) => InsurancePlanCoverageBenefit.parse(x));
     }
     return newInstance;
@@ -60,7 +60,11 @@ export class InsurancePlanCoverage extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): InsurancePlanCoverage {
+    return InsurancePlanCoverage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "InsurancePlanCoverage";
   }

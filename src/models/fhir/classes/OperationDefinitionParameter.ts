@@ -49,40 +49,40 @@ export class OperationDefinitionParameter extends BackboneElement {
   ): OperationDefinitionParameter {
     const newInstance: OperationDefinitionParameter = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveCode.parsePrimitive(json.name, json._name);
     }
-    if (json.use) {
+    if (json.use !== undefined) {
       newInstance.use = OperationParameterUse.parsePrimitive(json.use, json._use);
     }
-    if (json.min) {
+    if (json.min !== undefined) {
       newInstance.min = PrimitiveInteger.parsePrimitive(json.min, json._min);
     }
-    if (json.max) {
+    if (json.max !== undefined) {
       newInstance.max = PrimitiveString.parsePrimitive(json.max, json._max);
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveString.parsePrimitive(json.documentation, json._documentation);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = FHIRAllTypes.parsePrimitive(json.type, json._type);
     }
-    if (json.targetProfile) {
+    if (json.targetProfile !== undefined) {
       newInstance.targetProfile = json.targetProfile.map((x, i) => {
         const ext = json._targetProfile && json._targetProfile[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.searchType) {
+    if (json.searchType !== undefined) {
       newInstance.searchType = SearchParamType.parsePrimitive(json.searchType, json._searchType);
     }
-    if (json.binding) {
+    if (json.binding !== undefined) {
       newInstance.binding = OperationDefinitionParameterBinding.parse(json.binding);
     }
-    if (json.referencedFrom) {
+    if (json.referencedFrom !== undefined) {
       newInstance.referencedFrom = json.referencedFrom.map((x) => OperationDefinitionParameterReferencedFrom.parse(x));
     }
-    if (json.part) {
+    if (json.part !== undefined) {
       newInstance.part = json.part.map((x) => OperationDefinitionParameter.parse(x));
     }
     return newInstance;
@@ -150,7 +150,11 @@ export class OperationDefinitionParameter extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): OperationDefinitionParameter {
+    return OperationDefinitionParameter.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "OperationDefinitionParameter";
   }

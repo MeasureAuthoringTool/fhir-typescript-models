@@ -24,10 +24,10 @@ export class MessageDefinitionAllowedResponse extends BackboneElement {
   ): MessageDefinitionAllowedResponse {
     const newInstance: MessageDefinitionAllowedResponse = BackboneElement.parse(json, providedInstance);
   
-    if (json.message) {
+    if (json.message !== undefined) {
       newInstance.message = PrimitiveCanonical.parsePrimitive(json.message, json._message);
     }
-    if (json.situation) {
+    if (json.situation !== undefined) {
       newInstance.situation = PrimitiveMarkdown.parsePrimitive(json.situation, json._situation);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class MessageDefinitionAllowedResponse extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MessageDefinitionAllowedResponse {
+    return MessageDefinitionAllowedResponse.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MessageDefinitionAllowedResponse";
   }

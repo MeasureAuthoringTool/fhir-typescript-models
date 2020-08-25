@@ -27,13 +27,13 @@ export class ImmunizationReaction extends BackboneElement {
   ): ImmunizationReaction {
     const newInstance: ImmunizationReaction = BackboneElement.parse(json, providedInstance);
   
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.detail) {
+    if (json.detail !== undefined) {
       newInstance.detail = Reference.parse(json.detail);
     }
-    if (json.reported) {
+    if (json.reported !== undefined) {
       newInstance.reported = PrimitiveBoolean.parsePrimitive(json.reported, json._reported);
     }
     return newInstance;
@@ -63,7 +63,11 @@ export class ImmunizationReaction extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImmunizationReaction {
+    return ImmunizationReaction.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImmunizationReaction";
   }

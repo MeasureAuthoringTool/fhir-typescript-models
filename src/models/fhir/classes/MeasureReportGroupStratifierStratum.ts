@@ -29,16 +29,16 @@ export class MeasureReportGroupStratifierStratum extends BackboneElement {
   ): MeasureReportGroupStratifierStratum {
     const newInstance: MeasureReportGroupStratifierStratum = BackboneElement.parse(json, providedInstance);
   
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = CodeableConcept.parse(json.value);
     }
-    if (json.component) {
+    if (json.component !== undefined) {
       newInstance.component = json.component.map((x) => MeasureReportGroupStratifierStratumComponent.parse(x));
     }
-    if (json.population) {
+    if (json.population !== undefined) {
       newInstance.population = json.population.map((x) => MeasureReportGroupStratifierStratumPopulation.parse(x));
     }
-    if (json.measureScore) {
+    if (json.measureScore !== undefined) {
       newInstance.measureScore = Quantity.parse(json.measureScore);
     }
     return newInstance;
@@ -70,7 +70,11 @@ export class MeasureReportGroupStratifierStratum extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MeasureReportGroupStratifierStratum {
+    return MeasureReportGroupStratifierStratum.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MeasureReportGroupStratifierStratum";
   }

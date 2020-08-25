@@ -23,10 +23,10 @@ export class ChargeItemPerformer extends BackboneElement {
   ): ChargeItemPerformer {
     const newInstance: ChargeItemPerformer = BackboneElement.parse(json, providedInstance);
   
-    if (json.function) {
+    if (json.function !== undefined) {
       newInstance.function = CodeableConcept.parse(json.function);
     }
-    if (json.actor) {
+    if (json.actor !== undefined) {
       newInstance.actor = Reference.parse(json.actor);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class ChargeItemPerformer extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ChargeItemPerformer {
+    return ChargeItemPerformer.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ChargeItemPerformer";
   }

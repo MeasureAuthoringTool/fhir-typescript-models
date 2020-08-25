@@ -65,58 +65,58 @@ export class Patient extends DomainResource {
   ): Patient {
     const newInstance: Patient = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.active) {
+    if (json.active !== undefined) {
       newInstance.active = PrimitiveBoolean.parsePrimitive(json.active, json._active);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = json.name.map((x) => HumanName.parse(x));
     }
-    if (json.telecom) {
+    if (json.telecom !== undefined) {
       newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));
     }
-    if (json.gender) {
+    if (json.gender !== undefined) {
       newInstance.gender = AdministrativeGender.parsePrimitive(json.gender, json._gender);
     }
-    if (json.birthDate) {
+    if (json.birthDate !== undefined) {
       newInstance.birthDate = PrimitiveDate.parsePrimitive(json.birthDate, json._birthDate);
     }
-    if (json.deceasedBoolean) {
+    if (json.deceasedBoolean !== undefined) {
       newInstance.deceased = PrimitiveBoolean.parsePrimitive(json.deceasedBoolean, json._deceasedBoolean);
     }
-    if (json.deceasedDateTime) {
+    if (json.deceasedDateTime !== undefined) {
       newInstance.deceased = PrimitiveDateTime.parsePrimitive(json.deceasedDateTime, json._deceasedDateTime);
     }
-    if (json.address) {
+    if (json.address !== undefined) {
       newInstance.address = json.address.map((x) => Address.parse(x));
     }
-    if (json.maritalStatus) {
+    if (json.maritalStatus !== undefined) {
       newInstance.maritalStatus = CodeableConcept.parse(json.maritalStatus);
     }
-    if (json.multipleBirthBoolean) {
+    if (json.multipleBirthBoolean !== undefined) {
       newInstance.multipleBirth = PrimitiveBoolean.parsePrimitive(json.multipleBirthBoolean, json._multipleBirthBoolean);
     }
-    if (json.multipleBirthInteger) {
+    if (json.multipleBirthInteger !== undefined) {
       newInstance.multipleBirth = PrimitiveInteger.parsePrimitive(json.multipleBirthInteger, json._multipleBirthInteger);
     }
-    if (json.photo) {
+    if (json.photo !== undefined) {
       newInstance.photo = json.photo.map((x) => Attachment.parse(x));
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => PatientContact.parse(x));
     }
-    if (json.communication) {
+    if (json.communication !== undefined) {
       newInstance.communication = json.communication.map((x) => PatientCommunication.parse(x));
     }
-    if (json.generalPractitioner) {
+    if (json.generalPractitioner !== undefined) {
       newInstance.generalPractitioner = json.generalPractitioner.map((x) => Reference.parse(x));
     }
-    if (json.managingOrganization) {
+    if (json.managingOrganization !== undefined) {
       newInstance.managingOrganization = Reference.parse(json.managingOrganization);
     }
-    if (json.link) {
+    if (json.link !== undefined) {
       newInstance.link = json.link.map((x) => PatientLink.parse(x));
     }
     return newInstance;
@@ -211,7 +211,11 @@ export class Patient extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Patient {
+    return Patient.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Patient";
   }

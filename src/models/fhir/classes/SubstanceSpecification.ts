@@ -67,61 +67,61 @@ export class SubstanceSpecification extends DomainResource {
   ): SubstanceSpecification {
     const newInstance: SubstanceSpecification = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CodeableConcept.parse(json.status);
     }
-    if (json.domain) {
+    if (json.domain !== undefined) {
       newInstance.domain = CodeableConcept.parse(json.domain);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = json.source.map((x) => Reference.parse(x));
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
-    if (json.moiety) {
+    if (json.moiety !== undefined) {
       newInstance.moiety = json.moiety.map((x) => SubstanceSpecificationMoiety.parse(x));
     }
-    if (json.property) {
+    if (json.property !== undefined) {
       newInstance.property = json.property.map((x) => SubstanceSpecificationProperty.parse(x));
     }
-    if (json.referenceInformation) {
+    if (json.referenceInformation !== undefined) {
       newInstance.referenceInformation = Reference.parse(json.referenceInformation);
     }
-    if (json.structure) {
+    if (json.structure !== undefined) {
       newInstance.structure = SubstanceSpecificationStructure.parse(json.structure);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = json.code.map((x) => SubstanceSpecificationCode.parse(x));
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = json.name.map((x) => SubstanceSpecificationName.parse(x));
     }
-    if (json.molecularWeight) {
+    if (json.molecularWeight !== undefined) {
       newInstance.molecularWeight = json.molecularWeight.map((x) => SubstanceSpecificationStructureIsotopeMolecularWeight.parse(x));
     }
-    if (json.relationship) {
+    if (json.relationship !== undefined) {
       newInstance.relationship = json.relationship.map((x) => SubstanceSpecificationRelationship.parse(x));
     }
-    if (json.nucleicAcid) {
+    if (json.nucleicAcid !== undefined) {
       newInstance.nucleicAcid = Reference.parse(json.nucleicAcid);
     }
-    if (json.polymer) {
+    if (json.polymer !== undefined) {
       newInstance.polymer = Reference.parse(json.polymer);
     }
-    if (json.protein) {
+    if (json.protein !== undefined) {
       newInstance.protein = Reference.parse(json.protein);
     }
-    if (json.sourceMaterial) {
+    if (json.sourceMaterial !== undefined) {
       newInstance.sourceMaterial = Reference.parse(json.sourceMaterial);
     }
     return newInstance;
@@ -215,7 +215,11 @@ export class SubstanceSpecification extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSpecification {
+    return SubstanceSpecification.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSpecification";
   }

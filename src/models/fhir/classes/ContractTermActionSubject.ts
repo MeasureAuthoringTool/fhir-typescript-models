@@ -23,10 +23,10 @@ export class ContractTermActionSubject extends BackboneElement {
   ): ContractTermActionSubject {
     const newInstance: ContractTermActionSubject = BackboneElement.parse(json, providedInstance);
   
-    if (json.reference) {
+    if (json.reference !== undefined) {
       newInstance.reference = json.reference.map((x) => Reference.parse(x));
     }
-    if (json.role) {
+    if (json.role !== undefined) {
       newInstance.role = CodeableConcept.parse(json.role);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class ContractTermActionSubject extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractTermActionSubject {
+    return ContractTermActionSubject.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractTermActionSubject";
   }

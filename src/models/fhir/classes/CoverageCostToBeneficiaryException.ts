@@ -23,10 +23,10 @@ export class CoverageCostToBeneficiaryException extends BackboneElement {
   ): CoverageCostToBeneficiaryException {
     const newInstance: CoverageCostToBeneficiaryException = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class CoverageCostToBeneficiaryException extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CoverageCostToBeneficiaryException {
+    return CoverageCostToBeneficiaryException.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CoverageCostToBeneficiaryException";
   }

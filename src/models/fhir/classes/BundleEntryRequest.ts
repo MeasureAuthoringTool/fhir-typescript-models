@@ -34,22 +34,22 @@ export class BundleEntryRequest extends BackboneElement {
   ): BundleEntryRequest {
     const newInstance: BundleEntryRequest = BackboneElement.parse(json, providedInstance);
   
-    if (json.method) {
+    if (json.method !== undefined) {
       newInstance.method = HTTPVerb.parsePrimitive(json.method, json._method);
     }
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.ifNoneMatch) {
+    if (json.ifNoneMatch !== undefined) {
       newInstance.ifNoneMatch = PrimitiveString.parsePrimitive(json.ifNoneMatch, json._ifNoneMatch);
     }
-    if (json.ifModifiedSince) {
+    if (json.ifModifiedSince !== undefined) {
       newInstance.ifModifiedSince = PrimitiveInstant.parsePrimitive(json.ifModifiedSince, json._ifModifiedSince);
     }
-    if (json.ifMatch) {
+    if (json.ifMatch !== undefined) {
       newInstance.ifMatch = PrimitiveString.parsePrimitive(json.ifMatch, json._ifMatch);
     }
-    if (json.ifNoneExist) {
+    if (json.ifNoneExist !== undefined) {
       newInstance.ifNoneExist = PrimitiveString.parsePrimitive(json.ifNoneExist, json._ifNoneExist);
     }
     return newInstance;
@@ -95,7 +95,11 @@ export class BundleEntryRequest extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): BundleEntryRequest {
+    return BundleEntryRequest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "BundleEntryRequest";
   }

@@ -74,67 +74,67 @@ export class ImplementationGuide extends DomainResource {
   ): ImplementationGuide {
     const newInstance: ImplementationGuide = DomainResource.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.experimental) {
+    if (json.experimental !== undefined) {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.copyright) {
+    if (json.copyright !== undefined) {
       newInstance.copyright = PrimitiveMarkdown.parsePrimitive(json.copyright, json._copyright);
     }
-    if (json.packageId) {
+    if (json.packageId !== undefined) {
       newInstance.packageId = PrimitiveId.parsePrimitive(json.packageId, json._packageId);
     }
-    if (json.license) {
+    if (json.license !== undefined) {
       newInstance.license = SPDXLicense.parsePrimitive(json.license, json._license);
     }
-    if (json.fhirVersion) {
+    if (json.fhirVersion !== undefined) {
       newInstance.fhirVersion = json.fhirVersion.map((x, i) => {
         const ext = json._fhirVersion && json._fhirVersion[i];
         return FHIRVersion.parsePrimitive(x, ext);
       });
     }
-    if (json.dependsOn) {
+    if (json.dependsOn !== undefined) {
       newInstance.dependsOn = json.dependsOn.map((x) => ImplementationGuideDependsOn.parse(x));
     }
-    if (json.global) {
+    if (json.global !== undefined) {
       newInstance.global = json.global.map((x) => ImplementationGuideGlobal.parse(x));
     }
-    if (json.definition) {
+    if (json.definition !== undefined) {
       newInstance.definition = ImplementationGuideDefinition.parse(json.definition);
     }
-    if (json.manifest) {
+    if (json.manifest !== undefined) {
       newInstance.manifest = ImplementationGuideManifest.parse(json.manifest);
     }
     return newInstance;
@@ -243,7 +243,11 @@ export class ImplementationGuide extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ImplementationGuide {
+    return ImplementationGuide.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImplementationGuide";
   }

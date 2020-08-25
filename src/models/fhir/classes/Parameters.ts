@@ -20,7 +20,7 @@ export class Parameters extends Resource {
   ): Parameters {
     const newInstance: Parameters = Resource.parse(json, providedInstance);
   
-    if (json.parameter) {
+    if (json.parameter !== undefined) {
       newInstance.parameter = json.parameter.map((x) => ParametersParameter.parse(x));
     }
     return newInstance;
@@ -40,7 +40,11 @@ export class Parameters extends Resource {
 
     return result;
   }
-  
+
+  public clone(): Parameters {
+    return Parameters.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Parameters";
   }

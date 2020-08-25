@@ -32,19 +32,19 @@ export class NamingSystemUniqueId extends BackboneElement {
   ): NamingSystemUniqueId {
     const newInstance: NamingSystemUniqueId = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = NamingSystemIdentifierType.parsePrimitive(json.type, json._type);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.value, json._value);
     }
-    if (json.preferred) {
+    if (json.preferred !== undefined) {
       newInstance.preferred = PrimitiveBoolean.parsePrimitive(json.preferred, json._preferred);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -84,7 +84,11 @@ export class NamingSystemUniqueId extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): NamingSystemUniqueId {
+    return NamingSystemUniqueId.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "NamingSystemUniqueId";
   }

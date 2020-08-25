@@ -91,88 +91,88 @@ export class StructureDefinition extends DomainResource {
   ): StructureDefinition {
     const newInstance: StructureDefinition = DomainResource.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.experimental) {
+    if (json.experimental !== undefined) {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = PrimitiveMarkdown.parsePrimitive(json.purpose, json._purpose);
     }
-    if (json.copyright) {
+    if (json.copyright !== undefined) {
       newInstance.copyright = PrimitiveMarkdown.parsePrimitive(json.copyright, json._copyright);
     }
-    if (json.keyword) {
+    if (json.keyword !== undefined) {
       newInstance.keyword = json.keyword.map((x) => Coding.parse(x));
     }
-    if (json.fhirVersion) {
+    if (json.fhirVersion !== undefined) {
       newInstance.fhirVersion = FHIRVersion.parsePrimitive(json.fhirVersion, json._fhirVersion);
     }
-    if (json.mapping) {
+    if (json.mapping !== undefined) {
       newInstance.mapping = json.mapping.map((x) => StructureDefinitionMapping.parse(x));
     }
-    if (json.kind) {
+    if (json.kind !== undefined) {
       newInstance.kind = StructureDefinitionKind.parsePrimitive(json.kind, json._kind);
     }
-    if (json.abstract) {
+    if (json.abstract !== undefined) {
       newInstance.abstract = PrimitiveBoolean.parsePrimitive(json.abstract, json._abstract);
     }
-    if (json.context) {
+    if (json.context !== undefined) {
       newInstance.context = json.context.map((x) => StructureDefinitionContext.parse(x));
     }
-    if (json.contextInvariant) {
+    if (json.contextInvariant !== undefined) {
       newInstance.contextInvariant = json.contextInvariant.map((x, i) => {
         const ext = json._contextInvariant && json._contextInvariant[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = PrimitiveUri.parsePrimitive(json.type, json._type);
     }
-    if (json.baseDefinition) {
+    if (json.baseDefinition !== undefined) {
       newInstance.baseDefinition = PrimitiveCanonical.parsePrimitive(json.baseDefinition, json._baseDefinition);
     }
-    if (json.derivation) {
+    if (json.derivation !== undefined) {
       newInstance.derivation = TypeDerivationRule.parsePrimitive(json.derivation, json._derivation);
     }
-    if (json.snapshot) {
+    if (json.snapshot !== undefined) {
       newInstance.snapshot = StructureDefinitionSnapshot.parse(json.snapshot);
     }
-    if (json.differential) {
+    if (json.differential !== undefined) {
       newInstance.differential = StructureDefinitionDifferential.parse(json.differential);
     }
     return newInstance;
@@ -314,7 +314,11 @@ export class StructureDefinition extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): StructureDefinition {
+    return StructureDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "StructureDefinition";
   }

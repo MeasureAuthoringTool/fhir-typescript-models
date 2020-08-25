@@ -29,16 +29,16 @@ export class StructureDefinitionMapping extends BackboneElement {
   ): StructureDefinitionMapping {
     const newInstance: StructureDefinitionMapping = BackboneElement.parse(json, providedInstance);
   
-    if (json.identity) {
+    if (json.identity !== undefined) {
       newInstance.identity = PrimitiveId.parsePrimitive(json.identity, json._identity);
     }
-    if (json.uri) {
+    if (json.uri !== undefined) {
       newInstance.uri = PrimitiveUri.parsePrimitive(json.uri, json._uri);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
     return newInstance;
@@ -74,7 +74,11 @@ export class StructureDefinitionMapping extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): StructureDefinitionMapping {
+    return StructureDefinitionMapping.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "StructureDefinitionMapping";
   }

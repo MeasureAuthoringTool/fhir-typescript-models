@@ -42,34 +42,34 @@ export class ExampleScenarioProcessStepOperation extends BackboneElement {
   ): ExampleScenarioProcessStepOperation {
     const newInstance: ExampleScenarioProcessStepOperation = BackboneElement.parse(json, providedInstance);
   
-    if (json.number) {
+    if (json.number !== undefined) {
       newInstance.number = PrimitiveString.parsePrimitive(json.number, json._number);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = PrimitiveString.parsePrimitive(json.type, json._type);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.initiator) {
+    if (json.initiator !== undefined) {
       newInstance.initiator = PrimitiveString.parsePrimitive(json.initiator, json._initiator);
     }
-    if (json.receiver) {
+    if (json.receiver !== undefined) {
       newInstance.receiver = PrimitiveString.parsePrimitive(json.receiver, json._receiver);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.initiatorActive) {
+    if (json.initiatorActive !== undefined) {
       newInstance.initiatorActive = PrimitiveBoolean.parsePrimitive(json.initiatorActive, json._initiatorActive);
     }
-    if (json.receiverActive) {
+    if (json.receiverActive !== undefined) {
       newInstance.receiverActive = PrimitiveBoolean.parsePrimitive(json.receiverActive, json._receiverActive);
     }
-    if (json.request) {
+    if (json.request !== undefined) {
       newInstance.request = ExampleScenarioInstanceContainedInstance.parse(json.request);
     }
-    if (json.response) {
+    if (json.response !== undefined) {
       newInstance.response = ExampleScenarioInstanceContainedInstance.parse(json.response);
     }
     return newInstance;
@@ -133,7 +133,11 @@ export class ExampleScenarioProcessStepOperation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExampleScenarioProcessStepOperation {
+    return ExampleScenarioProcessStepOperation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExampleScenarioProcessStepOperation";
   }

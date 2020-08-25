@@ -37,25 +37,25 @@ export class Subscription extends DomainResource {
   ): Subscription {
     const newInstance: Subscription = DomainResource.parse(json, providedInstance);
   
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = SubscriptionStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactPoint.parse(x));
     }
-    if (json.end) {
+    if (json.end !== undefined) {
       newInstance.end = PrimitiveInstant.parsePrimitive(json.end, json._end);
     }
-    if (json.reason) {
+    if (json.reason !== undefined) {
       newInstance.reason = PrimitiveString.parsePrimitive(json.reason, json._reason);
     }
-    if (json.criteria) {
+    if (json.criteria !== undefined) {
       newInstance.criteria = PrimitiveString.parsePrimitive(json.criteria, json._criteria);
     }
-    if (json.error) {
+    if (json.error !== undefined) {
       newInstance.error = PrimitiveString.parsePrimitive(json.error, json._error);
     }
-    if (json.channel) {
+    if (json.channel !== undefined) {
       newInstance.channel = SubscriptionChannel.parse(json.channel);
     }
     return newInstance;
@@ -104,7 +104,11 @@ export class Subscription extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Subscription {
+    return Subscription.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Subscription";
   }

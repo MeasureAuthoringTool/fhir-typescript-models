@@ -22,7 +22,16 @@ export class DiscriminatorType extends PrimitiveCode {
     const castInput = input as DiscriminatorType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "DiscriminatorType";
   }
-  
+
+  public clone(): DiscriminatorType {
+    const result = new DiscriminatorType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "DiscriminatorType";
   }

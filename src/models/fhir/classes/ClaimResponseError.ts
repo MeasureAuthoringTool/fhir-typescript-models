@@ -28,16 +28,16 @@ export class ClaimResponseError extends BackboneElement {
   ): ClaimResponseError {
     const newInstance: ClaimResponseError = BackboneElement.parse(json, providedInstance);
   
-    if (json.itemSequence) {
+    if (json.itemSequence !== undefined) {
       newInstance.itemSequence = PrimitivePositiveInt.parsePrimitive(json.itemSequence, json._itemSequence);
     }
-    if (json.detailSequence) {
+    if (json.detailSequence !== undefined) {
       newInstance.detailSequence = PrimitivePositiveInt.parsePrimitive(json.detailSequence, json._detailSequence);
     }
-    if (json.subDetailSequence) {
+    if (json.subDetailSequence !== undefined) {
       newInstance.subDetailSequence = PrimitivePositiveInt.parsePrimitive(json.subDetailSequence, json._subDetailSequence);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
     return newInstance;
@@ -72,7 +72,11 @@ export class ClaimResponseError extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimResponseError {
+    return ClaimResponseError.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimResponseError";
   }

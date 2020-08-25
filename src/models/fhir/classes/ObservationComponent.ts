@@ -40,49 +40,49 @@ export class ObservationComponent extends BackboneElement {
   ): ObservationComponent {
     const newInstance: ObservationComponent = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.valueQuantity) {
+    if (json.valueQuantity !== undefined) {
       newInstance.value = Quantity.parse(json.valueQuantity);
     }
-    if (json.valueCodeableConcept) {
+    if (json.valueCodeableConcept !== undefined) {
       newInstance.value = CodeableConcept.parse(json.valueCodeableConcept);
     }
-    if (json.valueString) {
+    if (json.valueString !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.valueString, json._valueString);
     }
-    if (json.valueBoolean) {
+    if (json.valueBoolean !== undefined) {
       newInstance.value = PrimitiveBoolean.parsePrimitive(json.valueBoolean, json._valueBoolean);
     }
-    if (json.valueInteger) {
+    if (json.valueInteger !== undefined) {
       newInstance.value = PrimitiveInteger.parsePrimitive(json.valueInteger, json._valueInteger);
     }
-    if (json.valueRange) {
+    if (json.valueRange !== undefined) {
       newInstance.value = Range.parse(json.valueRange);
     }
-    if (json.valueRatio) {
+    if (json.valueRatio !== undefined) {
       newInstance.value = Ratio.parse(json.valueRatio);
     }
-    if (json.valueSampledData) {
+    if (json.valueSampledData !== undefined) {
       newInstance.value = SampledData.parse(json.valueSampledData);
     }
-    if (json.valueTime) {
+    if (json.valueTime !== undefined) {
       newInstance.value = PrimitiveTime.parsePrimitive(json.valueTime, json._valueTime);
     }
-    if (json.valueDateTime) {
+    if (json.valueDateTime !== undefined) {
       newInstance.value = PrimitiveDateTime.parsePrimitive(json.valueDateTime, json._valueDateTime);
     }
-    if (json.valuePeriod) {
+    if (json.valuePeriod !== undefined) {
       newInstance.value = Period.parse(json.valuePeriod);
     }
-    if (json.dataAbsentReason) {
+    if (json.dataAbsentReason !== undefined) {
       newInstance.dataAbsentReason = CodeableConcept.parse(json.dataAbsentReason);
     }
-    if (json.interpretation) {
+    if (json.interpretation !== undefined) {
       newInstance.interpretation = json.interpretation.map((x) => CodeableConcept.parse(x));
     }
-    if (json.referenceRange) {
+    if (json.referenceRange !== undefined) {
       newInstance.referenceRange = json.referenceRange.map((x) => ObservationReferenceRange.parse(x));
     }
     return newInstance;
@@ -163,7 +163,11 @@ export class ObservationComponent extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ObservationComponent {
+    return ObservationComponent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ObservationComponent";
   }

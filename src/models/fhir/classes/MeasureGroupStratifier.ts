@@ -30,16 +30,16 @@ export class MeasureGroupStratifier extends BackboneElement {
   ): MeasureGroupStratifier {
     const newInstance: MeasureGroupStratifier = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.criteria) {
+    if (json.criteria !== undefined) {
       newInstance.criteria = Expression.parse(json.criteria);
     }
-    if (json.component) {
+    if (json.component !== undefined) {
       newInstance.component = json.component.map((x) => MeasureGroupStratifierComponent.parse(x));
     }
     return newInstance;
@@ -72,7 +72,11 @@ export class MeasureGroupStratifier extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MeasureGroupStratifier {
+    return MeasureGroupStratifier.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MeasureGroupStratifier";
   }

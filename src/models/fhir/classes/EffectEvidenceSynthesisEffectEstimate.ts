@@ -34,22 +34,22 @@ export class EffectEvidenceSynthesisEffectEstimate extends BackboneElement {
   ): EffectEvidenceSynthesisEffectEstimate {
     const newInstance: EffectEvidenceSynthesisEffectEstimate = BackboneElement.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.variantState) {
+    if (json.variantState !== undefined) {
       newInstance.variantState = CodeableConcept.parse(json.variantState);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveDecimal.parsePrimitive(json.value, json._value);
     }
-    if (json.unitOfMeasure) {
+    if (json.unitOfMeasure !== undefined) {
       newInstance.unitOfMeasure = CodeableConcept.parse(json.unitOfMeasure);
     }
-    if (json.precisionEstimate) {
+    if (json.precisionEstimate !== undefined) {
       newInstance.precisionEstimate = json.precisionEstimate.map((x) => EffectEvidenceSynthesisEffectEstimatePrecisionEstimate.parse(x));
     }
     return newInstance;
@@ -91,7 +91,11 @@ export class EffectEvidenceSynthesisEffectEstimate extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): EffectEvidenceSynthesisEffectEstimate {
+    return EffectEvidenceSynthesisEffectEstimate.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EffectEvidenceSynthesisEffectEstimate";
   }

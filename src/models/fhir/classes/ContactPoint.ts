@@ -33,19 +33,19 @@ export class ContactPoint extends Element {
   ): ContactPoint {
     const newInstance: ContactPoint = Element.parse(json, providedInstance);
   
-    if (json.system) {
+    if (json.system !== undefined) {
       newInstance.system = ContactPointSystem.parsePrimitive(json.system, json._system);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.value, json._value);
     }
-    if (json.use) {
+    if (json.use !== undefined) {
       newInstance.use = ContactPointUse.parsePrimitive(json.use, json._use);
     }
-    if (json.rank) {
+    if (json.rank !== undefined) {
       newInstance.rank = PrimitivePositiveInt.parsePrimitive(json.rank, json._rank);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -85,7 +85,11 @@ export class ContactPoint extends Element {
 
     return result;
   }
-  
+
+  public clone(): ContactPoint {
+    return ContactPoint.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContactPoint";
   }

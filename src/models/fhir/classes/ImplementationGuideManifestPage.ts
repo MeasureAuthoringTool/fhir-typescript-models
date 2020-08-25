@@ -25,13 +25,13 @@ export class ImplementationGuideManifestPage extends BackboneElement {
   ): ImplementationGuideManifestPage {
     const newInstance: ImplementationGuideManifestPage = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.anchor) {
+    if (json.anchor !== undefined) {
       newInstance.anchor = json.anchor.map((x, i) => {
         const ext = json._anchor && json._anchor[i];
         return PrimitiveString.parsePrimitive(x, ext);
@@ -65,7 +65,11 @@ export class ImplementationGuideManifestPage extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImplementationGuideManifestPage {
+    return ImplementationGuideManifestPage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImplementationGuideManifestPage";
   }

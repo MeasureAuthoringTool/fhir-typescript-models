@@ -22,7 +22,16 @@ export class OperationKind extends PrimitiveCode {
     const castInput = input as OperationKind;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "OperationKind";
   }
-  
+
+  public clone(): OperationKind {
+    const result = new OperationKind();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "OperationKind";
   }

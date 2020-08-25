@@ -25,13 +25,13 @@ export class ProcedurePerformer extends BackboneElement {
   ): ProcedurePerformer {
     const newInstance: ProcedurePerformer = BackboneElement.parse(json, providedInstance);
   
-    if (json.function) {
+    if (json.function !== undefined) {
       newInstance.function = CodeableConcept.parse(json.function);
     }
-    if (json.actor) {
+    if (json.actor !== undefined) {
       newInstance.actor = Reference.parse(json.actor);
     }
-    if (json.onBehalfOf) {
+    if (json.onBehalfOf !== undefined) {
       newInstance.onBehalfOf = Reference.parse(json.onBehalfOf);
     }
     return newInstance;
@@ -59,7 +59,11 @@ export class ProcedurePerformer extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ProcedurePerformer {
+    return ProcedurePerformer.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ProcedurePerformer";
   }

@@ -52,46 +52,46 @@ export class Dosage extends BackboneElement {
   ): Dosage {
     const newInstance: Dosage = BackboneElement.parse(json, providedInstance);
   
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitiveInteger.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
-    if (json.additionalInstruction) {
+    if (json.additionalInstruction !== undefined) {
       newInstance.additionalInstruction = json.additionalInstruction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.patientInstruction) {
+    if (json.patientInstruction !== undefined) {
       newInstance.patientInstruction = PrimitiveString.parsePrimitive(json.patientInstruction, json._patientInstruction);
     }
-    if (json.timing) {
+    if (json.timing !== undefined) {
       newInstance.timing = Timing.parse(json.timing);
     }
-    if (json.asNeededBoolean) {
+    if (json.asNeededBoolean !== undefined) {
       newInstance.asNeeded = PrimitiveBoolean.parsePrimitive(json.asNeededBoolean, json._asNeededBoolean);
     }
-    if (json.asNeededCodeableConcept) {
+    if (json.asNeededCodeableConcept !== undefined) {
       newInstance.asNeeded = CodeableConcept.parse(json.asNeededCodeableConcept);
     }
-    if (json.site) {
+    if (json.site !== undefined) {
       newInstance.site = CodeableConcept.parse(json.site);
     }
-    if (json.route) {
+    if (json.route !== undefined) {
       newInstance.route = CodeableConcept.parse(json.route);
     }
-    if (json.method) {
+    if (json.method !== undefined) {
       newInstance.method = CodeableConcept.parse(json.method);
     }
-    if (json.doseAndRate) {
+    if (json.doseAndRate !== undefined) {
       newInstance.doseAndRate = json.doseAndRate.map((x) => DosageDoseAndRate.parse(x));
     }
-    if (json.maxDosePerPeriod) {
+    if (json.maxDosePerPeriod !== undefined) {
       newInstance.maxDosePerPeriod = Ratio.parse(json.maxDosePerPeriod);
     }
-    if (json.maxDosePerAdministration) {
+    if (json.maxDosePerAdministration !== undefined) {
       newInstance.maxDosePerAdministration = SimpleQuantity.parse(json.maxDosePerAdministration);
     }
-    if (json.maxDosePerLifetime) {
+    if (json.maxDosePerLifetime !== undefined) {
       newInstance.maxDosePerLifetime = SimpleQuantity.parse(json.maxDosePerLifetime);
     }
     return newInstance;
@@ -167,7 +167,11 @@ export class Dosage extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): Dosage {
+    return Dosage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Dosage";
   }

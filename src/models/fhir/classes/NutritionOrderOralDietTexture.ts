@@ -22,10 +22,10 @@ export class NutritionOrderOralDietTexture extends BackboneElement {
   ): NutritionOrderOralDietTexture {
     const newInstance: NutritionOrderOralDietTexture = BackboneElement.parse(json, providedInstance);
   
-    if (json.modifier) {
+    if (json.modifier !== undefined) {
       newInstance.modifier = CodeableConcept.parse(json.modifier);
     }
-    if (json.foodType) {
+    if (json.foodType !== undefined) {
       newInstance.foodType = CodeableConcept.parse(json.foodType);
     }
     return newInstance;
@@ -49,7 +49,11 @@ export class NutritionOrderOralDietTexture extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): NutritionOrderOralDietTexture {
+    return NutritionOrderOralDietTexture.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "NutritionOrderOralDietTexture";
   }

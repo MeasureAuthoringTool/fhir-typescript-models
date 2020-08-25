@@ -42,37 +42,37 @@ export class Address extends Element {
   ): Address {
     const newInstance: Address = Element.parse(json, providedInstance);
   
-    if (json.use) {
+    if (json.use !== undefined) {
       newInstance.use = AddressUse.parsePrimitive(json.use, json._use);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = AddressType.parsePrimitive(json.type, json._type);
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
-    if (json.line) {
+    if (json.line !== undefined) {
       newInstance.line = json.line.map((x, i) => {
         const ext = json._line && json._line[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.city) {
+    if (json.city !== undefined) {
       newInstance.city = PrimitiveString.parsePrimitive(json.city, json._city);
     }
-    if (json.district) {
+    if (json.district !== undefined) {
       newInstance.district = PrimitiveString.parsePrimitive(json.district, json._district);
     }
-    if (json.state) {
+    if (json.state !== undefined) {
       newInstance.state = PrimitiveString.parsePrimitive(json.state, json._state);
     }
-    if (json.postalCode) {
+    if (json.postalCode !== undefined) {
       newInstance.postalCode = PrimitiveString.parsePrimitive(json.postalCode, json._postalCode);
     }
-    if (json.country) {
+    if (json.country !== undefined) {
       newInstance.country = PrimitiveString.parsePrimitive(json.country, json._country);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -137,7 +137,11 @@ export class Address extends Element {
 
     return result;
   }
-  
+
+  public clone(): Address {
+    return Address.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Address";
   }

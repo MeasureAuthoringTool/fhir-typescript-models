@@ -101,124 +101,124 @@ export class ServiceRequest extends DomainResource {
   ): ServiceRequest {
     const newInstance: ServiceRequest = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.instantiatesCanonical) {
+    if (json.instantiatesCanonical !== undefined) {
       newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
         const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.instantiatesUri) {
+    if (json.instantiatesUri !== undefined) {
       newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
         const ext = json._instantiatesUri && json._instantiatesUri[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.replaces) {
+    if (json.replaces !== undefined) {
       newInstance.replaces = json.replaces.map((x) => Reference.parse(x));
     }
-    if (json.requisition) {
+    if (json.requisition !== undefined) {
       newInstance.requisition = Identifier.parse(json.requisition);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ServiceRequestStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.intent) {
+    if (json.intent !== undefined) {
       newInstance.intent = ServiceRequestIntent.parsePrimitive(json.intent, json._intent);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = ServiceRequestPriority.parsePrimitive(json.priority, json._priority);
     }
-    if (json.doNotPerform) {
+    if (json.doNotPerform !== undefined) {
       newInstance.doNotPerform = PrimitiveBoolean.parsePrimitive(json.doNotPerform, json._doNotPerform);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.orderDetail) {
+    if (json.orderDetail !== undefined) {
       newInstance.orderDetail = json.orderDetail.map((x) => CodeableConcept.parse(x));
     }
-    if (json.quantityQuantity) {
+    if (json.quantityQuantity !== undefined) {
       newInstance.quantity = Quantity.parse(json.quantityQuantity);
     }
-    if (json.quantityRatio) {
+    if (json.quantityRatio !== undefined) {
       newInstance.quantity = Ratio.parse(json.quantityRatio);
     }
-    if (json.quantityRange) {
+    if (json.quantityRange !== undefined) {
       newInstance.quantity = Range.parse(json.quantityRange);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.occurrenceDateTime) {
+    if (json.occurrenceDateTime !== undefined) {
       newInstance.occurrence = PrimitiveDateTime.parsePrimitive(json.occurrenceDateTime, json._occurrenceDateTime);
     }
-    if (json.occurrencePeriod) {
+    if (json.occurrencePeriod !== undefined) {
       newInstance.occurrence = Period.parse(json.occurrencePeriod);
     }
-    if (json.occurrenceTiming) {
+    if (json.occurrenceTiming !== undefined) {
       newInstance.occurrence = Timing.parse(json.occurrenceTiming);
     }
-    if (json.asNeededBoolean) {
+    if (json.asNeededBoolean !== undefined) {
       newInstance.asNeeded = PrimitiveBoolean.parsePrimitive(json.asNeededBoolean, json._asNeededBoolean);
     }
-    if (json.asNeededCodeableConcept) {
+    if (json.asNeededCodeableConcept !== undefined) {
       newInstance.asNeeded = CodeableConcept.parse(json.asNeededCodeableConcept);
     }
-    if (json.authoredOn) {
+    if (json.authoredOn !== undefined) {
       newInstance.authoredOn = PrimitiveDateTime.parsePrimitive(json.authoredOn, json._authoredOn);
     }
-    if (json.requester) {
+    if (json.requester !== undefined) {
       newInstance.requester = Reference.parse(json.requester);
     }
-    if (json.performerType) {
+    if (json.performerType !== undefined) {
       newInstance.performerType = CodeableConcept.parse(json.performerType);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = json.performer.map((x) => Reference.parse(x));
     }
-    if (json.locationCode) {
+    if (json.locationCode !== undefined) {
       newInstance.locationCode = json.locationCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.locationReference) {
+    if (json.locationReference !== undefined) {
       newInstance.locationReference = json.locationReference.map((x) => Reference.parse(x));
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.insurance) {
+    if (json.insurance !== undefined) {
       newInstance.insurance = json.insurance.map((x) => Reference.parse(x));
     }
-    if (json.supportingInfo) {
+    if (json.supportingInfo !== undefined) {
       newInstance.supportingInfo = json.supportingInfo.map((x) => Reference.parse(x));
     }
-    if (json.specimen) {
+    if (json.specimen !== undefined) {
       newInstance.specimen = json.specimen.map((x) => Reference.parse(x));
     }
-    if (json.bodySite) {
+    if (json.bodySite !== undefined) {
       newInstance.bodySite = json.bodySite.map((x) => CodeableConcept.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.patientInstruction) {
+    if (json.patientInstruction !== undefined) {
       newInstance.patientInstruction = PrimitiveString.parsePrimitive(json.patientInstruction, json._patientInstruction);
     }
-    if (json.relevantHistory) {
+    if (json.relevantHistory !== undefined) {
       newInstance.relevantHistory = json.relevantHistory.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -396,7 +396,11 @@ export class ServiceRequest extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ServiceRequest {
+    return ServiceRequest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ServiceRequest";
   }

@@ -24,10 +24,10 @@ export class SubstanceSourceMaterialOrganismAuthor extends BackboneElement {
   ): SubstanceSourceMaterialOrganismAuthor {
     const newInstance: SubstanceSourceMaterialOrganismAuthor = BackboneElement.parse(json, providedInstance);
   
-    if (json.authorType) {
+    if (json.authorType !== undefined) {
       newInstance.authorType = CodeableConcept.parse(json.authorType);
     }
-    if (json.authorDescription) {
+    if (json.authorDescription !== undefined) {
       newInstance.authorDescription = PrimitiveString.parsePrimitive(json.authorDescription, json._authorDescription);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class SubstanceSourceMaterialOrganismAuthor extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSourceMaterialOrganismAuthor {
+    return SubstanceSourceMaterialOrganismAuthor.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSourceMaterialOrganismAuthor";
   }

@@ -22,7 +22,16 @@ export class UnitsOfTime extends PrimitiveCode {
     const castInput = input as UnitsOfTime;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "UnitsOfTime";
   }
-  
+
+  public clone(): UnitsOfTime {
+    const result = new UnitsOfTime();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "UnitsOfTime";
   }

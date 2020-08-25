@@ -78,76 +78,76 @@ export class DeviceDefinition extends DomainResource {
   ): DeviceDefinition {
     const newInstance: DeviceDefinition = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.udiDeviceIdentifier) {
+    if (json.udiDeviceIdentifier !== undefined) {
       newInstance.udiDeviceIdentifier = json.udiDeviceIdentifier.map((x) => DeviceDefinitionUdiDeviceIdentifier.parse(x));
     }
-    if (json.manufacturerString) {
+    if (json.manufacturerString !== undefined) {
       newInstance.manufacturer = PrimitiveString.parsePrimitive(json.manufacturerString, json._manufacturerString);
     }
-    if (json.manufacturerReference) {
+    if (json.manufacturerReference !== undefined) {
       newInstance.manufacturer = Reference.parse(json.manufacturerReference);
     }
-    if (json.deviceName) {
+    if (json.deviceName !== undefined) {
       newInstance.deviceName = json.deviceName.map((x) => DeviceDefinitionDeviceName.parse(x));
     }
-    if (json.modelNumber) {
+    if (json.modelNumber !== undefined) {
       newInstance.modelNumber = PrimitiveString.parsePrimitive(json.modelNumber, json._modelNumber);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.specialization) {
+    if (json.specialization !== undefined) {
       newInstance.specialization = json.specialization.map((x) => DeviceDefinitionSpecialization.parse(x));
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = json.version.map((x, i) => {
         const ext = json._version && json._version[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.safety) {
+    if (json.safety !== undefined) {
       newInstance.safety = json.safety.map((x) => CodeableConcept.parse(x));
     }
-    if (json.shelfLifeStorage) {
+    if (json.shelfLifeStorage !== undefined) {
       newInstance.shelfLifeStorage = json.shelfLifeStorage.map((x) => ProductShelfLife.parse(x));
     }
-    if (json.physicalCharacteristics) {
+    if (json.physicalCharacteristics !== undefined) {
       newInstance.physicalCharacteristics = ProdCharacteristic.parse(json.physicalCharacteristics);
     }
-    if (json.languageCode) {
+    if (json.languageCode !== undefined) {
       newInstance.languageCode = json.languageCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.capability) {
+    if (json.capability !== undefined) {
       newInstance.capability = json.capability.map((x) => DeviceDefinitionCapability.parse(x));
     }
-    if (json.property) {
+    if (json.property !== undefined) {
       newInstance.property = json.property.map((x) => DeviceDefinitionProperty.parse(x));
     }
-    if (json.owner) {
+    if (json.owner !== undefined) {
       newInstance.owner = Reference.parse(json.owner);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactPoint.parse(x));
     }
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.onlineInformation) {
+    if (json.onlineInformation !== undefined) {
       newInstance.onlineInformation = PrimitiveUri.parsePrimitive(json.onlineInformation, json._onlineInformation);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = Quantity.parse(json.quantity);
     }
-    if (json.parentDevice) {
+    if (json.parentDevice !== undefined) {
       newInstance.parentDevice = Reference.parse(json.parentDevice);
     }
-    if (json.material) {
+    if (json.material !== undefined) {
       newInstance.material = json.material.map((x) => DeviceDefinitionMaterial.parse(x));
     }
     return newInstance;
@@ -260,7 +260,11 @@ export class DeviceDefinition extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): DeviceDefinition {
+    return DeviceDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceDefinition";
   }

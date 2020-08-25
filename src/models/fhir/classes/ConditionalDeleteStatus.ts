@@ -22,7 +22,16 @@ export class ConditionalDeleteStatus extends PrimitiveCode {
     const castInput = input as ConditionalDeleteStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ConditionalDeleteStatus";
   }
-  
+
+  public clone(): ConditionalDeleteStatus {
+    const result = new ConditionalDeleteStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ConditionalDeleteStatus";
   }

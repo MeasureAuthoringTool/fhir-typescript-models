@@ -29,16 +29,16 @@ export class SubstancePolymerMonomerSetStartingMaterial extends BackboneElement 
   ): SubstancePolymerMonomerSetStartingMaterial {
     const newInstance: SubstancePolymerMonomerSetStartingMaterial = BackboneElement.parse(json, providedInstance);
   
-    if (json.material) {
+    if (json.material !== undefined) {
       newInstance.material = CodeableConcept.parse(json.material);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.isDefining) {
+    if (json.isDefining !== undefined) {
       newInstance.isDefining = PrimitiveBoolean.parsePrimitive(json.isDefining, json._isDefining);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = SubstanceAmount.parse(json.amount);
     }
     return newInstance;
@@ -71,7 +71,11 @@ export class SubstancePolymerMonomerSetStartingMaterial extends BackboneElement 
 
     return result;
   }
-  
+
+  public clone(): SubstancePolymerMonomerSetStartingMaterial {
+    return SubstancePolymerMonomerSetStartingMaterial.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstancePolymerMonomerSetStartingMaterial";
   }

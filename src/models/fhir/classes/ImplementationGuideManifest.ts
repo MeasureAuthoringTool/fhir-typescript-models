@@ -32,22 +32,22 @@ export class ImplementationGuideManifest extends BackboneElement {
   ): ImplementationGuideManifest {
     const newInstance: ImplementationGuideManifest = BackboneElement.parse(json, providedInstance);
   
-    if (json.rendering) {
+    if (json.rendering !== undefined) {
       newInstance.rendering = PrimitiveUrl.parsePrimitive(json.rendering, json._rendering);
     }
-    if (json.resource) {
+    if (json.resource !== undefined) {
       newInstance.resource = json.resource.map((x) => ImplementationGuideManifestResource.parse(x));
     }
-    if (json.page) {
+    if (json.page !== undefined) {
       newInstance.page = json.page.map((x) => ImplementationGuideManifestPage.parse(x));
     }
-    if (json.image) {
+    if (json.image !== undefined) {
       newInstance.image = json.image.map((x, i) => {
         const ext = json._image && json._image[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.other) {
+    if (json.other !== undefined) {
       newInstance.other = json.other.map((x, i) => {
         const ext = json._other && json._other[i];
         return PrimitiveString.parsePrimitive(x, ext);
@@ -89,7 +89,11 @@ export class ImplementationGuideManifest extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImplementationGuideManifest {
+    return ImplementationGuideManifest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImplementationGuideManifest";
   }

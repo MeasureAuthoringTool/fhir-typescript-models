@@ -37,25 +37,25 @@ export class AllergyIntoleranceReaction extends BackboneElement {
   ): AllergyIntoleranceReaction {
     const newInstance: AllergyIntoleranceReaction = BackboneElement.parse(json, providedInstance);
   
-    if (json.substance) {
+    if (json.substance !== undefined) {
       newInstance.substance = CodeableConcept.parse(json.substance);
     }
-    if (json.manifestation) {
+    if (json.manifestation !== undefined) {
       newInstance.manifestation = json.manifestation.map((x) => CodeableConcept.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.onset) {
+    if (json.onset !== undefined) {
       newInstance.onset = PrimitiveDateTime.parsePrimitive(json.onset, json._onset);
     }
-    if (json.severity) {
+    if (json.severity !== undefined) {
       newInstance.severity = AllergyIntoleranceSeverity.parsePrimitive(json.severity, json._severity);
     }
-    if (json.exposureRoute) {
+    if (json.exposureRoute !== undefined) {
       newInstance.exposureRoute = CodeableConcept.parse(json.exposureRoute);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -102,7 +102,11 @@ export class AllergyIntoleranceReaction extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): AllergyIntoleranceReaction {
+    return AllergyIntoleranceReaction.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AllergyIntoleranceReaction";
   }

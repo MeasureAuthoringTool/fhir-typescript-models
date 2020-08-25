@@ -56,49 +56,49 @@ export class VerificationResult extends DomainResource {
   ): VerificationResult {
     const newInstance: VerificationResult = DomainResource.parse(json, providedInstance);
   
-    if (json.target) {
+    if (json.target !== undefined) {
       newInstance.target = json.target.map((x) => Reference.parse(x));
     }
-    if (json.targetLocation) {
+    if (json.targetLocation !== undefined) {
       newInstance.targetLocation = json.targetLocation.map((x, i) => {
         const ext = json._targetLocation && json._targetLocation[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.need) {
+    if (json.need !== undefined) {
       newInstance.need = CodeableConcept.parse(json.need);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = Status.parsePrimitive(json.status, json._status);
     }
-    if (json.statusDate) {
+    if (json.statusDate !== undefined) {
       newInstance.statusDate = PrimitiveDateTime.parsePrimitive(json.statusDate, json._statusDate);
     }
-    if (json.validationType) {
+    if (json.validationType !== undefined) {
       newInstance.validationType = CodeableConcept.parse(json.validationType);
     }
-    if (json.validationProcess) {
+    if (json.validationProcess !== undefined) {
       newInstance.validationProcess = json.validationProcess.map((x) => CodeableConcept.parse(x));
     }
-    if (json.frequency) {
+    if (json.frequency !== undefined) {
       newInstance.frequency = Timing.parse(json.frequency);
     }
-    if (json.lastPerformed) {
+    if (json.lastPerformed !== undefined) {
       newInstance.lastPerformed = PrimitiveDateTime.parsePrimitive(json.lastPerformed, json._lastPerformed);
     }
-    if (json.nextScheduled) {
+    if (json.nextScheduled !== undefined) {
       newInstance.nextScheduled = PrimitiveDate.parsePrimitive(json.nextScheduled, json._nextScheduled);
     }
-    if (json.failureAction) {
+    if (json.failureAction !== undefined) {
       newInstance.failureAction = CodeableConcept.parse(json.failureAction);
     }
-    if (json.primarySource) {
+    if (json.primarySource !== undefined) {
       newInstance.primarySource = json.primarySource.map((x) => VerificationResultPrimarySource.parse(x));
     }
-    if (json.attestation) {
+    if (json.attestation !== undefined) {
       newInstance.attestation = VerificationResultAttestation.parse(json.attestation);
     }
-    if (json.validator) {
+    if (json.validator !== undefined) {
       newInstance.validator = json.validator.map((x) => VerificationResultValidator.parse(x));
     }
     return newInstance;
@@ -175,7 +175,11 @@ export class VerificationResult extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): VerificationResult {
+    return VerificationResult.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "VerificationResult";
   }

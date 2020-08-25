@@ -22,7 +22,16 @@ export class SlicingRules extends PrimitiveCode {
     const castInput = input as SlicingRules;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SlicingRules";
   }
-  
+
+  public clone(): SlicingRules {
+    const result = new SlicingRules();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SlicingRules";
   }

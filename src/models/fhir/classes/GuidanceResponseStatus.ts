@@ -22,7 +22,16 @@ export class GuidanceResponseStatus extends PrimitiveCode {
     const castInput = input as GuidanceResponseStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "GuidanceResponseStatus";
   }
-  
+
+  public clone(): GuidanceResponseStatus {
+    const result = new GuidanceResponseStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "GuidanceResponseStatus";
   }

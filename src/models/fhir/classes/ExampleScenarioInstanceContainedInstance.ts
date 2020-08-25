@@ -23,10 +23,10 @@ export class ExampleScenarioInstanceContainedInstance extends BackboneElement {
   ): ExampleScenarioInstanceContainedInstance {
     const newInstance: ExampleScenarioInstanceContainedInstance = BackboneElement.parse(json, providedInstance);
   
-    if (json.resourceId) {
+    if (json.resourceId !== undefined) {
       newInstance.resourceId = PrimitiveString.parsePrimitive(json.resourceId, json._resourceId);
     }
-    if (json.versionId) {
+    if (json.versionId !== undefined) {
       newInstance.versionId = PrimitiveString.parsePrimitive(json.versionId, json._versionId);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class ExampleScenarioInstanceContainedInstance extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExampleScenarioInstanceContainedInstance {
+    return ExampleScenarioInstanceContainedInstance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExampleScenarioInstanceContainedInstance";
   }

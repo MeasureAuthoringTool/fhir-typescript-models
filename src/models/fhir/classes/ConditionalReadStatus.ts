@@ -22,7 +22,16 @@ export class ConditionalReadStatus extends PrimitiveCode {
     const castInput = input as ConditionalReadStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ConditionalReadStatus";
   }
-  
+
+  public clone(): ConditionalReadStatus {
+    const result = new ConditionalReadStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ConditionalReadStatus";
   }

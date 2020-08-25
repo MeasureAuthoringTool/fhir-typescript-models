@@ -22,7 +22,16 @@ export class AuditEventOutcome extends PrimitiveCode {
     const castInput = input as AuditEventOutcome;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "AuditEventOutcome";
   }
-  
+
+  public clone(): AuditEventOutcome {
+    const result = new AuditEventOutcome();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "AuditEventOutcome";
   }

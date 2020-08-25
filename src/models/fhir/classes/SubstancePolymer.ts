@@ -34,25 +34,25 @@ export class SubstancePolymer extends DomainResource {
   ): SubstancePolymer {
     const newInstance: SubstancePolymer = DomainResource.parse(json, providedInstance);
   
-    if (json.class) {
+    if (json.class !== undefined) {
       newInstance.class = CodeableConcept.parse(json.class);
     }
-    if (json.geometry) {
+    if (json.geometry !== undefined) {
       newInstance.geometry = CodeableConcept.parse(json.geometry);
     }
-    if (json.copolymerConnectivity) {
+    if (json.copolymerConnectivity !== undefined) {
       newInstance.copolymerConnectivity = json.copolymerConnectivity.map((x) => CodeableConcept.parse(x));
     }
-    if (json.modification) {
+    if (json.modification !== undefined) {
       newInstance.modification = json.modification.map((x, i) => {
         const ext = json._modification && json._modification[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.monomerSet) {
+    if (json.monomerSet !== undefined) {
       newInstance.monomerSet = json.monomerSet.map((x) => SubstancePolymerMonomerSet.parse(x));
     }
-    if (json.repeat) {
+    if (json.repeat !== undefined) {
       newInstance.repeat = json.repeat.map((x) => SubstancePolymerRepeat.parse(x));
     }
     return newInstance;
@@ -93,7 +93,11 @@ export class SubstancePolymer extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): SubstancePolymer {
+    return SubstancePolymer.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstancePolymer";
   }

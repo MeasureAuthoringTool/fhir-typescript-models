@@ -27,22 +27,22 @@ export class DosageDoseAndRate extends Element {
   ): DosageDoseAndRate {
     const newInstance: DosageDoseAndRate = Element.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.doseRange) {
+    if (json.doseRange !== undefined) {
       newInstance.dose = Range.parse(json.doseRange);
     }
-    if (json.doseSimpleQuantity) {
+    if (json.doseSimpleQuantity !== undefined) {
       newInstance.dose = SimpleQuantity.parse(json.doseSimpleQuantity);
     }
-    if (json.rateRatio) {
+    if (json.rateRatio !== undefined) {
       newInstance.rate = Ratio.parse(json.rateRatio);
     }
-    if (json.rateRange) {
+    if (json.rateRange !== undefined) {
       newInstance.rate = Range.parse(json.rateRange);
     }
-    if (json.rateSimpleQuantity) {
+    if (json.rateSimpleQuantity !== undefined) {
       newInstance.rate = SimpleQuantity.parse(json.rateSimpleQuantity);
     }
     return newInstance;
@@ -82,7 +82,11 @@ export class DosageDoseAndRate extends Element {
 
     return result;
   }
-  
+
+  public clone(): DosageDoseAndRate {
+    return DosageDoseAndRate.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DosageDoseAndRate";
   }

@@ -21,7 +21,7 @@ export class PrimitiveUri extends Element {
       let newInstance: PrimitiveUri;
   
       if (extension) {
-        newInstance = Element.parse(extension);
+        newInstance = Element.parse(extension, providedInstance);
       } else {
         newInstance = providedInstance;
       }
@@ -35,7 +35,16 @@ export class PrimitiveUri extends Element {
     const castInput = input as PrimitiveUri;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveUri";
   }
-  
+
+  public clone(): PrimitiveUri {
+    const result = new PrimitiveUri();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveUri";
   }

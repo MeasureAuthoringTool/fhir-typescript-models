@@ -22,7 +22,16 @@ export class FamilyHistoryStatus extends PrimitiveCode {
     const castInput = input as FamilyHistoryStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "FamilyHistoryStatus";
   }
-  
+
+  public clone(): FamilyHistoryStatus {
+    const result = new FamilyHistoryStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "FamilyHistoryStatus";
   }

@@ -26,13 +26,13 @@ export class CompositionEvent extends BackboneElement {
   ): CompositionEvent {
     const newInstance: CompositionEvent = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = json.code.map((x) => CodeableConcept.parse(x));
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.detail) {
+    if (json.detail !== undefined) {
       newInstance.detail = json.detail.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -60,7 +60,11 @@ export class CompositionEvent extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CompositionEvent {
+    return CompositionEvent.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CompositionEvent";
   }

@@ -24,13 +24,13 @@ export class MedicinalProductNameCountryLanguage extends BackboneElement {
   ): MedicinalProductNameCountryLanguage {
     const newInstance: MedicinalProductNameCountryLanguage = BackboneElement.parse(json, providedInstance);
   
-    if (json.country) {
+    if (json.country !== undefined) {
       newInstance.country = CodeableConcept.parse(json.country);
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = CodeableConcept.parse(json.jurisdiction);
     }
-    if (json.language) {
+    if (json.language !== undefined) {
       newInstance.language = CodeableConcept.parse(json.language);
     }
     return newInstance;
@@ -58,7 +58,11 @@ export class MedicinalProductNameCountryLanguage extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductNameCountryLanguage {
+    return MedicinalProductNameCountryLanguage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductNameCountryLanguage";
   }

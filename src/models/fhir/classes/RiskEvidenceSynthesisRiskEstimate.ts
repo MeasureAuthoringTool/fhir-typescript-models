@@ -37,25 +37,25 @@ export class RiskEvidenceSynthesisRiskEstimate extends BackboneElement {
   ): RiskEvidenceSynthesisRiskEstimate {
     const newInstance: RiskEvidenceSynthesisRiskEstimate = BackboneElement.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveDecimal.parsePrimitive(json.value, json._value);
     }
-    if (json.unitOfMeasure) {
+    if (json.unitOfMeasure !== undefined) {
       newInstance.unitOfMeasure = CodeableConcept.parse(json.unitOfMeasure);
     }
-    if (json.denominatorCount) {
+    if (json.denominatorCount !== undefined) {
       newInstance.denominatorCount = PrimitiveInteger.parsePrimitive(json.denominatorCount, json._denominatorCount);
     }
-    if (json.numeratorCount) {
+    if (json.numeratorCount !== undefined) {
       newInstance.numeratorCount = PrimitiveInteger.parsePrimitive(json.numeratorCount, json._numeratorCount);
     }
-    if (json.precisionEstimate) {
+    if (json.precisionEstimate !== undefined) {
       newInstance.precisionEstimate = json.precisionEstimate.map((x) => RiskEvidenceSynthesisRiskEstimatePrecisionEstimate.parse(x));
     }
     return newInstance;
@@ -103,7 +103,11 @@ export class RiskEvidenceSynthesisRiskEstimate extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): RiskEvidenceSynthesisRiskEstimate {
+    return RiskEvidenceSynthesisRiskEstimate.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "RiskEvidenceSynthesisRiskEstimate";
   }

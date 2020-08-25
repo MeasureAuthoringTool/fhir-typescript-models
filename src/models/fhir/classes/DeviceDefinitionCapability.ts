@@ -22,10 +22,10 @@ export class DeviceDefinitionCapability extends BackboneElement {
   ): DeviceDefinitionCapability {
     const newInstance: DeviceDefinitionCapability = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = json.description.map((x) => CodeableConcept.parse(x));
     }
     return newInstance;
@@ -49,7 +49,11 @@ export class DeviceDefinitionCapability extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DeviceDefinitionCapability {
+    return DeviceDefinitionCapability.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceDefinitionCapability";
   }

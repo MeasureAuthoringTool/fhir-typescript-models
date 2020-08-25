@@ -22,7 +22,16 @@ export class ContributorType extends PrimitiveCode {
     const castInput = input as ContributorType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ContributorType";
   }
-  
+
+  public clone(): ContributorType {
+    const result = new ContributorType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ContributorType";
   }

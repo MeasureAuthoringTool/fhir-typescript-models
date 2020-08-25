@@ -28,16 +28,16 @@ export class MedicationIngredient extends BackboneElement {
   ): MedicationIngredient {
     const newInstance: MedicationIngredient = BackboneElement.parse(json, providedInstance);
   
-    if (json.itemCodeableConcept) {
+    if (json.itemCodeableConcept !== undefined) {
       newInstance.item = CodeableConcept.parse(json.itemCodeableConcept);
     }
-    if (json.itemReference) {
+    if (json.itemReference !== undefined) {
       newInstance.item = Reference.parse(json.itemReference);
     }
-    if (json.isActive) {
+    if (json.isActive !== undefined) {
       newInstance.isActive = PrimitiveBoolean.parsePrimitive(json.isActive, json._isActive);
     }
-    if (json.strength) {
+    if (json.strength !== undefined) {
       newInstance.strength = Ratio.parse(json.strength);
     }
     return newInstance;
@@ -70,7 +70,11 @@ export class MedicationIngredient extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationIngredient {
+    return MedicationIngredient.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationIngredient";
   }

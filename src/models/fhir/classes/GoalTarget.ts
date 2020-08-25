@@ -33,34 +33,34 @@ export class GoalTarget extends BackboneElement {
   ): GoalTarget {
     const newInstance: GoalTarget = BackboneElement.parse(json, providedInstance);
   
-    if (json.measure) {
+    if (json.measure !== undefined) {
       newInstance.measure = CodeableConcept.parse(json.measure);
     }
-    if (json.detailQuantity) {
+    if (json.detailQuantity !== undefined) {
       newInstance.detail = Quantity.parse(json.detailQuantity);
     }
-    if (json.detailRange) {
+    if (json.detailRange !== undefined) {
       newInstance.detail = Range.parse(json.detailRange);
     }
-    if (json.detailCodeableConcept) {
+    if (json.detailCodeableConcept !== undefined) {
       newInstance.detail = CodeableConcept.parse(json.detailCodeableConcept);
     }
-    if (json.detailString) {
+    if (json.detailString !== undefined) {
       newInstance.detail = PrimitiveString.parsePrimitive(json.detailString, json._detailString);
     }
-    if (json.detailBoolean) {
+    if (json.detailBoolean !== undefined) {
       newInstance.detail = PrimitiveBoolean.parsePrimitive(json.detailBoolean, json._detailBoolean);
     }
-    if (json.detailInteger) {
+    if (json.detailInteger !== undefined) {
       newInstance.detail = PrimitiveInteger.parsePrimitive(json.detailInteger, json._detailInteger);
     }
-    if (json.detailRatio) {
+    if (json.detailRatio !== undefined) {
       newInstance.detail = Ratio.parse(json.detailRatio);
     }
-    if (json.dueDate) {
+    if (json.dueDate !== undefined) {
       newInstance.due = PrimitiveDate.parsePrimitive(json.dueDate, json._dueDate);
     }
-    if (json.dueDuration) {
+    if (json.dueDuration !== undefined) {
       newInstance.due = Duration.parse(json.dueDuration);
     }
     return newInstance;
@@ -120,7 +120,11 @@ export class GoalTarget extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): GoalTarget {
+    return GoalTarget.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "GoalTarget";
   }

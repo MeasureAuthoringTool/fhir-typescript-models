@@ -23,10 +23,10 @@ export class TerminologyCapabilitiesCodeSystemVersionFilter extends BackboneElem
   ): TerminologyCapabilitiesCodeSystemVersionFilter {
     const newInstance: TerminologyCapabilitiesCodeSystemVersionFilter = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.op) {
+    if (json.op !== undefined) {
       newInstance.op = json.op.map((x, i) => {
         const ext = json._op && json._op[i];
         return PrimitiveCode.parsePrimitive(x, ext);
@@ -55,7 +55,11 @@ export class TerminologyCapabilitiesCodeSystemVersionFilter extends BackboneElem
 
     return result;
   }
-  
+
+  public clone(): TerminologyCapabilitiesCodeSystemVersionFilter {
+    return TerminologyCapabilitiesCodeSystemVersionFilter.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TerminologyCapabilitiesCodeSystemVersionFilter";
   }

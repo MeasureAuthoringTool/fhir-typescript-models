@@ -24,10 +24,10 @@ export class CapabilityStatementMessagingSupportedMessage extends BackboneElemen
   ): CapabilityStatementMessagingSupportedMessage {
     const newInstance: CapabilityStatementMessagingSupportedMessage = BackboneElement.parse(json, providedInstance);
   
-    if (json.mode) {
+    if (json.mode !== undefined) {
       newInstance.mode = EventCapabilityMode.parsePrimitive(json.mode, json._mode);
     }
-    if (json.definition) {
+    if (json.definition !== undefined) {
       newInstance.definition = PrimitiveCanonical.parsePrimitive(json.definition, json._definition);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class CapabilityStatementMessagingSupportedMessage extends BackboneElemen
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatementMessagingSupportedMessage {
+    return CapabilityStatementMessagingSupportedMessage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementMessagingSupportedMessage";
   }

@@ -32,25 +32,25 @@ export class ImmunizationProtocolApplied extends BackboneElement {
   ): ImmunizationProtocolApplied {
     const newInstance: ImmunizationProtocolApplied = BackboneElement.parse(json, providedInstance);
   
-    if (json.series) {
+    if (json.series !== undefined) {
       newInstance.series = PrimitiveString.parsePrimitive(json.series, json._series);
     }
-    if (json.authority) {
+    if (json.authority !== undefined) {
       newInstance.authority = Reference.parse(json.authority);
     }
-    if (json.targetDisease) {
+    if (json.targetDisease !== undefined) {
       newInstance.targetDisease = json.targetDisease.map((x) => CodeableConcept.parse(x));
     }
-    if (json.doseNumberPositiveInt) {
+    if (json.doseNumberPositiveInt !== undefined) {
       newInstance.doseNumber = PrimitivePositiveInt.parsePrimitive(json.doseNumberPositiveInt, json._doseNumberPositiveInt);
     }
-    if (json.doseNumberString) {
+    if (json.doseNumberString !== undefined) {
       newInstance.doseNumber = PrimitiveString.parsePrimitive(json.doseNumberString, json._doseNumberString);
     }
-    if (json.seriesDosesPositiveInt) {
+    if (json.seriesDosesPositiveInt !== undefined) {
       newInstance.seriesDoses = PrimitivePositiveInt.parsePrimitive(json.seriesDosesPositiveInt, json._seriesDosesPositiveInt);
     }
-    if (json.seriesDosesString) {
+    if (json.seriesDosesString !== undefined) {
       newInstance.seriesDoses = PrimitiveString.parsePrimitive(json.seriesDosesString, json._seriesDosesString);
     }
     return newInstance;
@@ -99,7 +99,11 @@ export class ImmunizationProtocolApplied extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImmunizationProtocolApplied {
+    return ImmunizationProtocolApplied.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImmunizationProtocolApplied";
   }

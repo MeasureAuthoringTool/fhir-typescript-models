@@ -31,19 +31,19 @@ export class ExampleScenarioProcess extends BackboneElement {
   ): ExampleScenarioProcess {
     const newInstance: ExampleScenarioProcess = BackboneElement.parse(json, providedInstance);
   
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.preConditions) {
+    if (json.preConditions !== undefined) {
       newInstance.preConditions = PrimitiveMarkdown.parsePrimitive(json.preConditions, json._preConditions);
     }
-    if (json.postConditions) {
+    if (json.postConditions !== undefined) {
       newInstance.postConditions = PrimitiveMarkdown.parsePrimitive(json.postConditions, json._postConditions);
     }
-    if (json.step) {
+    if (json.step !== undefined) {
       newInstance.step = json.step.map((x) => ExampleScenarioProcessStep.parse(x));
     }
     return newInstance;
@@ -83,7 +83,11 @@ export class ExampleScenarioProcess extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExampleScenarioProcess {
+    return ExampleScenarioProcess.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExampleScenarioProcess";
   }

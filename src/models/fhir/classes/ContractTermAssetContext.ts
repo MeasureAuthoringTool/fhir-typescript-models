@@ -27,13 +27,13 @@ export class ContractTermAssetContext extends BackboneElement {
   ): ContractTermAssetContext {
     const newInstance: ContractTermAssetContext = BackboneElement.parse(json, providedInstance);
   
-    if (json.reference) {
+    if (json.reference !== undefined) {
       newInstance.reference = Reference.parse(json.reference);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = json.code.map((x) => CodeableConcept.parse(x));
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class ContractTermAssetContext extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractTermAssetContext {
+    return ContractTermAssetContext.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractTermAssetContext";
   }

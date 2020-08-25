@@ -37,31 +37,31 @@ export class TestScriptMetadataCapability extends BackboneElement {
   ): TestScriptMetadataCapability {
     const newInstance: TestScriptMetadataCapability = BackboneElement.parse(json, providedInstance);
   
-    if (json.required) {
+    if (json.required !== undefined) {
       newInstance.required = PrimitiveBoolean.parsePrimitive(json.required, json._required);
     }
-    if (json.validated) {
+    if (json.validated !== undefined) {
       newInstance.validated = PrimitiveBoolean.parsePrimitive(json.validated, json._validated);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.origin) {
+    if (json.origin !== undefined) {
       newInstance.origin = json.origin.map((x, i) => {
         const ext = json._origin && json._origin[i];
         return PrimitiveInteger.parsePrimitive(x, ext);
       });
     }
-    if (json.destination) {
+    if (json.destination !== undefined) {
       newInstance.destination = PrimitiveInteger.parsePrimitive(json.destination, json._destination);
     }
-    if (json.link) {
+    if (json.link !== undefined) {
       newInstance.link = json.link.map((x, i) => {
         const ext = json._link && json._link[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.capabilities) {
+    if (json.capabilities !== undefined) {
       newInstance.capabilities = PrimitiveCanonical.parsePrimitive(json.capabilities, json._capabilities);
     }
     return newInstance;
@@ -112,7 +112,11 @@ export class TestScriptMetadataCapability extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TestScriptMetadataCapability {
+    return TestScriptMetadataCapability.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestScriptMetadataCapability";
   }

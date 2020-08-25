@@ -23,10 +23,10 @@ export class DocumentManifestRelated extends BackboneElement {
   ): DocumentManifestRelated {
     const newInstance: DocumentManifestRelated = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.ref) {
+    if (json.ref !== undefined) {
       newInstance.ref = Reference.parse(json.ref);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class DocumentManifestRelated extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DocumentManifestRelated {
+    return DocumentManifestRelated.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DocumentManifestRelated";
   }

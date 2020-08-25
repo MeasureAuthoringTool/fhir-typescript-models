@@ -24,10 +24,10 @@ export class CapabilityStatementRestInteraction extends BackboneElement {
   ): CapabilityStatementRestInteraction {
     const newInstance: CapabilityStatementRestInteraction = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = SystemRestfulInteraction.parsePrimitive(json.code, json._code);
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveMarkdown.parsePrimitive(json.documentation, json._documentation);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class CapabilityStatementRestInteraction extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CapabilityStatementRestInteraction {
+    return CapabilityStatementRestInteraction.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CapabilityStatementRestInteraction";
   }

@@ -22,7 +22,16 @@ export class IdentityAssuranceLevel extends PrimitiveCode {
     const castInput = input as IdentityAssuranceLevel;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "IdentityAssuranceLevel";
   }
-  
+
+  public clone(): IdentityAssuranceLevel {
+    const result = new IdentityAssuranceLevel();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "IdentityAssuranceLevel";
   }

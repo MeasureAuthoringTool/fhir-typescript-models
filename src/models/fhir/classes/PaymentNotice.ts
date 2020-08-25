@@ -49,40 +49,40 @@ export class PaymentNotice extends DomainResource {
   ): PaymentNotice {
     const newInstance: PaymentNotice = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PaymentNoticeStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.request) {
+    if (json.request !== undefined) {
       newInstance.request = Reference.parse(json.request);
     }
-    if (json.response) {
+    if (json.response !== undefined) {
       newInstance.response = Reference.parse(json.response);
     }
-    if (json.created) {
+    if (json.created !== undefined) {
       newInstance.created = PrimitiveDateTime.parsePrimitive(json.created, json._created);
     }
-    if (json.provider) {
+    if (json.provider !== undefined) {
       newInstance.provider = Reference.parse(json.provider);
     }
-    if (json.payment) {
+    if (json.payment !== undefined) {
       newInstance.payment = Reference.parse(json.payment);
     }
-    if (json.paymentDate) {
+    if (json.paymentDate !== undefined) {
       newInstance.paymentDate = PrimitiveDate.parsePrimitive(json.paymentDate, json._paymentDate);
     }
-    if (json.payee) {
+    if (json.payee !== undefined) {
       newInstance.payee = Reference.parse(json.payee);
     }
-    if (json.recipient) {
+    if (json.recipient !== undefined) {
       newInstance.recipient = Reference.parse(json.recipient);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = Money.parse(json.amount);
     }
-    if (json.paymentStatus) {
+    if (json.paymentStatus !== undefined) {
       newInstance.paymentStatus = CodeableConcept.parse(json.paymentStatus);
     }
     return newInstance;
@@ -149,7 +149,11 @@ export class PaymentNotice extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): PaymentNotice {
+    return PaymentNotice.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PaymentNotice";
   }

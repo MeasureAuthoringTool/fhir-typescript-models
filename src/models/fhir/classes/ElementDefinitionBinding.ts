@@ -27,13 +27,13 @@ export class ElementDefinitionBinding extends Element {
   ): ElementDefinitionBinding {
     const newInstance: ElementDefinitionBinding = Element.parse(json, providedInstance);
   
-    if (json.strength) {
+    if (json.strength !== undefined) {
       newInstance.strength = BindingStrength.parsePrimitive(json.strength, json._strength);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.valueSet) {
+    if (json.valueSet !== undefined) {
       newInstance.valueSet = PrimitiveCanonical.parsePrimitive(json.valueSet, json._valueSet);
     }
     return newInstance;
@@ -64,7 +64,11 @@ export class ElementDefinitionBinding extends Element {
 
     return result;
   }
-  
+
+  public clone(): ElementDefinitionBinding {
+    return ElementDefinitionBinding.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ElementDefinitionBinding";
   }

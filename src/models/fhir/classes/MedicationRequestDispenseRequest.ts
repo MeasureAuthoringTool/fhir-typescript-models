@@ -38,25 +38,25 @@ export class MedicationRequestDispenseRequest extends BackboneElement {
   ): MedicationRequestDispenseRequest {
     const newInstance: MedicationRequestDispenseRequest = BackboneElement.parse(json, providedInstance);
   
-    if (json.initialFill) {
+    if (json.initialFill !== undefined) {
       newInstance.initialFill = MedicationRequestDispenseRequestInitialFill.parse(json.initialFill);
     }
-    if (json.dispenseInterval) {
+    if (json.dispenseInterval !== undefined) {
       newInstance.dispenseInterval = Duration.parse(json.dispenseInterval);
     }
-    if (json.validityPeriod) {
+    if (json.validityPeriod !== undefined) {
       newInstance.validityPeriod = Period.parse(json.validityPeriod);
     }
-    if (json.numberOfRepeatsAllowed) {
+    if (json.numberOfRepeatsAllowed !== undefined) {
       newInstance.numberOfRepeatsAllowed = PrimitiveUnsignedInt.parsePrimitive(json.numberOfRepeatsAllowed, json._numberOfRepeatsAllowed);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.expectedSupplyDuration) {
+    if (json.expectedSupplyDuration !== undefined) {
       newInstance.expectedSupplyDuration = Duration.parse(json.expectedSupplyDuration);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = Reference.parse(json.performer);
     }
     return newInstance;
@@ -101,7 +101,11 @@ export class MedicationRequestDispenseRequest extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationRequestDispenseRequest {
+    return MedicationRequestDispenseRequest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationRequestDispenseRequest";
   }

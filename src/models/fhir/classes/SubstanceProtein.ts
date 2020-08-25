@@ -30,19 +30,19 @@ export class SubstanceProtein extends DomainResource {
   ): SubstanceProtein {
     const newInstance: SubstanceProtein = DomainResource.parse(json, providedInstance);
   
-    if (json.sequenceType) {
+    if (json.sequenceType !== undefined) {
       newInstance.sequenceType = CodeableConcept.parse(json.sequenceType);
     }
-    if (json.numberOfSubunits) {
+    if (json.numberOfSubunits !== undefined) {
       newInstance.numberOfSubunits = PrimitiveInteger.parsePrimitive(json.numberOfSubunits, json._numberOfSubunits);
     }
-    if (json.disulfideLinkage) {
+    if (json.disulfideLinkage !== undefined) {
       newInstance.disulfideLinkage = json.disulfideLinkage.map((x, i) => {
         const ext = json._disulfideLinkage && json._disulfideLinkage[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.subunit) {
+    if (json.subunit !== undefined) {
       newInstance.subunit = json.subunit.map((x) => SubstanceProteinSubunit.parse(x));
     }
     return newInstance;
@@ -76,7 +76,11 @@ export class SubstanceProtein extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): SubstanceProtein {
+    return SubstanceProtein.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceProtein";
   }

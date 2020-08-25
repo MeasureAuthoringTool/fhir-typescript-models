@@ -26,19 +26,19 @@ export class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   ): MedicationKnowledgeDrugCharacteristic {
     const newInstance: MedicationKnowledgeDrugCharacteristic = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.valueCodeableConcept) {
+    if (json.valueCodeableConcept !== undefined) {
       newInstance.value = CodeableConcept.parse(json.valueCodeableConcept);
     }
-    if (json.valueString) {
+    if (json.valueString !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.valueString, json._valueString);
     }
-    if (json.valueSimpleQuantity) {
+    if (json.valueSimpleQuantity !== undefined) {
       newInstance.value = SimpleQuantity.parse(json.valueSimpleQuantity);
     }
-    if (json.valueBase64Binary) {
+    if (json.valueBase64Binary !== undefined) {
       newInstance.value = PrimitiveBase64Binary.parsePrimitive(json.valueBase64Binary, json._valueBase64Binary);
     }
     return newInstance;
@@ -76,7 +76,11 @@ export class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationKnowledgeDrugCharacteristic {
+    return MedicationKnowledgeDrugCharacteristic.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationKnowledgeDrugCharacteristic";
   }

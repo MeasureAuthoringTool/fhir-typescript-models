@@ -24,10 +24,10 @@ export class ResearchStudyObjective extends BackboneElement {
   ): ResearchStudyObjective {
     const newInstance: ResearchStudyObjective = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class ResearchStudyObjective extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ResearchStudyObjective {
+    return ResearchStudyObjective.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ResearchStudyObjective";
   }

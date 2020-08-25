@@ -45,37 +45,37 @@ export class ContractTermOffer extends BackboneElement {
   ): ContractTermOffer {
     const newInstance: ContractTermOffer = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.party) {
+    if (json.party !== undefined) {
       newInstance.party = json.party.map((x) => ContractTermOfferParty.parse(x));
     }
-    if (json.topic) {
+    if (json.topic !== undefined) {
       newInstance.topic = Reference.parse(json.topic);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.decision) {
+    if (json.decision !== undefined) {
       newInstance.decision = CodeableConcept.parse(json.decision);
     }
-    if (json.decisionMode) {
+    if (json.decisionMode !== undefined) {
       newInstance.decisionMode = json.decisionMode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.answer) {
+    if (json.answer !== undefined) {
       newInstance.answer = json.answer.map((x) => ContractTermOfferAnswer.parse(x));
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
-    if (json.linkId) {
+    if (json.linkId !== undefined) {
       newInstance.linkId = json.linkId.map((x, i) => {
         const ext = json._linkId && json._linkId[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.securityLabelNumber) {
+    if (json.securityLabelNumber !== undefined) {
       newInstance.securityLabelNumber = json.securityLabelNumber.map((x, i) => {
         const ext = json._securityLabelNumber && json._securityLabelNumber[i];
         return PrimitiveUnsignedInt.parsePrimitive(x, ext);
@@ -137,7 +137,11 @@ export class ContractTermOffer extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ContractTermOffer {
+    return ContractTermOffer.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ContractTermOffer";
   }

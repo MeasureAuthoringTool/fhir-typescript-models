@@ -30,16 +30,16 @@ export class EffectEvidenceSynthesisResultsByExposure extends BackboneElement {
   ): EffectEvidenceSynthesisResultsByExposure {
     const newInstance: EffectEvidenceSynthesisResultsByExposure = BackboneElement.parse(json, providedInstance);
   
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.exposureState) {
+    if (json.exposureState !== undefined) {
       newInstance.exposureState = ExposureState.parsePrimitive(json.exposureState, json._exposureState);
     }
-    if (json.variantState) {
+    if (json.variantState !== undefined) {
       newInstance.variantState = CodeableConcept.parse(json.variantState);
     }
-    if (json.riskEvidenceSynthesis) {
+    if (json.riskEvidenceSynthesis !== undefined) {
       newInstance.riskEvidenceSynthesis = Reference.parse(json.riskEvidenceSynthesis);
     }
     return newInstance;
@@ -73,7 +73,11 @@ export class EffectEvidenceSynthesisResultsByExposure extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): EffectEvidenceSynthesisResultsByExposure {
+    return EffectEvidenceSynthesisResultsByExposure.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EffectEvidenceSynthesisResultsByExposure";
   }

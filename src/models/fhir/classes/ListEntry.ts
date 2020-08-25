@@ -30,16 +30,16 @@ export class ListEntry extends BackboneElement {
   ): ListEntry {
     const newInstance: ListEntry = BackboneElement.parse(json, providedInstance);
   
-    if (json.flag) {
+    if (json.flag !== undefined) {
       newInstance.flag = CodeableConcept.parse(json.flag);
     }
-    if (json.deleted) {
+    if (json.deleted !== undefined) {
       newInstance.deleted = PrimitiveBoolean.parsePrimitive(json.deleted, json._deleted);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.item) {
+    if (json.item !== undefined) {
       newInstance.item = Reference.parse(json.item);
     }
     return newInstance;
@@ -73,7 +73,11 @@ export class ListEntry extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ListEntry {
+    return ListEntry.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ListEntry";
   }

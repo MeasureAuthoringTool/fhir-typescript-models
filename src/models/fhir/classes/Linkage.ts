@@ -27,13 +27,13 @@ export class Linkage extends DomainResource {
   ): Linkage {
     const newInstance: Linkage = DomainResource.parse(json, providedInstance);
   
-    if (json.active) {
+    if (json.active !== undefined) {
       newInstance.active = PrimitiveBoolean.parsePrimitive(json.active, json._active);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = Reference.parse(json.author);
     }
-    if (json.item) {
+    if (json.item !== undefined) {
       newInstance.item = json.item.map((x) => LinkageItem.parse(x));
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class Linkage extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Linkage {
+    return Linkage.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Linkage";
   }

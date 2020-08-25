@@ -25,13 +25,13 @@ export class MedicationKnowledgeKinetics extends BackboneElement {
   ): MedicationKnowledgeKinetics {
     const newInstance: MedicationKnowledgeKinetics = BackboneElement.parse(json, providedInstance);
   
-    if (json.areaUnderCurve) {
+    if (json.areaUnderCurve !== undefined) {
       newInstance.areaUnderCurve = json.areaUnderCurve.map((x) => SimpleQuantity.parse(x));
     }
-    if (json.lethalDose50) {
+    if (json.lethalDose50 !== undefined) {
       newInstance.lethalDose50 = json.lethalDose50.map((x) => SimpleQuantity.parse(x));
     }
-    if (json.halfLifePeriod) {
+    if (json.halfLifePeriod !== undefined) {
       newInstance.halfLifePeriod = Duration.parse(json.halfLifePeriod);
     }
     return newInstance;
@@ -59,7 +59,11 @@ export class MedicationKnowledgeKinetics extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationKnowledgeKinetics {
+    return MedicationKnowledgeKinetics.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationKnowledgeKinetics";
   }

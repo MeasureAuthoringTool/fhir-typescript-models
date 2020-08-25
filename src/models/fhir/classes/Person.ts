@@ -48,34 +48,34 @@ export class Person extends DomainResource {
   ): Person {
     const newInstance: Person = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = json.name.map((x) => HumanName.parse(x));
     }
-    if (json.telecom) {
+    if (json.telecom !== undefined) {
       newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));
     }
-    if (json.gender) {
+    if (json.gender !== undefined) {
       newInstance.gender = AdministrativeGender.parsePrimitive(json.gender, json._gender);
     }
-    if (json.birthDate) {
+    if (json.birthDate !== undefined) {
       newInstance.birthDate = PrimitiveDate.parsePrimitive(json.birthDate, json._birthDate);
     }
-    if (json.address) {
+    if (json.address !== undefined) {
       newInstance.address = json.address.map((x) => Address.parse(x));
     }
-    if (json.photo) {
+    if (json.photo !== undefined) {
       newInstance.photo = Attachment.parse(json.photo);
     }
-    if (json.managingOrganization) {
+    if (json.managingOrganization !== undefined) {
       newInstance.managingOrganization = Reference.parse(json.managingOrganization);
     }
-    if (json.active) {
+    if (json.active !== undefined) {
       newInstance.active = PrimitiveBoolean.parsePrimitive(json.active, json._active);
     }
-    if (json.link) {
+    if (json.link !== undefined) {
       newInstance.link = json.link.map((x) => PersonLink.parse(x));
     }
     return newInstance;
@@ -134,7 +134,11 @@ export class Person extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Person {
+    return Person.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Person";
   }

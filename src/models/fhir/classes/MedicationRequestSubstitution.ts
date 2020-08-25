@@ -24,13 +24,13 @@ export class MedicationRequestSubstitution extends BackboneElement {
   ): MedicationRequestSubstitution {
     const newInstance: MedicationRequestSubstitution = BackboneElement.parse(json, providedInstance);
   
-    if (json.allowedBoolean) {
+    if (json.allowedBoolean !== undefined) {
       newInstance.allowed = PrimitiveBoolean.parsePrimitive(json.allowedBoolean, json._allowedBoolean);
     }
-    if (json.allowedCodeableConcept) {
+    if (json.allowedCodeableConcept !== undefined) {
       newInstance.allowed = CodeableConcept.parse(json.allowedCodeableConcept);
     }
-    if (json.reason) {
+    if (json.reason !== undefined) {
       newInstance.reason = CodeableConcept.parse(json.reason);
     }
     return newInstance;
@@ -59,7 +59,11 @@ export class MedicationRequestSubstitution extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MedicationRequestSubstitution {
+    return MedicationRequestSubstitution.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationRequestSubstitution";
   }

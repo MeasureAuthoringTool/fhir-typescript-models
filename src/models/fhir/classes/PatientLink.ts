@@ -24,10 +24,10 @@ export class PatientLink extends BackboneElement {
   ): PatientLink {
     const newInstance: PatientLink = BackboneElement.parse(json, providedInstance);
   
-    if (json.other) {
+    if (json.other !== undefined) {
       newInstance.other = Reference.parse(json.other);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = LinkType.parsePrimitive(json.type, json._type);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class PatientLink extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PatientLink {
+    return PatientLink.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PatientLink";
   }

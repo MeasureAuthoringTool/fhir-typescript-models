@@ -30,16 +30,16 @@ export class ConceptMapGroupUnmapped extends BackboneElement {
   ): ConceptMapGroupUnmapped {
     const newInstance: ConceptMapGroupUnmapped = BackboneElement.parse(json, providedInstance);
   
-    if (json.mode) {
+    if (json.mode !== undefined) {
       newInstance.mode = ConceptMapGroupUnmappedMode.parsePrimitive(json.mode, json._mode);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.display) {
+    if (json.display !== undefined) {
       newInstance.display = PrimitiveString.parsePrimitive(json.display, json._display);
     }
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveCanonical.parsePrimitive(json.url, json._url);
     }
     return newInstance;
@@ -75,7 +75,11 @@ export class ConceptMapGroupUnmapped extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ConceptMapGroupUnmapped {
+    return ConceptMapGroupUnmapped.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ConceptMapGroupUnmapped";
   }

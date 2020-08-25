@@ -22,7 +22,16 @@ export class ChargeItemStatus extends PrimitiveCode {
     const castInput = input as ChargeItemStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ChargeItemStatus";
   }
-  
+
+  public clone(): ChargeItemStatus {
+    const result = new ChargeItemStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ChargeItemStatus";
   }

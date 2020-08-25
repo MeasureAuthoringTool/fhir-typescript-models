@@ -24,10 +24,10 @@ export class TestScriptOrigin extends BackboneElement {
   ): TestScriptOrigin {
     const newInstance: TestScriptOrigin = BackboneElement.parse(json, providedInstance);
   
-    if (json.index) {
+    if (json.index !== undefined) {
       newInstance.index = PrimitiveInteger.parsePrimitive(json.index, json._index);
     }
-    if (json.profile) {
+    if (json.profile !== undefined) {
       newInstance.profile = Coding.parse(json.profile);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class TestScriptOrigin extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TestScriptOrigin {
+    return TestScriptOrigin.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestScriptOrigin";
   }

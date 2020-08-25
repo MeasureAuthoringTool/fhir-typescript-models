@@ -31,19 +31,19 @@ export class QuestionnaireResponseItem extends BackboneElement {
   ): QuestionnaireResponseItem {
     const newInstance: QuestionnaireResponseItem = BackboneElement.parse(json, providedInstance);
   
-    if (json.linkId) {
+    if (json.linkId !== undefined) {
       newInstance.linkId = PrimitiveString.parsePrimitive(json.linkId, json._linkId);
     }
-    if (json.definition) {
+    if (json.definition !== undefined) {
       newInstance.definition = PrimitiveUri.parsePrimitive(json.definition, json._definition);
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
-    if (json.answer) {
+    if (json.answer !== undefined) {
       newInstance.answer = json.answer.map((x) => QuestionnaireResponseItemAnswer.parse(x));
     }
-    if (json.item) {
+    if (json.item !== undefined) {
       newInstance.item = json.item.map((x) => QuestionnaireResponseItem.parse(x));
     }
     return newInstance;
@@ -82,7 +82,11 @@ export class QuestionnaireResponseItem extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): QuestionnaireResponseItem {
+    return QuestionnaireResponseItem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "QuestionnaireResponseItem";
   }

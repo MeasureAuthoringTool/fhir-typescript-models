@@ -22,7 +22,16 @@ export class BundleType extends PrimitiveCode {
     const castInput = input as BundleType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "BundleType";
   }
-  
+
+  public clone(): BundleType {
+    const result = new BundleType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "BundleType";
   }

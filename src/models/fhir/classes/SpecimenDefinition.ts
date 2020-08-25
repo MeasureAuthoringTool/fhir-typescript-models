@@ -34,22 +34,22 @@ export class SpecimenDefinition extends DomainResource {
   ): SpecimenDefinition {
     const newInstance: SpecimenDefinition = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.typeCollected) {
+    if (json.typeCollected !== undefined) {
       newInstance.typeCollected = CodeableConcept.parse(json.typeCollected);
     }
-    if (json.patientPreparation) {
+    if (json.patientPreparation !== undefined) {
       newInstance.patientPreparation = json.patientPreparation.map((x) => CodeableConcept.parse(x));
     }
-    if (json.timeAspect) {
+    if (json.timeAspect !== undefined) {
       newInstance.timeAspect = PrimitiveString.parsePrimitive(json.timeAspect, json._timeAspect);
     }
-    if (json.collection) {
+    if (json.collection !== undefined) {
       newInstance.collection = json.collection.map((x) => CodeableConcept.parse(x));
     }
-    if (json.typeTested) {
+    if (json.typeTested !== undefined) {
       newInstance.typeTested = json.typeTested.map((x) => SpecimenDefinitionTypeTested.parse(x));
     }
     return newInstance;
@@ -90,7 +90,11 @@ export class SpecimenDefinition extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): SpecimenDefinition {
+    return SpecimenDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SpecimenDefinition";
   }

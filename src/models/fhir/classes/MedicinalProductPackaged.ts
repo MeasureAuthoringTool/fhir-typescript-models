@@ -43,31 +43,31 @@ export class MedicinalProductPackaged extends DomainResource {
   ): MedicinalProductPackaged {
     const newInstance: MedicinalProductPackaged = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = json.subject.map((x) => Reference.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.legalStatusOfSupply) {
+    if (json.legalStatusOfSupply !== undefined) {
       newInstance.legalStatusOfSupply = CodeableConcept.parse(json.legalStatusOfSupply);
     }
-    if (json.marketingStatus) {
+    if (json.marketingStatus !== undefined) {
       newInstance.marketingStatus = json.marketingStatus.map((x) => MarketingStatus.parse(x));
     }
-    if (json.marketingAuthorization) {
+    if (json.marketingAuthorization !== undefined) {
       newInstance.marketingAuthorization = Reference.parse(json.marketingAuthorization);
     }
-    if (json.manufacturer) {
+    if (json.manufacturer !== undefined) {
       newInstance.manufacturer = json.manufacturer.map((x) => Reference.parse(x));
     }
-    if (json.batchIdentifier) {
+    if (json.batchIdentifier !== undefined) {
       newInstance.batchIdentifier = json.batchIdentifier.map((x) => MedicinalProductPackagedBatchIdentifier.parse(x));
     }
-    if (json.packageItem) {
+    if (json.packageItem !== undefined) {
       newInstance.packageItem = json.packageItem.map((x) => MedicinalProductPackagedPackageItem.parse(x));
     }
     return newInstance;
@@ -120,7 +120,11 @@ export class MedicinalProductPackaged extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProductPackaged {
+    return MedicinalProductPackaged.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProductPackaged";
   }

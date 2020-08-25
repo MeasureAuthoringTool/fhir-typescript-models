@@ -24,10 +24,10 @@ export class ImplementationGuideDefinitionParameter extends BackboneElement {
   ): ImplementationGuideDefinitionParameter {
     const newInstance: ImplementationGuideDefinitionParameter = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = GuideParameterCode.parsePrimitive(json.code, json._code);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.value, json._value);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class ImplementationGuideDefinitionParameter extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImplementationGuideDefinitionParameter {
+    return ImplementationGuideDefinitionParameter.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImplementationGuideDefinitionParameter";
   }

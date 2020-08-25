@@ -38,31 +38,31 @@ export class EncounterHospitalization extends BackboneElement {
   ): EncounterHospitalization {
     const newInstance: EncounterHospitalization = BackboneElement.parse(json, providedInstance);
   
-    if (json.preAdmissionIdentifier) {
+    if (json.preAdmissionIdentifier !== undefined) {
       newInstance.preAdmissionIdentifier = Identifier.parse(json.preAdmissionIdentifier);
     }
-    if (json.origin) {
+    if (json.origin !== undefined) {
       newInstance.origin = Reference.parse(json.origin);
     }
-    if (json.admitSource) {
+    if (json.admitSource !== undefined) {
       newInstance.admitSource = CodeableConcept.parse(json.admitSource);
     }
-    if (json.reAdmission) {
+    if (json.reAdmission !== undefined) {
       newInstance.reAdmission = CodeableConcept.parse(json.reAdmission);
     }
-    if (json.dietPreference) {
+    if (json.dietPreference !== undefined) {
       newInstance.dietPreference = json.dietPreference.map((x) => CodeableConcept.parse(x));
     }
-    if (json.specialCourtesy) {
+    if (json.specialCourtesy !== undefined) {
       newInstance.specialCourtesy = json.specialCourtesy.map((x) => CodeableConcept.parse(x));
     }
-    if (json.specialArrangement) {
+    if (json.specialArrangement !== undefined) {
       newInstance.specialArrangement = json.specialArrangement.map((x) => CodeableConcept.parse(x));
     }
-    if (json.destination) {
+    if (json.destination !== undefined) {
       newInstance.destination = Reference.parse(json.destination);
     }
-    if (json.dischargeDisposition) {
+    if (json.dischargeDisposition !== undefined) {
       newInstance.dischargeDisposition = CodeableConcept.parse(json.dischargeDisposition);
     }
     return newInstance;
@@ -114,7 +114,11 @@ export class EncounterHospitalization extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): EncounterHospitalization {
+    return EncounterHospitalization.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "EncounterHospitalization";
   }

@@ -22,7 +22,16 @@ export class CoverageStatus extends PrimitiveCode {
     const castInput = input as CoverageStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CoverageStatus";
   }
-  
+
+  public clone(): CoverageStatus {
+    const result = new CoverageStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CoverageStatus";
   }

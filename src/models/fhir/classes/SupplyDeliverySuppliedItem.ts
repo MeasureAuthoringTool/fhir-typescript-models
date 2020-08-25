@@ -24,13 +24,13 @@ export class SupplyDeliverySuppliedItem extends BackboneElement {
   ): SupplyDeliverySuppliedItem {
     const newInstance: SupplyDeliverySuppliedItem = BackboneElement.parse(json, providedInstance);
   
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.itemCodeableConcept) {
+    if (json.itemCodeableConcept !== undefined) {
       newInstance.item = CodeableConcept.parse(json.itemCodeableConcept);
     }
-    if (json.itemReference) {
+    if (json.itemReference !== undefined) {
       newInstance.item = Reference.parse(json.itemReference);
     }
     return newInstance;
@@ -58,7 +58,11 @@ export class SupplyDeliverySuppliedItem extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SupplyDeliverySuppliedItem {
+    return SupplyDeliverySuppliedItem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SupplyDeliverySuppliedItem";
   }

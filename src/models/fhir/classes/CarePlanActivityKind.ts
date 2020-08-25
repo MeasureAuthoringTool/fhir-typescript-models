@@ -22,7 +22,16 @@ export class CarePlanActivityKind extends PrimitiveCode {
     const castInput = input as CarePlanActivityKind;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CarePlanActivityKind";
   }
-  
+
+  public clone(): CarePlanActivityKind {
+    const result = new CarePlanActivityKind();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CarePlanActivityKind";
   }

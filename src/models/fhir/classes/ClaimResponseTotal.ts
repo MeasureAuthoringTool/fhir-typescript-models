@@ -23,10 +23,10 @@ export class ClaimResponseTotal extends BackboneElement {
   ): ClaimResponseTotal {
     const newInstance: ClaimResponseTotal = BackboneElement.parse(json, providedInstance);
   
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = Money.parse(json.amount);
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class ClaimResponseTotal extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimResponseTotal {
+    return ClaimResponseTotal.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimResponseTotal";
   }

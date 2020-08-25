@@ -54,67 +54,67 @@ export class ResearchElementDefinitionCharacteristic extends BackboneElement {
   ): ResearchElementDefinitionCharacteristic {
     const newInstance: ResearchElementDefinitionCharacteristic = BackboneElement.parse(json, providedInstance);
   
-    if (json.definitionCodeableConcept) {
+    if (json.definitionCodeableConcept !== undefined) {
       newInstance.definition = CodeableConcept.parse(json.definitionCodeableConcept);
     }
-    if (json.definitionCanonical) {
+    if (json.definitionCanonical !== undefined) {
       newInstance.definition = PrimitiveCanonical.parsePrimitive(json.definitionCanonical, json._definitionCanonical);
     }
-    if (json.definitionExpression) {
+    if (json.definitionExpression !== undefined) {
       newInstance.definition = Expression.parse(json.definitionExpression);
     }
-    if (json.definitionDataRequirement) {
+    if (json.definitionDataRequirement !== undefined) {
       newInstance.definition = DataRequirement.parse(json.definitionDataRequirement);
     }
-    if (json.usageContext) {
+    if (json.usageContext !== undefined) {
       newInstance.usageContext = json.usageContext.map((x) => UsageContext.parse(x));
     }
-    if (json.exclude) {
+    if (json.exclude !== undefined) {
       newInstance.exclude = PrimitiveBoolean.parsePrimitive(json.exclude, json._exclude);
     }
-    if (json.unitOfMeasure) {
+    if (json.unitOfMeasure !== undefined) {
       newInstance.unitOfMeasure = CodeableConcept.parse(json.unitOfMeasure);
     }
-    if (json.studyEffectiveDescription) {
+    if (json.studyEffectiveDescription !== undefined) {
       newInstance.studyEffectiveDescription = PrimitiveString.parsePrimitive(json.studyEffectiveDescription, json._studyEffectiveDescription);
     }
-    if (json.studyEffectiveDateTime) {
+    if (json.studyEffectiveDateTime !== undefined) {
       newInstance.studyEffective = PrimitiveDateTime.parsePrimitive(json.studyEffectiveDateTime, json._studyEffectiveDateTime);
     }
-    if (json.studyEffectivePeriod) {
+    if (json.studyEffectivePeriod !== undefined) {
       newInstance.studyEffective = Period.parse(json.studyEffectivePeriod);
     }
-    if (json.studyEffectiveDuration) {
+    if (json.studyEffectiveDuration !== undefined) {
       newInstance.studyEffective = Duration.parse(json.studyEffectiveDuration);
     }
-    if (json.studyEffectiveTiming) {
+    if (json.studyEffectiveTiming !== undefined) {
       newInstance.studyEffective = Timing.parse(json.studyEffectiveTiming);
     }
-    if (json.studyEffectiveTimeFromStart) {
+    if (json.studyEffectiveTimeFromStart !== undefined) {
       newInstance.studyEffectiveTimeFromStart = Duration.parse(json.studyEffectiveTimeFromStart);
     }
-    if (json.studyEffectiveGroupMeasure) {
+    if (json.studyEffectiveGroupMeasure !== undefined) {
       newInstance.studyEffectiveGroupMeasure = GroupMeasure.parsePrimitive(json.studyEffectiveGroupMeasure, json._studyEffectiveGroupMeasure);
     }
-    if (json.participantEffectiveDescription) {
+    if (json.participantEffectiveDescription !== undefined) {
       newInstance.participantEffectiveDescription = PrimitiveString.parsePrimitive(json.participantEffectiveDescription, json._participantEffectiveDescription);
     }
-    if (json.participantEffectiveDateTime) {
+    if (json.participantEffectiveDateTime !== undefined) {
       newInstance.participantEffective = PrimitiveDateTime.parsePrimitive(json.participantEffectiveDateTime, json._participantEffectiveDateTime);
     }
-    if (json.participantEffectivePeriod) {
+    if (json.participantEffectivePeriod !== undefined) {
       newInstance.participantEffective = Period.parse(json.participantEffectivePeriod);
     }
-    if (json.participantEffectiveDuration) {
+    if (json.participantEffectiveDuration !== undefined) {
       newInstance.participantEffective = Duration.parse(json.participantEffectiveDuration);
     }
-    if (json.participantEffectiveTiming) {
+    if (json.participantEffectiveTiming !== undefined) {
       newInstance.participantEffective = Timing.parse(json.participantEffectiveTiming);
     }
-    if (json.participantEffectiveTimeFromStart) {
+    if (json.participantEffectiveTimeFromStart !== undefined) {
       newInstance.participantEffectiveTimeFromStart = Duration.parse(json.participantEffectiveTimeFromStart);
     }
-    if (json.participantEffectiveGroupMeasure) {
+    if (json.participantEffectiveGroupMeasure !== undefined) {
       newInstance.participantEffectiveGroupMeasure = GroupMeasure.parsePrimitive(json.participantEffectiveGroupMeasure, json._participantEffectiveGroupMeasure);
     }
     return newInstance;
@@ -222,7 +222,11 @@ export class ResearchElementDefinitionCharacteristic extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ResearchElementDefinitionCharacteristic {
+    return ResearchElementDefinitionCharacteristic.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ResearchElementDefinitionCharacteristic";
   }

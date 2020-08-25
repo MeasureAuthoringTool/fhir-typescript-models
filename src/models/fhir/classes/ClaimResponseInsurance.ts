@@ -32,19 +32,19 @@ export class ClaimResponseInsurance extends BackboneElement {
   ): ClaimResponseInsurance {
     const newInstance: ClaimResponseInsurance = BackboneElement.parse(json, providedInstance);
   
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitivePositiveInt.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.focal) {
+    if (json.focal !== undefined) {
       newInstance.focal = PrimitiveBoolean.parsePrimitive(json.focal, json._focal);
     }
-    if (json.coverage) {
+    if (json.coverage !== undefined) {
       newInstance.coverage = Reference.parse(json.coverage);
     }
-    if (json.businessArrangement) {
+    if (json.businessArrangement !== undefined) {
       newInstance.businessArrangement = PrimitiveString.parsePrimitive(json.businessArrangement, json._businessArrangement);
     }
-    if (json.claimResponse) {
+    if (json.claimResponse !== undefined) {
       newInstance.claimResponse = Reference.parse(json.claimResponse);
     }
     return newInstance;
@@ -83,7 +83,11 @@ export class ClaimResponseInsurance extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimResponseInsurance {
+    return ClaimResponseInsurance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimResponseInsurance";
   }

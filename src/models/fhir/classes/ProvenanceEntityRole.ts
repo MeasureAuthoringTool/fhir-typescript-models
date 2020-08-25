@@ -22,7 +22,16 @@ export class ProvenanceEntityRole extends PrimitiveCode {
     const castInput = input as ProvenanceEntityRole;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ProvenanceEntityRole";
   }
-  
+
+  public clone(): ProvenanceEntityRole {
+    const result = new ProvenanceEntityRole();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ProvenanceEntityRole";
   }

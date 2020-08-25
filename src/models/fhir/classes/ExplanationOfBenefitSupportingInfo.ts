@@ -40,37 +40,37 @@ export class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   ): ExplanationOfBenefitSupportingInfo {
     const newInstance: ExplanationOfBenefitSupportingInfo = BackboneElement.parse(json, providedInstance);
   
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitivePositiveInt.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.timingDate) {
+    if (json.timingDate !== undefined) {
       newInstance.timing = PrimitiveDate.parsePrimitive(json.timingDate, json._timingDate);
     }
-    if (json.timingPeriod) {
+    if (json.timingPeriod !== undefined) {
       newInstance.timing = Period.parse(json.timingPeriod);
     }
-    if (json.valueBoolean) {
+    if (json.valueBoolean !== undefined) {
       newInstance.value = PrimitiveBoolean.parsePrimitive(json.valueBoolean, json._valueBoolean);
     }
-    if (json.valueString) {
+    if (json.valueString !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.valueString, json._valueString);
     }
-    if (json.valueQuantity) {
+    if (json.valueQuantity !== undefined) {
       newInstance.value = Quantity.parse(json.valueQuantity);
     }
-    if (json.valueAttachment) {
+    if (json.valueAttachment !== undefined) {
       newInstance.value = Attachment.parse(json.valueAttachment);
     }
-    if (json.valueReference) {
+    if (json.valueReference !== undefined) {
       newInstance.value = Reference.parse(json.valueReference);
     }
-    if (json.reason) {
+    if (json.reason !== undefined) {
       newInstance.reason = Coding.parse(json.reason);
     }
     return newInstance;
@@ -134,7 +134,11 @@ export class ExplanationOfBenefitSupportingInfo extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExplanationOfBenefitSupportingInfo {
+    return ExplanationOfBenefitSupportingInfo.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExplanationOfBenefitSupportingInfo";
   }

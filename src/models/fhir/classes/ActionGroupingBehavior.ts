@@ -22,7 +22,16 @@ export class ActionGroupingBehavior extends PrimitiveCode {
     const castInput = input as ActionGroupingBehavior;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ActionGroupingBehavior";
   }
-  
+
+  public clone(): ActionGroupingBehavior {
+    const result = new ActionGroupingBehavior();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ActionGroupingBehavior";
   }

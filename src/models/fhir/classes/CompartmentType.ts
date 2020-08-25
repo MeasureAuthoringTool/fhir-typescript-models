@@ -22,7 +22,16 @@ export class CompartmentType extends PrimitiveCode {
     const castInput = input as CompartmentType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CompartmentType";
   }
-  
+
+  public clone(): CompartmentType {
+    const result = new CompartmentType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CompartmentType";
   }

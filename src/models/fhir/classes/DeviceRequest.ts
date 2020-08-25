@@ -79,91 +79,91 @@ export class DeviceRequest extends DomainResource {
   ): DeviceRequest {
     const newInstance: DeviceRequest = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.instantiatesCanonical) {
+    if (json.instantiatesCanonical !== undefined) {
       newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
         const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.instantiatesUri) {
+    if (json.instantiatesUri !== undefined) {
       newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
         const ext = json._instantiatesUri && json._instantiatesUri[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.priorRequest) {
+    if (json.priorRequest !== undefined) {
       newInstance.priorRequest = json.priorRequest.map((x) => Reference.parse(x));
     }
-    if (json.groupIdentifier) {
+    if (json.groupIdentifier !== undefined) {
       newInstance.groupIdentifier = Identifier.parse(json.groupIdentifier);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = DeviceRequestStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.intent) {
+    if (json.intent !== undefined) {
       newInstance.intent = RequestIntent.parsePrimitive(json.intent, json._intent);
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = RequestPriority.parsePrimitive(json.priority, json._priority);
     }
-    if (json.codeReference) {
+    if (json.codeReference !== undefined) {
       newInstance.code = Reference.parse(json.codeReference);
     }
-    if (json.codeCodeableConcept) {
+    if (json.codeCodeableConcept !== undefined) {
       newInstance.code = CodeableConcept.parse(json.codeCodeableConcept);
     }
-    if (json.parameter) {
+    if (json.parameter !== undefined) {
       newInstance.parameter = json.parameter.map((x) => DeviceRequestParameter.parse(x));
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.occurrenceDateTime) {
+    if (json.occurrenceDateTime !== undefined) {
       newInstance.occurrence = PrimitiveDateTime.parsePrimitive(json.occurrenceDateTime, json._occurrenceDateTime);
     }
-    if (json.occurrencePeriod) {
+    if (json.occurrencePeriod !== undefined) {
       newInstance.occurrence = Period.parse(json.occurrencePeriod);
     }
-    if (json.occurrenceTiming) {
+    if (json.occurrenceTiming !== undefined) {
       newInstance.occurrence = Timing.parse(json.occurrenceTiming);
     }
-    if (json.authoredOn) {
+    if (json.authoredOn !== undefined) {
       newInstance.authoredOn = PrimitiveDateTime.parsePrimitive(json.authoredOn, json._authoredOn);
     }
-    if (json.requester) {
+    if (json.requester !== undefined) {
       newInstance.requester = Reference.parse(json.requester);
     }
-    if (json.performerType) {
+    if (json.performerType !== undefined) {
       newInstance.performerType = CodeableConcept.parse(json.performerType);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = Reference.parse(json.performer);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.insurance) {
+    if (json.insurance !== undefined) {
       newInstance.insurance = json.insurance.map((x) => Reference.parse(x));
     }
-    if (json.supportingInfo) {
+    if (json.supportingInfo !== undefined) {
       newInstance.supportingInfo = json.supportingInfo.map((x) => Reference.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.relevantHistory) {
+    if (json.relevantHistory !== undefined) {
       newInstance.relevantHistory = json.relevantHistory.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -294,7 +294,11 @@ export class DeviceRequest extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): DeviceRequest {
+    return DeviceRequest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceRequest";
   }

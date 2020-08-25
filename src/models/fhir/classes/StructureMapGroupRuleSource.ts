@@ -91,184 +91,184 @@ export class StructureMapGroupRuleSource extends BackboneElement {
   ): StructureMapGroupRuleSource {
     const newInstance: StructureMapGroupRuleSource = BackboneElement.parse(json, providedInstance);
   
-    if (json.context) {
+    if (json.context !== undefined) {
       newInstance.context = PrimitiveId.parsePrimitive(json.context, json._context);
     }
-    if (json.min) {
+    if (json.min !== undefined) {
       newInstance.min = PrimitiveInteger.parsePrimitive(json.min, json._min);
     }
-    if (json.max) {
+    if (json.max !== undefined) {
       newInstance.max = PrimitiveString.parsePrimitive(json.max, json._max);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = PrimitiveString.parsePrimitive(json.type, json._type);
     }
-    if (json.defaultValueBase64Binary) {
+    if (json.defaultValueBase64Binary !== undefined) {
       newInstance.defaultValue = PrimitiveBase64Binary.parsePrimitive(json.defaultValueBase64Binary, json._defaultValueBase64Binary);
     }
-    if (json.defaultValueBoolean) {
+    if (json.defaultValueBoolean !== undefined) {
       newInstance.defaultValue = PrimitiveBoolean.parsePrimitive(json.defaultValueBoolean, json._defaultValueBoolean);
     }
-    if (json.defaultValueCanonical) {
+    if (json.defaultValueCanonical !== undefined) {
       newInstance.defaultValue = PrimitiveCanonical.parsePrimitive(json.defaultValueCanonical, json._defaultValueCanonical);
     }
-    if (json.defaultValueCode) {
+    if (json.defaultValueCode !== undefined) {
       newInstance.defaultValue = PrimitiveCode.parsePrimitive(json.defaultValueCode, json._defaultValueCode);
     }
-    if (json.defaultValueDate) {
+    if (json.defaultValueDate !== undefined) {
       newInstance.defaultValue = PrimitiveDate.parsePrimitive(json.defaultValueDate, json._defaultValueDate);
     }
-    if (json.defaultValueDateTime) {
+    if (json.defaultValueDateTime !== undefined) {
       newInstance.defaultValue = PrimitiveDateTime.parsePrimitive(json.defaultValueDateTime, json._defaultValueDateTime);
     }
-    if (json.defaultValueDecimal) {
+    if (json.defaultValueDecimal !== undefined) {
       newInstance.defaultValue = PrimitiveDecimal.parsePrimitive(json.defaultValueDecimal, json._defaultValueDecimal);
     }
-    if (json.defaultValueId) {
+    if (json.defaultValueId !== undefined) {
       newInstance.defaultValue = PrimitiveId.parsePrimitive(json.defaultValueId, json._defaultValueId);
     }
-    if (json.defaultValueInstant) {
+    if (json.defaultValueInstant !== undefined) {
       newInstance.defaultValue = PrimitiveInstant.parsePrimitive(json.defaultValueInstant, json._defaultValueInstant);
     }
-    if (json.defaultValueInteger) {
+    if (json.defaultValueInteger !== undefined) {
       newInstance.defaultValue = PrimitiveInteger.parsePrimitive(json.defaultValueInteger, json._defaultValueInteger);
     }
-    if (json.defaultValueMarkdown) {
+    if (json.defaultValueMarkdown !== undefined) {
       newInstance.defaultValue = PrimitiveMarkdown.parsePrimitive(json.defaultValueMarkdown, json._defaultValueMarkdown);
     }
-    if (json.defaultValueOid) {
+    if (json.defaultValueOid !== undefined) {
       newInstance.defaultValue = PrimitiveOid.parsePrimitive(json.defaultValueOid, json._defaultValueOid);
     }
-    if (json.defaultValuePositiveInt) {
+    if (json.defaultValuePositiveInt !== undefined) {
       newInstance.defaultValue = PrimitivePositiveInt.parsePrimitive(json.defaultValuePositiveInt, json._defaultValuePositiveInt);
     }
-    if (json.defaultValueString) {
+    if (json.defaultValueString !== undefined) {
       newInstance.defaultValue = PrimitiveString.parsePrimitive(json.defaultValueString, json._defaultValueString);
     }
-    if (json.defaultValueTime) {
+    if (json.defaultValueTime !== undefined) {
       newInstance.defaultValue = PrimitiveTime.parsePrimitive(json.defaultValueTime, json._defaultValueTime);
     }
-    if (json.defaultValueUnsignedInt) {
+    if (json.defaultValueUnsignedInt !== undefined) {
       newInstance.defaultValue = PrimitiveUnsignedInt.parsePrimitive(json.defaultValueUnsignedInt, json._defaultValueUnsignedInt);
     }
-    if (json.defaultValueUri) {
+    if (json.defaultValueUri !== undefined) {
       newInstance.defaultValue = PrimitiveUri.parsePrimitive(json.defaultValueUri, json._defaultValueUri);
     }
-    if (json.defaultValueUrl) {
+    if (json.defaultValueUrl !== undefined) {
       newInstance.defaultValue = PrimitiveUrl.parsePrimitive(json.defaultValueUrl, json._defaultValueUrl);
     }
-    if (json.defaultValueUuid) {
+    if (json.defaultValueUuid !== undefined) {
       newInstance.defaultValue = PrimitiveUuid.parsePrimitive(json.defaultValueUuid, json._defaultValueUuid);
     }
-    if (json.defaultValueAddress) {
+    if (json.defaultValueAddress !== undefined) {
       newInstance.defaultValue = Address.parse(json.defaultValueAddress);
     }
-    if (json.defaultValueAge) {
+    if (json.defaultValueAge !== undefined) {
       newInstance.defaultValue = Age.parse(json.defaultValueAge);
     }
-    if (json.defaultValueAnnotation) {
+    if (json.defaultValueAnnotation !== undefined) {
       newInstance.defaultValue = Annotation.parse(json.defaultValueAnnotation);
     }
-    if (json.defaultValueAttachment) {
+    if (json.defaultValueAttachment !== undefined) {
       newInstance.defaultValue = Attachment.parse(json.defaultValueAttachment);
     }
-    if (json.defaultValueCodeableConcept) {
+    if (json.defaultValueCodeableConcept !== undefined) {
       newInstance.defaultValue = CodeableConcept.parse(json.defaultValueCodeableConcept);
     }
-    if (json.defaultValueCoding) {
+    if (json.defaultValueCoding !== undefined) {
       newInstance.defaultValue = Coding.parse(json.defaultValueCoding);
     }
-    if (json.defaultValueContactPoint) {
+    if (json.defaultValueContactPoint !== undefined) {
       newInstance.defaultValue = ContactPoint.parse(json.defaultValueContactPoint);
     }
-    if (json.defaultValueCount) {
+    if (json.defaultValueCount !== undefined) {
       newInstance.defaultValue = Count.parse(json.defaultValueCount);
     }
-    if (json.defaultValueDistance) {
+    if (json.defaultValueDistance !== undefined) {
       newInstance.defaultValue = Distance.parse(json.defaultValueDistance);
     }
-    if (json.defaultValueDuration) {
+    if (json.defaultValueDuration !== undefined) {
       newInstance.defaultValue = Duration.parse(json.defaultValueDuration);
     }
-    if (json.defaultValueHumanName) {
+    if (json.defaultValueHumanName !== undefined) {
       newInstance.defaultValue = HumanName.parse(json.defaultValueHumanName);
     }
-    if (json.defaultValueIdentifier) {
+    if (json.defaultValueIdentifier !== undefined) {
       newInstance.defaultValue = Identifier.parse(json.defaultValueIdentifier);
     }
-    if (json.defaultValueMoney) {
+    if (json.defaultValueMoney !== undefined) {
       newInstance.defaultValue = Money.parse(json.defaultValueMoney);
     }
-    if (json.defaultValuePeriod) {
+    if (json.defaultValuePeriod !== undefined) {
       newInstance.defaultValue = Period.parse(json.defaultValuePeriod);
     }
-    if (json.defaultValueQuantity) {
+    if (json.defaultValueQuantity !== undefined) {
       newInstance.defaultValue = Quantity.parse(json.defaultValueQuantity);
     }
-    if (json.defaultValueRange) {
+    if (json.defaultValueRange !== undefined) {
       newInstance.defaultValue = Range.parse(json.defaultValueRange);
     }
-    if (json.defaultValueRatio) {
+    if (json.defaultValueRatio !== undefined) {
       newInstance.defaultValue = Ratio.parse(json.defaultValueRatio);
     }
-    if (json.defaultValueReference) {
+    if (json.defaultValueReference !== undefined) {
       newInstance.defaultValue = Reference.parse(json.defaultValueReference);
     }
-    if (json.defaultValueSampledData) {
+    if (json.defaultValueSampledData !== undefined) {
       newInstance.defaultValue = SampledData.parse(json.defaultValueSampledData);
     }
-    if (json.defaultValueSignature) {
+    if (json.defaultValueSignature !== undefined) {
       newInstance.defaultValue = Signature.parse(json.defaultValueSignature);
     }
-    if (json.defaultValueTiming) {
+    if (json.defaultValueTiming !== undefined) {
       newInstance.defaultValue = Timing.parse(json.defaultValueTiming);
     }
-    if (json.defaultValueContactDetail) {
+    if (json.defaultValueContactDetail !== undefined) {
       newInstance.defaultValue = ContactDetail.parse(json.defaultValueContactDetail);
     }
-    if (json.defaultValueContributor) {
+    if (json.defaultValueContributor !== undefined) {
       newInstance.defaultValue = Contributor.parse(json.defaultValueContributor);
     }
-    if (json.defaultValueDataRequirement) {
+    if (json.defaultValueDataRequirement !== undefined) {
       newInstance.defaultValue = DataRequirement.parse(json.defaultValueDataRequirement);
     }
-    if (json.defaultValueExpression) {
+    if (json.defaultValueExpression !== undefined) {
       newInstance.defaultValue = Expression.parse(json.defaultValueExpression);
     }
-    if (json.defaultValueParameterDefinition) {
+    if (json.defaultValueParameterDefinition !== undefined) {
       newInstance.defaultValue = ParameterDefinition.parse(json.defaultValueParameterDefinition);
     }
-    if (json.defaultValueRelatedArtifact) {
+    if (json.defaultValueRelatedArtifact !== undefined) {
       newInstance.defaultValue = RelatedArtifact.parse(json.defaultValueRelatedArtifact);
     }
-    if (json.defaultValueTriggerDefinition) {
+    if (json.defaultValueTriggerDefinition !== undefined) {
       newInstance.defaultValue = TriggerDefinition.parse(json.defaultValueTriggerDefinition);
     }
-    if (json.defaultValueUsageContext) {
+    if (json.defaultValueUsageContext !== undefined) {
       newInstance.defaultValue = UsageContext.parse(json.defaultValueUsageContext);
     }
-    if (json.defaultValueDosage) {
+    if (json.defaultValueDosage !== undefined) {
       newInstance.defaultValue = Dosage.parse(json.defaultValueDosage);
     }
-    if (json.defaultValueMeta) {
+    if (json.defaultValueMeta !== undefined) {
       newInstance.defaultValue = Meta.parse(json.defaultValueMeta);
     }
-    if (json.element) {
+    if (json.element !== undefined) {
       newInstance.element = PrimitiveString.parsePrimitive(json.element, json._element);
     }
-    if (json.listMode) {
+    if (json.listMode !== undefined) {
       newInstance.listMode = StructureMapSourceListMode.parsePrimitive(json.listMode, json._listMode);
     }
-    if (json.variable) {
+    if (json.variable !== undefined) {
       newInstance.variable = PrimitiveId.parsePrimitive(json.variable, json._variable);
     }
-    if (json.condition) {
+    if (json.condition !== undefined) {
       newInstance.condition = PrimitiveString.parsePrimitive(json.condition, json._condition);
     }
-    if (json.check) {
+    if (json.check !== undefined) {
       newInstance.check = PrimitiveString.parsePrimitive(json.check, json._check);
     }
-    if (json.logMessage) {
+    if (json.logMessage !== undefined) {
       newInstance.logMessage = PrimitiveString.parsePrimitive(json.logMessage, json._logMessage);
     }
     return newInstance;
@@ -553,7 +553,11 @@ export class StructureMapGroupRuleSource extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): StructureMapGroupRuleSource {
+    return StructureMapGroupRuleSource.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "StructureMapGroupRuleSource";
   }

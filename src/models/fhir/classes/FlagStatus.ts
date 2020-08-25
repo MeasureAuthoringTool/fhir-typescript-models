@@ -22,7 +22,16 @@ export class FlagStatus extends PrimitiveCode {
     const castInput = input as FlagStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "FlagStatus";
   }
-  
+
+  public clone(): FlagStatus {
+    const result = new FlagStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "FlagStatus";
   }

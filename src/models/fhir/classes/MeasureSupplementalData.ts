@@ -29,16 +29,16 @@ export class MeasureSupplementalData extends BackboneElement {
   ): MeasureSupplementalData {
     const newInstance: MeasureSupplementalData = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.usage) {
+    if (json.usage !== undefined) {
       newInstance.usage = json.usage.map((x) => CodeableConcept.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.criteria) {
+    if (json.criteria !== undefined) {
       newInstance.criteria = Expression.parse(json.criteria);
     }
     return newInstance;
@@ -71,7 +71,11 @@ export class MeasureSupplementalData extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MeasureSupplementalData {
+    return MeasureSupplementalData.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MeasureSupplementalData";
   }

@@ -23,10 +23,10 @@ export class TerminologyCapabilitiesSoftware extends BackboneElement {
   ): TerminologyCapabilitiesSoftware {
     const newInstance: TerminologyCapabilitiesSoftware = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class TerminologyCapabilitiesSoftware extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TerminologyCapabilitiesSoftware {
+    return TerminologyCapabilitiesSoftware.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TerminologyCapabilitiesSoftware";
   }

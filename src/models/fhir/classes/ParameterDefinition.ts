@@ -38,25 +38,25 @@ export class ParameterDefinition extends Element {
   ): ParameterDefinition {
     const newInstance: ParameterDefinition = Element.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveCode.parsePrimitive(json.name, json._name);
     }
-    if (json.use) {
+    if (json.use !== undefined) {
       newInstance.use = ParameterUse.parsePrimitive(json.use, json._use);
     }
-    if (json.min) {
+    if (json.min !== undefined) {
       newInstance.min = PrimitiveInteger.parsePrimitive(json.min, json._min);
     }
-    if (json.max) {
+    if (json.max !== undefined) {
       newInstance.max = PrimitiveString.parsePrimitive(json.max, json._max);
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveString.parsePrimitive(json.documentation, json._documentation);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = FHIRAllTypes.parsePrimitive(json.type, json._type);
     }
-    if (json.profile) {
+    if (json.profile !== undefined) {
       newInstance.profile = PrimitiveCanonical.parsePrimitive(json.profile, json._profile);
     }
     return newInstance;
@@ -107,7 +107,11 @@ export class ParameterDefinition extends Element {
 
     return result;
   }
-  
+
+  public clone(): ParameterDefinition {
+    return ParameterDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ParameterDefinition";
   }

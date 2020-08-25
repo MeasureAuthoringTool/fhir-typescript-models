@@ -22,7 +22,16 @@ export class SpecimenContainedPreference extends PrimitiveCode {
     const castInput = input as SpecimenContainedPreference;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "SpecimenContainedPreference";
   }
-  
+
+  public clone(): SpecimenContainedPreference {
+    const result = new SpecimenContainedPreference();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "SpecimenContainedPreference";
   }

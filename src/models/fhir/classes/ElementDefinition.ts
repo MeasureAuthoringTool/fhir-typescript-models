@@ -144,604 +144,604 @@ export class ElementDefinition extends BackboneElement {
   ): ElementDefinition {
     const newInstance: ElementDefinition = BackboneElement.parse(json, providedInstance);
   
-    if (json.path) {
+    if (json.path !== undefined) {
       newInstance.path = PrimitiveString.parsePrimitive(json.path, json._path);
     }
-    if (json.representation) {
+    if (json.representation !== undefined) {
       newInstance.representation = json.representation.map((x, i) => {
         const ext = json._representation && json._representation[i];
         return PropertyRepresentation.parsePrimitive(x, ext);
       });
     }
-    if (json.sliceName) {
+    if (json.sliceName !== undefined) {
       newInstance.sliceName = PrimitiveString.parsePrimitive(json.sliceName, json._sliceName);
     }
-    if (json.sliceIsConstraining) {
+    if (json.sliceIsConstraining !== undefined) {
       newInstance.sliceIsConstraining = PrimitiveBoolean.parsePrimitive(json.sliceIsConstraining, json._sliceIsConstraining);
     }
-    if (json.label) {
+    if (json.label !== undefined) {
       newInstance.label = PrimitiveString.parsePrimitive(json.label, json._label);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = json.code.map((x) => Coding.parse(x));
     }
-    if (json.slicing) {
+    if (json.slicing !== undefined) {
       newInstance.slicing = ElementDefinitionSlicing.parse(json.slicing);
     }
-    if (json.short) {
+    if (json.short !== undefined) {
       newInstance.short = PrimitiveString.parsePrimitive(json.short, json._short);
     }
-    if (json.definition) {
+    if (json.definition !== undefined) {
       newInstance.definition = PrimitiveMarkdown.parsePrimitive(json.definition, json._definition);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveMarkdown.parsePrimitive(json.comment, json._comment);
     }
-    if (json.requirements) {
+    if (json.requirements !== undefined) {
       newInstance.requirements = PrimitiveMarkdown.parsePrimitive(json.requirements, json._requirements);
     }
-    if (json.alias) {
+    if (json.alias !== undefined) {
       newInstance.alias = json.alias.map((x, i) => {
         const ext = json._alias && json._alias[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.min) {
+    if (json.min !== undefined) {
       newInstance.min = PrimitiveUnsignedInt.parsePrimitive(json.min, json._min);
     }
-    if (json.max) {
+    if (json.max !== undefined) {
       newInstance.max = PrimitiveString.parsePrimitive(json.max, json._max);
     }
-    if (json.base) {
+    if (json.base !== undefined) {
       newInstance.base = ElementDefinitionBase.parse(json.base);
     }
-    if (json.contentReference) {
+    if (json.contentReference !== undefined) {
       newInstance.contentReference = PrimitiveUri.parsePrimitive(json.contentReference, json._contentReference);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => ElementDefinitionType.parse(x));
     }
-    if (json.defaultValueBase64Binary) {
+    if (json.defaultValueBase64Binary !== undefined) {
       newInstance.defaultValue = PrimitiveBase64Binary.parsePrimitive(json.defaultValueBase64Binary, json._defaultValueBase64Binary);
     }
-    if (json.defaultValueBoolean) {
+    if (json.defaultValueBoolean !== undefined) {
       newInstance.defaultValue = PrimitiveBoolean.parsePrimitive(json.defaultValueBoolean, json._defaultValueBoolean);
     }
-    if (json.defaultValueCanonical) {
+    if (json.defaultValueCanonical !== undefined) {
       newInstance.defaultValue = PrimitiveCanonical.parsePrimitive(json.defaultValueCanonical, json._defaultValueCanonical);
     }
-    if (json.defaultValueCode) {
+    if (json.defaultValueCode !== undefined) {
       newInstance.defaultValue = PrimitiveCode.parsePrimitive(json.defaultValueCode, json._defaultValueCode);
     }
-    if (json.defaultValueDate) {
+    if (json.defaultValueDate !== undefined) {
       newInstance.defaultValue = PrimitiveDate.parsePrimitive(json.defaultValueDate, json._defaultValueDate);
     }
-    if (json.defaultValueDateTime) {
+    if (json.defaultValueDateTime !== undefined) {
       newInstance.defaultValue = PrimitiveDateTime.parsePrimitive(json.defaultValueDateTime, json._defaultValueDateTime);
     }
-    if (json.defaultValueDecimal) {
+    if (json.defaultValueDecimal !== undefined) {
       newInstance.defaultValue = PrimitiveDecimal.parsePrimitive(json.defaultValueDecimal, json._defaultValueDecimal);
     }
-    if (json.defaultValueId) {
+    if (json.defaultValueId !== undefined) {
       newInstance.defaultValue = PrimitiveId.parsePrimitive(json.defaultValueId, json._defaultValueId);
     }
-    if (json.defaultValueInstant) {
+    if (json.defaultValueInstant !== undefined) {
       newInstance.defaultValue = PrimitiveInstant.parsePrimitive(json.defaultValueInstant, json._defaultValueInstant);
     }
-    if (json.defaultValueInteger) {
+    if (json.defaultValueInteger !== undefined) {
       newInstance.defaultValue = PrimitiveInteger.parsePrimitive(json.defaultValueInteger, json._defaultValueInteger);
     }
-    if (json.defaultValueMarkdown) {
+    if (json.defaultValueMarkdown !== undefined) {
       newInstance.defaultValue = PrimitiveMarkdown.parsePrimitive(json.defaultValueMarkdown, json._defaultValueMarkdown);
     }
-    if (json.defaultValueOid) {
+    if (json.defaultValueOid !== undefined) {
       newInstance.defaultValue = PrimitiveOid.parsePrimitive(json.defaultValueOid, json._defaultValueOid);
     }
-    if (json.defaultValuePositiveInt) {
+    if (json.defaultValuePositiveInt !== undefined) {
       newInstance.defaultValue = PrimitivePositiveInt.parsePrimitive(json.defaultValuePositiveInt, json._defaultValuePositiveInt);
     }
-    if (json.defaultValueString) {
+    if (json.defaultValueString !== undefined) {
       newInstance.defaultValue = PrimitiveString.parsePrimitive(json.defaultValueString, json._defaultValueString);
     }
-    if (json.defaultValueTime) {
+    if (json.defaultValueTime !== undefined) {
       newInstance.defaultValue = PrimitiveTime.parsePrimitive(json.defaultValueTime, json._defaultValueTime);
     }
-    if (json.defaultValueUnsignedInt) {
+    if (json.defaultValueUnsignedInt !== undefined) {
       newInstance.defaultValue = PrimitiveUnsignedInt.parsePrimitive(json.defaultValueUnsignedInt, json._defaultValueUnsignedInt);
     }
-    if (json.defaultValueUri) {
+    if (json.defaultValueUri !== undefined) {
       newInstance.defaultValue = PrimitiveUri.parsePrimitive(json.defaultValueUri, json._defaultValueUri);
     }
-    if (json.defaultValueUrl) {
+    if (json.defaultValueUrl !== undefined) {
       newInstance.defaultValue = PrimitiveUrl.parsePrimitive(json.defaultValueUrl, json._defaultValueUrl);
     }
-    if (json.defaultValueUuid) {
+    if (json.defaultValueUuid !== undefined) {
       newInstance.defaultValue = PrimitiveUuid.parsePrimitive(json.defaultValueUuid, json._defaultValueUuid);
     }
-    if (json.defaultValueAddress) {
+    if (json.defaultValueAddress !== undefined) {
       newInstance.defaultValue = Address.parse(json.defaultValueAddress);
     }
-    if (json.defaultValueAge) {
+    if (json.defaultValueAge !== undefined) {
       newInstance.defaultValue = Age.parse(json.defaultValueAge);
     }
-    if (json.defaultValueAnnotation) {
+    if (json.defaultValueAnnotation !== undefined) {
       newInstance.defaultValue = Annotation.parse(json.defaultValueAnnotation);
     }
-    if (json.defaultValueAttachment) {
+    if (json.defaultValueAttachment !== undefined) {
       newInstance.defaultValue = Attachment.parse(json.defaultValueAttachment);
     }
-    if (json.defaultValueCodeableConcept) {
+    if (json.defaultValueCodeableConcept !== undefined) {
       newInstance.defaultValue = CodeableConcept.parse(json.defaultValueCodeableConcept);
     }
-    if (json.defaultValueCoding) {
+    if (json.defaultValueCoding !== undefined) {
       newInstance.defaultValue = Coding.parse(json.defaultValueCoding);
     }
-    if (json.defaultValueContactPoint) {
+    if (json.defaultValueContactPoint !== undefined) {
       newInstance.defaultValue = ContactPoint.parse(json.defaultValueContactPoint);
     }
-    if (json.defaultValueCount) {
+    if (json.defaultValueCount !== undefined) {
       newInstance.defaultValue = Count.parse(json.defaultValueCount);
     }
-    if (json.defaultValueDistance) {
+    if (json.defaultValueDistance !== undefined) {
       newInstance.defaultValue = Distance.parse(json.defaultValueDistance);
     }
-    if (json.defaultValueDuration) {
+    if (json.defaultValueDuration !== undefined) {
       newInstance.defaultValue = Duration.parse(json.defaultValueDuration);
     }
-    if (json.defaultValueHumanName) {
+    if (json.defaultValueHumanName !== undefined) {
       newInstance.defaultValue = HumanName.parse(json.defaultValueHumanName);
     }
-    if (json.defaultValueIdentifier) {
+    if (json.defaultValueIdentifier !== undefined) {
       newInstance.defaultValue = Identifier.parse(json.defaultValueIdentifier);
     }
-    if (json.defaultValueMoney) {
+    if (json.defaultValueMoney !== undefined) {
       newInstance.defaultValue = Money.parse(json.defaultValueMoney);
     }
-    if (json.defaultValuePeriod) {
+    if (json.defaultValuePeriod !== undefined) {
       newInstance.defaultValue = Period.parse(json.defaultValuePeriod);
     }
-    if (json.defaultValueQuantity) {
+    if (json.defaultValueQuantity !== undefined) {
       newInstance.defaultValue = Quantity.parse(json.defaultValueQuantity);
     }
-    if (json.defaultValueRange) {
+    if (json.defaultValueRange !== undefined) {
       newInstance.defaultValue = Range.parse(json.defaultValueRange);
     }
-    if (json.defaultValueRatio) {
+    if (json.defaultValueRatio !== undefined) {
       newInstance.defaultValue = Ratio.parse(json.defaultValueRatio);
     }
-    if (json.defaultValueReference) {
+    if (json.defaultValueReference !== undefined) {
       newInstance.defaultValue = Reference.parse(json.defaultValueReference);
     }
-    if (json.defaultValueSampledData) {
+    if (json.defaultValueSampledData !== undefined) {
       newInstance.defaultValue = SampledData.parse(json.defaultValueSampledData);
     }
-    if (json.defaultValueSignature) {
+    if (json.defaultValueSignature !== undefined) {
       newInstance.defaultValue = Signature.parse(json.defaultValueSignature);
     }
-    if (json.defaultValueTiming) {
+    if (json.defaultValueTiming !== undefined) {
       newInstance.defaultValue = Timing.parse(json.defaultValueTiming);
     }
-    if (json.defaultValueContactDetail) {
+    if (json.defaultValueContactDetail !== undefined) {
       newInstance.defaultValue = ContactDetail.parse(json.defaultValueContactDetail);
     }
-    if (json.defaultValueContributor) {
+    if (json.defaultValueContributor !== undefined) {
       newInstance.defaultValue = Contributor.parse(json.defaultValueContributor);
     }
-    if (json.defaultValueDataRequirement) {
+    if (json.defaultValueDataRequirement !== undefined) {
       newInstance.defaultValue = DataRequirement.parse(json.defaultValueDataRequirement);
     }
-    if (json.defaultValueExpression) {
+    if (json.defaultValueExpression !== undefined) {
       newInstance.defaultValue = Expression.parse(json.defaultValueExpression);
     }
-    if (json.defaultValueParameterDefinition) {
+    if (json.defaultValueParameterDefinition !== undefined) {
       newInstance.defaultValue = ParameterDefinition.parse(json.defaultValueParameterDefinition);
     }
-    if (json.defaultValueRelatedArtifact) {
+    if (json.defaultValueRelatedArtifact !== undefined) {
       newInstance.defaultValue = RelatedArtifact.parse(json.defaultValueRelatedArtifact);
     }
-    if (json.defaultValueTriggerDefinition) {
+    if (json.defaultValueTriggerDefinition !== undefined) {
       newInstance.defaultValue = TriggerDefinition.parse(json.defaultValueTriggerDefinition);
     }
-    if (json.defaultValueUsageContext) {
+    if (json.defaultValueUsageContext !== undefined) {
       newInstance.defaultValue = UsageContext.parse(json.defaultValueUsageContext);
     }
-    if (json.defaultValueDosage) {
+    if (json.defaultValueDosage !== undefined) {
       newInstance.defaultValue = Dosage.parse(json.defaultValueDosage);
     }
-    if (json.defaultValueMeta) {
+    if (json.defaultValueMeta !== undefined) {
       newInstance.defaultValue = Meta.parse(json.defaultValueMeta);
     }
-    if (json.meaningWhenMissing) {
+    if (json.meaningWhenMissing !== undefined) {
       newInstance.meaningWhenMissing = PrimitiveMarkdown.parsePrimitive(json.meaningWhenMissing, json._meaningWhenMissing);
     }
-    if (json.orderMeaning) {
+    if (json.orderMeaning !== undefined) {
       newInstance.orderMeaning = PrimitiveString.parsePrimitive(json.orderMeaning, json._orderMeaning);
     }
-    if (json.fixedBase64Binary) {
+    if (json.fixedBase64Binary !== undefined) {
       newInstance.fixed = PrimitiveBase64Binary.parsePrimitive(json.fixedBase64Binary, json._fixedBase64Binary);
     }
-    if (json.fixedBoolean) {
+    if (json.fixedBoolean !== undefined) {
       newInstance.fixed = PrimitiveBoolean.parsePrimitive(json.fixedBoolean, json._fixedBoolean);
     }
-    if (json.fixedCanonical) {
+    if (json.fixedCanonical !== undefined) {
       newInstance.fixed = PrimitiveCanonical.parsePrimitive(json.fixedCanonical, json._fixedCanonical);
     }
-    if (json.fixedCode) {
+    if (json.fixedCode !== undefined) {
       newInstance.fixed = PrimitiveCode.parsePrimitive(json.fixedCode, json._fixedCode);
     }
-    if (json.fixedDate) {
+    if (json.fixedDate !== undefined) {
       newInstance.fixed = PrimitiveDate.parsePrimitive(json.fixedDate, json._fixedDate);
     }
-    if (json.fixedDateTime) {
+    if (json.fixedDateTime !== undefined) {
       newInstance.fixed = PrimitiveDateTime.parsePrimitive(json.fixedDateTime, json._fixedDateTime);
     }
-    if (json.fixedDecimal) {
+    if (json.fixedDecimal !== undefined) {
       newInstance.fixed = PrimitiveDecimal.parsePrimitive(json.fixedDecimal, json._fixedDecimal);
     }
-    if (json.fixedId) {
+    if (json.fixedId !== undefined) {
       newInstance.fixed = PrimitiveId.parsePrimitive(json.fixedId, json._fixedId);
     }
-    if (json.fixedInstant) {
+    if (json.fixedInstant !== undefined) {
       newInstance.fixed = PrimitiveInstant.parsePrimitive(json.fixedInstant, json._fixedInstant);
     }
-    if (json.fixedInteger) {
+    if (json.fixedInteger !== undefined) {
       newInstance.fixed = PrimitiveInteger.parsePrimitive(json.fixedInteger, json._fixedInteger);
     }
-    if (json.fixedMarkdown) {
+    if (json.fixedMarkdown !== undefined) {
       newInstance.fixed = PrimitiveMarkdown.parsePrimitive(json.fixedMarkdown, json._fixedMarkdown);
     }
-    if (json.fixedOid) {
+    if (json.fixedOid !== undefined) {
       newInstance.fixed = PrimitiveOid.parsePrimitive(json.fixedOid, json._fixedOid);
     }
-    if (json.fixedPositiveInt) {
+    if (json.fixedPositiveInt !== undefined) {
       newInstance.fixed = PrimitivePositiveInt.parsePrimitive(json.fixedPositiveInt, json._fixedPositiveInt);
     }
-    if (json.fixedString) {
+    if (json.fixedString !== undefined) {
       newInstance.fixed = PrimitiveString.parsePrimitive(json.fixedString, json._fixedString);
     }
-    if (json.fixedTime) {
+    if (json.fixedTime !== undefined) {
       newInstance.fixed = PrimitiveTime.parsePrimitive(json.fixedTime, json._fixedTime);
     }
-    if (json.fixedUnsignedInt) {
+    if (json.fixedUnsignedInt !== undefined) {
       newInstance.fixed = PrimitiveUnsignedInt.parsePrimitive(json.fixedUnsignedInt, json._fixedUnsignedInt);
     }
-    if (json.fixedUri) {
+    if (json.fixedUri !== undefined) {
       newInstance.fixed = PrimitiveUri.parsePrimitive(json.fixedUri, json._fixedUri);
     }
-    if (json.fixedUrl) {
+    if (json.fixedUrl !== undefined) {
       newInstance.fixed = PrimitiveUrl.parsePrimitive(json.fixedUrl, json._fixedUrl);
     }
-    if (json.fixedUuid) {
+    if (json.fixedUuid !== undefined) {
       newInstance.fixed = PrimitiveUuid.parsePrimitive(json.fixedUuid, json._fixedUuid);
     }
-    if (json.fixedAddress) {
+    if (json.fixedAddress !== undefined) {
       newInstance.fixed = Address.parse(json.fixedAddress);
     }
-    if (json.fixedAge) {
+    if (json.fixedAge !== undefined) {
       newInstance.fixed = Age.parse(json.fixedAge);
     }
-    if (json.fixedAnnotation) {
+    if (json.fixedAnnotation !== undefined) {
       newInstance.fixed = Annotation.parse(json.fixedAnnotation);
     }
-    if (json.fixedAttachment) {
+    if (json.fixedAttachment !== undefined) {
       newInstance.fixed = Attachment.parse(json.fixedAttachment);
     }
-    if (json.fixedCodeableConcept) {
+    if (json.fixedCodeableConcept !== undefined) {
       newInstance.fixed = CodeableConcept.parse(json.fixedCodeableConcept);
     }
-    if (json.fixedCoding) {
+    if (json.fixedCoding !== undefined) {
       newInstance.fixed = Coding.parse(json.fixedCoding);
     }
-    if (json.fixedContactPoint) {
+    if (json.fixedContactPoint !== undefined) {
       newInstance.fixed = ContactPoint.parse(json.fixedContactPoint);
     }
-    if (json.fixedCount) {
+    if (json.fixedCount !== undefined) {
       newInstance.fixed = Count.parse(json.fixedCount);
     }
-    if (json.fixedDistance) {
+    if (json.fixedDistance !== undefined) {
       newInstance.fixed = Distance.parse(json.fixedDistance);
     }
-    if (json.fixedDuration) {
+    if (json.fixedDuration !== undefined) {
       newInstance.fixed = Duration.parse(json.fixedDuration);
     }
-    if (json.fixedHumanName) {
+    if (json.fixedHumanName !== undefined) {
       newInstance.fixed = HumanName.parse(json.fixedHumanName);
     }
-    if (json.fixedIdentifier) {
+    if (json.fixedIdentifier !== undefined) {
       newInstance.fixed = Identifier.parse(json.fixedIdentifier);
     }
-    if (json.fixedMoney) {
+    if (json.fixedMoney !== undefined) {
       newInstance.fixed = Money.parse(json.fixedMoney);
     }
-    if (json.fixedPeriod) {
+    if (json.fixedPeriod !== undefined) {
       newInstance.fixed = Period.parse(json.fixedPeriod);
     }
-    if (json.fixedQuantity) {
+    if (json.fixedQuantity !== undefined) {
       newInstance.fixed = Quantity.parse(json.fixedQuantity);
     }
-    if (json.fixedRange) {
+    if (json.fixedRange !== undefined) {
       newInstance.fixed = Range.parse(json.fixedRange);
     }
-    if (json.fixedRatio) {
+    if (json.fixedRatio !== undefined) {
       newInstance.fixed = Ratio.parse(json.fixedRatio);
     }
-    if (json.fixedReference) {
+    if (json.fixedReference !== undefined) {
       newInstance.fixed = Reference.parse(json.fixedReference);
     }
-    if (json.fixedSampledData) {
+    if (json.fixedSampledData !== undefined) {
       newInstance.fixed = SampledData.parse(json.fixedSampledData);
     }
-    if (json.fixedSignature) {
+    if (json.fixedSignature !== undefined) {
       newInstance.fixed = Signature.parse(json.fixedSignature);
     }
-    if (json.fixedTiming) {
+    if (json.fixedTiming !== undefined) {
       newInstance.fixed = Timing.parse(json.fixedTiming);
     }
-    if (json.fixedContactDetail) {
+    if (json.fixedContactDetail !== undefined) {
       newInstance.fixed = ContactDetail.parse(json.fixedContactDetail);
     }
-    if (json.fixedContributor) {
+    if (json.fixedContributor !== undefined) {
       newInstance.fixed = Contributor.parse(json.fixedContributor);
     }
-    if (json.fixedDataRequirement) {
+    if (json.fixedDataRequirement !== undefined) {
       newInstance.fixed = DataRequirement.parse(json.fixedDataRequirement);
     }
-    if (json.fixedExpression) {
+    if (json.fixedExpression !== undefined) {
       newInstance.fixed = Expression.parse(json.fixedExpression);
     }
-    if (json.fixedParameterDefinition) {
+    if (json.fixedParameterDefinition !== undefined) {
       newInstance.fixed = ParameterDefinition.parse(json.fixedParameterDefinition);
     }
-    if (json.fixedRelatedArtifact) {
+    if (json.fixedRelatedArtifact !== undefined) {
       newInstance.fixed = RelatedArtifact.parse(json.fixedRelatedArtifact);
     }
-    if (json.fixedTriggerDefinition) {
+    if (json.fixedTriggerDefinition !== undefined) {
       newInstance.fixed = TriggerDefinition.parse(json.fixedTriggerDefinition);
     }
-    if (json.fixedUsageContext) {
+    if (json.fixedUsageContext !== undefined) {
       newInstance.fixed = UsageContext.parse(json.fixedUsageContext);
     }
-    if (json.fixedDosage) {
+    if (json.fixedDosage !== undefined) {
       newInstance.fixed = Dosage.parse(json.fixedDosage);
     }
-    if (json.fixedMeta) {
+    if (json.fixedMeta !== undefined) {
       newInstance.fixed = Meta.parse(json.fixedMeta);
     }
-    if (json.patternBase64Binary) {
+    if (json.patternBase64Binary !== undefined) {
       newInstance.pattern = PrimitiveBase64Binary.parsePrimitive(json.patternBase64Binary, json._patternBase64Binary);
     }
-    if (json.patternBoolean) {
+    if (json.patternBoolean !== undefined) {
       newInstance.pattern = PrimitiveBoolean.parsePrimitive(json.patternBoolean, json._patternBoolean);
     }
-    if (json.patternCanonical) {
+    if (json.patternCanonical !== undefined) {
       newInstance.pattern = PrimitiveCanonical.parsePrimitive(json.patternCanonical, json._patternCanonical);
     }
-    if (json.patternCode) {
+    if (json.patternCode !== undefined) {
       newInstance.pattern = PrimitiveCode.parsePrimitive(json.patternCode, json._patternCode);
     }
-    if (json.patternDate) {
+    if (json.patternDate !== undefined) {
       newInstance.pattern = PrimitiveDate.parsePrimitive(json.patternDate, json._patternDate);
     }
-    if (json.patternDateTime) {
+    if (json.patternDateTime !== undefined) {
       newInstance.pattern = PrimitiveDateTime.parsePrimitive(json.patternDateTime, json._patternDateTime);
     }
-    if (json.patternDecimal) {
+    if (json.patternDecimal !== undefined) {
       newInstance.pattern = PrimitiveDecimal.parsePrimitive(json.patternDecimal, json._patternDecimal);
     }
-    if (json.patternId) {
+    if (json.patternId !== undefined) {
       newInstance.pattern = PrimitiveId.parsePrimitive(json.patternId, json._patternId);
     }
-    if (json.patternInstant) {
+    if (json.patternInstant !== undefined) {
       newInstance.pattern = PrimitiveInstant.parsePrimitive(json.patternInstant, json._patternInstant);
     }
-    if (json.patternInteger) {
+    if (json.patternInteger !== undefined) {
       newInstance.pattern = PrimitiveInteger.parsePrimitive(json.patternInteger, json._patternInteger);
     }
-    if (json.patternMarkdown) {
+    if (json.patternMarkdown !== undefined) {
       newInstance.pattern = PrimitiveMarkdown.parsePrimitive(json.patternMarkdown, json._patternMarkdown);
     }
-    if (json.patternOid) {
+    if (json.patternOid !== undefined) {
       newInstance.pattern = PrimitiveOid.parsePrimitive(json.patternOid, json._patternOid);
     }
-    if (json.patternPositiveInt) {
+    if (json.patternPositiveInt !== undefined) {
       newInstance.pattern = PrimitivePositiveInt.parsePrimitive(json.patternPositiveInt, json._patternPositiveInt);
     }
-    if (json.patternString) {
+    if (json.patternString !== undefined) {
       newInstance.pattern = PrimitiveString.parsePrimitive(json.patternString, json._patternString);
     }
-    if (json.patternTime) {
+    if (json.patternTime !== undefined) {
       newInstance.pattern = PrimitiveTime.parsePrimitive(json.patternTime, json._patternTime);
     }
-    if (json.patternUnsignedInt) {
+    if (json.patternUnsignedInt !== undefined) {
       newInstance.pattern = PrimitiveUnsignedInt.parsePrimitive(json.patternUnsignedInt, json._patternUnsignedInt);
     }
-    if (json.patternUri) {
+    if (json.patternUri !== undefined) {
       newInstance.pattern = PrimitiveUri.parsePrimitive(json.patternUri, json._patternUri);
     }
-    if (json.patternUrl) {
+    if (json.patternUrl !== undefined) {
       newInstance.pattern = PrimitiveUrl.parsePrimitive(json.patternUrl, json._patternUrl);
     }
-    if (json.patternUuid) {
+    if (json.patternUuid !== undefined) {
       newInstance.pattern = PrimitiveUuid.parsePrimitive(json.patternUuid, json._patternUuid);
     }
-    if (json.patternAddress) {
+    if (json.patternAddress !== undefined) {
       newInstance.pattern = Address.parse(json.patternAddress);
     }
-    if (json.patternAge) {
+    if (json.patternAge !== undefined) {
       newInstance.pattern = Age.parse(json.patternAge);
     }
-    if (json.patternAnnotation) {
+    if (json.patternAnnotation !== undefined) {
       newInstance.pattern = Annotation.parse(json.patternAnnotation);
     }
-    if (json.patternAttachment) {
+    if (json.patternAttachment !== undefined) {
       newInstance.pattern = Attachment.parse(json.patternAttachment);
     }
-    if (json.patternCodeableConcept) {
+    if (json.patternCodeableConcept !== undefined) {
       newInstance.pattern = CodeableConcept.parse(json.patternCodeableConcept);
     }
-    if (json.patternCoding) {
+    if (json.patternCoding !== undefined) {
       newInstance.pattern = Coding.parse(json.patternCoding);
     }
-    if (json.patternContactPoint) {
+    if (json.patternContactPoint !== undefined) {
       newInstance.pattern = ContactPoint.parse(json.patternContactPoint);
     }
-    if (json.patternCount) {
+    if (json.patternCount !== undefined) {
       newInstance.pattern = Count.parse(json.patternCount);
     }
-    if (json.patternDistance) {
+    if (json.patternDistance !== undefined) {
       newInstance.pattern = Distance.parse(json.patternDistance);
     }
-    if (json.patternDuration) {
+    if (json.patternDuration !== undefined) {
       newInstance.pattern = Duration.parse(json.patternDuration);
     }
-    if (json.patternHumanName) {
+    if (json.patternHumanName !== undefined) {
       newInstance.pattern = HumanName.parse(json.patternHumanName);
     }
-    if (json.patternIdentifier) {
+    if (json.patternIdentifier !== undefined) {
       newInstance.pattern = Identifier.parse(json.patternIdentifier);
     }
-    if (json.patternMoney) {
+    if (json.patternMoney !== undefined) {
       newInstance.pattern = Money.parse(json.patternMoney);
     }
-    if (json.patternPeriod) {
+    if (json.patternPeriod !== undefined) {
       newInstance.pattern = Period.parse(json.patternPeriod);
     }
-    if (json.patternQuantity) {
+    if (json.patternQuantity !== undefined) {
       newInstance.pattern = Quantity.parse(json.patternQuantity);
     }
-    if (json.patternRange) {
+    if (json.patternRange !== undefined) {
       newInstance.pattern = Range.parse(json.patternRange);
     }
-    if (json.patternRatio) {
+    if (json.patternRatio !== undefined) {
       newInstance.pattern = Ratio.parse(json.patternRatio);
     }
-    if (json.patternReference) {
+    if (json.patternReference !== undefined) {
       newInstance.pattern = Reference.parse(json.patternReference);
     }
-    if (json.patternSampledData) {
+    if (json.patternSampledData !== undefined) {
       newInstance.pattern = SampledData.parse(json.patternSampledData);
     }
-    if (json.patternSignature) {
+    if (json.patternSignature !== undefined) {
       newInstance.pattern = Signature.parse(json.patternSignature);
     }
-    if (json.patternTiming) {
+    if (json.patternTiming !== undefined) {
       newInstance.pattern = Timing.parse(json.patternTiming);
     }
-    if (json.patternContactDetail) {
+    if (json.patternContactDetail !== undefined) {
       newInstance.pattern = ContactDetail.parse(json.patternContactDetail);
     }
-    if (json.patternContributor) {
+    if (json.patternContributor !== undefined) {
       newInstance.pattern = Contributor.parse(json.patternContributor);
     }
-    if (json.patternDataRequirement) {
+    if (json.patternDataRequirement !== undefined) {
       newInstance.pattern = DataRequirement.parse(json.patternDataRequirement);
     }
-    if (json.patternExpression) {
+    if (json.patternExpression !== undefined) {
       newInstance.pattern = Expression.parse(json.patternExpression);
     }
-    if (json.patternParameterDefinition) {
+    if (json.patternParameterDefinition !== undefined) {
       newInstance.pattern = ParameterDefinition.parse(json.patternParameterDefinition);
     }
-    if (json.patternRelatedArtifact) {
+    if (json.patternRelatedArtifact !== undefined) {
       newInstance.pattern = RelatedArtifact.parse(json.patternRelatedArtifact);
     }
-    if (json.patternTriggerDefinition) {
+    if (json.patternTriggerDefinition !== undefined) {
       newInstance.pattern = TriggerDefinition.parse(json.patternTriggerDefinition);
     }
-    if (json.patternUsageContext) {
+    if (json.patternUsageContext !== undefined) {
       newInstance.pattern = UsageContext.parse(json.patternUsageContext);
     }
-    if (json.patternDosage) {
+    if (json.patternDosage !== undefined) {
       newInstance.pattern = Dosage.parse(json.patternDosage);
     }
-    if (json.patternMeta) {
+    if (json.patternMeta !== undefined) {
       newInstance.pattern = Meta.parse(json.patternMeta);
     }
-    if (json.example) {
+    if (json.example !== undefined) {
       newInstance.example = json.example.map((x) => ElementDefinitionExample.parse(x));
     }
-    if (json.minValueDate) {
+    if (json.minValueDate !== undefined) {
       newInstance.minValue = PrimitiveDate.parsePrimitive(json.minValueDate, json._minValueDate);
     }
-    if (json.minValueDateTime) {
+    if (json.minValueDateTime !== undefined) {
       newInstance.minValue = PrimitiveDateTime.parsePrimitive(json.minValueDateTime, json._minValueDateTime);
     }
-    if (json.minValueInstant) {
+    if (json.minValueInstant !== undefined) {
       newInstance.minValue = PrimitiveInstant.parsePrimitive(json.minValueInstant, json._minValueInstant);
     }
-    if (json.minValueTime) {
+    if (json.minValueTime !== undefined) {
       newInstance.minValue = PrimitiveTime.parsePrimitive(json.minValueTime, json._minValueTime);
     }
-    if (json.minValueDecimal) {
+    if (json.minValueDecimal !== undefined) {
       newInstance.minValue = PrimitiveDecimal.parsePrimitive(json.minValueDecimal, json._minValueDecimal);
     }
-    if (json.minValueInteger) {
+    if (json.minValueInteger !== undefined) {
       newInstance.minValue = PrimitiveInteger.parsePrimitive(json.minValueInteger, json._minValueInteger);
     }
-    if (json.minValuePositiveInt) {
+    if (json.minValuePositiveInt !== undefined) {
       newInstance.minValue = PrimitivePositiveInt.parsePrimitive(json.minValuePositiveInt, json._minValuePositiveInt);
     }
-    if (json.minValueUnsignedInt) {
+    if (json.minValueUnsignedInt !== undefined) {
       newInstance.minValue = PrimitiveUnsignedInt.parsePrimitive(json.minValueUnsignedInt, json._minValueUnsignedInt);
     }
-    if (json.minValueQuantity) {
+    if (json.minValueQuantity !== undefined) {
       newInstance.minValue = Quantity.parse(json.minValueQuantity);
     }
-    if (json.maxValueDate) {
+    if (json.maxValueDate !== undefined) {
       newInstance.maxValue = PrimitiveDate.parsePrimitive(json.maxValueDate, json._maxValueDate);
     }
-    if (json.maxValueDateTime) {
+    if (json.maxValueDateTime !== undefined) {
       newInstance.maxValue = PrimitiveDateTime.parsePrimitive(json.maxValueDateTime, json._maxValueDateTime);
     }
-    if (json.maxValueInstant) {
+    if (json.maxValueInstant !== undefined) {
       newInstance.maxValue = PrimitiveInstant.parsePrimitive(json.maxValueInstant, json._maxValueInstant);
     }
-    if (json.maxValueTime) {
+    if (json.maxValueTime !== undefined) {
       newInstance.maxValue = PrimitiveTime.parsePrimitive(json.maxValueTime, json._maxValueTime);
     }
-    if (json.maxValueDecimal) {
+    if (json.maxValueDecimal !== undefined) {
       newInstance.maxValue = PrimitiveDecimal.parsePrimitive(json.maxValueDecimal, json._maxValueDecimal);
     }
-    if (json.maxValueInteger) {
+    if (json.maxValueInteger !== undefined) {
       newInstance.maxValue = PrimitiveInteger.parsePrimitive(json.maxValueInteger, json._maxValueInteger);
     }
-    if (json.maxValuePositiveInt) {
+    if (json.maxValuePositiveInt !== undefined) {
       newInstance.maxValue = PrimitivePositiveInt.parsePrimitive(json.maxValuePositiveInt, json._maxValuePositiveInt);
     }
-    if (json.maxValueUnsignedInt) {
+    if (json.maxValueUnsignedInt !== undefined) {
       newInstance.maxValue = PrimitiveUnsignedInt.parsePrimitive(json.maxValueUnsignedInt, json._maxValueUnsignedInt);
     }
-    if (json.maxValueQuantity) {
+    if (json.maxValueQuantity !== undefined) {
       newInstance.maxValue = Quantity.parse(json.maxValueQuantity);
     }
-    if (json.maxLength) {
+    if (json.maxLength !== undefined) {
       newInstance.maxLength = PrimitiveInteger.parsePrimitive(json.maxLength, json._maxLength);
     }
-    if (json.condition) {
+    if (json.condition !== undefined) {
       newInstance.condition = json.condition.map((x, i) => {
         const ext = json._condition && json._condition[i];
         return PrimitiveId.parsePrimitive(x, ext);
       });
     }
-    if (json.constraint) {
+    if (json.constraint !== undefined) {
       newInstance.constraint = json.constraint.map((x) => ElementDefinitionConstraint.parse(x));
     }
-    if (json.mustSupport) {
+    if (json.mustSupport !== undefined) {
       newInstance.mustSupport = PrimitiveBoolean.parsePrimitive(json.mustSupport, json._mustSupport);
     }
-    if (json.isModifier) {
+    if (json.isModifier !== undefined) {
       newInstance.isModifier = PrimitiveBoolean.parsePrimitive(json.isModifier, json._isModifier);
     }
-    if (json.isModifierReason) {
+    if (json.isModifierReason !== undefined) {
       newInstance.isModifierReason = PrimitiveString.parsePrimitive(json.isModifierReason, json._isModifierReason);
     }
-    if (json.isSummary) {
+    if (json.isSummary !== undefined) {
       newInstance.isSummary = PrimitiveBoolean.parsePrimitive(json.isSummary, json._isSummary);
     }
-    if (json.binding) {
+    if (json.binding !== undefined) {
       newInstance.binding = ElementDefinitionBinding.parse(json.binding);
     }
-    if (json.mapping) {
+    if (json.mapping !== undefined) {
       newInstance.mapping = json.mapping.map((x) => ElementDefinitionMapping.parse(x));
     }
     return newInstance;
@@ -1639,7 +1639,11 @@ export class ElementDefinition extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ElementDefinition {
+    return ElementDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ElementDefinition";
   }

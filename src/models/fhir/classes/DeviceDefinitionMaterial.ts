@@ -26,13 +26,13 @@ export class DeviceDefinitionMaterial extends BackboneElement {
   ): DeviceDefinitionMaterial {
     const newInstance: DeviceDefinitionMaterial = BackboneElement.parse(json, providedInstance);
   
-    if (json.substance) {
+    if (json.substance !== undefined) {
       newInstance.substance = CodeableConcept.parse(json.substance);
     }
-    if (json.alternate) {
+    if (json.alternate !== undefined) {
       newInstance.alternate = PrimitiveBoolean.parsePrimitive(json.alternate, json._alternate);
     }
-    if (json.allergenicIndicator) {
+    if (json.allergenicIndicator !== undefined) {
       newInstance.allergenicIndicator = PrimitiveBoolean.parsePrimitive(json.allergenicIndicator, json._allergenicIndicator);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class DeviceDefinitionMaterial extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DeviceDefinitionMaterial {
+    return DeviceDefinitionMaterial.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceDefinitionMaterial";
   }

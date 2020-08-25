@@ -22,7 +22,16 @@ export class ServiceRequestIntent extends PrimitiveCode {
     const castInput = input as ServiceRequestIntent;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ServiceRequestIntent";
   }
-  
+
+  public clone(): ServiceRequestIntent {
+    const result = new ServiceRequestIntent();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ServiceRequestIntent";
   }

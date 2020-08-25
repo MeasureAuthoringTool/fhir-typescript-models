@@ -23,10 +23,10 @@ export class ConsentPolicy extends BackboneElement {
   ): ConsentPolicy {
     const newInstance: ConsentPolicy = BackboneElement.parse(json, providedInstance);
   
-    if (json.authority) {
+    if (json.authority !== undefined) {
       newInstance.authority = PrimitiveUri.parsePrimitive(json.authority, json._authority);
     }
-    if (json.uri) {
+    if (json.uri !== undefined) {
       newInstance.uri = PrimitiveUri.parsePrimitive(json.uri, json._uri);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class ConsentPolicy extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ConsentPolicy {
+    return ConsentPolicy.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ConsentPolicy";
   }

@@ -60,61 +60,61 @@ export class MedicationStatement extends DomainResource {
   ): MedicationStatement {
     const newInstance: MedicationStatement = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = json.partOf.map((x) => Reference.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = MedicationStatementStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.statusReason) {
+    if (json.statusReason !== undefined) {
       newInstance.statusReason = json.statusReason.map((x) => CodeableConcept.parse(x));
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.medicationCodeableConcept) {
+    if (json.medicationCodeableConcept !== undefined) {
       newInstance.medication = CodeableConcept.parse(json.medicationCodeableConcept);
     }
-    if (json.medicationReference) {
+    if (json.medicationReference !== undefined) {
       newInstance.medication = Reference.parse(json.medicationReference);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.context) {
+    if (json.context !== undefined) {
       newInstance.context = Reference.parse(json.context);
     }
-    if (json.effectiveDateTime) {
+    if (json.effectiveDateTime !== undefined) {
       newInstance.effective = PrimitiveDateTime.parsePrimitive(json.effectiveDateTime, json._effectiveDateTime);
     }
-    if (json.effectivePeriod) {
+    if (json.effectivePeriod !== undefined) {
       newInstance.effective = Period.parse(json.effectivePeriod);
     }
-    if (json.dateAsserted) {
+    if (json.dateAsserted !== undefined) {
       newInstance.dateAsserted = PrimitiveDateTime.parsePrimitive(json.dateAsserted, json._dateAsserted);
     }
-    if (json.informationSource) {
+    if (json.informationSource !== undefined) {
       newInstance.informationSource = Reference.parse(json.informationSource);
     }
-    if (json.derivedFrom) {
+    if (json.derivedFrom !== undefined) {
       newInstance.derivedFrom = json.derivedFrom.map((x) => Reference.parse(x));
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.dosage) {
+    if (json.dosage !== undefined) {
       newInstance.dosage = json.dosage.map((x) => Dosage.parse(x));
     }
     return newInstance;
@@ -209,7 +209,11 @@ export class MedicationStatement extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicationStatement {
+    return MedicationStatement.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationStatement";
   }

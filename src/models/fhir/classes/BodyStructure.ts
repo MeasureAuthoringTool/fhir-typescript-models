@@ -40,28 +40,28 @@ export class BodyStructure extends DomainResource {
   ): BodyStructure {
     const newInstance: BodyStructure = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.active) {
+    if (json.active !== undefined) {
       newInstance.active = PrimitiveBoolean.parsePrimitive(json.active, json._active);
     }
-    if (json.morphology) {
+    if (json.morphology !== undefined) {
       newInstance.morphology = CodeableConcept.parse(json.morphology);
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = CodeableConcept.parse(json.location);
     }
-    if (json.locationQualifier) {
+    if (json.locationQualifier !== undefined) {
       newInstance.locationQualifier = json.locationQualifier.map((x) => CodeableConcept.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.image) {
+    if (json.image !== undefined) {
       newInstance.image = json.image.map((x) => Attachment.parse(x));
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
     return newInstance;
@@ -111,7 +111,11 @@ export class BodyStructure extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): BodyStructure {
+    return BodyStructure.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "BodyStructure";
   }

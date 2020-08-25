@@ -22,7 +22,16 @@ export class CompositionAttestationMode extends PrimitiveCode {
     const castInput = input as CompositionAttestationMode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "CompositionAttestationMode";
   }
-  
+
+  public clone(): CompositionAttestationMode {
+    const result = new CompositionAttestationMode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "CompositionAttestationMode";
   }

@@ -34,22 +34,22 @@ export class DeviceUdiCarrier extends BackboneElement {
   ): DeviceUdiCarrier {
     const newInstance: DeviceUdiCarrier = BackboneElement.parse(json, providedInstance);
   
-    if (json.deviceIdentifier) {
+    if (json.deviceIdentifier !== undefined) {
       newInstance.deviceIdentifier = PrimitiveString.parsePrimitive(json.deviceIdentifier, json._deviceIdentifier);
     }
-    if (json.issuer) {
+    if (json.issuer !== undefined) {
       newInstance.issuer = PrimitiveUri.parsePrimitive(json.issuer, json._issuer);
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = PrimitiveUri.parsePrimitive(json.jurisdiction, json._jurisdiction);
     }
-    if (json.carrierAIDC) {
+    if (json.carrierAIDC !== undefined) {
       newInstance.carrierAIDC = PrimitiveBase64Binary.parsePrimitive(json.carrierAIDC, json._carrierAIDC);
     }
-    if (json.carrierHRF) {
+    if (json.carrierHRF !== undefined) {
       newInstance.carrierHRF = PrimitiveString.parsePrimitive(json.carrierHRF, json._carrierHRF);
     }
-    if (json.entryType) {
+    if (json.entryType !== undefined) {
       newInstance.entryType = UDIEntryType.parsePrimitive(json.entryType, json._entryType);
     }
     return newInstance;
@@ -95,7 +95,11 @@ export class DeviceUdiCarrier extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DeviceUdiCarrier {
+    return DeviceUdiCarrier.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceUdiCarrier";
   }

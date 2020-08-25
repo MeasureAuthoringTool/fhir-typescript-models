@@ -21,7 +21,7 @@ export class PrimitiveInstant extends Element {
       let newInstance: PrimitiveInstant;
   
       if (extension) {
-        newInstance = Element.parse(extension);
+        newInstance = Element.parse(extension, providedInstance);
       } else {
         newInstance = providedInstance;
       }
@@ -35,7 +35,16 @@ export class PrimitiveInstant extends Element {
     const castInput = input as PrimitiveInstant;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveInstant";
   }
-  
+
+  public clone(): PrimitiveInstant {
+    const result = new PrimitiveInstant();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveInstant";
   }

@@ -58,58 +58,58 @@ export class SupplyRequest extends DomainResource {
   ): SupplyRequest {
     const newInstance: SupplyRequest = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = SupplyRequestStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = RequestPriority.parsePrimitive(json.priority, json._priority);
     }
-    if (json.itemCodeableConcept) {
+    if (json.itemCodeableConcept !== undefined) {
       newInstance.item = CodeableConcept.parse(json.itemCodeableConcept);
     }
-    if (json.itemReference) {
+    if (json.itemReference !== undefined) {
       newInstance.item = Reference.parse(json.itemReference);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = Quantity.parse(json.quantity);
     }
-    if (json.parameter) {
+    if (json.parameter !== undefined) {
       newInstance.parameter = json.parameter.map((x) => SupplyRequestParameter.parse(x));
     }
-    if (json.occurrenceDateTime) {
+    if (json.occurrenceDateTime !== undefined) {
       newInstance.occurrence = PrimitiveDateTime.parsePrimitive(json.occurrenceDateTime, json._occurrenceDateTime);
     }
-    if (json.occurrencePeriod) {
+    if (json.occurrencePeriod !== undefined) {
       newInstance.occurrence = Period.parse(json.occurrencePeriod);
     }
-    if (json.occurrenceTiming) {
+    if (json.occurrenceTiming !== undefined) {
       newInstance.occurrence = Timing.parse(json.occurrenceTiming);
     }
-    if (json.authoredOn) {
+    if (json.authoredOn !== undefined) {
       newInstance.authoredOn = PrimitiveDateTime.parsePrimitive(json.authoredOn, json._authoredOn);
     }
-    if (json.requester) {
+    if (json.requester !== undefined) {
       newInstance.requester = Reference.parse(json.requester);
     }
-    if (json.supplier) {
+    if (json.supplier !== undefined) {
       newInstance.supplier = json.supplier.map((x) => Reference.parse(x));
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.deliverFrom) {
+    if (json.deliverFrom !== undefined) {
       newInstance.deliverFrom = Reference.parse(json.deliverFrom);
     }
-    if (json.deliverTo) {
+    if (json.deliverTo !== undefined) {
       newInstance.deliverTo = Reference.parse(json.deliverTo);
     }
     return newInstance;
@@ -201,7 +201,11 @@ export class SupplyRequest extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): SupplyRequest {
+    return SupplyRequest.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SupplyRequest";
   }

@@ -22,7 +22,16 @@ export class QualityType extends PrimitiveCode {
     const castInput = input as QualityType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "QualityType";
   }
-  
+
+  public clone(): QualityType {
+    const result = new QualityType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "QualityType";
   }

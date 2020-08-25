@@ -28,25 +28,25 @@ export class CoverageEligibilityResponseInsuranceItemBenefit extends BackboneEle
   ): CoverageEligibilityResponseInsuranceItemBenefit {
     const newInstance: CoverageEligibilityResponseInsuranceItemBenefit = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.allowedUnsignedInt) {
+    if (json.allowedUnsignedInt !== undefined) {
       newInstance.allowed = PrimitiveUnsignedInt.parsePrimitive(json.allowedUnsignedInt, json._allowedUnsignedInt);
     }
-    if (json.allowedString) {
+    if (json.allowedString !== undefined) {
       newInstance.allowed = PrimitiveString.parsePrimitive(json.allowedString, json._allowedString);
     }
-    if (json.allowedMoney) {
+    if (json.allowedMoney !== undefined) {
       newInstance.allowed = Money.parse(json.allowedMoney);
     }
-    if (json.usedUnsignedInt) {
+    if (json.usedUnsignedInt !== undefined) {
       newInstance.used = PrimitiveUnsignedInt.parsePrimitive(json.usedUnsignedInt, json._usedUnsignedInt);
     }
-    if (json.usedString) {
+    if (json.usedString !== undefined) {
       newInstance.used = PrimitiveString.parsePrimitive(json.usedString, json._usedString);
     }
-    if (json.usedMoney) {
+    if (json.usedMoney !== undefined) {
       newInstance.used = Money.parse(json.usedMoney);
     }
     return newInstance;
@@ -94,7 +94,11 @@ export class CoverageEligibilityResponseInsuranceItemBenefit extends BackboneEle
 
     return result;
   }
-  
+
+  public clone(): CoverageEligibilityResponseInsuranceItemBenefit {
+    return CoverageEligibilityResponseInsuranceItemBenefit.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CoverageEligibilityResponseInsuranceItemBenefit";
   }

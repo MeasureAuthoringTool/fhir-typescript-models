@@ -24,10 +24,10 @@ export class DocumentReferenceRelatesTo extends BackboneElement {
   ): DocumentReferenceRelatesTo {
     const newInstance: DocumentReferenceRelatesTo = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = DocumentRelationshipType.parsePrimitive(json.code, json._code);
     }
-    if (json.target) {
+    if (json.target !== undefined) {
       newInstance.target = Reference.parse(json.target);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class DocumentReferenceRelatesTo extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DocumentReferenceRelatesTo {
+    return DocumentReferenceRelatesTo.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DocumentReferenceRelatesTo";
   }

@@ -53,43 +53,43 @@ export class Specimen extends DomainResource {
   ): Specimen {
     const newInstance: Specimen = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.accessionIdentifier) {
+    if (json.accessionIdentifier !== undefined) {
       newInstance.accessionIdentifier = Identifier.parse(json.accessionIdentifier);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = SpecimenStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.receivedTime) {
+    if (json.receivedTime !== undefined) {
       newInstance.receivedTime = PrimitiveDateTime.parsePrimitive(json.receivedTime, json._receivedTime);
     }
-    if (json.parent) {
+    if (json.parent !== undefined) {
       newInstance.parent = json.parent.map((x) => Reference.parse(x));
     }
-    if (json.request) {
+    if (json.request !== undefined) {
       newInstance.request = json.request.map((x) => Reference.parse(x));
     }
-    if (json.collection) {
+    if (json.collection !== undefined) {
       newInstance.collection = SpecimenCollection.parse(json.collection);
     }
-    if (json.processing) {
+    if (json.processing !== undefined) {
       newInstance.processing = json.processing.map((x) => SpecimenProcessing.parse(x));
     }
-    if (json.container) {
+    if (json.container !== undefined) {
       newInstance.container = json.container.map((x) => SpecimenContainer.parse(x));
     }
-    if (json.condition) {
+    if (json.condition !== undefined) {
       newInstance.condition = json.condition.map((x) => CodeableConcept.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -159,7 +159,11 @@ export class Specimen extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Specimen {
+    return Specimen.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Specimen";
   }

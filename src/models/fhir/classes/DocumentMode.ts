@@ -22,7 +22,16 @@ export class DocumentMode extends PrimitiveCode {
     const castInput = input as DocumentMode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "DocumentMode";
   }
-  
+
+  public clone(): DocumentMode {
+    const result = new DocumentMode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "DocumentMode";
   }

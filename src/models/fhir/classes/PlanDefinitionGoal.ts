@@ -34,25 +34,25 @@ export class PlanDefinitionGoal extends BackboneElement {
   ): PlanDefinitionGoal {
     const newInstance: PlanDefinitionGoal = BackboneElement.parse(json, providedInstance);
   
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = CodeableConcept.parse(json.description);
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = CodeableConcept.parse(json.priority);
     }
-    if (json.start) {
+    if (json.start !== undefined) {
       newInstance.start = CodeableConcept.parse(json.start);
     }
-    if (json.addresses) {
+    if (json.addresses !== undefined) {
       newInstance.addresses = json.addresses.map((x) => CodeableConcept.parse(x));
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = json.documentation.map((x) => RelatedArtifact.parse(x));
     }
-    if (json.target) {
+    if (json.target !== undefined) {
       newInstance.target = json.target.map((x) => PlanDefinitionGoalTarget.parse(x));
     }
     return newInstance;
@@ -96,7 +96,11 @@ export class PlanDefinitionGoal extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PlanDefinitionGoal {
+    return PlanDefinitionGoal.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PlanDefinitionGoal";
   }

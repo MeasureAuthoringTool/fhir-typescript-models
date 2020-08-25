@@ -22,7 +22,16 @@ export class GuidePageGeneration extends PrimitiveCode {
     const castInput = input as GuidePageGeneration;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "GuidePageGeneration";
   }
-  
+
+  public clone(): GuidePageGeneration {
+    const result = new GuidePageGeneration();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "GuidePageGeneration";
   }

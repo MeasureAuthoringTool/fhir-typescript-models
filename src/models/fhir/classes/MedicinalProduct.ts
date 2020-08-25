@@ -67,67 +67,67 @@ export class MedicinalProduct extends DomainResource {
   ): MedicinalProduct {
     const newInstance: MedicinalProduct = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.domain) {
+    if (json.domain !== undefined) {
       newInstance.domain = Coding.parse(json.domain);
     }
-    if (json.combinedPharmaceuticalDoseForm) {
+    if (json.combinedPharmaceuticalDoseForm !== undefined) {
       newInstance.combinedPharmaceuticalDoseForm = CodeableConcept.parse(json.combinedPharmaceuticalDoseForm);
     }
-    if (json.legalStatusOfSupply) {
+    if (json.legalStatusOfSupply !== undefined) {
       newInstance.legalStatusOfSupply = CodeableConcept.parse(json.legalStatusOfSupply);
     }
-    if (json.additionalMonitoringIndicator) {
+    if (json.additionalMonitoringIndicator !== undefined) {
       newInstance.additionalMonitoringIndicator = CodeableConcept.parse(json.additionalMonitoringIndicator);
     }
-    if (json.specialMeasures) {
+    if (json.specialMeasures !== undefined) {
       newInstance.specialMeasures = json.specialMeasures.map((x, i) => {
         const ext = json._specialMeasures && json._specialMeasures[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.paediatricUseIndicator) {
+    if (json.paediatricUseIndicator !== undefined) {
       newInstance.paediatricUseIndicator = CodeableConcept.parse(json.paediatricUseIndicator);
     }
-    if (json.productClassification) {
+    if (json.productClassification !== undefined) {
       newInstance.productClassification = json.productClassification.map((x) => CodeableConcept.parse(x));
     }
-    if (json.marketingStatus) {
+    if (json.marketingStatus !== undefined) {
       newInstance.marketingStatus = json.marketingStatus.map((x) => MarketingStatus.parse(x));
     }
-    if (json.pharmaceuticalProduct) {
+    if (json.pharmaceuticalProduct !== undefined) {
       newInstance.pharmaceuticalProduct = json.pharmaceuticalProduct.map((x) => Reference.parse(x));
     }
-    if (json.packagedMedicinalProduct) {
+    if (json.packagedMedicinalProduct !== undefined) {
       newInstance.packagedMedicinalProduct = json.packagedMedicinalProduct.map((x) => Reference.parse(x));
     }
-    if (json.attachedDocument) {
+    if (json.attachedDocument !== undefined) {
       newInstance.attachedDocument = json.attachedDocument.map((x) => Reference.parse(x));
     }
-    if (json.masterFile) {
+    if (json.masterFile !== undefined) {
       newInstance.masterFile = json.masterFile.map((x) => Reference.parse(x));
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => Reference.parse(x));
     }
-    if (json.clinicalTrial) {
+    if (json.clinicalTrial !== undefined) {
       newInstance.clinicalTrial = json.clinicalTrial.map((x) => Reference.parse(x));
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = json.name.map((x) => MedicinalProductName.parse(x));
     }
-    if (json.crossReference) {
+    if (json.crossReference !== undefined) {
       newInstance.crossReference = json.crossReference.map((x) => Identifier.parse(x));
     }
-    if (json.manufacturingBusinessOperation) {
+    if (json.manufacturingBusinessOperation !== undefined) {
       newInstance.manufacturingBusinessOperation = json.manufacturingBusinessOperation.map((x) => MedicinalProductManufacturingBusinessOperation.parse(x));
     }
-    if (json.specialDesignation) {
+    if (json.specialDesignation !== undefined) {
       newInstance.specialDesignation = json.specialDesignation.map((x) => MedicinalProductSpecialDesignation.parse(x));
     }
     return newInstance;
@@ -224,7 +224,11 @@ export class MedicinalProduct extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MedicinalProduct {
+    return MedicinalProduct.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicinalProduct";
   }

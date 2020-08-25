@@ -63,67 +63,67 @@ export class AllergyIntolerance extends DomainResource {
   ): AllergyIntolerance {
     const newInstance: AllergyIntolerance = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.clinicalStatus) {
+    if (json.clinicalStatus !== undefined) {
       newInstance.clinicalStatus = CodeableConcept.parse(json.clinicalStatus);
     }
-    if (json.verificationStatus) {
+    if (json.verificationStatus !== undefined) {
       newInstance.verificationStatus = CodeableConcept.parse(json.verificationStatus);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = AllergyIntoleranceType.parsePrimitive(json.type, json._type);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x, i) => {
         const ext = json._category && json._category[i];
         return AllergyIntoleranceCategory.parsePrimitive(x, ext);
       });
     }
-    if (json.criticality) {
+    if (json.criticality !== undefined) {
       newInstance.criticality = AllergyIntoleranceCriticality.parsePrimitive(json.criticality, json._criticality);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.onsetDateTime) {
+    if (json.onsetDateTime !== undefined) {
       newInstance.onset = PrimitiveDateTime.parsePrimitive(json.onsetDateTime, json._onsetDateTime);
     }
-    if (json.onsetAge) {
+    if (json.onsetAge !== undefined) {
       newInstance.onset = Age.parse(json.onsetAge);
     }
-    if (json.onsetPeriod) {
+    if (json.onsetPeriod !== undefined) {
       newInstance.onset = Period.parse(json.onsetPeriod);
     }
-    if (json.onsetRange) {
+    if (json.onsetRange !== undefined) {
       newInstance.onset = Range.parse(json.onsetRange);
     }
-    if (json.onsetString) {
+    if (json.onsetString !== undefined) {
       newInstance.onset = PrimitiveString.parsePrimitive(json.onsetString, json._onsetString);
     }
-    if (json.recordedDate) {
+    if (json.recordedDate !== undefined) {
       newInstance.recordedDate = PrimitiveDateTime.parsePrimitive(json.recordedDate, json._recordedDate);
     }
-    if (json.recorder) {
+    if (json.recorder !== undefined) {
       newInstance.recorder = Reference.parse(json.recorder);
     }
-    if (json.asserter) {
+    if (json.asserter !== undefined) {
       newInstance.asserter = Reference.parse(json.asserter);
     }
-    if (json.lastOccurrence) {
+    if (json.lastOccurrence !== undefined) {
       newInstance.lastOccurrence = PrimitiveDateTime.parsePrimitive(json.lastOccurrence, json._lastOccurrence);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
-    if (json.reaction) {
+    if (json.reaction !== undefined) {
       newInstance.reaction = json.reaction.map((x) => AllergyIntoleranceReaction.parse(x));
     }
     return newInstance;
@@ -226,7 +226,11 @@ export class AllergyIntolerance extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): AllergyIntolerance {
+    return AllergyIntolerance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AllergyIntolerance";
   }

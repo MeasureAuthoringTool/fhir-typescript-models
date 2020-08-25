@@ -21,7 +21,7 @@ export class TerminologyCapabilitiesValidateCode extends BackboneElement {
   ): TerminologyCapabilitiesValidateCode {
     const newInstance: TerminologyCapabilitiesValidateCode = BackboneElement.parse(json, providedInstance);
   
-    if (json.translations) {
+    if (json.translations !== undefined) {
       newInstance.translations = PrimitiveBoolean.parsePrimitive(json.translations, json._translations);
     }
     return newInstance;
@@ -42,7 +42,11 @@ export class TerminologyCapabilitiesValidateCode extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): TerminologyCapabilitiesValidateCode {
+    return TerminologyCapabilitiesValidateCode.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TerminologyCapabilitiesValidateCode";
   }

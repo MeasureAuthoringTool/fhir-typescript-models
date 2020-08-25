@@ -117,136 +117,136 @@ export class Measure extends DomainResource {
   ): Measure {
     const newInstance: Measure = DomainResource.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.subtitle) {
+    if (json.subtitle !== undefined) {
       newInstance.subtitle = PrimitiveString.parsePrimitive(json.subtitle, json._subtitle);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.experimental) {
+    if (json.experimental !== undefined) {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
-    if (json.subjectCodeableConcept) {
+    if (json.subjectCodeableConcept !== undefined) {
       newInstance.subject = CodeableConcept.parse(json.subjectCodeableConcept);
     }
-    if (json.subjectReference) {
+    if (json.subjectReference !== undefined) {
       newInstance.subject = Reference.parse(json.subjectReference);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = PrimitiveMarkdown.parsePrimitive(json.purpose, json._purpose);
     }
-    if (json.usage) {
+    if (json.usage !== undefined) {
       newInstance.usage = PrimitiveString.parsePrimitive(json.usage, json._usage);
     }
-    if (json.copyright) {
+    if (json.copyright !== undefined) {
       newInstance.copyright = PrimitiveMarkdown.parsePrimitive(json.copyright, json._copyright);
     }
-    if (json.approvalDate) {
+    if (json.approvalDate !== undefined) {
       newInstance.approvalDate = PrimitiveDate.parsePrimitive(json.approvalDate, json._approvalDate);
     }
-    if (json.lastReviewDate) {
+    if (json.lastReviewDate !== undefined) {
       newInstance.lastReviewDate = PrimitiveDate.parsePrimitive(json.lastReviewDate, json._lastReviewDate);
     }
-    if (json.effectivePeriod) {
+    if (json.effectivePeriod !== undefined) {
       newInstance.effectivePeriod = Period.parse(json.effectivePeriod);
     }
-    if (json.topic) {
+    if (json.topic !== undefined) {
       newInstance.topic = json.topic.map((x) => CodeableConcept.parse(x));
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = json.author.map((x) => ContactDetail.parse(x));
     }
-    if (json.editor) {
+    if (json.editor !== undefined) {
       newInstance.editor = json.editor.map((x) => ContactDetail.parse(x));
     }
-    if (json.reviewer) {
+    if (json.reviewer !== undefined) {
       newInstance.reviewer = json.reviewer.map((x) => ContactDetail.parse(x));
     }
-    if (json.endorser) {
+    if (json.endorser !== undefined) {
       newInstance.endorser = json.endorser.map((x) => ContactDetail.parse(x));
     }
-    if (json.relatedArtifact) {
+    if (json.relatedArtifact !== undefined) {
       newInstance.relatedArtifact = json.relatedArtifact.map((x) => RelatedArtifact.parse(x));
     }
-    if (json.library) {
+    if (json.library !== undefined) {
       newInstance.library = json.library.map((x, i) => {
         const ext = json._library && json._library[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.disclaimer) {
+    if (json.disclaimer !== undefined) {
       newInstance.disclaimer = PrimitiveMarkdown.parsePrimitive(json.disclaimer, json._disclaimer);
     }
-    if (json.scoring) {
+    if (json.scoring !== undefined) {
       newInstance.scoring = CodeableConcept.parse(json.scoring);
     }
-    if (json.compositeScoring) {
+    if (json.compositeScoring !== undefined) {
       newInstance.compositeScoring = CodeableConcept.parse(json.compositeScoring);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.riskAdjustment) {
+    if (json.riskAdjustment !== undefined) {
       newInstance.riskAdjustment = PrimitiveString.parsePrimitive(json.riskAdjustment, json._riskAdjustment);
     }
-    if (json.rateAggregation) {
+    if (json.rateAggregation !== undefined) {
       newInstance.rateAggregation = PrimitiveString.parsePrimitive(json.rateAggregation, json._rateAggregation);
     }
-    if (json.rationale) {
+    if (json.rationale !== undefined) {
       newInstance.rationale = PrimitiveMarkdown.parsePrimitive(json.rationale, json._rationale);
     }
-    if (json.clinicalRecommendationStatement) {
+    if (json.clinicalRecommendationStatement !== undefined) {
       newInstance.clinicalRecommendationStatement = PrimitiveMarkdown.parsePrimitive(json.clinicalRecommendationStatement, json._clinicalRecommendationStatement);
     }
-    if (json.improvementNotation) {
+    if (json.improvementNotation !== undefined) {
       newInstance.improvementNotation = CodeableConcept.parse(json.improvementNotation);
     }
-    if (json.definition) {
+    if (json.definition !== undefined) {
       newInstance.definition = json.definition.map((x, i) => {
         const ext = json._definition && json._definition[i];
         return PrimitiveMarkdown.parsePrimitive(x, ext);
       });
     }
-    if (json.guidance) {
+    if (json.guidance !== undefined) {
       newInstance.guidance = PrimitiveMarkdown.parsePrimitive(json.guidance, json._guidance);
     }
-    if (json.group) {
+    if (json.group !== undefined) {
       newInstance.group = json.group.map((x) => MeasureGroup.parse(x));
     }
-    if (json.supplementalData) {
+    if (json.supplementalData !== undefined) {
       newInstance.supplementalData = json.supplementalData.map((x) => MeasureSupplementalData.parse(x));
     }
     return newInstance;
@@ -453,7 +453,11 @@ export class Measure extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Measure {
+    return Measure.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Measure";
   }

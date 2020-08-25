@@ -22,7 +22,16 @@ export class StructureMapTargetListMode extends PrimitiveCode {
     const castInput = input as StructureMapTargetListMode;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "StructureMapTargetListMode";
   }
-  
+
+  public clone(): StructureMapTargetListMode {
+    const result = new StructureMapTargetListMode();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "StructureMapTargetListMode";
   }

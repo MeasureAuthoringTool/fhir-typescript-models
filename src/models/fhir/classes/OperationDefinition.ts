@@ -85,85 +85,85 @@ export class OperationDefinition extends DomainResource {
   ): OperationDefinition {
     const newInstance: OperationDefinition = DomainResource.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.kind) {
+    if (json.kind !== undefined) {
       newInstance.kind = OperationKind.parsePrimitive(json.kind, json._kind);
     }
-    if (json.experimental) {
+    if (json.experimental !== undefined) {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = PrimitiveMarkdown.parsePrimitive(json.purpose, json._purpose);
     }
-    if (json.affectsState) {
+    if (json.affectsState !== undefined) {
       newInstance.affectsState = PrimitiveBoolean.parsePrimitive(json.affectsState, json._affectsState);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveMarkdown.parsePrimitive(json.comment, json._comment);
     }
-    if (json.base) {
+    if (json.base !== undefined) {
       newInstance.base = PrimitiveCanonical.parsePrimitive(json.base, json._base);
     }
-    if (json.resource) {
+    if (json.resource !== undefined) {
       newInstance.resource = json.resource.map((x, i) => {
         const ext = json._resource && json._resource[i];
         return ResourceType.parsePrimitive(x, ext);
       });
     }
-    if (json.system) {
+    if (json.system !== undefined) {
       newInstance.system = PrimitiveBoolean.parsePrimitive(json.system, json._system);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = PrimitiveBoolean.parsePrimitive(json.type, json._type);
     }
-    if (json.instance) {
+    if (json.instance !== undefined) {
       newInstance.instance = PrimitiveBoolean.parsePrimitive(json.instance, json._instance);
     }
-    if (json.inputProfile) {
+    if (json.inputProfile !== undefined) {
       newInstance.inputProfile = PrimitiveCanonical.parsePrimitive(json.inputProfile, json._inputProfile);
     }
-    if (json.outputProfile) {
+    if (json.outputProfile !== undefined) {
       newInstance.outputProfile = PrimitiveCanonical.parsePrimitive(json.outputProfile, json._outputProfile);
     }
-    if (json.parameter) {
+    if (json.parameter !== undefined) {
       newInstance.parameter = json.parameter.map((x) => OperationDefinitionParameter.parse(x));
     }
-    if (json.overload) {
+    if (json.overload !== undefined) {
       newInstance.overload = json.overload.map((x) => OperationDefinitionOverload.parse(x));
     }
     return newInstance;
@@ -304,7 +304,11 @@ export class OperationDefinition extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): OperationDefinition {
+    return OperationDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "OperationDefinition";
   }

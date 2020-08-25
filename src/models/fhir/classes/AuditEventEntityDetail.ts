@@ -24,13 +24,13 @@ export class AuditEventEntityDetail extends BackboneElement {
   ): AuditEventEntityDetail {
     const newInstance: AuditEventEntityDetail = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = PrimitiveString.parsePrimitive(json.type, json._type);
     }
-    if (json.valueString) {
+    if (json.valueString !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.valueString, json._valueString);
     }
-    if (json.valueBase64Binary) {
+    if (json.valueBase64Binary !== undefined) {
       newInstance.value = PrimitiveBase64Binary.parsePrimitive(json.valueBase64Binary, json._valueBase64Binary);
     }
     return newInstance;
@@ -61,7 +61,11 @@ export class AuditEventEntityDetail extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): AuditEventEntityDetail {
+    return AuditEventEntityDetail.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "AuditEventEntityDetail";
   }

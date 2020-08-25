@@ -22,7 +22,16 @@ export class HTTPVerb extends PrimitiveCode {
     const castInput = input as HTTPVerb;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "HTTPVerb";
   }
-  
+
+  public clone(): HTTPVerb {
+    const result = new HTTPVerb();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "HTTPVerb";
   }

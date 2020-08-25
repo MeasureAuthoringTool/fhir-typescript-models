@@ -24,10 +24,10 @@ export class Narrative extends Element {
   ): Narrative {
     const newInstance: Narrative = Element.parse(json, providedInstance);
   
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = NarrativeStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.div) {
+    if (json.div !== undefined) {
       newInstance.div = PrimitiveXhtml.parsePrimitive(json.div, json._div);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class Narrative extends Element {
 
     return result;
   }
-  
+
+  public clone(): Narrative {
+    return Narrative.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Narrative";
   }

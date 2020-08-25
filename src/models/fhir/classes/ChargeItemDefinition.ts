@@ -80,82 +80,82 @@ export class ChargeItemDefinition extends DomainResource {
   ): ChargeItemDefinition {
     const newInstance: ChargeItemDefinition = DomainResource.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.derivedFromUri) {
+    if (json.derivedFromUri !== undefined) {
       newInstance.derivedFromUri = json.derivedFromUri.map((x, i) => {
         const ext = json._derivedFromUri && json._derivedFromUri[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = json.partOf.map((x, i) => {
         const ext = json._partOf && json._partOf[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.replaces) {
+    if (json.replaces !== undefined) {
       newInstance.replaces = json.replaces.map((x, i) => {
         const ext = json._replaces && json._replaces[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.experimental) {
+    if (json.experimental !== undefined) {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.copyright) {
+    if (json.copyright !== undefined) {
       newInstance.copyright = PrimitiveMarkdown.parsePrimitive(json.copyright, json._copyright);
     }
-    if (json.approvalDate) {
+    if (json.approvalDate !== undefined) {
       newInstance.approvalDate = PrimitiveDate.parsePrimitive(json.approvalDate, json._approvalDate);
     }
-    if (json.lastReviewDate) {
+    if (json.lastReviewDate !== undefined) {
       newInstance.lastReviewDate = PrimitiveDate.parsePrimitive(json.lastReviewDate, json._lastReviewDate);
     }
-    if (json.effectivePeriod) {
+    if (json.effectivePeriod !== undefined) {
       newInstance.effectivePeriod = Period.parse(json.effectivePeriod);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.instance) {
+    if (json.instance !== undefined) {
       newInstance.instance = json.instance.map((x) => Reference.parse(x));
     }
-    if (json.applicability) {
+    if (json.applicability !== undefined) {
       newInstance.applicability = json.applicability.map((x) => ChargeItemDefinitionApplicability.parse(x));
     }
-    if (json.propertyGroup) {
+    if (json.propertyGroup !== undefined) {
       newInstance.propertyGroup = json.propertyGroup.map((x) => ChargeItemDefinitionPropertyGroup.parse(x));
     }
     return newInstance;
@@ -277,7 +277,11 @@ export class ChargeItemDefinition extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ChargeItemDefinition {
+    return ChargeItemDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ChargeItemDefinition";
   }

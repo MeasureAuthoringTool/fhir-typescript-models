@@ -27,13 +27,13 @@ export class DeviceMetricCalibration extends BackboneElement {
   ): DeviceMetricCalibration {
     const newInstance: DeviceMetricCalibration = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = DeviceMetricCalibrationType.parsePrimitive(json.type, json._type);
     }
-    if (json.state) {
+    if (json.state !== undefined) {
       newInstance.state = DeviceMetricCalibrationState.parsePrimitive(json.state, json._state);
     }
-    if (json.time) {
+    if (json.time !== undefined) {
       newInstance.time = PrimitiveInstant.parsePrimitive(json.time, json._time);
     }
     return newInstance;
@@ -64,7 +64,11 @@ export class DeviceMetricCalibration extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DeviceMetricCalibration {
+    return DeviceMetricCalibration.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceMetricCalibration";
   }

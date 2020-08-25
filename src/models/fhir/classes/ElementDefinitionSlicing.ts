@@ -30,16 +30,16 @@ export class ElementDefinitionSlicing extends Element {
   ): ElementDefinitionSlicing {
     const newInstance: ElementDefinitionSlicing = Element.parse(json, providedInstance);
   
-    if (json.discriminator) {
+    if (json.discriminator !== undefined) {
       newInstance.discriminator = json.discriminator.map((x) => ElementDefinitionSlicingDiscriminator.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.ordered) {
+    if (json.ordered !== undefined) {
       newInstance.ordered = PrimitiveBoolean.parsePrimitive(json.ordered, json._ordered);
     }
-    if (json.rules) {
+    if (json.rules !== undefined) {
       newInstance.rules = SlicingRules.parsePrimitive(json.rules, json._rules);
     }
     return newInstance;
@@ -74,7 +74,11 @@ export class ElementDefinitionSlicing extends Element {
 
     return result;
   }
-  
+
+  public clone(): ElementDefinitionSlicing {
+    return ElementDefinitionSlicing.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ElementDefinitionSlicing";
   }

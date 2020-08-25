@@ -40,28 +40,28 @@ export class SubstanceNucleicAcidSubunit extends BackboneElement {
   ): SubstanceNucleicAcidSubunit {
     const newInstance: SubstanceNucleicAcidSubunit = BackboneElement.parse(json, providedInstance);
   
-    if (json.subunit) {
+    if (json.subunit !== undefined) {
       newInstance.subunit = PrimitiveInteger.parsePrimitive(json.subunit, json._subunit);
     }
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitiveString.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.length) {
+    if (json.length !== undefined) {
       newInstance.length = PrimitiveInteger.parsePrimitive(json.length, json._length);
     }
-    if (json.sequenceAttachment) {
+    if (json.sequenceAttachment !== undefined) {
       newInstance.sequenceAttachment = Attachment.parse(json.sequenceAttachment);
     }
-    if (json.fivePrime) {
+    if (json.fivePrime !== undefined) {
       newInstance.fivePrime = CodeableConcept.parse(json.fivePrime);
     }
-    if (json.threePrime) {
+    if (json.threePrime !== undefined) {
       newInstance.threePrime = CodeableConcept.parse(json.threePrime);
     }
-    if (json.linkage) {
+    if (json.linkage !== undefined) {
       newInstance.linkage = json.linkage.map((x) => SubstanceNucleicAcidSubunitLinkage.parse(x));
     }
-    if (json.sugar) {
+    if (json.sugar !== undefined) {
       newInstance.sugar = json.sugar.map((x) => SubstanceNucleicAcidSubunitSugar.parse(x));
     }
     return newInstance;
@@ -112,7 +112,11 @@ export class SubstanceNucleicAcidSubunit extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceNucleicAcidSubunit {
+    return SubstanceNucleicAcidSubunit.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceNucleicAcidSubunit";
   }

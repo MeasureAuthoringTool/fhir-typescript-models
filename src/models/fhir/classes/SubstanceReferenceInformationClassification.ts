@@ -27,16 +27,16 @@ export class SubstanceReferenceInformationClassification extends BackboneElement
   ): SubstanceReferenceInformationClassification {
     const newInstance: SubstanceReferenceInformationClassification = BackboneElement.parse(json, providedInstance);
   
-    if (json.domain) {
+    if (json.domain !== undefined) {
       newInstance.domain = CodeableConcept.parse(json.domain);
     }
-    if (json.classification) {
+    if (json.classification !== undefined) {
       newInstance.classification = CodeableConcept.parse(json.classification);
     }
-    if (json.subtype) {
+    if (json.subtype !== undefined) {
       newInstance.subtype = json.subtype.map((x) => CodeableConcept.parse(x));
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = json.source.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -68,7 +68,11 @@ export class SubstanceReferenceInformationClassification extends BackboneElement
 
     return result;
   }
-  
+
+  public clone(): SubstanceReferenceInformationClassification {
+    return SubstanceReferenceInformationClassification.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceReferenceInformationClassification";
   }

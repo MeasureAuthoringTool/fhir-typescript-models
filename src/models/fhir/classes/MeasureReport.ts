@@ -49,37 +49,37 @@ export class MeasureReport extends DomainResource {
   ): MeasureReport {
     const newInstance: MeasureReport = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = MeasureReportStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = MeasureReportType.parsePrimitive(json.type, json._type);
     }
-    if (json.measure) {
+    if (json.measure !== undefined) {
       newInstance.measure = PrimitiveCanonical.parsePrimitive(json.measure, json._measure);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.reporter) {
+    if (json.reporter !== undefined) {
       newInstance.reporter = Reference.parse(json.reporter);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.improvementNotation) {
+    if (json.improvementNotation !== undefined) {
       newInstance.improvementNotation = CodeableConcept.parse(json.improvementNotation);
     }
-    if (json.group) {
+    if (json.group !== undefined) {
       newInstance.group = json.group.map((x) => MeasureReportGroup.parse(x));
     }
-    if (json.evaluatedResource) {
+    if (json.evaluatedResource !== undefined) {
       newInstance.evaluatedResource = json.evaluatedResource.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -143,7 +143,11 @@ export class MeasureReport extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MeasureReport {
+    return MeasureReport.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MeasureReport";
   }

@@ -21,7 +21,7 @@ export class PrimitiveBoolean extends Element {
       let newInstance: PrimitiveBoolean;
   
       if (extension) {
-        newInstance = Element.parse(extension);
+        newInstance = Element.parse(extension, providedInstance);
       } else {
         newInstance = providedInstance;
       }
@@ -35,7 +35,16 @@ export class PrimitiveBoolean extends Element {
     const castInput = input as PrimitiveBoolean;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "PrimitiveBoolean";
   }
-  
+
+  public clone(): PrimitiveBoolean {
+    const result = new PrimitiveBoolean();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "PrimitiveBoolean";
   }

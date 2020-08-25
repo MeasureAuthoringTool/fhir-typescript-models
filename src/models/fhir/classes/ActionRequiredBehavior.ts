@@ -22,7 +22,16 @@ export class ActionRequiredBehavior extends PrimitiveCode {
     const castInput = input as ActionRequiredBehavior;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ActionRequiredBehavior";
   }
-  
+
+  public clone(): ActionRequiredBehavior {
+    const result = new ActionRequiredBehavior();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ActionRequiredBehavior";
   }

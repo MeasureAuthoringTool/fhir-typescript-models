@@ -22,7 +22,16 @@ export class MedicationDispenseStatus extends PrimitiveCode {
     const castInput = input as MedicationDispenseStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "MedicationDispenseStatus";
   }
-  
+
+  public clone(): MedicationDispenseStatus {
+    const result = new MedicationDispenseStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "MedicationDispenseStatus";
   }

@@ -27,13 +27,13 @@ export class MeasureReportGroupPopulation extends BackboneElement {
   ): MeasureReportGroupPopulation {
     const newInstance: MeasureReportGroupPopulation = BackboneElement.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.count) {
+    if (json.count !== undefined) {
       newInstance.count = PrimitiveInteger.parsePrimitive(json.count, json._count);
     }
-    if (json.subjectResults) {
+    if (json.subjectResults !== undefined) {
       newInstance.subjectResults = Reference.parse(json.subjectResults);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class MeasureReportGroupPopulation extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): MeasureReportGroupPopulation {
+    return MeasureReportGroupPopulation.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MeasureReportGroupPopulation";
   }

@@ -22,7 +22,16 @@ export class StrandType extends PrimitiveCode {
     const castInput = input as StrandType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "StrandType";
   }
-  
+
+  public clone(): StrandType {
+    const result = new StrandType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "StrandType";
   }

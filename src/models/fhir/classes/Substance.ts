@@ -38,25 +38,25 @@ export class Substance extends DomainResource {
   ): Substance {
     const newInstance: Substance = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = FHIRSubstanceStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.instance) {
+    if (json.instance !== undefined) {
       newInstance.instance = json.instance.map((x) => SubstanceInstance.parse(x));
     }
-    if (json.ingredient) {
+    if (json.ingredient !== undefined) {
       newInstance.ingredient = json.ingredient.map((x) => SubstanceIngredient.parse(x));
     }
     return newInstance;
@@ -102,7 +102,11 @@ export class Substance extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Substance {
+    return Substance.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Substance";
   }

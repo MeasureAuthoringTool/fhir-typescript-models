@@ -22,7 +22,16 @@ export class LinkageType extends PrimitiveCode {
     const castInput = input as LinkageType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "LinkageType";
   }
-  
+
+  public clone(): LinkageType {
+    const result = new LinkageType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "LinkageType";
   }

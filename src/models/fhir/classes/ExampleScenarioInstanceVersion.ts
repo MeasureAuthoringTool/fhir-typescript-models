@@ -24,10 +24,10 @@ export class ExampleScenarioInstanceVersion extends BackboneElement {
   ): ExampleScenarioInstanceVersion {
     const newInstance: ExampleScenarioInstanceVersion = BackboneElement.parse(json, providedInstance);
   
-    if (json.versionId) {
+    if (json.versionId !== undefined) {
       newInstance.versionId = PrimitiveString.parsePrimitive(json.versionId, json._versionId);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
     return newInstance;
@@ -53,7 +53,11 @@ export class ExampleScenarioInstanceVersion extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExampleScenarioInstanceVersion {
+    return ExampleScenarioInstanceVersion.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExampleScenarioInstanceVersion";
   }

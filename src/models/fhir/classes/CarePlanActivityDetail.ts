@@ -63,70 +63,70 @@ export class CarePlanActivityDetail extends BackboneElement {
   ): CarePlanActivityDetail {
     const newInstance: CarePlanActivityDetail = BackboneElement.parse(json, providedInstance);
   
-    if (json.kind) {
+    if (json.kind !== undefined) {
       newInstance.kind = CarePlanActivityKind.parsePrimitive(json.kind, json._kind);
     }
-    if (json.instantiatesCanonical) {
+    if (json.instantiatesCanonical !== undefined) {
       newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
         const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.instantiatesUri) {
+    if (json.instantiatesUri !== undefined) {
       newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
         const ext = json._instantiatesUri && json._instantiatesUri[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.goal) {
+    if (json.goal !== undefined) {
       newInstance.goal = json.goal.map((x) => Reference.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CarePlanActivityStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.statusReason) {
+    if (json.statusReason !== undefined) {
       newInstance.statusReason = CodeableConcept.parse(json.statusReason);
     }
-    if (json.doNotPerform) {
+    if (json.doNotPerform !== undefined) {
       newInstance.doNotPerform = PrimitiveBoolean.parsePrimitive(json.doNotPerform, json._doNotPerform);
     }
-    if (json.scheduledTiming) {
+    if (json.scheduledTiming !== undefined) {
       newInstance.scheduled = Timing.parse(json.scheduledTiming);
     }
-    if (json.scheduledPeriod) {
+    if (json.scheduledPeriod !== undefined) {
       newInstance.scheduled = Period.parse(json.scheduledPeriod);
     }
-    if (json.scheduledString) {
+    if (json.scheduledString !== undefined) {
       newInstance.scheduled = PrimitiveString.parsePrimitive(json.scheduledString, json._scheduledString);
     }
-    if (json.location) {
+    if (json.location !== undefined) {
       newInstance.location = Reference.parse(json.location);
     }
-    if (json.performer) {
+    if (json.performer !== undefined) {
       newInstance.performer = json.performer.map((x) => Reference.parse(x));
     }
-    if (json.productCodeableConcept) {
+    if (json.productCodeableConcept !== undefined) {
       newInstance.product = CodeableConcept.parse(json.productCodeableConcept);
     }
-    if (json.productReference) {
+    if (json.productReference !== undefined) {
       newInstance.product = Reference.parse(json.productReference);
     }
-    if (json.dailyAmount) {
+    if (json.dailyAmount !== undefined) {
       newInstance.dailyAmount = SimpleQuantity.parse(json.dailyAmount);
     }
-    if (json.quantity) {
+    if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
     return newInstance;
@@ -229,7 +229,11 @@ export class CarePlanActivityDetail extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CarePlanActivityDetail {
+    return CarePlanActivityDetail.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CarePlanActivityDetail";
   }

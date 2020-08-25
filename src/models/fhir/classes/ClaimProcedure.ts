@@ -32,22 +32,22 @@ export class ClaimProcedure extends BackboneElement {
   ): ClaimProcedure {
     const newInstance: ClaimProcedure = BackboneElement.parse(json, providedInstance);
   
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitivePositiveInt.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.procedureCodeableConcept) {
+    if (json.procedureCodeableConcept !== undefined) {
       newInstance.procedure = CodeableConcept.parse(json.procedureCodeableConcept);
     }
-    if (json.procedureReference) {
+    if (json.procedureReference !== undefined) {
       newInstance.procedure = Reference.parse(json.procedureReference);
     }
-    if (json.udi) {
+    if (json.udi !== undefined) {
       newInstance.udi = json.udi.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -89,7 +89,11 @@ export class ClaimProcedure extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimProcedure {
+    return ClaimProcedure.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimProcedure";
   }

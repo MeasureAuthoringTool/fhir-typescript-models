@@ -34,22 +34,22 @@ export class ExplanationOfBenefitPayment extends BackboneElement {
   ): ExplanationOfBenefitPayment {
     const newInstance: ExplanationOfBenefitPayment = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.adjustment) {
+    if (json.adjustment !== undefined) {
       newInstance.adjustment = Money.parse(json.adjustment);
     }
-    if (json.adjustmentReason) {
+    if (json.adjustmentReason !== undefined) {
       newInstance.adjustmentReason = CodeableConcept.parse(json.adjustmentReason);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDate.parsePrimitive(json.date, json._date);
     }
-    if (json.amount) {
+    if (json.amount !== undefined) {
       newInstance.amount = Money.parse(json.amount);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
     return newInstance;
@@ -90,7 +90,11 @@ export class ExplanationOfBenefitPayment extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ExplanationOfBenefitPayment {
+    return ExplanationOfBenefitPayment.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExplanationOfBenefitPayment";
   }

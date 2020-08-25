@@ -59,49 +59,49 @@ export class Composition extends DomainResource {
   ): Composition {
     const newInstance: Composition = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CompositionStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = json.author.map((x) => Reference.parse(x));
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.confidentiality) {
+    if (json.confidentiality !== undefined) {
       newInstance.confidentiality = DocumentConfidentiality.parsePrimitive(json.confidentiality, json._confidentiality);
     }
-    if (json.attester) {
+    if (json.attester !== undefined) {
       newInstance.attester = json.attester.map((x) => CompositionAttester.parse(x));
     }
-    if (json.custodian) {
+    if (json.custodian !== undefined) {
       newInstance.custodian = Reference.parse(json.custodian);
     }
-    if (json.relatesTo) {
+    if (json.relatesTo !== undefined) {
       newInstance.relatesTo = json.relatesTo.map((x) => CompositionRelatesTo.parse(x));
     }
-    if (json.event) {
+    if (json.event !== undefined) {
       newInstance.event = json.event.map((x) => CompositionEvent.parse(x));
     }
-    if (json.section) {
+    if (json.section !== undefined) {
       newInstance.section = json.section.map((x) => CompositionSection.parse(x));
     }
     return newInstance;
@@ -181,7 +181,11 @@ export class Composition extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Composition {
+    return Composition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Composition";
   }

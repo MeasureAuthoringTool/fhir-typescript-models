@@ -40,34 +40,34 @@ export class SubstanceReferenceInformationTarget extends BackboneElement {
   ): SubstanceReferenceInformationTarget {
     const newInstance: SubstanceReferenceInformationTarget = BackboneElement.parse(json, providedInstance);
   
-    if (json.target) {
+    if (json.target !== undefined) {
       newInstance.target = Identifier.parse(json.target);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.interaction) {
+    if (json.interaction !== undefined) {
       newInstance.interaction = CodeableConcept.parse(json.interaction);
     }
-    if (json.organism) {
+    if (json.organism !== undefined) {
       newInstance.organism = CodeableConcept.parse(json.organism);
     }
-    if (json.organismType) {
+    if (json.organismType !== undefined) {
       newInstance.organismType = CodeableConcept.parse(json.organismType);
     }
-    if (json.amountQuantity) {
+    if (json.amountQuantity !== undefined) {
       newInstance.amount = Quantity.parse(json.amountQuantity);
     }
-    if (json.amountRange) {
+    if (json.amountRange !== undefined) {
       newInstance.amount = Range.parse(json.amountRange);
     }
-    if (json.amountString) {
+    if (json.amountString !== undefined) {
       newInstance.amount = PrimitiveString.parsePrimitive(json.amountString, json._amountString);
     }
-    if (json.amountType) {
+    if (json.amountType !== undefined) {
       newInstance.amountType = CodeableConcept.parse(json.amountType);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = json.source.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -124,7 +124,11 @@ export class SubstanceReferenceInformationTarget extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceReferenceInformationTarget {
+    return SubstanceReferenceInformationTarget.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceReferenceInformationTarget";
   }

@@ -76,79 +76,79 @@ export class CarePlan extends DomainResource {
   ): CarePlan {
     const newInstance: CarePlan = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.instantiatesCanonical) {
+    if (json.instantiatesCanonical !== undefined) {
       newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
         const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.instantiatesUri) {
+    if (json.instantiatesUri !== undefined) {
       newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
         const ext = json._instantiatesUri && json._instantiatesUri[i];
         return PrimitiveUri.parsePrimitive(x, ext);
       });
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.replaces) {
+    if (json.replaces !== undefined) {
       newInstance.replaces = json.replaces.map((x) => Reference.parse(x));
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = json.partOf.map((x) => Reference.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = CarePlanStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.intent) {
+    if (json.intent !== undefined) {
       newInstance.intent = CarePlanIntent.parsePrimitive(json.intent, json._intent);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = json.category.map((x) => CodeableConcept.parse(x));
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = Reference.parse(json.encounter);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.created) {
+    if (json.created !== undefined) {
       newInstance.created = PrimitiveDateTime.parsePrimitive(json.created, json._created);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = Reference.parse(json.author);
     }
-    if (json.contributor) {
+    if (json.contributor !== undefined) {
       newInstance.contributor = json.contributor.map((x) => Reference.parse(x));
     }
-    if (json.careTeam) {
+    if (json.careTeam !== undefined) {
       newInstance.careTeam = json.careTeam.map((x) => Reference.parse(x));
     }
-    if (json.addresses) {
+    if (json.addresses !== undefined) {
       newInstance.addresses = json.addresses.map((x) => Reference.parse(x));
     }
-    if (json.supportingInfo) {
+    if (json.supportingInfo !== undefined) {
       newInstance.supportingInfo = json.supportingInfo.map((x) => Reference.parse(x));
     }
-    if (json.goal) {
+    if (json.goal !== undefined) {
       newInstance.goal = json.goal.map((x) => Reference.parse(x));
     }
-    if (json.activity) {
+    if (json.activity !== undefined) {
       newInstance.activity = json.activity.map((x) => CarePlanActivity.parse(x));
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -263,7 +263,11 @@ export class CarePlan extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): CarePlan {
+    return CarePlan.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CarePlan";
   }

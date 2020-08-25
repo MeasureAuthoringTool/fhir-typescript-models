@@ -34,22 +34,22 @@ export class ObservationReferenceRange extends BackboneElement {
   ): ObservationReferenceRange {
     const newInstance: ObservationReferenceRange = BackboneElement.parse(json, providedInstance);
   
-    if (json.low) {
+    if (json.low !== undefined) {
       newInstance.low = SimpleQuantity.parse(json.low);
     }
-    if (json.high) {
+    if (json.high !== undefined) {
       newInstance.high = SimpleQuantity.parse(json.high);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.appliesTo) {
+    if (json.appliesTo !== undefined) {
       newInstance.appliesTo = json.appliesTo.map((x) => CodeableConcept.parse(x));
     }
-    if (json.age) {
+    if (json.age !== undefined) {
       newInstance.age = Range.parse(json.age);
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
     return newInstance;
@@ -90,7 +90,11 @@ export class ObservationReferenceRange extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ObservationReferenceRange {
+    return ObservationReferenceRange.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ObservationReferenceRange";
   }

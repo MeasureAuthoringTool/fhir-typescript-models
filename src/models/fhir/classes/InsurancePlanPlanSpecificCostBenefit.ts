@@ -23,10 +23,10 @@ export class InsurancePlanPlanSpecificCostBenefit extends BackboneElement {
   ): InsurancePlanPlanSpecificCostBenefit {
     const newInstance: InsurancePlanPlanSpecificCostBenefit = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.cost) {
+    if (json.cost !== undefined) {
       newInstance.cost = json.cost.map((x) => InsurancePlanPlanSpecificCostBenefitCost.parse(x));
     }
     return newInstance;
@@ -50,7 +50,11 @@ export class InsurancePlanPlanSpecificCostBenefit extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): InsurancePlanPlanSpecificCostBenefit {
+    return InsurancePlanPlanSpecificCostBenefit.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "InsurancePlanPlanSpecificCostBenefit";
   }

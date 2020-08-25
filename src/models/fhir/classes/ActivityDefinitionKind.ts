@@ -22,7 +22,16 @@ export class ActivityDefinitionKind extends PrimitiveCode {
     const castInput = input as ActivityDefinitionKind;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ActivityDefinitionKind";
   }
-  
+
+  public clone(): ActivityDefinitionKind {
+    const result = new ActivityDefinitionKind();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ActivityDefinitionKind";
   }

@@ -20,7 +20,7 @@ export class OperationOutcome extends DomainResource {
   ): OperationOutcome {
     const newInstance: OperationOutcome = DomainResource.parse(json, providedInstance);
   
-    if (json.issue) {
+    if (json.issue !== undefined) {
       newInstance.issue = json.issue.map((x) => OperationOutcomeIssue.parse(x));
     }
     return newInstance;
@@ -40,7 +40,11 @@ export class OperationOutcome extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): OperationOutcome {
+    return OperationOutcome.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "OperationOutcome";
   }

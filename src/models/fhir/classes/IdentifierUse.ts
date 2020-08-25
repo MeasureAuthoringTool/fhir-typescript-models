@@ -22,7 +22,16 @@ export class IdentifierUse extends PrimitiveCode {
     const castInput = input as IdentifierUse;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "IdentifierUse";
   }
-  
+
+  public clone(): IdentifierUse {
+    const result = new IdentifierUse();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "IdentifierUse";
   }

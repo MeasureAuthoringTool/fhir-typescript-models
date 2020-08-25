@@ -31,19 +31,19 @@ export class SubstanceSpecificationStructureIsotope extends BackboneElement {
   ): SubstanceSpecificationStructureIsotope {
     const newInstance: SubstanceSpecificationStructureIsotope = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = CodeableConcept.parse(json.name);
     }
-    if (json.substitution) {
+    if (json.substitution !== undefined) {
       newInstance.substitution = CodeableConcept.parse(json.substitution);
     }
-    if (json.halfLife) {
+    if (json.halfLife !== undefined) {
       newInstance.halfLife = Quantity.parse(json.halfLife);
     }
-    if (json.molecularWeight) {
+    if (json.molecularWeight !== undefined) {
       newInstance.molecularWeight = SubstanceSpecificationStructureIsotopeMolecularWeight.parse(json.molecularWeight);
     }
     return newInstance;
@@ -79,7 +79,11 @@ export class SubstanceSpecificationStructureIsotope extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSpecificationStructureIsotope {
+    return SubstanceSpecificationStructureIsotope.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSpecificationStructureIsotope";
   }

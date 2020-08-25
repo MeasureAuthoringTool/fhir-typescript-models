@@ -35,34 +35,34 @@ export class HumanName extends Element {
   ): HumanName {
     const newInstance: HumanName = Element.parse(json, providedInstance);
   
-    if (json.use) {
+    if (json.use !== undefined) {
       newInstance.use = NameUse.parsePrimitive(json.use, json._use);
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
-    if (json.family) {
+    if (json.family !== undefined) {
       newInstance.family = PrimitiveString.parsePrimitive(json.family, json._family);
     }
-    if (json.given) {
+    if (json.given !== undefined) {
       newInstance.given = json.given.map((x, i) => {
         const ext = json._given && json._given[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.prefix) {
+    if (json.prefix !== undefined) {
       newInstance.prefix = json.prefix.map((x, i) => {
         const ext = json._prefix && json._prefix[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.suffix) {
+    if (json.suffix !== undefined) {
       newInstance.suffix = json.suffix.map((x, i) => {
         const ext = json._suffix && json._suffix[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
     return newInstance;
@@ -112,7 +112,11 @@ export class HumanName extends Element {
 
     return result;
   }
-  
+
+  public clone(): HumanName {
+    return HumanName.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "HumanName";
   }

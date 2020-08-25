@@ -22,7 +22,16 @@ export class DayOfWeek extends PrimitiveCode {
     const castInput = input as DayOfWeek;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "DayOfWeek";
   }
-  
+
+  public clone(): DayOfWeek {
+    const result = new DayOfWeek();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "DayOfWeek";
   }

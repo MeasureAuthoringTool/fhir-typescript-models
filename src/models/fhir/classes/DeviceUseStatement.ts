@@ -52,49 +52,49 @@ export class DeviceUseStatement extends DomainResource {
   ): DeviceUseStatement {
     const newInstance: DeviceUseStatement = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.basedOn) {
+    if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = DeviceUseStatementStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.subject) {
+    if (json.subject !== undefined) {
       newInstance.subject = Reference.parse(json.subject);
     }
-    if (json.derivedFrom) {
+    if (json.derivedFrom !== undefined) {
       newInstance.derivedFrom = json.derivedFrom.map((x) => Reference.parse(x));
     }
-    if (json.timingTiming) {
+    if (json.timingTiming !== undefined) {
       newInstance.timing = Timing.parse(json.timingTiming);
     }
-    if (json.timingPeriod) {
+    if (json.timingPeriod !== undefined) {
       newInstance.timing = Period.parse(json.timingPeriod);
     }
-    if (json.timingDateTime) {
+    if (json.timingDateTime !== undefined) {
       newInstance.timing = PrimitiveDateTime.parsePrimitive(json.timingDateTime, json._timingDateTime);
     }
-    if (json.recordedOn) {
+    if (json.recordedOn !== undefined) {
       newInstance.recordedOn = PrimitiveDateTime.parsePrimitive(json.recordedOn, json._recordedOn);
     }
-    if (json.source) {
+    if (json.source !== undefined) {
       newInstance.source = Reference.parse(json.source);
     }
-    if (json.device) {
+    if (json.device !== undefined) {
       newInstance.device = Reference.parse(json.device);
     }
-    if (json.reasonCode) {
+    if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
     }
-    if (json.reasonReference) {
+    if (json.reasonReference !== undefined) {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
-    if (json.bodySite) {
+    if (json.bodySite !== undefined) {
       newInstance.bodySite = CodeableConcept.parse(json.bodySite);
     }
-    if (json.note) {
+    if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     return newInstance;
@@ -173,7 +173,11 @@ export class DeviceUseStatement extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): DeviceUseStatement {
+    return DeviceUseStatement.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DeviceUseStatement";
   }

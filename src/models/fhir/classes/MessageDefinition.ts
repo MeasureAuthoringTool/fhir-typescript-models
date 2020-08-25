@@ -82,85 +82,85 @@ export class MessageDefinition extends DomainResource {
   ): MessageDefinition {
     const newInstance: MessageDefinition = DomainResource.parse(json, providedInstance);
   
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUri.parsePrimitive(json.url, json._url);
     }
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.replaces) {
+    if (json.replaces !== undefined) {
       newInstance.replaces = json.replaces.map((x, i) => {
         const ext = json._replaces && json._replaces[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.experimental) {
+    if (json.experimental !== undefined) {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
-    if (json.date) {
+    if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);
     }
-    if (json.publisher) {
+    if (json.publisher !== undefined) {
       newInstance.publisher = PrimitiveString.parsePrimitive(json.publisher, json._publisher);
     }
-    if (json.contact) {
+    if (json.contact !== undefined) {
       newInstance.contact = json.contact.map((x) => ContactDetail.parse(x));
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveMarkdown.parsePrimitive(json.description, json._description);
     }
-    if (json.useContext) {
+    if (json.useContext !== undefined) {
       newInstance.useContext = json.useContext.map((x) => UsageContext.parse(x));
     }
-    if (json.jurisdiction) {
+    if (json.jurisdiction !== undefined) {
       newInstance.jurisdiction = json.jurisdiction.map((x) => CodeableConcept.parse(x));
     }
-    if (json.purpose) {
+    if (json.purpose !== undefined) {
       newInstance.purpose = PrimitiveMarkdown.parsePrimitive(json.purpose, json._purpose);
     }
-    if (json.copyright) {
+    if (json.copyright !== undefined) {
       newInstance.copyright = PrimitiveMarkdown.parsePrimitive(json.copyright, json._copyright);
     }
-    if (json.base) {
+    if (json.base !== undefined) {
       newInstance.base = PrimitiveCanonical.parsePrimitive(json.base, json._base);
     }
-    if (json.parent) {
+    if (json.parent !== undefined) {
       newInstance.parent = json.parent.map((x, i) => {
         const ext = json._parent && json._parent[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.eventCoding) {
+    if (json.eventCoding !== undefined) {
       newInstance.event = Coding.parse(json.eventCoding);
     }
-    if (json.eventUri) {
+    if (json.eventUri !== undefined) {
       newInstance.event = PrimitiveUri.parsePrimitive(json.eventUri, json._eventUri);
     }
-    if (json.category) {
+    if (json.category !== undefined) {
       newInstance.category = MessageSignificanceCategory.parsePrimitive(json.category, json._category);
     }
-    if (json.focus) {
+    if (json.focus !== undefined) {
       newInstance.focus = json.focus.map((x) => MessageDefinitionFocus.parse(x));
     }
-    if (json.responseRequired) {
+    if (json.responseRequired !== undefined) {
       newInstance.responseRequired = MessageheaderResponseRequest.parsePrimitive(json.responseRequired, json._responseRequired);
     }
-    if (json.allowedResponse) {
+    if (json.allowedResponse !== undefined) {
       newInstance.allowedResponse = json.allowedResponse.map((x) => MessageDefinitionAllowedResponse.parse(x));
     }
-    if (json.graph) {
+    if (json.graph !== undefined) {
       newInstance.graph = json.graph.map((x, i) => {
         const ext = json._graph && json._graph[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
@@ -297,7 +297,11 @@ export class MessageDefinition extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): MessageDefinition {
+    return MessageDefinition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MessageDefinition";
   }

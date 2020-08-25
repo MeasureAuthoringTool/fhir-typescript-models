@@ -36,25 +36,25 @@ export class SampledData extends Element {
   ): SampledData {
     const newInstance: SampledData = Element.parse(json, providedInstance);
   
-    if (json.origin) {
+    if (json.origin !== undefined) {
       newInstance.origin = SimpleQuantity.parse(json.origin);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = PrimitiveDecimal.parsePrimitive(json.period, json._period);
     }
-    if (json.factor) {
+    if (json.factor !== undefined) {
       newInstance.factor = PrimitiveDecimal.parsePrimitive(json.factor, json._factor);
     }
-    if (json.lowerLimit) {
+    if (json.lowerLimit !== undefined) {
       newInstance.lowerLimit = PrimitiveDecimal.parsePrimitive(json.lowerLimit, json._lowerLimit);
     }
-    if (json.upperLimit) {
+    if (json.upperLimit !== undefined) {
       newInstance.upperLimit = PrimitiveDecimal.parsePrimitive(json.upperLimit, json._upperLimit);
     }
-    if (json.dimensions) {
+    if (json.dimensions !== undefined) {
       newInstance.dimensions = PrimitivePositiveInt.parsePrimitive(json.dimensions, json._dimensions);
     }
-    if (json.data) {
+    if (json.data !== undefined) {
       newInstance.data = PrimitiveString.parsePrimitive(json.data, json._data);
     }
     return newInstance;
@@ -104,7 +104,11 @@ export class SampledData extends Element {
 
     return result;
   }
-  
+
+  public clone(): SampledData {
+    return SampledData.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SampledData";
   }

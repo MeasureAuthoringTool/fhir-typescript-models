@@ -22,7 +22,16 @@ export class MeasureReportStatus extends PrimitiveCode {
     const castInput = input as MeasureReportStatus;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "MeasureReportStatus";
   }
-  
+
+  public clone(): MeasureReportStatus {
+    const result = new MeasureReportStatus();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "MeasureReportStatus";
   }

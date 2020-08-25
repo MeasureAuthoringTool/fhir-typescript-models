@@ -39,28 +39,28 @@ export class SubstanceSourceMaterialOrganism extends BackboneElement {
   ): SubstanceSourceMaterialOrganism {
     const newInstance: SubstanceSourceMaterialOrganism = BackboneElement.parse(json, providedInstance);
   
-    if (json.family) {
+    if (json.family !== undefined) {
       newInstance.family = CodeableConcept.parse(json.family);
     }
-    if (json.genus) {
+    if (json.genus !== undefined) {
       newInstance.genus = CodeableConcept.parse(json.genus);
     }
-    if (json.species) {
+    if (json.species !== undefined) {
       newInstance.species = CodeableConcept.parse(json.species);
     }
-    if (json.intraspecificType) {
+    if (json.intraspecificType !== undefined) {
       newInstance.intraspecificType = CodeableConcept.parse(json.intraspecificType);
     }
-    if (json.intraspecificDescription) {
+    if (json.intraspecificDescription !== undefined) {
       newInstance.intraspecificDescription = PrimitiveString.parsePrimitive(json.intraspecificDescription, json._intraspecificDescription);
     }
-    if (json.author) {
+    if (json.author !== undefined) {
       newInstance.author = json.author.map((x) => SubstanceSourceMaterialOrganismAuthor.parse(x));
     }
-    if (json.hybrid) {
+    if (json.hybrid !== undefined) {
       newInstance.hybrid = SubstanceSourceMaterialOrganismHybrid.parse(json.hybrid);
     }
-    if (json.organismGeneral) {
+    if (json.organismGeneral !== undefined) {
       newInstance.organismGeneral = SubstanceSourceMaterialOrganismOrganismGeneral.parse(json.organismGeneral);
     }
     return newInstance;
@@ -109,7 +109,11 @@ export class SubstanceSourceMaterialOrganism extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SubstanceSourceMaterialOrganism {
+    return SubstanceSourceMaterialOrganism.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSourceMaterialOrganism";
   }

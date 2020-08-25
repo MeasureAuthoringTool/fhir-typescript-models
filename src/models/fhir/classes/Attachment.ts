@@ -41,28 +41,28 @@ export class Attachment extends Element {
   ): Attachment {
     const newInstance: Attachment = Element.parse(json, providedInstance);
   
-    if (json.contentType) {
+    if (json.contentType !== undefined) {
       newInstance.contentType = MimeType.parsePrimitive(json.contentType, json._contentType);
     }
-    if (json.language) {
+    if (json.language !== undefined) {
       newInstance.language = PrimitiveCode.parsePrimitive(json.language, json._language);
     }
-    if (json.data) {
+    if (json.data !== undefined) {
       newInstance.data = PrimitiveBase64Binary.parsePrimitive(json.data, json._data);
     }
-    if (json.url) {
+    if (json.url !== undefined) {
       newInstance.url = PrimitiveUrl.parsePrimitive(json.url, json._url);
     }
-    if (json.size) {
+    if (json.size !== undefined) {
       newInstance.size = PrimitiveUnsignedInt.parsePrimitive(json.size, json._size);
     }
-    if (json.hash) {
+    if (json.hash !== undefined) {
       newInstance.hash = PrimitiveBase64Binary.parsePrimitive(json.hash, json._hash);
     }
-    if (json.title) {
+    if (json.title !== undefined) {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
-    if (json.creation) {
+    if (json.creation !== undefined) {
       newInstance.creation = PrimitiveDateTime.parsePrimitive(json.creation, json._creation);
     }
     return newInstance;
@@ -118,7 +118,11 @@ export class Attachment extends Element {
 
     return result;
   }
-  
+
+  public clone(): Attachment {
+    return Attachment.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Attachment";
   }

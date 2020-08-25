@@ -44,43 +44,43 @@ export class ProdCharacteristic extends BackboneElement {
   ): ProdCharacteristic {
     const newInstance: ProdCharacteristic = BackboneElement.parse(json, providedInstance);
   
-    if (json.height) {
+    if (json.height !== undefined) {
       newInstance.height = Quantity.parse(json.height);
     }
-    if (json.width) {
+    if (json.width !== undefined) {
       newInstance.width = Quantity.parse(json.width);
     }
-    if (json.depth) {
+    if (json.depth !== undefined) {
       newInstance.depth = Quantity.parse(json.depth);
     }
-    if (json.weight) {
+    if (json.weight !== undefined) {
       newInstance.weight = Quantity.parse(json.weight);
     }
-    if (json.nominalVolume) {
+    if (json.nominalVolume !== undefined) {
       newInstance.nominalVolume = Quantity.parse(json.nominalVolume);
     }
-    if (json.externalDiameter) {
+    if (json.externalDiameter !== undefined) {
       newInstance.externalDiameter = Quantity.parse(json.externalDiameter);
     }
-    if (json.shape) {
+    if (json.shape !== undefined) {
       newInstance.shape = PrimitiveString.parsePrimitive(json.shape, json._shape);
     }
-    if (json.color) {
+    if (json.color !== undefined) {
       newInstance.color = json.color.map((x, i) => {
         const ext = json._color && json._color[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.imprint) {
+    if (json.imprint !== undefined) {
       newInstance.imprint = json.imprint.map((x, i) => {
         const ext = json._imprint && json._imprint[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.image) {
+    if (json.image !== undefined) {
       newInstance.image = json.image.map((x) => Attachment.parse(x));
     }
-    if (json.scoring) {
+    if (json.scoring !== undefined) {
       newInstance.scoring = CodeableConcept.parse(json.scoring);
     }
     return newInstance;
@@ -143,7 +143,11 @@ export class ProdCharacteristic extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ProdCharacteristic {
+    return ProdCharacteristic.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ProdCharacteristic";
   }

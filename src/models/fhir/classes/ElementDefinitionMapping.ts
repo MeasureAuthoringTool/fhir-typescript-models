@@ -29,16 +29,16 @@ export class ElementDefinitionMapping extends Element {
   ): ElementDefinitionMapping {
     const newInstance: ElementDefinitionMapping = Element.parse(json, providedInstance);
   
-    if (json.identity) {
+    if (json.identity !== undefined) {
       newInstance.identity = PrimitiveId.parsePrimitive(json.identity, json._identity);
     }
-    if (json.language) {
+    if (json.language !== undefined) {
       newInstance.language = MimeType.parsePrimitive(json.language, json._language);
     }
-    if (json.map) {
+    if (json.map !== undefined) {
       newInstance.map = PrimitiveString.parsePrimitive(json.map, json._map);
     }
-    if (json.comment) {
+    if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);
     }
     return newInstance;
@@ -74,7 +74,11 @@ export class ElementDefinitionMapping extends Element {
 
     return result;
   }
-  
+
+  public clone(): ElementDefinitionMapping {
+    return ElementDefinitionMapping.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ElementDefinitionMapping";
   }

@@ -35,22 +35,22 @@ export class StructureMapGroup extends BackboneElement {
   ): StructureMapGroup {
     const newInstance: StructureMapGroup = BackboneElement.parse(json, providedInstance);
   
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveId.parsePrimitive(json.name, json._name);
     }
-    if (json.extends) {
+    if (json.extends !== undefined) {
       newInstance.extends = PrimitiveId.parsePrimitive(json.extends, json._extends);
     }
-    if (json.typeMode) {
+    if (json.typeMode !== undefined) {
       newInstance.typeMode = StructureMapGroupTypeMode.parsePrimitive(json.typeMode, json._typeMode);
     }
-    if (json.documentation) {
+    if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveString.parsePrimitive(json.documentation, json._documentation);
     }
-    if (json.input) {
+    if (json.input !== undefined) {
       newInstance.input = json.input.map((x) => StructureMapGroupInput.parse(x));
     }
-    if (json.rule) {
+    if (json.rule !== undefined) {
       newInstance.rule = json.rule.map((x) => StructureMapGroupRule.parse(x));
     }
     return newInstance;
@@ -94,7 +94,11 @@ export class StructureMapGroup extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): StructureMapGroup {
+    return StructureMapGroup.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "StructureMapGroup";
   }

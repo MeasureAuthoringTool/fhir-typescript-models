@@ -28,16 +28,16 @@ export class ProductShelfLife extends BackboneElement {
   ): ProductShelfLife {
     const newInstance: ProductShelfLife = BackboneElement.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Quantity.parse(json.period);
     }
-    if (json.specialPrecautionsForStorage) {
+    if (json.specialPrecautionsForStorage !== undefined) {
       newInstance.specialPrecautionsForStorage = json.specialPrecautionsForStorage.map((x) => CodeableConcept.parse(x));
     }
     return newInstance;
@@ -69,7 +69,11 @@ export class ProductShelfLife extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ProductShelfLife {
+    return ProductShelfLife.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ProductShelfLife";
   }

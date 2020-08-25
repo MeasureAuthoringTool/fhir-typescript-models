@@ -27,13 +27,13 @@ export class ImplementationGuideDependsOn extends BackboneElement {
   ): ImplementationGuideDependsOn {
     const newInstance: ImplementationGuideDependsOn = BackboneElement.parse(json, providedInstance);
   
-    if (json.uri) {
+    if (json.uri !== undefined) {
       newInstance.uri = PrimitiveCanonical.parsePrimitive(json.uri, json._uri);
     }
-    if (json.packageId) {
+    if (json.packageId !== undefined) {
       newInstance.packageId = PrimitiveId.parsePrimitive(json.packageId, json._packageId);
     }
-    if (json.version) {
+    if (json.version !== undefined) {
       newInstance.version = PrimitiveString.parsePrimitive(json.version, json._version);
     }
     return newInstance;
@@ -64,7 +64,11 @@ export class ImplementationGuideDependsOn extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImplementationGuideDependsOn {
+    return ImplementationGuideDependsOn.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImplementationGuideDependsOn";
   }

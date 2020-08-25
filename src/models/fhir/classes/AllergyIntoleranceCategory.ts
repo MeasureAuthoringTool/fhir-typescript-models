@@ -22,7 +22,16 @@ export class AllergyIntoleranceCategory extends PrimitiveCode {
     const castInput = input as AllergyIntoleranceCategory;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "AllergyIntoleranceCategory";
   }
-  
+
+  public clone(): AllergyIntoleranceCategory {
+    const result = new AllergyIntoleranceCategory();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "AllergyIntoleranceCategory";
   }

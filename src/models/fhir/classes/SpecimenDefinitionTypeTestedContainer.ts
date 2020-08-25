@@ -38,31 +38,31 @@ export class SpecimenDefinitionTypeTestedContainer extends BackboneElement {
   ): SpecimenDefinitionTypeTestedContainer {
     const newInstance: SpecimenDefinitionTypeTestedContainer = BackboneElement.parse(json, providedInstance);
   
-    if (json.material) {
+    if (json.material !== undefined) {
       newInstance.material = CodeableConcept.parse(json.material);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.cap) {
+    if (json.cap !== undefined) {
       newInstance.cap = CodeableConcept.parse(json.cap);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.capacity) {
+    if (json.capacity !== undefined) {
       newInstance.capacity = SimpleQuantity.parse(json.capacity);
     }
-    if (json.minimumVolumeSimpleQuantity) {
+    if (json.minimumVolumeSimpleQuantity !== undefined) {
       newInstance.minimumVolume = SimpleQuantity.parse(json.minimumVolumeSimpleQuantity);
     }
-    if (json.minimumVolumeString) {
+    if (json.minimumVolumeString !== undefined) {
       newInstance.minimumVolume = PrimitiveString.parsePrimitive(json.minimumVolumeString, json._minimumVolumeString);
     }
-    if (json.additive) {
+    if (json.additive !== undefined) {
       newInstance.additive = json.additive.map((x) => SpecimenDefinitionTypeTestedContainerAdditive.parse(x));
     }
-    if (json.preparation) {
+    if (json.preparation !== undefined) {
       newInstance.preparation = PrimitiveString.parsePrimitive(json.preparation, json._preparation);
     }
     return newInstance;
@@ -117,7 +117,11 @@ export class SpecimenDefinitionTypeTestedContainer extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): SpecimenDefinitionTypeTestedContainer {
+    return SpecimenDefinitionTypeTestedContainer.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SpecimenDefinitionTypeTestedContainer";
   }

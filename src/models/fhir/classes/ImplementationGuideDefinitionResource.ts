@@ -36,28 +36,28 @@ export class ImplementationGuideDefinitionResource extends BackboneElement {
   ): ImplementationGuideDefinitionResource {
     const newInstance: ImplementationGuideDefinitionResource = BackboneElement.parse(json, providedInstance);
   
-    if (json.reference) {
+    if (json.reference !== undefined) {
       newInstance.reference = Reference.parse(json.reference);
     }
-    if (json.fhirVersion) {
+    if (json.fhirVersion !== undefined) {
       newInstance.fhirVersion = json.fhirVersion.map((x, i) => {
         const ext = json._fhirVersion && json._fhirVersion[i];
         return FHIRVersion.parsePrimitive(x, ext);
       });
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.exampleBoolean) {
+    if (json.exampleBoolean !== undefined) {
       newInstance.example = PrimitiveBoolean.parsePrimitive(json.exampleBoolean, json._exampleBoolean);
     }
-    if (json.exampleCanonical) {
+    if (json.exampleCanonical !== undefined) {
       newInstance.example = PrimitiveCanonical.parsePrimitive(json.exampleCanonical, json._exampleCanonical);
     }
-    if (json.groupingId) {
+    if (json.groupingId !== undefined) {
       newInstance.groupingId = PrimitiveId.parsePrimitive(json.groupingId, json._groupingId);
     }
     return newInstance;
@@ -107,7 +107,11 @@ export class ImplementationGuideDefinitionResource extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ImplementationGuideDefinitionResource {
+    return ImplementationGuideDefinitionResource.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ImplementationGuideDefinitionResource";
   }

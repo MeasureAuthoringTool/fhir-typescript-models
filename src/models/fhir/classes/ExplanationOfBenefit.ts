@@ -130,136 +130,136 @@ export class ExplanationOfBenefit extends DomainResource {
   ): ExplanationOfBenefit {
     const newInstance: ExplanationOfBenefit = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = ExplanationOfBenefitStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.subType) {
+    if (json.subType !== undefined) {
       newInstance.subType = CodeableConcept.parse(json.subType);
     }
-    if (json.use) {
+    if (json.use !== undefined) {
       newInstance.use = Use.parsePrimitive(json.use, json._use);
     }
-    if (json.patient) {
+    if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);
     }
-    if (json.billablePeriod) {
+    if (json.billablePeriod !== undefined) {
       newInstance.billablePeriod = Period.parse(json.billablePeriod);
     }
-    if (json.created) {
+    if (json.created !== undefined) {
       newInstance.created = PrimitiveDateTime.parsePrimitive(json.created, json._created);
     }
-    if (json.enterer) {
+    if (json.enterer !== undefined) {
       newInstance.enterer = Reference.parse(json.enterer);
     }
-    if (json.insurer) {
+    if (json.insurer !== undefined) {
       newInstance.insurer = Reference.parse(json.insurer);
     }
-    if (json.provider) {
+    if (json.provider !== undefined) {
       newInstance.provider = Reference.parse(json.provider);
     }
-    if (json.priority) {
+    if (json.priority !== undefined) {
       newInstance.priority = CodeableConcept.parse(json.priority);
     }
-    if (json.fundsReserveRequested) {
+    if (json.fundsReserveRequested !== undefined) {
       newInstance.fundsReserveRequested = CodeableConcept.parse(json.fundsReserveRequested);
     }
-    if (json.fundsReserve) {
+    if (json.fundsReserve !== undefined) {
       newInstance.fundsReserve = CodeableConcept.parse(json.fundsReserve);
     }
-    if (json.related) {
+    if (json.related !== undefined) {
       newInstance.related = json.related.map((x) => ExplanationOfBenefitRelated.parse(x));
     }
-    if (json.prescription) {
+    if (json.prescription !== undefined) {
       newInstance.prescription = Reference.parse(json.prescription);
     }
-    if (json.originalPrescription) {
+    if (json.originalPrescription !== undefined) {
       newInstance.originalPrescription = Reference.parse(json.originalPrescription);
     }
-    if (json.payee) {
+    if (json.payee !== undefined) {
       newInstance.payee = ExplanationOfBenefitPayee.parse(json.payee);
     }
-    if (json.referral) {
+    if (json.referral !== undefined) {
       newInstance.referral = Reference.parse(json.referral);
     }
-    if (json.facility) {
+    if (json.facility !== undefined) {
       newInstance.facility = Reference.parse(json.facility);
     }
-    if (json.claim) {
+    if (json.claim !== undefined) {
       newInstance.claim = Reference.parse(json.claim);
     }
-    if (json.claimResponse) {
+    if (json.claimResponse !== undefined) {
       newInstance.claimResponse = Reference.parse(json.claimResponse);
     }
-    if (json.outcome) {
+    if (json.outcome !== undefined) {
       newInstance.outcome = RemittanceOutcome.parsePrimitive(json.outcome, json._outcome);
     }
-    if (json.disposition) {
+    if (json.disposition !== undefined) {
       newInstance.disposition = PrimitiveString.parsePrimitive(json.disposition, json._disposition);
     }
-    if (json.preAuthRef) {
+    if (json.preAuthRef !== undefined) {
       newInstance.preAuthRef = json.preAuthRef.map((x, i) => {
         const ext = json._preAuthRef && json._preAuthRef[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.preAuthRefPeriod) {
+    if (json.preAuthRefPeriod !== undefined) {
       newInstance.preAuthRefPeriod = json.preAuthRefPeriod.map((x) => Period.parse(x));
     }
-    if (json.careTeam) {
+    if (json.careTeam !== undefined) {
       newInstance.careTeam = json.careTeam.map((x) => ExplanationOfBenefitCareTeam.parse(x));
     }
-    if (json.supportingInfo) {
+    if (json.supportingInfo !== undefined) {
       newInstance.supportingInfo = json.supportingInfo.map((x) => ExplanationOfBenefitSupportingInfo.parse(x));
     }
-    if (json.diagnosis) {
+    if (json.diagnosis !== undefined) {
       newInstance.diagnosis = json.diagnosis.map((x) => ExplanationOfBenefitDiagnosis.parse(x));
     }
-    if (json.procedure) {
+    if (json.procedure !== undefined) {
       newInstance.procedure = json.procedure.map((x) => ExplanationOfBenefitProcedure.parse(x));
     }
-    if (json.precedence) {
+    if (json.precedence !== undefined) {
       newInstance.precedence = PrimitivePositiveInt.parsePrimitive(json.precedence, json._precedence);
     }
-    if (json.insurance) {
+    if (json.insurance !== undefined) {
       newInstance.insurance = json.insurance.map((x) => ExplanationOfBenefitInsurance.parse(x));
     }
-    if (json.accident) {
+    if (json.accident !== undefined) {
       newInstance.accident = ExplanationOfBenefitAccident.parse(json.accident);
     }
-    if (json.item) {
+    if (json.item !== undefined) {
       newInstance.item = json.item.map((x) => ExplanationOfBenefitItem.parse(x));
     }
-    if (json.addItem) {
+    if (json.addItem !== undefined) {
       newInstance.addItem = json.addItem.map((x) => ExplanationOfBenefitAddItem.parse(x));
     }
-    if (json.adjudication) {
+    if (json.adjudication !== undefined) {
       newInstance.adjudication = json.adjudication.map((x) => ExplanationOfBenefitItemAdjudication.parse(x));
     }
-    if (json.total) {
+    if (json.total !== undefined) {
       newInstance.total = json.total.map((x) => ExplanationOfBenefitTotal.parse(x));
     }
-    if (json.payment) {
+    if (json.payment !== undefined) {
       newInstance.payment = ExplanationOfBenefitPayment.parse(json.payment);
     }
-    if (json.formCode) {
+    if (json.formCode !== undefined) {
       newInstance.formCode = CodeableConcept.parse(json.formCode);
     }
-    if (json.form) {
+    if (json.form !== undefined) {
       newInstance.form = Attachment.parse(json.form);
     }
-    if (json.processNote) {
+    if (json.processNote !== undefined) {
       newInstance.processNote = json.processNote.map((x) => ExplanationOfBenefitProcessNote.parse(x));
     }
-    if (json.benefitPeriod) {
+    if (json.benefitPeriod !== undefined) {
       newInstance.benefitPeriod = Period.parse(json.benefitPeriod);
     }
-    if (json.benefitBalance) {
+    if (json.benefitBalance !== undefined) {
       newInstance.benefitBalance = json.benefitBalance.map((x) => ExplanationOfBenefitBenefitBalance.parse(x));
     }
     return newInstance;
@@ -454,7 +454,11 @@ export class ExplanationOfBenefit extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): ExplanationOfBenefit {
+    return ExplanationOfBenefit.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ExplanationOfBenefit";
   }

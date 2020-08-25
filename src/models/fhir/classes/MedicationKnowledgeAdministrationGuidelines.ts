@@ -27,16 +27,16 @@ export class MedicationKnowledgeAdministrationGuidelines extends BackboneElement
   ): MedicationKnowledgeAdministrationGuidelines {
     const newInstance: MedicationKnowledgeAdministrationGuidelines = BackboneElement.parse(json, providedInstance);
   
-    if (json.dosage) {
+    if (json.dosage !== undefined) {
       newInstance.dosage = json.dosage.map((x) => MedicationKnowledgeAdministrationGuidelinesDosage.parse(x));
     }
-    if (json.indicationCodeableConcept) {
+    if (json.indicationCodeableConcept !== undefined) {
       newInstance.indication = CodeableConcept.parse(json.indicationCodeableConcept);
     }
-    if (json.indicationReference) {
+    if (json.indicationReference !== undefined) {
       newInstance.indication = Reference.parse(json.indicationReference);
     }
-    if (json.patientCharacteristics) {
+    if (json.patientCharacteristics !== undefined) {
       newInstance.patientCharacteristics = json.patientCharacteristics.map((x) => MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics.parse(x));
     }
     return newInstance;
@@ -68,7 +68,11 @@ export class MedicationKnowledgeAdministrationGuidelines extends BackboneElement
 
     return result;
   }
-  
+
+  public clone(): MedicationKnowledgeAdministrationGuidelines {
+    return MedicationKnowledgeAdministrationGuidelines.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "MedicationKnowledgeAdministrationGuidelines";
   }

@@ -22,7 +22,16 @@ export class Status extends PrimitiveCode {
     const castInput = input as Status;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "Status";
   }
-  
+
+  public clone(): Status {
+    const result = new Status();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "Status";
   }

@@ -22,7 +22,16 @@ export class AssertionDirectionType extends PrimitiveCode {
     const castInput = input as AssertionDirectionType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "AssertionDirectionType";
   }
-  
+
+  public clone(): AssertionDirectionType {
+    const result = new AssertionDirectionType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "AssertionDirectionType";
   }

@@ -32,19 +32,19 @@ export class ClaimCareTeam extends BackboneElement {
   ): ClaimCareTeam {
     const newInstance: ClaimCareTeam = BackboneElement.parse(json, providedInstance);
   
-    if (json.sequence) {
+    if (json.sequence !== undefined) {
       newInstance.sequence = PrimitivePositiveInt.parsePrimitive(json.sequence, json._sequence);
     }
-    if (json.provider) {
+    if (json.provider !== undefined) {
       newInstance.provider = Reference.parse(json.provider);
     }
-    if (json.responsible) {
+    if (json.responsible !== undefined) {
       newInstance.responsible = PrimitiveBoolean.parsePrimitive(json.responsible, json._responsible);
     }
-    if (json.role) {
+    if (json.role !== undefined) {
       newInstance.role = CodeableConcept.parse(json.role);
     }
-    if (json.qualification) {
+    if (json.qualification !== undefined) {
       newInstance.qualification = CodeableConcept.parse(json.qualification);
     }
     return newInstance;
@@ -82,7 +82,11 @@ export class ClaimCareTeam extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): ClaimCareTeam {
+    return ClaimCareTeam.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ClaimCareTeam";
   }

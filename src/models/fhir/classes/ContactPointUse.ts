@@ -22,7 +22,16 @@ export class ContactPointUse extends PrimitiveCode {
     const castInput = input as ContactPointUse;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "ContactPointUse";
   }
-  
+
+  public clone(): ContactPointUse {
+    const result = new ContactPointUse();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "ContactPointUse";
   }

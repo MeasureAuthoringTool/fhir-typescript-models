@@ -63,58 +63,58 @@ export class Location extends DomainResource {
   ): Location {
     const newInstance: Location = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = LocationStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.operationalStatus) {
+    if (json.operationalStatus !== undefined) {
       newInstance.operationalStatus = Coding.parse(json.operationalStatus);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.alias) {
+    if (json.alias !== undefined) {
       newInstance.alias = json.alias.map((x, i) => {
         const ext = json._alias && json._alias[i];
         return PrimitiveString.parsePrimitive(x, ext);
       });
     }
-    if (json.description) {
+    if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
-    if (json.mode) {
+    if (json.mode !== undefined) {
       newInstance.mode = LocationMode.parsePrimitive(json.mode, json._mode);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = json.type.map((x) => CodeableConcept.parse(x));
     }
-    if (json.telecom) {
+    if (json.telecom !== undefined) {
       newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));
     }
-    if (json.address) {
+    if (json.address !== undefined) {
       newInstance.address = Address.parse(json.address);
     }
-    if (json.physicalType) {
+    if (json.physicalType !== undefined) {
       newInstance.physicalType = CodeableConcept.parse(json.physicalType);
     }
-    if (json.position) {
+    if (json.position !== undefined) {
       newInstance.position = LocationPosition.parse(json.position);
     }
-    if (json.managingOrganization) {
+    if (json.managingOrganization !== undefined) {
       newInstance.managingOrganization = Reference.parse(json.managingOrganization);
     }
-    if (json.partOf) {
+    if (json.partOf !== undefined) {
       newInstance.partOf = Reference.parse(json.partOf);
     }
-    if (json.hoursOfOperation) {
+    if (json.hoursOfOperation !== undefined) {
       newInstance.hoursOfOperation = json.hoursOfOperation.map((x) => LocationHoursOfOperation.parse(x));
     }
-    if (json.availabilityExceptions) {
+    if (json.availabilityExceptions !== undefined) {
       newInstance.availabilityExceptions = PrimitiveString.parsePrimitive(json.availabilityExceptions, json._availabilityExceptions);
     }
-    if (json.endpoint) {
+    if (json.endpoint !== undefined) {
       newInstance.endpoint = json.endpoint.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -204,7 +204,11 @@ export class Location extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): Location {
+    return Location.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Location";
   }

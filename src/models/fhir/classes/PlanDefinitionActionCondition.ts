@@ -24,10 +24,10 @@ export class PlanDefinitionActionCondition extends BackboneElement {
   ): PlanDefinitionActionCondition {
     const newInstance: PlanDefinitionActionCondition = BackboneElement.parse(json, providedInstance);
   
-    if (json.kind) {
+    if (json.kind !== undefined) {
       newInstance.kind = ActionConditionKind.parsePrimitive(json.kind, json._kind);
     }
-    if (json.expression) {
+    if (json.expression !== undefined) {
       newInstance.expression = Expression.parse(json.expression);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class PlanDefinitionActionCondition extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): PlanDefinitionActionCondition {
+    return PlanDefinitionActionCondition.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "PlanDefinitionActionCondition";
   }

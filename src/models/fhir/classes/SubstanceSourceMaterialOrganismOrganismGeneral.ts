@@ -26,16 +26,16 @@ export class SubstanceSourceMaterialOrganismOrganismGeneral extends BackboneElem
   ): SubstanceSourceMaterialOrganismOrganismGeneral {
     const newInstance: SubstanceSourceMaterialOrganismOrganismGeneral = BackboneElement.parse(json, providedInstance);
   
-    if (json.kingdom) {
+    if (json.kingdom !== undefined) {
       newInstance.kingdom = CodeableConcept.parse(json.kingdom);
     }
-    if (json.phylum) {
+    if (json.phylum !== undefined) {
       newInstance.phylum = CodeableConcept.parse(json.phylum);
     }
-    if (json.class) {
+    if (json.class !== undefined) {
       newInstance.class = CodeableConcept.parse(json.class);
     }
-    if (json.order) {
+    if (json.order !== undefined) {
       newInstance.order = CodeableConcept.parse(json.order);
     }
     return newInstance;
@@ -67,7 +67,11 @@ export class SubstanceSourceMaterialOrganismOrganismGeneral extends BackboneElem
 
     return result;
   }
-  
+
+  public clone(): SubstanceSourceMaterialOrganismOrganismGeneral {
+    return SubstanceSourceMaterialOrganismOrganismGeneral.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "SubstanceSourceMaterialOrganismOrganismGeneral";
   }

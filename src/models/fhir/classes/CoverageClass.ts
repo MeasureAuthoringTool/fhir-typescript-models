@@ -26,13 +26,13 @@ export class CoverageClass extends BackboneElement {
   ): CoverageClass {
     const newInstance: CoverageClass = BackboneElement.parse(json, providedInstance);
   
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.value) {
+    if (json.value !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.value, json._value);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
     return newInstance;
@@ -62,7 +62,11 @@ export class CoverageClass extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CoverageClass {
+    return CoverageClass.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CoverageClass";
   }

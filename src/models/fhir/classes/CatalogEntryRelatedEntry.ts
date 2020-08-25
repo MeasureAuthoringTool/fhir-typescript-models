@@ -24,10 +24,10 @@ export class CatalogEntryRelatedEntry extends BackboneElement {
   ): CatalogEntryRelatedEntry {
     const newInstance: CatalogEntryRelatedEntry = BackboneElement.parse(json, providedInstance);
   
-    if (json.relationtype) {
+    if (json.relationtype !== undefined) {
       newInstance.relationtype = CatalogEntryRelationType.parsePrimitive(json.relationtype, json._relationtype);
     }
-    if (json.item) {
+    if (json.item !== undefined) {
       newInstance.item = Reference.parse(json.item);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class CatalogEntryRelatedEntry extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): CatalogEntryRelatedEntry {
+    return CatalogEntryRelatedEntry.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "CatalogEntryRelatedEntry";
   }

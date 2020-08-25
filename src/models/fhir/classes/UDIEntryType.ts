@@ -22,7 +22,16 @@ export class UDIEntryType extends PrimitiveCode {
     const castInput = input as UDIEntryType;
     return !!input && castInput.getTypeName && castInput.getTypeName() === "UDIEntryType";
   }
-  
+
+  public clone(): UDIEntryType {
+    const result = new UDIEntryType();
+    const parentClone = super.clone();
+    result.id = parentClone.id;
+    result.extension = parentClone.extension;
+    result.value = this.value;
+    return result;
+  }
+
   public getTypeName(): string {
     return "UDIEntryType";
   }

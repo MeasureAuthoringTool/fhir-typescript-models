@@ -53,40 +53,40 @@ export class TestReport extends DomainResource {
   ): TestReport {
     const newInstance: TestReport = DomainResource.parse(json, providedInstance);
   
-    if (json.identifier) {
+    if (json.identifier !== undefined) {
       newInstance.identifier = Identifier.parse(json.identifier);
     }
-    if (json.name) {
+    if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
-    if (json.status) {
+    if (json.status !== undefined) {
       newInstance.status = TestReportStatus.parsePrimitive(json.status, json._status);
     }
-    if (json.testScript) {
+    if (json.testScript !== undefined) {
       newInstance.testScript = Reference.parse(json.testScript);
     }
-    if (json.result) {
+    if (json.result !== undefined) {
       newInstance.result = TestReportResult.parsePrimitive(json.result, json._result);
     }
-    if (json.score) {
+    if (json.score !== undefined) {
       newInstance.score = PrimitiveDecimal.parsePrimitive(json.score, json._score);
     }
-    if (json.tester) {
+    if (json.tester !== undefined) {
       newInstance.tester = PrimitiveString.parsePrimitive(json.tester, json._tester);
     }
-    if (json.issued) {
+    if (json.issued !== undefined) {
       newInstance.issued = PrimitiveDateTime.parsePrimitive(json.issued, json._issued);
     }
-    if (json.participant) {
+    if (json.participant !== undefined) {
       newInstance.participant = json.participant.map((x) => TestReportParticipant.parse(x));
     }
-    if (json.setup) {
+    if (json.setup !== undefined) {
       newInstance.setup = TestReportSetup.parse(json.setup);
     }
-    if (json.test) {
+    if (json.test !== undefined) {
       newInstance.test = json.test.map((x) => TestReportTest.parse(x));
     }
-    if (json.teardown) {
+    if (json.teardown !== undefined) {
       newInstance.teardown = TestReportTeardown.parse(json.teardown);
     }
     return newInstance;
@@ -156,7 +156,11 @@ export class TestReport extends DomainResource {
 
     return result;
   }
-  
+
+  public clone(): TestReport {
+    return TestReport.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "TestReport";
   }

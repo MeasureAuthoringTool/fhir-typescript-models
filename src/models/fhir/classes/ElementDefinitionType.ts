@@ -27,16 +27,16 @@ export class ElementDefinitionType extends Element {
   ): ElementDefinitionType {
     const newInstance: ElementDefinitionType = Element.parse(json, providedInstance);
   
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = PrimitiveUri.parsePrimitive(json.code, json._code);
     }
-    if (json.targetProfile) {
+    if (json.targetProfile !== undefined) {
       newInstance.targetProfile = json.targetProfile.map((x, i) => {
         const ext = json._targetProfile && json._targetProfile[i];
         return PrimitiveCanonical.parsePrimitive(x, ext);
       });
     }
-    if (json.versioning) {
+    if (json.versioning !== undefined) {
       newInstance.versioning = ReferenceVersionRules.parsePrimitive(json.versioning, json._versioning);
     }
     return newInstance;
@@ -67,7 +67,11 @@ export class ElementDefinitionType extends Element {
 
     return result;
   }
-  
+
+  public clone(): ElementDefinitionType {
+    return ElementDefinitionType.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "ElementDefinitionType";
   }

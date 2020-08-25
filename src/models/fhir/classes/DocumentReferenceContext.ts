@@ -34,25 +34,25 @@ export class DocumentReferenceContext extends BackboneElement {
   ): DocumentReferenceContext {
     const newInstance: DocumentReferenceContext = BackboneElement.parse(json, providedInstance);
   
-    if (json.encounter) {
+    if (json.encounter !== undefined) {
       newInstance.encounter = json.encounter.map((x) => Reference.parse(x));
     }
-    if (json.event) {
+    if (json.event !== undefined) {
       newInstance.event = json.event.map((x) => CodeableConcept.parse(x));
     }
-    if (json.period) {
+    if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);
     }
-    if (json.facilityType) {
+    if (json.facilityType !== undefined) {
       newInstance.facilityType = CodeableConcept.parse(json.facilityType);
     }
-    if (json.practiceSetting) {
+    if (json.practiceSetting !== undefined) {
       newInstance.practiceSetting = CodeableConcept.parse(json.practiceSetting);
     }
-    if (json.sourcePatientInfo) {
+    if (json.sourcePatientInfo !== undefined) {
       newInstance.sourcePatientInfo = Reference.parse(json.sourcePatientInfo);
     }
-    if (json.related) {
+    if (json.related !== undefined) {
       newInstance.related = json.related.map((x) => Reference.parse(x));
     }
     return newInstance;
@@ -96,7 +96,11 @@ export class DocumentReferenceContext extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): DocumentReferenceContext {
+    return DocumentReferenceContext.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "DocumentReferenceContext";
   }

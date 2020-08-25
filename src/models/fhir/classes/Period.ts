@@ -23,10 +23,10 @@ export class Period extends Element {
   ): Period {
     const newInstance: Period = Element.parse(json, providedInstance);
   
-    if (json.start) {
+    if (json.start !== undefined) {
       newInstance.start = PrimitiveDateTime.parsePrimitive(json.start, json._start);
     }
-    if (json.end) {
+    if (json.end !== undefined) {
       newInstance.end = PrimitiveDateTime.parsePrimitive(json.end, json._end);
     }
     return newInstance;
@@ -52,7 +52,11 @@ export class Period extends Element {
 
     return result;
   }
-  
+
+  public clone(): Period {
+    return Period.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "Period";
   }

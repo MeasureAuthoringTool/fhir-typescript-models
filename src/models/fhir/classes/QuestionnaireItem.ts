@@ -61,52 +61,52 @@ export class QuestionnaireItem extends BackboneElement {
   ): QuestionnaireItem {
     const newInstance: QuestionnaireItem = BackboneElement.parse(json, providedInstance);
   
-    if (json.linkId) {
+    if (json.linkId !== undefined) {
       newInstance.linkId = PrimitiveString.parsePrimitive(json.linkId, json._linkId);
     }
-    if (json.definition) {
+    if (json.definition !== undefined) {
       newInstance.definition = PrimitiveUri.parsePrimitive(json.definition, json._definition);
     }
-    if (json.code) {
+    if (json.code !== undefined) {
       newInstance.code = json.code.map((x) => Coding.parse(x));
     }
-    if (json.prefix) {
+    if (json.prefix !== undefined) {
       newInstance.prefix = PrimitiveString.parsePrimitive(json.prefix, json._prefix);
     }
-    if (json.text) {
+    if (json.text !== undefined) {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
-    if (json.type) {
+    if (json.type !== undefined) {
       newInstance.type = QuestionnaireItemType.parsePrimitive(json.type, json._type);
     }
-    if (json.enableWhen) {
+    if (json.enableWhen !== undefined) {
       newInstance.enableWhen = json.enableWhen.map((x) => QuestionnaireItemEnableWhen.parse(x));
     }
-    if (json.enableBehavior) {
+    if (json.enableBehavior !== undefined) {
       newInstance.enableBehavior = EnableWhenBehavior.parsePrimitive(json.enableBehavior, json._enableBehavior);
     }
-    if (json.required) {
+    if (json.required !== undefined) {
       newInstance.required = PrimitiveBoolean.parsePrimitive(json.required, json._required);
     }
-    if (json.repeats) {
+    if (json.repeats !== undefined) {
       newInstance.repeats = PrimitiveBoolean.parsePrimitive(json.repeats, json._repeats);
     }
-    if (json.readOnly) {
+    if (json.readOnly !== undefined) {
       newInstance.readOnly = PrimitiveBoolean.parsePrimitive(json.readOnly, json._readOnly);
     }
-    if (json.maxLength) {
+    if (json.maxLength !== undefined) {
       newInstance.maxLength = PrimitiveInteger.parsePrimitive(json.maxLength, json._maxLength);
     }
-    if (json.answerValueSet) {
+    if (json.answerValueSet !== undefined) {
       newInstance.answerValueSet = PrimitiveCanonical.parsePrimitive(json.answerValueSet, json._answerValueSet);
     }
-    if (json.answerOption) {
+    if (json.answerOption !== undefined) {
       newInstance.answerOption = json.answerOption.map((x) => QuestionnaireItemAnswerOption.parse(x));
     }
-    if (json.initial) {
+    if (json.initial !== undefined) {
       newInstance.initial = json.initial.map((x) => QuestionnaireItemInitial.parse(x));
     }
-    if (json.item) {
+    if (json.item !== undefined) {
       newInstance.item = json.item.map((x) => QuestionnaireItem.parse(x));
     }
     return newInstance;
@@ -197,7 +197,11 @@ export class QuestionnaireItem extends BackboneElement {
 
     return result;
   }
-  
+
+  public clone(): QuestionnaireItem {
+    return QuestionnaireItem.parse(this.toJSON());
+  }
+
   public getTypeName(): string {
     return "QuestionnaireItem";
   }
