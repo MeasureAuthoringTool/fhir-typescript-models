@@ -3,8 +3,8 @@ import { Measure } from "../classes/Measure";
 import { ValueSet } from "../classes/ValueSet";
 import { ILibrary } from "../interfaces/ILibrary";
 import { IValueSet } from "../interfaces/IValueSet";
+import { CqmLogicLibrary } from "./CqmLogicLibrary";
 import { DataElement } from "./DataElement";
-import { CqmLogicLibrary } from "./LogicLibrary";
 import { PopulationSet } from "./PopulationSet";
 
 export class CqmMeasure {

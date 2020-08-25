@@ -10,9 +10,10 @@ export class CqmLogicLibrary {
   // tslint:disable-next-line:variable-name
   public library_version?: string;
   public cql?: string;
-  public elm?: Map<string, unknown>;
+  // ELM json
+  public elm?: unknown;
   // tslint:disable-next-line:variable-name
-  public elm_annotations?: Map<string, unknown>;
+  public elm_annotations?: unknown;
   // tslint:disable-next-line:variable-name
   public is_main_library?: boolean;
 
