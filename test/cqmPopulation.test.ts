@@ -1,11 +1,13 @@
 import "jest-extended";
-import { CohortPopulationMap } from "../src/models/cqm/CohortPopulationMap";
-import { ContinuousVariablePopulationMap } from "../src/models/cqm/ContinuousVariablePopulationMap";
-import { lookupPopulationMapSubclass } from "../src/models/cqm/PopulationMapping";
-import { PopulationSet } from "../src/models/cqm/PopulationSet";
-import { ProportionPopulationMap } from "../src/models/cqm/ProportionPopulationMap";
-import { RatioPopulationMap } from "../src/models/cqm/RatioPopulationMap";
-import { StatementReference } from "../src/models/cqm/StatementReference";
+import {
+  CohortPopulationMap,
+  ContinuousVariablePopulationMap,
+  lookupPopulationMapSubclass,
+  PopulationSet,
+  ProportionPopulationMap,
+  RatioPopulationMap,
+  StatementReference,
+} from "../src/models/cqm";
 
 describe("Populations", () => {
   it("can lookup population map subclasses", () => {
@@ -35,8 +37,8 @@ describe("Populations", () => {
 
   it("can serialize/deserialize CQM::CohortPopulationMap", () => {
     const itJson = {
-      "resource_type": "CohortPopulationMap",
-      "IPP": {"library_name": "library1", "statement_name": "name1"}
+      resource_type: "CohortPopulationMap",
+      IPP: { library_name: "library1", statement_name: "name1" },
     };
     const it: CohortPopulationMap = CohortPopulationMap.parse(itJson);
     expect(it.resource_type).toEqual("CohortPopulationMap");
