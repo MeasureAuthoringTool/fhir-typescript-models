@@ -5,8 +5,8 @@ import {
   Measure,
   ValueSet,
 } from "../fhir/internal";
+import { CqmLogicLibrary } from "./CqmLogicLibrary";
 import { DataElement } from "./DataElement";
-import { CqmLogicLibrary } from "./LogicLibrary";
 import { PopulationSet } from "./PopulationSet";
 
 export class CqmMeasure {
