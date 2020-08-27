@@ -1,0 +1,52 @@
+{
+  "name": "fhir-typescript-models",
+  "version": "0.0.2",
+  "description": "TypeScript FHIR models generated from the model-info-parser utility",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MeasureAuthoringTool/fhir-typescript-models.git"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "main": "dist/src/models/all.js",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "tsc",
+    "generate-models": "rm -rf src/models/fhir; npx generateTypeScriptTypes -o $PWD/src/models/fhir -f ./resources/fhir-modelinfo-4.0.1.xml",
+    "lint": "npx tslint -c tslint.json '**/*.ts'",
+    "test": "npx jest",
+    "coverage": "npx jest --coverage"
+  },
+  "keywords": [],
+  "author": "SemanticBits sb-mat-help@semanticbits.com",
+  "license": "CC0-1.0",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.5",
+    "jest": "^26.0.1",
+    "jest-extended": "^0.11.5",
+    "model-info-parser": "^0.0.6",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.0.0",
+    "ts-node": "^8.10.2",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.9.3"
+  },
+  "contributors": [
+    "Andrew Bird <andrew.bird@semanticbits.com>",
+    "Ashok Dongare <ashok.dongare@semanticbits.com>",
+    "Joseph Kotanchik <joseph.kotanchik@semanticbits.com>",
+    "Rohit Kandimalla <rohit.kandimalla@semanticbits.com>",
+    "Serhii Ilin <serhii.ilin@semanticbits.com>"
+  ],
+  "bugs": {
+    "url": "https://github.com/MeasureAuthoringTool/fhir-typescript-models/issues"
+  },
+  "homepage": "https://github.com/MeasureAuthoringTool/fhir-typescript-models#readme",
+  "directories": {
+    "test": "test"
+  }
+}
