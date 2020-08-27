@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
 import { 
-  lookupResourceType,
   Extension,
   IResource,
+  lookupResourceType,
   Meta,
   PrimitiveCode,
   PrimitiveUri,
