@@ -113,4 +113,8 @@ export class CqmPatient {
     }
     return bundle;
   }
+
+  public clone(): CqmPatient {
+    return CqmPatient.parse(this.toJSON());
+  }
 }

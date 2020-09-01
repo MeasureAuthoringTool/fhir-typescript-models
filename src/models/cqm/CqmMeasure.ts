@@ -200,4 +200,9 @@ export class CqmMeasure {
     });
     return stratificationsAsPopulationSets;
   }
+
+  public clone(): CqmMeasure {
+    return CqmMeasure.parse(this.toJSON());
+  }
+
 }
