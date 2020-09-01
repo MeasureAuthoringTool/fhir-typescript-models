@@ -25,6 +25,10 @@ export class Resource {
 
   public resourceType?: string;
 
+  constructor() {
+    this.resourceType = this.constructor.name;
+  }
+  
   public static parse(
     json: IResource,
     providedInstance: Resource = new Resource()
