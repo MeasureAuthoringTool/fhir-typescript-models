@@ -46,4 +46,8 @@ export class DataElement {
 
     return result;
   }
+
+  public clone(): DataElement {
+    return DataElement.parse(this.toJSON());
+  }
 }

@@ -9,6 +9,14 @@ describe("Parsing CQM Measure JSON", () => {
     expect(cqmMeasure.toJSON()).toEqual(measureJson);
   });
 
+  it("s parsed measure can be cloned", () => {
+    const cqmMeasure: CqmMeasure = CqmMeasure.parse(measureJson);
+    const clonedMeasure: CqmMeasure = cqmMeasure.clone();
+    expect(clonedMeasure).toBeDefined();
+    expect(clonedMeasure.toJSON()).toEqual(measureJson);
+    expect(clonedMeasure.toJSON()).toEqual(cqmMeasure.toJSON());
+  });
+
   it("Should parse population_sets in a CQM Measure", () => {
     const updatedMeasureJson = cloneJson(measureJson);
     const popSet = {
