@@ -9,6 +9,14 @@ describe("Parsing CQM Patient JSON", () => {
     expect(cqmPatient.toJSON()).toEqual(patientJson);
   });
 
+  it("s parsed Patient can be cloned", () => {
+    const cqmPatient: CqmPatient = CqmPatient.parse(patientJson);
+    const clonedPatient: CqmPatient = cqmPatient.clone();
+    expect(clonedPatient).toBeDefined();
+    expect(clonedPatient.toJSON()).toEqual(patientJson);
+    expect(clonedPatient.toJSON()).toEqual(cqmPatient.toJSON());
+  });
+
   it("Should parse a CQM Patient with FHIR Resources as Data Elements", () => {
     const updatedPatientJson = patientJsonWithDataElement();
     const cqmPatient: CqmPatient = CqmPatient.parse(updatedPatientJson);
