@@ -15,10 +15,20 @@ export class UsageContext extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "UsageContext";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public code?: Coding;
 
   public value?: CodeableConcept | Quantity | Range | Reference;
+
+  get primaryCode(): Coding | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: Coding | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IUsageContext,

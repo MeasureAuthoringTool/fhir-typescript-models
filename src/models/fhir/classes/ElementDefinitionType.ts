@@ -14,6 +14,8 @@ export class ElementDefinitionType extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition.Type";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: PrimitiveUri;
 

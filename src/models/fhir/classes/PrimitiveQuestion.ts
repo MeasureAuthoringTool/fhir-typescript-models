@@ -9,6 +9,8 @@ export class PrimitiveQuestion extends PrimitiveString {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "question";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveString.parsePrimitive>[0],

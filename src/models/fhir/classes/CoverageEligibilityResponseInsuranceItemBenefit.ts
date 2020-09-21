@@ -15,6 +15,8 @@ export class CoverageEligibilityResponseInsuranceItemBenefit extends BackboneEle
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityResponse.Insurance.Item.Benefit";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

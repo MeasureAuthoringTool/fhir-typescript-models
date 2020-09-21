@@ -15,6 +15,8 @@ export class Expression extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Expression";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public description?: PrimitiveString;
 

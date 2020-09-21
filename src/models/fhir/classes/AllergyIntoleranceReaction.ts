@@ -16,6 +16,8 @@ export class AllergyIntoleranceReaction extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AllergyIntolerance.Reaction";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public substance?: CodeableConcept;
 

@@ -13,6 +13,8 @@ export class MolecularSequenceQualityRoc extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence.Quality.Roc";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public score?: Array<PrimitiveInteger>;
 

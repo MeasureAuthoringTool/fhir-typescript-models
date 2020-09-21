@@ -14,6 +14,8 @@ export class Binary extends Resource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Binary";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public contentType?: MimeType;
 

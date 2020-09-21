@@ -61,6 +61,8 @@ export class TaskInput extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Task.Input";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

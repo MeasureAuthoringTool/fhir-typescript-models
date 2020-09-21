@@ -22,6 +22,8 @@ export class SubstanceSpecification extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Identifier;
 

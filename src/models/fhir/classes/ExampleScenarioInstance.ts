@@ -16,6 +16,8 @@ export class ExampleScenarioInstance extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExampleScenario.Instance";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public resourceId?: PrimitiveString;
 

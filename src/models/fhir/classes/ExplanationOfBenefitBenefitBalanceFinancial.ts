@@ -15,6 +15,8 @@ export class ExplanationOfBenefitBenefitBalanceFinancial extends BackboneElement
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.BenefitBalance.Financial";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

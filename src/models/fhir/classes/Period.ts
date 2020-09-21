@@ -12,6 +12,8 @@ export class Period extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Period";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public start?: PrimitiveDateTime;
 

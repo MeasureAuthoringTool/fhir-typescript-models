@@ -13,6 +13,8 @@ export class ClaimResponseError extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClaimResponse.Error";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public itemSequence?: PrimitivePositiveInt;
 

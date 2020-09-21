@@ -16,6 +16,8 @@ export class GraphDefinitionLinkTarget extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "GraphDefinition.Link.Target";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: ResourceType;
 

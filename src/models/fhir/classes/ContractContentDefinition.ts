@@ -16,6 +16,8 @@ export class ContractContentDefinition extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.ContentDefinition";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

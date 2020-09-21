@@ -14,6 +14,8 @@ export class ElementDefinitionMapping extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition.Mapping";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identity?: PrimitiveId;
 

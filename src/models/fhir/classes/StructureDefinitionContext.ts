@@ -13,6 +13,8 @@ export class StructureDefinitionContext extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureDefinition.Context";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: ExtensionContextType;
 

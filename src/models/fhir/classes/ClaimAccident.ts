@@ -15,6 +15,8 @@ export class ClaimAccident extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Claim.Accident";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public date?: PrimitiveDate;
 

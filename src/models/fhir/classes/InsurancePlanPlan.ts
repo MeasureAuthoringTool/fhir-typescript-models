@@ -15,6 +15,8 @@ export class InsurancePlanPlan extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "InsurancePlan.Plan";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

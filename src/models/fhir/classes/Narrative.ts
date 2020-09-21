@@ -13,6 +13,8 @@ export class Narrative extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Narrative";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public status?: NarrativeStatus;
 

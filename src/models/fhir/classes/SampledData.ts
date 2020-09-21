@@ -15,6 +15,8 @@ export class SampledData extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SampledData";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public origin?: SimpleQuantity;
 

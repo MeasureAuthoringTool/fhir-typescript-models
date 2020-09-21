@@ -13,6 +13,8 @@ export class SubstanceSourceMaterialFractionDescription extends BackboneElement 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSourceMaterial.FractionDescription";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public fraction?: PrimitiveString;
 

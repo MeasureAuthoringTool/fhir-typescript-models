@@ -12,6 +12,8 @@ export class MedicationKnowledgeKinetics extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.Kinetics";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public areaUnderCurve?: Array<SimpleQuantity>;
 

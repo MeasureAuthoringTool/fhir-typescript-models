@@ -13,6 +13,8 @@ export class ActivityDefinitionDynamicValue extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ActivityDefinition.DynamicValue";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public path?: PrimitiveString;
 

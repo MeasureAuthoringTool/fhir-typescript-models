@@ -15,6 +15,8 @@ export class CapabilityStatementMessaging extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Messaging";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public endpoint?: Array<CapabilityStatementMessagingEndpoint>;
 

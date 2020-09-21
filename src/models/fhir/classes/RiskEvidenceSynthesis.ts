@@ -28,6 +28,8 @@ export class RiskEvidenceSynthesis extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RiskEvidenceSynthesis";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

@@ -13,6 +13,8 @@ export class RiskEvidenceSynthesisSampleSize extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RiskEvidenceSynthesis.SampleSize";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public description?: PrimitiveString;
 

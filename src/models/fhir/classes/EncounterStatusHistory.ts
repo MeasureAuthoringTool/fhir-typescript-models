@@ -13,6 +13,8 @@ export class EncounterStatusHistory extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Encounter.StatusHistory";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public status?: EncounterStatus;
 

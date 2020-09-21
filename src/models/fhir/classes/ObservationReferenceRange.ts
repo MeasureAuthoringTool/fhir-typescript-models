@@ -15,6 +15,8 @@ export class ObservationReferenceRange extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Observation.ReferenceRange";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public low?: SimpleQuantity;
 

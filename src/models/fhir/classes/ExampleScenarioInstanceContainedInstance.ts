@@ -12,6 +12,8 @@ export class ExampleScenarioInstanceContainedInstance extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExampleScenario.Instance.ContainedInstance";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public resourceId?: PrimitiveString;
 

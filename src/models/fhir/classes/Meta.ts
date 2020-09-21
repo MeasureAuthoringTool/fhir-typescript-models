@@ -16,6 +16,8 @@ export class Meta extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Meta";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public versionId?: PrimitiveId;
 

@@ -17,6 +17,8 @@ export class Identifier extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Identifier";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public use?: IdentifierUse;
 

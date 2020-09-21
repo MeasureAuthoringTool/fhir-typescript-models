@@ -12,6 +12,8 @@ export class MedicationKnowledgeAdministrationGuidelinesDosage extends BackboneE
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.AdministrationGuidelines.Dosage";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

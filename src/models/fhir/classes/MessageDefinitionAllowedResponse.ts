@@ -13,6 +13,8 @@ export class MessageDefinitionAllowedResponse extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MessageDefinition.AllowedResponse";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public message?: PrimitiveCanonical;
 

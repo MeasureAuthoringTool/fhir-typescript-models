@@ -12,6 +12,8 @@ export class SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation extends Back
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstancePolymer.Repeat.RepeatUnit.DegreeOfPolymerisation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public degree?: CodeableConcept;
 

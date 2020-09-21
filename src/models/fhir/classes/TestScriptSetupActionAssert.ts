@@ -20,6 +20,8 @@ export class TestScriptSetupActionAssert extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Setup.Action.Assert";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public label?: PrimitiveString;
 

@@ -13,6 +13,8 @@ export class ResearchStudyArm extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ResearchStudy.Arm";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public name?: PrimitiveString;
 

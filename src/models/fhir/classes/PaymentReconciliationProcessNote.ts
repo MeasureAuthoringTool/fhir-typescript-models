@@ -13,6 +13,8 @@ export class PaymentReconciliationProcessNote extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PaymentReconciliation.ProcessNote";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: NoteType;
 

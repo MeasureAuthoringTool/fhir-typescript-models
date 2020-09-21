@@ -15,6 +15,8 @@ export class SubstanceSpecificationProperty extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Property";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public category?: CodeableConcept;
 

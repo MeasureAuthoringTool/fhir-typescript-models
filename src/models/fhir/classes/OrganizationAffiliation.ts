@@ -17,6 +17,8 @@ export class OrganizationAffiliation extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OrganizationAffiliation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

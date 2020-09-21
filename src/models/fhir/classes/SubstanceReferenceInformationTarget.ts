@@ -17,6 +17,8 @@ export class SubstanceReferenceInformationTarget extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceReferenceInformation.Target";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public target?: Identifier;
 

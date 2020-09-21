@@ -62,6 +62,8 @@ export class ParametersParameter extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Parameters.Parameter";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public name?: PrimitiveString;
 

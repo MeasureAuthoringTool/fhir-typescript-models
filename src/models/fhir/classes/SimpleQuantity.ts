@@ -15,6 +15,8 @@ export class SimpleQuantity extends Quantity {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SimpleQuantity";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public value?: PrimitiveDecimal;
 
@@ -23,6 +25,14 @@ export class SimpleQuantity extends Quantity {
   public system?: PrimitiveUri;
 
   public code?: PrimitiveCode;
+
+  get primaryCode(): PrimitiveCode | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: PrimitiveCode | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: ISimpleQuantity,

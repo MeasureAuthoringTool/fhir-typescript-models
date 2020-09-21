@@ -9,6 +9,8 @@ export class PrimitiveId extends PrimitiveString {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "id";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveString.parsePrimitive>[0],

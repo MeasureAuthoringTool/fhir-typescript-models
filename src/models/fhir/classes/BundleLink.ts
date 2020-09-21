@@ -13,6 +13,8 @@ export class BundleLink extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Bundle.Link";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public relation?: PrimitiveString;
 

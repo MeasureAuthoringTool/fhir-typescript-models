@@ -19,6 +19,8 @@ export class VisionPrescriptionLensSpecification extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "VisionPrescription.LensSpecification";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public product?: CodeableConcept;
 

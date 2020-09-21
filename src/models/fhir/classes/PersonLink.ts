@@ -13,6 +13,8 @@ export class PersonLink extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Person.Link";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public target?: Reference;
 

@@ -12,6 +12,8 @@ export class ChargeItemDefinitionApplicability extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ChargeItemDefinition.Applicability";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public description?: PrimitiveString;
 

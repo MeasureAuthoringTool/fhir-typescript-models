@@ -14,6 +14,8 @@ export class Reference extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Reference";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public reference?: PrimitiveString;
 

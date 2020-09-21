@@ -16,6 +16,8 @@ export class ValueSetExpansion extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ValueSet.Expansion";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: PrimitiveUri;
 

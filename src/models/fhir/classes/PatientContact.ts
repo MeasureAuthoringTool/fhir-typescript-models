@@ -18,6 +18,8 @@ export class PatientContact extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Patient.Contact";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public relationship?: Array<CodeableConcept>;
 

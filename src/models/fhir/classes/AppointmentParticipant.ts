@@ -16,6 +16,8 @@ export class AppointmentParticipant extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Appointment.Participant";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: Array<CodeableConcept>;
 

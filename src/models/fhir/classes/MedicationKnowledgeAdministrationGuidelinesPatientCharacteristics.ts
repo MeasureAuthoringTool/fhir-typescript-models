@@ -14,6 +14,8 @@ export class MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics e
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.AdministrationGuidelines.PatientCharacteristics";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public characteristic?: CodeableConcept | SimpleQuantity;
 

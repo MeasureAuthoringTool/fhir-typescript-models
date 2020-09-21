@@ -12,6 +12,8 @@ export class SubstanceSpecificationStructureIsotopeMolecularWeight extends Backb
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Structure.Isotope.MolecularWeight";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public method?: CodeableConcept;
 

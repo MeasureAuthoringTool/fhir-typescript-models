@@ -13,6 +13,8 @@ export class EffectEvidenceSynthesisEffectEstimatePrecisionEstimate extends Back
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EffectEvidenceSynthesis.EffectEstimate.PrecisionEstimate";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

@@ -12,6 +12,8 @@ export class MedicinalProductContraindicationOtherTherapy extends BackboneElemen
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductContraindication.OtherTherapy";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public therapyRelationshipType?: CodeableConcept;
 

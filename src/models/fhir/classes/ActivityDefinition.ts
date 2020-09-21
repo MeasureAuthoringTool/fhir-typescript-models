@@ -37,6 +37,8 @@ export class ActivityDefinition extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ActivityDefinition";
+  
+  static readonly primaryCodePath: string | null = "topic";
 
   public url?: PrimitiveUri;
 
@@ -129,6 +131,14 @@ export class ActivityDefinition extends DomainResource {
   public transform?: PrimitiveCanonical;
 
   public dynamicValue?: Array<ActivityDefinitionDynamicValue>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.topic?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.topic = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: IActivityDefinition,

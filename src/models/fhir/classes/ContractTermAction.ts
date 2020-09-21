@@ -21,6 +21,8 @@ export class ContractTermAction extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Term.Action";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public doNotPerform?: PrimitiveBoolean;
 

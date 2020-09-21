@@ -15,6 +15,8 @@ export class EffectEvidenceSynthesisEffectEstimate extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EffectEvidenceSynthesis.EffectEstimate";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public description?: PrimitiveString;
 

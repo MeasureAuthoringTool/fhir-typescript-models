@@ -23,6 +23,8 @@ export class ContractTermOfferAnswer extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Term.Offer.Answer";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public value?: PrimitiveBoolean | PrimitiveDecimal | PrimitiveInteger | PrimitiveDate | PrimitiveDateTime | PrimitiveTime | PrimitiveString | PrimitiveUri | Attachment | Coding | Quantity | Reference;
 

@@ -22,6 +22,8 @@ export class QuestionnaireItem extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Questionnaire.Item";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public linkId?: PrimitiveString;
 

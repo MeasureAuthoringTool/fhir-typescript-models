@@ -12,6 +12,7 @@ import {
   PrimitiveDateTime,
   PrimitiveUri,
   Reference,
+  Type,
 } from "../internal";
 
 export class GuidanceResponse extends DomainResource {
@@ -20,6 +21,8 @@ export class GuidanceResponse extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "GuidanceResponse";
+  
+  static readonly primaryCodePath: string | null = "module";
 
   public requestIdentifier?: Identifier;
 
@@ -50,6 +53,14 @@ export class GuidanceResponse extends DomainResource {
   public result?: Reference;
 
   public dataRequirement?: Array<DataRequirement>;
+
+  get primaryCode(): Type | undefined {
+    return this.module;
+  }
+
+  set primaryCode(primaryCode: Type | undefined) {
+    this.module = primaryCode;
+  }
 
   public static parse(
     json: IGuidanceResponse,

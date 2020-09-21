@@ -27,6 +27,8 @@ export class ImplementationGuide extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

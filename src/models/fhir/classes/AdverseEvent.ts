@@ -17,6 +17,8 @@ export class AdverseEvent extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AdverseEvent";
+  
+  static readonly primaryCodePath: string | null = "event";
 
   public identifier?: Identifier;
 
@@ -57,6 +59,14 @@ export class AdverseEvent extends DomainResource {
   public referenceDocument?: Array<Reference>;
 
   public study?: Array<Reference>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.event;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.event = primaryCode;
+  }
 
   public static parse(
     json: IAdverseEvent,

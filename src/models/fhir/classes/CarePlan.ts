@@ -23,6 +23,8 @@ export class CarePlan extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CarePlan";
+  
+  static readonly primaryCodePath: string | null = "category";
 
   public identifier?: Array<Identifier>;
 
@@ -69,6 +71,14 @@ export class CarePlan extends DomainResource {
   public activity?: Array<CarePlanActivity>;
 
   public note?: Array<Annotation>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.category?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.category = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: ICarePlan,

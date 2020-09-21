@@ -26,6 +26,8 @@ export class FamilyMemberHistory extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "FamilyMemberHistory";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

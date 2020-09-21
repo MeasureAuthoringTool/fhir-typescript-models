@@ -13,6 +13,8 @@ export class PlanDefinitionActionParticipant extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PlanDefinition.Action.Participant";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: ActionParticipantType;
 

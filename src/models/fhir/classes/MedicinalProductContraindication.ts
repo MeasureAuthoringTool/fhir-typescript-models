@@ -14,6 +14,8 @@ export class MedicinalProductContraindication extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductContraindication";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public subject?: Array<Reference>;
 

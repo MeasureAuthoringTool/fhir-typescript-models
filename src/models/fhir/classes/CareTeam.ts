@@ -20,6 +20,8 @@ export class CareTeam extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CareTeam";
+  
+  static readonly primaryCodePath: string | null = "category";
 
   public identifier?: Array<Identifier>;
 
@@ -46,6 +48,14 @@ export class CareTeam extends DomainResource {
   public telecom?: Array<ContactPoint>;
 
   public note?: Array<Annotation>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.category?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.category = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: ICareTeam,

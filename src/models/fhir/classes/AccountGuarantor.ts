@@ -14,6 +14,8 @@ export class AccountGuarantor extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Account.Guarantor";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public party?: Reference;
 

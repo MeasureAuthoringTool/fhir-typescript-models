@@ -14,6 +14,8 @@ export class CapabilityStatementDocument extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Document";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public mode?: DocumentMode;
 

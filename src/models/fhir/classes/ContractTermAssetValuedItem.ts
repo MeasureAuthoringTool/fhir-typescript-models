@@ -20,6 +20,8 @@ export class ContractTermAssetValuedItem extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Term.Asset.ValuedItem";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public entity?: CodeableConcept | Reference;
 

@@ -15,6 +15,8 @@ export class GraphDefinitionLinkTargetCompartment extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "GraphDefinition.Link.Target.Compartment";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public use?: GraphCompartmentUse;
 

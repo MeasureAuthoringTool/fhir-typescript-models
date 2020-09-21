@@ -16,6 +16,8 @@ export class Flag extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Flag";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -32,6 +34,14 @@ export class Flag extends DomainResource {
   public encounter?: Reference;
 
   public author?: Reference;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IFlag,

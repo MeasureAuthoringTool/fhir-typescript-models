@@ -22,6 +22,8 @@ export class CarePlanActivityDetail extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CarePlan.Activity.Detail";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public kind?: CarePlanActivityKind;
 

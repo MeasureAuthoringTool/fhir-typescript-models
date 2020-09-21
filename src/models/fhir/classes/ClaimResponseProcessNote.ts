@@ -15,6 +15,8 @@ export class ClaimResponseProcessNote extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClaimResponse.ProcessNote";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public number?: PrimitivePositiveInt;
 

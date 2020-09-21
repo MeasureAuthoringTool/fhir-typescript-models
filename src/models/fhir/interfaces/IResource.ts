@@ -4,9 +4,10 @@ import {
   IMeta,
   IPrimitiveCode,
   IPrimitiveUri,
+  IType,
 } from "../internal";
 
-export interface IResource {
+export interface IResource extends IType {
   id?: string;
 
   meta?: IMeta;

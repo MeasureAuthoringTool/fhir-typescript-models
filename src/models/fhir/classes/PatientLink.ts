@@ -13,6 +13,8 @@ export class PatientLink extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Patient.Link";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public other?: Reference;
 

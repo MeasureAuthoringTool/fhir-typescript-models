@@ -11,6 +11,8 @@ export class Element extends Type {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Element";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public id?: string;
 

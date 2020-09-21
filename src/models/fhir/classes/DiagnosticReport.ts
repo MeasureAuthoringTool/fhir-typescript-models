@@ -21,6 +21,8 @@ export class DiagnosticReport extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DiagnosticReport";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -57,6 +59,14 @@ export class DiagnosticReport extends DomainResource {
   public conclusionCode?: Array<CodeableConcept>;
 
   public presentedForm?: Array<Attachment>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IDiagnosticReport,

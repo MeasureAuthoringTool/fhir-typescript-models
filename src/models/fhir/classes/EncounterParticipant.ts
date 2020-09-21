@@ -13,6 +13,8 @@ export class EncounterParticipant extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Encounter.Participant";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: Array<CodeableConcept>;
 

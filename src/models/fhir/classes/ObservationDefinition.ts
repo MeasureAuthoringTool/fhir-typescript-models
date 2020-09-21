@@ -19,6 +19,8 @@ export class ObservationDefinition extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ObservationDefinition";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public category?: Array<CodeableConcept>;
 
@@ -45,6 +47,14 @@ export class ObservationDefinition extends DomainResource {
   public abnormalCodedValueSet?: Reference;
 
   public criticalCodedValueSet?: Reference;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IObservationDefinition,

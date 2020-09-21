@@ -16,6 +16,7 @@ import {
   RequestIntent,
   RequestPriority,
   Timing,
+  Type,
 } from "../internal";
 
 export class DeviceRequest extends DomainResource {
@@ -24,6 +25,8 @@ export class DeviceRequest extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceRequest";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -72,6 +75,14 @@ export class DeviceRequest extends DomainResource {
   public note?: Array<Annotation>;
 
   public relevantHistory?: Array<Reference>;
+
+  get primaryCode(): Type | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: Type | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IDeviceRequest,

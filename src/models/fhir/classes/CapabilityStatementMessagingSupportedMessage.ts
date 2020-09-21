@@ -13,6 +13,8 @@ export class CapabilityStatementMessagingSupportedMessage extends BackboneElemen
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Messaging.SupportedMessage";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public mode?: EventCapabilityMode;
 

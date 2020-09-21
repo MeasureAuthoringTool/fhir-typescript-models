@@ -22,6 +22,8 @@ export class DetectedIssue extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DetectedIssue";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -46,6 +48,14 @@ export class DetectedIssue extends DomainResource {
   public reference?: PrimitiveUri;
 
   public mitigation?: Array<DetectedIssueMitigation>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IDetectedIssue,

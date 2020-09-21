@@ -14,6 +14,8 @@ export class MedicinalProductManufactured extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductManufactured";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public manufacturedDoseForm?: CodeableConcept;
 

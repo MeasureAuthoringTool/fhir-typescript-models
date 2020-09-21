@@ -22,6 +22,8 @@ export class QuestionnaireItemEnableWhen extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Questionnaire.Item.EnableWhen";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public question?: PrimitiveString;
 

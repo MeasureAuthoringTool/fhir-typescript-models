@@ -14,6 +14,8 @@ export class ClinicalImpressionFinding extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClinicalImpression.Finding";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public itemCodeableConcept?: CodeableConcept;
 

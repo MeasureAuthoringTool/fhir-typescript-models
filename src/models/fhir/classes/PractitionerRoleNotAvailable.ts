@@ -13,6 +13,8 @@ export class PractitionerRoleNotAvailable extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PractitionerRole.NotAvailable";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public description?: PrimitiveString;
 

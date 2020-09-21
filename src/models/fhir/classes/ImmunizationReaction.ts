@@ -14,6 +14,8 @@ export class ImmunizationReaction extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Immunization.Reaction";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public date?: PrimitiveDateTime;
 

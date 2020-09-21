@@ -12,6 +12,8 @@ export class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneEleme
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.RelatedMedicationKnowledge";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

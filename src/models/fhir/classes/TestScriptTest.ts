@@ -13,6 +13,8 @@ export class TestScriptTest extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Test";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public name?: PrimitiveString;
 

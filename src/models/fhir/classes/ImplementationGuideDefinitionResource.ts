@@ -17,6 +17,8 @@ export class ImplementationGuideDefinitionResource extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.Definition.Resource";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public reference?: Reference;
 

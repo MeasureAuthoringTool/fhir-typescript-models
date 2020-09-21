@@ -14,6 +14,8 @@ export class SubstanceSpecificationStructureRepresentation extends BackboneEleme
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Structure.Representation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

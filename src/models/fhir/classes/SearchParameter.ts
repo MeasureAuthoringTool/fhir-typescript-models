@@ -28,6 +28,8 @@ export class SearchParameter extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SearchParameter";
+  
+  static readonly primaryCodePath: string | null = "target";
 
   public url?: PrimitiveUri;
 
@@ -80,6 +82,14 @@ export class SearchParameter extends DomainResource {
   public chain?: Array<PrimitiveString>;
 
   public component?: Array<SearchParameterComponent>;
+
+  get primaryCode(): ResourceType | undefined {
+    return this.target?.[0];
+  }
+
+  set primaryCode(primaryCode: ResourceType | undefined) {
+    this.target = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: ISearchParameter,

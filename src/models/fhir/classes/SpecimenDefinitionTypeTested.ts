@@ -18,6 +18,8 @@ export class SpecimenDefinitionTypeTested extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SpecimenDefinition.TypeTested";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public isDerived?: PrimitiveBoolean;
 

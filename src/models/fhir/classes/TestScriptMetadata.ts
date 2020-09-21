@@ -12,6 +12,8 @@ export class TestScriptMetadata extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Metadata";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public link?: Array<TestScriptMetadataLink>;
 

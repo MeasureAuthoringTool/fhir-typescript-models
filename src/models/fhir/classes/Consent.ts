@@ -20,6 +20,8 @@ export class Consent extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Consent";
+  
+  static readonly primaryCodePath: string | null = "category";
 
   public identifier?: Array<Identifier>;
 
@@ -46,6 +48,14 @@ export class Consent extends DomainResource {
   public verification?: Array<ConsentVerification>;
 
   public provision?: ConsentProvision;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.category?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.category = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: IConsent,

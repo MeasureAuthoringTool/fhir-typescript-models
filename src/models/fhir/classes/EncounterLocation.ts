@@ -15,6 +15,8 @@ export class EncounterLocation extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Encounter.Location";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public location?: Reference;
 

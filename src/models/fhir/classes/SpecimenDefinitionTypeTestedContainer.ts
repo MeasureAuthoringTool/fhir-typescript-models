@@ -15,6 +15,8 @@ export class SpecimenDefinitionTypeTestedContainer extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SpecimenDefinition.TypeTested.Container";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public material?: CodeableConcept;
 

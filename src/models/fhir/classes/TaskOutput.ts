@@ -61,6 +61,8 @@ export class TaskOutput extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Task.Output";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

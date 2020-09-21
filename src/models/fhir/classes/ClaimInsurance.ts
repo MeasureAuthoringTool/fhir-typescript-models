@@ -16,6 +16,8 @@ export class ClaimInsurance extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Claim.Insurance";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public sequence?: PrimitivePositiveInt;
 

@@ -9,6 +9,8 @@ export class AllergyIntoleranceCriticality extends PrimitiveCode {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AllergyIntoleranceCriticality";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],

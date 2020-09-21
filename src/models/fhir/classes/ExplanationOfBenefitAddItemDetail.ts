@@ -18,6 +18,8 @@ export class ExplanationOfBenefitAddItemDetail extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.AddItem.Detail";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public productOrService?: CodeableConcept;
 

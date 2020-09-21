@@ -15,6 +15,8 @@ export class SubstanceProtein extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceProtein";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public sequenceType?: CodeableConcept;
 

@@ -16,6 +16,8 @@ export class SubstancePolymerRepeatRepeatUnit extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstancePolymer.Repeat.RepeatUnit";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public orientationOfPolymerisation?: CodeableConcept;
 

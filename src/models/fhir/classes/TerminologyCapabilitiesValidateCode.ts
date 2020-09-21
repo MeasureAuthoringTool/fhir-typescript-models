@@ -12,6 +12,8 @@ export class TerminologyCapabilitiesValidateCode extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TerminologyCapabilities.ValidateCode";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public translations?: PrimitiveBoolean;
 

@@ -18,6 +18,8 @@ export class ClaimItemDetail extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Claim.Item.Detail";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public sequence?: PrimitivePositiveInt;
 

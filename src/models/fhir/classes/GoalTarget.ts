@@ -20,6 +20,8 @@ export class GoalTarget extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Goal.Target";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public measure?: CodeableConcept;
 

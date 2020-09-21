@@ -15,6 +15,8 @@ export class ImmunizationProtocolApplied extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Immunization.ProtocolApplied";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public series?: PrimitiveString;
 

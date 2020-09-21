@@ -61,6 +61,8 @@ export class Extension extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Extension";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

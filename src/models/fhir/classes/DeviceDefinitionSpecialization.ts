@@ -12,6 +12,8 @@ export class DeviceDefinitionSpecialization extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceDefinition.Specialization";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public systemType?: PrimitiveString;
 

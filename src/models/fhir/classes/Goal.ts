@@ -19,6 +19,8 @@ export class Goal extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Goal";
+  
+  static readonly primaryCodePath: string | null = "category";
 
   public identifier?: Array<Identifier>;
 
@@ -51,6 +53,14 @@ export class Goal extends DomainResource {
   public outcomeCode?: Array<CodeableConcept>;
 
   public outcomeReference?: Array<Reference>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.category?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.category = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: IGoal,

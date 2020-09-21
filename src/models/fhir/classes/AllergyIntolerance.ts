@@ -24,6 +24,8 @@ export class AllergyIntolerance extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AllergyIntolerance";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -56,6 +58,14 @@ export class AllergyIntolerance extends DomainResource {
   public note?: Array<Annotation>;
 
   public reaction?: Array<AllergyIntoleranceReaction>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IAllergyIntolerance,

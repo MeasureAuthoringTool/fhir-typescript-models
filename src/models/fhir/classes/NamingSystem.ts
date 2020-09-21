@@ -20,6 +20,8 @@ export class NamingSystem extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "NamingSystem";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public name?: PrimitiveString;
 

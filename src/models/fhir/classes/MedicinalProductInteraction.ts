@@ -15,6 +15,8 @@ export class MedicinalProductInteraction extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductInteraction";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public subject?: Array<Reference>;
 

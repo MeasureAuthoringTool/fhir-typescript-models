@@ -11,6 +11,8 @@ export class TestScriptTeardown extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Teardown";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public action?: Array<TestScriptTeardownAction>;
 

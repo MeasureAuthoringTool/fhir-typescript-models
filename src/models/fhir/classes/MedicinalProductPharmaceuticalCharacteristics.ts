@@ -11,6 +11,8 @@ export class MedicinalProductPharmaceuticalCharacteristics extends BackboneEleme
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductPharmaceutical.Characteristics";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: CodeableConcept;
 

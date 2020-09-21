@@ -19,6 +19,8 @@ export class DeviceUseStatement extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceUseStatement";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

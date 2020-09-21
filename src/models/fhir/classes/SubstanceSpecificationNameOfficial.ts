@@ -13,6 +13,8 @@ export class SubstanceSpecificationNameOfficial extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Name.Official";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public authority?: CodeableConcept;
 

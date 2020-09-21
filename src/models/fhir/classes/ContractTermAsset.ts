@@ -20,6 +20,8 @@ export class ContractTermAsset extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Term.Asset";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public scope?: CodeableConcept;
 

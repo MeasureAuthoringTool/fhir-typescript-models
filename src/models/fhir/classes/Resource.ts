@@ -6,14 +6,17 @@ import {
   Meta,
   PrimitiveCode,
   PrimitiveUri,
+  Type,
 } from "../internal";
 
-export class Resource {
+export class Resource extends Type {
   static readonly baseType: string = "";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Resource";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public id?: string;
 
@@ -26,6 +29,7 @@ export class Resource {
   public resourceType?: string;
 
   constructor() {
+    super();
     this.resourceType = this.constructor.name;
   }
   
@@ -33,7 +37,7 @@ export class Resource {
     json: IResource,
     providedInstance: Resource = new Resource()
   ): Resource {
-    const newInstance: Resource = providedInstance;
+    const newInstance: Resource = Type.parse(json, providedInstance);
   
       // If not invoked by a child class
       if (
@@ -73,7 +77,7 @@ export class Resource {
   }
 
   public toJSON(): IResource {
-    const result: IResource = {};
+    const result: IResource = super.toJSON();
 
     if (this.id) {
       result.id = this.id;

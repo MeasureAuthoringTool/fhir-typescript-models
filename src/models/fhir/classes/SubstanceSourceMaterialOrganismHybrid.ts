@@ -13,6 +13,8 @@ export class SubstanceSourceMaterialOrganismHybrid extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSourceMaterial.Organism.Hybrid";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public maternalOrganismId?: PrimitiveString;
 

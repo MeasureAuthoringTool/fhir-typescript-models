@@ -13,6 +13,8 @@ export class MedicinalProductNameNamePart extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProduct.Name.NamePart";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public part?: PrimitiveString;
 

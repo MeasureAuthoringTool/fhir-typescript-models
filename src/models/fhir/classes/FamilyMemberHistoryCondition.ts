@@ -18,6 +18,8 @@ export class FamilyMemberHistoryCondition extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "FamilyMemberHistory.Condition";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: CodeableConcept;
 

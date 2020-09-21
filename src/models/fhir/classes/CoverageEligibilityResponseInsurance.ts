@@ -15,6 +15,8 @@ export class CoverageEligibilityResponseInsurance extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityResponse.Insurance";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public coverage?: Reference;
 

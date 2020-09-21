@@ -15,6 +15,8 @@ export class MedicinalProductPharmaceuticalRouteOfAdministration extends Backbon
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductPharmaceutical.RouteOfAdministration";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: CodeableConcept;
 

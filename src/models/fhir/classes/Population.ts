@@ -12,6 +12,8 @@ export class Population extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Population";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public age?: Range | CodeableConcept;
 

@@ -21,6 +21,8 @@ export class DocumentReference extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DocumentReference";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public masterIdentifier?: Identifier;
 

@@ -13,6 +13,8 @@ export class AuditEventEntityDetail extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AuditEvent.Entity.Detail";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: PrimitiveString;
 

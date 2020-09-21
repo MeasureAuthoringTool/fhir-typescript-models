@@ -17,6 +17,8 @@ export class StructureMapGroupRuleTarget extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureMap.Group.Rule.Target";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public context?: PrimitiveId;
 

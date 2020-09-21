@@ -15,6 +15,8 @@ export class ElementDefinitionSlicing extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition.Slicing";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public discriminator?: Array<ElementDefinitionSlicingDiscriminator>;
 

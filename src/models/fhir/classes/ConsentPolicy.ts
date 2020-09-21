@@ -12,6 +12,8 @@ export class ConsentPolicy extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Consent.Policy";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public authority?: PrimitiveUri;
 

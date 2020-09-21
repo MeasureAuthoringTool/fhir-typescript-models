@@ -15,6 +15,8 @@ export class SupplyRequestParameter extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SupplyRequest.Parameter";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: CodeableConcept;
 
