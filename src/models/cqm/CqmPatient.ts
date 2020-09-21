@@ -64,7 +64,7 @@ export class CqmPatient {
       result.id = this.id;
     }
     if (this.expected_values) {
-      result.expected_values = this.expected_values.map((x) => x.toJSON());
+      result.expected_values = this.expected_values;
     }
     if (this.notes) {
       result.notes = this.notes;
