@@ -14,6 +14,8 @@ export class CarePlanActivity extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CarePlan.Activity";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public outcomeCodeableConcept?: Array<CodeableConcept>;
 

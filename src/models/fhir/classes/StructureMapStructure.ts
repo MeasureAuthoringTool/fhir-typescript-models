@@ -14,6 +14,8 @@ export class StructureMapStructure extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureMap.Structure";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveCanonical;
 

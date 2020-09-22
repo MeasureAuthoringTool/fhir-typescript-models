@@ -16,6 +16,8 @@ export class BiologicallyDerivedProductProcessing extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "BiologicallyDerivedProduct.Processing";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public description?: PrimitiveString;
 

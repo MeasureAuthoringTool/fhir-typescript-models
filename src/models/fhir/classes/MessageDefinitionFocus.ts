@@ -15,6 +15,8 @@ export class MessageDefinitionFocus extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MessageDefinition.Focus";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: ResourceType;
 

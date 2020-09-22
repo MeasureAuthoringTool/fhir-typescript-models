@@ -15,6 +15,8 @@ export class ExplanationOfBenefitProcessNote extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.ProcessNote";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public number?: PrimitivePositiveInt;
 

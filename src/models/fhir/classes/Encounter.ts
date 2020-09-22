@@ -24,6 +24,8 @@ export class Encounter extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Encounter";
+  
+  static readonly primaryCodePath: string | null = "type";
 
   public identifier?: Array<Identifier>;
 
@@ -70,6 +72,14 @@ export class Encounter extends DomainResource {
   public serviceProvider?: Reference;
 
   public partOf?: Reference;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.type?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.type = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: IEncounter,

@@ -25,6 +25,8 @@ export class Device extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Device";
+  
+  static readonly primaryCodePath: string | null = "type";
 
   public identifier?: Array<Identifier>;
 
@@ -77,6 +79,14 @@ export class Device extends DomainResource {
   public safety?: Array<CodeableConcept>;
 
   public parent?: Reference;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.type;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.type = primaryCode;
+  }
 
   public static parse(
     json: IDevice,

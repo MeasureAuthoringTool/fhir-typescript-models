@@ -14,6 +14,8 @@ export class MedicationKnowledgeRegulatory extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.Regulatory";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public regulatoryAuthority?: Reference;
 

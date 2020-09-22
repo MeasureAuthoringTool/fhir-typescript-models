@@ -15,6 +15,8 @@ export class Address extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Address";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public use?: AddressUse;
 

@@ -9,6 +9,8 @@ export class PrimitiveUrl extends PrimitiveUri {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "url";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveUri.parsePrimitive>[0],

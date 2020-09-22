@@ -13,6 +13,8 @@ export class DataRequirementSort extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DataRequirement.Sort";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public path?: PrimitiveString;
 

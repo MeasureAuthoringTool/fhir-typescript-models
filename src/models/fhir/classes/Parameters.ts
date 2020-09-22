@@ -11,6 +11,8 @@ export class Parameters extends Resource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Parameters";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public parameter?: Array<ParametersParameter>;
 

@@ -18,6 +18,8 @@ export class QuestionnaireItemAnswerOption extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Questionnaire.Item.AnswerOption";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public value?: PrimitiveInteger | PrimitiveDate | PrimitiveTime | PrimitiveString | Coding | Reference;
 

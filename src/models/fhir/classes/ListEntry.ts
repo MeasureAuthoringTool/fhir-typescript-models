@@ -15,6 +15,8 @@ export class ListEntry extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "List.Entry";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public flag?: CodeableConcept;
 

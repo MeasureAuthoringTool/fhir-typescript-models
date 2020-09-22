@@ -15,6 +15,8 @@ export class ImplementationGuideDefinition extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.Definition";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public grouping?: Array<ImplementationGuideDefinitionGrouping>;
 

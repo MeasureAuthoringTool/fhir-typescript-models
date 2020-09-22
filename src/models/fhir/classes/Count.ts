@@ -10,6 +10,8 @@ export class Count extends Quantity {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Count";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public static parse(
     json: ICount,

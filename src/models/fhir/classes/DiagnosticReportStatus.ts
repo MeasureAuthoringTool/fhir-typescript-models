@@ -9,6 +9,8 @@ export class DiagnosticReportStatus extends PrimitiveCode {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DiagnosticReportStatus";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],

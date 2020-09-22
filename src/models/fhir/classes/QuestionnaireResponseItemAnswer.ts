@@ -24,6 +24,8 @@ export class QuestionnaireResponseItemAnswer extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "QuestionnaireResponse.Item.Answer";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public value?: PrimitiveBoolean | PrimitiveDecimal | PrimitiveInteger | PrimitiveDate | PrimitiveDateTime | PrimitiveTime | PrimitiveString | PrimitiveUri | Attachment | Coding | Quantity | Reference;
 

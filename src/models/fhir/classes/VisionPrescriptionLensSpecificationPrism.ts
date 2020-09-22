@@ -13,6 +13,8 @@ export class VisionPrescriptionLensSpecificationPrism extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "VisionPrescription.LensSpecification.Prism";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public amount?: PrimitiveDecimal;
 

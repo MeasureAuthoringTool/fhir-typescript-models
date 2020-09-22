@@ -12,6 +12,8 @@ export class RiskEvidenceSynthesisCertaintyCertaintySubcomponent extends Backbon
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RiskEvidenceSynthesis.Certainty.CertaintySubcomponent";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

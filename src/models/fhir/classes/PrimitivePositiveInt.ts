@@ -9,6 +9,8 @@ export class PrimitivePositiveInt extends PrimitiveInteger {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "positiveInt";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveInteger.parsePrimitive>[0],

@@ -15,6 +15,8 @@ export class ImmunizationRecommendation extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImmunizationRecommendation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

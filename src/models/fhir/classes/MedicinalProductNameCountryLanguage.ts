@@ -11,6 +11,8 @@ export class MedicinalProductNameCountryLanguage extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProduct.Name.CountryLanguage";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public country?: CodeableConcept;
 

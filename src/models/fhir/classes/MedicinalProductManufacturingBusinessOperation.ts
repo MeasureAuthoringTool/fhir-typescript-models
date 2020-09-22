@@ -15,6 +15,8 @@ export class MedicinalProductManufacturingBusinessOperation extends BackboneElem
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProduct.ManufacturingBusinessOperation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public operationType?: CodeableConcept;
 

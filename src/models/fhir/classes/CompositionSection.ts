@@ -16,6 +16,8 @@ export class CompositionSection extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Composition.Section";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public title?: PrimitiveString;
 

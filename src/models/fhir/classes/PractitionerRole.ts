@@ -20,6 +20,8 @@ export class PractitionerRole extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PractitionerRole";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -48,6 +50,14 @@ export class PractitionerRole extends DomainResource {
   public availabilityExceptions?: PrimitiveString;
 
   public endpoint?: Array<Reference>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: IPractitionerRole,

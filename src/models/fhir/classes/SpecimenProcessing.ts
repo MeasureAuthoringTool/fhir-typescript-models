@@ -16,6 +16,8 @@ export class SpecimenProcessing extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Specimen.Processing";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public description?: PrimitiveString;
 

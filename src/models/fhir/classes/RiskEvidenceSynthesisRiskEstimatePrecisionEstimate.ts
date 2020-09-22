@@ -13,6 +13,8 @@ export class RiskEvidenceSynthesisRiskEstimatePrecisionEstimate extends Backbone
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RiskEvidenceSynthesis.RiskEstimate.PrecisionEstimate";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

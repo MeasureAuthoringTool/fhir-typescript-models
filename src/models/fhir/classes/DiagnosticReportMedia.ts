@@ -13,6 +13,8 @@ export class DiagnosticReportMedia extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DiagnosticReport.Media";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public comment?: PrimitiveString;
 

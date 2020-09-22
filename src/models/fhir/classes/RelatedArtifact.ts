@@ -17,6 +17,8 @@ export class RelatedArtifact extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RelatedArtifact";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: RelatedArtifactType;
 

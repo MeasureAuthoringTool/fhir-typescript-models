@@ -23,6 +23,8 @@ export class RelatedPerson extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RelatedPerson";
+  
+  static readonly primaryCodePath: string | null = "relationship";
 
   public identifier?: Array<Identifier>;
 
@@ -47,6 +49,14 @@ export class RelatedPerson extends DomainResource {
   public period?: Period;
 
   public communication?: Array<RelatedPersonCommunication>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.relationship?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.relationship = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: IRelatedPerson,

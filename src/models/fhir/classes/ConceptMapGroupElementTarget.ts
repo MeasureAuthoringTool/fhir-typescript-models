@@ -15,6 +15,8 @@ export class ConceptMapGroupElementTarget extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ConceptMap.Group.Element.Target";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: PrimitiveCode;
 

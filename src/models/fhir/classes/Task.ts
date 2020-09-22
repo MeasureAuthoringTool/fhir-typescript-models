@@ -26,6 +26,8 @@ export class Task extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Task";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -88,6 +90,14 @@ export class Task extends DomainResource {
   public input?: Array<TaskInput>;
 
   public output?: Array<TaskOutput>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: ITask,

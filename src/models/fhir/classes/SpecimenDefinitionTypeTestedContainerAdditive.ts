@@ -12,6 +12,8 @@ export class SpecimenDefinitionTypeTestedContainerAdditive extends BackboneEleme
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SpecimenDefinition.TypeTested.Container.Additive";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public additive?: CodeableConcept | Reference;
 

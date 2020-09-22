@@ -17,6 +17,8 @@ export class MedicationRequestDispenseRequest extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationRequest.DispenseRequest";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public initialFill?: MedicationRequestDispenseRequestInitialFill;
 

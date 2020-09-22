@@ -11,6 +11,8 @@ export class MedicationKnowledgeRegulatorySchedule extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.Regulatory.Schedule";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public schedule?: CodeableConcept;
 

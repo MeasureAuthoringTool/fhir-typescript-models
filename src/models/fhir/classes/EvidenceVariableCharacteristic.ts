@@ -25,6 +25,8 @@ export class EvidenceVariableCharacteristic extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EvidenceVariable.Characteristic";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public description?: PrimitiveString;
 

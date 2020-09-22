@@ -28,6 +28,8 @@ export class Measure extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Measure";
+  
+  static readonly primaryCodePath: string | null = "topic";
 
   public url?: PrimitiveUri;
 
@@ -110,6 +112,14 @@ export class Measure extends DomainResource {
   public group?: Array<MeasureGroup>;
 
   public supplementalData?: Array<MeasureSupplementalData>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.topic?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.topic = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: IMeasure,

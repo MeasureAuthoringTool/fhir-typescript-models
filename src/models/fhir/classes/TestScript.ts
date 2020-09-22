@@ -30,6 +30,8 @@ export class TestScript extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

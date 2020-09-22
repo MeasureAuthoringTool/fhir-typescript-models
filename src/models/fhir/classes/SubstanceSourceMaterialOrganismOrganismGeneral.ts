@@ -11,6 +11,8 @@ export class SubstanceSourceMaterialOrganismOrganismGeneral extends BackboneElem
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSourceMaterial.Organism.OrganismGeneral";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public kingdom?: CodeableConcept;
 

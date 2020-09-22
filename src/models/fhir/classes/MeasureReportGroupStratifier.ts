@@ -12,6 +12,8 @@ export class MeasureReportGroupStratifier extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MeasureReport.Group.Stratifier";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: Array<CodeableConcept>;
 

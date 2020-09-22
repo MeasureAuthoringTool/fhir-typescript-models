@@ -12,6 +12,8 @@ export class ImagingStudySeriesPerformer extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImagingStudy.Series.Performer";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public function?: CodeableConcept;
 

@@ -18,6 +18,8 @@ export class EpisodeOfCare extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EpisodeOfCare";
+  
+  static readonly primaryCodePath: string | null = "type";
 
   public identifier?: Array<Identifier>;
 
@@ -42,6 +44,14 @@ export class EpisodeOfCare extends DomainResource {
   public team?: Array<Reference>;
 
   public account?: Array<Reference>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.type?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.type = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: IEpisodeOfCare,

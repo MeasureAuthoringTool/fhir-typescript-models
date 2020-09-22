@@ -14,6 +14,8 @@ export class ValueSetCompose extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ValueSet.Compose";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public lockedDate?: PrimitiveDate;
 

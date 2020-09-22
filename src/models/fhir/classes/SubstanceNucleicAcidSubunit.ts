@@ -17,6 +17,8 @@ export class SubstanceNucleicAcidSubunit extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceNucleicAcid.Subunit";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public subunit?: PrimitiveInteger;
 

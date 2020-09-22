@@ -29,6 +29,8 @@ export class EffectEvidenceSynthesis extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EffectEvidenceSynthesis";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

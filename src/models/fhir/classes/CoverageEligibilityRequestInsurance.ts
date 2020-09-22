@@ -14,6 +14,8 @@ export class CoverageEligibilityRequestInsurance extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityRequest.Insurance";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public focal?: PrimitiveBoolean;
 

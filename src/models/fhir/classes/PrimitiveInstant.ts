@@ -10,6 +10,8 @@ export class PrimitiveInstant extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "instant";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public value?: string;
 

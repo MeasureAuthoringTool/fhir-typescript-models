@@ -12,6 +12,8 @@ export class MedicinalProductIngredientSpecifiedSubstance extends BackboneElemen
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductIngredient.SpecifiedSubstance";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: CodeableConcept;
 

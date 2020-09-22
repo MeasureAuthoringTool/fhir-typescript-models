@@ -12,6 +12,8 @@ export class ConditionStage extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Condition.Stage";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public summary?: CodeableConcept;
 

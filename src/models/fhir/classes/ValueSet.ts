@@ -23,6 +23,8 @@ export class ValueSet extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ValueSet";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

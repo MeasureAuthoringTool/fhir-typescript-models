@@ -12,6 +12,8 @@ export class ConsentProvisionActor extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Consent.Provision.Actor";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public role?: CodeableConcept;
 

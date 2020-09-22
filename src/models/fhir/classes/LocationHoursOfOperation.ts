@@ -14,6 +14,8 @@ export class LocationHoursOfOperation extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Location.HoursOfOperation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public daysOfWeek?: Array<DaysOfWeek>;
 

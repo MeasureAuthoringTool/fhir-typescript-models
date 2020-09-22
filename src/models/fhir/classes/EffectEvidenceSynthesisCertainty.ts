@@ -13,6 +13,8 @@ export class EffectEvidenceSynthesisCertainty extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EffectEvidenceSynthesis.Certainty";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public rating?: Array<CodeableConcept>;
 

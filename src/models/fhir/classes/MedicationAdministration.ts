@@ -13,6 +13,7 @@ import {
   PrimitiveDateTime,
   PrimitiveUri,
   Reference,
+  Type,
 } from "../internal";
 
 export class MedicationAdministration extends DomainResource {
@@ -21,6 +22,8 @@ export class MedicationAdministration extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationAdministration";
+  
+  static readonly primaryCodePath: string | null = "medication";
 
   public identifier?: Array<Identifier>;
 
@@ -59,6 +62,14 @@ export class MedicationAdministration extends DomainResource {
   public dosage?: MedicationAdministrationDosage;
 
   public eventHistory?: Array<Reference>;
+
+  get primaryCode(): Type | undefined {
+    return this.medication;
+  }
+
+  set primaryCode(primaryCode: Type | undefined) {
+    this.medication = primaryCode;
+  }
 
   public static parse(
     json: IMedicationAdministration,

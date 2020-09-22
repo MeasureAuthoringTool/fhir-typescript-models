@@ -16,6 +16,8 @@ export class VerificationResultAttestation extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "VerificationResult.Attestation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public who?: Reference;
 

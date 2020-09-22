@@ -16,6 +16,8 @@ export class Signature extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Signature";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: Array<Coding>;
 

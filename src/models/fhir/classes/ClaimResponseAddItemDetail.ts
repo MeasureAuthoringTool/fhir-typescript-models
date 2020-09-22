@@ -18,6 +18,8 @@ export class ClaimResponseAddItemDetail extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClaimResponse.AddItem.Detail";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public productOrService?: CodeableConcept;
 

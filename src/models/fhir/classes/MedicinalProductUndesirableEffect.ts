@@ -13,6 +13,8 @@ export class MedicinalProductUndesirableEffect extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductUndesirableEffect";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public subject?: Array<Reference>;
 

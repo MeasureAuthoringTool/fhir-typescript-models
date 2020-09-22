@@ -14,6 +14,8 @@ export class MessageHeaderResponse extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MessageHeader.Response";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: PrimitiveId;
 

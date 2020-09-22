@@ -12,6 +12,8 @@ export class MedicinalProductInteractionInteractant extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductInteraction.Interactant";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public item?: Reference | CodeableConcept;
 

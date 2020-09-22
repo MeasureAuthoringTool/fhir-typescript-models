@@ -12,6 +12,8 @@ export class TerminologyCapabilitiesClosure extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TerminologyCapabilities.Closure";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public translation?: PrimitiveBoolean;
 

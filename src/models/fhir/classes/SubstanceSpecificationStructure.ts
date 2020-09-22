@@ -17,6 +17,8 @@ export class SubstanceSpecificationStructure extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Structure";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public stereochemistry?: CodeableConcept;
 

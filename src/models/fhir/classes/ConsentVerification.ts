@@ -14,6 +14,8 @@ export class ConsentVerification extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Consent.Verification";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public verified?: PrimitiveBoolean;
 

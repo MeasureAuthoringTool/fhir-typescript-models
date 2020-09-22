@@ -13,6 +13,8 @@ export class CatalogEntryRelatedEntry extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CatalogEntry.RelatedEntry";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public relationtype?: CatalogEntryRelationType;
 

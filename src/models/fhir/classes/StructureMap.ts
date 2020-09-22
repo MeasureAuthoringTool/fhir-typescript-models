@@ -24,6 +24,8 @@ export class StructureMap extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureMap";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

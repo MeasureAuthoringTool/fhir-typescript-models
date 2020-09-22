@@ -14,6 +14,8 @@ export class TestReportSetupActionAssert extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestReport.Setup.Action.Assert";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public result?: TestReportActionResult;
 

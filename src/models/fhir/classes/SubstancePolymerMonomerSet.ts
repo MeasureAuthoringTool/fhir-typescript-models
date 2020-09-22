@@ -12,6 +12,8 @@ export class SubstancePolymerMonomerSet extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstancePolymer.MonomerSet";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public ratioType?: CodeableConcept;
 

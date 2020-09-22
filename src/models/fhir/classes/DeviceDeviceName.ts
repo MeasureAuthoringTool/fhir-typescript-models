@@ -13,6 +13,8 @@ export class DeviceDeviceName extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Device.DeviceName";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public name?: PrimitiveString;
 

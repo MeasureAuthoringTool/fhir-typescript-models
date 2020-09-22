@@ -21,6 +21,8 @@ export class Endpoint extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Endpoint";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

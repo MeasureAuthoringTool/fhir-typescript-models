@@ -15,6 +15,8 @@ export class ImagingStudySeriesInstance extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImagingStudy.Series.Instance";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public uid?: PrimitiveId;
 

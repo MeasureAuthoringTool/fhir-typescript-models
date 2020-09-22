@@ -14,6 +14,8 @@ export class SubstancePolymerRepeatRepeatUnitStructuralRepresentation extends Ba
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstancePolymer.Repeat.RepeatUnit.StructuralRepresentation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

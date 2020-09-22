@@ -28,6 +28,8 @@ export class Library extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Library";
+  
+  static readonly primaryCodePath: string | null = "topic";
 
   public url?: PrimitiveUri;
 
@@ -90,6 +92,14 @@ export class Library extends DomainResource {
   public dataRequirement?: Array<DataRequirement>;
 
   public content?: Array<Attachment>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.topic?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.topic = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: ILibrary,

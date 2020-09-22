@@ -23,6 +23,8 @@ export class CapabilityStatementRestResource extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Rest.Resource";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: ResourceType;
 

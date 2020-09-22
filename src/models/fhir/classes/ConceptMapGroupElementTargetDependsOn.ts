@@ -14,6 +14,8 @@ export class ConceptMapGroupElementTargetDependsOn extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ConceptMap.Group.Element.Target.DependsOn";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public property?: PrimitiveUri;
 

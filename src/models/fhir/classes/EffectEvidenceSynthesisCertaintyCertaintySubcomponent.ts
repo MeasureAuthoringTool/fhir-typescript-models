@@ -12,6 +12,8 @@ export class EffectEvidenceSynthesisCertaintyCertaintySubcomponent extends Backb
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EffectEvidenceSynthesis.Certainty.CertaintySubcomponent";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

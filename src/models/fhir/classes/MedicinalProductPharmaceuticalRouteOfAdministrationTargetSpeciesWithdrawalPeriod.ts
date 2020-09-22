@@ -14,6 +14,8 @@ export class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWit
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductPharmaceutical.RouteOfAdministration.TargetSpecies.WithdrawalPeriod";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public tissue?: CodeableConcept;
 

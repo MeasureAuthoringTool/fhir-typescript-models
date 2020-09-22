@@ -22,6 +22,8 @@ export class Appointment extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Appointment";
+  
+  static readonly primaryCodePath: string | null = "serviceType";
 
   public identifier?: Array<Identifier>;
 
@@ -66,6 +68,14 @@ export class Appointment extends DomainResource {
   public participant?: Array<AppointmentParticipant>;
 
   public requestedPeriod?: Array<Period>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.serviceType?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.serviceType = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: IAppointment,

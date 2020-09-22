@@ -15,6 +15,8 @@ export class SubscriptionChannel extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Subscription.Channel";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: SubscriptionChannelType;
 

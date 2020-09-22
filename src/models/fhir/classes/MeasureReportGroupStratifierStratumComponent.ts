@@ -11,6 +11,8 @@ export class MeasureReportGroupStratifierStratumComponent extends BackboneElemen
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MeasureReport.Group.Stratifier.Stratum.Component";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: CodeableConcept;
 

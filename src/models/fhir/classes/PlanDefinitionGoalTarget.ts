@@ -14,6 +14,8 @@ export class PlanDefinitionGoalTarget extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PlanDefinition.Goal.Target";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public measure?: CodeableConcept;
 

@@ -12,6 +12,8 @@ export class MedicationAdministrationPerformer extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationAdministration.Performer";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public function?: CodeableConcept;
 

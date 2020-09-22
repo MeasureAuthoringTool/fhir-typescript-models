@@ -12,6 +12,8 @@ export class ImmunizationPerformer extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Immunization.Performer";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public function?: CodeableConcept;
 

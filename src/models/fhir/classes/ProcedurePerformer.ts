@@ -12,6 +12,8 @@ export class ProcedurePerformer extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Procedure.Performer";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public function?: CodeableConcept;
 

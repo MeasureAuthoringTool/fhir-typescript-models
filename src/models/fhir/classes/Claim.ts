@@ -28,6 +28,8 @@ export class Claim extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Claim";
+  
+  static readonly primaryCodePath: string | null = "type";
 
   public identifier?: Array<Identifier>;
 
@@ -82,6 +84,14 @@ export class Claim extends DomainResource {
   public item?: Array<ClaimItem>;
 
   public total?: Money;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.type;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.type = primaryCode;
+  }
 
   public static parse(
     json: IClaim,

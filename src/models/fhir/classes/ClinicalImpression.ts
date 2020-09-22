@@ -22,6 +22,8 @@ export class ClinicalImpression extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClinicalImpression";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -62,6 +64,14 @@ export class ClinicalImpression extends DomainResource {
   public supportingInfo?: Array<Reference>;
 
   public note?: Array<Annotation>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IClinicalImpression,

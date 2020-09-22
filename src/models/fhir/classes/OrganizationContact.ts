@@ -14,6 +14,8 @@ export class OrganizationContact extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Organization.Contact";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public purpose?: CodeableConcept;
 

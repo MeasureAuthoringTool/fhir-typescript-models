@@ -25,6 +25,8 @@ export class Procedure extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Procedure";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -81,6 +83,14 @@ export class Procedure extends DomainResource {
   public usedReference?: Array<Reference>;
 
   public usedCode?: Array<CodeableConcept>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IProcedure,

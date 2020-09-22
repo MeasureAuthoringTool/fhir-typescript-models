@@ -22,6 +22,8 @@ export class ExplanationOfBenefitAddItem extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.AddItem";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public itemSequence?: Array<PrimitivePositiveInt>;
 

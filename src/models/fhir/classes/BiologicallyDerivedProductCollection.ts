@@ -14,6 +14,8 @@ export class BiologicallyDerivedProductCollection extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "BiologicallyDerivedProduct.Collection";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public collector?: Reference;
 

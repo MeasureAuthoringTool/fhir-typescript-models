@@ -14,6 +14,8 @@ export class PractitionerQualification extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Practitioner.Qualification";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

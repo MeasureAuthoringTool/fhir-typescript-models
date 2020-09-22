@@ -21,6 +21,8 @@ export class Communication extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Communication";
+  
+  static readonly primaryCodePath: string | null = "category";
 
   public identifier?: Array<Identifier>;
 
@@ -67,6 +69,14 @@ export class Communication extends DomainResource {
   public payload?: Array<CommunicationPayload>;
 
   public note?: Array<Annotation>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.category?.[0];
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.category = primaryCode ? [primaryCode] : [];
+  }
 
   public static parse(
     json: ICommunication,

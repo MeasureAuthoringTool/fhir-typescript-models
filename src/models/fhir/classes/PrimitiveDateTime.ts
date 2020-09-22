@@ -10,6 +10,8 @@ export class PrimitiveDateTime extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "dateTime";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public value?: string;
 

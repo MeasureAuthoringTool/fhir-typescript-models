@@ -16,6 +16,8 @@ export class SubstanceSpecificationName extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Name";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public name?: PrimitiveString;
 

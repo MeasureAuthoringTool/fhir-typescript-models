@@ -13,6 +13,8 @@ export class ImplementationGuideGlobal extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.Global";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: ResourceType;
 

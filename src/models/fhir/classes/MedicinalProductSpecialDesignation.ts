@@ -15,6 +15,8 @@ export class MedicinalProductSpecialDesignation extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProduct.SpecialDesignation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

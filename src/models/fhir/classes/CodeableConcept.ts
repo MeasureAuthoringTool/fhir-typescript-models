@@ -13,6 +13,8 @@ export class CodeableConcept extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CodeableConcept";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public coding?: Array<Coding>;
 

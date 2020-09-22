@@ -14,12 +14,22 @@ export class Timing extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Timing";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public event?: Array<PrimitiveDateTime>;
 
   public repeat?: TimingRepeat;
 
   public code?: CodeableConcept;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: ITiming,

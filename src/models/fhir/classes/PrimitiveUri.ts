@@ -10,6 +10,8 @@ export class PrimitiveUri extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "uri";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public value?: string;
 

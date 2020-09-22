@@ -12,6 +12,8 @@ export class ContractTermActionSubject extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Term.Action.Subject";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public reference?: Array<Reference>;
 

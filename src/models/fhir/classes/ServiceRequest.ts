@@ -28,6 +28,8 @@ export class ServiceRequest extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ServiceRequest";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -94,6 +96,14 @@ export class ServiceRequest extends DomainResource {
   public patientInstruction?: PrimitiveString;
 
   public relevantHistory?: Array<Reference>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IServiceRequest,

@@ -13,6 +13,8 @@ export class TestScriptFixture extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Fixture";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public autocreate?: PrimitiveBoolean;
 

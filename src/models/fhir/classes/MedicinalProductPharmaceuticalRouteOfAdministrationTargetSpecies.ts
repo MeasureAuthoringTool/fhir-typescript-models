@@ -12,6 +12,8 @@ export class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies ex
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductPharmaceutical.RouteOfAdministration.TargetSpecies";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: CodeableConcept;
 

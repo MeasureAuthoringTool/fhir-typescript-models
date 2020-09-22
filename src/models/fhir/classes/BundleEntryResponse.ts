@@ -15,6 +15,8 @@ export class BundleEntryResponse extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Bundle.Entry.Response";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public status?: PrimitiveString;
 

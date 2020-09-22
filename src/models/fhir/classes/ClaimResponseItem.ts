@@ -14,6 +14,8 @@ export class ClaimResponseItem extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClaimResponse.Item";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public itemSequence?: PrimitivePositiveInt;
 

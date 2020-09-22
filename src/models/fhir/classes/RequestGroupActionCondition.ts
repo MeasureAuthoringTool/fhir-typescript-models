@@ -13,6 +13,8 @@ export class RequestGroupActionCondition extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RequestGroup.Action.Condition";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public kind?: ActionConditionKind;
 

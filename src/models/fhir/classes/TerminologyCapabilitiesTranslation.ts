@@ -12,6 +12,8 @@ export class TerminologyCapabilitiesTranslation extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TerminologyCapabilities.Translation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public needsMap?: PrimitiveBoolean;
 

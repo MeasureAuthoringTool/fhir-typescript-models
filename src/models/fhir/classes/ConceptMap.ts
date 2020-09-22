@@ -23,6 +23,8 @@ export class ConceptMap extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ConceptMap";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

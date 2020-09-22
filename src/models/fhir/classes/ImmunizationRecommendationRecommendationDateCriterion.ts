@@ -13,6 +13,8 @@ export class ImmunizationRecommendationRecommendationDateCriterion extends Backb
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImmunizationRecommendation.Recommendation.DateCriterion";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: CodeableConcept;
 

@@ -12,6 +12,8 @@ export class OperationDefinitionOverload extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OperationDefinition.Overload";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public parameterName?: Array<PrimitiveString>;
 

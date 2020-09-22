@@ -14,6 +14,8 @@ export class ValueSetComposeIncludeConceptDesignation extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ValueSet.Compose.Include.Concept.Designation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public language?: PrimitiveCode;
 

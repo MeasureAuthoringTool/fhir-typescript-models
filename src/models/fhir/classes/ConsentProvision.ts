@@ -17,6 +17,8 @@ export class ConsentProvision extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Consent.Provision";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: ConsentProvisionType;
 

@@ -14,6 +14,8 @@ export class PractitionerRoleAvailableTime extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PractitionerRole.AvailableTime";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public daysOfWeek?: Array<DaysOfWeek>;
 

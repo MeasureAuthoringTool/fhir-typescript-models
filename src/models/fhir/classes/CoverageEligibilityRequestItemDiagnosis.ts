@@ -12,6 +12,8 @@ export class CoverageEligibilityRequestItemDiagnosis extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityRequest.Item.Diagnosis";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public diagnosis?: CodeableConcept | Reference;
 

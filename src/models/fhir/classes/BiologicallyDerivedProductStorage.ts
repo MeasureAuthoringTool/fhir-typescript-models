@@ -15,6 +15,8 @@ export class BiologicallyDerivedProductStorage extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "BiologicallyDerivedProduct.Storage";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public description?: PrimitiveString;
 

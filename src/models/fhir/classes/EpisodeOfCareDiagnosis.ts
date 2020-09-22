@@ -14,6 +14,8 @@ export class EpisodeOfCareDiagnosis extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EpisodeOfCare.Diagnosis";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public condition?: Reference;
 

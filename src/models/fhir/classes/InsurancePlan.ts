@@ -20,6 +20,8 @@ export class InsurancePlan extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "InsurancePlan";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

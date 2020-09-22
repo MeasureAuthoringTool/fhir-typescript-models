@@ -13,6 +13,8 @@ export class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceDefinition.UdiDeviceIdentifier";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public deviceIdentifier?: PrimitiveString;
 

@@ -12,6 +12,8 @@ export class MolecularSequenceStructureVariantOuter extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence.StructureVariant.Outer";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public start?: PrimitiveInteger;
 

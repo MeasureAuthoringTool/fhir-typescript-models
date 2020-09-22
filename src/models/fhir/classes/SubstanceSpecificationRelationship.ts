@@ -18,6 +18,8 @@ export class SubstanceSpecificationRelationship extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Relationship";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public substance?: Reference | CodeableConcept;
 

@@ -14,6 +14,8 @@ export class ExampleScenarioActor extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExampleScenario.Actor";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public actorId?: PrimitiveString;
 

@@ -21,6 +21,8 @@ export class TimingRepeat extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Timing.Repeat";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public bounds?: Duration | Range | Period;
 

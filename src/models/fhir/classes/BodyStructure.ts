@@ -17,6 +17,8 @@ export class BodyStructure extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "BodyStructure";
+  
+  static readonly primaryCodePath: string | null = "location";
 
   public identifier?: Array<Identifier>;
 
@@ -33,6 +35,14 @@ export class BodyStructure extends DomainResource {
   public image?: Array<Attachment>;
 
   public patient?: Reference;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.location;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.location = primaryCode;
+  }
 
   public static parse(
     json: IBodyStructure,

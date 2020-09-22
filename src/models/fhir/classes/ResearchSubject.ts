@@ -16,6 +16,8 @@ export class ResearchSubject extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ResearchSubject";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

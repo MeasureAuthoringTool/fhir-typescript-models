@@ -13,6 +13,8 @@ export class LinkageItem extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Linkage.Item";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: LinkageType;
 

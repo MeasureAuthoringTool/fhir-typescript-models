@@ -15,6 +15,8 @@ export class BundleEntryRequest extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Bundle.Entry.Request";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public method?: HTTPVerb;
 

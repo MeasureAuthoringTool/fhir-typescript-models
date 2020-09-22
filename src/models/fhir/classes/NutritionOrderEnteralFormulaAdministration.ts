@@ -13,6 +13,8 @@ export class NutritionOrderEnteralFormulaAdministration extends BackboneElement 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "NutritionOrder.EnteralFormula.Administration";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public schedule?: Timing;
 

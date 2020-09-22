@@ -13,6 +13,8 @@ export class ContractTermSecurityLabel extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Term.SecurityLabel";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public number?: Array<PrimitiveUnsignedInt>;
 
