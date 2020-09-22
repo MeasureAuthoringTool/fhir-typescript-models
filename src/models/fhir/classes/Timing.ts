@@ -24,7 +24,7 @@ export class Timing extends BackboneElement {
   public code?: CodeableConcept;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

@@ -60,7 +60,7 @@ export class AllergyIntolerance extends DomainResource {
   public reaction?: Array<AllergyIntoleranceReaction>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

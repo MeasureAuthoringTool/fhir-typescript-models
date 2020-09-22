@@ -61,7 +61,7 @@ export class AdverseEvent extends DomainResource {
   public study?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.event;
+    return this?.event;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

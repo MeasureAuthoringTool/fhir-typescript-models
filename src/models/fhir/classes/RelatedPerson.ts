@@ -51,7 +51,7 @@ export class RelatedPerson extends DomainResource {
   public communication?: Array<RelatedPersonCommunication>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.relationship?.[0];
+    return this?.relationship?.[0];
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

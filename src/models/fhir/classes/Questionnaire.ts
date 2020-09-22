@@ -75,7 +75,7 @@ export class Questionnaire extends DomainResource {
   public item?: Array<QuestionnaireItem>;
 
   get primaryCode(): PrimitiveString | undefined {
-    return this.name;
+    return this?.name;
   }
 
   set primaryCode(primaryCode: PrimitiveString | undefined) {

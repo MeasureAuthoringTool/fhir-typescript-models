@@ -56,7 +56,7 @@ export class Composition extends DomainResource {
   public section?: Array<CompositionSection>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.type;
+    return this?.type;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

@@ -44,7 +44,7 @@ export class Group extends DomainResource {
   public member?: Array<GroupMember>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

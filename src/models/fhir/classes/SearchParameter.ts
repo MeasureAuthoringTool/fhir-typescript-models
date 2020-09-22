@@ -84,7 +84,7 @@ export class SearchParameter extends DomainResource {
   public component?: Array<SearchParameterComponent>;
 
   get primaryCode(): ResourceType | undefined {
-    return this.target?.[0];
+    return this?.target?.[0];
   }
 
   set primaryCode(primaryCode: ResourceType | undefined) {

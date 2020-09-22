@@ -27,7 +27,7 @@
     "@types/node": "^14.0.5",
     "jest": "^26.0.1",
     "jest-extended": "^0.11.5",
-    "model-info-parser": "^0.0.6",
+    "model-info-parser": "^0.0.7",
     "prettier": "^2.0.5",
     "ts-jest": "^26.0.0",
     "ts-node": "^8.10.2",

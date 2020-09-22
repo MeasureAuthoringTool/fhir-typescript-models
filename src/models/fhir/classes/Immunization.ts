@@ -85,7 +85,7 @@ export class Immunization extends DomainResource {
   public protocolApplied?: Array<ImmunizationProtocolApplied>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.vaccineCode;
+    return this?.vaccineCode;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

@@ -82,7 +82,7 @@ export class Observation extends DomainResource {
   public component?: Array<ObservationComponent>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

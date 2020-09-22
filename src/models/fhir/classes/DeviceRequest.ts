@@ -16,7 +16,6 @@ import {
   RequestIntent,
   RequestPriority,
   Timing,
-  Type,
 } from "../internal";
 
 export class DeviceRequest extends DomainResource {
@@ -76,11 +75,11 @@ export class DeviceRequest extends DomainResource {
 
   public relevantHistory?: Array<Reference>;
 
-  get primaryCode(): Type | undefined {
-    return this.code;
+  get primaryCode(): Reference | CodeableConcept | undefined {
+    return this?.code;
   }
 
-  set primaryCode(primaryCode: Type | undefined) {
+  set primaryCode(primaryCode: Reference | CodeableConcept | undefined) {
     this.code = primaryCode;
   }
 

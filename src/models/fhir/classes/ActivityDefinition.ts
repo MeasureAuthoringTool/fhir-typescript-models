@@ -133,7 +133,7 @@ export class ActivityDefinition extends DomainResource {
   public dynamicValue?: Array<ActivityDefinitionDynamicValue>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.topic?.[0];
+    return this?.topic?.[0];
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

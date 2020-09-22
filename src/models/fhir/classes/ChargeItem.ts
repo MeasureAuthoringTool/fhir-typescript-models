@@ -82,7 +82,7 @@ export class ChargeItem extends DomainResource {
   public supportingInformation?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

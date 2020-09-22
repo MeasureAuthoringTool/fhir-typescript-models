@@ -35,7 +35,7 @@ export class Substance extends DomainResource {
   public ingredient?: Array<SubstanceIngredient>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

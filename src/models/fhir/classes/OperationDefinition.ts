@@ -82,7 +82,7 @@ export class OperationDefinition extends DomainResource {
   public overload?: Array<OperationDefinitionOverload>;
 
   get primaryCode(): PrimitiveCode | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: PrimitiveCode | undefined) {

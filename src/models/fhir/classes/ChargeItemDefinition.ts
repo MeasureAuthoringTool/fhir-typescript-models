@@ -77,7 +77,7 @@ export class ChargeItemDefinition extends DomainResource {
   public propertyGroup?: Array<ChargeItemDefinitionPropertyGroup>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {
