@@ -13,6 +13,8 @@ export class InsurancePlanCoverage extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "InsurancePlan.Coverage";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

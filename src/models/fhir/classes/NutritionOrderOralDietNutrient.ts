@@ -12,6 +12,8 @@ export class NutritionOrderOralDietNutrient extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "NutritionOrder.OralDiet.Nutrient";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public modifier?: CodeableConcept;
 

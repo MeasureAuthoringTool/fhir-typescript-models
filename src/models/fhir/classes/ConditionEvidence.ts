@@ -12,6 +12,8 @@ export class ConditionEvidence extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Condition.Evidence";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: Array<CodeableConcept>;
 

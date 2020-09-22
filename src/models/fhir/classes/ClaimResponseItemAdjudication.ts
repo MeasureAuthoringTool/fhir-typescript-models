@@ -14,6 +14,8 @@ export class ClaimResponseItemAdjudication extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClaimResponse.Item.Adjudication";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public category?: CodeableConcept;
 

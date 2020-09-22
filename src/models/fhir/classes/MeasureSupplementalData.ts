@@ -14,6 +14,8 @@ export class MeasureSupplementalData extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Measure.SupplementalData";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: CodeableConcept;
 

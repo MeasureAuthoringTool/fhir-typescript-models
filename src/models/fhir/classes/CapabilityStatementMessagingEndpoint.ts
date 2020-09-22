@@ -13,6 +13,8 @@ export class CapabilityStatementMessagingEndpoint extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Messaging.Endpoint";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public protocol?: Coding;
 

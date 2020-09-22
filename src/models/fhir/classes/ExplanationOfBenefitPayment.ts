@@ -15,6 +15,8 @@ export class ExplanationOfBenefitPayment extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.Payment";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

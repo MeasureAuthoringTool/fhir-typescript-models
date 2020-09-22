@@ -30,6 +30,8 @@ export class Observation extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Observation";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -78,6 +80,14 @@ export class Observation extends DomainResource {
   public derivedFrom?: Array<Reference>;
 
   public component?: Array<ObservationComponent>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IObservation,

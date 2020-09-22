@@ -12,6 +12,8 @@ export class CoverageCostToBeneficiaryException extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Coverage.CostToBeneficiary.Exception";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

@@ -29,6 +29,8 @@ export class TerminologyCapabilities extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TerminologyCapabilities";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

@@ -15,6 +15,8 @@ export class SubstanceNucleicAcid extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceNucleicAcid";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public sequenceType?: CodeableConcept;
 

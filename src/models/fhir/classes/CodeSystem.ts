@@ -28,6 +28,8 @@ export class CodeSystem extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CodeSystem";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

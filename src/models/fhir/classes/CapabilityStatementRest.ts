@@ -19,6 +19,8 @@ export class CapabilityStatementRest extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Rest";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public mode?: RestfulCapabilityMode;
 

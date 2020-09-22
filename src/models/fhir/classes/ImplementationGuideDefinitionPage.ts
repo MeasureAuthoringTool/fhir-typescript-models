@@ -15,6 +15,8 @@ export class ImplementationGuideDefinitionPage extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.Definition.Page";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public name?: PrimitiveUrl | Reference;
 

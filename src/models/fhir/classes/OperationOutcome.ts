@@ -2,6 +2,7 @@
 import { 
   DomainResource,
   IOperationOutcome,
+  IssueType,
   OperationOutcomeIssue,
 } from "../internal";
 
@@ -11,8 +12,19 @@ export class OperationOutcome extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OperationOutcome";
+  
+  static readonly primaryCodePath: string | null = "issue.code";
 
   public issue?: Array<OperationOutcomeIssue>;
+
+  get primaryCode(): IssueType | undefined {
+    // return this.issue?.[0]?.code;
+    return undefined;
+  }
+
+  set primaryCode(primaryCode: IssueType | undefined) {
+    // this.issue.code = primaryCode;
+  }
 
   public static parse(
     json: IOperationOutcome,

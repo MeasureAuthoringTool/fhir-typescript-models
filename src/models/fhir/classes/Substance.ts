@@ -17,6 +17,8 @@ export class Substance extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Substance";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -31,6 +33,14 @@ export class Substance extends DomainResource {
   public instance?: Array<SubstanceInstance>;
 
   public ingredient?: Array<SubstanceIngredient>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: ISubstance,

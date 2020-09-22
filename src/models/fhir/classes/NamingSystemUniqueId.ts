@@ -15,6 +15,8 @@ export class NamingSystemUniqueId extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "NamingSystem.UniqueId";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: NamingSystemIdentifierType;
 

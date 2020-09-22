@@ -20,6 +20,8 @@ export class Specimen extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Specimen";
+  
+  static readonly primaryCodePath: string | null = "type";
 
   public identifier?: Array<Identifier>;
 
@@ -46,6 +48,14 @@ export class Specimen extends DomainResource {
   public condition?: Array<CodeableConcept>;
 
   public note?: Array<Annotation>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.type;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.type = primaryCode;
+  }
 
   public static parse(
     json: ISpecimen,

@@ -12,6 +12,8 @@ export class InvoiceParticipant extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Invoice.Participant";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public role?: CodeableConcept;
 

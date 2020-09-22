@@ -15,6 +15,8 @@ export class EnrollmentRequest extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EnrollmentRequest";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

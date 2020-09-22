@@ -15,6 +15,8 @@ export class Coding extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Coding";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public system?: PrimitiveUri;
 
@@ -25,6 +27,14 @@ export class Coding extends Element {
   public display?: PrimitiveString;
 
   public userSelected?: PrimitiveBoolean;
+
+  get primaryCode(): PrimitiveCode | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: PrimitiveCode | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: ICoding,

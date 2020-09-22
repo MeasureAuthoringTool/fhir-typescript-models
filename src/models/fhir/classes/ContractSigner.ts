@@ -13,6 +13,8 @@ export class ContractSigner extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Signer";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: Coding;
 

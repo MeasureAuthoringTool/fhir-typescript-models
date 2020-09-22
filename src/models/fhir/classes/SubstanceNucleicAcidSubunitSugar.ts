@@ -13,6 +13,8 @@ export class SubstanceNucleicAcidSubunitSugar extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceNucleicAcid.Subunit.Sugar";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Identifier;
 

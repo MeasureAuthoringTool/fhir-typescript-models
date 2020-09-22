@@ -18,6 +18,8 @@ export class Medication extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Medication";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -34,6 +36,14 @@ export class Medication extends DomainResource {
   public ingredient?: Array<MedicationIngredient>;
 
   public batch?: MedicationBatch;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IMedication,

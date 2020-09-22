@@ -14,6 +14,8 @@ export class HumanName extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "HumanName";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public use?: NameUse;
 

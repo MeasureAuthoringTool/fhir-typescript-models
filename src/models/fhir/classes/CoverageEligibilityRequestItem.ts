@@ -17,6 +17,8 @@ export class CoverageEligibilityRequestItem extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityRequest.Item";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public supportingInfoSequence?: Array<PrimitivePositiveInt>;
 

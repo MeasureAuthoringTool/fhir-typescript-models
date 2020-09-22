@@ -13,6 +13,8 @@ export class ElementDefinitionSlicingDiscriminator extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition.Slicing.Discriminator";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: DiscriminatorType;
 

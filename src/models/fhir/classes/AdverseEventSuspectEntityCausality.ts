@@ -14,6 +14,8 @@ export class AdverseEventSuspectEntityCausality extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AdverseEvent.SuspectEntity.Causality";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public assessment?: CodeableConcept;
 

@@ -19,6 +19,8 @@ export class Dosage extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Dosage";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public sequence?: PrimitiveInteger;
 

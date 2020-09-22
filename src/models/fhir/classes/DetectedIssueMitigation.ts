@@ -14,6 +14,8 @@ export class DetectedIssueMitigation extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DetectedIssue.Mitigation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public action?: CodeableConcept;
 

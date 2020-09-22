@@ -16,6 +16,8 @@ export class Subscription extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Subscription";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public status?: SubscriptionStatus;
 

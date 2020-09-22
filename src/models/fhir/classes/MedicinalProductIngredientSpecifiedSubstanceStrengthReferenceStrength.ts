@@ -14,6 +14,8 @@ export class MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStreng
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductIngredient.SpecifiedSubstance.Strength.ReferenceStrength";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public substance?: CodeableConcept;
 

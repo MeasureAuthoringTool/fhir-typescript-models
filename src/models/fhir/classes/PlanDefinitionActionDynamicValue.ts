@@ -13,6 +13,8 @@ export class PlanDefinitionActionDynamicValue extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PlanDefinition.Action.DynamicValue";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public path?: PrimitiveString;
 

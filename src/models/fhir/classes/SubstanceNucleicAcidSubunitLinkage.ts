@@ -13,6 +13,8 @@ export class SubstanceNucleicAcidSubunitLinkage extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceNucleicAcid.Subunit.Linkage";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public connectivity?: PrimitiveString;
 

@@ -12,6 +12,8 @@ export class MedicationKnowledgeRegulatoryMaxDispense extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.Regulatory.MaxDispense";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public quantity?: SimpleQuantity;
 

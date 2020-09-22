@@ -13,6 +13,8 @@ export class DocumentReferenceContext extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DocumentReference.Context";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public encounter?: Array<Reference>;
 

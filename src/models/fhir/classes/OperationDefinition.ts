@@ -26,6 +26,8 @@ export class OperationDefinition extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OperationDefinition";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public url?: PrimitiveUri;
 
@@ -78,6 +80,14 @@ export class OperationDefinition extends DomainResource {
   public parameter?: Array<OperationDefinitionParameter>;
 
   public overload?: Array<OperationDefinitionOverload>;
+
+  get primaryCode(): PrimitiveCode | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: PrimitiveCode | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IOperationDefinition,

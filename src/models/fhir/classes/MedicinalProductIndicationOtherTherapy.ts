@@ -12,6 +12,8 @@ export class MedicinalProductIndicationOtherTherapy extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductIndication.OtherTherapy";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public therapyRelationshipType?: CodeableConcept;
 

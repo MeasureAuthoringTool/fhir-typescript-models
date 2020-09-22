@@ -25,6 +25,8 @@ export class Evidence extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Evidence";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

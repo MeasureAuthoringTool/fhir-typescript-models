@@ -12,6 +12,8 @@ export class ContractLegal extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Legal";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public content?: Attachment | Reference;
 

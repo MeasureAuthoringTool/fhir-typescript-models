@@ -15,6 +15,8 @@ export class OperationOutcomeIssue extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OperationOutcome.Issue";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public severity?: IssueSeverity;
 

@@ -15,6 +15,8 @@ export class SubstancePolymerRepeat extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstancePolymer.Repeat";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public numberOfUnits?: PrimitiveInteger;
 

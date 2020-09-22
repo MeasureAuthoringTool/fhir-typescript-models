@@ -14,6 +14,8 @@ export class GroupMember extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Group.Member";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public entity?: Reference;
 

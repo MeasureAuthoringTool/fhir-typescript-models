@@ -10,6 +10,8 @@ export class PrimitiveDecimal extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "decimal";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public value?: number;
 

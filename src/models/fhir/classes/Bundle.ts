@@ -18,6 +18,8 @@ export class Bundle extends Resource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Bundle";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Identifier;
 

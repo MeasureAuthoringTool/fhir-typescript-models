@@ -12,6 +12,8 @@ export class OperationDefinitionParameterReferencedFrom extends BackboneElement 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OperationDefinition.Parameter.ReferencedFrom";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public source?: PrimitiveString;
 

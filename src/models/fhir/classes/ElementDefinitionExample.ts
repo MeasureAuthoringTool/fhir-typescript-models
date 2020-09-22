@@ -61,6 +61,8 @@ export class ElementDefinitionExample extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition.Example";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public label?: PrimitiveString;
 

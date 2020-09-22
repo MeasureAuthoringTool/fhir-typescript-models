@@ -13,6 +13,8 @@ export class MedicationBatch extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Medication.Batch";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public lotNumber?: PrimitiveString;
 

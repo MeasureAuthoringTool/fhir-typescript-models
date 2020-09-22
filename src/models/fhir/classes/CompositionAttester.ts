@@ -14,6 +14,8 @@ export class CompositionAttester extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Composition.Attester";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public mode?: CompositionAttestationMode;
 

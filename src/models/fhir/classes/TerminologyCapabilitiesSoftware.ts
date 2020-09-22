@@ -12,6 +12,8 @@ export class TerminologyCapabilitiesSoftware extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TerminologyCapabilities.Software";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public name?: PrimitiveString;
 

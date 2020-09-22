@@ -23,6 +23,8 @@ export class ResearchElementDefinitionCharacteristic extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ResearchElementDefinition.Characteristic";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public definition?: CodeableConcept | PrimitiveCanonical | Expression | DataRequirement;
 

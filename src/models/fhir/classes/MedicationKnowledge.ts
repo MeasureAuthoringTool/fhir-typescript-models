@@ -28,6 +28,8 @@ export class MedicationKnowledge extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public code?: CodeableConcept;
 
@@ -72,6 +74,14 @@ export class MedicationKnowledge extends DomainResource {
   public regulatory?: Array<MedicationKnowledgeRegulatory>;
 
   public kinetics?: Array<MedicationKnowledgeKinetics>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IMedicationKnowledge,

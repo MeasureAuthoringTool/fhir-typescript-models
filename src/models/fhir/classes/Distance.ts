@@ -10,6 +10,8 @@ export class Distance extends Quantity {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Distance";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public static parse(
     json: IDistance,

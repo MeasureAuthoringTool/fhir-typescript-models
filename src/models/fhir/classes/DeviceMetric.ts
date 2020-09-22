@@ -19,6 +19,8 @@ export class DeviceMetric extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceMetric";
+  
+  static readonly primaryCodePath: string | null = "type";
 
   public identifier?: Array<Identifier>;
 
@@ -39,6 +41,14 @@ export class DeviceMetric extends DomainResource {
   public measurementPeriod?: Timing;
 
   public calibration?: Array<DeviceMetricCalibration>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.type;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.type = primaryCode;
+  }
 
   public static parse(
     json: IDeviceMetric,

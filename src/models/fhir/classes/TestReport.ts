@@ -22,6 +22,8 @@ export class TestReport extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestReport";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Identifier;
 

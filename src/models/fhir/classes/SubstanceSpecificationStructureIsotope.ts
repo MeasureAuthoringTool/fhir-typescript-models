@@ -14,6 +14,8 @@ export class SubstanceSpecificationStructureIsotope extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Structure.Isotope";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Identifier;
 

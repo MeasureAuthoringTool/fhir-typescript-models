@@ -14,6 +14,8 @@ export class TerminologyCapabilitiesExpansion extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TerminologyCapabilities.Expansion";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public hierarchical?: PrimitiveBoolean;
 

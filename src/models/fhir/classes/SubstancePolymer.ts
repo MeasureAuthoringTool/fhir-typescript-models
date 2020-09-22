@@ -15,6 +15,8 @@ export class SubstancePolymer extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstancePolymer";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public class?: CodeableConcept;
 

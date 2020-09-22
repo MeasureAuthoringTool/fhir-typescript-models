@@ -13,6 +13,8 @@ export class CareTeamParticipant extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CareTeam.Participant";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public role?: Array<CodeableConcept>;
 

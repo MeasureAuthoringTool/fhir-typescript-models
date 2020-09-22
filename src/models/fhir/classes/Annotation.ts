@@ -15,6 +15,8 @@ export class Annotation extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Annotation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public author?: Reference | PrimitiveString;
 

@@ -37,6 +37,8 @@ export class ExplanationOfBenefit extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit";
+  
+  static readonly primaryCodePath: string | null = "type";
 
   public identifier?: Array<Identifier>;
 
@@ -123,6 +125,14 @@ export class ExplanationOfBenefit extends DomainResource {
   public benefitPeriod?: Period;
 
   public benefitBalance?: Array<ExplanationOfBenefitBenefitBalance>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.type;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.type = primaryCode;
+  }
 
   public static parse(
     json: IExplanationOfBenefit,

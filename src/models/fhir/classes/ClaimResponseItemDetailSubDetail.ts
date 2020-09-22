@@ -13,6 +13,8 @@ export class ClaimResponseItemDetailSubDetail extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClaimResponse.Item.Detail.SubDetail";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public subDetailSequence?: PrimitivePositiveInt;
 

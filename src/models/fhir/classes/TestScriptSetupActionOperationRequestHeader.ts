@@ -12,6 +12,8 @@ export class TestScriptSetupActionOperationRequestHeader extends BackboneElement
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Setup.Action.Operation.RequestHeader";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public field?: PrimitiveString;
 

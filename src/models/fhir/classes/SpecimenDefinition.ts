@@ -15,6 +15,8 @@ export class SpecimenDefinition extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SpecimenDefinition";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Identifier;
 

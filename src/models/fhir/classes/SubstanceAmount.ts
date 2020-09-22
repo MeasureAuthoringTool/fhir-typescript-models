@@ -16,6 +16,8 @@ export class SubstanceAmount extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceAmount";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public amount?: Quantity | Range | PrimitiveString;
 

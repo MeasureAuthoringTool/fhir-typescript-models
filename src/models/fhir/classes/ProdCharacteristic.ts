@@ -15,6 +15,8 @@ export class ProdCharacteristic extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ProdCharacteristic";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public height?: Quantity;
 

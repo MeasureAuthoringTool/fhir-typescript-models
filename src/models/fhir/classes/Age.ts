@@ -10,6 +10,8 @@ export class Age extends Quantity {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Age";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public static parse(
     json: IAge,

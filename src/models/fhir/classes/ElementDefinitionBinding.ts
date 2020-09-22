@@ -14,6 +14,8 @@ export class ElementDefinitionBinding extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition.Binding";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public strength?: BindingStrength;
 

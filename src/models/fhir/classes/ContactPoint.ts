@@ -16,6 +16,8 @@ export class ContactPoint extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ContactPoint";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public system?: ContactPointSystem;
 

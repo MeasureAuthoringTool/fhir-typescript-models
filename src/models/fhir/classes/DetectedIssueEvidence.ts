@@ -12,6 +12,8 @@ export class DetectedIssueEvidence extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DetectedIssue.Evidence";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: Array<CodeableConcept>;
 

@@ -17,6 +17,8 @@ export class MolecularSequenceQuality extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence.Quality";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: QualityType;
 

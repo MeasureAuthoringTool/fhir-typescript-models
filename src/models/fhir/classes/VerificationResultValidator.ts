@@ -14,6 +14,8 @@ export class VerificationResultValidator extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "VerificationResult.Validator";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public organization?: Reference;
 

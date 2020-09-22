@@ -17,6 +17,8 @@ export class GroupCharacteristic extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Group.Characteristic";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: CodeableConcept;
 

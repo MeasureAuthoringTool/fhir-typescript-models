@@ -22,6 +22,8 @@ export class Condition extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Condition";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -56,6 +58,14 @@ export class Condition extends DomainResource {
   public evidence?: Array<ConditionEvidence>;
 
   public note?: Array<Annotation>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: ICondition,

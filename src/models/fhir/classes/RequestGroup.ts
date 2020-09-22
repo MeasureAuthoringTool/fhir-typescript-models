@@ -22,6 +22,8 @@ export class RequestGroup extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RequestGroup";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -58,6 +60,14 @@ export class RequestGroup extends DomainResource {
   public note?: Array<Annotation>;
 
   public action?: Array<RequestGroupAction>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IRequestGroup,

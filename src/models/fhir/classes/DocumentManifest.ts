@@ -19,6 +19,8 @@ export class DocumentManifest extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DocumentManifest";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public masterIdentifier?: Identifier;
 

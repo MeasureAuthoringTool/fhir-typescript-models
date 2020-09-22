@@ -11,6 +11,8 @@ export class TestScriptSetup extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Setup";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public action?: Array<TestScriptSetupAction>;
 

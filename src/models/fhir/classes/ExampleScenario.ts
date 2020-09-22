@@ -25,6 +25,8 @@ export class ExampleScenario extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExampleScenario";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

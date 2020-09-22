@@ -15,6 +15,8 @@ export class ExampleScenarioProcessStepOperation extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExampleScenario.Process.Step.Operation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public number?: PrimitiveString;
 

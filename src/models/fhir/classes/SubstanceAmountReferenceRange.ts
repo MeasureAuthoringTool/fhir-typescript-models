@@ -11,6 +11,8 @@ export class SubstanceAmountReferenceRange extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceAmount.ReferenceRange";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public lowLimit?: Quantity;
 

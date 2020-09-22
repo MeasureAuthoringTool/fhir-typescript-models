@@ -14,6 +14,8 @@ export class DosageDoseAndRate extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Dosage.DoseAndRate";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

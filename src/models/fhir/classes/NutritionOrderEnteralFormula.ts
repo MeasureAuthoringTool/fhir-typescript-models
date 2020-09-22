@@ -15,6 +15,8 @@ export class NutritionOrderEnteralFormula extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "NutritionOrder.EnteralFormula";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public baseFormulaType?: CodeableConcept;
 

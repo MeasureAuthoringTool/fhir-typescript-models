@@ -16,6 +16,8 @@ export class ValueSetComposeInclude extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ValueSet.Compose.Include";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public system?: PrimitiveUri;
 

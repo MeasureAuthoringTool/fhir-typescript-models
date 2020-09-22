@@ -18,6 +18,8 @@ export class MedicinalProductAuthorization extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductAuthorization";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

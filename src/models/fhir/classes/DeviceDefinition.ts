@@ -27,6 +27,8 @@ export class DeviceDefinition extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceDefinition";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

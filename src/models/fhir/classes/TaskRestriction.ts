@@ -14,6 +14,8 @@ export class TaskRestriction extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Task.Restriction";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public repetitions?: PrimitivePositiveInt;
 

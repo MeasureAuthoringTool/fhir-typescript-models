@@ -12,6 +12,8 @@ export class ClaimPayee extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Claim.Payee";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

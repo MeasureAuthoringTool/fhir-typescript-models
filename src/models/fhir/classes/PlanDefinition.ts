@@ -28,6 +28,8 @@ export class PlanDefinition extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PlanDefinition";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public url?: PrimitiveUri;
 

@@ -10,6 +10,8 @@ export class Duration extends Quantity {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Duration";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public static parse(
     json: IDuration,

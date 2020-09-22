@@ -15,6 +15,8 @@ export class ChargeItemDefinitionPropertyGroupPriceComponent extends BackboneEle
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ChargeItemDefinition.PropertyGroup.PriceComponent";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: ChargeItemDefinitionPriceComponentType;
 

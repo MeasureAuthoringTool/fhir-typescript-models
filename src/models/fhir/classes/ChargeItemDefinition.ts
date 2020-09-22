@@ -27,6 +27,8 @@ export class ChargeItemDefinition extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ChargeItemDefinition";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public url?: PrimitiveUri;
 
@@ -73,6 +75,14 @@ export class ChargeItemDefinition extends DomainResource {
   public applicability?: Array<ChargeItemDefinitionApplicability>;
 
   public propertyGroup?: Array<ChargeItemDefinitionPropertyGroup>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IChargeItemDefinition,

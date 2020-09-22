@@ -14,6 +14,8 @@ export class StructureMapGroupInput extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureMap.Group.Input";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public name?: PrimitiveId;
 

@@ -27,6 +27,8 @@ export class Questionnaire extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Questionnaire";
+  
+  static readonly primaryCodePath: string | null = "name";
 
   public url?: PrimitiveUri;
 
@@ -71,6 +73,14 @@ export class Questionnaire extends DomainResource {
   public code?: Array<Coding>;
 
   public item?: Array<QuestionnaireItem>;
+
+  get primaryCode(): PrimitiveString | undefined {
+    return this.name;
+  }
+
+  set primaryCode(primaryCode: PrimitiveString | undefined) {
+    this.name = primaryCode;
+  }
 
   public static parse(
     json: IQuestionnaire,

@@ -18,6 +18,8 @@ export class MedicinalProductPackaged extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductPackaged";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

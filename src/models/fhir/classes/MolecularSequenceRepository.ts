@@ -14,6 +14,8 @@ export class MolecularSequenceRepository extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence.Repository";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: RepositoryType;
 

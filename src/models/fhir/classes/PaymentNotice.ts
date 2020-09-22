@@ -18,6 +18,8 @@ export class PaymentNotice extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PaymentNotice";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

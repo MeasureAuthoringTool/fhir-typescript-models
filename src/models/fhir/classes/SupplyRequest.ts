@@ -21,6 +21,8 @@ export class SupplyRequest extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SupplyRequest";
+  
+  static readonly primaryCodePath: string | null = "category";
 
   public identifier?: Array<Identifier>;
 
@@ -51,6 +53,14 @@ export class SupplyRequest extends DomainResource {
   public deliverFrom?: Reference;
 
   public deliverTo?: Reference;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.category;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.category = primaryCode;
+  }
 
   public static parse(
     json: ISupplyRequest,

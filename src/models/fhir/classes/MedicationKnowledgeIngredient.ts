@@ -15,6 +15,8 @@ export class MedicationKnowledgeIngredient extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.Ingredient";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public item?: CodeableConcept | Reference;
 

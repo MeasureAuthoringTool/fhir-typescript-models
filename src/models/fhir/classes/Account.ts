@@ -19,6 +19,8 @@ export class Account extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Account";
+  
+  static readonly primaryCodePath: string | null = "type";
 
   public identifier?: Array<Identifier>;
 
@@ -41,6 +43,14 @@ export class Account extends DomainResource {
   public guarantor?: Array<AccountGuarantor>;
 
   public partOf?: Reference;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.type;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.type = primaryCode;
+  }
 
   public static parse(
     json: IAccount,

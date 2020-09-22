@@ -15,6 +15,8 @@ export class PlanDefinitionActionRelatedAction extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PlanDefinition.Action.RelatedAction";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public actionId?: PrimitiveId;
 

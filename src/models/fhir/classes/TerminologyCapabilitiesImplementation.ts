@@ -13,6 +13,8 @@ export class TerminologyCapabilitiesImplementation extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TerminologyCapabilities.Implementation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public description?: PrimitiveString;
 

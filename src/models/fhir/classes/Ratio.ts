@@ -11,6 +11,8 @@ export class Ratio extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Ratio";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public numerator?: Quantity;
 

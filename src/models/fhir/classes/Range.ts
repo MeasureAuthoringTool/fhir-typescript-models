@@ -11,6 +11,8 @@ export class Range extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Range";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public low?: SimpleQuantity;
 

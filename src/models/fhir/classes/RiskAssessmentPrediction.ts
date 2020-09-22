@@ -16,6 +16,8 @@ export class RiskAssessmentPrediction extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RiskAssessment.Prediction";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public outcome?: CodeableConcept;
 

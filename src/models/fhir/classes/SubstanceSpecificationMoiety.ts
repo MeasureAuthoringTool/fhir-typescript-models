@@ -15,6 +15,8 @@ export class SubstanceSpecificationMoiety extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Moiety";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public role?: CodeableConcept;
 

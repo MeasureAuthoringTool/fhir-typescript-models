@@ -15,6 +15,8 @@ export class Basic extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Basic";
+  
+  static readonly primaryCodePath: string | null = "code";
 
   public identifier?: Array<Identifier>;
 
@@ -25,6 +27,14 @@ export class Basic extends DomainResource {
   public created?: PrimitiveDate;
 
   public author?: Reference;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.code;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.code = primaryCode;
+  }
 
   public static parse(
     json: IBasic,

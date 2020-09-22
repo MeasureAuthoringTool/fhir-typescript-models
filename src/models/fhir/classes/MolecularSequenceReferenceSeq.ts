@@ -17,6 +17,8 @@ export class MolecularSequenceReferenceSeq extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence.ReferenceSeq";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public chromosome?: CodeableConcept;
 

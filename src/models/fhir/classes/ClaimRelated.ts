@@ -13,6 +13,8 @@ export class ClaimRelated extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Claim.Related";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public claim?: Reference;
 

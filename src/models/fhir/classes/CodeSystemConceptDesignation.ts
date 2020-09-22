@@ -14,6 +14,8 @@ export class CodeSystemConceptDesignation extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CodeSystem.Concept.Designation";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public language?: PrimitiveCode;
 

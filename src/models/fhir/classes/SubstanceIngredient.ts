@@ -13,6 +13,8 @@ export class SubstanceIngredient extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Substance.Ingredient";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public quantity?: Ratio;
 

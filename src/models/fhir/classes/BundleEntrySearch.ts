@@ -13,6 +13,8 @@ export class BundleEntrySearch extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Bundle.Entry.Search";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public mode?: SearchEntryMode;
 

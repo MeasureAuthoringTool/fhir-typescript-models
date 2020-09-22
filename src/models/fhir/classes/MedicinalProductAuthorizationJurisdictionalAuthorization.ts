@@ -13,6 +13,8 @@ export class MedicinalProductAuthorizationJurisdictionalAuthorization extends Ba
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductAuthorization.JurisdictionalAuthorization";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

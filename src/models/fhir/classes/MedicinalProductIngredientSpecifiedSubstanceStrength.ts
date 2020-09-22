@@ -15,6 +15,8 @@ export class MedicinalProductIngredientSpecifiedSubstanceStrength extends Backbo
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductIngredient.SpecifiedSubstance.Strength";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public presentation?: Ratio;
 

@@ -9,6 +9,8 @@ export class MessageheaderResponseRequest extends PrimitiveCode {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Messageheader_Response_Request";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],

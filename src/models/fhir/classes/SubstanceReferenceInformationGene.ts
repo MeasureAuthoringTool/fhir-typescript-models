@@ -12,6 +12,8 @@ export class SubstanceReferenceInformationGene extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceReferenceInformation.Gene";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public geneSequenceOrigin?: CodeableConcept;
 

@@ -12,6 +12,8 @@ export class InsurancePlanCoverageBenefitLimit extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "InsurancePlan.Coverage.Benefit.Limit";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public value?: Quantity;
 

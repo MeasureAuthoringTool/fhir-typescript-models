@@ -11,6 +11,8 @@ export class MedicinalProductPackagedBatchIdentifier extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductPackaged.BatchIdentifier";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public outerPackaging?: Identifier;
 

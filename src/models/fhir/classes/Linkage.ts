@@ -14,6 +14,8 @@ export class Linkage extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Linkage";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public active?: PrimitiveBoolean;
 

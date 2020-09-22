@@ -25,6 +25,8 @@ export class Immunization extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Immunization";
+  
+  static readonly primaryCodePath: string | null = "vaccineCode";
 
   public identifier?: Array<Identifier>;
 
@@ -81,6 +83,14 @@ export class Immunization extends DomainResource {
   public reaction?: Array<ImmunizationReaction>;
 
   public protocolApplied?: Array<ImmunizationProtocolApplied>;
+
+  get primaryCode(): CodeableConcept | undefined {
+    return this.vaccineCode;
+  }
+
+  set primaryCode(primaryCode: CodeableConcept | undefined) {
+    this.vaccineCode = primaryCode;
+  }
 
   public static parse(
     json: IImmunization,

@@ -14,6 +14,8 @@ export class CommunicationPayload extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Communication.Payload";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public content?: PrimitiveString | Attachment | Reference;
 

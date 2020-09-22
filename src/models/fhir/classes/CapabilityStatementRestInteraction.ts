@@ -13,6 +13,8 @@ export class CapabilityStatementRestInteraction extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Rest.Interaction";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: SystemRestfulInteraction;
 

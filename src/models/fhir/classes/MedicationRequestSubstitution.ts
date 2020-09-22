@@ -13,6 +13,8 @@ export class MedicationRequestSubstitution extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationRequest.Substitution";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public allowed?: PrimitiveBoolean | CodeableConcept;
 

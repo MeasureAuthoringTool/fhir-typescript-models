@@ -26,6 +26,8 @@ export class Contract extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public identifier?: Array<Identifier>;
 

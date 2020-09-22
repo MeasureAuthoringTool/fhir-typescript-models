@@ -15,6 +15,8 @@ export class CodeSystemProperty extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CodeSystem.Property";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public code?: PrimitiveCode;
 

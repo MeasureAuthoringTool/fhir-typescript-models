@@ -16,6 +16,8 @@ export class RiskEvidenceSynthesisRiskEstimate extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RiskEvidenceSynthesis.RiskEstimate";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public description?: PrimitiveString;
 

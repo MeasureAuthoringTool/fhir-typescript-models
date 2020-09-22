@@ -12,6 +12,8 @@ export class DeviceDefinitionProperty extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceDefinition.Property";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

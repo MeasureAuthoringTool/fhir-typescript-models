@@ -14,6 +14,8 @@ export class HealthcareServiceAvailableTime extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "HealthcareService.AvailableTime";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public daysOfWeek?: Array<DaysOfWeek>;
 

@@ -11,6 +11,8 @@ export class BackboneElement extends Element {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "BackboneElement";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public modifierExtension?: Array<Extension>;
 

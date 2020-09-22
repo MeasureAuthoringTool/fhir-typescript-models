@@ -16,6 +16,8 @@ export class TestScriptMetadataCapability extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Metadata.Capability";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public required?: PrimitiveBoolean;
 

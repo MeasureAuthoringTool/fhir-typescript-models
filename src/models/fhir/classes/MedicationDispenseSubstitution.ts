@@ -14,6 +14,8 @@ export class MedicationDispenseSubstitution extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationDispense.Substitution";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public wasSubstituted?: PrimitiveBoolean;
 

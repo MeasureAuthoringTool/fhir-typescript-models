@@ -18,6 +18,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   PublicationStatus,
+  Type,
   UsageContext,
 } from "../internal";
 
@@ -27,6 +28,8 @@ export class MessageDefinition extends DomainResource {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MessageDefinition";
+  
+  static readonly primaryCodePath: string | null = "event";
 
   public url?: PrimitiveUri;
 
@@ -75,6 +78,14 @@ export class MessageDefinition extends DomainResource {
   public allowedResponse?: Array<MessageDefinitionAllowedResponse>;
 
   public graph?: Array<PrimitiveCanonical>;
+
+  get primaryCode(): Type | undefined {
+    return this.event;
+  }
+
+  set primaryCode(primaryCode: Type | undefined) {
+    this.event = primaryCode;
+  }
 
   public static parse(
     json: IMessageDefinition,

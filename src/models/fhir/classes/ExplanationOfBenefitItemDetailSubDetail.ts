@@ -18,6 +18,8 @@ export class ExplanationOfBenefitItemDetailSubDetail extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.Item.Detail.SubDetail";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public sequence?: PrimitivePositiveInt;
 

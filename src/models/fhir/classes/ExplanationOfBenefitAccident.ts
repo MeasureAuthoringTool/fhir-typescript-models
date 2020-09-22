@@ -15,6 +15,8 @@ export class ExplanationOfBenefitAccident extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.Accident";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public date?: PrimitiveDate;
 

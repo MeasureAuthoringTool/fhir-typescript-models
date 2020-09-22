@@ -11,6 +11,8 @@ export class MedicationKnowledgeMedicineClassification extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.MedicineClassification";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public type?: CodeableConcept;
 

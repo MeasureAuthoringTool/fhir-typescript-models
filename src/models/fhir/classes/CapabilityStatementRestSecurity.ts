@@ -14,6 +14,8 @@ export class CapabilityStatementRestSecurity extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Rest.Security";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public cors?: PrimitiveBoolean;
 

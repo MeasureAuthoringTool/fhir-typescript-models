@@ -12,6 +12,8 @@ export class EncounterClassHistory extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Encounter.ClassHistory";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public class?: Coding;
 

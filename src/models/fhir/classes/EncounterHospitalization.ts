@@ -13,6 +13,8 @@ export class EncounterHospitalization extends BackboneElement {
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Encounter.Hospitalization";
+  
+  static readonly primaryCodePath: string | null = null;
 
   public preAdmissionIdentifier?: Identifier;
 
