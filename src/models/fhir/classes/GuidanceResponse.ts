@@ -12,7 +12,6 @@ import {
   PrimitiveDateTime,
   PrimitiveUri,
   Reference,
-  Type,
 } from "../internal";
 
 export class GuidanceResponse extends DomainResource {
@@ -54,11 +53,11 @@ export class GuidanceResponse extends DomainResource {
 
   public dataRequirement?: Array<DataRequirement>;
 
-  get primaryCode(): Type | undefined {
-    return this.module;
+  get primaryCode(): PrimitiveUri | PrimitiveCanonical | CodeableConcept | undefined {
+    return this?.module;
   }
 
-  set primaryCode(primaryCode: Type | undefined) {
+  set primaryCode(primaryCode: PrimitiveUri | PrimitiveCanonical | CodeableConcept | undefined) {
     this.module = primaryCode;
   }
 

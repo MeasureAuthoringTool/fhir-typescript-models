@@ -18,12 +18,12 @@ export class OperationOutcome extends DomainResource {
   public issue?: Array<OperationOutcomeIssue>;
 
   get primaryCode(): IssueType | undefined {
-    // return this.issue?.[0]?.code;
-    return undefined;
+    return this?.issue?.[0]?.code;
   }
 
   set primaryCode(primaryCode: IssueType | undefined) {
-    // this.issue.code = primaryCode;
+    this.issue = this.issue || [new OperationOutcomeIssue()];
+    this.issue[0].code = primaryCode;
   }
 
   public static parse(

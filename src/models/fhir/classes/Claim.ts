@@ -86,7 +86,7 @@ export class Claim extends DomainResource {
   public total?: Money;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.type;
+    return this?.type;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

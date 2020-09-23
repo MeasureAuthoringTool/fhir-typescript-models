@@ -55,7 +55,7 @@ export class Goal extends DomainResource {
   public outcomeReference?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.category?.[0];
+    return this?.category?.[0];
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

@@ -11,7 +11,6 @@ import {
   Period,
   PrimitiveDateTime,
   Reference,
-  Type,
 } from "../internal";
 
 export class MedicationStatement extends DomainResource {
@@ -57,11 +56,11 @@ export class MedicationStatement extends DomainResource {
 
   public dosage?: Array<Dosage>;
 
-  get primaryCode(): Type | undefined {
-    return this.medication;
+  get primaryCode(): CodeableConcept | Reference | undefined {
+    return this?.medication;
   }
 
-  set primaryCode(primaryCode: Type | undefined) {
+  set primaryCode(primaryCode: CodeableConcept | Reference | undefined) {
     this.medication = primaryCode;
   }
 

@@ -70,7 +70,7 @@ export class Appointment extends DomainResource {
   public requestedPeriod?: Array<Period>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.serviceType?.[0];
+    return this?.serviceType?.[0];
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

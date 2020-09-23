@@ -18,7 +18,6 @@ import {
   PrimitiveString,
   PrimitiveUri,
   PublicationStatus,
-  Type,
   UsageContext,
 } from "../internal";
 
@@ -79,11 +78,11 @@ export class MessageDefinition extends DomainResource {
 
   public graph?: Array<PrimitiveCanonical>;
 
-  get primaryCode(): Type | undefined {
-    return this.event;
+  get primaryCode(): Coding | PrimitiveUri | undefined {
+    return this?.event;
   }
 
-  set primaryCode(primaryCode: Type | undefined) {
+  set primaryCode(primaryCode: Coding | PrimitiveUri | undefined) {
     this.event = primaryCode;
   }
 

@@ -58,7 +58,7 @@ export class RiskAssessment extends DomainResource {
   public note?: Array<Annotation>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

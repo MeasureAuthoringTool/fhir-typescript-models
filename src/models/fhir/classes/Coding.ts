@@ -29,7 +29,7 @@ export class Coding extends Element {
   public userSelected?: PrimitiveBoolean;
 
   get primaryCode(): PrimitiveCode | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: PrimitiveCode | undefined) {

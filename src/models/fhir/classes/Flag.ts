@@ -36,7 +36,7 @@ export class Flag extends DomainResource {
   public author?: Reference;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

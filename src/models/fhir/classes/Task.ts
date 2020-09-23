@@ -92,7 +92,7 @@ export class Task extends DomainResource {
   public output?: Array<TaskOutput>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

@@ -50,7 +50,7 @@ export class Consent extends DomainResource {
   public provision?: ConsentProvision;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.category?.[0];
+    return this?.category?.[0];
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

@@ -59,7 +59,7 @@ export class Coverage extends DomainResource {
   public contract?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.type;
+    return this?.type;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {
