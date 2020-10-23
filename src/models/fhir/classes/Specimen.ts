@@ -50,7 +50,7 @@ export class Specimen extends DomainResource {
   public note?: Array<Annotation>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.type;
+    return this?.type;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

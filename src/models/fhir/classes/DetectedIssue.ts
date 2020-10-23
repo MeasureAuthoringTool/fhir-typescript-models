@@ -50,7 +50,7 @@ export class DetectedIssue extends DomainResource {
   public mitigation?: Array<DetectedIssueMitigation>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

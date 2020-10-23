@@ -114,7 +114,7 @@ export class Measure extends DomainResource {
   public supplementalData?: Array<MeasureSupplementalData>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.topic?.[0];
+    return this?.topic?.[0];
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

@@ -37,7 +37,7 @@ export class BodyStructure extends DomainResource {
   public patient?: Reference;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.location;
+    return this?.location;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

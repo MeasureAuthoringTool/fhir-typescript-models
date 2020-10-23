@@ -17,7 +17,6 @@ import {
   PrimitiveDateTime,
   PrimitiveUri,
   Reference,
-  Type,
 } from "../internal";
 
 export class MedicationRequest extends DomainResource {
@@ -93,11 +92,11 @@ export class MedicationRequest extends DomainResource {
 
   public eventHistory?: Array<Reference>;
 
-  get primaryCode(): Type | undefined {
-    return this.medication;
+  get primaryCode(): CodeableConcept | Reference | undefined {
+    return this?.medication;
   }
 
-  set primaryCode(primaryCode: Type | undefined) {
+  set primaryCode(primaryCode: CodeableConcept | Reference | undefined) {
     this.medication = primaryCode;
   }
 

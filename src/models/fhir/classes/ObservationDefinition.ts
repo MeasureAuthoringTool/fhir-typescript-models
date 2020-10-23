@@ -49,7 +49,7 @@ export class ObservationDefinition extends DomainResource {
   public criticalCodedValueSet?: Reference;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

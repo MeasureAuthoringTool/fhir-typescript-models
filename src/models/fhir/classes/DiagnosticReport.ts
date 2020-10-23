@@ -61,7 +61,7 @@ export class DiagnosticReport extends DomainResource {
   public presentedForm?: Array<Attachment>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

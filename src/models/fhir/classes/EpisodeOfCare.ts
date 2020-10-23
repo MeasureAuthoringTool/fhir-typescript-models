@@ -46,7 +46,7 @@ export class EpisodeOfCare extends DomainResource {
   public account?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.type?.[0];
+    return this?.type?.[0];
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

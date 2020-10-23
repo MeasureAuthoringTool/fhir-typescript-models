@@ -74,7 +74,7 @@ export class Encounter extends DomainResource {
   public partOf?: Reference;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.type?.[0];
+    return this?.type?.[0];
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

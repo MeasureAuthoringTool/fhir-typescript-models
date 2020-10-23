@@ -52,7 +52,7 @@ export class PractitionerRole extends DomainResource {
   public endpoint?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code?.[0];
+    return this?.code?.[0];
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

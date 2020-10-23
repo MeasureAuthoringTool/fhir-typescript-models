@@ -62,7 +62,7 @@ export class RequestGroup extends DomainResource {
   public action?: Array<RequestGroupAction>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

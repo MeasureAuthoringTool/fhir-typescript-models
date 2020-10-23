@@ -94,7 +94,7 @@ export class Library extends DomainResource {
   public content?: Array<Attachment>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.topic?.[0];
+    return this?.topic?.[0];
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

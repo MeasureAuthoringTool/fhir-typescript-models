@@ -23,7 +23,7 @@ export class UsageContext extends Element {
   public value?: CodeableConcept | Quantity | Range | Reference;
 
   get primaryCode(): Coding | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: Coding | undefined) {

@@ -60,7 +60,7 @@ export class Location extends DomainResource {
   public endpoint?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.type?.[0];
+    return this?.type?.[0];
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

@@ -30,7 +30,7 @@ export class MoneyQuantity extends Quantity {
   public code?: PrimitiveCode;
 
   get primaryCode(): PrimitiveCode | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: PrimitiveCode | undefined) {

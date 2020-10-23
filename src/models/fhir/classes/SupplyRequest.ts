@@ -55,7 +55,7 @@ export class SupplyRequest extends DomainResource {
   public deliverTo?: Reference;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.category;
+    return this?.category;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

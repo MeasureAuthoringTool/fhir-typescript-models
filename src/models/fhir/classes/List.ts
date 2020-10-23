@@ -50,7 +50,7 @@ export class List extends DomainResource {
   public emptyReason?: CodeableConcept;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.code;
+    return this?.code;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

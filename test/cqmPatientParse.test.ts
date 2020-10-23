@@ -1,5 +1,6 @@
 import "jest-extended";
 import { CqmPatient } from "../src/models/cqm";
+import { Patient } from "../src/models/fhir/classes/Patient";
 import patientJson from "./resources/cqm-patient.json";
 
 describe("Parsing CQM Patient JSON", () => {
@@ -15,6 +16,7 @@ describe("Parsing CQM Patient JSON", () => {
     expect(clonedPatient).toBeDefined();
     expect(clonedPatient.toJSON()).toEqual(patientJson);
     expect(clonedPatient.toJSON()).toEqual(cqmPatient.toJSON());
+    expect(clonedPatient.fhir_patient?.resourceType).toEqual('Patient');
   });
 
   it("Should parse a CQM Patient with FHIR Resources as Data Elements", () => {
@@ -23,6 +25,11 @@ describe("Parsing CQM Patient JSON", () => {
     expect(cqmPatient).toBeDefined();
     expect(cqmPatient.data_elements).toBeDefined();
     expect(cqmPatient.toJSON()).toEqual(updatedPatientJson);
+  });
+
+  it("Patient resource type", () => {
+    const p = new Patient();
+    expect(p.resourceType).toEqual('Patient');
   });
 
   it("Should serialize CQM patient into a FHIR bundle with data elements", () => {

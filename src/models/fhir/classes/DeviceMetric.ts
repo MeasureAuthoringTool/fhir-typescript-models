@@ -43,7 +43,7 @@ export class DeviceMetric extends DomainResource {
   public calibration?: Array<DeviceMetricCalibration>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.type;
+    return this?.type;
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {

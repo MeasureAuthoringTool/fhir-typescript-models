@@ -71,7 +71,7 @@ export class Communication extends DomainResource {
   public note?: Array<Annotation>;
 
   get primaryCode(): CodeableConcept | undefined {
-    return this.category?.[0];
+    return this?.category?.[0];
   }
 
   set primaryCode(primaryCode: CodeableConcept | undefined) {
