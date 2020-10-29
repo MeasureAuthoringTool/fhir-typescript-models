@@ -8,6 +8,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   ValueSetComposeIncludeConceptDesignation,
+  FieldMetadata
 } from "../internal";
 
 export class ValueSetExpansionContains extends BackboneElement {
@@ -18,6 +19,42 @@ export class ValueSetExpansionContains extends BackboneElement {
   static readonly typeName: string = "ValueSet.Expansion.Contains";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "system",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "abstract",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "inactive",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "display",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "designation",
+      fieldType: [ValueSetComposeIncludeConceptDesignation],
+      isArray: true
+    }, {
+      fieldName: "contains",
+      fieldType: [ValueSetExpansionContains],
+      isArray: true
+    }];
+  }
 
   public system?: PrimitiveUri;
 

@@ -8,6 +8,7 @@ import {
   StructureMapGroupInput,
   StructureMapGroupRule,
   StructureMapGroupTypeMode,
+  FieldMetadata
 } from "../internal";
 
 export class StructureMapGroup extends BackboneElement {
@@ -18,6 +19,34 @@ export class StructureMapGroup extends BackboneElement {
   static readonly typeName: string = "StructureMap.Group";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "extends",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "typeMode",
+      fieldType: [StructureMapGroupTypeMode],
+      isArray: false
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "input",
+      fieldType: [StructureMapGroupInput],
+      isArray: true
+    }, {
+      fieldName: "rule",
+      fieldType: [StructureMapGroupRule],
+      isArray: true
+    }];
+  }
 
   public name?: PrimitiveId;
 

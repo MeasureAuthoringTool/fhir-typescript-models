@@ -6,6 +6,7 @@ import {
   IExplanationOfBenefitDiagnosis,
   PrimitivePositiveInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ExplanationOfBenefitDiagnosis extends BackboneElement {
@@ -16,6 +17,30 @@ export class ExplanationOfBenefitDiagnosis extends BackboneElement {
   static readonly typeName: string = "ExplanationOfBenefit.Diagnosis";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "sequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "diagnosis",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "onAdmission",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "packageCode",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public sequence?: PrimitivePositiveInt;
 

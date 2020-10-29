@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IDetectedIssueEvidence,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class DetectedIssueEvidence extends BackboneElement {
@@ -14,6 +15,18 @@ export class DetectedIssueEvidence extends BackboneElement {
   static readonly typeName: string = "DetectedIssue.Evidence";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "detail",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public code?: Array<CodeableConcept>;
 

@@ -20,6 +20,7 @@ import {
   PrimitiveDateTime,
   Reference,
   Use,
+  FieldMetadata
 } from "../internal";
 
 export class Claim extends DomainResource {
@@ -30,6 +31,118 @@ export class Claim extends DomainResource {
   static readonly typeName: string = "Claim";
   
   static readonly primaryCodePath: string | null = "type";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [ClaimStatus],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "use",
+      fieldType: [Use],
+      isArray: false
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "billablePeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "enterer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "insurer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "provider",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "priority",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "fundsReserve",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "related",
+      fieldType: [ClaimRelated],
+      isArray: true
+    }, {
+      fieldName: "prescription",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "originalPrescription",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "payee",
+      fieldType: [ClaimPayee],
+      isArray: false
+    }, {
+      fieldName: "referral",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "facility",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "careTeam",
+      fieldType: [ClaimCareTeam],
+      isArray: true
+    }, {
+      fieldName: "supportingInfo",
+      fieldType: [ClaimSupportingInfo],
+      isArray: true
+    }, {
+      fieldName: "diagnosis",
+      fieldType: [ClaimDiagnosis],
+      isArray: true
+    }, {
+      fieldName: "procedure",
+      fieldType: [ClaimProcedure],
+      isArray: true
+    }, {
+      fieldName: "insurance",
+      fieldType: [ClaimInsurance],
+      isArray: true
+    }, {
+      fieldName: "accident",
+      fieldType: [ClaimAccident],
+      isArray: false
+    }, {
+      fieldName: "item",
+      fieldType: [ClaimItem],
+      isArray: true
+    }, {
+      fieldName: "total",
+      fieldType: [Money],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

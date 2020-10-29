@@ -19,6 +19,7 @@ import {
   PublicationStatus,
   SPDXLicense,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class ImplementationGuide extends DomainResource {
@@ -29,6 +30,90 @@ export class ImplementationGuide extends DomainResource {
   static readonly typeName: string = "ImplementationGuide";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "experimental",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "copyright",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "packageId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "license",
+      fieldType: [SPDXLicense],
+      isArray: false
+    }, {
+      fieldName: "fhirVersion",
+      fieldType: [FHIRVersion],
+      isArray: true
+    }, {
+      fieldName: "dependsOn",
+      fieldType: [ImplementationGuideDependsOn],
+      isArray: true
+    }, {
+      fieldName: "global",
+      fieldType: [ImplementationGuideGlobal],
+      isArray: true
+    }, {
+      fieldName: "definition",
+      fieldType: [ImplementationGuideDefinition],
+      isArray: false
+    }, {
+      fieldName: "manifest",
+      fieldType: [ImplementationGuideManifest],
+      isArray: false
+    }];
+  }
 
   public url?: PrimitiveUri;
 

@@ -11,6 +11,7 @@ import {
   SupplyDeliveryStatus,
   SupplyDeliverySuppliedItem,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class SupplyDelivery extends DomainResource {
@@ -21,6 +22,54 @@ export class SupplyDelivery extends DomainResource {
   static readonly typeName: string = "SupplyDelivery";
   
   static readonly primaryCodePath: string | null = "type";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [SupplyDeliveryStatus],
+      isArray: false
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "suppliedItem",
+      fieldType: [SupplyDeliverySuppliedItem],
+      isArray: false
+    }, {
+      fieldName: "occurrence",
+      fieldType: [PrimitiveDateTime, Period, Timing],
+      isArray: false
+    }, {
+      fieldName: "supplier",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "destination",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "receiver",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

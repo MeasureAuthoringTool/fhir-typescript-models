@@ -9,6 +9,7 @@ import {
   PrimitivePositiveInt,
   Reference,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimItemDetailSubDetail extends BackboneElement {
@@ -19,6 +20,54 @@ export class ClaimItemDetailSubDetail extends BackboneElement {
   static readonly typeName: string = "Claim.Item.Detail.SubDetail";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "sequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "revenue",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "productOrService",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "modifier",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "programCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "unitPrice",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "factor",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "net",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "udi",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public sequence?: PrimitivePositiveInt;
 

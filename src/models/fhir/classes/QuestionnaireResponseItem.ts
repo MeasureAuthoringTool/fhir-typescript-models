@@ -6,6 +6,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   QuestionnaireResponseItemAnswer,
+  FieldMetadata
 } from "../internal";
 
 export class QuestionnaireResponseItem extends BackboneElement {
@@ -16,6 +17,30 @@ export class QuestionnaireResponseItem extends BackboneElement {
   static readonly typeName: string = "QuestionnaireResponse.Item";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "linkId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "definition",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "answer",
+      fieldType: [QuestionnaireResponseItemAnswer],
+      isArray: true
+    }, {
+      fieldName: "item",
+      fieldType: [QuestionnaireResponseItem],
+      isArray: true
+    }];
+  }
 
   public linkId?: PrimitiveString;
 

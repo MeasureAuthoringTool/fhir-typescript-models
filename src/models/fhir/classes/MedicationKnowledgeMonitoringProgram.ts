@@ -5,6 +5,7 @@ import {
   Extension,
   IMedicationKnowledgeMonitoringProgram,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationKnowledgeMonitoringProgram extends BackboneElement {
@@ -15,6 +16,18 @@ export class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   static readonly typeName: string = "MedicationKnowledge.MonitoringProgram";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

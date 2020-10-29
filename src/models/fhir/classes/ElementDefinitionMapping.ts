@@ -6,6 +6,7 @@ import {
   MimeType,
   PrimitiveId,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ElementDefinitionMapping extends Element {
@@ -16,6 +17,26 @@ export class ElementDefinitionMapping extends Element {
   static readonly typeName: string = "ElementDefinition.Mapping";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "identity",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "language",
+      fieldType: [MimeType],
+      isArray: false
+    }, {
+      fieldName: "map",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public identity?: PrimitiveId;
 

@@ -14,6 +14,7 @@ import {
   Quantity,
   Reference,
   SequenceType,
+  FieldMetadata
 } from "../internal";
 
 export class MolecularSequence extends DomainResource {
@@ -24,6 +25,74 @@ export class MolecularSequence extends DomainResource {
   static readonly typeName: string = "MolecularSequence";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [SequenceType],
+      isArray: false
+    }, {
+      fieldName: "coordinateSystem",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "specimen",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "device",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "referenceSeq",
+      fieldType: [MolecularSequenceReferenceSeq],
+      isArray: false
+    }, {
+      fieldName: "variant",
+      fieldType: [MolecularSequenceVariant],
+      isArray: true
+    }, {
+      fieldName: "observedSeq",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "quality",
+      fieldType: [MolecularSequenceQuality],
+      isArray: true
+    }, {
+      fieldName: "readCoverage",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "repository",
+      fieldType: [MolecularSequenceRepository],
+      isArray: true
+    }, {
+      fieldName: "pointer",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "structureVariant",
+      fieldType: [MolecularSequenceStructureVariant],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

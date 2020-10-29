@@ -13,6 +13,7 @@ import {
   Identifier,
   PrimitiveInteger,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class BiologicallyDerivedProduct extends DomainResource {
@@ -23,6 +24,54 @@ export class BiologicallyDerivedProduct extends DomainResource {
   static readonly typeName: string = "BiologicallyDerivedProduct";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "productCategory",
+      fieldType: [BiologicallyDerivedProductCategory],
+      isArray: false
+    }, {
+      fieldName: "productCode",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [BiologicallyDerivedProductStatus],
+      isArray: false
+    }, {
+      fieldName: "request",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "quantity",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "parent",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "collection",
+      fieldType: [BiologicallyDerivedProductCollection],
+      isArray: false
+    }, {
+      fieldName: "processing",
+      fieldType: [BiologicallyDerivedProductProcessing],
+      isArray: true
+    }, {
+      fieldName: "manipulation",
+      fieldType: [BiologicallyDerivedProductManipulation],
+      isArray: false
+    }, {
+      fieldName: "storage",
+      fieldType: [BiologicallyDerivedProductStorage],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

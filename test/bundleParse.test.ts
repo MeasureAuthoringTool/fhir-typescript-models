@@ -1,4 +1,3 @@
-import "jest-extended";
 import { Bundle, IBundle, Resource } from "../src/models/fhir/fhir";
 import bundleContents from "./resources/EXM104-9.1.000-bundle.json";
 
@@ -15,7 +14,7 @@ describe("Parsing a FHIR bundle", () => {
     const serializedJson: string = JSON.stringify(bundle, null, "  ");
 
     // Parse our JSON output the same way
-    const jsonObj: IBundle = JSON.parse(serializedJson);
+    const jsonObj: IBundle = JSON.parse(serializedJson) as IBundle;
     const newBundle: Bundle = Resource.parse(jsonObj);
     expect(newBundle).toEqual(bundle);
 

@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   ResourceType,
+  FieldMetadata
 } from "../internal";
 
 export class MessageDefinitionFocus extends BackboneElement {
@@ -17,6 +18,26 @@ export class MessageDefinitionFocus extends BackboneElement {
   static readonly typeName: string = "MessageDefinition.Focus";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [ResourceType],
+      isArray: false
+    }, {
+      fieldName: "profile",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "min",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "max",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public code?: ResourceType;
 

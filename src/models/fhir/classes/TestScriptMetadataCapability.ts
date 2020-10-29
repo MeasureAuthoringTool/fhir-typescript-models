@@ -8,6 +8,7 @@ import {
   PrimitiveInteger,
   PrimitiveString,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class TestScriptMetadataCapability extends BackboneElement {
@@ -18,6 +19,38 @@ export class TestScriptMetadataCapability extends BackboneElement {
   static readonly typeName: string = "TestScript.Metadata.Capability";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "required",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "validated",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "origin",
+      fieldType: [PrimitiveInteger],
+      isArray: true
+    }, {
+      fieldName: "destination",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "link",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "capabilities",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }];
+  }
 
   public required?: PrimitiveBoolean;
 

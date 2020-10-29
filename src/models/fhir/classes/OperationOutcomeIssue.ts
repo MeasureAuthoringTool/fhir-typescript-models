@@ -7,6 +7,7 @@ import {
   IssueSeverity,
   IssueType,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class OperationOutcomeIssue extends BackboneElement {
@@ -17,6 +18,34 @@ export class OperationOutcomeIssue extends BackboneElement {
   static readonly typeName: string = "OperationOutcome.Issue";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "severity",
+      fieldType: [IssueSeverity],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [IssueType],
+      isArray: false
+    }, {
+      fieldName: "details",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "diagnostics",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "location",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "expression",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }];
+  }
 
   public severity?: IssueSeverity;
 

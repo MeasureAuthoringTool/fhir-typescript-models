@@ -4,6 +4,7 @@ import {
   BackboneElement,
   Coding,
   IDocumentReferenceContent,
+  FieldMetadata
 } from "../internal";
 
 export class DocumentReferenceContent extends BackboneElement {
@@ -14,6 +15,18 @@ export class DocumentReferenceContent extends BackboneElement {
   static readonly typeName: string = "DocumentReference.Content";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "attachment",
+      fieldType: [Attachment],
+      isArray: false
+    }, {
+      fieldName: "format",
+      fieldType: [Coding],
+      isArray: false
+    }];
+  }
 
   public attachment?: Attachment;
 

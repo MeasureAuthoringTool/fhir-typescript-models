@@ -13,6 +13,7 @@ import {
   PrimitiveUnsignedInt,
   Range,
   UnitsOfTime,
+  FieldMetadata
 } from "../internal";
 
 export class TimingRepeat extends Element {
@@ -23,6 +24,70 @@ export class TimingRepeat extends Element {
   static readonly typeName: string = "Timing.Repeat";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "bounds",
+      fieldType: [Duration, Range, Period],
+      isArray: false
+    }, {
+      fieldName: "count",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "countMax",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "duration",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "durationMax",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "durationUnit",
+      fieldType: [UnitsOfTime],
+      isArray: false
+    }, {
+      fieldName: "frequency",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "frequencyMax",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "periodMax",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "periodUnit",
+      fieldType: [UnitsOfTime],
+      isArray: false
+    }, {
+      fieldName: "dayOfWeek",
+      fieldType: [DayOfWeek],
+      isArray: true
+    }, {
+      fieldName: "timeOfDay",
+      fieldType: [PrimitiveTime],
+      isArray: true
+    }, {
+      fieldName: "when",
+      fieldType: [EventTiming],
+      isArray: true
+    }, {
+      fieldName: "offset",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }];
+  }
 
   public bounds?: Duration | Range | Period;
 

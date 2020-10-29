@@ -4,6 +4,7 @@ import {
   Extension,
   IOperationDefinitionOverload,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class OperationDefinitionOverload extends BackboneElement {
@@ -14,6 +15,18 @@ export class OperationDefinitionOverload extends BackboneElement {
   static readonly typeName: string = "OperationDefinition.Overload";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "parameterName",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public parameterName?: Array<PrimitiveString>;
 

@@ -7,6 +7,7 @@ import {
   PrimitiveCode,
   PrimitiveString,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class Coding extends Element {
@@ -17,6 +18,30 @@ export class Coding extends Element {
   static readonly typeName: string = "Coding";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "system",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "display",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "userSelected",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public system?: PrimitiveUri;
 

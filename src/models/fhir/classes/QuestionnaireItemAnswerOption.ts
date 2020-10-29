@@ -10,6 +10,7 @@ import {
   PrimitiveString,
   PrimitiveTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class QuestionnaireItemAnswerOption extends BackboneElement {
@@ -20,6 +21,18 @@ export class QuestionnaireItemAnswerOption extends BackboneElement {
   static readonly typeName: string = "Questionnaire.Item.AnswerOption";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "value",
+      fieldType: [PrimitiveInteger, PrimitiveDate, PrimitiveTime, PrimitiveString, Coding, Reference],
+      isArray: false
+    }, {
+      fieldName: "initialSelected",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public value?: PrimitiveInteger | PrimitiveDate | PrimitiveTime | PrimitiveString | Coding | Reference;
 

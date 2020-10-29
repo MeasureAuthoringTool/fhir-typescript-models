@@ -8,6 +8,7 @@ import {
   ProductShelfLife,
   Quantity,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductPackagedPackageItem extends BackboneElement {
@@ -18,6 +19,58 @@ export class MedicinalProductPackagedPackageItem extends BackboneElement {
   static readonly typeName: string = "MedicinalProductPackaged.PackageItem";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "material",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "alternateMaterial",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "device",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "manufacturedItem",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "packageItem",
+      fieldType: [MedicinalProductPackagedPackageItem],
+      isArray: true
+    }, {
+      fieldName: "physicalCharacteristics",
+      fieldType: [ProdCharacteristic],
+      isArray: false
+    }, {
+      fieldName: "otherCharacteristics",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "shelfLifeStorage",
+      fieldType: [ProductShelfLife],
+      isArray: true
+    }, {
+      fieldName: "manufacturer",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

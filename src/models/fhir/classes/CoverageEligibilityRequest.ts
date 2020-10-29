@@ -14,6 +14,7 @@ import {
   PrimitiveDate,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CoverageEligibilityRequest extends DomainResource {
@@ -24,6 +25,66 @@ export class CoverageEligibilityRequest extends DomainResource {
   static readonly typeName: string = "CoverageEligibilityRequest";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [EligibilityRequestStatus],
+      isArray: false
+    }, {
+      fieldName: "priority",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "purpose",
+      fieldType: [EligibilityRequestPurpose],
+      isArray: true
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "serviced",
+      fieldType: [PrimitiveDate, Period],
+      isArray: false
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "enterer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "provider",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "insurer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "facility",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "supportingInfo",
+      fieldType: [CoverageEligibilityRequestSupportingInfo],
+      isArray: true
+    }, {
+      fieldName: "insurance",
+      fieldType: [CoverageEligibilityRequestInsurance],
+      isArray: true
+    }, {
+      fieldName: "item",
+      fieldType: [CoverageEligibilityRequestItem],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

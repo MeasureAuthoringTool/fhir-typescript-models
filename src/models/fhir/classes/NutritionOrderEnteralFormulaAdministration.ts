@@ -5,6 +5,7 @@ import {
   Ratio,
   SimpleQuantity,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class NutritionOrderEnteralFormulaAdministration extends BackboneElement {
@@ -15,6 +16,22 @@ export class NutritionOrderEnteralFormulaAdministration extends BackboneElement 
   static readonly typeName: string = "NutritionOrder.EnteralFormula.Administration";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "schedule",
+      fieldType: [Timing],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "rate",
+      fieldType: [SimpleQuantity, Ratio],
+      isArray: false
+    }];
+  }
 
   public schedule?: Timing;
 

@@ -5,6 +5,7 @@ import {
   IDiagnosticReportMedia,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class DiagnosticReportMedia extends BackboneElement {
@@ -15,6 +16,18 @@ export class DiagnosticReportMedia extends BackboneElement {
   static readonly typeName: string = "DiagnosticReport.Media";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "link",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public comment?: PrimitiveString;
 

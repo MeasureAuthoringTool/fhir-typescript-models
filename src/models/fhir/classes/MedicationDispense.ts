@@ -13,6 +13,7 @@ import {
   PrimitiveDateTime,
   Reference,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationDispense extends DomainResource {
@@ -23,6 +24,106 @@ export class MedicationDispense extends DomainResource {
   static readonly typeName: string = "MedicationDispense";
   
   static readonly primaryCodePath: string | null = "medication";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [MedicationDispenseStatus],
+      isArray: false
+    }, {
+      fieldName: "statusReason",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "medication",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "context",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "supportingInformation",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "performer",
+      fieldType: [MedicationDispensePerformer],
+      isArray: true
+    }, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "authorizingPrescription",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "daysSupply",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "whenPrepared",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "whenHandedOver",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "destination",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "receiver",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "dosageInstruction",
+      fieldType: [Dosage],
+      isArray: true
+    }, {
+      fieldName: "substitution",
+      fieldType: [MedicationDispenseSubstitution],
+      isArray: false
+    }, {
+      fieldName: "detectedIssue",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "eventHistory",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

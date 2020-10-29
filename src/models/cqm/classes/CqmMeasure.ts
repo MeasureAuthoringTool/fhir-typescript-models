@@ -1,51 +1,61 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
 import {
   ILibrary,
   IValueSet,
   Library,
   Measure,
   ValueSet,
-} from "../fhir/internal";
-import { CqmLogicLibrary } from "./CqmLogicLibrary";
-import { DataElement } from "./DataElement";
-import { PopulationSet } from "./PopulationSet";
+} from "../../fhir/internal";
+import {
+  CqmLogicLibrary,
+  DataElement,
+  IDataElement,
+  ICqmLogicLibrary,
+  ICqmMeasure,
+  IPopulationSet,
+  PopulationSet
+} from "../index";
 
 export class CqmMeasure {
   // MongoDB ID
   public id?: string;
-  // tslint:disable-next-line:variable-name
+
   public cms_id?: string;
+
   public title?: string;
+
   public description?: string;
-  // tslint:disable-next-line:variable-name
+
   public set_id?: string;
-  // tslint:disable-next-line:variable-name
+
   public calculation_method?: string;
-  // tslint:disable-next-line:variable-name
+
   public calculate_sdes?: boolean;
-  // tslint:disable-next-line:variable-name
+
   public fhir_measure?: Measure;
+
   public libraries?: Array<Library>;
-  // tslint:disable-next-line:variable-name
+
   public value_sets?: Array<ValueSet>;
-  // tslint:disable-next-line:variable-name
+
   public cql_libraries?: Array<CqmLogicLibrary>;
-  // tslint:disable-next-line:variable-name
+
   public main_cql_library?: string;
-  // tslint:disable-next-line:variable-name
+
   public source_data_criteria?: Array<DataElement>;
-  // tslint:disable-next-line:variable-name
+
   public population_sets?: Array<PopulationSet>;
-  // tslint:disable-next-line:variable-name
-  public measure_period?: any;
+
+  public measure_period?: unknown;
+
   // mongoid created timestamp
-  // tslint:disable-next-line:variable-name
   public created_at?: string;
+
   // mongoid updated timestamp
-  // tslint:disable-next-line:variable-name
   public updated_at?: string;
 
   public static parse(
-    json: any,
+    json: ICqmMeasure,
     providedInstance: CqmMeasure = new CqmMeasure()
   ): CqmMeasure {
     const newInstance: CqmMeasure = providedInstance;
@@ -85,7 +95,7 @@ export class CqmMeasure {
       );
     }
     if (json.cql_libraries) {
-      newInstance.cql_libraries = json.cql_libraries.map((x: any) =>
+      newInstance.cql_libraries = json.cql_libraries.map((x: ICqmLogicLibrary) =>
         CqmLogicLibrary.parse(x)
       );
     }
@@ -103,11 +113,11 @@ export class CqmMeasure {
     }
     if (json.source_data_criteria) {
       newInstance.source_data_criteria = json.source_data_criteria.map(
-        (x: any) => DataElement.parse(x)
+        (x: IDataElement) => DataElement.parse(x)
       );
     }
     if (json.population_sets) {
-      newInstance.population_sets = json.population_sets.map((x: any) =>
+      newInstance.population_sets = json.population_sets.map((x: IPopulationSet) =>
         PopulationSet.parse(x)
       );
     }
@@ -115,8 +125,8 @@ export class CqmMeasure {
     return newInstance;
   }
 
-  public toJSON(): any {
-    const result: any = {};
+  public toJSON(): ICqmMeasure {
+    const result: ICqmMeasure = {};
 
     if (this.id) {
       result.id = this.id;
@@ -206,3 +216,5 @@ export class CqmMeasure {
   }
 
 }
+
+/* eslint-enable import/prefer-default-export, import/no-cycle */

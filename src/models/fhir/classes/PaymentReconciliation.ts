@@ -15,6 +15,7 @@ import {
   PrimitiveString,
   Reference,
   RemittanceOutcome,
+  FieldMetadata
 } from "../internal";
 
 export class PaymentReconciliation extends DomainResource {
@@ -25,6 +26,70 @@ export class PaymentReconciliation extends DomainResource {
   static readonly typeName: string = "PaymentReconciliation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [PaymentReconciliationStatus],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "paymentIssuer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "request",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "requestor",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "outcome",
+      fieldType: [RemittanceOutcome],
+      isArray: false
+    }, {
+      fieldName: "disposition",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "paymentDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "paymentAmount",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "paymentIdentifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "detail",
+      fieldType: [PaymentReconciliationDetail],
+      isArray: true
+    }, {
+      fieldName: "formCode",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "processNote",
+      fieldType: [PaymentReconciliationProcessNote],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

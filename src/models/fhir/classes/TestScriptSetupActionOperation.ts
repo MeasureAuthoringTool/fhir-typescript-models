@@ -12,6 +12,7 @@ import {
   PrimitiveString,
   TestScriptRequestMethodCode,
   TestScriptSetupActionOperationRequestHeader,
+  FieldMetadata
 } from "../internal";
 
 export class TestScriptSetupActionOperation extends BackboneElement {
@@ -22,6 +23,78 @@ export class TestScriptSetupActionOperation extends BackboneElement {
   static readonly typeName: string = "TestScript.Setup.Action.Operation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "resource",
+      fieldType: [FHIRDefinedType],
+      isArray: false
+    }, {
+      fieldName: "label",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "accept",
+      fieldType: [MimeType],
+      isArray: false
+    }, {
+      fieldName: "contentType",
+      fieldType: [MimeType],
+      isArray: false
+    }, {
+      fieldName: "destination",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "encodeRequestUrl",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "method",
+      fieldType: [TestScriptRequestMethodCode],
+      isArray: false
+    }, {
+      fieldName: "origin",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "params",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "requestHeader",
+      fieldType: [TestScriptSetupActionOperationRequestHeader],
+      isArray: true
+    }, {
+      fieldName: "requestId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "responseId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "sourceId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "targetId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "url",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public type?: Coding;
 

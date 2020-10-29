@@ -3,6 +3,7 @@ import {
   Extension,
   IElement,
   Type,
+  FieldMetadata
 } from "../internal";
 
 export class Element extends Type {
@@ -13,6 +14,18 @@ export class Element extends Type {
   static readonly typeName: string = "Element";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Type.fieldInfo, {
+      fieldName: "id",
+      fieldType: [String],
+      isArray: false
+    }, {
+      fieldName: "extension",
+      fieldType: [Extension],
+      isArray: true
+    }];
+  }
 
   public id?: string;
 

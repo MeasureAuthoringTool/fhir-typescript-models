@@ -6,6 +6,7 @@ import {
   ProdCharacteristic,
   Quantity,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductManufactured extends DomainResource {
@@ -16,6 +17,38 @@ export class MedicinalProductManufactured extends DomainResource {
   static readonly typeName: string = "MedicinalProductManufactured";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "manufacturedDoseForm",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "unitOfPresentation",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "manufacturer",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "ingredient",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "physicalCharacteristics",
+      fieldType: [ProdCharacteristic],
+      isArray: false
+    }, {
+      fieldName: "otherCharacteristics",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }];
+  }
 
   public manufacturedDoseForm?: CodeableConcept;
 

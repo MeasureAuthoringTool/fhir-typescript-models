@@ -14,6 +14,7 @@ import {
   Reference,
   SimpleQuantity,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class CarePlanActivityDetail extends BackboneElement {
@@ -24,6 +25,78 @@ export class CarePlanActivityDetail extends BackboneElement {
   static readonly typeName: string = "CarePlan.Activity.Detail";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "kind",
+      fieldType: [CarePlanActivityKind],
+      isArray: false
+    }, {
+      fieldName: "instantiatesCanonical",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "instantiatesUri",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "goal",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [CarePlanActivityStatus],
+      isArray: false
+    }, {
+      fieldName: "statusReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "doNotPerform",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "scheduled",
+      fieldType: [Timing, Period, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "product",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "dailyAmount",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public kind?: CarePlanActivityKind;
 

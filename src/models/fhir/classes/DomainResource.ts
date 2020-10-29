@@ -4,6 +4,7 @@ import {
   IDomainResource,
   Narrative,
   Resource,
+  FieldMetadata
 } from "../internal";
 
 export class DomainResource extends Resource {
@@ -14,6 +15,26 @@ export class DomainResource extends Resource {
   static readonly typeName: string = "DomainResource";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Resource.fieldInfo, {
+      fieldName: "text",
+      fieldType: [Narrative],
+      isArray: false
+    }, {
+      fieldName: "contained",
+      fieldType: [Resource],
+      isArray: true
+    }, {
+      fieldName: "extension",
+      fieldType: [Extension],
+      isArray: true
+    }, {
+      fieldName: "modifierExtension",
+      fieldType: [Extension],
+      isArray: true
+    }];
+  }
 
   public text?: Narrative;
 

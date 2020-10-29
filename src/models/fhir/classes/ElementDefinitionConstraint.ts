@@ -7,6 +7,7 @@ import {
   PrimitiveCanonical,
   PrimitiveId,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ElementDefinitionConstraint extends Element {
@@ -17,6 +18,38 @@ export class ElementDefinitionConstraint extends Element {
   static readonly typeName: string = "ElementDefinition.Constraint";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "key",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "requirements",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "severity",
+      fieldType: [ConstraintSeverity],
+      isArray: false
+    }, {
+      fieldName: "human",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "expression",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "xpath",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }];
+  }
 
   public key?: PrimitiveId;
 

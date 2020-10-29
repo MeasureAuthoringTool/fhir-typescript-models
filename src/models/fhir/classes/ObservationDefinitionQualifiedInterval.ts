@@ -8,6 +8,7 @@ import {
   ObservationRangeCategory,
   PrimitiveString,
   Range,
+  FieldMetadata
 } from "../internal";
 
 export class ObservationDefinitionQualifiedInterval extends BackboneElement {
@@ -18,6 +19,42 @@ export class ObservationDefinitionQualifiedInterval extends BackboneElement {
   static readonly typeName: string = "ObservationDefinition.QualifiedInterval";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "category",
+      fieldType: [ObservationRangeCategory],
+      isArray: false
+    }, {
+      fieldName: "range",
+      fieldType: [Range],
+      isArray: false
+    }, {
+      fieldName: "context",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "appliesTo",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "gender",
+      fieldType: [AdministrativeGender],
+      isArray: false
+    }, {
+      fieldName: "age",
+      fieldType: [Range],
+      isArray: false
+    }, {
+      fieldName: "gestationalAge",
+      fieldType: [Range],
+      isArray: false
+    }, {
+      fieldName: "condition",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public category?: ObservationRangeCategory;
 

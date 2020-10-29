@@ -7,6 +7,7 @@ import {
   Identifier,
   PrimitiveDate,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Basic extends DomainResource {
@@ -17,6 +18,30 @@ export class Basic extends DomainResource {
   static readonly typeName: string = "Basic";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "author",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

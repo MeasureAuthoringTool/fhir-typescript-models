@@ -5,6 +5,7 @@ import {
   ITestScriptTest,
   PrimitiveString,
   TestScriptTestAction,
+  FieldMetadata
 } from "../internal";
 
 export class TestScriptTest extends BackboneElement {
@@ -15,6 +16,22 @@ export class TestScriptTest extends BackboneElement {
   static readonly typeName: string = "TestScript.Test";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "action",
+      fieldType: [TestScriptTestAction],
+      isArray: true
+    }];
+  }
 
   public name?: PrimitiveString;
 

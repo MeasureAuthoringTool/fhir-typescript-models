@@ -6,6 +6,7 @@ import {
   Extension,
   ISubstanceSpecificationStructureRepresentation,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSpecificationStructureRepresentation extends BackboneElement {
@@ -16,6 +17,22 @@ export class SubstanceSpecificationStructureRepresentation extends BackboneEleme
   static readonly typeName: string = "SubstanceSpecification.Structure.Representation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "representation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "attachment",
+      fieldType: [Attachment],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

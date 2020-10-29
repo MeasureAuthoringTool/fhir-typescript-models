@@ -8,6 +8,7 @@ import {
   SubstanceReferenceInformationGene,
   SubstanceReferenceInformationGeneElement,
   SubstanceReferenceInformationTarget,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceReferenceInformation extends DomainResource {
@@ -18,6 +19,30 @@ export class SubstanceReferenceInformation extends DomainResource {
   static readonly typeName: string = "SubstanceReferenceInformation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "gene",
+      fieldType: [SubstanceReferenceInformationGene],
+      isArray: true
+    }, {
+      fieldName: "geneElement",
+      fieldType: [SubstanceReferenceInformationGeneElement],
+      isArray: true
+    }, {
+      fieldName: "classification",
+      fieldType: [SubstanceReferenceInformationClassification],
+      isArray: true
+    }, {
+      fieldName: "target",
+      fieldType: [SubstanceReferenceInformationTarget],
+      isArray: true
+    }];
+  }
 
   public comment?: PrimitiveString;
 

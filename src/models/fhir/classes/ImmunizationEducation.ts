@@ -6,6 +6,7 @@ import {
   PrimitiveDateTime,
   PrimitiveString,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class ImmunizationEducation extends BackboneElement {
@@ -16,6 +17,26 @@ export class ImmunizationEducation extends BackboneElement {
   static readonly typeName: string = "Immunization.Education";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "documentType",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "reference",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "publicationDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "presentationDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }];
+  }
 
   public documentType?: PrimitiveString;
 

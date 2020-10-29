@@ -12,6 +12,7 @@ import {
   Reference,
   RiskAssessmentPrediction,
   RiskAssessmentStatus,
+  FieldMetadata
 } from "../internal";
 
 export class RiskAssessment extends DomainResource {
@@ -22,6 +23,78 @@ export class RiskAssessment extends DomainResource {
   static readonly typeName: string = "RiskAssessment";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "parent",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [RiskAssessmentStatus],
+      isArray: false
+    }, {
+      fieldName: "method",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "occurrence",
+      fieldType: [PrimitiveDateTime, Period],
+      isArray: false
+    }, {
+      fieldName: "condition",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "basis",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "prediction",
+      fieldType: [RiskAssessmentPrediction],
+      isArray: true
+    }, {
+      fieldName: "mitigation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

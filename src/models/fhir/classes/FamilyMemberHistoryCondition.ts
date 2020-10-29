@@ -10,6 +10,7 @@ import {
   PrimitiveBoolean,
   PrimitiveString,
   Range,
+  FieldMetadata
 } from "../internal";
 
 export class FamilyMemberHistoryCondition extends BackboneElement {
@@ -20,6 +21,30 @@ export class FamilyMemberHistoryCondition extends BackboneElement {
   static readonly typeName: string = "FamilyMemberHistory.Condition";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "outcome",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "contributedToDeath",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "onset",
+      fieldType: [Age, Range, Period, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public code?: CodeableConcept;
 

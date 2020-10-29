@@ -7,6 +7,7 @@ import {
   InvoiceLineItemPriceComponent,
   PrimitivePositiveInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class InvoiceLineItem extends BackboneElement {
@@ -17,6 +18,22 @@ export class InvoiceLineItem extends BackboneElement {
   static readonly typeName: string = "Invoice.LineItem";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "sequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "chargeItem",
+      fieldType: [Reference, CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "priceComponent",
+      fieldType: [InvoiceLineItemPriceComponent],
+      isArray: true
+    }];
+  }
 
   public sequence?: PrimitivePositiveInt;
 

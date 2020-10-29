@@ -13,6 +13,7 @@ import {
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Coverage extends DomainResource {
@@ -23,6 +24,78 @@ export class Coverage extends DomainResource {
   static readonly typeName: string = "Coverage";
   
   static readonly primaryCodePath: string | null = "type";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [CoverageStatus],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "policyHolder",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "subscriber",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "subscriberId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "beneficiary",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "dependent",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "relationship",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "payor",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "class",
+      fieldType: [CoverageClass],
+      isArray: true
+    }, {
+      fieldName: "order",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "network",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "costToBeneficiary",
+      fieldType: [CoverageCostToBeneficiary],
+      isArray: true
+    }, {
+      fieldName: "subrogation",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "contract",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

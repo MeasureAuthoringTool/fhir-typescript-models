@@ -12,6 +12,7 @@ import {
   PrimitiveInteger,
   PrimitiveString,
   SearchParamType,
+  FieldMetadata
 } from "../internal";
 
 export class OperationDefinitionParameter extends BackboneElement {
@@ -22,6 +23,54 @@ export class OperationDefinitionParameter extends BackboneElement {
   static readonly typeName: string = "OperationDefinition.Parameter";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "use",
+      fieldType: [OperationParameterUse],
+      isArray: false
+    }, {
+      fieldName: "min",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "max",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [FHIRAllTypes],
+      isArray: false
+    }, {
+      fieldName: "targetProfile",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "searchType",
+      fieldType: [SearchParamType],
+      isArray: false
+    }, {
+      fieldName: "binding",
+      fieldType: [OperationDefinitionParameterBinding],
+      isArray: false
+    }, {
+      fieldName: "referencedFrom",
+      fieldType: [OperationDefinitionParameterReferencedFrom],
+      isArray: true
+    }, {
+      fieldName: "part",
+      fieldType: [OperationDefinitionParameter],
+      isArray: true
+    }];
+  }
 
   public name?: PrimitiveCode;
 

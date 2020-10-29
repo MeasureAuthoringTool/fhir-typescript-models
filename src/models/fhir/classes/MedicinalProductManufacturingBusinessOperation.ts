@@ -7,6 +7,7 @@ import {
   IMedicinalProductManufacturingBusinessOperation,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductManufacturingBusinessOperation extends BackboneElement {
@@ -17,6 +18,34 @@ export class MedicinalProductManufacturingBusinessOperation extends BackboneElem
   static readonly typeName: string = "MedicinalProduct.ManufacturingBusinessOperation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "operationType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "authorisationReferenceNumber",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "effectiveDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "confidentialityIndicator",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "manufacturer",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "regulator",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public operationType?: CodeableConcept;
 

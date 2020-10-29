@@ -21,6 +21,7 @@ import {
   PrimitiveUri,
   PublicationStatus,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatement extends DomainResource {
@@ -31,6 +32,114 @@ export class CapabilityStatement extends DomainResource {
   static readonly typeName: string = "CapabilityStatement";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "experimental",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "purpose",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "copyright",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "kind",
+      fieldType: [CapabilityStatementKind],
+      isArray: false
+    }, {
+      fieldName: "instantiates",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "imports",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "software",
+      fieldType: [CapabilityStatementSoftware],
+      isArray: false
+    }, {
+      fieldName: "implementation",
+      fieldType: [CapabilityStatementImplementation],
+      isArray: false
+    }, {
+      fieldName: "fhirVersion",
+      fieldType: [FHIRVersion],
+      isArray: false
+    }, {
+      fieldName: "format",
+      fieldType: [MimeType],
+      isArray: true
+    }, {
+      fieldName: "patchFormat",
+      fieldType: [MimeType],
+      isArray: true
+    }, {
+      fieldName: "implementationGuide",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "rest",
+      fieldType: [CapabilityStatementRest],
+      isArray: true
+    }, {
+      fieldName: "messaging",
+      fieldType: [CapabilityStatementMessaging],
+      isArray: true
+    }, {
+      fieldName: "document",
+      fieldType: [CapabilityStatementDocument],
+      isArray: true
+    }];
+  }
 
   public url?: PrimitiveUri;
 

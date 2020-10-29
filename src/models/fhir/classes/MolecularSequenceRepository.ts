@@ -6,6 +6,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   RepositoryType,
+  FieldMetadata
 } from "../internal";
 
 export class MolecularSequenceRepository extends BackboneElement {
@@ -16,6 +17,34 @@ export class MolecularSequenceRepository extends BackboneElement {
   static readonly typeName: string = "MolecularSequence.Repository";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [RepositoryType],
+      isArray: false
+    }, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "datasetId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "variantsetId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "readsetId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public type?: RepositoryType;
 

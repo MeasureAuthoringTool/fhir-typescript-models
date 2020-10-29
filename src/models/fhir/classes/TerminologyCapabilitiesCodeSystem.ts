@@ -6,6 +6,7 @@ import {
   PrimitiveBoolean,
   PrimitiveCanonical,
   TerminologyCapabilitiesCodeSystemVersion,
+  FieldMetadata
 } from "../internal";
 
 export class TerminologyCapabilitiesCodeSystem extends BackboneElement {
@@ -16,6 +17,22 @@ export class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   static readonly typeName: string = "TerminologyCapabilities.CodeSystem";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "uri",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [TerminologyCapabilitiesCodeSystemVersion],
+      isArray: true
+    }, {
+      fieldName: "subsumption",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public uri?: PrimitiveCanonical;
 

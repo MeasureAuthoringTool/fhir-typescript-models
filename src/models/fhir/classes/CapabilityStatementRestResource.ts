@@ -15,6 +15,7 @@ import {
   ReferenceHandlingPolicy,
   ResourceType,
   ResourceVersionPolicy,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatementRestResource extends BackboneElement {
@@ -25,6 +26,78 @@ export class CapabilityStatementRestResource extends BackboneElement {
   static readonly typeName: string = "CapabilityStatement.Rest.Resource";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [ResourceType],
+      isArray: false
+    }, {
+      fieldName: "profile",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "supportedProfile",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "interaction",
+      fieldType: [CapabilityStatementRestResourceInteraction],
+      isArray: true
+    }, {
+      fieldName: "versioning",
+      fieldType: [ResourceVersionPolicy],
+      isArray: false
+    }, {
+      fieldName: "readHistory",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "updateCreate",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "conditionalCreate",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "conditionalRead",
+      fieldType: [ConditionalReadStatus],
+      isArray: false
+    }, {
+      fieldName: "conditionalUpdate",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "conditionalDelete",
+      fieldType: [ConditionalDeleteStatus],
+      isArray: false
+    }, {
+      fieldName: "referencePolicy",
+      fieldType: [ReferenceHandlingPolicy],
+      isArray: true
+    }, {
+      fieldName: "searchInclude",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "searchRevInclude",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "searchParam",
+      fieldType: [CapabilityStatementRestResourceSearchParam],
+      isArray: true
+    }, {
+      fieldName: "operation",
+      fieldType: [CapabilityStatementRestResourceOperation],
+      isArray: true
+    }];
+  }
 
   public type?: ResourceType;
 

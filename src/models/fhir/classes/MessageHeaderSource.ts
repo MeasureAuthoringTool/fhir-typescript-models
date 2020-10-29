@@ -6,6 +6,7 @@ import {
   IMessageHeaderSource,
   PrimitiveString,
   PrimitiveUrl,
+  FieldMetadata
 } from "../internal";
 
 export class MessageHeaderSource extends BackboneElement {
@@ -16,6 +17,30 @@ export class MessageHeaderSource extends BackboneElement {
   static readonly typeName: string = "MessageHeader.Source";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "software",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactPoint],
+      isArray: false
+    }, {
+      fieldName: "endpoint",
+      fieldType: [PrimitiveUrl],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveString;
 

@@ -5,6 +5,7 @@ import {
   Extension,
   ITestScriptDestination,
   PrimitiveInteger,
+  FieldMetadata
 } from "../internal";
 
 export class TestScriptDestination extends BackboneElement {
@@ -15,6 +16,18 @@ export class TestScriptDestination extends BackboneElement {
   static readonly typeName: string = "TestScript.Destination";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "index",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "profile",
+      fieldType: [Coding],
+      isArray: false
+    }];
+  }
 
   public index?: PrimitiveInteger;
 

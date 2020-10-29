@@ -5,6 +5,7 @@ import {
   IImplementationGuideGlobal,
   PrimitiveCanonical,
   ResourceType,
+  FieldMetadata
 } from "../internal";
 
 export class ImplementationGuideGlobal extends BackboneElement {
@@ -15,6 +16,18 @@ export class ImplementationGuideGlobal extends BackboneElement {
   static readonly typeName: string = "ImplementationGuide.Global";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [ResourceType],
+      isArray: false
+    }, {
+      fieldName: "profile",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }];
+  }
 
   public type?: ResourceType;
 

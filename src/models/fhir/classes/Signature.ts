@@ -8,6 +8,7 @@ import {
   PrimitiveBase64Binary,
   PrimitiveInstant,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Signature extends Element {
@@ -18,6 +19,38 @@ export class Signature extends Element {
   static readonly typeName: string = "Signature";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "type",
+      fieldType: [Coding],
+      isArray: true
+    }, {
+      fieldName: "when",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "who",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "onBehalfOf",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "targetFormat",
+      fieldType: [MimeType],
+      isArray: false
+    }, {
+      fieldName: "sigFormat",
+      fieldType: [MimeType],
+      isArray: false
+    }, {
+      fieldName: "data",
+      fieldType: [PrimitiveBase64Binary],
+      isArray: false
+    }];
+  }
 
   public type?: Array<Coding>;
 

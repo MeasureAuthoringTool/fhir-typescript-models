@@ -3,6 +3,7 @@ import {
   BackboneElement,
   CodeableConcept,
   ISubstanceSourceMaterialPartDescription,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSourceMaterialPartDescription extends BackboneElement {
@@ -13,6 +14,18 @@ export class SubstanceSourceMaterialPartDescription extends BackboneElement {
   static readonly typeName: string = "SubstanceSourceMaterial.PartDescription";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "part",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "partLocation",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public part?: CodeableConcept;
 

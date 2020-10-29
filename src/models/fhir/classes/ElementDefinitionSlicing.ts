@@ -7,6 +7,7 @@ import {
   PrimitiveBoolean,
   PrimitiveString,
   SlicingRules,
+  FieldMetadata
 } from "../internal";
 
 export class ElementDefinitionSlicing extends Element {
@@ -17,6 +18,26 @@ export class ElementDefinitionSlicing extends Element {
   static readonly typeName: string = "ElementDefinition.Slicing";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "discriminator",
+      fieldType: [ElementDefinitionSlicingDiscriminator],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "ordered",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "rules",
+      fieldType: [SlicingRules],
+      isArray: false
+    }];
+  }
 
   public discriminator?: Array<ElementDefinitionSlicingDiscriminator>;
 

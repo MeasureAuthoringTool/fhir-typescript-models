@@ -1,5 +1,7 @@
 
 /* eslint-disable import/no-cycle */
+import { Type } from "./classes/Type";
+
 export * from "./interfaces/IType";
 export * from "./interfaces/IResource";
 export * from "./interfaces/IDomainResource";
@@ -1867,6 +1869,12 @@ export * from "./classes/PrimitiveUnsignedInt";
 export * from "./classes/PrimitiveUrl";
 export * from "./classes/PrimitiveUuid";
 export * from "./classes/PrimitiveXhtml";
+
+export interface FieldMetadata {
+  fieldName: string,
+  fieldType: Array<typeof Type | typeof String | typeof Boolean | typeof Date | typeof Number>,
+  isArray: boolean
+}
 
 export * from "./ResourceMapping";
 /* eslint-enable import/no-cycle */

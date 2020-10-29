@@ -13,6 +13,7 @@ import {
   PrimitivePositiveInt,
   Reference,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimItem extends BackboneElement {
@@ -23,6 +24,94 @@ export class ClaimItem extends BackboneElement {
   static readonly typeName: string = "Claim.Item";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "sequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "careTeamSequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: true
+    }, {
+      fieldName: "diagnosisSequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: true
+    }, {
+      fieldName: "procedureSequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: true
+    }, {
+      fieldName: "informationSequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: true
+    }, {
+      fieldName: "revenue",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "productOrService",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "modifier",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "programCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "serviced",
+      fieldType: [PrimitiveDate, Period],
+      isArray: false
+    }, {
+      fieldName: "location",
+      fieldType: [CodeableConcept, Address, Reference],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "unitPrice",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "factor",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "net",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "udi",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "bodySite",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subSite",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "detail",
+      fieldType: [ClaimItemDetail],
+      isArray: true
+    }];
+  }
 
   public sequence?: PrimitivePositiveInt;
 

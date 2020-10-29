@@ -14,6 +14,7 @@ import {
   PrimitivePositiveInt,
   Reference,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class ExplanationOfBenefitAddItem extends BackboneElement {
@@ -24,6 +25,82 @@ export class ExplanationOfBenefitAddItem extends BackboneElement {
   static readonly typeName: string = "ExplanationOfBenefit.AddItem";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "itemSequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: true
+    }, {
+      fieldName: "detailSequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: true
+    }, {
+      fieldName: "subDetailSequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: true
+    }, {
+      fieldName: "provider",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "productOrService",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "modifier",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "programCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "serviced",
+      fieldType: [PrimitiveDate, Period],
+      isArray: false
+    }, {
+      fieldName: "location",
+      fieldType: [CodeableConcept, Address, Reference],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "unitPrice",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "factor",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "net",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "bodySite",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subSite",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "noteNumber",
+      fieldType: [PrimitivePositiveInt],
+      isArray: true
+    }, {
+      fieldName: "adjudication",
+      fieldType: [ExplanationOfBenefitItemAdjudication],
+      isArray: true
+    }, {
+      fieldName: "detail",
+      fieldType: [ExplanationOfBenefitAddItemDetail],
+      isArray: true
+    }];
+  }
 
   public itemSequence?: Array<PrimitivePositiveInt>;
 

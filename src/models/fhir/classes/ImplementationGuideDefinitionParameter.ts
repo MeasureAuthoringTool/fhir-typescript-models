@@ -5,6 +5,7 @@ import {
   GuideParameterCode,
   IImplementationGuideDefinitionParameter,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ImplementationGuideDefinitionParameter extends BackboneElement {
@@ -15,6 +16,18 @@ export class ImplementationGuideDefinitionParameter extends BackboneElement {
   static readonly typeName: string = "ImplementationGuide.Definition.Parameter";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [GuideParameterCode],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public code?: GuideParameterCode;
 

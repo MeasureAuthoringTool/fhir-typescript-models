@@ -5,6 +5,7 @@ import {
   IAuditEventEntityDetail,
   PrimitiveBase64Binary,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class AuditEventEntityDetail extends BackboneElement {
@@ -15,6 +16,18 @@ export class AuditEventEntityDetail extends BackboneElement {
   static readonly typeName: string = "AuditEvent.Entity.Detail";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString, PrimitiveBase64Binary],
+      isArray: false
+    }];
+  }
 
   public type?: PrimitiveString;
 

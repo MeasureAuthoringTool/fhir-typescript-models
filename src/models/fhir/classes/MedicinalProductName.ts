@@ -6,6 +6,7 @@ import {
   MedicinalProductNameCountryLanguage,
   MedicinalProductNameNamePart,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductName extends BackboneElement {
@@ -16,6 +17,22 @@ export class MedicinalProductName extends BackboneElement {
   static readonly typeName: string = "MedicinalProduct.Name";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "productName",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "namePart",
+      fieldType: [MedicinalProductNameNamePart],
+      isArray: true
+    }, {
+      fieldName: "countryLanguage",
+      fieldType: [MedicinalProductNameCountryLanguage],
+      isArray: true
+    }];
+  }
 
   public productName?: PrimitiveString;
 

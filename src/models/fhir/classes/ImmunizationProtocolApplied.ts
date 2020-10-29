@@ -7,6 +7,7 @@ import {
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ImmunizationProtocolApplied extends BackboneElement {
@@ -17,6 +18,30 @@ export class ImmunizationProtocolApplied extends BackboneElement {
   static readonly typeName: string = "Immunization.ProtocolApplied";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "series",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "authority",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "targetDisease",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "doseNumber",
+      fieldType: [PrimitivePositiveInt, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "seriesDoses",
+      fieldType: [PrimitivePositiveInt, PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public series?: PrimitiveString;
 

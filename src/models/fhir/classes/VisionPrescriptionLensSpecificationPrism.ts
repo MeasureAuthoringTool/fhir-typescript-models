@@ -5,6 +5,7 @@ import {
   IVisionPrescriptionLensSpecificationPrism,
   PrimitiveDecimal,
   VisionBase,
+  FieldMetadata
 } from "../internal";
 
 export class VisionPrescriptionLensSpecificationPrism extends BackboneElement {
@@ -15,6 +16,18 @@ export class VisionPrescriptionLensSpecificationPrism extends BackboneElement {
   static readonly typeName: string = "VisionPrescription.LensSpecification.Prism";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "amount",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "base",
+      fieldType: [VisionBase],
+      isArray: false
+    }];
+  }
 
   public amount?: PrimitiveDecimal;
 

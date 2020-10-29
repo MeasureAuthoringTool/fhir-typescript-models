@@ -8,6 +8,7 @@ import {
   PrimitiveString,
   Reference,
   SectionMode,
+  FieldMetadata
 } from "../internal";
 
 export class CompositionSection extends BackboneElement {
@@ -18,6 +19,50 @@ export class CompositionSection extends BackboneElement {
   static readonly typeName: string = "Composition.Section";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "author",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "focus",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "text",
+      fieldType: [Narrative],
+      isArray: false
+    }, {
+      fieldName: "mode",
+      fieldType: [SectionMode],
+      isArray: false
+    }, {
+      fieldName: "orderedBy",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "entry",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "emptyReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "section",
+      fieldType: [CompositionSection],
+      isArray: true
+    }];
+  }
 
   public title?: PrimitiveString;
 

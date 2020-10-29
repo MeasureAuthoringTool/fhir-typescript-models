@@ -13,6 +13,7 @@ import {
   PrimitiveUnsignedInt,
   Reference,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class ContractTermAction extends BackboneElement {
@@ -23,6 +24,94 @@ export class ContractTermAction extends BackboneElement {
   static readonly typeName: string = "Contract.Term.Action";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "doNotPerform",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [ContractTermActionSubject],
+      isArray: true
+    }, {
+      fieldName: "intent",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "linkId",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "context",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "contextLinkId",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "occurrence",
+      fieldType: [PrimitiveDateTime, Period, Timing],
+      isArray: false
+    }, {
+      fieldName: "requester",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "requesterLinkId",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "performerType",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "performerRole",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "performerLinkId",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "reason",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "reasonLinkId",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "securityLabelNumber",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: true
+    }];
+  }
 
   public doNotPerform?: PrimitiveBoolean;
 

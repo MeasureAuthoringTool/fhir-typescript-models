@@ -6,6 +6,7 @@ import {
   Range,
   Ratio,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class DosageDoseAndRate extends Element {
@@ -16,6 +17,22 @@ export class DosageDoseAndRate extends Element {
   static readonly typeName: string = "Dosage.DoseAndRate";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "dose",
+      fieldType: [Range, SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "rate",
+      fieldType: [Ratio, Range, SimpleQuantity],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

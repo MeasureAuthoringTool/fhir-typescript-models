@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IMeasureReportGroupStratifier,
   MeasureReportGroupStratifierStratum,
+  FieldMetadata
 } from "../internal";
 
 export class MeasureReportGroupStratifier extends BackboneElement {
@@ -14,6 +15,18 @@ export class MeasureReportGroupStratifier extends BackboneElement {
   static readonly typeName: string = "MeasureReport.Group.Stratifier";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "stratum",
+      fieldType: [MeasureReportGroupStratifierStratum],
+      isArray: true
+    }];
+  }
 
   public code?: Array<CodeableConcept>;
 

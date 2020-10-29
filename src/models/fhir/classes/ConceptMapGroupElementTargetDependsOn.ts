@@ -6,6 +6,7 @@ import {
   PrimitiveCanonical,
   PrimitiveString,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class ConceptMapGroupElementTargetDependsOn extends BackboneElement {
@@ -16,6 +17,26 @@ export class ConceptMapGroupElementTargetDependsOn extends BackboneElement {
   static readonly typeName: string = "ConceptMap.Group.Element.Target.DependsOn";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "property",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "system",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "display",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public property?: PrimitiveUri;
 

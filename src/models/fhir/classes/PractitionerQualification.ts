@@ -6,6 +6,7 @@ import {
   IPractitionerQualification,
   Period,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class PractitionerQualification extends BackboneElement {
@@ -16,6 +17,26 @@ export class PractitionerQualification extends BackboneElement {
   static readonly typeName: string = "Practitioner.Qualification";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "issuer",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

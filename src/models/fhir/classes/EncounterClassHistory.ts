@@ -4,6 +4,7 @@ import {
   Coding,
   IEncounterClassHistory,
   Period,
+  FieldMetadata
 } from "../internal";
 
 export class EncounterClassHistory extends BackboneElement {
@@ -14,6 +15,18 @@ export class EncounterClassHistory extends BackboneElement {
   static readonly typeName: string = "Encounter.ClassHistory";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "class",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public class?: Coding;
 

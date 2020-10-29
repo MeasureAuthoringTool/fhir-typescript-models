@@ -16,6 +16,7 @@ import {
   IEncounter,
   Period,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Encounter extends DomainResource {
@@ -26,6 +27,102 @@ export class Encounter extends DomainResource {
   static readonly typeName: string = "Encounter";
   
   static readonly primaryCodePath: string | null = "type";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [EncounterStatus],
+      isArray: false
+    }, {
+      fieldName: "statusHistory",
+      fieldType: [EncounterStatusHistory],
+      isArray: true
+    }, {
+      fieldName: "class",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "classHistory",
+      fieldType: [EncounterClassHistory],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "serviceType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "priority",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "episodeOfCare",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "participant",
+      fieldType: [EncounterParticipant],
+      isArray: true
+    }, {
+      fieldName: "appointment",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "length",
+      fieldType: [Duration],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "diagnosis",
+      fieldType: [EncounterDiagnosis],
+      isArray: true
+    }, {
+      fieldName: "account",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "hospitalization",
+      fieldType: [EncounterHospitalization],
+      isArray: false
+    }, {
+      fieldName: "location",
+      fieldType: [EncounterLocation],
+      isArray: true
+    }, {
+      fieldName: "serviceProvider",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

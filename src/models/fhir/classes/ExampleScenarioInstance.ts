@@ -8,6 +8,7 @@ import {
   IExampleScenarioInstance,
   PrimitiveMarkdown,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ExampleScenarioInstance extends BackboneElement {
@@ -18,6 +19,34 @@ export class ExampleScenarioInstance extends BackboneElement {
   static readonly typeName: string = "ExampleScenario.Instance";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "resourceId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "resourceType",
+      fieldType: [FHIRResourceType],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [ExampleScenarioInstanceVersion],
+      isArray: true
+    }, {
+      fieldName: "containedInstance",
+      fieldType: [ExampleScenarioInstanceContainedInstance],
+      isArray: true
+    }];
+  }
 
   public resourceId?: PrimitiveString;
 

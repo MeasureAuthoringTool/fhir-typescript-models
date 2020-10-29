@@ -15,6 +15,7 @@ import {
   PrimitiveDateTime,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class NutritionOrder extends DomainResource {
@@ -25,6 +26,78 @@ export class NutritionOrder extends DomainResource {
   static readonly typeName: string = "NutritionOrder";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "instantiatesCanonical",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "instantiatesUri",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "instantiates",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [NutritionOrderStatus],
+      isArray: false
+    }, {
+      fieldName: "intent",
+      fieldType: [NutritiionOrderIntent],
+      isArray: false
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "dateTime",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "orderer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "allergyIntolerance",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "foodPreferenceModifier",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "excludeFoodModifier",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "oralDiet",
+      fieldType: [NutritionOrderOralDiet],
+      isArray: false
+    }, {
+      fieldName: "supplement",
+      fieldType: [NutritionOrderSupplement],
+      isArray: true
+    }, {
+      fieldName: "enteralFormula",
+      fieldType: [NutritionOrderEnteralFormula],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

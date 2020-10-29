@@ -7,6 +7,7 @@ import {
   PrimitiveCanonical,
   PrimitiveCode,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ConceptMapGroupUnmapped extends BackboneElement {
@@ -17,6 +18,26 @@ export class ConceptMapGroupUnmapped extends BackboneElement {
   static readonly typeName: string = "ConceptMap.Group.Unmapped";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "mode",
+      fieldType: [ConceptMapGroupUnmappedMode],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "display",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "url",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }];
+  }
 
   public mode?: ConceptMapGroupUnmappedMode;
 

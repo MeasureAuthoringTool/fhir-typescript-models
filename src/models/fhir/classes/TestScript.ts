@@ -22,6 +22,7 @@ import {
   TestScriptTest,
   TestScriptVariable,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class TestScript extends DomainResource {
@@ -32,6 +33,106 @@ export class TestScript extends DomainResource {
   static readonly typeName: string = "TestScript";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "experimental",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "purpose",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "copyright",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "origin",
+      fieldType: [TestScriptOrigin],
+      isArray: true
+    }, {
+      fieldName: "destination",
+      fieldType: [TestScriptDestination],
+      isArray: true
+    }, {
+      fieldName: "metadata",
+      fieldType: [TestScriptMetadata],
+      isArray: false
+    }, {
+      fieldName: "fixture",
+      fieldType: [TestScriptFixture],
+      isArray: true
+    }, {
+      fieldName: "profile",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "variable",
+      fieldType: [TestScriptVariable],
+      isArray: true
+    }, {
+      fieldName: "setup",
+      fieldType: [TestScriptSetup],
+      isArray: false
+    }, {
+      fieldName: "test",
+      fieldType: [TestScriptTest],
+      isArray: true
+    }, {
+      fieldName: "teardown",
+      fieldType: [TestScriptTeardown],
+      isArray: false
+    }];
+  }
 
   public url?: PrimitiveUri;
 

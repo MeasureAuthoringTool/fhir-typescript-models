@@ -17,6 +17,7 @@ import {
   PrimitiveString,
   Reference,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class Immunization extends DomainResource {
@@ -27,6 +28,122 @@ export class Immunization extends DomainResource {
   static readonly typeName: string = "Immunization";
   
   static readonly primaryCodePath: string | null = "vaccineCode";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [ImmunizationStatus],
+      isArray: false
+    }, {
+      fieldName: "statusReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "vaccineCode",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "occurrence",
+      fieldType: [PrimitiveDateTime, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "recorded",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "primarySource",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "reportOrigin",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "manufacturer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "lotNumber",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "expirationDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "site",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "route",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "doseQuantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [ImmunizationPerformer],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "isSubpotent",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "subpotentReason",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "education",
+      fieldType: [ImmunizationEducation],
+      isArray: true
+    }, {
+      fieldName: "programEligibility",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "fundingSource",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "reaction",
+      fieldType: [ImmunizationReaction],
+      isArray: true
+    }, {
+      fieldName: "protocolApplied",
+      fieldType: [ImmunizationProtocolApplied],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

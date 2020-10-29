@@ -1,12 +1,13 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
 import { 
+  lookupResourceType,
   Extension,
   IResource,
-  lookupResourceType,
   Meta,
   PrimitiveCode,
   PrimitiveUri,
   Type,
+  FieldMetadata
 } from "../internal";
 
 export class Resource extends Type {
@@ -17,6 +18,30 @@ export class Resource extends Type {
   static readonly typeName: string = "Resource";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Type.fieldInfo, {
+      fieldName: "id",
+      fieldType: [String],
+      isArray: false
+    }, {
+      fieldName: "meta",
+      fieldType: [Meta],
+      isArray: false
+    }, {
+      fieldName: "implicitRules",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "language",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "resourceType",
+      fieldType: [String],
+      isArray: false
+    }];
+  }
 
   public id?: string;
 
@@ -30,7 +55,7 @@ export class Resource extends Type {
 
   constructor() {
     super();
-    this.resourceType = this.getTypeName();
+    this.resourceType = this.constructor.name;
   }
   
   public static parse(

@@ -14,6 +14,7 @@ import {
   LocationStatus,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Location extends DomainResource {
@@ -24,6 +25,78 @@ export class Location extends DomainResource {
   static readonly typeName: string = "Location";
   
   static readonly primaryCodePath: string | null = "type";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [LocationStatus],
+      isArray: false
+    }, {
+      fieldName: "operationalStatus",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "alias",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "mode",
+      fieldType: [LocationMode],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "telecom",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "address",
+      fieldType: [Address],
+      isArray: false
+    }, {
+      fieldName: "physicalType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "position",
+      fieldType: [LocationPosition],
+      isArray: false
+    }, {
+      fieldName: "managingOrganization",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "hoursOfOperation",
+      fieldType: [LocationHoursOfOperation],
+      isArray: true
+    }, {
+      fieldName: "availabilityExceptions",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "endpoint",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

@@ -5,6 +5,7 @@ import {
   IDocumentReferenceContext,
   Period,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class DocumentReferenceContext extends BackboneElement {
@@ -15,6 +16,38 @@ export class DocumentReferenceContext extends BackboneElement {
   static readonly typeName: string = "DocumentReference.Context";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "event",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "facilityType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "practiceSetting",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "sourcePatientInfo",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "related",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public encounter?: Array<Reference>;
 

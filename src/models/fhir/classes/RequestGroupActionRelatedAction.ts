@@ -7,6 +7,7 @@ import {
   IRequestGroupActionRelatedAction,
   PrimitiveId,
   Range,
+  FieldMetadata
 } from "../internal";
 
 export class RequestGroupActionRelatedAction extends BackboneElement {
@@ -17,6 +18,22 @@ export class RequestGroupActionRelatedAction extends BackboneElement {
   static readonly typeName: string = "RequestGroup.Action.RelatedAction";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "actionId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "relationship",
+      fieldType: [ActionRelationshipType],
+      isArray: false
+    }, {
+      fieldName: "offset",
+      fieldType: [Duration, Range],
+      isArray: false
+    }];
+  }
 
   public actionId?: PrimitiveId;
 

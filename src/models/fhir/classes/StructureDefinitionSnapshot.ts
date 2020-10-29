@@ -3,6 +3,7 @@ import {
   BackboneElement,
   ElementDefinition,
   IStructureDefinitionSnapshot,
+  FieldMetadata
 } from "../internal";
 
 export class StructureDefinitionSnapshot extends BackboneElement {
@@ -13,6 +14,14 @@ export class StructureDefinitionSnapshot extends BackboneElement {
   static readonly typeName: string = "StructureDefinition.Snapshot";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "element",
+      fieldType: [ElementDefinition],
+      isArray: true
+    }];
+  }
 
   public element?: Array<ElementDefinition>;
 

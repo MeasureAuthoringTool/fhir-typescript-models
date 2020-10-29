@@ -13,6 +13,7 @@ import {
   PrimitiveUri,
   PublicationStatus,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class CompartmentDefinition extends DomainResource {
@@ -23,6 +24,66 @@ export class CompartmentDefinition extends DomainResource {
   static readonly typeName: string = "CompartmentDefinition";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "experimental",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "purpose",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CompartmentType],
+      isArray: false
+    }, {
+      fieldName: "search",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "resource",
+      fieldType: [CompartmentDefinitionResource],
+      isArray: true
+    }];
+  }
 
   public url?: PrimitiveUri;
 

@@ -3,6 +3,7 @@ import {
   BackboneElement,
   Identifier,
   IMedicinalProductPackagedBatchIdentifier,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductPackagedBatchIdentifier extends BackboneElement {
@@ -13,6 +14,18 @@ export class MedicinalProductPackagedBatchIdentifier extends BackboneElement {
   static readonly typeName: string = "MedicinalProductPackaged.BatchIdentifier";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "outerPackaging",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "immediatePackaging",
+      fieldType: [Identifier],
+      isArray: false
+    }];
+  }
 
   public outerPackaging?: Identifier;
 

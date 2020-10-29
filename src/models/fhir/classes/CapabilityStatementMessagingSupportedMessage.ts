@@ -5,6 +5,7 @@ import {
   Extension,
   ICapabilityStatementMessagingSupportedMessage,
   PrimitiveCanonical,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatementMessagingSupportedMessage extends BackboneElement {
@@ -15,6 +16,18 @@ export class CapabilityStatementMessagingSupportedMessage extends BackboneElemen
   static readonly typeName: string = "CapabilityStatement.Messaging.SupportedMessage";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "mode",
+      fieldType: [EventCapabilityMode],
+      isArray: false
+    }, {
+      fieldName: "definition",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }];
+  }
 
   public mode?: EventCapabilityMode;
 

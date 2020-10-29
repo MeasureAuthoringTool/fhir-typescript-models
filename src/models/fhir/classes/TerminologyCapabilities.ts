@@ -21,6 +21,7 @@ import {
   TerminologyCapabilitiesTranslation,
   TerminologyCapabilitiesValidateCode,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class TerminologyCapabilities extends DomainResource {
@@ -31,6 +32,106 @@ export class TerminologyCapabilities extends DomainResource {
   static readonly typeName: string = "TerminologyCapabilities";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "experimental",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "purpose",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "copyright",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "kind",
+      fieldType: [CapabilityStatementKind],
+      isArray: false
+    }, {
+      fieldName: "software",
+      fieldType: [TerminologyCapabilitiesSoftware],
+      isArray: false
+    }, {
+      fieldName: "implementation",
+      fieldType: [TerminologyCapabilitiesImplementation],
+      isArray: false
+    }, {
+      fieldName: "lockedDate",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "codeSystem",
+      fieldType: [TerminologyCapabilitiesCodeSystem],
+      isArray: true
+    }, {
+      fieldName: "expansion",
+      fieldType: [TerminologyCapabilitiesExpansion],
+      isArray: false
+    }, {
+      fieldName: "codeSearch",
+      fieldType: [CodeSearchSupport],
+      isArray: false
+    }, {
+      fieldName: "validateCode",
+      fieldType: [TerminologyCapabilitiesValidateCode],
+      isArray: false
+    }, {
+      fieldName: "translation",
+      fieldType: [TerminologyCapabilitiesTranslation],
+      isArray: false
+    }, {
+      fieldName: "closure",
+      fieldType: [TerminologyCapabilitiesClosure],
+      isArray: false
+    }];
+  }
 
   public url?: PrimitiveUri;
 

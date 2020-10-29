@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IContractTermOfferParty,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ContractTermOfferParty extends BackboneElement {
@@ -14,6 +15,18 @@ export class ContractTermOfferParty extends BackboneElement {
   static readonly typeName: string = "Contract.Term.Offer.Party";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "reference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "role",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public reference?: Array<Reference>;
 

@@ -9,6 +9,7 @@ import {
   Extension,
   IConsentProvision,
   Period,
+  FieldMetadata
 } from "../internal";
 
 export class ConsentProvision extends BackboneElement {
@@ -19,6 +20,54 @@ export class ConsentProvision extends BackboneElement {
   static readonly typeName: string = "Consent.Provision";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [ConsentProvisionType],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "actor",
+      fieldType: [ConsentProvisionActor],
+      isArray: true
+    }, {
+      fieldName: "action",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "securityLabel",
+      fieldType: [Coding],
+      isArray: true
+    }, {
+      fieldName: "purpose",
+      fieldType: [Coding],
+      isArray: true
+    }, {
+      fieldName: "class",
+      fieldType: [Coding],
+      isArray: true
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "dataPeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "data",
+      fieldType: [ConsentProvisionData],
+      isArray: true
+    }, {
+      fieldName: "provision",
+      fieldType: [ConsentProvision],
+      isArray: true
+    }];
+  }
 
   public type?: ConsentProvisionType;
 

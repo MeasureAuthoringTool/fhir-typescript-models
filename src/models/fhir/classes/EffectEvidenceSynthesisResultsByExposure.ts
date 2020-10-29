@@ -7,6 +7,7 @@ import {
   IEffectEvidenceSynthesisResultsByExposure,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class EffectEvidenceSynthesisResultsByExposure extends BackboneElement {
@@ -17,6 +18,26 @@ export class EffectEvidenceSynthesisResultsByExposure extends BackboneElement {
   static readonly typeName: string = "EffectEvidenceSynthesis.ResultsByExposure";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "exposureState",
+      fieldType: [ExposureState],
+      isArray: false
+    }, {
+      fieldName: "variantState",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "riskEvidenceSynthesis",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public description?: PrimitiveString;
 

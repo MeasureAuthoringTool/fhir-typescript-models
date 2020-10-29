@@ -15,6 +15,7 @@ import {
   ResearchStudyArm,
   ResearchStudyObjective,
   ResearchStudyStatus,
+  FieldMetadata
 } from "../internal";
 
 export class ResearchStudy extends DomainResource {
@@ -25,6 +26,106 @@ export class ResearchStudy extends DomainResource {
   static readonly typeName: string = "ResearchStudy";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "protocol",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [ResearchStudyStatus],
+      isArray: false
+    }, {
+      fieldName: "primaryPurposeType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "phase",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "focus",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "condition",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "relatedArtifact",
+      fieldType: [RelatedArtifact],
+      isArray: true
+    }, {
+      fieldName: "keyword",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "location",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "enrollment",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "sponsor",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "principalInvestigator",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "site",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "reasonStopped",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "arm",
+      fieldType: [ResearchStudyArm],
+      isArray: true
+    }, {
+      fieldName: "objective",
+      fieldType: [ResearchStudyObjective],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

@@ -7,6 +7,7 @@ import {
   ISpecimenDefinition,
   PrimitiveString,
   SpecimenDefinitionTypeTested,
+  FieldMetadata
 } from "../internal";
 
 export class SpecimenDefinition extends DomainResource {
@@ -17,6 +18,34 @@ export class SpecimenDefinition extends DomainResource {
   static readonly typeName: string = "SpecimenDefinition";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "typeCollected",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "patientPreparation",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "timeAspect",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "collection",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "typeTested",
+      fieldType: [SpecimenDefinitionTypeTested],
+      isArray: true
+    }];
+  }
 
   public identifier?: Identifier;
 

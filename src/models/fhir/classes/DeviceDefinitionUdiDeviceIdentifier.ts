@@ -5,6 +5,7 @@ import {
   IDeviceDefinitionUdiDeviceIdentifier,
   PrimitiveString,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
@@ -15,6 +16,22 @@ export class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   static readonly typeName: string = "DeviceDefinition.UdiDeviceIdentifier";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "deviceIdentifier",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "issuer",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }];
+  }
 
   public deviceIdentifier?: PrimitiveString;
 

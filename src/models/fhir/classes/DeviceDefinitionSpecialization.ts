@@ -4,6 +4,7 @@ import {
   Extension,
   IDeviceDefinitionSpecialization,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class DeviceDefinitionSpecialization extends BackboneElement {
@@ -14,6 +15,18 @@ export class DeviceDefinitionSpecialization extends BackboneElement {
   static readonly typeName: string = "DeviceDefinition.Specialization";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "systemType",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public systemType?: PrimitiveString;
 

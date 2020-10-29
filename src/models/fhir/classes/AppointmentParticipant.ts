@@ -8,6 +8,7 @@ import {
   ParticipationStatus,
   Period,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class AppointmentParticipant extends BackboneElement {
@@ -18,6 +19,30 @@ export class AppointmentParticipant extends BackboneElement {
   static readonly typeName: string = "Appointment.Participant";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "actor",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "required",
+      fieldType: [ParticipantRequired],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [ParticipationStatus],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public type?: Array<CodeableConcept>;
 

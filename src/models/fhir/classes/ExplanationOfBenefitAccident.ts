@@ -7,6 +7,7 @@ import {
   IExplanationOfBenefitAccident,
   PrimitiveDate,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ExplanationOfBenefitAccident extends BackboneElement {
@@ -17,6 +18,22 @@ export class ExplanationOfBenefitAccident extends BackboneElement {
   static readonly typeName: string = "ExplanationOfBenefit.Accident";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "date",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "location",
+      fieldType: [Address, Reference],
+      isArray: false
+    }];
+  }
 
   public date?: PrimitiveDate;
 

@@ -5,6 +5,7 @@ import {
   IdentityAssuranceLevel,
   IPersonLink,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class PersonLink extends BackboneElement {
@@ -15,6 +16,18 @@ export class PersonLink extends BackboneElement {
   static readonly typeName: string = "Person.Link";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "target",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "assurance",
+      fieldType: [IdentityAssuranceLevel],
+      isArray: false
+    }];
+  }
 
   public target?: Reference;
 

@@ -2,6 +2,7 @@
 import { 
   Element,
   IElement,
+  FieldMetadata
 } from "../internal";
 
 export class PrimitiveDate extends Element {
@@ -12,6 +13,14 @@ export class PrimitiveDate extends Element {
   static readonly typeName: string = "date";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "value",
+      fieldType: [String],
+      isArray: false
+    }];
+  }
 
   public value?: string;
 

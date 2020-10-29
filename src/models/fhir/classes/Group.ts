@@ -12,6 +12,7 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Group extends DomainResource {
@@ -22,6 +23,50 @@ export class Group extends DomainResource {
   static readonly typeName: string = "Group";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "active",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [GroupType],
+      isArray: false
+    }, {
+      fieldName: "actual",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "managingEntity",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "characteristic",
+      fieldType: [GroupCharacteristic],
+      isArray: true
+    }, {
+      fieldName: "member",
+      fieldType: [GroupMember],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

@@ -6,6 +6,7 @@ import {
   ISubstancePolymerMonomerSetStartingMaterial,
   PrimitiveBoolean,
   SubstanceAmount,
+  FieldMetadata
 } from "../internal";
 
 export class SubstancePolymerMonomerSetStartingMaterial extends BackboneElement {
@@ -16,6 +17,26 @@ export class SubstancePolymerMonomerSetStartingMaterial extends BackboneElement 
   static readonly typeName: string = "SubstancePolymer.MonomerSet.StartingMaterial";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "material",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "isDefining",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "amount",
+      fieldType: [SubstanceAmount],
+      isArray: false
+    }];
+  }
 
   public material?: CodeableConcept;
 

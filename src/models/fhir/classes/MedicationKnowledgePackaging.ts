@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IMedicationKnowledgePackaging,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationKnowledgePackaging extends BackboneElement {
@@ -14,6 +15,18 @@ export class MedicationKnowledgePackaging extends BackboneElement {
   static readonly typeName: string = "MedicationKnowledge.Packaging";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

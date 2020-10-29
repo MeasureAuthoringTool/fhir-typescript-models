@@ -17,6 +17,7 @@ import {
   Timing,
   TriggerDefinition,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class EvidenceVariableCharacteristic extends BackboneElement {
@@ -27,6 +28,38 @@ export class EvidenceVariableCharacteristic extends BackboneElement {
   static readonly typeName: string = "EvidenceVariable.Characteristic";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "definition",
+      fieldType: [Reference, PrimitiveCanonical, CodeableConcept, Expression, DataRequirement, TriggerDefinition],
+      isArray: false
+    }, {
+      fieldName: "usageContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "exclude",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "participantEffective",
+      fieldType: [PrimitiveDateTime, Period, Duration, Timing],
+      isArray: false
+    }, {
+      fieldName: "timeFromStart",
+      fieldType: [Duration],
+      isArray: false
+    }, {
+      fieldName: "groupMeasure",
+      fieldType: [GroupMeasure],
+      isArray: false
+    }];
+  }
 
   public description?: PrimitiveString;
 

@@ -12,6 +12,7 @@ import {
   PrimitiveDateTime,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class List extends DomainResource {
@@ -22,6 +23,62 @@ export class List extends DomainResource {
   static readonly typeName: string = "List";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [ListStatus],
+      isArray: false
+    }, {
+      fieldName: "mode",
+      fieldType: [ListMode],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "orderedBy",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "entry",
+      fieldType: [ListEntry],
+      isArray: true
+    }, {
+      fieldName: "emptyReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

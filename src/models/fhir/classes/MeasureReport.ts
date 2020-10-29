@@ -12,6 +12,7 @@ import {
   PrimitiveCanonical,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MeasureReport extends DomainResource {
@@ -22,6 +23,54 @@ export class MeasureReport extends DomainResource {
   static readonly typeName: string = "MeasureReport";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [MeasureReportStatus],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [MeasureReportType],
+      isArray: false
+    }, {
+      fieldName: "measure",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "reporter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "improvementNotation",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "group",
+      fieldType: [MeasureReportGroup],
+      isArray: true
+    }, {
+      fieldName: "evaluatedResource",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

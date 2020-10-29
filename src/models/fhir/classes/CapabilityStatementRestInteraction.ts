@@ -5,6 +5,7 @@ import {
   ICapabilityStatementRestInteraction,
   PrimitiveMarkdown,
   SystemRestfulInteraction,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatementRestInteraction extends BackboneElement {
@@ -15,6 +16,18 @@ export class CapabilityStatementRestInteraction extends BackboneElement {
   static readonly typeName: string = "CapabilityStatement.Rest.Interaction";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [SystemRestfulInteraction],
+      isArray: false
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }];
+  }
 
   public code?: SystemRestfulInteraction;
 

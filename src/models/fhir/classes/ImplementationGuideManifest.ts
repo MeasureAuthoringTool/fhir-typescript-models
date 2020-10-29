@@ -7,6 +7,7 @@ import {
   ImplementationGuideManifestResource,
   PrimitiveString,
   PrimitiveUrl,
+  FieldMetadata
 } from "../internal";
 
 export class ImplementationGuideManifest extends BackboneElement {
@@ -17,6 +18,30 @@ export class ImplementationGuideManifest extends BackboneElement {
   static readonly typeName: string = "ImplementationGuide.Manifest";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "rendering",
+      fieldType: [PrimitiveUrl],
+      isArray: false
+    }, {
+      fieldName: "resource",
+      fieldType: [ImplementationGuideManifestResource],
+      isArray: true
+    }, {
+      fieldName: "page",
+      fieldType: [ImplementationGuideManifestPage],
+      isArray: true
+    }, {
+      fieldName: "image",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "other",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }];
+  }
 
   public rendering?: PrimitiveUrl;
 

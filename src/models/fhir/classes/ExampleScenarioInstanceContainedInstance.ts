@@ -4,6 +4,7 @@ import {
   Extension,
   IExampleScenarioInstanceContainedInstance,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ExampleScenarioInstanceContainedInstance extends BackboneElement {
@@ -14,6 +15,18 @@ export class ExampleScenarioInstanceContainedInstance extends BackboneElement {
   static readonly typeName: string = "ExampleScenario.Instance.ContainedInstance";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "resourceId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "versionId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public resourceId?: PrimitiveString;
 

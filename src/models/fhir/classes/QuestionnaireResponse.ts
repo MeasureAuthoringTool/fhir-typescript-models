@@ -9,6 +9,7 @@ import {
   QuestionnaireResponseItem,
   QuestionnaireResponseStatus,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class QuestionnaireResponse extends DomainResource {
@@ -19,6 +20,54 @@ export class QuestionnaireResponse extends DomainResource {
   static readonly typeName: string = "QuestionnaireResponse";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "questionnaire",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [QuestionnaireResponseStatus],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "authored",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "author",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "item",
+      fieldType: [QuestionnaireResponseItem],
+      isArray: true
+    }];
+  }
 
   public identifier?: Identifier;
 

@@ -7,6 +7,7 @@ import {
   IAddress,
   Period,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class Address extends Element {
@@ -17,6 +18,50 @@ export class Address extends Element {
   static readonly typeName: string = "Address";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "use",
+      fieldType: [AddressUse],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [AddressType],
+      isArray: false
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "line",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "city",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "district",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "state",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "postalCode",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "country",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public use?: AddressUse;
 

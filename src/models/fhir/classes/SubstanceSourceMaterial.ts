@@ -9,6 +9,7 @@ import {
   SubstanceSourceMaterialFractionDescription,
   SubstanceSourceMaterialOrganism,
   SubstanceSourceMaterialPartDescription,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSourceMaterial extends DomainResource {
@@ -19,6 +20,62 @@ export class SubstanceSourceMaterial extends DomainResource {
   static readonly typeName: string = "SubstanceSourceMaterial";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "sourceMaterialClass",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "sourceMaterialType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "sourceMaterialState",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "organismId",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "organismName",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "parentSubstanceId",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "parentSubstanceName",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "countryOfOrigin",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "geographicalLocation",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "developmentStage",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "fractionDescription",
+      fieldType: [SubstanceSourceMaterialFractionDescription],
+      isArray: true
+    }, {
+      fieldName: "organism",
+      fieldType: [SubstanceSourceMaterialOrganism],
+      isArray: false
+    }, {
+      fieldName: "partDescription",
+      fieldType: [SubstanceSourceMaterialPartDescription],
+      isArray: true
+    }];
+  }
 
   public sourceMaterialClass?: CodeableConcept;
 

@@ -1,16 +1,18 @@
-import { StatementReference } from "./StatementReference";
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { IStratification, StatementReference } from "../index";
 
 /**
  * Stratification info
  */
 export class Stratification {
   public title?: string;
-  // tslint:disable-next-line:variable-name
+
   public stratification_id?: string;
+
   public statement?: StatementReference;
 
   public static parse(
-    json: any,
+    json: IStratification,
     providedInstance: Stratification = new Stratification()
   ): Stratification {
     const newInstance: Stratification = providedInstance;
@@ -26,8 +28,8 @@ export class Stratification {
     return newInstance;
   }
 
-  toJSON(): any {
-    const result: any = {};
+  toJSON(): IStratification {
+    const result: IStratification = {};
 
     if (this.title) {
       result.title = this.title;
@@ -41,3 +43,5 @@ export class Stratification {
     return result;
   }
 }
+
+/* eslint-enable import/prefer-default-export, import/no-cycle */

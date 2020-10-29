@@ -5,6 +5,7 @@ import {
   ILinkageItem,
   LinkageType,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class LinkageItem extends BackboneElement {
@@ -15,6 +16,18 @@ export class LinkageItem extends BackboneElement {
   static readonly typeName: string = "Linkage.Item";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [LinkageType],
+      isArray: false
+    }, {
+      fieldName: "resource",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public type?: LinkageType;
 

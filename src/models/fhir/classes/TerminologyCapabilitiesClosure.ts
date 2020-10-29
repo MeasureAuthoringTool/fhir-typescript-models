@@ -4,6 +4,7 @@ import {
   Extension,
   ITerminologyCapabilitiesClosure,
   PrimitiveBoolean,
+  FieldMetadata
 } from "../internal";
 
 export class TerminologyCapabilitiesClosure extends BackboneElement {
@@ -14,6 +15,14 @@ export class TerminologyCapabilitiesClosure extends BackboneElement {
   static readonly typeName: string = "TerminologyCapabilities.Closure";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "translation",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public translation?: PrimitiveBoolean;
 

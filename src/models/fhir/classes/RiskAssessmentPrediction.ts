@@ -8,6 +8,7 @@ import {
   PrimitiveDecimal,
   PrimitiveString,
   Range,
+  FieldMetadata
 } from "../internal";
 
 export class RiskAssessmentPrediction extends BackboneElement {
@@ -18,6 +19,34 @@ export class RiskAssessmentPrediction extends BackboneElement {
   static readonly typeName: string = "RiskAssessment.Prediction";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "outcome",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "probability",
+      fieldType: [PrimitiveDecimal, Range],
+      isArray: false
+    }, {
+      fieldName: "qualitativeRisk",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "relativeRisk",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "when",
+      fieldType: [Period, Range],
+      isArray: false
+    }, {
+      fieldName: "rationale",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public outcome?: CodeableConcept;
 

@@ -6,6 +6,7 @@ import {
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ExplanationOfBenefitInsurance extends BackboneElement {
@@ -16,6 +17,22 @@ export class ExplanationOfBenefitInsurance extends BackboneElement {
   static readonly typeName: string = "ExplanationOfBenefit.Insurance";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "focal",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "coverage",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "preAuthRef",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }];
+  }
 
   public focal?: PrimitiveBoolean;
 

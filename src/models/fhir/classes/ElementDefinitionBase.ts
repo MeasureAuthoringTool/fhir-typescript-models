@@ -5,6 +5,7 @@ import {
   IElementDefinitionBase,
   PrimitiveString,
   PrimitiveUnsignedInt,
+  FieldMetadata
 } from "../internal";
 
 export class ElementDefinitionBase extends Element {
@@ -15,6 +16,22 @@ export class ElementDefinitionBase extends Element {
   static readonly typeName: string = "ElementDefinition.Base";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "path",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "min",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "max",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public path?: PrimitiveString;
 

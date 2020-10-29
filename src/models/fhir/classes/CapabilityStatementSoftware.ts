@@ -5,6 +5,7 @@ import {
   ICapabilityStatementSoftware,
   PrimitiveDateTime,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatementSoftware extends BackboneElement {
@@ -15,6 +16,22 @@ export class CapabilityStatementSoftware extends BackboneElement {
   static readonly typeName: string = "CapabilityStatement.Software";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "releaseDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveString;
 

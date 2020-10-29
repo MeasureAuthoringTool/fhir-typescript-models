@@ -6,6 +6,7 @@ import {
   IValueSetComposeIncludeFilter,
   PrimitiveCode,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ValueSetComposeIncludeFilter extends BackboneElement {
@@ -16,6 +17,22 @@ export class ValueSetComposeIncludeFilter extends BackboneElement {
   static readonly typeName: string = "ValueSet.Compose.Include.Filter";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "property",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "op",
+      fieldType: [FilterOperator],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public property?: PrimitiveCode;
 

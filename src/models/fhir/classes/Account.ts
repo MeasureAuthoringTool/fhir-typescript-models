@@ -11,6 +11,7 @@ import {
   Period,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Account extends DomainResource {
@@ -21,6 +22,54 @@ export class Account extends DomainResource {
   static readonly typeName: string = "Account";
   
   static readonly primaryCodePath: string | null = "type";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [AccountStatus],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "servicePeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "coverage",
+      fieldType: [AccountCoverage],
+      isArray: true
+    }, {
+      fieldName: "owner",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "guarantor",
+      fieldType: [AccountGuarantor],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

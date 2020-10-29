@@ -21,6 +21,7 @@ import {
   RequestGroupActionRelatedAction,
   RequestPriority,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class RequestGroupAction extends BackboneElement {
@@ -31,6 +32,86 @@ export class RequestGroupAction extends BackboneElement {
   static readonly typeName: string = "RequestGroup.Action";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "prefix",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "textEquivalent",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "priority",
+      fieldType: [RequestPriority],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "documentation",
+      fieldType: [RelatedArtifact],
+      isArray: true
+    }, {
+      fieldName: "condition",
+      fieldType: [RequestGroupActionCondition],
+      isArray: true
+    }, {
+      fieldName: "relatedAction",
+      fieldType: [RequestGroupActionRelatedAction],
+      isArray: true
+    }, {
+      fieldName: "timing",
+      fieldType: [PrimitiveDateTime, Age, Period, Duration, Range, Timing],
+      isArray: false
+    }, {
+      fieldName: "participant",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "groupingBehavior",
+      fieldType: [ActionGroupingBehavior],
+      isArray: false
+    }, {
+      fieldName: "selectionBehavior",
+      fieldType: [ActionSelectionBehavior],
+      isArray: false
+    }, {
+      fieldName: "requiredBehavior",
+      fieldType: [ActionRequiredBehavior],
+      isArray: false
+    }, {
+      fieldName: "precheckBehavior",
+      fieldType: [ActionPrecheckBehavior],
+      isArray: false
+    }, {
+      fieldName: "cardinalityBehavior",
+      fieldType: [ActionCardinalityBehavior],
+      isArray: false
+    }, {
+      fieldName: "resource",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "action",
+      fieldType: [RequestGroupAction],
+      isArray: true
+    }];
+  }
 
   public prefix?: PrimitiveString;
 

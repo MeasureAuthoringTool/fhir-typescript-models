@@ -4,6 +4,7 @@ import {
   BackboneElement,
   IAdverseEventSuspectEntity,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class AdverseEventSuspectEntity extends BackboneElement {
@@ -14,6 +15,18 @@ export class AdverseEventSuspectEntity extends BackboneElement {
   static readonly typeName: string = "AdverseEvent.SuspectEntity";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "instance",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "causality",
+      fieldType: [AdverseEventSuspectEntityCausality],
+      isArray: true
+    }];
+  }
 
   public instance?: Reference;
 

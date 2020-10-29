@@ -12,6 +12,7 @@ import {
   ProvenanceEntity,
   Reference,
   Signature,
+  FieldMetadata
 } from "../internal";
 
 export class Provenance extends DomainResource {
@@ -22,6 +23,50 @@ export class Provenance extends DomainResource {
   static readonly typeName: string = "Provenance";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "target",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "occurred",
+      fieldType: [Period, PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "recorded",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "policy",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reason",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "activity",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "agent",
+      fieldType: [ProvenanceAgent],
+      isArray: true
+    }, {
+      fieldName: "entity",
+      fieldType: [ProvenanceEntity],
+      isArray: true
+    }, {
+      fieldName: "signature",
+      fieldType: [Signature],
+      isArray: true
+    }];
+  }
 
   public target?: Array<Reference>;
 

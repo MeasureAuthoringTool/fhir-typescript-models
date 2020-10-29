@@ -8,6 +8,7 @@ import {
   Quantity,
   Range,
   SubstanceAmountReferenceRange,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceAmount extends BackboneElement {
@@ -18,6 +19,26 @@ export class SubstanceAmount extends BackboneElement {
   static readonly typeName: string = "SubstanceAmount";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "amount",
+      fieldType: [Quantity, Range, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "amountType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "amountText",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "referenceRange",
+      fieldType: [SubstanceAmountReferenceRange],
+      isArray: false
+    }];
+  }
 
   public amount?: Quantity | Range | PrimitiveString;
 

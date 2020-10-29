@@ -7,6 +7,7 @@ import {
   PrimitiveMarkdown,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Annotation extends Element {
@@ -17,6 +18,22 @@ export class Annotation extends Element {
   static readonly typeName: string = "Annotation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "author",
+      fieldType: [Reference, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "time",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }];
+  }
 
   public author?: Reference | PrimitiveString;
 

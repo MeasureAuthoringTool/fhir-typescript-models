@@ -5,6 +5,7 @@ import {
   IBundleEntrySearch,
   PrimitiveDecimal,
   SearchEntryMode,
+  FieldMetadata
 } from "../internal";
 
 export class BundleEntrySearch extends BackboneElement {
@@ -15,6 +16,18 @@ export class BundleEntrySearch extends BackboneElement {
   static readonly typeName: string = "Bundle.Entry.Search";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "mode",
+      fieldType: [SearchEntryMode],
+      isArray: false
+    }, {
+      fieldName: "score",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }];
+  }
 
   public mode?: SearchEntryMode;
 

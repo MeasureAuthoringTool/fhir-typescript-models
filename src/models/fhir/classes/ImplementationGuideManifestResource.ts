@@ -7,6 +7,7 @@ import {
   PrimitiveCanonical,
   PrimitiveUrl,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ImplementationGuideManifestResource extends BackboneElement {
@@ -17,6 +18,22 @@ export class ImplementationGuideManifestResource extends BackboneElement {
   static readonly typeName: string = "ImplementationGuide.Manifest.Resource";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "reference",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "example",
+      fieldType: [PrimitiveBoolean, PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "relativePath",
+      fieldType: [PrimitiveUrl],
+      isArray: false
+    }];
+  }
 
   public reference?: Reference;
 

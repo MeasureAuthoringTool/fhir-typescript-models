@@ -1,20 +1,20 @@
-import { StatementReference } from "./StatementReference";
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { ICqmObservation, StatementReference } from "../index";
 
 /**
  * Observation info
  */
 export class CqmObservation {
-  // tslint:disable-next-line:variable-name
   public observation_function?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public observation_parameter?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public aggregation_type?: string;
-  // tslint:disable-next-line:variable-name
+
   public set_id?: string;
 
   public static parse(
-    json: any,
+    json: ICqmObservation,
     providedInstance: CqmObservation = new CqmObservation()
   ): CqmObservation {
     const newInstance: CqmObservation = providedInstance;
@@ -38,8 +38,8 @@ export class CqmObservation {
     return newInstance;
   }
 
-  toJSON(): any {
-    const result: any = {};
+  toJSON(): ICqmObservation {
+    const result: ICqmObservation = {};
 
     if (this.observation_function) {
       result.observation_function = this.observation_function.toJSON();
@@ -56,3 +56,5 @@ export class CqmObservation {
     return result;
   }
 }
+
+/* eslint-enable import/prefer-default-export, import/no-cycle */

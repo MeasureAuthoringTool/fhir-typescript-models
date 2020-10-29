@@ -5,6 +5,7 @@ import {
   IMessageDefinitionAllowedResponse,
   PrimitiveCanonical,
   PrimitiveMarkdown,
+  FieldMetadata
 } from "../internal";
 
 export class MessageDefinitionAllowedResponse extends BackboneElement {
@@ -15,6 +16,18 @@ export class MessageDefinitionAllowedResponse extends BackboneElement {
   static readonly typeName: string = "MessageDefinition.AllowedResponse";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "message",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "situation",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }];
+  }
 
   public message?: PrimitiveCanonical;
 

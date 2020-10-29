@@ -17,6 +17,7 @@ import {
   ProcedureStatus,
   Range,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Procedure extends DomainResource {
@@ -27,6 +28,122 @@ export class Procedure extends DomainResource {
   static readonly typeName: string = "Procedure";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "instantiatesCanonical",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "instantiatesUri",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [ProcedureStatus],
+      isArray: false
+    }, {
+      fieldName: "statusReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "performed",
+      fieldType: [PrimitiveDateTime, Period, PrimitiveString, Age, Range],
+      isArray: false
+    }, {
+      fieldName: "recorder",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "asserter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [ProcedurePerformer],
+      isArray: true
+    }, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "bodySite",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "outcome",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "report",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "complication",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "complicationDetail",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "followUp",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "focalDevice",
+      fieldType: [ProcedureFocalDevice],
+      isArray: true
+    }, {
+      fieldName: "usedReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "usedCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

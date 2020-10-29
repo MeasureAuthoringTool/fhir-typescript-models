@@ -17,6 +17,7 @@ import {
   PrimitiveDateTime,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationRequest extends DomainResource {
@@ -27,6 +28,138 @@ export class MedicationRequest extends DomainResource {
   static readonly typeName: string = "MedicationRequest";
   
   static readonly primaryCodePath: string | null = "medication";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [MedicationRequestStatus],
+      isArray: false
+    }, {
+      fieldName: "statusReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "intent",
+      fieldType: [MedicationRequestIntent],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "priority",
+      fieldType: [MedicationRequestPriority],
+      isArray: false
+    }, {
+      fieldName: "doNotPerform",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "reported",
+      fieldType: [PrimitiveBoolean, Reference],
+      isArray: false
+    }, {
+      fieldName: "medication",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "supportingInformation",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "authoredOn",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "requester",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "performerType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "recorder",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "instantiatesCanonical",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "instantiatesUri",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "groupIdentifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "courseOfTherapyType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "insurance",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "dosageInstruction",
+      fieldType: [Dosage],
+      isArray: true
+    }, {
+      fieldName: "dispenseRequest",
+      fieldType: [MedicationRequestDispenseRequest],
+      isArray: false
+    }, {
+      fieldName: "substitution",
+      fieldType: [MedicationRequestSubstitution],
+      isArray: false
+    }, {
+      fieldName: "priorPrescription",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "detectedIssue",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "eventHistory",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

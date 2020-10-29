@@ -8,6 +8,7 @@ import {
   PrimitiveUri,
   ValueSetExpansionContains,
   ValueSetExpansionParameter,
+  FieldMetadata
 } from "../internal";
 
 export class ValueSetExpansion extends BackboneElement {
@@ -18,6 +19,34 @@ export class ValueSetExpansion extends BackboneElement {
   static readonly typeName: string = "ValueSet.Expansion";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "timestamp",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "total",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "offset",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "parameter",
+      fieldType: [ValueSetExpansionParameter],
+      isArray: true
+    }, {
+      fieldName: "contains",
+      fieldType: [ValueSetExpansionContains],
+      isArray: true
+    }];
+  }
 
   public identifier?: PrimitiveUri;
 

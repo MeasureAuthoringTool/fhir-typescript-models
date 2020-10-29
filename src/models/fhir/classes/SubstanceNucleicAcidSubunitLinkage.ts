@@ -5,6 +5,7 @@ import {
   Identifier,
   ISubstanceNucleicAcidSubunitLinkage,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceNucleicAcidSubunitLinkage extends BackboneElement {
@@ -15,6 +16,26 @@ export class SubstanceNucleicAcidSubunitLinkage extends BackboneElement {
   static readonly typeName: string = "SubstanceNucleicAcid.Subunit.Linkage";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "connectivity",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "residueSite",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public connectivity?: PrimitiveString;
 

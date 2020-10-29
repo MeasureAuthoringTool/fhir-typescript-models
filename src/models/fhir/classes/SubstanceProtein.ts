@@ -7,6 +7,7 @@ import {
   PrimitiveInteger,
   PrimitiveString,
   SubstanceProteinSubunit,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceProtein extends DomainResource {
@@ -17,6 +18,26 @@ export class SubstanceProtein extends DomainResource {
   static readonly typeName: string = "SubstanceProtein";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "sequenceType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "numberOfSubunits",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "disulfideLinkage",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "subunit",
+      fieldType: [SubstanceProteinSubunit],
+      isArray: true
+    }];
+  }
 
   public sequenceType?: CodeableConcept;
 

@@ -5,6 +5,7 @@ import {
   IEffectEvidenceSynthesisSampleSize,
   PrimitiveInteger,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class EffectEvidenceSynthesisSampleSize extends BackboneElement {
@@ -15,6 +16,22 @@ export class EffectEvidenceSynthesisSampleSize extends BackboneElement {
   static readonly typeName: string = "EffectEvidenceSynthesis.SampleSize";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "numberOfStudies",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "numberOfParticipants",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }];
+  }
 
   public description?: PrimitiveString;
 

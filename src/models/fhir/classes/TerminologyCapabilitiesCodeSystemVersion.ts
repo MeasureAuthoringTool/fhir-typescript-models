@@ -7,6 +7,7 @@ import {
   PrimitiveCode,
   PrimitiveString,
   TerminologyCapabilitiesCodeSystemVersionFilter,
+  FieldMetadata
 } from "../internal";
 
 export class TerminologyCapabilitiesCodeSystemVersion extends BackboneElement {
@@ -17,6 +18,34 @@ export class TerminologyCapabilitiesCodeSystemVersion extends BackboneElement {
   static readonly typeName: string = "TerminologyCapabilities.CodeSystem.Version";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "isDefault",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "compositional",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "language",
+      fieldType: [PrimitiveCode],
+      isArray: true
+    }, {
+      fieldName: "filter",
+      fieldType: [TerminologyCapabilitiesCodeSystemVersionFilter],
+      isArray: true
+    }, {
+      fieldName: "property",
+      fieldType: [PrimitiveCode],
+      isArray: true
+    }];
+  }
 
   public code?: PrimitiveString;
 

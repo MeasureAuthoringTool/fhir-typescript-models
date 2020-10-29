@@ -7,6 +7,7 @@ import {
   MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength,
   PrimitiveString,
   Ratio,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductIngredientSpecifiedSubstanceStrength extends BackboneElement {
@@ -17,6 +18,38 @@ export class MedicinalProductIngredientSpecifiedSubstanceStrength extends Backbo
   static readonly typeName: string = "MedicinalProductIngredient.SpecifiedSubstance.Strength";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "presentation",
+      fieldType: [Ratio],
+      isArray: false
+    }, {
+      fieldName: "presentationLowLimit",
+      fieldType: [Ratio],
+      isArray: false
+    }, {
+      fieldName: "concentration",
+      fieldType: [Ratio],
+      isArray: false
+    }, {
+      fieldName: "concentrationLowLimit",
+      fieldType: [Ratio],
+      isArray: false
+    }, {
+      fieldName: "measurementPoint",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "country",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "referenceStrength",
+      fieldType: [MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength],
+      isArray: true
+    }];
+  }
 
   public presentation?: Ratio;
 

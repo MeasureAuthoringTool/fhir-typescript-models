@@ -4,6 +4,7 @@ import {
   Extension,
   ITerminologyCapabilitiesSoftware,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class TerminologyCapabilitiesSoftware extends BackboneElement {
@@ -14,6 +15,18 @@ export class TerminologyCapabilitiesSoftware extends BackboneElement {
   static readonly typeName: string = "TerminologyCapabilities.Software";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveString;
 

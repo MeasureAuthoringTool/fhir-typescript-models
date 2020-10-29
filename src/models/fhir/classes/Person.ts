@@ -13,6 +13,7 @@ import {
   PrimitiveBoolean,
   PrimitiveDate,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Person extends DomainResource {
@@ -23,6 +24,50 @@ export class Person extends DomainResource {
   static readonly typeName: string = "Person";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "name",
+      fieldType: [HumanName],
+      isArray: true
+    }, {
+      fieldName: "telecom",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "gender",
+      fieldType: [AdministrativeGender],
+      isArray: false
+    }, {
+      fieldName: "birthDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "address",
+      fieldType: [Address],
+      isArray: true
+    }, {
+      fieldName: "photo",
+      fieldType: [Attachment],
+      isArray: false
+    }, {
+      fieldName: "managingOrganization",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "active",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "link",
+      fieldType: [PersonLink],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

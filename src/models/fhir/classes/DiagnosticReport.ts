@@ -13,6 +13,7 @@ import {
   PrimitiveInstant,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class DiagnosticReport extends DomainResource {
@@ -23,6 +24,82 @@ export class DiagnosticReport extends DomainResource {
   static readonly typeName: string = "DiagnosticReport";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [DiagnosticReportStatus],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "effective",
+      fieldType: [PrimitiveDateTime, Period],
+      isArray: false
+    }, {
+      fieldName: "issued",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "resultsInterpreter",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "specimen",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "result",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "imagingStudy",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "media",
+      fieldType: [DiagnosticReportMedia],
+      isArray: true
+    }, {
+      fieldName: "conclusion",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "conclusionCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "presentedForm",
+      fieldType: [Attachment],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   Ratio,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationAdministrationDosage extends BackboneElement {
@@ -17,6 +18,34 @@ export class MedicationAdministrationDosage extends BackboneElement {
   static readonly typeName: string = "MedicationAdministration.Dosage";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "site",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "route",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "method",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "dose",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "rate",
+      fieldType: [Ratio, SimpleQuantity],
+      isArray: false
+    }];
+  }
 
   public text?: PrimitiveString;
 

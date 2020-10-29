@@ -29,6 +29,7 @@ import {
   SimpleQuantity,
   Timing,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class ActivityDefinition extends DomainResource {
@@ -39,6 +40,194 @@ export class ActivityDefinition extends DomainResource {
   static readonly typeName: string = "ActivityDefinition";
   
   static readonly primaryCodePath: string | null = "topic";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "subtitle",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "experimental",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "purpose",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "usage",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "copyright",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "approvalDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "lastReviewDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "effectivePeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "topic",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "author",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "editor",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "reviewer",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "endorser",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "relatedArtifact",
+      fieldType: [RelatedArtifact],
+      isArray: true
+    }, {
+      fieldName: "library",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "kind",
+      fieldType: [ActivityDefinitionKind],
+      isArray: false
+    }, {
+      fieldName: "profile",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "intent",
+      fieldType: [RequestIntent],
+      isArray: false
+    }, {
+      fieldName: "priority",
+      fieldType: [RequestPriority],
+      isArray: false
+    }, {
+      fieldName: "doNotPerform",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "timing",
+      fieldType: [Timing, PrimitiveDateTime, Age, Period, Range, Duration],
+      isArray: false
+    }, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "participant",
+      fieldType: [ActivityDefinitionParticipant],
+      isArray: true
+    }, {
+      fieldName: "product",
+      fieldType: [Reference, CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "dosage",
+      fieldType: [Dosage],
+      isArray: true
+    }, {
+      fieldName: "bodySite",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "specimenRequirement",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "observationRequirement",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "observationResultRequirement",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "transform",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "dynamicValue",
+      fieldType: [ActivityDefinitionDynamicValue],
+      isArray: true
+    }];
+  }
 
   public url?: PrimitiveUri;
 

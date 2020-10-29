@@ -10,6 +10,7 @@ import {
   PrimitiveDate,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class PaymentNotice extends DomainResource {
@@ -20,6 +21,58 @@ export class PaymentNotice extends DomainResource {
   static readonly typeName: string = "PaymentNotice";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [PaymentNoticeStatus],
+      isArray: false
+    }, {
+      fieldName: "request",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "response",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "provider",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "payment",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "paymentDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "payee",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "recipient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "amount",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "paymentStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

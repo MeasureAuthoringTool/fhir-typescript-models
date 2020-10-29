@@ -6,6 +6,7 @@ import {
   IObservationDefinitionQuantitativeDetails,
   PrimitiveDecimal,
   PrimitiveInteger,
+  FieldMetadata
 } from "../internal";
 
 export class ObservationDefinitionQuantitativeDetails extends BackboneElement {
@@ -16,6 +17,26 @@ export class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   static readonly typeName: string = "ObservationDefinition.QuantitativeDetails";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "customaryUnit",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "unit",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "conversionFactor",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "decimalPrecision",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }];
+  }
 
   public customaryUnit?: CodeableConcept;
 

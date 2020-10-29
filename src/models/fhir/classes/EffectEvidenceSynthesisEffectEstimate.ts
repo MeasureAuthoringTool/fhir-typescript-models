@@ -7,6 +7,7 @@ import {
   IEffectEvidenceSynthesisEffectEstimate,
   PrimitiveDecimal,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class EffectEvidenceSynthesisEffectEstimate extends BackboneElement {
@@ -17,6 +18,34 @@ export class EffectEvidenceSynthesisEffectEstimate extends BackboneElement {
   static readonly typeName: string = "EffectEvidenceSynthesis.EffectEstimate";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "variantState",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "unitOfMeasure",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "precisionEstimate",
+      fieldType: [EffectEvidenceSynthesisEffectEstimatePrecisionEstimate],
+      isArray: true
+    }];
+  }
 
   public description?: PrimitiveString;
 

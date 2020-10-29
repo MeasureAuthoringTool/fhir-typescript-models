@@ -9,6 +9,7 @@ import {
   StructureMapGroupRuleTargetParameter,
   StructureMapTargetListMode,
   StructureMapTransform,
+  FieldMetadata
 } from "../internal";
 
 export class StructureMapGroupRuleTarget extends BackboneElement {
@@ -19,6 +20,42 @@ export class StructureMapGroupRuleTarget extends BackboneElement {
   static readonly typeName: string = "StructureMap.Group.Rule.Target";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "context",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "contextType",
+      fieldType: [StructureMapContextType],
+      isArray: false
+    }, {
+      fieldName: "element",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "variable",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "listMode",
+      fieldType: [StructureMapTargetListMode],
+      isArray: true
+    }, {
+      fieldName: "listRuleId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "transform",
+      fieldType: [StructureMapTransform],
+      isArray: false
+    }, {
+      fieldName: "parameter",
+      fieldType: [StructureMapGroupRuleTargetParameter],
+      isArray: true
+    }];
+  }
 
   public context?: PrimitiveId;
 

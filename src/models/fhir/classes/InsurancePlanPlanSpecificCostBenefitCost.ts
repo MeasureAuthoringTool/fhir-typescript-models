@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IInsurancePlanPlanSpecificCostBenefitCost,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class InsurancePlanPlanSpecificCostBenefitCost extends BackboneElement {
@@ -14,6 +15,26 @@ export class InsurancePlanPlanSpecificCostBenefitCost extends BackboneElement {
   static readonly typeName: string = "InsurancePlan.Plan.SpecificCost.Benefit.Cost";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "applicability",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "qualifiers",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "value",
+      fieldType: [Quantity],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   ICoverageEligibilityRequestItemDiagnosis,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CoverageEligibilityRequestItemDiagnosis extends BackboneElement {
@@ -14,6 +15,14 @@ export class CoverageEligibilityRequestItemDiagnosis extends BackboneElement {
   static readonly typeName: string = "CoverageEligibilityRequest.Item.Diagnosis";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "diagnosis",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }];
+  }
 
   public diagnosis?: CodeableConcept | Reference;
 

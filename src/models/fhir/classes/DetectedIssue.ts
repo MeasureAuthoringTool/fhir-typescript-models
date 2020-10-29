@@ -14,6 +14,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class DetectedIssue extends DomainResource {
@@ -24,6 +25,58 @@ export class DetectedIssue extends DomainResource {
   static readonly typeName: string = "DetectedIssue";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [DetectedIssueStatus],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "severity",
+      fieldType: [DetectedIssueSeverity],
+      isArray: false
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "identified",
+      fieldType: [PrimitiveDateTime, Period],
+      isArray: false
+    }, {
+      fieldName: "author",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "implicated",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "evidence",
+      fieldType: [DetectedIssueEvidence],
+      isArray: true
+    }, {
+      fieldName: "detail",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "reference",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "mitigation",
+      fieldType: [DetectedIssueMitigation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

@@ -8,6 +8,7 @@ import {
   PrimitiveString,
   Reference,
   ResearchSubjectStatus,
+  FieldMetadata
 } from "../internal";
 
 export class ResearchSubject extends DomainResource {
@@ -18,6 +19,42 @@ export class ResearchSubject extends DomainResource {
   static readonly typeName: string = "ResearchSubject";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [ResearchSubjectStatus],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "study",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "individual",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "assignedArm",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "actualArm",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "consent",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

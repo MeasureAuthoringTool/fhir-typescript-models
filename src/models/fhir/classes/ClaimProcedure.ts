@@ -7,6 +7,7 @@ import {
   PrimitiveDateTime,
   PrimitivePositiveInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimProcedure extends BackboneElement {
@@ -17,6 +18,30 @@ export class ClaimProcedure extends BackboneElement {
   static readonly typeName: string = "Claim.Procedure";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "sequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "procedure",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "udi",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public sequence?: PrimitivePositiveInt;
 

@@ -6,6 +6,7 @@ import {
   Period,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class BiologicallyDerivedProductCollection extends BackboneElement {
@@ -16,6 +17,22 @@ export class BiologicallyDerivedProductCollection extends BackboneElement {
   static readonly typeName: string = "BiologicallyDerivedProduct.Collection";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "collector",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "collected",
+      fieldType: [PrimitiveDateTime, Period],
+      isArray: false
+    }];
+  }
 
   public collector?: Reference;
 

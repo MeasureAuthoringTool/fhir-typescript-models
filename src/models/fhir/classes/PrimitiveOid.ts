@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
 import { 
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class PrimitiveOid extends PrimitiveUri {
@@ -11,6 +12,11 @@ export class PrimitiveOid extends PrimitiveUri {
   static readonly typeName: string = "oid";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...PrimitiveUri.fieldInfo, 
+    ];
+  }
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveUri.parsePrimitive>[0],

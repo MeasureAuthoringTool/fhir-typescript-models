@@ -13,6 +13,7 @@ import {
   PrimitiveDateTime,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Communication extends DomainResource {
@@ -23,6 +24,102 @@ export class Communication extends DomainResource {
   static readonly typeName: string = "Communication";
   
   static readonly primaryCodePath: string | null = "category";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "instantiatesCanonical",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "instantiatesUri",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "inResponseTo",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [CommunicationStatus],
+      isArray: false
+    }, {
+      fieldName: "statusReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "priority",
+      fieldType: [CommunicationPriority],
+      isArray: false
+    }, {
+      fieldName: "medium",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "topic",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "about",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "sent",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "received",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "recipient",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "sender",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "payload",
+      fieldType: [CommunicationPayload],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

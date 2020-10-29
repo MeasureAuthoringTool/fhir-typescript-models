@@ -5,6 +5,7 @@ import {
   Extension,
   ISubstanceSourceMaterialOrganismHybrid,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSourceMaterialOrganismHybrid extends BackboneElement {
@@ -15,6 +16,30 @@ export class SubstanceSourceMaterialOrganismHybrid extends BackboneElement {
   static readonly typeName: string = "SubstanceSourceMaterial.Organism.Hybrid";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "maternalOrganismId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "maternalOrganismName",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "paternalOrganismId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "paternalOrganismName",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "hybridType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public maternalOrganismId?: PrimitiveString;
 

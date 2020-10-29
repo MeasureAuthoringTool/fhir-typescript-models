@@ -7,6 +7,7 @@ import {
   PrimitiveBoolean,
   Quantity,
   Range,
+  FieldMetadata
 } from "../internal";
 
 export class SupplyRequestParameter extends BackboneElement {
@@ -17,6 +18,18 @@ export class SupplyRequestParameter extends BackboneElement {
   static readonly typeName: string = "SupplyRequest.Parameter";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [CodeableConcept, Quantity, Range, PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public code?: CodeableConcept;
 

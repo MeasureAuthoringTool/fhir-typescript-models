@@ -6,6 +6,7 @@ import {
   ICapabilityStatementRestSecurity,
   PrimitiveBoolean,
   PrimitiveMarkdown,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatementRestSecurity extends BackboneElement {
@@ -16,6 +17,22 @@ export class CapabilityStatementRestSecurity extends BackboneElement {
   static readonly typeName: string = "CapabilityStatement.Rest.Security";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "cors",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "service",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }];
+  }
 
   public cors?: PrimitiveBoolean;
 

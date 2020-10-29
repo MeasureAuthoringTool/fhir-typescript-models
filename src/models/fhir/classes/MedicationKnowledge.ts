@@ -20,6 +20,7 @@ import {
   PrimitiveString,
   Reference,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationKnowledge extends DomainResource {
@@ -30,6 +31,98 @@ export class MedicationKnowledge extends DomainResource {
   static readonly typeName: string = "MedicationKnowledge";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [MedicationKnowledgeStatus],
+      isArray: false
+    }, {
+      fieldName: "manufacturer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "doseForm",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "amount",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "synonym",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "relatedMedicationKnowledge",
+      fieldType: [MedicationKnowledgeRelatedMedicationKnowledge],
+      isArray: true
+    }, {
+      fieldName: "associatedMedication",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "productType",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "monograph",
+      fieldType: [MedicationKnowledgeMonograph],
+      isArray: true
+    }, {
+      fieldName: "ingredient",
+      fieldType: [MedicationKnowledgeIngredient],
+      isArray: true
+    }, {
+      fieldName: "preparationInstruction",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "intendedRoute",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "cost",
+      fieldType: [MedicationKnowledgeCost],
+      isArray: true
+    }, {
+      fieldName: "monitoringProgram",
+      fieldType: [MedicationKnowledgeMonitoringProgram],
+      isArray: true
+    }, {
+      fieldName: "administrationGuidelines",
+      fieldType: [MedicationKnowledgeAdministrationGuidelines],
+      isArray: true
+    }, {
+      fieldName: "medicineClassification",
+      fieldType: [MedicationKnowledgeMedicineClassification],
+      isArray: true
+    }, {
+      fieldName: "packaging",
+      fieldType: [MedicationKnowledgePackaging],
+      isArray: false
+    }, {
+      fieldName: "drugCharacteristic",
+      fieldType: [MedicationKnowledgeDrugCharacteristic],
+      isArray: true
+    }, {
+      fieldName: "contraindication",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "regulatory",
+      fieldType: [MedicationKnowledgeRegulatory],
+      isArray: true
+    }, {
+      fieldName: "kinetics",
+      fieldType: [MedicationKnowledgeKinetics],
+      isArray: true
+    }];
+  }
 
   public code?: CodeableConcept;
 

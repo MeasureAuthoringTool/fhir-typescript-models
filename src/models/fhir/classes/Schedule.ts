@@ -9,6 +9,7 @@ import {
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Schedule extends DomainResource {
@@ -19,6 +20,42 @@ export class Schedule extends DomainResource {
   static readonly typeName: string = "Schedule";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "active",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "serviceCategory",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "serviceType",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "specialty",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "actor",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "planningHorizon",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

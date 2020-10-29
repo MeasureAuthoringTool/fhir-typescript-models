@@ -12,6 +12,7 @@ import {
   PrimitiveDateTime,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class GuidanceResponse extends DomainResource {
@@ -22,6 +23,70 @@ export class GuidanceResponse extends DomainResource {
   static readonly typeName: string = "GuidanceResponse";
   
   static readonly primaryCodePath: string | null = "module";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "requestIdentifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "module",
+      fieldType: [PrimitiveUri, PrimitiveCanonical, CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [GuidanceResponseStatus],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "occurrenceDateTime",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "evaluationMessage",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "outputParameters",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "result",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "dataRequirement",
+      fieldType: [DataRequirement],
+      isArray: true
+    }];
+  }
 
   public requestIdentifier?: Identifier;
 

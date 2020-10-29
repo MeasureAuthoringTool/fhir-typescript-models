@@ -4,6 +4,7 @@ import {
   Extension,
   ILocationPosition,
   PrimitiveDecimal,
+  FieldMetadata
 } from "../internal";
 
 export class LocationPosition extends BackboneElement {
@@ -14,6 +15,22 @@ export class LocationPosition extends BackboneElement {
   static readonly typeName: string = "Location.Position";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "longitude",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "latitude",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "altitude",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }];
+  }
 
   public longitude?: PrimitiveDecimal;
 

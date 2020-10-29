@@ -14,6 +14,7 @@ import {
   RequestIntent,
   RequestPriority,
   RequestStatus,
+  FieldMetadata
 } from "../internal";
 
 export class RequestGroup extends DomainResource {
@@ -24,6 +25,82 @@ export class RequestGroup extends DomainResource {
   static readonly typeName: string = "RequestGroup";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "instantiatesCanonical",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "instantiatesUri",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "replaces",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "groupIdentifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [RequestStatus],
+      isArray: false
+    }, {
+      fieldName: "intent",
+      fieldType: [RequestIntent],
+      isArray: false
+    }, {
+      fieldName: "priority",
+      fieldType: [RequestPriority],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "authoredOn",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "author",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "action",
+      fieldType: [RequestGroupAction],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

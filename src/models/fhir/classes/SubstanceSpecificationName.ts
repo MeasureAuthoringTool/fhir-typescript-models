@@ -8,6 +8,7 @@ import {
   PrimitiveString,
   Reference,
   SubstanceSpecificationNameOfficial,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSpecificationName extends BackboneElement {
@@ -18,6 +19,54 @@ export class SubstanceSpecificationName extends BackboneElement {
   static readonly typeName: string = "SubstanceSpecification.Name";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "preferred",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "language",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "domain",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "synonym",
+      fieldType: [SubstanceSpecificationName],
+      isArray: true
+    }, {
+      fieldName: "translation",
+      fieldType: [SubstanceSpecificationName],
+      isArray: true
+    }, {
+      fieldName: "official",
+      fieldType: [SubstanceSpecificationNameOfficial],
+      isArray: true
+    }, {
+      fieldName: "source",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public name?: PrimitiveString;
 

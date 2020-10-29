@@ -5,6 +5,7 @@ import {
   Extension,
   IRelatedPersonCommunication,
   PrimitiveBoolean,
+  FieldMetadata
 } from "../internal";
 
 export class RelatedPersonCommunication extends BackboneElement {
@@ -15,6 +16,18 @@ export class RelatedPersonCommunication extends BackboneElement {
   static readonly typeName: string = "RelatedPerson.Communication";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "language",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "preferred",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public language?: CodeableConcept;
 

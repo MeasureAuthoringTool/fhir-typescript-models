@@ -6,6 +6,7 @@ import {
   IMedicationDispenseSubstitution,
   PrimitiveBoolean,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationDispenseSubstitution extends BackboneElement {
@@ -16,6 +17,26 @@ export class MedicationDispenseSubstitution extends BackboneElement {
   static readonly typeName: string = "MedicationDispense.Substitution";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "wasSubstituted",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "reason",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "responsibleParty",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public wasSubstituted?: PrimitiveBoolean;
 

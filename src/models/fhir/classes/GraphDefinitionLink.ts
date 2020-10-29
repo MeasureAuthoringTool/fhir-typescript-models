@@ -6,6 +6,7 @@ import {
   IGraphDefinitionLink,
   PrimitiveInteger,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class GraphDefinitionLink extends BackboneElement {
@@ -16,6 +17,34 @@ export class GraphDefinitionLink extends BackboneElement {
   static readonly typeName: string = "GraphDefinition.Link";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "path",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "sliceName",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "min",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "max",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "target",
+      fieldType: [GraphDefinitionLinkTarget],
+      isArray: true
+    }];
+  }
 
   public path?: PrimitiveString;
 

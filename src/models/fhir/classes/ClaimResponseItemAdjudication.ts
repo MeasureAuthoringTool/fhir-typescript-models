@@ -6,6 +6,7 @@ import {
   IClaimResponseItemAdjudication,
   Money,
   PrimitiveDecimal,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimResponseItemAdjudication extends BackboneElement {
@@ -16,6 +17,26 @@ export class ClaimResponseItemAdjudication extends BackboneElement {
   static readonly typeName: string = "ClaimResponse.Item.Adjudication";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "reason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "amount",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }];
+  }
 
   public category?: CodeableConcept;
 

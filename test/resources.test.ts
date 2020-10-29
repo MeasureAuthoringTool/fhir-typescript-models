@@ -1,4 +1,3 @@
-import "jest-extended";
 import { MedicationRequest } from "../src/models/fhir/classes/MedicationRequest";
 import { ValueSet } from "../src/models/fhir/classes/ValueSet";
 

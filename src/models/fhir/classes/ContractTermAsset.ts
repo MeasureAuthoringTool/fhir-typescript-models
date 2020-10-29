@@ -12,6 +12,7 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ContractTermAsset extends BackboneElement {
@@ -22,6 +23,70 @@ export class ContractTermAsset extends BackboneElement {
   static readonly typeName: string = "Contract.Term.Asset";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "scope",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "typeReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "subtype",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "relationship",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "context",
+      fieldType: [ContractTermAssetContext],
+      isArray: true
+    }, {
+      fieldName: "condition",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "periodType",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: true
+    }, {
+      fieldName: "usePeriod",
+      fieldType: [Period],
+      isArray: true
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "linkId",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "answer",
+      fieldType: [ContractTermOfferAnswer],
+      isArray: true
+    }, {
+      fieldName: "securityLabelNumber",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: true
+    }, {
+      fieldName: "valuedItem",
+      fieldType: [ContractTermAssetValuedItem],
+      isArray: true
+    }];
+  }
 
   public scope?: CodeableConcept;
 

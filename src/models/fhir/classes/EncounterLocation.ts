@@ -7,6 +7,7 @@ import {
   IEncounterLocation,
   Period,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class EncounterLocation extends BackboneElement {
@@ -17,6 +18,26 @@ export class EncounterLocation extends BackboneElement {
   static readonly typeName: string = "Encounter.Location";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [EncounterLocationStatus],
+      isArray: false
+    }, {
+      fieldName: "physicalType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public location?: Reference;
 

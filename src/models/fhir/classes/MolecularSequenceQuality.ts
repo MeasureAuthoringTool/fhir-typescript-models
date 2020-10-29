@@ -9,6 +9,7 @@ import {
   PrimitiveInteger,
   QualityType,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class MolecularSequenceQuality extends BackboneElement {
@@ -19,6 +20,70 @@ export class MolecularSequenceQuality extends BackboneElement {
   static readonly typeName: string = "MolecularSequence.Quality";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [QualityType],
+      isArray: false
+    }, {
+      fieldName: "standardSequence",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "start",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "end",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "score",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "method",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "truthTP",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "queryTP",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "truthFN",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "queryFP",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "gtFP",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "precision",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "recall",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "fScore",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "roc",
+      fieldType: [MolecularSequenceQualityRoc],
+      isArray: false
+    }];
+  }
 
   public type?: QualityType;
 

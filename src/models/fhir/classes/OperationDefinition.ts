@@ -18,6 +18,7 @@ import {
   PublicationStatus,
   ResourceType,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class OperationDefinition extends DomainResource {
@@ -28,6 +29,114 @@ export class OperationDefinition extends DomainResource {
   static readonly typeName: string = "OperationDefinition";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "kind",
+      fieldType: [OperationKind],
+      isArray: false
+    }, {
+      fieldName: "experimental",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "purpose",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "affectsState",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "base",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "resource",
+      fieldType: [ResourceType],
+      isArray: true
+    }, {
+      fieldName: "system",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "instance",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "inputProfile",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "outputProfile",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "parameter",
+      fieldType: [OperationDefinitionParameter],
+      isArray: true
+    }, {
+      fieldName: "overload",
+      fieldType: [OperationDefinitionOverload],
+      isArray: true
+    }];
+  }
 
   public url?: PrimitiveUri;
 

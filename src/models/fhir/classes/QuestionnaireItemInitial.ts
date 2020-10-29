@@ -15,6 +15,7 @@ import {
   PrimitiveUri,
   Quantity,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class QuestionnaireItemInitial extends BackboneElement {
@@ -25,6 +26,14 @@ export class QuestionnaireItemInitial extends BackboneElement {
   static readonly typeName: string = "Questionnaire.Item.Initial";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "value",
+      fieldType: [PrimitiveBoolean, PrimitiveDecimal, PrimitiveInteger, PrimitiveDate, PrimitiveDateTime, PrimitiveTime, PrimitiveString, PrimitiveUri, Attachment, Coding, Quantity, Reference],
+      isArray: false
+    }];
+  }
 
   public value?: PrimitiveBoolean | PrimitiveDecimal | PrimitiveInteger | PrimitiveDate | PrimitiveDateTime | PrimitiveTime | PrimitiveString | PrimitiveUri | Attachment | Coding | Quantity | Reference;
 

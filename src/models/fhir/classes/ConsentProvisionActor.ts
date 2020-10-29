@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IConsentProvisionActor,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ConsentProvisionActor extends BackboneElement {
@@ -14,6 +15,18 @@ export class ConsentProvisionActor extends BackboneElement {
   static readonly typeName: string = "Consent.Provision.Actor";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "role",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "reference",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public role?: CodeableConcept;
 

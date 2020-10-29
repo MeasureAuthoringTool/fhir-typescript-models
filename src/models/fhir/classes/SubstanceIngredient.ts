@@ -5,6 +5,7 @@ import {
   ISubstanceIngredient,
   Ratio,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceIngredient extends BackboneElement {
@@ -15,6 +16,18 @@ export class SubstanceIngredient extends BackboneElement {
   static readonly typeName: string = "Substance.Ingredient";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "quantity",
+      fieldType: [Ratio],
+      isArray: false
+    }, {
+      fieldName: "substance",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }];
+  }
 
   public quantity?: Ratio;
 

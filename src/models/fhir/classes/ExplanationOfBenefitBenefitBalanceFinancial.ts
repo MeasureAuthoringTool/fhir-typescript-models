@@ -7,6 +7,7 @@ import {
   Money,
   PrimitiveString,
   PrimitiveUnsignedInt,
+  FieldMetadata
 } from "../internal";
 
 export class ExplanationOfBenefitBenefitBalanceFinancial extends BackboneElement {
@@ -17,6 +18,22 @@ export class ExplanationOfBenefitBenefitBalanceFinancial extends BackboneElement
   static readonly typeName: string = "ExplanationOfBenefit.BenefitBalance.Financial";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "allowed",
+      fieldType: [PrimitiveUnsignedInt, PrimitiveString, Money],
+      isArray: false
+    }, {
+      fieldName: "used",
+      fieldType: [PrimitiveUnsignedInt, Money],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

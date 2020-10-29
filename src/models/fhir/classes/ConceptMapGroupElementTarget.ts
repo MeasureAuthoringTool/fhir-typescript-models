@@ -7,6 +7,7 @@ import {
   IConceptMapGroupElementTarget,
   PrimitiveCode,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ConceptMapGroupElementTarget extends BackboneElement {
@@ -17,6 +18,34 @@ export class ConceptMapGroupElementTarget extends BackboneElement {
   static readonly typeName: string = "ConceptMap.Group.Element.Target";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "display",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "equivalence",
+      fieldType: [ConceptMapEquivalence],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "dependsOn",
+      fieldType: [ConceptMapGroupElementTargetDependsOn],
+      isArray: true
+    }, {
+      fieldName: "product",
+      fieldType: [ConceptMapGroupElementTargetDependsOn],
+      isArray: true
+    }];
+  }
 
   public code?: PrimitiveCode;
 

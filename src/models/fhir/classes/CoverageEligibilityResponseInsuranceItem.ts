@@ -9,6 +9,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CoverageEligibilityResponseInsuranceItem extends BackboneElement {
@@ -19,6 +20,66 @@ export class CoverageEligibilityResponseInsuranceItem extends BackboneElement {
   static readonly typeName: string = "CoverageEligibilityResponse.Insurance.Item";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "productOrService",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "modifier",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "provider",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "excluded",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "network",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "unit",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "term",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "benefit",
+      fieldType: [CoverageEligibilityResponseInsuranceItemBenefit],
+      isArray: true
+    }, {
+      fieldName: "authorizationRequired",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "authorizationSupporting",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "authorizationUrl",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }];
+  }
 
   public category?: CodeableConcept;
 

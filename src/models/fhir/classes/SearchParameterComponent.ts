@@ -5,6 +5,7 @@ import {
   ISearchParameterComponent,
   PrimitiveCanonical,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class SearchParameterComponent extends BackboneElement {
@@ -15,6 +16,18 @@ export class SearchParameterComponent extends BackboneElement {
   static readonly typeName: string = "SearchParameter.Component";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "definition",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "expression",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public definition?: PrimitiveCanonical;
 

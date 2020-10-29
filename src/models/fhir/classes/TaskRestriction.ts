@@ -6,6 +6,7 @@ import {
   Period,
   PrimitivePositiveInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class TaskRestriction extends BackboneElement {
@@ -16,6 +17,22 @@ export class TaskRestriction extends BackboneElement {
   static readonly typeName: string = "Task.Restriction";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "repetitions",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "recipient",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public repetitions?: PrimitivePositiveInt;
 

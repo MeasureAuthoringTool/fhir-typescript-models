@@ -13,6 +13,7 @@ import {
   Period,
   PrimitiveInstant,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class AuditEvent extends DomainResource {
@@ -23,6 +24,54 @@ export class AuditEvent extends DomainResource {
   static readonly typeName: string = "AuditEvent";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "type",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "subtype",
+      fieldType: [Coding],
+      isArray: true
+    }, {
+      fieldName: "action",
+      fieldType: [AuditEventAction],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "recorded",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "outcome",
+      fieldType: [AuditEventOutcome],
+      isArray: false
+    }, {
+      fieldName: "outcomeDesc",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "purposeOfEvent",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "agent",
+      fieldType: [AuditEventAgent],
+      isArray: true
+    }, {
+      fieldName: "source",
+      fieldType: [AuditEventSource],
+      isArray: false
+    }, {
+      fieldName: "entity",
+      fieldType: [AuditEventEntity],
+      isArray: true
+    }];
+  }
 
   public type?: Coding;
 

@@ -5,6 +5,7 @@ import {
   Extension,
   IOperationDefinitionParameterBinding,
   PrimitiveCanonical,
+  FieldMetadata
 } from "../internal";
 
 export class OperationDefinitionParameterBinding extends BackboneElement {
@@ -15,6 +16,18 @@ export class OperationDefinitionParameterBinding extends BackboneElement {
   static readonly typeName: string = "OperationDefinition.Parameter.Binding";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "strength",
+      fieldType: [BindingStrength],
+      isArray: false
+    }, {
+      fieldName: "valueSet",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }];
+  }
 
   public strength?: BindingStrength;
 

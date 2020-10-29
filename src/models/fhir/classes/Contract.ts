@@ -18,6 +18,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Contract extends DomainResource {
@@ -28,6 +29,142 @@ export class Contract extends DomainResource {
   static readonly typeName: string = "Contract";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [ContractStatus],
+      isArray: false
+    }, {
+      fieldName: "legalState",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "instantiatesCanonical",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "instantiatesUri",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "contentDerivative",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "issued",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "applies",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "expirationType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "authority",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "domain",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "site",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "subtitle",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "alias",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "author",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "scope",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "topic",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subType",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "contentDefinition",
+      fieldType: [ContractContentDefinition],
+      isArray: false
+    }, {
+      fieldName: "term",
+      fieldType: [ContractTerm],
+      isArray: true
+    }, {
+      fieldName: "supportingInfo",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "relevantHistory",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "signer",
+      fieldType: [ContractSigner],
+      isArray: true
+    }, {
+      fieldName: "friendly",
+      fieldType: [ContractFriendly],
+      isArray: true
+    }, {
+      fieldName: "legal",
+      fieldType: [ContractLegal],
+      isArray: true
+    }, {
+      fieldName: "rule",
+      fieldType: [ContractRule],
+      isArray: true
+    }, {
+      fieldName: "legallyBinding",
+      fieldType: [Attachment, Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

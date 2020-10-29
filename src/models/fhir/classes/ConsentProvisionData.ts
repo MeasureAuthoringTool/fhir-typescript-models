@@ -5,6 +5,7 @@ import {
   Extension,
   IConsentProvisionData,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ConsentProvisionData extends BackboneElement {
@@ -15,6 +16,18 @@ export class ConsentProvisionData extends BackboneElement {
   static readonly typeName: string = "Consent.Provision.Data";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "meaning",
+      fieldType: [ConsentDataMeaning],
+      isArray: false
+    }, {
+      fieldName: "reference",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public meaning?: ConsentDataMeaning;
 
