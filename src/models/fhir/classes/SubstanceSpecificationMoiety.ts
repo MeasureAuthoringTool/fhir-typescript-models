@@ -7,6 +7,7 @@ import {
   ISubstanceSpecificationMoiety,
   PrimitiveString,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSpecificationMoiety extends BackboneElement {
@@ -17,6 +18,38 @@ export class SubstanceSpecificationMoiety extends BackboneElement {
   static readonly typeName: string = "SubstanceSpecification.Moiety";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "role",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "stereochemistry",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "opticalActivity",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "molecularFormula",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "amount",
+      fieldType: [Quantity, PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public role?: CodeableConcept;
 

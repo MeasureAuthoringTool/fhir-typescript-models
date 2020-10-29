@@ -6,6 +6,7 @@ import {
   PrimitiveBoolean,
   PrimitivePositiveInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
@@ -16,6 +17,22 @@ export class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   static readonly typeName: string = "CoverageEligibilityRequest.SupportingInfo";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "sequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "information",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "appliesToAll",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public sequence?: PrimitivePositiveInt;
 

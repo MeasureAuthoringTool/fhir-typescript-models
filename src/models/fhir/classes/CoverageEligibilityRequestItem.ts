@@ -9,6 +9,7 @@ import {
   PrimitivePositiveInt,
   Reference,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class CoverageEligibilityRequestItem extends BackboneElement {
@@ -19,6 +20,50 @@ export class CoverageEligibilityRequestItem extends BackboneElement {
   static readonly typeName: string = "CoverageEligibilityRequest.Item";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "supportingInfoSequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: true
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "productOrService",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "modifier",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "provider",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "unitPrice",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "facility",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "diagnosis",
+      fieldType: [CoverageEligibilityRequestItemDiagnosis],
+      isArray: true
+    }, {
+      fieldName: "detail",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public supportingInfoSequence?: Array<PrimitivePositiveInt>;
 

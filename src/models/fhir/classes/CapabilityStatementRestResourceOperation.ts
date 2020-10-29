@@ -6,6 +6,7 @@ import {
   PrimitiveCanonical,
   PrimitiveMarkdown,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatementRestResourceOperation extends BackboneElement {
@@ -16,6 +17,22 @@ export class CapabilityStatementRestResourceOperation extends BackboneElement {
   static readonly typeName: string = "CapabilityStatement.Rest.Resource.Operation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "definition",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveString;
 

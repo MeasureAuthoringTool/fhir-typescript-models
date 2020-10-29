@@ -16,6 +16,7 @@ import {
   PrimitiveString,
   Range,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class AllergyIntolerance extends DomainResource {
@@ -26,6 +27,74 @@ export class AllergyIntolerance extends DomainResource {
   static readonly typeName: string = "AllergyIntolerance";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "clinicalStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "verificationStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [AllergyIntoleranceType],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [AllergyIntoleranceCategory],
+      isArray: true
+    }, {
+      fieldName: "criticality",
+      fieldType: [AllergyIntoleranceCriticality],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "onset",
+      fieldType: [PrimitiveDateTime, Age, Period, Range, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "recordedDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "recorder",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "asserter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "lastOccurrence",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "reaction",
+      fieldType: [AllergyIntoleranceReaction],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

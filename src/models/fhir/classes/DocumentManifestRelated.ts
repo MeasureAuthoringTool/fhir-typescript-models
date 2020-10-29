@@ -4,6 +4,7 @@ import {
   Identifier,
   IDocumentManifestRelated,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class DocumentManifestRelated extends BackboneElement {
@@ -14,6 +15,18 @@ export class DocumentManifestRelated extends BackboneElement {
   static readonly typeName: string = "DocumentManifest.Related";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "ref",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Identifier;
 

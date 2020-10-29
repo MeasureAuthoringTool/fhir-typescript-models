@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   Range,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class ObservationReferenceRange extends BackboneElement {
@@ -17,6 +18,34 @@ export class ObservationReferenceRange extends BackboneElement {
   static readonly typeName: string = "Observation.ReferenceRange";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "low",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "high",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "appliesTo",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "age",
+      fieldType: [Range],
+      isArray: false
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public low?: SimpleQuantity;
 

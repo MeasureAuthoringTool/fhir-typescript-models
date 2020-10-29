@@ -2,6 +2,7 @@
 import { 
   Element,
   IElement,
+  FieldMetadata
 } from "../internal";
 
 export class PrimitiveXhtml extends Element {
@@ -12,6 +13,14 @@ export class PrimitiveXhtml extends Element {
   static readonly typeName: string = "xhtml";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "value",
+      fieldType: [String],
+      isArray: false
+    }];
+  }
 
   public value?: string;
 

@@ -3,6 +3,7 @@ import {
   BackboneElement,
   CodeableConcept,
   ICoverageEligibilityResponseError,
+  FieldMetadata
 } from "../internal";
 
 export class CoverageEligibilityResponseError extends BackboneElement {
@@ -13,6 +14,14 @@ export class CoverageEligibilityResponseError extends BackboneElement {
   static readonly typeName: string = "CoverageEligibilityResponse.Error";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public code?: CodeableConcept;
 

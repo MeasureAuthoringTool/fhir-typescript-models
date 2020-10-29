@@ -2,6 +2,7 @@
 import { 
   ICount,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class Count extends Quantity {
@@ -12,6 +13,11 @@ export class Count extends Quantity {
   static readonly typeName: string = "Count";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Quantity.fieldInfo, 
+    ];
+  }
 
   public static parse(
     json: ICount,

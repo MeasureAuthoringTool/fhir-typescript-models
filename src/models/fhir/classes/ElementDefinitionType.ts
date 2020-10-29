@@ -6,6 +6,7 @@ import {
   PrimitiveCanonical,
   PrimitiveUri,
   ReferenceVersionRules,
+  FieldMetadata
 } from "../internal";
 
 export class ElementDefinitionType extends Element {
@@ -16,6 +17,22 @@ export class ElementDefinitionType extends Element {
   static readonly typeName: string = "ElementDefinition.Type";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "code",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "targetProfile",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "versioning",
+      fieldType: [ReferenceVersionRules],
+      isArray: false
+    }];
+  }
 
   public code?: PrimitiveUri;
 

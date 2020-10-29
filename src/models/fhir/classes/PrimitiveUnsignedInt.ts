@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
 import { 
   PrimitiveInteger,
+  FieldMetadata
 } from "../internal";
 
 export class PrimitiveUnsignedInt extends PrimitiveInteger {
@@ -11,6 +12,11 @@ export class PrimitiveUnsignedInt extends PrimitiveInteger {
   static readonly typeName: string = "unsignedInt";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...PrimitiveInteger.fieldInfo, 
+    ];
+  }
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveInteger.parsePrimitive>[0],

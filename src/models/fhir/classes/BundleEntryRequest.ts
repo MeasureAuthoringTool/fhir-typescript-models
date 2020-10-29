@@ -7,6 +7,7 @@ import {
   PrimitiveInstant,
   PrimitiveString,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class BundleEntryRequest extends BackboneElement {
@@ -17,6 +18,34 @@ export class BundleEntryRequest extends BackboneElement {
   static readonly typeName: string = "Bundle.Entry.Request";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "method",
+      fieldType: [HTTPVerb],
+      isArray: false
+    }, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "ifNoneMatch",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "ifModifiedSince",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "ifMatch",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "ifNoneExist",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public method?: HTTPVerb;
 

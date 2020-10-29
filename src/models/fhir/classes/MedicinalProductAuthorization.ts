@@ -10,6 +10,7 @@ import {
   Period,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductAuthorization extends DomainResource {
@@ -20,6 +21,74 @@ export class MedicinalProductAuthorization extends DomainResource {
   static readonly typeName: string = "MedicinalProductAuthorization";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "country",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "statusDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "restoreDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "validityPeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "dataExclusivityPeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "dateOfFirstAuthorization",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "internationalBirthDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "legalBasis",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "jurisdictionalAuthorization",
+      fieldType: [MedicinalProductAuthorizationJurisdictionalAuthorization],
+      isArray: true
+    }, {
+      fieldName: "holder",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "regulator",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "procedure",
+      fieldType: [MedicinalProductAuthorizationProcedure],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

@@ -6,6 +6,7 @@ import {
   PrimitiveBoolean,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ImmunizationReaction extends BackboneElement {
@@ -16,6 +17,22 @@ export class ImmunizationReaction extends BackboneElement {
   static readonly typeName: string = "Immunization.Reaction";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "detail",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reported",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public date?: PrimitiveDateTime;
 

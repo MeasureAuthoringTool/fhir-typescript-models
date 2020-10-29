@@ -8,6 +8,7 @@ import {
   PrimitiveBase64Binary,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class AuditEventEntity extends BackboneElement {
@@ -18,6 +19,46 @@ export class AuditEventEntity extends BackboneElement {
   static readonly typeName: string = "AuditEvent.Entity";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "what",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "role",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "lifecycle",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "securityLabel",
+      fieldType: [Coding],
+      isArray: true
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "query",
+      fieldType: [PrimitiveBase64Binary],
+      isArray: false
+    }, {
+      fieldName: "detail",
+      fieldType: [AuditEventEntityDetail],
+      isArray: true
+    }];
+  }
 
   public what?: Reference;
 

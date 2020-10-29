@@ -10,6 +10,7 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ContractTermOffer extends BackboneElement {
@@ -20,6 +21,50 @@ export class ContractTermOffer extends BackboneElement {
   static readonly typeName: string = "Contract.Term.Offer";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "party",
+      fieldType: [ContractTermOfferParty],
+      isArray: true
+    }, {
+      fieldName: "topic",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "decision",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "decisionMode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "answer",
+      fieldType: [ContractTermOfferAnswer],
+      isArray: true
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "linkId",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "securityLabelNumber",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

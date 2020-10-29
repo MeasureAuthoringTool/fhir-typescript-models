@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IInvoiceParticipant,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class InvoiceParticipant extends BackboneElement {
@@ -14,6 +15,18 @@ export class InvoiceParticipant extends BackboneElement {
   static readonly typeName: string = "Invoice.Participant";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "role",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "actor",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public role?: CodeableConcept;
 

@@ -15,6 +15,7 @@ import {
   PrimitiveDate,
   Reference,
   RelatedPersonCommunication,
+  FieldMetadata
 } from "../internal";
 
 export class RelatedPerson extends DomainResource {
@@ -25,6 +26,58 @@ export class RelatedPerson extends DomainResource {
   static readonly typeName: string = "RelatedPerson";
   
   static readonly primaryCodePath: string | null = "relationship";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "active",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "relationship",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "name",
+      fieldType: [HumanName],
+      isArray: true
+    }, {
+      fieldName: "telecom",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "gender",
+      fieldType: [AdministrativeGender],
+      isArray: false
+    }, {
+      fieldName: "birthDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "address",
+      fieldType: [Address],
+      isArray: true
+    }, {
+      fieldName: "photo",
+      fieldType: [Attachment],
+      isArray: true
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "communication",
+      fieldType: [RelatedPersonCommunication],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

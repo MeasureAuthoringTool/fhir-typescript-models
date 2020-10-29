@@ -6,6 +6,7 @@ import {
   ProvenanceAgent,
   ProvenanceEntityRole,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ProvenanceEntity extends BackboneElement {
@@ -16,6 +17,22 @@ export class ProvenanceEntity extends BackboneElement {
   static readonly typeName: string = "Provenance.Entity";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "role",
+      fieldType: [ProvenanceEntityRole],
+      isArray: false
+    }, {
+      fieldName: "what",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "agent",
+      fieldType: [ProvenanceAgent],
+      isArray: true
+    }];
+  }
 
   public role?: ProvenanceEntityRole;
 

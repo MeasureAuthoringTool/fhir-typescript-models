@@ -8,6 +8,7 @@ import {
   SubstanceSourceMaterialOrganismAuthor,
   SubstanceSourceMaterialOrganismHybrid,
   SubstanceSourceMaterialOrganismOrganismGeneral,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSourceMaterialOrganism extends BackboneElement {
@@ -18,6 +19,42 @@ export class SubstanceSourceMaterialOrganism extends BackboneElement {
   static readonly typeName: string = "SubstanceSourceMaterial.Organism";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "family",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "genus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "species",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "intraspecificType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "intraspecificDescription",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "author",
+      fieldType: [SubstanceSourceMaterialOrganismAuthor],
+      isArray: true
+    }, {
+      fieldName: "hybrid",
+      fieldType: [SubstanceSourceMaterialOrganismHybrid],
+      isArray: false
+    }, {
+      fieldName: "organismGeneral",
+      fieldType: [SubstanceSourceMaterialOrganismOrganismGeneral],
+      isArray: false
+    }];
+  }
 
   public family?: CodeableConcept;
 

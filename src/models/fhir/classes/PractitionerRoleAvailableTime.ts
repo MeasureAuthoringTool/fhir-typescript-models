@@ -6,6 +6,7 @@ import {
   IPractitionerRoleAvailableTime,
   PrimitiveBoolean,
   PrimitiveTime,
+  FieldMetadata
 } from "../internal";
 
 export class PractitionerRoleAvailableTime extends BackboneElement {
@@ -16,6 +17,26 @@ export class PractitionerRoleAvailableTime extends BackboneElement {
   static readonly typeName: string = "PractitionerRole.AvailableTime";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "daysOfWeek",
+      fieldType: [DaysOfWeek],
+      isArray: true
+    }, {
+      fieldName: "allDay",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "availableStartTime",
+      fieldType: [PrimitiveTime],
+      isArray: false
+    }, {
+      fieldName: "availableEndTime",
+      fieldType: [PrimitiveTime],
+      isArray: false
+    }];
+  }
 
   public daysOfWeek?: Array<DaysOfWeek>;
 

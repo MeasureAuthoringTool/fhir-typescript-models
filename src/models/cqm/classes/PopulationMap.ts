@@ -1,15 +1,16 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-
-import { StatementReference } from "./StatementReference";
+import {
+  IPopulationMap,
+  StatementReference
+} from "../index";
 
 /**
  * Base class for the population maps
  */
 export class PopulationMap {
-  // tslint:disable-next-line:variable-name
   public resource_type?: string;
+
   // Can be converted into stratification. Not persisted to mongo.
-  // tslint:disable-next-line:variable-name
   public STRAT?: StatementReference;
 
   constructor() {
@@ -17,7 +18,7 @@ export class PopulationMap {
   }
 
   public static parse(
-    json: any,
+    json: IPopulationMap,
     providedInstance: PopulationMap = new PopulationMap()
   ): PopulationMap {
     const newInstance: PopulationMap = providedInstance;
@@ -27,8 +28,8 @@ export class PopulationMap {
     return newInstance;
   }
 
-  toJSON(): any {
-    const result: any = {};
+  toJSON(): IPopulationMap {
+    const result: IPopulationMap = {};
     result.resource_type = this.resource_type;
     if (this.STRAT) {
       result.STRAT = this.STRAT.toJSON();
@@ -40,3 +41,5 @@ export class PopulationMap {
     return Object.keys(this).filter((value) => value !== "resource_type");
   }
 }
+
+/* eslint-enable import/prefer-default-export, import/no-cycle */

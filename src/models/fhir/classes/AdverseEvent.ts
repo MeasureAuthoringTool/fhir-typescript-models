@@ -9,6 +9,7 @@ import {
   Identifier,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class AdverseEvent extends DomainResource {
@@ -19,6 +20,90 @@ export class AdverseEvent extends DomainResource {
   static readonly typeName: string = "AdverseEvent";
   
   static readonly primaryCodePath: string | null = "event";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "actuality",
+      fieldType: [AdverseEventActuality],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "event",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "detected",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "recordedDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "resultingCondition",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "seriousness",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "severity",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "outcome",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "recorder",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "contributor",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "suspectEntity",
+      fieldType: [AdverseEventSuspectEntity],
+      isArray: true
+    }, {
+      fieldName: "subjectMedicalHistory",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "referenceDocument",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "study",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Identifier;
 

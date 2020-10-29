@@ -5,6 +5,7 @@ import {
   ITestScriptFixture,
   PrimitiveBoolean,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class TestScriptFixture extends BackboneElement {
@@ -15,6 +16,22 @@ export class TestScriptFixture extends BackboneElement {
   static readonly typeName: string = "TestScript.Fixture";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "autocreate",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "autodelete",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "resource",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public autocreate?: PrimitiveBoolean;
 

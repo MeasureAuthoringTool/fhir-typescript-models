@@ -6,6 +6,7 @@ import {
   ContactPoint,
   HumanName,
   IInsurancePlanContact,
+  FieldMetadata
 } from "../internal";
 
 export class InsurancePlanContact extends BackboneElement {
@@ -16,6 +17,26 @@ export class InsurancePlanContact extends BackboneElement {
   static readonly typeName: string = "InsurancePlan.Contact";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "purpose",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [HumanName],
+      isArray: false
+    }, {
+      fieldName: "telecom",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "address",
+      fieldType: [Address],
+      isArray: false
+    }];
+  }
 
   public purpose?: CodeableConcept;
 

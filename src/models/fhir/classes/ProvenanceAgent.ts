@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IProvenanceAgent,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ProvenanceAgent extends BackboneElement {
@@ -14,6 +15,26 @@ export class ProvenanceAgent extends BackboneElement {
   static readonly typeName: string = "Provenance.Agent";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "role",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "who",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "onBehalfOf",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

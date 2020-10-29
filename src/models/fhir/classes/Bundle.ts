@@ -10,6 +10,7 @@ import {
   PrimitiveUnsignedInt,
   Resource,
   Signature,
+  FieldMetadata
 } from "../internal";
 
 export class Bundle extends Resource {
@@ -20,6 +21,38 @@ export class Bundle extends Resource {
   static readonly typeName: string = "Bundle";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Resource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [BundleType],
+      isArray: false
+    }, {
+      fieldName: "timestamp",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "total",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "link",
+      fieldType: [BundleLink],
+      isArray: true
+    }, {
+      fieldName: "entry",
+      fieldType: [BundleEntry],
+      isArray: true
+    }, {
+      fieldName: "signature",
+      fieldType: [Signature],
+      isArray: false
+    }];
+  }
 
   public identifier?: Identifier;
 

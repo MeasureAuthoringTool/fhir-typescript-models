@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IExplanationOfBenefitPayee,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ExplanationOfBenefitPayee extends BackboneElement {
@@ -14,6 +15,18 @@ export class ExplanationOfBenefitPayee extends BackboneElement {
   static readonly typeName: string = "ExplanationOfBenefit.Payee";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "party",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

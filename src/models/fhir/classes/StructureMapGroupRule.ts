@@ -8,6 +8,7 @@ import {
   StructureMapGroupRuleDependent,
   StructureMapGroupRuleSource,
   StructureMapGroupRuleTarget,
+  FieldMetadata
 } from "../internal";
 
 export class StructureMapGroupRule extends BackboneElement {
@@ -18,6 +19,34 @@ export class StructureMapGroupRule extends BackboneElement {
   static readonly typeName: string = "StructureMap.Group.Rule";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [StructureMapGroupRuleSource],
+      isArray: true
+    }, {
+      fieldName: "target",
+      fieldType: [StructureMapGroupRuleTarget],
+      isArray: true
+    }, {
+      fieldName: "rule",
+      fieldType: [StructureMapGroupRule],
+      isArray: true
+    }, {
+      fieldName: "dependent",
+      fieldType: [StructureMapGroupRuleDependent],
+      isArray: true
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveId;
 

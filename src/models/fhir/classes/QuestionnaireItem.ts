@@ -14,6 +14,7 @@ import {
   QuestionnaireItemEnableWhen,
   QuestionnaireItemInitial,
   QuestionnaireItemType,
+  FieldMetadata
 } from "../internal";
 
 export class QuestionnaireItem extends BackboneElement {
@@ -24,6 +25,74 @@ export class QuestionnaireItem extends BackboneElement {
   static readonly typeName: string = "Questionnaire.Item";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "linkId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "definition",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [Coding],
+      isArray: true
+    }, {
+      fieldName: "prefix",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [QuestionnaireItemType],
+      isArray: false
+    }, {
+      fieldName: "enableWhen",
+      fieldType: [QuestionnaireItemEnableWhen],
+      isArray: true
+    }, {
+      fieldName: "enableBehavior",
+      fieldType: [EnableWhenBehavior],
+      isArray: false
+    }, {
+      fieldName: "required",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "repeats",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "readOnly",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "maxLength",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "answerValueSet",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "answerOption",
+      fieldType: [QuestionnaireItemAnswerOption],
+      isArray: true
+    }, {
+      fieldName: "initial",
+      fieldType: [QuestionnaireItemInitial],
+      isArray: true
+    }, {
+      fieldName: "item",
+      fieldType: [QuestionnaireItem],
+      isArray: true
+    }];
+  }
 
   public linkId?: PrimitiveString;
 

@@ -5,6 +5,7 @@ import {
   Extension,
   IRiskEvidenceSynthesisRiskEstimatePrecisionEstimate,
   PrimitiveDecimal,
+  FieldMetadata
 } from "../internal";
 
 export class RiskEvidenceSynthesisRiskEstimatePrecisionEstimate extends BackboneElement {
@@ -15,6 +16,26 @@ export class RiskEvidenceSynthesisRiskEstimatePrecisionEstimate extends Backbone
   static readonly typeName: string = "RiskEvidenceSynthesis.RiskEstimate.PrecisionEstimate";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "level",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "from",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "to",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

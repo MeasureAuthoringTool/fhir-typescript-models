@@ -10,6 +10,7 @@ import {
   IEpisodeOfCare,
   Period,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class EpisodeOfCare extends DomainResource {
@@ -20,6 +21,58 @@ export class EpisodeOfCare extends DomainResource {
   static readonly typeName: string = "EpisodeOfCare";
   
   static readonly primaryCodePath: string | null = "type";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [EpisodeOfCareStatus],
+      isArray: false
+    }, {
+      fieldName: "statusHistory",
+      fieldType: [EpisodeOfCareStatusHistory],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "diagnosis",
+      fieldType: [EpisodeOfCareDiagnosis],
+      isArray: true
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "managingOrganization",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "referralRequest",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "careManager",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "team",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "account",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

@@ -3,6 +3,7 @@ import {
   Element,
   Extension,
   IBackboneElement,
+  FieldMetadata
 } from "../internal";
 
 export class BackboneElement extends Element {
@@ -13,6 +14,14 @@ export class BackboneElement extends Element {
   static readonly typeName: string = "BackboneElement";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "modifierExtension",
+      fieldType: [Extension],
+      isArray: true
+    }];
+  }
 
   public modifierExtension?: Array<Extension>;
 

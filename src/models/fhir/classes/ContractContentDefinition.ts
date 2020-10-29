@@ -8,6 +8,7 @@ import {
   PrimitiveDateTime,
   PrimitiveMarkdown,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ContractContentDefinition extends BackboneElement {
@@ -18,6 +19,34 @@ export class ContractContentDefinition extends BackboneElement {
   static readonly typeName: string = "Contract.ContentDefinition";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "publicationDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publicationStatus",
+      fieldType: [ContractPublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "copyright",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

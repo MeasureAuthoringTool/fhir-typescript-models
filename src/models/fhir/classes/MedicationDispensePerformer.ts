@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IMedicationDispensePerformer,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationDispensePerformer extends BackboneElement {
@@ -14,6 +15,18 @@ export class MedicationDispensePerformer extends BackboneElement {
   static readonly typeName: string = "MedicationDispense.Performer";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "function",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "actor",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public function?: CodeableConcept;
 

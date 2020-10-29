@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IChargeItemPerformer,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ChargeItemPerformer extends BackboneElement {
@@ -14,6 +15,18 @@ export class ChargeItemPerformer extends BackboneElement {
   static readonly typeName: string = "ChargeItem.Performer";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "function",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "actor",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public function?: CodeableConcept;
 

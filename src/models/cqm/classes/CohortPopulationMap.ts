@@ -1,12 +1,14 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { PopulationMap } from "./PopulationMap";
-import { StatementReference } from "./StatementReference";
+import {
+  ICohortPopulationMap,
+  PopulationMap,
+  StatementReference
+} from "../index";
 
 /**
  * The population map for a cohort population set.
  */
 export class CohortPopulationMap extends PopulationMap {
-  // tslint:disable-next-line:variable-name
   public IPP?: StatementReference;
 
   constructor() {
@@ -15,7 +17,7 @@ export class CohortPopulationMap extends PopulationMap {
   }
 
   public static parse(
-    json: any,
+    json: ICohortPopulationMap,
     providedInstance: CohortPopulationMap = new CohortPopulationMap()
   ): CohortPopulationMap {
     const newInstance: CohortPopulationMap = PopulationMap.parse(
@@ -28,11 +30,12 @@ export class CohortPopulationMap extends PopulationMap {
     return newInstance;
   }
 
-  public toJSON(): any {
-    const result: any = super.toJSON();
+  public toJSON(): ICohortPopulationMap {
+    const result: ICohortPopulationMap = super.toJSON();
     if (this.IPP) {
       result.IPP = this.IPP.toJSON();
     }
     return result;
   }
 }
+/* eslint-enable import/prefer-default-export, import/no-cycle */

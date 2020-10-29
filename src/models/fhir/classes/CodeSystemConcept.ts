@@ -7,6 +7,7 @@ import {
   ICodeSystemConcept,
   PrimitiveCode,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class CodeSystemConcept extends BackboneElement {
@@ -17,6 +18,34 @@ export class CodeSystemConcept extends BackboneElement {
   static readonly typeName: string = "CodeSystem.Concept";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "display",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "definition",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "designation",
+      fieldType: [CodeSystemConceptDesignation],
+      isArray: true
+    }, {
+      fieldName: "property",
+      fieldType: [CodeSystemConceptProperty],
+      isArray: true
+    }, {
+      fieldName: "concept",
+      fieldType: [CodeSystemConcept],
+      isArray: true
+    }];
+  }
 
   public code?: PrimitiveCode;
 

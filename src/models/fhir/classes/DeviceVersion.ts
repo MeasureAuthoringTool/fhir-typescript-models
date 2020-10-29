@@ -6,6 +6,7 @@ import {
   Identifier,
   IDeviceVersion,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class DeviceVersion extends BackboneElement {
@@ -16,6 +17,22 @@ export class DeviceVersion extends BackboneElement {
   static readonly typeName: string = "Device.Version";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "component",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

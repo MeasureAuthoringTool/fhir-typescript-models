@@ -1,28 +1,29 @@
-import { Bundle, BundleEntry, BundleType, Patient } from "../fhir/internal";
-import { DataElement } from "./DataElement";
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { Bundle, BundleEntry, BundleType, Patient } from "../../fhir/internal";
+import { DataElement, ICqmPatient } from "../index";
 
 export class CqmPatient {
   // MongoDB ID
   public id?: string;
-  // tslint:disable-next-line:variable-name
-  public expected_values?: Array<any>;
-  // tslint:disable-next-line:variable-name
+
+  public expected_values?: Array<unknown>;
+
   public notes?: string;
-  // tslint:disable-next-line:variable-name
+
   public measure_ids?: Array<string>;
-  // tslint:disable-next-line:variable-name
+
   public fhir_patient?: Patient;
-  // tslint:disable-next-line:variable-name
+
   public data_elements?: Array<DataElement>;
+
   // mongoid created timestamp
-  // tslint:disable-next-line:variable-name
   public created_at?: string;
+
   // mongoid updated timestamp
-  // tslint:disable-next-line:variable-name
   public updated_at?: string;
 
   public static parse(
-    json: any,
+    json: ICqmPatient,
     providedInstance: CqmPatient = new CqmPatient()
   ): CqmPatient {
     const newInstance: CqmPatient = providedInstance;
@@ -43,7 +44,6 @@ export class CqmPatient {
       newInstance.fhir_patient = Patient.parse(json.fhir_patient);
     }
     if (json.data_elements) {
-      // @ts-ignore
       newInstance.data_elements = json.data_elements.map((x) =>
         DataElement.parse(x)
       );
@@ -57,8 +57,8 @@ export class CqmPatient {
     return newInstance;
   }
 
-  public toJSON(): any {
-    const result: any = {};
+  public toJSON(): ICqmPatient {
+    const result: ICqmPatient = {};
 
     if (this.id) {
       result.id = this.id;
@@ -118,3 +118,5 @@ export class CqmPatient {
     return CqmPatient.parse(this.toJSON());
   }
 }
+
+/* eslint-enable import/prefer-default-export, import/no-cycle */

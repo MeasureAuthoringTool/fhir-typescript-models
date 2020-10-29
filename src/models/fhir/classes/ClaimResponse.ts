@@ -21,6 +21,7 @@ import {
   Reference,
   RemittanceOutcome,
   Use,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimResponse extends DomainResource {
@@ -31,6 +32,118 @@ export class ClaimResponse extends DomainResource {
   static readonly typeName: string = "ClaimResponse";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [ClaimResponseStatus],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "use",
+      fieldType: [Use],
+      isArray: false
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "insurer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "requestor",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "request",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "outcome",
+      fieldType: [RemittanceOutcome],
+      isArray: false
+    }, {
+      fieldName: "disposition",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "preAuthRef",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "preAuthPeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "payeeType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "item",
+      fieldType: [ClaimResponseItem],
+      isArray: true
+    }, {
+      fieldName: "addItem",
+      fieldType: [ClaimResponseAddItem],
+      isArray: true
+    }, {
+      fieldName: "adjudication",
+      fieldType: [ClaimResponseItemAdjudication],
+      isArray: true
+    }, {
+      fieldName: "total",
+      fieldType: [ClaimResponseTotal],
+      isArray: true
+    }, {
+      fieldName: "payment",
+      fieldType: [ClaimResponsePayment],
+      isArray: false
+    }, {
+      fieldName: "fundsReserve",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "formCode",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "form",
+      fieldType: [Attachment],
+      isArray: false
+    }, {
+      fieldName: "processNote",
+      fieldType: [ClaimResponseProcessNote],
+      isArray: true
+    }, {
+      fieldName: "communicationRequest",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "insurance",
+      fieldType: [ClaimResponseInsurance],
+      isArray: true
+    }, {
+      fieldName: "error",
+      fieldType: [ClaimResponseError],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

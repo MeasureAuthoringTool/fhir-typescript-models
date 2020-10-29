@@ -6,6 +6,7 @@ import {
   ICoverageCostToBeneficiary,
   Money,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class CoverageCostToBeneficiary extends BackboneElement {
@@ -16,6 +17,22 @@ export class CoverageCostToBeneficiary extends BackboneElement {
   static readonly typeName: string = "Coverage.CostToBeneficiary";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [SimpleQuantity, Money],
+      isArray: false
+    }, {
+      fieldName: "exception",
+      fieldType: [CoverageCostToBeneficiaryException],
+      isArray: true
+    }];
+  }
 
   public type?: CodeableConcept;
 

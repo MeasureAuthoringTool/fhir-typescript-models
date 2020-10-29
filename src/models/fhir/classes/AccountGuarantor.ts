@@ -6,6 +6,7 @@ import {
   Period,
   PrimitiveBoolean,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class AccountGuarantor extends BackboneElement {
@@ -16,6 +17,22 @@ export class AccountGuarantor extends BackboneElement {
   static readonly typeName: string = "Account.Guarantor";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "party",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "onHold",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public party?: Reference;
 

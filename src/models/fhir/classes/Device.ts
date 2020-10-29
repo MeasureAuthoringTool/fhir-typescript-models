@@ -17,6 +17,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Device extends DomainResource {
@@ -27,6 +28,114 @@ export class Device extends DomainResource {
   static readonly typeName: string = "Device";
   
   static readonly primaryCodePath: string | null = "type";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "definition",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "udiCarrier",
+      fieldType: [DeviceUdiCarrier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [FHIRDeviceStatus],
+      isArray: false
+    }, {
+      fieldName: "statusReason",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "distinctIdentifier",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "manufacturer",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "manufactureDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "expirationDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "lotNumber",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "serialNumber",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "deviceName",
+      fieldType: [DeviceDeviceName],
+      isArray: true
+    }, {
+      fieldName: "modelNumber",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "partNumber",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "specialization",
+      fieldType: [DeviceSpecialization],
+      isArray: true
+    }, {
+      fieldName: "version",
+      fieldType: [DeviceVersion],
+      isArray: true
+    }, {
+      fieldName: "property",
+      fieldType: [DeviceProperty],
+      isArray: true
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "owner",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "safety",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "parent",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

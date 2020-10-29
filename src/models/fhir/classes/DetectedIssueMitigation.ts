@@ -6,6 +6,7 @@ import {
   IDetectedIssueMitigation,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class DetectedIssueMitigation extends BackboneElement {
@@ -16,6 +17,22 @@ export class DetectedIssueMitigation extends BackboneElement {
   static readonly typeName: string = "DetectedIssue.Mitigation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "action",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "author",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public action?: CodeableConcept;
 

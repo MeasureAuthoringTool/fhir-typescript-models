@@ -6,6 +6,7 @@ import {
   IMedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod,
   PrimitiveString,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod extends BackboneElement {
@@ -16,6 +17,22 @@ export class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWit
   static readonly typeName: string = "MedicinalProductPharmaceutical.RouteOfAdministration.TargetSpecies.WithdrawalPeriod";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "tissue",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "supportingInformation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public tissue?: CodeableConcept;
 

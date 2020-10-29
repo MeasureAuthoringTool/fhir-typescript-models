@@ -8,6 +8,7 @@ import {
   Reference,
   VisionPrescriptionLensSpecification,
   VisionStatus,
+  FieldMetadata
 } from "../internal";
 
 export class VisionPrescription extends DomainResource {
@@ -18,6 +19,42 @@ export class VisionPrescription extends DomainResource {
   static readonly typeName: string = "VisionPrescription";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [VisionStatus],
+      isArray: false
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "dateWritten",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "prescriber",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "lensSpecification",
+      fieldType: [VisionPrescriptionLensSpecification],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

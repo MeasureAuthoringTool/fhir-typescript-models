@@ -8,6 +8,7 @@ import {
   NutritionOrderOralDietTexture,
   PrimitiveString,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class NutritionOrderOralDiet extends BackboneElement {
@@ -18,6 +19,34 @@ export class NutritionOrderOralDiet extends BackboneElement {
   static readonly typeName: string = "NutritionOrder.OralDiet";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "schedule",
+      fieldType: [Timing],
+      isArray: true
+    }, {
+      fieldName: "nutrient",
+      fieldType: [NutritionOrderOralDietNutrient],
+      isArray: true
+    }, {
+      fieldName: "texture",
+      fieldType: [NutritionOrderOralDietTexture],
+      isArray: true
+    }, {
+      fieldName: "fluidConsistencyType",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "instruction",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public type?: Array<CodeableConcept>;
 

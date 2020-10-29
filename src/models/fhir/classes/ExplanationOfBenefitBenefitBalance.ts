@@ -7,6 +7,7 @@ import {
   IExplanationOfBenefitBenefitBalance,
   PrimitiveBoolean,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ExplanationOfBenefitBenefitBalance extends BackboneElement {
@@ -17,6 +18,42 @@ export class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   static readonly typeName: string = "ExplanationOfBenefit.BenefitBalance";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "excluded",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "network",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "unit",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "term",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "financial",
+      fieldType: [ExplanationOfBenefitBenefitBalanceFinancial],
+      isArray: true
+    }];
+  }
 
   public category?: CodeableConcept;
 

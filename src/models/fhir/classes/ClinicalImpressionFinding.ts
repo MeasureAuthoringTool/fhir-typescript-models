@@ -6,6 +6,7 @@ import {
   IClinicalImpressionFinding,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ClinicalImpressionFinding extends BackboneElement {
@@ -16,6 +17,22 @@ export class ClinicalImpressionFinding extends BackboneElement {
   static readonly typeName: string = "ClinicalImpression.Finding";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "itemCodeableConcept",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "itemReference",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "basis",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public itemCodeableConcept?: CodeableConcept;
 

@@ -7,6 +7,7 @@ import {
   PrimitiveBoolean,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ListEntry extends BackboneElement {
@@ -17,6 +18,26 @@ export class ListEntry extends BackboneElement {
   static readonly typeName: string = "List.Entry";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "flag",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "deleted",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "item",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public flag?: CodeableConcept;
 

@@ -5,6 +5,7 @@ import {
   Extension,
   IClaimResponseItemDetailSubDetail,
   PrimitivePositiveInt,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimResponseItemDetailSubDetail extends BackboneElement {
@@ -15,6 +16,22 @@ export class ClaimResponseItemDetailSubDetail extends BackboneElement {
   static readonly typeName: string = "ClaimResponse.Item.Detail.SubDetail";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "subDetailSequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "noteNumber",
+      fieldType: [PrimitivePositiveInt],
+      isArray: true
+    }, {
+      fieldName: "adjudication",
+      fieldType: [ClaimResponseItemAdjudication],
+      isArray: true
+    }];
+  }
 
   public subDetailSequence?: PrimitivePositiveInt;
 

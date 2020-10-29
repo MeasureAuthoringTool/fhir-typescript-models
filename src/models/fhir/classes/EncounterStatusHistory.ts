@@ -5,6 +5,7 @@ import {
   Extension,
   IEncounterStatusHistory,
   Period,
+  FieldMetadata
 } from "../internal";
 
 export class EncounterStatusHistory extends BackboneElement {
@@ -15,6 +16,18 @@ export class EncounterStatusHistory extends BackboneElement {
   static readonly typeName: string = "Encounter.StatusHistory";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "status",
+      fieldType: [EncounterStatus],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public status?: EncounterStatus;
 

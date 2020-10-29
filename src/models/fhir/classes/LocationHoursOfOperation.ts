@@ -6,6 +6,7 @@ import {
   ILocationHoursOfOperation,
   PrimitiveBoolean,
   PrimitiveTime,
+  FieldMetadata
 } from "../internal";
 
 export class LocationHoursOfOperation extends BackboneElement {
@@ -16,6 +17,26 @@ export class LocationHoursOfOperation extends BackboneElement {
   static readonly typeName: string = "Location.HoursOfOperation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "daysOfWeek",
+      fieldType: [DaysOfWeek],
+      isArray: true
+    }, {
+      fieldName: "allDay",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "openingTime",
+      fieldType: [PrimitiveTime],
+      isArray: false
+    }, {
+      fieldName: "closingTime",
+      fieldType: [PrimitiveTime],
+      isArray: false
+    }];
+  }
 
   public daysOfWeek?: Array<DaysOfWeek>;
 

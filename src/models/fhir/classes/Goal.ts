@@ -11,6 +11,7 @@ import {
   PrimitiveDate,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Goal extends DomainResource {
@@ -21,6 +22,74 @@ export class Goal extends DomainResource {
   static readonly typeName: string = "Goal";
   
   static readonly primaryCodePath: string | null = "category";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "lifecycleStatus",
+      fieldType: [GoalLifecycleStatus],
+      isArray: false
+    }, {
+      fieldName: "achievementStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "priority",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "start",
+      fieldType: [PrimitiveDate, CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "target",
+      fieldType: [GoalTarget],
+      isArray: true
+    }, {
+      fieldName: "statusDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "statusReason",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "expressedBy",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "addresses",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "outcomeCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "outcomeReference",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

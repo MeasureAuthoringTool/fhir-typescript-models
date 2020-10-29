@@ -20,6 +20,7 @@ import {
   ServiceRequestPriority,
   ServiceRequestStatus,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class ServiceRequest extends DomainResource {
@@ -30,6 +31,142 @@ export class ServiceRequest extends DomainResource {
   static readonly typeName: string = "ServiceRequest";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "instantiatesCanonical",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "instantiatesUri",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "replaces",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "requisition",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [ServiceRequestStatus],
+      isArray: false
+    }, {
+      fieldName: "intent",
+      fieldType: [ServiceRequestIntent],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "priority",
+      fieldType: [ServiceRequestPriority],
+      isArray: false
+    }, {
+      fieldName: "doNotPerform",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "orderDetail",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "quantity",
+      fieldType: [Quantity, Ratio, Range],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "occurrence",
+      fieldType: [PrimitiveDateTime, Period, Timing],
+      isArray: false
+    }, {
+      fieldName: "asNeeded",
+      fieldType: [PrimitiveBoolean, CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "authoredOn",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "requester",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "performerType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "locationCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "locationReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "insurance",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "supportingInfo",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "specimen",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "bodySite",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "patientInstruction",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "relevantHistory",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

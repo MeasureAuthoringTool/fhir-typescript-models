@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Resource,
+  FieldMetadata
 } from "../internal";
 
 export class BundleEntryResponse extends BackboneElement {
@@ -17,6 +18,30 @@ export class BundleEntryResponse extends BackboneElement {
   static readonly typeName: string = "Bundle.Entry.Response";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "status",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "location",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "etag",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "lastModified",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "outcome",
+      fieldType: [Resource],
+      isArray: false
+    }];
+  }
 
   public status?: PrimitiveString;
 

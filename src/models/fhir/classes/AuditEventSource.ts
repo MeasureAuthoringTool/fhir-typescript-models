@@ -6,6 +6,7 @@ import {
   IAuditEventSource,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class AuditEventSource extends BackboneElement {
@@ -16,6 +17,22 @@ export class AuditEventSource extends BackboneElement {
   static readonly typeName: string = "AuditEvent.Source";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "site",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "observer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [Coding],
+      isArray: true
+    }];
+  }
 
   public site?: PrimitiveString;
 

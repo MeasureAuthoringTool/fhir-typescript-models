@@ -9,6 +9,7 @@ import {
   SubstanceSpecificationStructureIsotope,
   SubstanceSpecificationStructureIsotopeMolecularWeight,
   SubstanceSpecificationStructureRepresentation,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSpecificationStructure extends BackboneElement {
@@ -19,6 +20,42 @@ export class SubstanceSpecificationStructure extends BackboneElement {
   static readonly typeName: string = "SubstanceSpecification.Structure";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "stereochemistry",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "opticalActivity",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "molecularFormula",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "molecularFormulaByMoiety",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "isotope",
+      fieldType: [SubstanceSpecificationStructureIsotope],
+      isArray: true
+    }, {
+      fieldName: "molecularWeight",
+      fieldType: [SubstanceSpecificationStructureIsotopeMolecularWeight],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "representation",
+      fieldType: [SubstanceSpecificationStructureRepresentation],
+      isArray: true
+    }];
+  }
 
   public stereochemistry?: CodeableConcept;
 

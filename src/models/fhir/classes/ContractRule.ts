@@ -4,6 +4,7 @@ import {
   BackboneElement,
   IContractRule,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ContractRule extends BackboneElement {
@@ -14,6 +15,14 @@ export class ContractRule extends BackboneElement {
   static readonly typeName: string = "Contract.Rule";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "content",
+      fieldType: [Attachment, Reference],
+      isArray: false
+    }];
+  }
 
   public content?: Attachment | Reference;
 

@@ -6,6 +6,7 @@ import {
   PrimitiveId,
   Reference,
   ResponseType,
+  FieldMetadata
 } from "../internal";
 
 export class MessageHeaderResponse extends BackboneElement {
@@ -16,6 +17,22 @@ export class MessageHeaderResponse extends BackboneElement {
   static readonly typeName: string = "MessageHeader.Response";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [ResponseType],
+      isArray: false
+    }, {
+      fieldName: "details",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: PrimitiveId;
 

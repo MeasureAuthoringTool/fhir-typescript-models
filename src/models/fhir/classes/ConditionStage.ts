@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IConditionStage,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ConditionStage extends BackboneElement {
@@ -14,6 +15,22 @@ export class ConditionStage extends BackboneElement {
   static readonly typeName: string = "Condition.Stage";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "summary",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "assessment",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public summary?: CodeableConcept;
 

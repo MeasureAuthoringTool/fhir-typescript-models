@@ -10,6 +10,7 @@ import {
   Range,
   Ratio,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSpecificationRelationship extends BackboneElement {
@@ -20,6 +21,38 @@ export class SubstanceSpecificationRelationship extends BackboneElement {
   static readonly typeName: string = "SubstanceSpecification.Relationship";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "substance",
+      fieldType: [Reference, CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "relationship",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "isDefining",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "amount",
+      fieldType: [Quantity, Range, Ratio, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "amountRatioLowLimit",
+      fieldType: [Ratio],
+      isArray: false
+    }, {
+      fieldName: "amountType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public substance?: Reference | CodeableConcept;
 

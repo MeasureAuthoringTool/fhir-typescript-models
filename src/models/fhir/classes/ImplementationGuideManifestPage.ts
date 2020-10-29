@@ -4,6 +4,7 @@ import {
   Extension,
   IImplementationGuideManifestPage,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ImplementationGuideManifestPage extends BackboneElement {
@@ -14,6 +15,22 @@ export class ImplementationGuideManifestPage extends BackboneElement {
   static readonly typeName: string = "ImplementationGuide.Manifest.Page";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "anchor",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }];
+  }
 
   public name?: PrimitiveString;
 

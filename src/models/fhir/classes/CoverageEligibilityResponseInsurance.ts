@@ -7,6 +7,7 @@ import {
   Period,
   PrimitiveBoolean,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CoverageEligibilityResponseInsurance extends BackboneElement {
@@ -17,6 +18,26 @@ export class CoverageEligibilityResponseInsurance extends BackboneElement {
   static readonly typeName: string = "CoverageEligibilityResponse.Insurance";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "coverage",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "inforce",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "benefitPeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "item",
+      fieldType: [CoverageEligibilityResponseInsuranceItem],
+      isArray: true
+    }];
+  }
 
   public coverage?: Reference;
 

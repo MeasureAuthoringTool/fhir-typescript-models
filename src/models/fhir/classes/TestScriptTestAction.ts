@@ -4,6 +4,7 @@ import {
   ITestScriptTestAction,
   TestScriptSetupActionAssert,
   TestScriptSetupActionOperation,
+  FieldMetadata
 } from "../internal";
 
 export class TestScriptTestAction extends BackboneElement {
@@ -14,6 +15,18 @@ export class TestScriptTestAction extends BackboneElement {
   static readonly typeName: string = "TestScript.Test.Action";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "operation",
+      fieldType: [TestScriptSetupActionOperation],
+      isArray: false
+    }, {
+      fieldName: "assert",
+      fieldType: [TestScriptSetupActionAssert],
+      isArray: false
+    }];
+  }
 
   public operation?: TestScriptSetupActionOperation;
 

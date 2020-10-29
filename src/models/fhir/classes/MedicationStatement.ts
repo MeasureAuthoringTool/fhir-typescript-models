@@ -11,6 +11,7 @@ import {
   Period,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationStatement extends DomainResource {
@@ -21,6 +22,78 @@ export class MedicationStatement extends DomainResource {
   static readonly typeName: string = "MedicationStatement";
   
   static readonly primaryCodePath: string | null = "medication";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [MedicationStatementStatus],
+      isArray: false
+    }, {
+      fieldName: "statusReason",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "medication",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "context",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "effective",
+      fieldType: [PrimitiveDateTime, Period],
+      isArray: false
+    }, {
+      fieldName: "dateAsserted",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "informationSource",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "derivedFrom",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "dosage",
+      fieldType: [Dosage],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

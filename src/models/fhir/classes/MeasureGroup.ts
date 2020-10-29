@@ -7,6 +7,7 @@ import {
   MeasureGroupPopulation,
   MeasureGroupStratifier,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class MeasureGroup extends BackboneElement {
@@ -17,6 +18,26 @@ export class MeasureGroup extends BackboneElement {
   static readonly typeName: string = "Measure.Group";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "population",
+      fieldType: [MeasureGroupPopulation],
+      isArray: true
+    }, {
+      fieldName: "stratifier",
+      fieldType: [MeasureGroupStratifier],
+      isArray: true
+    }];
+  }
 
   public code?: CodeableConcept;
 

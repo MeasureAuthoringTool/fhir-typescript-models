@@ -7,6 +7,7 @@ import {
   InsurancePlanPlanGeneralCost,
   InsurancePlanPlanSpecificCost,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class InsurancePlanPlan extends BackboneElement {
@@ -17,6 +18,34 @@ export class InsurancePlanPlan extends BackboneElement {
   static readonly typeName: string = "InsurancePlan.Plan";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "coverageArea",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "network",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "generalCost",
+      fieldType: [InsurancePlanPlanGeneralCost],
+      isArray: true
+    }, {
+      fieldName: "specificCost",
+      fieldType: [InsurancePlanPlanSpecificCost],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

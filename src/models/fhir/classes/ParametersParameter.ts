@@ -54,6 +54,7 @@ import {
   Timing,
   TriggerDefinition,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class ParametersParameter extends BackboneElement {
@@ -64,6 +65,26 @@ export class ParametersParameter extends BackboneElement {
   static readonly typeName: string = "Parameters.Parameter";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveBase64Binary, PrimitiveBoolean, PrimitiveCanonical, PrimitiveCode, PrimitiveDate, PrimitiveDateTime, PrimitiveDecimal, PrimitiveId, PrimitiveInstant, PrimitiveInteger, PrimitiveMarkdown, PrimitiveOid, PrimitivePositiveInt, PrimitiveString, PrimitiveTime, PrimitiveUnsignedInt, PrimitiveUri, PrimitiveUrl, PrimitiveUuid, Address, Age, Annotation, Attachment, CodeableConcept, Coding, ContactPoint, Count, Distance, Duration, HumanName, Identifier, Money, Period, Quantity, Range, Ratio, Reference, SampledData, Signature, Timing, ContactDetail, Contributor, DataRequirement, Expression, ParameterDefinition, RelatedArtifact, TriggerDefinition, UsageContext, Dosage, Meta],
+      isArray: false
+    }, {
+      fieldName: "resource",
+      fieldType: [Resource],
+      isArray: false
+    }, {
+      fieldName: "part",
+      fieldType: [ParametersParameter],
+      isArray: true
+    }];
+  }
 
   public name?: PrimitiveString;
 

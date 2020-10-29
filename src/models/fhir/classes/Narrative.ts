@@ -5,6 +5,7 @@ import {
   INarrative,
   NarrativeStatus,
   PrimitiveXhtml,
+  FieldMetadata
 } from "../internal";
 
 export class Narrative extends Element {
@@ -15,6 +16,18 @@ export class Narrative extends Element {
   static readonly typeName: string = "Narrative";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "status",
+      fieldType: [NarrativeStatus],
+      isArray: false
+    }, {
+      fieldName: "div",
+      fieldType: [PrimitiveXhtml],
+      isArray: false
+    }];
+  }
 
   public status?: NarrativeStatus;
 

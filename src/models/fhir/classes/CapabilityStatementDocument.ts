@@ -6,6 +6,7 @@ import {
   ICapabilityStatementDocument,
   PrimitiveCanonical,
   PrimitiveMarkdown,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatementDocument extends BackboneElement {
@@ -16,6 +17,22 @@ export class CapabilityStatementDocument extends BackboneElement {
   static readonly typeName: string = "CapabilityStatement.Document";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "mode",
+      fieldType: [DocumentMode],
+      isArray: false
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "profile",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }];
+  }
 
   public mode?: DocumentMode;
 

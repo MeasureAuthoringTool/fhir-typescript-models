@@ -8,6 +8,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   QuantityComparator,
+  FieldMetadata
 } from "../internal";
 
 export class Quantity extends Element {
@@ -18,6 +19,30 @@ export class Quantity extends Element {
   static readonly typeName: string = "Quantity";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "value",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "comparator",
+      fieldType: [QuantityComparator],
+      isArray: false
+    }, {
+      fieldName: "unit",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "system",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }];
+  }
 
   public value?: PrimitiveDecimal;
 

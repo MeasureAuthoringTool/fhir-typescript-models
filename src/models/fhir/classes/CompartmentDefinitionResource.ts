@@ -5,6 +5,7 @@ import {
   ICompartmentDefinitionResource,
   PrimitiveString,
   ResourceType,
+  FieldMetadata
 } from "../internal";
 
 export class CompartmentDefinitionResource extends BackboneElement {
@@ -15,6 +16,22 @@ export class CompartmentDefinitionResource extends BackboneElement {
   static readonly typeName: string = "CompartmentDefinition.Resource";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [ResourceType],
+      isArray: false
+    }, {
+      fieldName: "param",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public code?: ResourceType;
 

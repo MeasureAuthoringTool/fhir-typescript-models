@@ -11,6 +11,7 @@ import {
   PrimitiveCanonical,
   PrimitiveMarkdown,
   RestfulCapabilityMode,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatementRest extends BackboneElement {
@@ -21,6 +22,42 @@ export class CapabilityStatementRest extends BackboneElement {
   static readonly typeName: string = "CapabilityStatement.Rest";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "mode",
+      fieldType: [RestfulCapabilityMode],
+      isArray: false
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "security",
+      fieldType: [CapabilityStatementRestSecurity],
+      isArray: false
+    }, {
+      fieldName: "resource",
+      fieldType: [CapabilityStatementRestResource],
+      isArray: true
+    }, {
+      fieldName: "interaction",
+      fieldType: [CapabilityStatementRestInteraction],
+      isArray: true
+    }, {
+      fieldName: "searchParam",
+      fieldType: [CapabilityStatementRestResourceSearchParam],
+      isArray: true
+    }, {
+      fieldName: "operation",
+      fieldType: [CapabilityStatementRestResourceOperation],
+      isArray: true
+    }, {
+      fieldName: "compartment",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }];
+  }
 
   public mode?: RestfulCapabilityMode;
 

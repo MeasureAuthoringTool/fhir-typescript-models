@@ -6,6 +6,7 @@ import {
   MedicinalProductContraindicationOtherTherapy,
   Population,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductContraindication extends DomainResource {
@@ -16,6 +17,38 @@ export class MedicinalProductContraindication extends DomainResource {
   static readonly typeName: string = "MedicinalProductContraindication";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "disease",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "diseaseStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "comorbidity",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "therapeuticIndication",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "otherTherapy",
+      fieldType: [MedicinalProductContraindicationOtherTherapy],
+      isArray: true
+    }, {
+      fieldName: "population",
+      fieldType: [Population],
+      isArray: true
+    }];
+  }
 
   public subject?: Array<Reference>;
 

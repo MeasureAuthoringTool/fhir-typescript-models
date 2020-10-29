@@ -7,6 +7,7 @@ import {
   PrimitiveBoolean,
   PrimitiveMarkdown,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ExampleScenarioProcessStepOperation extends BackboneElement {
@@ -17,6 +18,50 @@ export class ExampleScenarioProcessStepOperation extends BackboneElement {
   static readonly typeName: string = "ExampleScenario.Process.Step.Operation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "number",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "initiator",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "receiver",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "initiatorActive",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "receiverActive",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "request",
+      fieldType: [ExampleScenarioInstanceContainedInstance],
+      isArray: false
+    }, {
+      fieldName: "response",
+      fieldType: [ExampleScenarioInstanceContainedInstance],
+      isArray: false
+    }];
+  }
 
   public number?: PrimitiveString;
 

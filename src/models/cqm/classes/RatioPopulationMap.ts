@@ -1,20 +1,18 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { PopulationMap } from "./PopulationMap";
-import { StatementReference } from "./StatementReference";
+import { IRatioPopulationMap, PopulationMap, StatementReference } from "../index";
 
 /**
  * The population map for a ratio population set.
  */
 export class RatioPopulationMap extends PopulationMap {
-  // tslint:disable-next-line:variable-name
   public IPP?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public DENOM?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public NUMER?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public NUMEX?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public DENEX?: StatementReference;
 
   constructor() {
@@ -23,7 +21,7 @@ export class RatioPopulationMap extends PopulationMap {
   }
 
   public static parse(
-    json: any,
+    json: IRatioPopulationMap,
     providedInstance: RatioPopulationMap = new RatioPopulationMap()
   ): RatioPopulationMap {
     const newInstance: RatioPopulationMap = PopulationMap.parse(
@@ -48,8 +46,8 @@ export class RatioPopulationMap extends PopulationMap {
     return newInstance;
   }
 
-  public toJSON(): any {
-    const result: any = super.toJSON();
+  public toJSON(): IRatioPopulationMap {
+    const result: IRatioPopulationMap = super.toJSON();
     if (this.IPP) {
       result.IPP = this.IPP.toJSON();
     }
@@ -68,3 +66,5 @@ export class RatioPopulationMap extends PopulationMap {
     return result;
   }
 }
+
+/* eslint-enable import/prefer-default-export, import/no-cycle */

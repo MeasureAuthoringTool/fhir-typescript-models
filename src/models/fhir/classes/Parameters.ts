@@ -3,6 +3,7 @@ import {
   IParameters,
   ParametersParameter,
   Resource,
+  FieldMetadata
 } from "../internal";
 
 export class Parameters extends Resource {
@@ -13,6 +14,14 @@ export class Parameters extends Resource {
   static readonly typeName: string = "Parameters";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Resource.fieldInfo, {
+      fieldName: "parameter",
+      fieldType: [ParametersParameter],
+      isArray: true
+    }];
+  }
 
   public parameter?: Array<ParametersParameter>;
 

@@ -5,6 +5,7 @@ import {
   Extension,
   IMoney,
   PrimitiveDecimal,
+  FieldMetadata
 } from "../internal";
 
 export class Money extends Element {
@@ -15,6 +16,18 @@ export class Money extends Element {
   static readonly typeName: string = "Money";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "value",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "currency",
+      fieldType: [CurrencyCode],
+      isArray: false
+    }];
+  }
 
   public value?: PrimitiveDecimal;
 

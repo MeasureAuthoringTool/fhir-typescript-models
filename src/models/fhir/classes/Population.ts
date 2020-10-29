@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IPopulation,
   Range,
+  FieldMetadata
 } from "../internal";
 
 export class Population extends BackboneElement {
@@ -14,6 +15,26 @@ export class Population extends BackboneElement {
   static readonly typeName: string = "Population";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "age",
+      fieldType: [Range, CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "gender",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "race",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "physiologicalCondition",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public age?: Range | CodeableConcept;
 

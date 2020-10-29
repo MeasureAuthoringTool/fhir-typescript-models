@@ -5,6 +5,7 @@ import {
   Identifier,
   IMedicinalProductAuthorizationJurisdictionalAuthorization,
   Period,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductAuthorizationJurisdictionalAuthorization extends BackboneElement {
@@ -15,6 +16,30 @@ export class MedicinalProductAuthorizationJurisdictionalAuthorization extends Ba
   static readonly typeName: string = "MedicinalProductAuthorization.JurisdictionalAuthorization";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "country",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "legalStatusOfSupply",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "validityPeriod",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

@@ -7,6 +7,7 @@ import {
   PrimitiveMarkdown,
   PrimitiveString,
   SearchParamType,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatementRestResourceSearchParam extends BackboneElement {
@@ -17,6 +18,26 @@ export class CapabilityStatementRestResourceSearchParam extends BackboneElement 
   static readonly typeName: string = "CapabilityStatement.Rest.Resource.SearchParam";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "definition",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [SearchParamType],
+      isArray: false
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveString;
 

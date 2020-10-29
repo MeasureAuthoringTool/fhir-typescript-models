@@ -5,6 +5,7 @@ import {
   IHealthcareServiceNotAvailable,
   Period,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class HealthcareServiceNotAvailable extends BackboneElement {
@@ -15,6 +16,18 @@ export class HealthcareServiceNotAvailable extends BackboneElement {
   static readonly typeName: string = "HealthcareService.NotAvailable";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "during",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public description?: PrimitiveString;
 

@@ -7,6 +7,7 @@ import {
   Period,
   PrimitiveDecimal,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class BiologicallyDerivedProductStorage extends BackboneElement {
@@ -17,6 +18,26 @@ export class BiologicallyDerivedProductStorage extends BackboneElement {
   static readonly typeName: string = "BiologicallyDerivedProduct.Storage";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "temperature",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "scale",
+      fieldType: [BiologicallyDerivedProductStorageScale],
+      isArray: false
+    }, {
+      fieldName: "duration",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public description?: PrimitiveString;
 

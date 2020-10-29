@@ -5,6 +5,7 @@ import {
   Extension,
   ICapabilityStatementMessagingEndpoint,
   PrimitiveUrl,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatementMessagingEndpoint extends BackboneElement {
@@ -15,6 +16,18 @@ export class CapabilityStatementMessagingEndpoint extends BackboneElement {
   static readonly typeName: string = "CapabilityStatement.Messaging.Endpoint";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "protocol",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "address",
+      fieldType: [PrimitiveUrl],
+      isArray: false
+    }];
+  }
 
   public protocol?: Coding;
 

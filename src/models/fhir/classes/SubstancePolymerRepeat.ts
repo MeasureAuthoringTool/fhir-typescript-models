@@ -7,6 +7,7 @@ import {
   PrimitiveInteger,
   PrimitiveString,
   SubstancePolymerRepeatRepeatUnit,
+  FieldMetadata
 } from "../internal";
 
 export class SubstancePolymerRepeat extends BackboneElement {
@@ -17,6 +18,26 @@ export class SubstancePolymerRepeat extends BackboneElement {
   static readonly typeName: string = "SubstancePolymer.Repeat";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "numberOfUnits",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "averageMolecularFormula",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "repeatUnitAmountType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "repeatUnit",
+      fieldType: [SubstancePolymerRepeatRepeatUnit],
+      isArray: true
+    }];
+  }
 
   public numberOfUnits?: PrimitiveInteger;
 

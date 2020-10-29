@@ -7,6 +7,7 @@ import {
   IMedicinalProductSpecialDesignation,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductSpecialDesignation extends BackboneElement {
@@ -17,6 +18,38 @@ export class MedicinalProductSpecialDesignation extends BackboneElement {
   static readonly typeName: string = "MedicinalProduct.SpecialDesignation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "intendedUse",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "indication",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "species",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

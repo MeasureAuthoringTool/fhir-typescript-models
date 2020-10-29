@@ -13,6 +13,7 @@ import {
   PrimitiveDateTime,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ContractTerm extends BackboneElement {
@@ -23,6 +24,58 @@ export class ContractTerm extends BackboneElement {
   static readonly typeName: string = "Contract.Term";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "issued",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "applies",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "topic",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "securityLabel",
+      fieldType: [ContractTermSecurityLabel],
+      isArray: true
+    }, {
+      fieldName: "offer",
+      fieldType: [ContractTermOffer],
+      isArray: false
+    }, {
+      fieldName: "asset",
+      fieldType: [ContractTermAsset],
+      isArray: true
+    }, {
+      fieldName: "action",
+      fieldType: [ContractTermAction],
+      isArray: true
+    }, {
+      fieldName: "group",
+      fieldType: [ContractTerm],
+      isArray: true
+    }];
+  }
 
   public identifier?: Identifier;
 

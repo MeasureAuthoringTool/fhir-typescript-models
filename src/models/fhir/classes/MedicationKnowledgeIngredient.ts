@@ -7,6 +7,7 @@ import {
   PrimitiveBoolean,
   Ratio,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationKnowledgeIngredient extends BackboneElement {
@@ -17,6 +18,22 @@ export class MedicationKnowledgeIngredient extends BackboneElement {
   static readonly typeName: string = "MedicationKnowledge.Ingredient";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "item",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "isActive",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "strength",
+      fieldType: [Ratio],
+      isArray: false
+    }];
+  }
 
   public item?: CodeableConcept | Reference;
 

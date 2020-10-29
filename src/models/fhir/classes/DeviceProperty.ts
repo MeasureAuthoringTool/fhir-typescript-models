@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IDeviceProperty,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class DeviceProperty extends BackboneElement {
@@ -14,6 +15,22 @@ export class DeviceProperty extends BackboneElement {
   static readonly typeName: string = "Device.Property";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "valueQuantity",
+      fieldType: [Quantity],
+      isArray: true
+    }, {
+      fieldName: "valueCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }];
+  }
 
   public type?: CodeableConcept;
 

@@ -6,6 +6,7 @@ import {
   IMarketingStatus,
   Period,
   PrimitiveDateTime,
+  FieldMetadata
 } from "../internal";
 
 export class MarketingStatus extends BackboneElement {
@@ -16,6 +17,30 @@ export class MarketingStatus extends BackboneElement {
   static readonly typeName: string = "MarketingStatus";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "country",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "dateRange",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "restoreDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }];
+  }
 
   public country?: CodeableConcept;
 

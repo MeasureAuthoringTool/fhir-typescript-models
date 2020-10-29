@@ -8,6 +8,7 @@ import {
   PrimitiveId,
   PrimitiveInstant,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class Meta extends Element {
@@ -18,6 +19,34 @@ export class Meta extends Element {
   static readonly typeName: string = "Meta";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "versionId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "lastUpdated",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "profile",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "security",
+      fieldType: [Coding],
+      isArray: true
+    }, {
+      fieldName: "tag",
+      fieldType: [Coding],
+      isArray: true
+    }];
+  }
 
   public versionId?: PrimitiveId;
 

@@ -5,6 +5,7 @@ import {
   Extension,
   IImmunizationRecommendationRecommendationDateCriterion,
   PrimitiveDateTime,
+  FieldMetadata
 } from "../internal";
 
 export class ImmunizationRecommendationRecommendationDateCriterion extends BackboneElement {
@@ -15,6 +16,18 @@ export class ImmunizationRecommendationRecommendationDateCriterion extends Backb
   static readonly typeName: string = "ImmunizationRecommendation.Recommendation.DateCriterion";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }];
+  }
 
   public code?: CodeableConcept;
 

@@ -5,6 +5,7 @@ import {
   Extension,
   IDeviceDefinitionMaterial,
   PrimitiveBoolean,
+  FieldMetadata
 } from "../internal";
 
 export class DeviceDefinitionMaterial extends BackboneElement {
@@ -15,6 +16,22 @@ export class DeviceDefinitionMaterial extends BackboneElement {
   static readonly typeName: string = "DeviceDefinition.Material";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "substance",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "alternate",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "allergenicIndicator",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public substance?: CodeableConcept;
 

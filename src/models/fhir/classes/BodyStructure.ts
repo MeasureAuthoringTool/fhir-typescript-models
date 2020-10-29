@@ -9,6 +9,7 @@ import {
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class BodyStructure extends DomainResource {
@@ -19,6 +20,42 @@ export class BodyStructure extends DomainResource {
   static readonly typeName: string = "BodyStructure";
   
   static readonly primaryCodePath: string | null = "location";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "active",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "morphology",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "location",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "locationQualifier",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "image",
+      fieldType: [Attachment],
+      isArray: true
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

@@ -9,6 +9,7 @@ import {
   PrimitiveString,
   PrimitiveUrl,
   RelatedArtifactType,
+  FieldMetadata
 } from "../internal";
 
 export class RelatedArtifact extends Element {
@@ -19,6 +20,38 @@ export class RelatedArtifact extends Element {
   static readonly typeName: string = "RelatedArtifact";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "type",
+      fieldType: [RelatedArtifactType],
+      isArray: false
+    }, {
+      fieldName: "label",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "display",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "citation",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "url",
+      fieldType: [PrimitiveUrl],
+      isArray: false
+    }, {
+      fieldName: "document",
+      fieldType: [Attachment],
+      isArray: false
+    }, {
+      fieldName: "resource",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }];
+  }
 
   public type?: RelatedArtifactType;
 

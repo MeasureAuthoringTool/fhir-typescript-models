@@ -7,6 +7,7 @@ import {
   ICapabilityStatementMessaging,
   PrimitiveMarkdown,
   PrimitiveUnsignedInt,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatementMessaging extends BackboneElement {
@@ -17,6 +18,26 @@ export class CapabilityStatementMessaging extends BackboneElement {
   static readonly typeName: string = "CapabilityStatement.Messaging";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "endpoint",
+      fieldType: [CapabilityStatementMessagingEndpoint],
+      isArray: true
+    }, {
+      fieldName: "reliableCache",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "supportedMessage",
+      fieldType: [CapabilityStatementMessagingSupportedMessage],
+      isArray: true
+    }];
+  }
 
   public endpoint?: Array<CapabilityStatementMessagingEndpoint>;
 

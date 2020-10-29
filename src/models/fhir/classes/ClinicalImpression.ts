@@ -14,6 +14,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ClinicalImpression extends DomainResource {
@@ -24,6 +25,90 @@ export class ClinicalImpression extends DomainResource {
   static readonly typeName: string = "ClinicalImpression";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [ClinicalImpressionStatus],
+      isArray: false
+    }, {
+      fieldName: "statusReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "effective",
+      fieldType: [PrimitiveDateTime, Period],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "assessor",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "previous",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "problem",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "investigation",
+      fieldType: [ClinicalImpressionInvestigation],
+      isArray: true
+    }, {
+      fieldName: "protocol",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "summary",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "finding",
+      fieldType: [ClinicalImpressionFinding],
+      isArray: true
+    }, {
+      fieldName: "prognosisCodeableConcept",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "prognosisReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "supportingInfo",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

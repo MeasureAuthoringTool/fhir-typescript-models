@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IClinicalImpressionInvestigation,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ClinicalImpressionInvestigation extends BackboneElement {
@@ -14,6 +15,18 @@ export class ClinicalImpressionInvestigation extends BackboneElement {
   static readonly typeName: string = "ClinicalImpression.Investigation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "item",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public code?: CodeableConcept;
 

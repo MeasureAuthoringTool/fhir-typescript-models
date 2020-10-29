@@ -22,6 +22,7 @@ import {
   Reference,
   SampledData,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class Observation extends DomainResource {
@@ -32,6 +33,106 @@ export class Observation extends DomainResource {
   static readonly typeName: string = "Observation";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [ObservationStatus],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "focus",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "effective",
+      fieldType: [PrimitiveDateTime, Period, Timing, PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "issued",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "value",
+      fieldType: [Quantity, CodeableConcept, PrimitiveString, PrimitiveBoolean, PrimitiveInteger, Range, Ratio, SampledData, PrimitiveTime, PrimitiveDateTime, Period],
+      isArray: false
+    }, {
+      fieldName: "dataAbsentReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "interpretation",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "bodySite",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "method",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "specimen",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "device",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "referenceRange",
+      fieldType: [ObservationReferenceRange],
+      isArray: true
+    }, {
+      fieldName: "hasMember",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "derivedFrom",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "component",
+      fieldType: [ObservationComponent],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

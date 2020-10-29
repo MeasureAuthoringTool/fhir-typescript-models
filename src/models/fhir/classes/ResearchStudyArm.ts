@@ -5,6 +5,7 @@ import {
   Extension,
   IResearchStudyArm,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ResearchStudyArm extends BackboneElement {
@@ -15,6 +16,22 @@ export class ResearchStudyArm extends BackboneElement {
   static readonly typeName: string = "ResearchStudy.Arm";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveString;
 

@@ -6,6 +6,7 @@ import {
   PrimitiveCode,
   PrimitiveString,
   ValueSetComposeIncludeConceptDesignation,
+  FieldMetadata
 } from "../internal";
 
 export class ValueSetComposeIncludeConcept extends BackboneElement {
@@ -16,6 +17,22 @@ export class ValueSetComposeIncludeConcept extends BackboneElement {
   static readonly typeName: string = "ValueSet.Compose.Include.Concept";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "display",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "designation",
+      fieldType: [ValueSetComposeIncludeConceptDesignation],
+      isArray: true
+    }];
+  }
 
   public code?: PrimitiveCode;
 

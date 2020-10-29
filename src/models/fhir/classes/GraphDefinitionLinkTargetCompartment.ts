@@ -7,6 +7,7 @@ import {
   GraphCompartmentUse,
   IGraphDefinitionLinkTargetCompartment,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class GraphDefinitionLinkTargetCompartment extends BackboneElement {
@@ -17,6 +18,30 @@ export class GraphDefinitionLinkTargetCompartment extends BackboneElement {
   static readonly typeName: string = "GraphDefinition.Link.Target.Compartment";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "use",
+      fieldType: [GraphCompartmentUse],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CompartmentCode],
+      isArray: false
+    }, {
+      fieldName: "rule",
+      fieldType: [GraphCompartmentRule],
+      isArray: false
+    }, {
+      fieldName: "expression",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public use?: GraphCompartmentUse;
 

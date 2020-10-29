@@ -5,6 +5,7 @@ import {
   IPatientLink,
   LinkType,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class PatientLink extends BackboneElement {
@@ -15,6 +16,18 @@ export class PatientLink extends BackboneElement {
   static readonly typeName: string = "Patient.Link";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "other",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [LinkType],
+      isArray: false
+    }];
+  }
 
   public other?: Reference;
 

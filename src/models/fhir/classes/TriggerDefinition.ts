@@ -11,6 +11,7 @@ import {
   Reference,
   Timing,
   TriggerType,
+  FieldMetadata
 } from "../internal";
 
 export class TriggerDefinition extends Element {
@@ -21,6 +22,30 @@ export class TriggerDefinition extends Element {
   static readonly typeName: string = "TriggerDefinition";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "type",
+      fieldType: [TriggerType],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "timing",
+      fieldType: [Timing, Reference, PrimitiveDate, PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "data",
+      fieldType: [DataRequirement],
+      isArray: true
+    }, {
+      fieldName: "condition",
+      fieldType: [Expression],
+      isArray: false
+    }];
+  }
 
   public type?: TriggerType;
 

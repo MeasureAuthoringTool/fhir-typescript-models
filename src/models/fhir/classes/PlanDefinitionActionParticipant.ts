@@ -5,6 +5,7 @@ import {
   CodeableConcept,
   Extension,
   IPlanDefinitionActionParticipant,
+  FieldMetadata
 } from "../internal";
 
 export class PlanDefinitionActionParticipant extends BackboneElement {
@@ -15,6 +16,18 @@ export class PlanDefinitionActionParticipant extends BackboneElement {
   static readonly typeName: string = "PlanDefinition.Action.Participant";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [ActionParticipantType],
+      isArray: false
+    }, {
+      fieldName: "role",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public type?: ActionParticipantType;
 

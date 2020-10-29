@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
 import { 
   PrimitiveCode,
+  FieldMetadata
 } from "../internal";
 
 export class SubscriptionStatus extends PrimitiveCode {
@@ -11,6 +12,11 @@ export class SubscriptionStatus extends PrimitiveCode {
   static readonly typeName: string = "SubscriptionStatus";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...PrimitiveCode.fieldInfo, 
+    ];
+  }
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],

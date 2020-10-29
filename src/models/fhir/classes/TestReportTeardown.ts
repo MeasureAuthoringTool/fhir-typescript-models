@@ -3,6 +3,7 @@ import {
   BackboneElement,
   ITestReportTeardown,
   TestReportTeardownAction,
+  FieldMetadata
 } from "../internal";
 
 export class TestReportTeardown extends BackboneElement {
@@ -13,6 +14,14 @@ export class TestReportTeardown extends BackboneElement {
   static readonly typeName: string = "TestReport.Teardown";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "action",
+      fieldType: [TestReportTeardownAction],
+      isArray: true
+    }];
+  }
 
   public action?: Array<TestReportTeardownAction>;
 

@@ -6,6 +6,7 @@ import {
   IVerificationResultPrimarySource,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class VerificationResultPrimarySource extends BackboneElement {
@@ -16,6 +17,38 @@ export class VerificationResultPrimarySource extends BackboneElement {
   static readonly typeName: string = "VerificationResult.PrimarySource";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "who",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "communicationMethod",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "validationStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "validationDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "canPushUpdates",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "pushTypeAvailable",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }];
+  }
 
   public who?: Reference;
 

@@ -4,6 +4,7 @@ import {
   IOperationOutcome,
   IssueType,
   OperationOutcomeIssue,
+  FieldMetadata
 } from "../internal";
 
 export class OperationOutcome extends DomainResource {
@@ -14,6 +15,14 @@ export class OperationOutcome extends DomainResource {
   static readonly typeName: string = "OperationOutcome";
   
   static readonly primaryCodePath: string | null = "issue.code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "issue",
+      fieldType: [OperationOutcomeIssue],
+      isArray: true
+    }];
+  }
 
   public issue?: Array<OperationOutcomeIssue>;
 

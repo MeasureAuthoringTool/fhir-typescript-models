@@ -5,6 +5,7 @@ import {
   IMedicinalProductUndesirableEffect,
   Population,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductUndesirableEffect extends DomainResource {
@@ -15,6 +16,30 @@ export class MedicinalProductUndesirableEffect extends DomainResource {
   static readonly typeName: string = "MedicinalProductUndesirableEffect";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "symptomConditionEffect",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "classification",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "frequencyOfOccurrence",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "population",
+      fieldType: [Population],
+      isArray: true
+    }];
+  }
 
   public subject?: Array<Reference>;
 

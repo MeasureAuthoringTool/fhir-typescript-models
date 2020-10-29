@@ -6,6 +6,7 @@ import {
   IAdverseEventSuspectEntityCausality,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class AdverseEventSuspectEntityCausality extends BackboneElement {
@@ -16,6 +17,26 @@ export class AdverseEventSuspectEntityCausality extends BackboneElement {
   static readonly typeName: string = "AdverseEvent.SuspectEntity.Causality";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "assessment",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "productRelatedness",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "author",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "method",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public assessment?: CodeableConcept;
 

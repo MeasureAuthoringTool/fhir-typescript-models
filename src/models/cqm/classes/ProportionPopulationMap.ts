@@ -1,22 +1,20 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { PopulationMap } from "./PopulationMap";
-import { StatementReference } from "./StatementReference";
+import { IProportionPopulationMap, PopulationMap, StatementReference } from "../index";
 
 /**
  * The population map for a porportion population set.
  */
 export class ProportionPopulationMap extends PopulationMap {
-  // tslint:disable-next-line:variable-name
   public IPP?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public DENOM?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public NUMER?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public NUMEX?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public DENEX?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public DENEXCEP?: StatementReference;
 
   constructor() {
@@ -25,7 +23,7 @@ export class ProportionPopulationMap extends PopulationMap {
   }
 
   public static parse(
-    json: any,
+    json: IProportionPopulationMap,
     providedInstance: ProportionPopulationMap = new ProportionPopulationMap()
   ): ProportionPopulationMap {
     const newInstance: ProportionPopulationMap = PopulationMap.parse(
@@ -53,8 +51,8 @@ export class ProportionPopulationMap extends PopulationMap {
     return newInstance;
   }
 
-  public toJSON(): any {
-    const result: any = super.toJSON();
+  public toJSON(): IProportionPopulationMap {
+    const result: IProportionPopulationMap = super.toJSON();
     if (this.IPP) {
       result.IPP = this.IPP.toJSON();
     }
@@ -76,3 +74,5 @@ export class ProportionPopulationMap extends PopulationMap {
     return result;
   }
 }
+
+/* eslint-enable import/prefer-default-export, import/no-cycle */

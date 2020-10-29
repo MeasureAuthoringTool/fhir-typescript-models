@@ -6,6 +6,7 @@ import {
   PrimitiveString,
   Reference,
   Signature,
+  FieldMetadata
 } from "../internal";
 
 export class VerificationResultValidator extends BackboneElement {
@@ -16,6 +17,22 @@ export class VerificationResultValidator extends BackboneElement {
   static readonly typeName: string = "VerificationResult.Validator";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "organization",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "identityCertificate",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "attestationSignature",
+      fieldType: [Signature],
+      isArray: false
+    }];
+  }
 
   public organization?: Reference;
 

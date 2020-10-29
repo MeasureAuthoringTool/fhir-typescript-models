@@ -10,6 +10,7 @@ import {
   SpecimenContainedPreference,
   SpecimenDefinitionTypeTestedContainer,
   SpecimenDefinitionTypeTestedHandling,
+  FieldMetadata
 } from "../internal";
 
 export class SpecimenDefinitionTypeTested extends BackboneElement {
@@ -20,6 +21,42 @@ export class SpecimenDefinitionTypeTested extends BackboneElement {
   static readonly typeName: string = "SpecimenDefinition.TypeTested";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "isDerived",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "preference",
+      fieldType: [SpecimenContainedPreference],
+      isArray: false
+    }, {
+      fieldName: "container",
+      fieldType: [SpecimenDefinitionTypeTestedContainer],
+      isArray: false
+    }, {
+      fieldName: "requirement",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "retentionTime",
+      fieldType: [Duration],
+      isArray: false
+    }, {
+      fieldName: "rejectionCriterion",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "handling",
+      fieldType: [SpecimenDefinitionTypeTestedHandling],
+      isArray: true
+    }];
+  }
 
   public isDerived?: PrimitiveBoolean;
 

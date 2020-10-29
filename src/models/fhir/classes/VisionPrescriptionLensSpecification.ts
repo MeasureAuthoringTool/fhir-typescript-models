@@ -11,6 +11,7 @@ import {
   SimpleQuantity,
   VisionEyes,
   VisionPrescriptionLensSpecificationPrism,
+  FieldMetadata
 } from "../internal";
 
 export class VisionPrescriptionLensSpecification extends BackboneElement {
@@ -21,6 +22,66 @@ export class VisionPrescriptionLensSpecification extends BackboneElement {
   static readonly typeName: string = "VisionPrescription.LensSpecification";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "product",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "eye",
+      fieldType: [VisionEyes],
+      isArray: false
+    }, {
+      fieldName: "sphere",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "cylinder",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "axis",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "prism",
+      fieldType: [VisionPrescriptionLensSpecificationPrism],
+      isArray: true
+    }, {
+      fieldName: "add",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "power",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "backCurve",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "diameter",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "duration",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "color",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "brand",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public product?: CodeableConcept;
 

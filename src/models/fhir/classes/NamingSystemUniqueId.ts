@@ -7,6 +7,7 @@ import {
   Period,
   PrimitiveBoolean,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class NamingSystemUniqueId extends BackboneElement {
@@ -17,6 +18,30 @@ export class NamingSystemUniqueId extends BackboneElement {
   static readonly typeName: string = "NamingSystem.UniqueId";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [NamingSystemIdentifierType],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "preferred",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public type?: NamingSystemIdentifierType;
 

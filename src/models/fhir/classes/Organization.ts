@@ -11,6 +11,7 @@ import {
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Organization extends DomainResource {
@@ -21,6 +22,50 @@ export class Organization extends DomainResource {
   static readonly typeName: string = "Organization";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "active",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "alias",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "telecom",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "address",
+      fieldType: [Address],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [OrganizationContact],
+      isArray: true
+    }, {
+      fieldName: "endpoint",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

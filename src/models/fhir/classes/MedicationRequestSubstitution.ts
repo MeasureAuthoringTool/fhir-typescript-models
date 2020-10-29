@@ -5,6 +5,7 @@ import {
   Extension,
   IMedicationRequestSubstitution,
   PrimitiveBoolean,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationRequestSubstitution extends BackboneElement {
@@ -15,6 +16,18 @@ export class MedicationRequestSubstitution extends BackboneElement {
   static readonly typeName: string = "MedicationRequest.Substitution";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "allowed",
+      fieldType: [PrimitiveBoolean, CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "reason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public allowed?: PrimitiveBoolean | CodeableConcept;
 

@@ -8,6 +8,7 @@ import {
   PrimitiveCanonical,
   PrimitiveString,
   ResourceType,
+  FieldMetadata
 } from "../internal";
 
 export class GraphDefinitionLinkTarget extends BackboneElement {
@@ -18,6 +19,30 @@ export class GraphDefinitionLinkTarget extends BackboneElement {
   static readonly typeName: string = "GraphDefinition.Link.Target";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [ResourceType],
+      isArray: false
+    }, {
+      fieldName: "params",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "profile",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "compartment",
+      fieldType: [GraphDefinitionLinkTargetCompartment],
+      isArray: true
+    }, {
+      fieldName: "link",
+      fieldType: [GraphDefinitionLink],
+      isArray: true
+    }];
+  }
 
   public type?: ResourceType;
 

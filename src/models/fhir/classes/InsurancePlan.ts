@@ -12,6 +12,7 @@ import {
   PrimitiveString,
   PublicationStatus,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class InsurancePlan extends DomainResource {
@@ -22,6 +23,66 @@ export class InsurancePlan extends DomainResource {
   static readonly typeName: string = "InsurancePlan";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "alias",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "ownedBy",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "administeredBy",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "coverageArea",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "contact",
+      fieldType: [InsurancePlanContact],
+      isArray: true
+    }, {
+      fieldName: "endpoint",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "network",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "coverage",
+      fieldType: [InsurancePlanCoverage],
+      isArray: true
+    }, {
+      fieldName: "plan",
+      fieldType: [InsurancePlanPlan],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

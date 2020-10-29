@@ -9,6 +9,7 @@ import {
   PrimitiveString,
   Reference,
   StrandType,
+  FieldMetadata
 } from "../internal";
 
 export class MolecularSequenceReferenceSeq extends BackboneElement {
@@ -19,6 +20,46 @@ export class MolecularSequenceReferenceSeq extends BackboneElement {
   static readonly typeName: string = "MolecularSequence.ReferenceSeq";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "chromosome",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "genomeBuild",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "orientation",
+      fieldType: [OrientationType],
+      isArray: false
+    }, {
+      fieldName: "referenceSeqId",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "referenceSeqPointer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "referenceSeqString",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "strand",
+      fieldType: [StrandType],
+      isArray: false
+    }, {
+      fieldName: "windowStart",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "windowEnd",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }];
+  }
 
   public chromosome?: CodeableConcept;
 

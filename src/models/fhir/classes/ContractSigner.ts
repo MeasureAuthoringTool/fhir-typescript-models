@@ -5,6 +5,7 @@ import {
   IContractSigner,
   Reference,
   Signature,
+  FieldMetadata
 } from "../internal";
 
 export class ContractSigner extends BackboneElement {
@@ -15,6 +16,22 @@ export class ContractSigner extends BackboneElement {
   static readonly typeName: string = "Contract.Signer";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "party",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "signature",
+      fieldType: [Signature],
+      isArray: true
+    }];
+  }
 
   public type?: Coding;
 

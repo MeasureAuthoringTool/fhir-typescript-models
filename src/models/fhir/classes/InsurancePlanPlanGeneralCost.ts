@@ -7,6 +7,7 @@ import {
   Money,
   PrimitivePositiveInt,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class InsurancePlanPlanGeneralCost extends BackboneElement {
@@ -17,6 +18,26 @@ export class InsurancePlanPlanGeneralCost extends BackboneElement {
   static readonly typeName: string = "InsurancePlan.Plan.GeneralCost";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "groupSize",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "cost",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

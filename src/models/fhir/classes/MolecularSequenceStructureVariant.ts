@@ -8,6 +8,7 @@ import {
   MolecularSequenceStructureVariantOuter,
   PrimitiveBoolean,
   PrimitiveInteger,
+  FieldMetadata
 } from "../internal";
 
 export class MolecularSequenceStructureVariant extends BackboneElement {
@@ -18,6 +19,30 @@ export class MolecularSequenceStructureVariant extends BackboneElement {
   static readonly typeName: string = "MolecularSequence.StructureVariant";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "variantType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "exact",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "length",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "outer",
+      fieldType: [MolecularSequenceStructureVariantOuter],
+      isArray: false
+    }, {
+      fieldName: "inner",
+      fieldType: [MolecularSequenceStructureVariantInner],
+      isArray: false
+    }];
+  }
 
   public variantType?: CodeableConcept;
 

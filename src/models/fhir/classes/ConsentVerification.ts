@@ -6,6 +6,7 @@ import {
   PrimitiveBoolean,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ConsentVerification extends BackboneElement {
@@ -16,6 +17,22 @@ export class ConsentVerification extends BackboneElement {
   static readonly typeName: string = "Consent.Verification";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "verified",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "verifiedWith",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "verificationDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }];
+  }
 
   public verified?: PrimitiveBoolean;
 

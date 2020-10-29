@@ -5,6 +5,7 @@ import {
   IPlanDefinitionGoal,
   PlanDefinitionGoalTarget,
   RelatedArtifact,
+  FieldMetadata
 } from "../internal";
 
 export class PlanDefinitionGoal extends BackboneElement {
@@ -15,6 +16,38 @@ export class PlanDefinitionGoal extends BackboneElement {
   static readonly typeName: string = "PlanDefinition.Goal";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "priority",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "start",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "addresses",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "documentation",
+      fieldType: [RelatedArtifact],
+      isArray: true
+    }, {
+      fieldName: "target",
+      fieldType: [PlanDefinitionGoalTarget],
+      isArray: true
+    }];
+  }
 
   public category?: CodeableConcept;
 

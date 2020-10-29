@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   INutritionOrderOralDietNutrient,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class NutritionOrderOralDietNutrient extends BackboneElement {
@@ -14,6 +15,18 @@ export class NutritionOrderOralDietNutrient extends BackboneElement {
   static readonly typeName: string = "NutritionOrder.OralDiet.Nutrient";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "modifier",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "amount",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }];
+  }
 
   public modifier?: CodeableConcept;
 

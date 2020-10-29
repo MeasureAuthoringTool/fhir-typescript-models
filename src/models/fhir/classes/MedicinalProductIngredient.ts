@@ -9,6 +9,7 @@ import {
   MedicinalProductIngredientSubstance,
   PrimitiveBoolean,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductIngredient extends DomainResource {
@@ -19,6 +20,34 @@ export class MedicinalProductIngredient extends DomainResource {
   static readonly typeName: string = "MedicinalProductIngredient";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "role",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "allergenicIndicator",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "manufacturer",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "specifiedSubstance",
+      fieldType: [MedicinalProductIngredientSpecifiedSubstance],
+      isArray: true
+    }, {
+      fieldName: "substance",
+      fieldType: [MedicinalProductIngredientSubstance],
+      isArray: false
+    }];
+  }
 
   public identifier?: Identifier;
 

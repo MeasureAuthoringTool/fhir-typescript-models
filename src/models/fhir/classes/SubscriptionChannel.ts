@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   PrimitiveUrl,
   SubscriptionChannelType,
+  FieldMetadata
 } from "../internal";
 
 export class SubscriptionChannel extends BackboneElement {
@@ -17,6 +18,26 @@ export class SubscriptionChannel extends BackboneElement {
   static readonly typeName: string = "Subscription.Channel";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [SubscriptionChannelType],
+      isArray: false
+    }, {
+      fieldName: "endpoint",
+      fieldType: [PrimitiveUrl],
+      isArray: false
+    }, {
+      fieldName: "payload",
+      fieldType: [MimeType],
+      isArray: false
+    }, {
+      fieldName: "header",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }];
+  }
 
   public type?: SubscriptionChannelType;
 

@@ -10,6 +10,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class AuditEventAgent extends BackboneElement {
@@ -20,6 +21,54 @@ export class AuditEventAgent extends BackboneElement {
   static readonly typeName: string = "AuditEvent.Agent";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "role",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "who",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "altId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "requestor",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "policy",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "media",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "network",
+      fieldType: [AuditEventAgentNetwork],
+      isArray: false
+    }, {
+      fieldName: "purposeOfUse",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }];
+  }
 
   public type?: CodeableConcept;
 

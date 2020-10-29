@@ -7,6 +7,7 @@ import {
   ImmunizationRecommendationRecommendation,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ImmunizationRecommendation extends DomainResource {
@@ -17,6 +18,30 @@ export class ImmunizationRecommendation extends DomainResource {
   static readonly typeName: string = "ImmunizationRecommendation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "authority",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "recommendation",
+      fieldType: [ImmunizationRecommendationRecommendation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

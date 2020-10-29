@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   PropertyType,
+  FieldMetadata
 } from "../internal";
 
 export class CodeSystemProperty extends BackboneElement {
@@ -17,6 +18,26 @@ export class CodeSystemProperty extends BackboneElement {
   static readonly typeName: string = "CodeSystem.Property";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "uri",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [PropertyType],
+      isArray: false
+    }];
+  }
 
   public code?: PrimitiveCode;
 

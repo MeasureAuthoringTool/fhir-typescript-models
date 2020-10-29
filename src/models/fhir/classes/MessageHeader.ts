@@ -11,6 +11,7 @@ import {
   PrimitiveCanonical,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MessageHeader extends DomainResource {
@@ -21,6 +22,54 @@ export class MessageHeader extends DomainResource {
   static readonly typeName: string = "MessageHeader";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "event",
+      fieldType: [Coding, PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "destination",
+      fieldType: [MessageHeaderDestination],
+      isArray: true
+    }, {
+      fieldName: "sender",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "enterer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "author",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [MessageHeaderSource],
+      isArray: false
+    }, {
+      fieldName: "responsible",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "response",
+      fieldType: [MessageHeaderResponse],
+      isArray: false
+    }, {
+      fieldName: "focus",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "definition",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }];
+  }
 
   public event?: Coding | PrimitiveUri;
 

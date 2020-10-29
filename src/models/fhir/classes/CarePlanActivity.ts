@@ -6,6 +6,7 @@ import {
   CodeableConcept,
   ICarePlanActivity,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CarePlanActivity extends BackboneElement {
@@ -16,6 +17,30 @@ export class CarePlanActivity extends BackboneElement {
   static readonly typeName: string = "CarePlan.Activity";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "outcomeCodeableConcept",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "outcomeReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "progress",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "reference",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "detail",
+      fieldType: [CarePlanActivityDetail],
+      isArray: false
+    }];
+  }
 
   public outcomeCodeableConcept?: Array<CodeableConcept>;
 

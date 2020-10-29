@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   SubstancePolymerMonomerSet,
   SubstancePolymerRepeat,
+  FieldMetadata
 } from "../internal";
 
 export class SubstancePolymer extends DomainResource {
@@ -17,6 +18,34 @@ export class SubstancePolymer extends DomainResource {
   static readonly typeName: string = "SubstancePolymer";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "class",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "geometry",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "copolymerConnectivity",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "modification",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "monomerSet",
+      fieldType: [SubstancePolymerMonomerSet],
+      isArray: true
+    }, {
+      fieldName: "repeat",
+      fieldType: [SubstancePolymerRepeat],
+      isArray: true
+    }];
+  }
 
   public class?: CodeableConcept;
 

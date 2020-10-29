@@ -3,6 +3,7 @@ import {
   Element,
   IRatio,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class Ratio extends Element {
@@ -13,6 +14,18 @@ export class Ratio extends Element {
   static readonly typeName: string = "Ratio";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "numerator",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "denominator",
+      fieldType: [Quantity],
+      isArray: false
+    }];
+  }
 
   public numerator?: Quantity;
 

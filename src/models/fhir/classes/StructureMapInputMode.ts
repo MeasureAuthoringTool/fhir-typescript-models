@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
 import { 
   PrimitiveCode,
+  FieldMetadata
 } from "../internal";
 
 export class StructureMapInputMode extends PrimitiveCode {
@@ -11,6 +12,11 @@ export class StructureMapInputMode extends PrimitiveCode {
   static readonly typeName: string = "StructureMapInputMode";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...PrimitiveCode.fieldInfo, 
+    ];
+  }
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],

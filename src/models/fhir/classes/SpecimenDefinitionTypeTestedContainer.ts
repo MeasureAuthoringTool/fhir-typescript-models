@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   SimpleQuantity,
   SpecimenDefinitionTypeTestedContainerAdditive,
+  FieldMetadata
 } from "../internal";
 
 export class SpecimenDefinitionTypeTestedContainer extends BackboneElement {
@@ -17,6 +18,42 @@ export class SpecimenDefinitionTypeTestedContainer extends BackboneElement {
   static readonly typeName: string = "SpecimenDefinition.TypeTested.Container";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "material",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "cap",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "capacity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "minimumVolume",
+      fieldType: [SimpleQuantity, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "additive",
+      fieldType: [SpecimenDefinitionTypeTestedContainerAdditive],
+      isArray: true
+    }, {
+      fieldName: "preparation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public material?: CodeableConcept;
 

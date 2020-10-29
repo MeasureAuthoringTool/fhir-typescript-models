@@ -18,6 +18,7 @@ import {
   Quantity,
   Reference,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class ChargeItem extends DomainResource {
@@ -28,6 +29,114 @@ export class ChargeItem extends DomainResource {
   static readonly typeName: string = "ChargeItem";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "definitionUri",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "definitionCanonical",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [ChargeItemStatus],
+      isArray: false
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "context",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "occurrence",
+      fieldType: [PrimitiveDateTime, Period, Timing],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [ChargeItemPerformer],
+      isArray: true
+    }, {
+      fieldName: "performingOrganization",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "requestingOrganization",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "costCenter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "bodysite",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "factorOverride",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "priceOverride",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "overrideReason",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "enterer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "enteredDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "reason",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "service",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "product",
+      fieldType: [Reference, CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "account",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "supportingInformation",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

@@ -15,6 +15,7 @@ import {
   Range,
   Ratio,
   SampledData,
+  FieldMetadata
 } from "../internal";
 
 export class ObservationComponent extends BackboneElement {
@@ -25,6 +26,30 @@ export class ObservationComponent extends BackboneElement {
   static readonly typeName: string = "Observation.Component";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [Quantity, CodeableConcept, PrimitiveString, PrimitiveBoolean, PrimitiveInteger, Range, Ratio, SampledData, PrimitiveTime, PrimitiveDateTime, Period],
+      isArray: false
+    }, {
+      fieldName: "dataAbsentReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "interpretation",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "referenceRange",
+      fieldType: [ObservationReferenceRange],
+      isArray: true
+    }];
+  }
 
   public code?: CodeableConcept;
 

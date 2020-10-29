@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   Quantity,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSpecificationProperty extends BackboneElement {
@@ -17,6 +18,30 @@ export class SubstanceSpecificationProperty extends BackboneElement {
   static readonly typeName: string = "SubstanceSpecification.Property";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "parameters",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "definingSubstance",
+      fieldType: [Reference, CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "amount",
+      fieldType: [Quantity, PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public category?: CodeableConcept;
 

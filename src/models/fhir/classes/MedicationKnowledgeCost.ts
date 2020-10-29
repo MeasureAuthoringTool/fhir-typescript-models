@@ -6,6 +6,7 @@ import {
   IMedicationKnowledgeCost,
   Money,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationKnowledgeCost extends BackboneElement {
@@ -16,6 +17,22 @@ export class MedicationKnowledgeCost extends BackboneElement {
   static readonly typeName: string = "MedicationKnowledge.Cost";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "cost",
+      fieldType: [Money],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

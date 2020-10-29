@@ -1,15 +1,18 @@
-import { PopulationMap } from "./PopulationMap";
-import { StatementReference } from "./StatementReference";
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import {
+  IContinuousVariablePopulationMap,
+  PopulationMap,
+  StatementReference
+} from "../index";
 
 /**
  * The population map for a continuous variable population set.
  */
 export class ContinuousVariablePopulationMap extends PopulationMap {
-  // tslint:disable-next-line:variable-name
   public IPP?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public MSRPOPL?: StatementReference;
-  // tslint:disable-next-line:variable-name
+
   public MSRPOPLEX?: StatementReference;
 
   constructor() {
@@ -18,7 +21,7 @@ export class ContinuousVariablePopulationMap extends PopulationMap {
   }
 
   public static parse(
-    json: any,
+    json: IContinuousVariablePopulationMap,
     providedInstance: ContinuousVariablePopulationMap = new ContinuousVariablePopulationMap()
   ): ContinuousVariablePopulationMap {
     const newInstance: ContinuousVariablePopulationMap = PopulationMap.parse(
@@ -37,8 +40,8 @@ export class ContinuousVariablePopulationMap extends PopulationMap {
     return newInstance;
   }
 
-  public toJSON(): any {
-    const result: any = super.toJSON();
+  public toJSON(): IContinuousVariablePopulationMap {
+    const result: IContinuousVariablePopulationMap = super.toJSON();
     if (this.IPP) {
       result.IPP = this.IPP.toJSON();
     }
@@ -51,3 +54,4 @@ export class ContinuousVariablePopulationMap extends PopulationMap {
     return result;
   }
 }
+/* eslint-enable import/prefer-default-export, import/no-cycle */

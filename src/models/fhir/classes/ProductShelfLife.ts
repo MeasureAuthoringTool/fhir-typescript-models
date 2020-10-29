@@ -5,6 +5,7 @@ import {
   Identifier,
   IProductShelfLife,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class ProductShelfLife extends BackboneElement {
@@ -15,6 +16,26 @@ export class ProductShelfLife extends BackboneElement {
   static readonly typeName: string = "ProductShelfLife";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "specialPrecautionsForStorage",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }];
+  }
 
   public identifier?: Identifier;
 

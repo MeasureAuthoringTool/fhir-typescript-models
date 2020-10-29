@@ -6,6 +6,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   TestReportParticipantType,
+  FieldMetadata
 } from "../internal";
 
 export class TestReportParticipant extends BackboneElement {
@@ -16,6 +17,22 @@ export class TestReportParticipant extends BackboneElement {
   static readonly typeName: string = "TestReport.Participant";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [TestReportParticipantType],
+      isArray: false
+    }, {
+      fieldName: "uri",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "display",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public type?: TestReportParticipantType;
 

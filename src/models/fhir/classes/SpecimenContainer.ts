@@ -8,6 +8,7 @@ import {
   PrimitiveString,
   Reference,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class SpecimenContainer extends BackboneElement {
@@ -18,6 +19,34 @@ export class SpecimenContainer extends BackboneElement {
   static readonly typeName: string = "Specimen.Container";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "capacity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "specimenQuantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "additive",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

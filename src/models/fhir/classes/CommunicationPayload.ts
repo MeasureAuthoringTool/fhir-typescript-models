@@ -6,6 +6,7 @@ import {
   ICommunicationPayload,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CommunicationPayload extends BackboneElement {
@@ -16,6 +17,14 @@ export class CommunicationPayload extends BackboneElement {
   static readonly typeName: string = "Communication.Payload";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "content",
+      fieldType: [PrimitiveString, Attachment, Reference],
+      isArray: false
+    }];
+  }
 
   public content?: PrimitiveString | Attachment | Reference;
 

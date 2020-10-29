@@ -5,6 +5,7 @@ import {
   IStructureMapGroupRuleDependent,
   PrimitiveId,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class StructureMapGroupRuleDependent extends BackboneElement {
@@ -15,6 +16,18 @@ export class StructureMapGroupRuleDependent extends BackboneElement {
   static readonly typeName: string = "StructureMap.Group.Rule.Dependent";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "variable",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }];
+  }
 
   public name?: PrimitiveId;
 

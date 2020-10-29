@@ -12,6 +12,7 @@ import {
   PrimitiveId,
   PrimitiveString,
   TestScriptRequestMethodCode,
+  FieldMetadata
 } from "../internal";
 
 export class TestScriptSetupActionAssert extends BackboneElement {
@@ -22,6 +23,98 @@ export class TestScriptSetupActionAssert extends BackboneElement {
   static readonly typeName: string = "TestScript.Setup.Action.Assert";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "label",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "direction",
+      fieldType: [AssertionDirectionType],
+      isArray: false
+    }, {
+      fieldName: "compareToSourceId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "compareToSourceExpression",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "compareToSourcePath",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contentType",
+      fieldType: [MimeType],
+      isArray: false
+    }, {
+      fieldName: "expression",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "headerField",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "minimumId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "navigationLinks",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "operator",
+      fieldType: [AssertionOperatorType],
+      isArray: false
+    }, {
+      fieldName: "path",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "requestMethod",
+      fieldType: [TestScriptRequestMethodCode],
+      isArray: false
+    }, {
+      fieldName: "requestURL",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "resource",
+      fieldType: [FHIRDefinedType],
+      isArray: false
+    }, {
+      fieldName: "response",
+      fieldType: [AssertionResponseTypes],
+      isArray: false
+    }, {
+      fieldName: "responseCode",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "sourceId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "validateProfileId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "warningOnly",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public label?: PrimitiveString;
 

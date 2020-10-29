@@ -17,6 +17,7 @@ import {
   PrimitiveUri,
   PublicationStatus,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class ExampleScenario extends DomainResource {
@@ -27,6 +28,78 @@ export class ExampleScenario extends DomainResource {
   static readonly typeName: string = "ExampleScenario";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "experimental",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "copyright",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "purpose",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "actor",
+      fieldType: [ExampleScenarioActor],
+      isArray: true
+    }, {
+      fieldName: "instance",
+      fieldType: [ExampleScenarioInstance],
+      isArray: true
+    }, {
+      fieldName: "process",
+      fieldType: [ExampleScenarioProcess],
+      isArray: true
+    }, {
+      fieldName: "workflow",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }];
+  }
 
   public url?: PrimitiveUri;
 

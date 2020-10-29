@@ -10,6 +10,7 @@ import {
   PrimitiveString,
   Reference,
   SlotStatus,
+  FieldMetadata
 } from "../internal";
 
 export class Slot extends DomainResource {
@@ -20,6 +21,54 @@ export class Slot extends DomainResource {
   static readonly typeName: string = "Slot";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "serviceCategory",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "serviceType",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "specialty",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "appointmentType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "schedule",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [SlotStatus],
+      isArray: false
+    }, {
+      fieldName: "start",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "end",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "overbooked",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

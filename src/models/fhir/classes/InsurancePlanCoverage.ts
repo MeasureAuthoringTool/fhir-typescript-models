@@ -5,6 +5,7 @@ import {
   IInsurancePlanCoverage,
   InsurancePlanCoverageBenefit,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class InsurancePlanCoverage extends BackboneElement {
@@ -15,6 +16,22 @@ export class InsurancePlanCoverage extends BackboneElement {
   static readonly typeName: string = "InsurancePlan.Coverage";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "network",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "benefit",
+      fieldType: [InsurancePlanCoverageBenefit],
+      isArray: true
+    }];
+  }
 
   public type?: CodeableConcept;
 

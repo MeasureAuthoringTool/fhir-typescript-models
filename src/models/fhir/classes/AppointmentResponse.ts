@@ -9,6 +9,7 @@ import {
   PrimitiveInstant,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class AppointmentResponse extends DomainResource {
@@ -19,6 +20,42 @@ export class AppointmentResponse extends DomainResource {
   static readonly typeName: string = "AppointmentResponse";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "appointment",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "start",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "end",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "participantType",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "actor",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "participantStatus",
+      fieldType: [ParticipantStatus],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

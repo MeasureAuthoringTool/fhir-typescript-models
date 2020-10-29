@@ -2,6 +2,7 @@
 import { 
   Element,
   IElement,
+  FieldMetadata
 } from "../internal";
 
 export class PrimitiveInteger extends Element {
@@ -12,6 +13,14 @@ export class PrimitiveInteger extends Element {
   static readonly typeName: string = "integer";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "value",
+      fieldType: [Number],
+      isArray: false
+    }];
+  }
 
   public value?: number;
 

@@ -5,6 +5,7 @@ import {
   Expression,
   Extension,
   IRequestGroupActionCondition,
+  FieldMetadata
 } from "../internal";
 
 export class RequestGroupActionCondition extends BackboneElement {
@@ -15,6 +16,18 @@ export class RequestGroupActionCondition extends BackboneElement {
   static readonly typeName: string = "RequestGroup.Action.Condition";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "kind",
+      fieldType: [ActionConditionKind],
+      isArray: false
+    }, {
+      fieldName: "expression",
+      fieldType: [Expression],
+      isArray: false
+    }];
+  }
 
   public kind?: ActionConditionKind;
 

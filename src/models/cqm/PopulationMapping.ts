@@ -1,9 +1,9 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { CohortPopulationMap } from "./CohortPopulationMap";
-import { ContinuousVariablePopulationMap } from "./ContinuousVariablePopulationMap";
-import { PopulationMap } from "./PopulationMap";
-import { ProportionPopulationMap } from "./ProportionPopulationMap";
-import { RatioPopulationMap } from "./RatioPopulationMap";
+import { CohortPopulationMap } from "./classes/CohortPopulationMap";
+import { ContinuousVariablePopulationMap } from "./classes/ContinuousVariablePopulationMap";
+import { PopulationMap } from "./classes/PopulationMap";
+import { ProportionPopulationMap } from "./classes/ProportionPopulationMap";
+import { RatioPopulationMap } from "./classes/RatioPopulationMap";
 
 const populationSubclasses: Record<string, typeof PopulationMap> = {
   "CohortPopulationMap": CohortPopulationMap,

@@ -5,6 +5,7 @@ import {
   Extension,
   ISubstanceSpecificationNameOfficial,
   PrimitiveDateTime,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSpecificationNameOfficial extends BackboneElement {
@@ -15,6 +16,22 @@ export class SubstanceSpecificationNameOfficial extends BackboneElement {
   static readonly typeName: string = "SubstanceSpecification.Name.Official";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "authority",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }];
+  }
 
   public authority?: CodeableConcept;
 

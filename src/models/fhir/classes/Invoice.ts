@@ -15,6 +15,7 @@ import {
   PrimitiveMarkdown,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Invoice extends DomainResource {
@@ -25,6 +26,74 @@ export class Invoice extends DomainResource {
   static readonly typeName: string = "Invoice";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [InvoiceStatus],
+      isArray: false
+    }, {
+      fieldName: "cancelledReason",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "recipient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "participant",
+      fieldType: [InvoiceParticipant],
+      isArray: true
+    }, {
+      fieldName: "issuer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "account",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "lineItem",
+      fieldType: [InvoiceLineItem],
+      isArray: true
+    }, {
+      fieldName: "totalPriceComponent",
+      fieldType: [InvoiceLineItemPriceComponent],
+      isArray: true
+    }, {
+      fieldName: "totalNet",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "totalGross",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "paymentTerms",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

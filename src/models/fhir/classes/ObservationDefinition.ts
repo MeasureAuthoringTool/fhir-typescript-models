@@ -11,6 +11,7 @@ import {
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ObservationDefinition extends DomainResource {
@@ -21,6 +22,62 @@ export class ObservationDefinition extends DomainResource {
   static readonly typeName: string = "ObservationDefinition";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "permittedDataType",
+      fieldType: [ObservationDataType],
+      isArray: true
+    }, {
+      fieldName: "multipleResultsAllowed",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "method",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "preferredReportName",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "quantitativeDetails",
+      fieldType: [ObservationDefinitionQuantitativeDetails],
+      isArray: false
+    }, {
+      fieldName: "qualifiedInterval",
+      fieldType: [ObservationDefinitionQualifiedInterval],
+      isArray: true
+    }, {
+      fieldName: "validCodedValueSet",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "normalCodedValueSet",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "abnormalCodedValueSet",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "criticalCodedValueSet",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public category?: Array<CodeableConcept>;
 

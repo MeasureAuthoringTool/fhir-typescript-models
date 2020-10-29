@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IClaimPayee,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimPayee extends BackboneElement {
@@ -14,6 +15,18 @@ export class ClaimPayee extends BackboneElement {
   static readonly typeName: string = "Claim.Payee";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "party",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

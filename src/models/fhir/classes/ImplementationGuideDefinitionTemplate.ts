@@ -5,6 +5,7 @@ import {
   IImplementationGuideDefinitionTemplate,
   PrimitiveCode,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ImplementationGuideDefinitionTemplate extends BackboneElement {
@@ -15,6 +16,22 @@ export class ImplementationGuideDefinitionTemplate extends BackboneElement {
   static readonly typeName: string = "ImplementationGuide.Definition.Template";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "scope",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public code?: PrimitiveCode;
 

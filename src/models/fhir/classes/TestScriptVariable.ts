@@ -5,6 +5,7 @@ import {
   ITestScriptVariable,
   PrimitiveId,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class TestScriptVariable extends BackboneElement {
@@ -15,6 +16,42 @@ export class TestScriptVariable extends BackboneElement {
   static readonly typeName: string = "TestScript.Variable";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "defaultValue",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "expression",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "headerField",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "hint",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "path",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "sourceId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveString;
 

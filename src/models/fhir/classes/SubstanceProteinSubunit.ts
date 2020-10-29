@@ -7,6 +7,7 @@ import {
   ISubstanceProteinSubunit,
   PrimitiveInteger,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceProteinSubunit extends BackboneElement {
@@ -17,6 +18,42 @@ export class SubstanceProteinSubunit extends BackboneElement {
   static readonly typeName: string = "SubstanceProtein.Subunit";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "subunit",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "sequence",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "length",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "sequenceAttachment",
+      fieldType: [Attachment],
+      isArray: false
+    }, {
+      fieldName: "nTerminalModificationId",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "nTerminalModification",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "cTerminalModificationId",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "cTerminalModification",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public subunit?: PrimitiveInteger;
 

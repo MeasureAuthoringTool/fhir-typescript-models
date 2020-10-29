@@ -6,6 +6,7 @@ import {
   PrimitiveCanonical,
   PrimitiveString,
   StructureMapModelMode,
+  FieldMetadata
 } from "../internal";
 
 export class StructureMapStructure extends BackboneElement {
@@ -16,6 +17,26 @@ export class StructureMapStructure extends BackboneElement {
   static readonly typeName: string = "StructureMap.Structure";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "mode",
+      fieldType: [StructureMapModelMode],
+      isArray: false
+    }, {
+      fieldName: "alias",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public url?: PrimitiveCanonical;
 

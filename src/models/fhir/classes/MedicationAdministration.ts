@@ -13,6 +13,7 @@ import {
   PrimitiveDateTime,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationAdministration extends DomainResource {
@@ -23,6 +24,86 @@ export class MedicationAdministration extends DomainResource {
   static readonly typeName: string = "MedicationAdministration";
   
   static readonly primaryCodePath: string | null = "medication";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "instantiates",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [MedicationAdministrationStatus],
+      isArray: false
+    }, {
+      fieldName: "statusReason",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "medication",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "context",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "supportingInformation",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "effective",
+      fieldType: [PrimitiveDateTime, Period],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [MedicationAdministrationPerformer],
+      isArray: true
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "request",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "device",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "dosage",
+      fieldType: [MedicationAdministrationDosage],
+      isArray: false
+    }, {
+      fieldName: "eventHistory",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

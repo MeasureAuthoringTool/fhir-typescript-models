@@ -5,6 +5,7 @@ import {
   IMolecularSequenceQualityRoc,
   PrimitiveDecimal,
   PrimitiveInteger,
+  FieldMetadata
 } from "../internal";
 
 export class MolecularSequenceQualityRoc extends BackboneElement {
@@ -15,6 +16,38 @@ export class MolecularSequenceQualityRoc extends BackboneElement {
   static readonly typeName: string = "MolecularSequence.Quality.Roc";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "score",
+      fieldType: [PrimitiveInteger],
+      isArray: true
+    }, {
+      fieldName: "numTP",
+      fieldType: [PrimitiveInteger],
+      isArray: true
+    }, {
+      fieldName: "numFP",
+      fieldType: [PrimitiveInteger],
+      isArray: true
+    }, {
+      fieldName: "numFN",
+      fieldType: [PrimitiveInteger],
+      isArray: true
+    }, {
+      fieldName: "precision",
+      fieldType: [PrimitiveDecimal],
+      isArray: true
+    }, {
+      fieldName: "sensitivity",
+      fieldType: [PrimitiveDecimal],
+      isArray: true
+    }, {
+      fieldName: "fMeasure",
+      fieldType: [PrimitiveDecimal],
+      isArray: true
+    }];
+  }
 
   public score?: Array<PrimitiveInteger>;
 

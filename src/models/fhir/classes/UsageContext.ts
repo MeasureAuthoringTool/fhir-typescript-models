@@ -7,6 +7,7 @@ import {
   Quantity,
   Range,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class UsageContext extends Element {
@@ -17,6 +18,18 @@ export class UsageContext extends Element {
   static readonly typeName: string = "UsageContext";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "code",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [CodeableConcept, Quantity, Range, Reference],
+      isArray: false
+    }];
+  }
 
   public code?: Coding;
 

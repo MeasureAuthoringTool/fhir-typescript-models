@@ -5,6 +5,7 @@ import {
   IExampleScenarioInstanceVersion,
   PrimitiveMarkdown,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ExampleScenarioInstanceVersion extends BackboneElement {
@@ -15,6 +16,18 @@ export class ExampleScenarioInstanceVersion extends BackboneElement {
   static readonly typeName: string = "ExampleScenario.Instance.Version";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "versionId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }];
+  }
 
   public versionId?: PrimitiveString;
 

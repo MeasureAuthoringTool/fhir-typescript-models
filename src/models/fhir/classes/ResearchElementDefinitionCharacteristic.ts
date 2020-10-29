@@ -15,6 +15,7 @@ import {
   PrimitiveString,
   Timing,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class ResearchElementDefinitionCharacteristic extends BackboneElement {
@@ -25,6 +26,58 @@ export class ResearchElementDefinitionCharacteristic extends BackboneElement {
   static readonly typeName: string = "ResearchElementDefinition.Characteristic";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "definition",
+      fieldType: [CodeableConcept, PrimitiveCanonical, Expression, DataRequirement],
+      isArray: false
+    }, {
+      fieldName: "usageContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "exclude",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "unitOfMeasure",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "studyEffectiveDescription",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "studyEffective",
+      fieldType: [PrimitiveDateTime, Period, Duration, Timing],
+      isArray: false
+    }, {
+      fieldName: "studyEffectiveTimeFromStart",
+      fieldType: [Duration],
+      isArray: false
+    }, {
+      fieldName: "studyEffectiveGroupMeasure",
+      fieldType: [GroupMeasure],
+      isArray: false
+    }, {
+      fieldName: "participantEffectiveDescription",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "participantEffective",
+      fieldType: [PrimitiveDateTime, Period, Duration, Timing],
+      isArray: false
+    }, {
+      fieldName: "participantEffectiveTimeFromStart",
+      fieldType: [Duration],
+      isArray: false
+    }, {
+      fieldName: "participantEffectiveGroupMeasure",
+      fieldType: [GroupMeasure],
+      isArray: false
+    }];
+  }
 
   public definition?: CodeableConcept | PrimitiveCanonical | Expression | DataRequirement;
 

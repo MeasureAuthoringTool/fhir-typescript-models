@@ -6,6 +6,7 @@ import {
   IEncounterDiagnosis,
   PrimitivePositiveInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class EncounterDiagnosis extends BackboneElement {
@@ -16,6 +17,22 @@ export class EncounterDiagnosis extends BackboneElement {
   static readonly typeName: string = "Encounter.Diagnosis";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "condition",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "use",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "rank",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }];
+  }
 
   public condition?: Reference;
 

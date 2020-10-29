@@ -7,6 +7,7 @@ import {
   PrimitiveInteger,
   PrimitiveString,
   SubstanceNucleicAcidSubunit,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceNucleicAcid extends DomainResource {
@@ -17,6 +18,30 @@ export class SubstanceNucleicAcid extends DomainResource {
   static readonly typeName: string = "SubstanceNucleicAcid";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "sequenceType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "numberOfSubunits",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "areaOfHybridisation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "oligoNucleotideType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subunit",
+      fieldType: [SubstanceNucleicAcidSubunit],
+      isArray: true
+    }];
+  }
 
   public sequenceType?: CodeableConcept;
 

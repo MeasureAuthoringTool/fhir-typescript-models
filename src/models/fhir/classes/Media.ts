@@ -15,6 +15,7 @@ import {
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Media extends DomainResource {
@@ -25,6 +26,98 @@ export class Media extends DomainResource {
   static readonly typeName: string = "Media";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [MediaStatus],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "modality",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "view",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDateTime, Period],
+      isArray: false
+    }, {
+      fieldName: "issued",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "operator",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "bodySite",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "deviceName",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "device",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "height",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "width",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "frames",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "duration",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "content",
+      fieldType: [Attachment],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

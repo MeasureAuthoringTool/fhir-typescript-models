@@ -5,6 +5,7 @@ import {
   Expression,
   Extension,
   IPlanDefinitionActionCondition,
+  FieldMetadata
 } from "../internal";
 
 export class PlanDefinitionActionCondition extends BackboneElement {
@@ -15,6 +16,18 @@ export class PlanDefinitionActionCondition extends BackboneElement {
   static readonly typeName: string = "PlanDefinition.Action.Condition";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "kind",
+      fieldType: [ActionConditionKind],
+      isArray: false
+    }, {
+      fieldName: "expression",
+      fieldType: [Expression],
+      isArray: false
+    }];
+  }
 
   public kind?: ActionConditionKind;
 

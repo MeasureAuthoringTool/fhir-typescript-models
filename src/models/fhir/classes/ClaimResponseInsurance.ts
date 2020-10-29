@@ -7,6 +7,7 @@ import {
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimResponseInsurance extends BackboneElement {
@@ -17,6 +18,30 @@ export class ClaimResponseInsurance extends BackboneElement {
   static readonly typeName: string = "ClaimResponse.Insurance";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "sequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "focal",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "coverage",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "businessArrangement",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "claimResponse",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public sequence?: PrimitivePositiveInt;
 

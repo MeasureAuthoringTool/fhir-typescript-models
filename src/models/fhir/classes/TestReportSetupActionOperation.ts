@@ -6,6 +6,7 @@ import {
   PrimitiveMarkdown,
   PrimitiveUri,
   TestReportActionResult,
+  FieldMetadata
 } from "../internal";
 
 export class TestReportSetupActionOperation extends BackboneElement {
@@ -16,6 +17,22 @@ export class TestReportSetupActionOperation extends BackboneElement {
   static readonly typeName: string = "TestReport.Setup.Action.Operation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "result",
+      fieldType: [TestReportActionResult],
+      isArray: false
+    }, {
+      fieldName: "message",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "detail",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }];
+  }
 
   public result?: TestReportActionResult;
 

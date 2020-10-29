@@ -5,6 +5,7 @@ import {
   CodeableConcept,
   IRiskEvidenceSynthesisCertainty,
   RiskEvidenceSynthesisCertaintyCertaintySubcomponent,
+  FieldMetadata
 } from "../internal";
 
 export class RiskEvidenceSynthesisCertainty extends BackboneElement {
@@ -15,6 +16,22 @@ export class RiskEvidenceSynthesisCertainty extends BackboneElement {
   static readonly typeName: string = "RiskEvidenceSynthesis.Certainty";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "rating",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "certaintySubcomponent",
+      fieldType: [RiskEvidenceSynthesisCertaintyCertaintySubcomponent],
+      isArray: true
+    }];
+  }
 
   public rating?: Array<CodeableConcept>;
 

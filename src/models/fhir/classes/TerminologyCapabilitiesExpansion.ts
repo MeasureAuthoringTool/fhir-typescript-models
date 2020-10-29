@@ -6,6 +6,7 @@ import {
   PrimitiveBoolean,
   PrimitiveMarkdown,
   TerminologyCapabilitiesExpansionParameter,
+  FieldMetadata
 } from "../internal";
 
 export class TerminologyCapabilitiesExpansion extends BackboneElement {
@@ -16,6 +17,30 @@ export class TerminologyCapabilitiesExpansion extends BackboneElement {
   static readonly typeName: string = "TerminologyCapabilities.Expansion";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "hierarchical",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "paging",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "incomplete",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "parameter",
+      fieldType: [TerminologyCapabilitiesExpansionParameter],
+      isArray: true
+    }, {
+      fieldName: "textFilter",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }];
+  }
 
   public hierarchical?: PrimitiveBoolean;
 

@@ -6,6 +6,7 @@ import {
   MeasureReportGroupStratifierStratumComponent,
   MeasureReportGroupStratifierStratumPopulation,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class MeasureReportGroupStratifierStratum extends BackboneElement {
@@ -16,6 +17,26 @@ export class MeasureReportGroupStratifierStratum extends BackboneElement {
   static readonly typeName: string = "MeasureReport.Group.Stratifier.Stratum";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "value",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "component",
+      fieldType: [MeasureReportGroupStratifierStratumComponent],
+      isArray: true
+    }, {
+      fieldName: "population",
+      fieldType: [MeasureReportGroupStratifierStratumPopulation],
+      isArray: true
+    }, {
+      fieldName: "measureScore",
+      fieldType: [Quantity],
+      isArray: false
+    }];
+  }
 
   public value?: CodeableConcept;
 

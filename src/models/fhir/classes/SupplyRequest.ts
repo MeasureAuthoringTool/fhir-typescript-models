@@ -13,6 +13,7 @@ import {
   SupplyRequestParameter,
   SupplyRequestStatus,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class SupplyRequest extends DomainResource {
@@ -23,6 +24,70 @@ export class SupplyRequest extends DomainResource {
   static readonly typeName: string = "SupplyRequest";
   
   static readonly primaryCodePath: string | null = "category";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [SupplyRequestStatus],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "priority",
+      fieldType: [RequestPriority],
+      isArray: false
+    }, {
+      fieldName: "item",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "parameter",
+      fieldType: [SupplyRequestParameter],
+      isArray: true
+    }, {
+      fieldName: "occurrence",
+      fieldType: [PrimitiveDateTime, Period, Timing],
+      isArray: false
+    }, {
+      fieldName: "authoredOn",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "requester",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "supplier",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "deliverFrom",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "deliverTo",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

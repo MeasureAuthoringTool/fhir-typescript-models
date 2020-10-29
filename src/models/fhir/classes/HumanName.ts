@@ -6,6 +6,7 @@ import {
   NameUse,
   Period,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class HumanName extends Element {
@@ -16,6 +17,38 @@ export class HumanName extends Element {
   static readonly typeName: string = "HumanName";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "use",
+      fieldType: [NameUse],
+      isArray: false
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "family",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "given",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "prefix",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "suffix",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public use?: NameUse;
 

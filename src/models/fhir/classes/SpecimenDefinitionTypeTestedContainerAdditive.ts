@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   ISpecimenDefinitionTypeTestedContainerAdditive,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class SpecimenDefinitionTypeTestedContainerAdditive extends BackboneElement {
@@ -14,6 +15,14 @@ export class SpecimenDefinitionTypeTestedContainerAdditive extends BackboneEleme
   static readonly typeName: string = "SpecimenDefinition.TypeTested.Container.Additive";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "additive",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }];
+  }
 
   public additive?: CodeableConcept | Reference;
 

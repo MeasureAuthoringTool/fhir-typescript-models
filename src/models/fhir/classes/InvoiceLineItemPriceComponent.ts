@@ -7,6 +7,7 @@ import {
   InvoicePriceComponentType,
   Money,
   PrimitiveDecimal,
+  FieldMetadata
 } from "../internal";
 
 export class InvoiceLineItemPriceComponent extends BackboneElement {
@@ -17,6 +18,26 @@ export class InvoiceLineItemPriceComponent extends BackboneElement {
   static readonly typeName: string = "Invoice.LineItem.PriceComponent";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [InvoicePriceComponentType],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "factor",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "amount",
+      fieldType: [Money],
+      isArray: false
+    }];
+  }
 
   public type?: InvoicePriceComponentType;
 

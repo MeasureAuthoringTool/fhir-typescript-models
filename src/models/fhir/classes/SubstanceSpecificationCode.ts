@@ -7,6 +7,7 @@ import {
   PrimitiveDateTime,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSpecificationCode extends BackboneElement {
@@ -17,6 +18,30 @@ export class SubstanceSpecificationCode extends BackboneElement {
   static readonly typeName: string = "SubstanceSpecification.Code";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "statusDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public code?: CodeableConcept;
 

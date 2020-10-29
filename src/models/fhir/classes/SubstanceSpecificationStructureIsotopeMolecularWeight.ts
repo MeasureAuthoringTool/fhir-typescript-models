@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   ISubstanceSpecificationStructureIsotopeMolecularWeight,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSpecificationStructureIsotopeMolecularWeight extends BackboneElement {
@@ -14,6 +15,22 @@ export class SubstanceSpecificationStructureIsotopeMolecularWeight extends Backb
   static readonly typeName: string = "SubstanceSpecification.Structure.Isotope.MolecularWeight";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "method",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "amount",
+      fieldType: [Quantity],
+      isArray: false
+    }];
+  }
 
   public method?: CodeableConcept;
 

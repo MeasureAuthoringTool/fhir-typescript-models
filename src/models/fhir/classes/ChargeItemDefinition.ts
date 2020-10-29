@@ -19,6 +19,7 @@ import {
   PublicationStatus,
   Reference,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class ChargeItemDefinition extends DomainResource {
@@ -29,6 +30,102 @@ export class ChargeItemDefinition extends DomainResource {
   static readonly typeName: string = "ChargeItemDefinition";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "derivedFromUri",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "replaces",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "experimental",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "copyright",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "approvalDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "lastReviewDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "effectivePeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "instance",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "applicability",
+      fieldType: [ChargeItemDefinitionApplicability],
+      isArray: true
+    }, {
+      fieldName: "propertyGroup",
+      fieldType: [ChargeItemDefinitionPropertyGroup],
+      isArray: true
+    }];
+  }
 
   public url?: PrimitiveUri;
 

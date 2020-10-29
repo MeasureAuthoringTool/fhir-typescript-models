@@ -6,6 +6,7 @@ import {
   PrimitiveBoolean,
   PrimitiveDate,
   ValueSetComposeInclude,
+  FieldMetadata
 } from "../internal";
 
 export class ValueSetCompose extends BackboneElement {
@@ -16,6 +17,26 @@ export class ValueSetCompose extends BackboneElement {
   static readonly typeName: string = "ValueSet.Compose";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "lockedDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "inactive",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "include",
+      fieldType: [ValueSetComposeInclude],
+      isArray: true
+    }, {
+      fieldName: "exclude",
+      fieldType: [ValueSetComposeInclude],
+      isArray: true
+    }];
+  }
 
   public lockedDate?: PrimitiveDate;
 

@@ -2,6 +2,7 @@
 import { 
   IAge,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class Age extends Quantity {
@@ -12,6 +13,11 @@ export class Age extends Quantity {
   static readonly typeName: string = "Age";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Quantity.fieldInfo, 
+    ];
+  }
 
   public static parse(
     json: IAge,

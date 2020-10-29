@@ -6,6 +6,7 @@ import {
   ITiming,
   PrimitiveDateTime,
   TimingRepeat,
+  FieldMetadata
 } from "../internal";
 
 export class Timing extends BackboneElement {
@@ -16,6 +17,22 @@ export class Timing extends BackboneElement {
   static readonly typeName: string = "Timing";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "event",
+      fieldType: [PrimitiveDateTime],
+      isArray: true
+    }, {
+      fieldName: "repeat",
+      fieldType: [TimingRepeat],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public event?: Array<PrimitiveDateTime>;
 

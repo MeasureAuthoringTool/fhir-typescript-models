@@ -18,6 +18,7 @@ import {
   PrimitiveDateTime,
   PrimitiveInteger,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Patient extends DomainResource {
@@ -28,6 +29,74 @@ export class Patient extends DomainResource {
   static readonly typeName: string = "Patient";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "active",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [HumanName],
+      isArray: true
+    }, {
+      fieldName: "telecom",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "gender",
+      fieldType: [AdministrativeGender],
+      isArray: false
+    }, {
+      fieldName: "birthDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "deceased",
+      fieldType: [PrimitiveBoolean, PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "address",
+      fieldType: [Address],
+      isArray: true
+    }, {
+      fieldName: "maritalStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "multipleBirth",
+      fieldType: [PrimitiveBoolean, PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "photo",
+      fieldType: [Attachment],
+      isArray: true
+    }, {
+      fieldName: "contact",
+      fieldType: [PatientContact],
+      isArray: true
+    }, {
+      fieldName: "communication",
+      fieldType: [PatientCommunication],
+      isArray: true
+    }, {
+      fieldName: "generalPractitioner",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "managingOrganization",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "link",
+      fieldType: [PatientLink],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

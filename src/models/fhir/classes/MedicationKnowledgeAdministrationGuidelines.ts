@@ -6,6 +6,7 @@ import {
   MedicationKnowledgeAdministrationGuidelinesDosage,
   MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
@@ -16,6 +17,22 @@ export class MedicationKnowledgeAdministrationGuidelines extends BackboneElement
   static readonly typeName: string = "MedicationKnowledge.AdministrationGuidelines";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "dosage",
+      fieldType: [MedicationKnowledgeAdministrationGuidelinesDosage],
+      isArray: true
+    }, {
+      fieldName: "indication",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "patientCharacteristics",
+      fieldType: [MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics],
+      isArray: true
+    }];
+  }
 
   public dosage?: Array<MedicationKnowledgeAdministrationGuidelinesDosage>;
 

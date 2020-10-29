@@ -4,6 +4,7 @@ import {
   Duration,
   IMedicationKnowledgeKinetics,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationKnowledgeKinetics extends BackboneElement {
@@ -14,6 +15,22 @@ export class MedicationKnowledgeKinetics extends BackboneElement {
   static readonly typeName: string = "MedicationKnowledge.Kinetics";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "areaUnderCurve",
+      fieldType: [SimpleQuantity],
+      isArray: true
+    }, {
+      fieldName: "lethalDose50",
+      fieldType: [SimpleQuantity],
+      isArray: true
+    }, {
+      fieldName: "halfLifePeriod",
+      fieldType: [Duration],
+      isArray: false
+    }];
+  }
 
   public areaUnderCurve?: Array<SimpleQuantity>;
 

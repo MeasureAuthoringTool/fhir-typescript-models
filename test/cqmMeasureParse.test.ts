@@ -1,6 +1,11 @@
-import "jest-extended";
-import { CqmMeasure } from "../src/models/cqm";
-import measureJson from "./resources/cqm-measure.json";
+import { CqmMeasure, ICqmMeasure } from "../src/models/cqm";
+import rawMeasureJson from "./resources/cqm-measure.json";
+
+const measureJson: ICqmMeasure = rawMeasureJson;
+
+function cloneJson(json: ICqmMeasure): ICqmMeasure {
+  return JSON.parse(JSON.stringify(json)) as ICqmMeasure;
+}
 
 describe("Parsing CQM Measure JSON", () => {
   it("s parsed JSON should match to serialized JSON", () => {
@@ -156,8 +161,4 @@ describe("Parsing CQM Measure JSON", () => {
     expect(cqmMeasure.source_data_criteria).toBeDefined();
     expect(cqmMeasure.toJSON()).toEqual(updatedMeasureJson);
   });
-
-  function cloneJson(json: any): any {
-    return JSON.parse(JSON.stringify(json));
-  }
 });

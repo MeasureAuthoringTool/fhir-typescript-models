@@ -4,6 +4,7 @@ import {
   Extension,
   IMolecularSequenceStructureVariantOuter,
   PrimitiveInteger,
+  FieldMetadata
 } from "../internal";
 
 export class MolecularSequenceStructureVariantOuter extends BackboneElement {
@@ -14,6 +15,18 @@ export class MolecularSequenceStructureVariantOuter extends BackboneElement {
   static readonly typeName: string = "MolecularSequence.StructureVariant.Outer";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "start",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "end",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }];
+  }
 
   public start?: PrimitiveInteger;
 

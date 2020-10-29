@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   ISubstancePolymerMonomerSet,
   SubstancePolymerMonomerSetStartingMaterial,
+  FieldMetadata
 } from "../internal";
 
 export class SubstancePolymerMonomerSet extends BackboneElement {
@@ -14,6 +15,18 @@ export class SubstancePolymerMonomerSet extends BackboneElement {
   static readonly typeName: string = "SubstancePolymer.MonomerSet";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "ratioType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "startingMaterial",
+      fieldType: [SubstancePolymerMonomerSetStartingMaterial],
+      isArray: true
+    }];
+  }
 
   public ratioType?: CodeableConcept;
 

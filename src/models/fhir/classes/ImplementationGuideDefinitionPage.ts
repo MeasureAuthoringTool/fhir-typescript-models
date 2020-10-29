@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   PrimitiveUrl,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ImplementationGuideDefinitionPage extends BackboneElement {
@@ -17,6 +18,26 @@ export class ImplementationGuideDefinitionPage extends BackboneElement {
   static readonly typeName: string = "ImplementationGuide.Definition.Page";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveUrl, Reference],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "generation",
+      fieldType: [GuidePageGeneration],
+      isArray: false
+    }, {
+      fieldName: "page",
+      fieldType: [ImplementationGuideDefinitionPage],
+      isArray: true
+    }];
+  }
 
   public name?: PrimitiveUrl | Reference;
 

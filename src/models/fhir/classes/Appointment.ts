@@ -14,6 +14,7 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Appointment extends DomainResource {
@@ -24,6 +25,98 @@ export class Appointment extends DomainResource {
   static readonly typeName: string = "Appointment";
   
   static readonly primaryCodePath: string | null = "serviceType";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [AppointmentStatus],
+      isArray: false
+    }, {
+      fieldName: "cancelationReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "serviceCategory",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "serviceType",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "specialty",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "appointmentType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "priority",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "supportingInformation",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "start",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "end",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "minutesDuration",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "slot",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "patientInstruction",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "participant",
+      fieldType: [AppointmentParticipant],
+      isArray: true
+    }, {
+      fieldName: "requestedPeriod",
+      fieldType: [Period],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

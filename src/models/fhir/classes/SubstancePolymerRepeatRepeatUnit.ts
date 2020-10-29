@@ -8,6 +8,7 @@ import {
   SubstanceAmount,
   SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation,
   SubstancePolymerRepeatRepeatUnitStructuralRepresentation,
+  FieldMetadata
 } from "../internal";
 
 export class SubstancePolymerRepeatRepeatUnit extends BackboneElement {
@@ -18,6 +19,30 @@ export class SubstancePolymerRepeatRepeatUnit extends BackboneElement {
   static readonly typeName: string = "SubstancePolymer.Repeat.RepeatUnit";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "orientationOfPolymerisation",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "repeatUnit",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "amount",
+      fieldType: [SubstanceAmount],
+      isArray: false
+    }, {
+      fieldName: "degreeOfPolymerisation",
+      fieldType: [SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation],
+      isArray: true
+    }, {
+      fieldName: "structuralRepresentation",
+      fieldType: [SubstancePolymerRepeatRepeatUnitStructuralRepresentation],
+      isArray: true
+    }];
+  }
 
   public orientationOfPolymerisation?: CodeableConcept;
 
