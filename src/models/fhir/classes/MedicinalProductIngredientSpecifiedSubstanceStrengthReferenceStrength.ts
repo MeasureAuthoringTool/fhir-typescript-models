@@ -6,6 +6,7 @@ import {
   IMedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength,
   PrimitiveString,
   Ratio,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength extends BackboneElement {
@@ -16,6 +17,30 @@ export class MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStreng
   static readonly typeName: string = "MedicinalProductIngredient.SpecifiedSubstance.Strength.ReferenceStrength";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "substance",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "strength",
+      fieldType: [Ratio],
+      isArray: false
+    }, {
+      fieldName: "strengthLowLimit",
+      fieldType: [Ratio],
+      isArray: false
+    }, {
+      fieldName: "measurementPoint",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "country",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }];
+  }
 
   public substance?: CodeableConcept;
 

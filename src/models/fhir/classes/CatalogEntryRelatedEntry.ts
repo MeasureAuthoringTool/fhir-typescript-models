@@ -5,6 +5,7 @@ import {
   Extension,
   ICatalogEntryRelatedEntry,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CatalogEntryRelatedEntry extends BackboneElement {
@@ -15,6 +16,18 @@ export class CatalogEntryRelatedEntry extends BackboneElement {
   static readonly typeName: string = "CatalogEntry.RelatedEntry";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "relationtype",
+      fieldType: [CatalogEntryRelationType],
+      isArray: false
+    }, {
+      fieldName: "item",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public relationtype?: CatalogEntryRelationType;
 

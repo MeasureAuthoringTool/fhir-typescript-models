@@ -4,6 +4,7 @@ import {
   Extension,
   IImplementationGuideDefinitionGrouping,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ImplementationGuideDefinitionGrouping extends BackboneElement {
@@ -14,6 +15,18 @@ export class ImplementationGuideDefinitionGrouping extends BackboneElement {
   static readonly typeName: string = "ImplementationGuide.Definition.Grouping";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveString;
 

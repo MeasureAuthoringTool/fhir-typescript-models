@@ -5,6 +5,7 @@ import {
   Extension,
   IEffectEvidenceSynthesisEffectEstimatePrecisionEstimate,
   PrimitiveDecimal,
+  FieldMetadata
 } from "../internal";
 
 export class EffectEvidenceSynthesisEffectEstimatePrecisionEstimate extends BackboneElement {
@@ -15,6 +16,26 @@ export class EffectEvidenceSynthesisEffectEstimatePrecisionEstimate extends Back
   static readonly typeName: string = "EffectEvidenceSynthesis.EffectEstimate.PrecisionEstimate";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "level",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "from",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "to",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

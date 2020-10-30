@@ -5,6 +5,7 @@ import {
   Extension,
   ISubstanceSourceMaterialFractionDescription,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSourceMaterialFractionDescription extends BackboneElement {
@@ -15,6 +16,18 @@ export class SubstanceSourceMaterialFractionDescription extends BackboneElement 
   static readonly typeName: string = "SubstanceSourceMaterial.FractionDescription";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "fraction",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "materialType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public fraction?: PrimitiveString;
 

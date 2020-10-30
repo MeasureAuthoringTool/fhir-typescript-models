@@ -7,6 +7,7 @@ import {
   MedicinalProductPharmaceuticalCharacteristics,
   MedicinalProductPharmaceuticalRouteOfAdministration,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductPharmaceutical extends DomainResource {
@@ -17,6 +18,38 @@ export class MedicinalProductPharmaceutical extends DomainResource {
   static readonly typeName: string = "MedicinalProductPharmaceutical";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "administrableDoseForm",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "unitOfPresentation",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "ingredient",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "device",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "characteristics",
+      fieldType: [MedicinalProductPharmaceuticalCharacteristics],
+      isArray: true
+    }, {
+      fieldName: "routeOfAdministration",
+      fieldType: [MedicinalProductPharmaceuticalRouteOfAdministration],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

@@ -21,6 +21,7 @@ import {
   Reference,
   RelatedArtifact,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class EffectEvidenceSynthesis extends DomainResource {
@@ -31,6 +32,142 @@ export class EffectEvidenceSynthesis extends DomainResource {
   static readonly typeName: string = "EffectEvidenceSynthesis";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "copyright",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "approvalDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "lastReviewDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "effectivePeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "topic",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "author",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "editor",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "reviewer",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "endorser",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "relatedArtifact",
+      fieldType: [RelatedArtifact],
+      isArray: true
+    }, {
+      fieldName: "synthesisType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "studyType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "population",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "exposure",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "exposureAlternative",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "outcome",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "sampleSize",
+      fieldType: [EffectEvidenceSynthesisSampleSize],
+      isArray: false
+    }, {
+      fieldName: "resultsByExposure",
+      fieldType: [EffectEvidenceSynthesisResultsByExposure],
+      isArray: true
+    }, {
+      fieldName: "effectEstimate",
+      fieldType: [EffectEvidenceSynthesisEffectEstimate],
+      isArray: true
+    }, {
+      fieldName: "certainty",
+      fieldType: [EffectEvidenceSynthesisCertainty],
+      isArray: true
+    }];
+  }
 
   public url?: PrimitiveUri;
 

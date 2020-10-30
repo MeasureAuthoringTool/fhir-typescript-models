@@ -4,6 +4,7 @@ import {
   Extension,
   IOperationDefinitionParameterReferencedFrom,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class OperationDefinitionParameterReferencedFrom extends BackboneElement {
@@ -14,6 +15,18 @@ export class OperationDefinitionParameterReferencedFrom extends BackboneElement 
   static readonly typeName: string = "OperationDefinition.Parameter.ReferencedFrom";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "source",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "sourceId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public source?: PrimitiveString;
 

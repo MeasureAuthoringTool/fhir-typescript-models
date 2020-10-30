@@ -5,6 +5,7 @@ import {
   IMedicationBatch,
   PrimitiveDateTime,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationBatch extends BackboneElement {
@@ -15,6 +16,18 @@ export class MedicationBatch extends BackboneElement {
   static readonly typeName: string = "Medication.Batch";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "lotNumber",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "expirationDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }];
+  }
 
   public lotNumber?: PrimitiveString;
 

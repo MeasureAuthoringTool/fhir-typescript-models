@@ -5,6 +5,7 @@ import {
   IPaymentReconciliationProcessNote,
   NoteType,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class PaymentReconciliationProcessNote extends BackboneElement {
@@ -15,6 +16,18 @@ export class PaymentReconciliationProcessNote extends BackboneElement {
   static readonly typeName: string = "PaymentReconciliation.ProcessNote";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [NoteType],
+      isArray: false
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public type?: NoteType;
 

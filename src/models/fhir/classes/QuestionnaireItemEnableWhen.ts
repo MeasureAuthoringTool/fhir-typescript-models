@@ -14,6 +14,7 @@ import {
   Quantity,
   QuestionnaireItemOperator,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class QuestionnaireItemEnableWhen extends BackboneElement {
@@ -24,6 +25,22 @@ export class QuestionnaireItemEnableWhen extends BackboneElement {
   static readonly typeName: string = "Questionnaire.Item.EnableWhen";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "question",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "operator",
+      fieldType: [QuestionnaireItemOperator],
+      isArray: false
+    }, {
+      fieldName: "answer",
+      fieldType: [PrimitiveBoolean, PrimitiveDecimal, PrimitiveInteger, PrimitiveDate, PrimitiveDateTime, PrimitiveTime, PrimitiveString, Coding, Quantity, Reference],
+      isArray: false
+    }];
+  }
 
   public question?: PrimitiveString;
 

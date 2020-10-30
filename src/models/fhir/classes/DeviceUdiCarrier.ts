@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   UDIEntryType,
+  FieldMetadata
 } from "../internal";
 
 export class DeviceUdiCarrier extends BackboneElement {
@@ -17,6 +18,34 @@ export class DeviceUdiCarrier extends BackboneElement {
   static readonly typeName: string = "Device.UdiCarrier";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "deviceIdentifier",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "issuer",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "carrierAIDC",
+      fieldType: [PrimitiveBase64Binary],
+      isArray: false
+    }, {
+      fieldName: "carrierHRF",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "entryType",
+      fieldType: [UDIEntryType],
+      isArray: false
+    }];
+  }
 
   public deviceIdentifier?: PrimitiveString;
 

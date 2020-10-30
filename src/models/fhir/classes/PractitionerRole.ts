@@ -12,6 +12,7 @@ import {
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class PractitionerRole extends DomainResource {
@@ -22,6 +23,66 @@ export class PractitionerRole extends DomainResource {
   static readonly typeName: string = "PractitionerRole";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "active",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "practitioner",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "organization",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "specialty",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "healthcareService",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "telecom",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "availableTime",
+      fieldType: [PractitionerRoleAvailableTime],
+      isArray: true
+    }, {
+      fieldName: "notAvailable",
+      fieldType: [PractitionerRoleNotAvailable],
+      isArray: true
+    }, {
+      fieldName: "availabilityExceptions",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "endpoint",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

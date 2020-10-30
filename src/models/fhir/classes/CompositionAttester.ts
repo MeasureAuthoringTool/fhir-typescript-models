@@ -6,6 +6,7 @@ import {
   ICompositionAttester,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CompositionAttester extends BackboneElement {
@@ -16,6 +17,22 @@ export class CompositionAttester extends BackboneElement {
   static readonly typeName: string = "Composition.Attester";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "mode",
+      fieldType: [CompositionAttestationMode],
+      isArray: false
+    }, {
+      fieldName: "time",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "party",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public mode?: CompositionAttestationMode;
 

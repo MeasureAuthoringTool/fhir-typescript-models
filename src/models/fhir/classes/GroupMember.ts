@@ -6,6 +6,7 @@ import {
   Period,
   PrimitiveBoolean,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class GroupMember extends BackboneElement {
@@ -16,6 +17,22 @@ export class GroupMember extends BackboneElement {
   static readonly typeName: string = "Group.Member";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "entity",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "inactive",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public entity?: Reference;
 

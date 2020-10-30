@@ -7,6 +7,7 @@ import {
   PrimitivePositiveInt,
   PrimitiveString,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class SampledData extends Element {
@@ -17,6 +18,38 @@ export class SampledData extends Element {
   static readonly typeName: string = "SampledData";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "origin",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "factor",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "lowerLimit",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "upperLimit",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "dimensions",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "data",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public origin?: SimpleQuantity;
 

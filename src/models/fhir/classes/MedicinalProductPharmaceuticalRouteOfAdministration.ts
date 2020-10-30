@@ -7,6 +7,7 @@ import {
   MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies,
   Quantity,
   Ratio,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductPharmaceuticalRouteOfAdministration extends BackboneElement {
@@ -17,6 +18,38 @@ export class MedicinalProductPharmaceuticalRouteOfAdministration extends Backbon
   static readonly typeName: string = "MedicinalProductPharmaceutical.RouteOfAdministration";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "firstDose",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "maxSingleDose",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "maxDosePerDay",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "maxDosePerTreatmentPeriod",
+      fieldType: [Ratio],
+      isArray: false
+    }, {
+      fieldName: "maxTreatmentPeriod",
+      fieldType: [Duration],
+      isArray: false
+    }, {
+      fieldName: "targetSpecies",
+      fieldType: [MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies],
+      isArray: true
+    }];
+  }
 
   public code?: CodeableConcept;
 

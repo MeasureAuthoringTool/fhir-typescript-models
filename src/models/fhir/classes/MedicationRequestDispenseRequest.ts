@@ -9,6 +9,7 @@ import {
   PrimitiveUnsignedInt,
   Reference,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationRequestDispenseRequest extends BackboneElement {
@@ -19,6 +20,38 @@ export class MedicationRequestDispenseRequest extends BackboneElement {
   static readonly typeName: string = "MedicationRequest.DispenseRequest";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "initialFill",
+      fieldType: [MedicationRequestDispenseRequestInitialFill],
+      isArray: false
+    }, {
+      fieldName: "dispenseInterval",
+      fieldType: [Duration],
+      isArray: false
+    }, {
+      fieldName: "validityPeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "numberOfRepeatsAllowed",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "expectedSupplyDuration",
+      fieldType: [Duration],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public initialFill?: MedicationRequestDispenseRequestInitialFill;
 

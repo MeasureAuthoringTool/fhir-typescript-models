@@ -18,6 +18,7 @@ import {
   PrimitiveUri,
   Range,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class FamilyMemberHistory extends DomainResource {
@@ -28,6 +29,82 @@ export class FamilyMemberHistory extends DomainResource {
   static readonly typeName: string = "FamilyMemberHistory";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "instantiatesCanonical",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "instantiatesUri",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [FamilyHistoryStatus],
+      isArray: false
+    }, {
+      fieldName: "dataAbsentReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "relationship",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "sex",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "born",
+      fieldType: [Period, PrimitiveDate, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "age",
+      fieldType: [Age, Range, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "estimatedAge",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "deceased",
+      fieldType: [PrimitiveBoolean, Age, Range, PrimitiveDate, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "condition",
+      fieldType: [FamilyMemberHistoryCondition],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

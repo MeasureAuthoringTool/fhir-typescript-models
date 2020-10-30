@@ -5,6 +5,7 @@ import {
   IEncounterParticipant,
   Period,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class EncounterParticipant extends BackboneElement {
@@ -15,6 +16,22 @@ export class EncounterParticipant extends BackboneElement {
   static readonly typeName: string = "Encounter.Participant";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "individual",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public type?: Array<CodeableConcept>;
 

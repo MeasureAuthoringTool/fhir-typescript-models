@@ -5,6 +5,7 @@ import {
   Extension,
   IContractTermSecurityLabel,
   PrimitiveUnsignedInt,
+  FieldMetadata
 } from "../internal";
 
 export class ContractTermSecurityLabel extends BackboneElement {
@@ -15,6 +16,26 @@ export class ContractTermSecurityLabel extends BackboneElement {
   static readonly typeName: string = "Contract.Term.SecurityLabel";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "number",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: true
+    }, {
+      fieldName: "classification",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [Coding],
+      isArray: true
+    }, {
+      fieldName: "control",
+      fieldType: [Coding],
+      isArray: true
+    }];
+  }
 
   public number?: Array<PrimitiveUnsignedInt>;
 

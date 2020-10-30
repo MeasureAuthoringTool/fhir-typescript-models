@@ -7,6 +7,7 @@ import {
   MedicinalProductInteractionInteractant,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductInteraction extends DomainResource {
@@ -17,6 +18,38 @@ export class MedicinalProductInteraction extends DomainResource {
   static readonly typeName: string = "MedicinalProductInteraction";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "interactant",
+      fieldType: [MedicinalProductInteractionInteractant],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "effect",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "incidence",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "management",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public subject?: Array<Reference>;
 

@@ -5,6 +5,7 @@ import {
   IBundleLink,
   PrimitiveString,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class BundleLink extends BackboneElement {
@@ -15,6 +16,18 @@ export class BundleLink extends BackboneElement {
   static readonly typeName: string = "Bundle.Link";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "relation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }];
+  }
 
   public relation?: PrimitiveString;
 

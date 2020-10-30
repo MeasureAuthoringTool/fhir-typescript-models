@@ -5,6 +5,7 @@ import {
   Extension,
   ISubstanceSourceMaterialOrganismAuthor,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSourceMaterialOrganismAuthor extends BackboneElement {
@@ -15,6 +16,18 @@ export class SubstanceSourceMaterialOrganismAuthor extends BackboneElement {
   static readonly typeName: string = "SubstanceSourceMaterial.Organism.Author";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "authorType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "authorDescription",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public authorType?: CodeableConcept;
 

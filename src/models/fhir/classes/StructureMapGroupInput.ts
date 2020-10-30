@@ -6,6 +6,7 @@ import {
   PrimitiveId,
   PrimitiveString,
   StructureMapInputMode,
+  FieldMetadata
 } from "../internal";
 
 export class StructureMapGroupInput extends BackboneElement {
@@ -16,6 +17,26 @@ export class StructureMapGroupInput extends BackboneElement {
   static readonly typeName: string = "StructureMap.Group.Input";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "mode",
+      fieldType: [StructureMapInputMode],
+      isArray: false
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveId;
 

@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IMedicinalProductIngredientSpecifiedSubstance,
   MedicinalProductIngredientSpecifiedSubstanceStrength,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductIngredientSpecifiedSubstance extends BackboneElement {
@@ -14,6 +15,26 @@ export class MedicinalProductIngredientSpecifiedSubstance extends BackboneElemen
   static readonly typeName: string = "MedicinalProductIngredient.SpecifiedSubstance";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "group",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "confidentiality",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "strength",
+      fieldType: [MedicinalProductIngredientSpecifiedSubstanceStrength],
+      isArray: true
+    }];
+  }
 
   public code?: CodeableConcept;
 

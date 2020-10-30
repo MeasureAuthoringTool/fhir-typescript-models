@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IMedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies,
   MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies extends BackboneElement {
@@ -14,6 +15,18 @@ export class MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies ex
   static readonly typeName: string = "MedicinalProductPharmaceutical.RouteOfAdministration.TargetSpecies";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "withdrawalPeriod",
+      fieldType: [MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod],
+      isArray: true
+    }];
+  }
 
   public code?: CodeableConcept;
 

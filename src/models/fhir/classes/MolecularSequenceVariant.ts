@@ -6,6 +6,7 @@ import {
   PrimitiveInteger,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MolecularSequenceVariant extends BackboneElement {
@@ -16,6 +17,34 @@ export class MolecularSequenceVariant extends BackboneElement {
   static readonly typeName: string = "MolecularSequence.Variant";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "start",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "end",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "observedAllele",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "referenceAllele",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "cigar",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "variantPointer",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public start?: PrimitiveInteger;
 

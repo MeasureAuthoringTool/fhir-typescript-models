@@ -8,6 +8,7 @@ import {
   PrimitiveString,
   Reference,
   Signature,
+  FieldMetadata
 } from "../internal";
 
 export class VerificationResultAttestation extends BackboneElement {
@@ -18,6 +19,42 @@ export class VerificationResultAttestation extends BackboneElement {
   static readonly typeName: string = "VerificationResult.Attestation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "who",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "onBehalfOf",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "communicationMethod",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "sourceIdentityCertificate",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "proxyIdentityCertificate",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "proxySignature",
+      fieldType: [Signature],
+      isArray: false
+    }, {
+      fieldName: "sourceSignature",
+      fieldType: [Signature],
+      isArray: false
+    }];
+  }
 
   public who?: Reference;
 

@@ -13,6 +13,7 @@ import {
   PrimitiveString,
   PrimitiveUrl,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Endpoint extends DomainResource {
@@ -23,6 +24,54 @@ export class Endpoint extends DomainResource {
   static readonly typeName: string = "Endpoint";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [EndpointStatus],
+      isArray: false
+    }, {
+      fieldName: "connectionType",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "managingOrganization",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "payloadType",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "payloadMimeType",
+      fieldType: [MimeType],
+      isArray: true
+    }, {
+      fieldName: "address",
+      fieldType: [PrimitiveUrl],
+      isArray: false
+    }, {
+      fieldName: "header",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

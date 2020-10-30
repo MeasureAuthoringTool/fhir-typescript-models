@@ -19,6 +19,7 @@ import {
   ProductShelfLife,
   Quantity,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class DeviceDefinition extends DomainResource {
@@ -29,6 +30,98 @@ export class DeviceDefinition extends DomainResource {
   static readonly typeName: string = "DeviceDefinition";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "udiDeviceIdentifier",
+      fieldType: [DeviceDefinitionUdiDeviceIdentifier],
+      isArray: true
+    }, {
+      fieldName: "manufacturer",
+      fieldType: [PrimitiveString, Reference],
+      isArray: false
+    }, {
+      fieldName: "deviceName",
+      fieldType: [DeviceDefinitionDeviceName],
+      isArray: true
+    }, {
+      fieldName: "modelNumber",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "specialization",
+      fieldType: [DeviceDefinitionSpecialization],
+      isArray: true
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "safety",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "shelfLifeStorage",
+      fieldType: [ProductShelfLife],
+      isArray: true
+    }, {
+      fieldName: "physicalCharacteristics",
+      fieldType: [ProdCharacteristic],
+      isArray: false
+    }, {
+      fieldName: "languageCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "capability",
+      fieldType: [DeviceDefinitionCapability],
+      isArray: true
+    }, {
+      fieldName: "property",
+      fieldType: [DeviceDefinitionProperty],
+      isArray: true
+    }, {
+      fieldName: "owner",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "onlineInformation",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "quantity",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "parentDevice",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "material",
+      fieldType: [DeviceDefinitionMaterial],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

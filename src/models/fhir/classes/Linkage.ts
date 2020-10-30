@@ -6,6 +6,7 @@ import {
   LinkageItem,
   PrimitiveBoolean,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Linkage extends DomainResource {
@@ -16,6 +17,22 @@ export class Linkage extends DomainResource {
   static readonly typeName: string = "Linkage";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "active",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "author",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "item",
+      fieldType: [LinkageItem],
+      isArray: true
+    }];
+  }
 
   public active?: PrimitiveBoolean;
 

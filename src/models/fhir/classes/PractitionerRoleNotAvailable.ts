@@ -5,6 +5,7 @@ import {
   IPractitionerRoleNotAvailable,
   Period,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class PractitionerRoleNotAvailable extends BackboneElement {
@@ -15,6 +16,18 @@ export class PractitionerRoleNotAvailable extends BackboneElement {
   static readonly typeName: string = "PractitionerRole.NotAvailable";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "during",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public description?: PrimitiveString;
 

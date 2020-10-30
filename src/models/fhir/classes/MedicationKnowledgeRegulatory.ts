@@ -6,6 +6,7 @@ import {
   MedicationKnowledgeRegulatorySchedule,
   MedicationKnowledgeRegulatorySubstitution,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationKnowledgeRegulatory extends BackboneElement {
@@ -16,6 +17,26 @@ export class MedicationKnowledgeRegulatory extends BackboneElement {
   static readonly typeName: string = "MedicationKnowledge.Regulatory";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "regulatoryAuthority",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "substitution",
+      fieldType: [MedicationKnowledgeRegulatorySubstitution],
+      isArray: true
+    }, {
+      fieldName: "schedule",
+      fieldType: [MedicationKnowledgeRegulatorySchedule],
+      isArray: true
+    }, {
+      fieldName: "maxDispense",
+      fieldType: [MedicationKnowledgeRegulatoryMaxDispense],
+      isArray: false
+    }];
+  }
 
   public regulatoryAuthority?: Reference;
 

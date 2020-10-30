@@ -5,6 +5,7 @@ import {
   ISupplyDeliverySuppliedItem,
   Reference,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class SupplyDeliverySuppliedItem extends BackboneElement {
@@ -15,6 +16,18 @@ export class SupplyDeliverySuppliedItem extends BackboneElement {
   static readonly typeName: string = "SupplyDelivery.SuppliedItem";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "item",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }];
+  }
 
   public quantity?: SimpleQuantity;
 

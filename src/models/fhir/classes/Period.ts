@@ -4,6 +4,7 @@ import {
   Extension,
   IPeriod,
   PrimitiveDateTime,
+  FieldMetadata
 } from "../internal";
 
 export class Period extends Element {
@@ -14,6 +15,18 @@ export class Period extends Element {
   static readonly typeName: string = "Period";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "start",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "end",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }];
+  }
 
   public start?: PrimitiveDateTime;
 

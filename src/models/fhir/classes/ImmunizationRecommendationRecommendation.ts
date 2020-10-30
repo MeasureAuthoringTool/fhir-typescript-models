@@ -8,6 +8,7 @@ import {
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ImmunizationRecommendationRecommendation extends BackboneElement {
@@ -18,6 +19,58 @@ export class ImmunizationRecommendationRecommendation extends BackboneElement {
   static readonly typeName: string = "ImmunizationRecommendation.Recommendation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "vaccineCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "targetDisease",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "contraindicatedVaccineCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "forecastStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "forecastReason",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "dateCriterion",
+      fieldType: [ImmunizationRecommendationRecommendationDateCriterion],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "series",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "doseNumber",
+      fieldType: [PrimitivePositiveInt, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "seriesDoses",
+      fieldType: [PrimitivePositiveInt, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "supportingImmunization",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "supportingPatientInformation",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public vaccineCode?: Array<CodeableConcept>;
 

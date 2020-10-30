@@ -6,6 +6,7 @@ import {
   ISubstanceInstance,
   PrimitiveDateTime,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceInstance extends BackboneElement {
@@ -16,6 +17,22 @@ export class SubstanceInstance extends BackboneElement {
   static readonly typeName: string = "Substance.Instance";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "expiry",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }];
+  }
 
   public identifier?: Identifier;
 

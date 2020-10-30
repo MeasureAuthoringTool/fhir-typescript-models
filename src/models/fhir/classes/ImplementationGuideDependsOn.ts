@@ -6,6 +6,7 @@ import {
   PrimitiveCanonical,
   PrimitiveId,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ImplementationGuideDependsOn extends BackboneElement {
@@ -16,6 +17,22 @@ export class ImplementationGuideDependsOn extends BackboneElement {
   static readonly typeName: string = "ImplementationGuide.DependsOn";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "uri",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "packageId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public uri?: PrimitiveCanonical;
 

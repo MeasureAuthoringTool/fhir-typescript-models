@@ -7,6 +7,7 @@ import {
   IConceptMapGroup,
   PrimitiveString,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class ConceptMapGroup extends BackboneElement {
@@ -17,6 +18,34 @@ export class ConceptMapGroup extends BackboneElement {
   static readonly typeName: string = "ConceptMap.Group";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "source",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "sourceVersion",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "target",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "targetVersion",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "element",
+      fieldType: [ConceptMapGroupElement],
+      isArray: true
+    }, {
+      fieldName: "unmapped",
+      fieldType: [ConceptMapGroupUnmapped],
+      isArray: false
+    }];
+  }
 
   public source?: PrimitiveUri;
 

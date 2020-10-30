@@ -8,6 +8,7 @@ import {
   PrimitiveUri,
   ValueSetComposeIncludeConcept,
   ValueSetComposeIncludeFilter,
+  FieldMetadata
 } from "../internal";
 
 export class ValueSetComposeInclude extends BackboneElement {
@@ -18,6 +19,30 @@ export class ValueSetComposeInclude extends BackboneElement {
   static readonly typeName: string = "ValueSet.Compose.Include";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "system",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "concept",
+      fieldType: [ValueSetComposeIncludeConcept],
+      isArray: true
+    }, {
+      fieldName: "filter",
+      fieldType: [ValueSetComposeIncludeFilter],
+      isArray: true
+    }, {
+      fieldName: "valueSet",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }];
+  }
 
   public system?: PrimitiveUri;
 

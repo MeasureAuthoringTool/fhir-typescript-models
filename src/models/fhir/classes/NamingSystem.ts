@@ -12,6 +12,7 @@ import {
   PrimitiveString,
   PublicationStatus,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class NamingSystem extends DomainResource {
@@ -22,6 +23,62 @@ export class NamingSystem extends DomainResource {
   static readonly typeName: string = "NamingSystem";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "kind",
+      fieldType: [NamingSystemType],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "responsible",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "usage",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "uniqueId",
+      fieldType: [NamingSystemUniqueId],
+      isArray: true
+    }];
+  }
 
   public name?: PrimitiveString;
 

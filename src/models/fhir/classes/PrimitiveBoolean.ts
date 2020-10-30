@@ -2,6 +2,7 @@
 import { 
   Element,
   IElement,
+  FieldMetadata
 } from "../internal";
 
 export class PrimitiveBoolean extends Element {
@@ -12,6 +13,14 @@ export class PrimitiveBoolean extends Element {
   static readonly typeName: string = "boolean";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "value",
+      fieldType: [Boolean],
+      isArray: false
+    }];
+  }
 
   public value?: boolean;
 

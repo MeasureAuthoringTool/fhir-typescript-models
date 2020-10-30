@@ -11,6 +11,7 @@ import {
   PrimitiveDateTime,
   PublicationStatus,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CatalogEntry extends DomainResource {
@@ -21,6 +22,62 @@ export class CatalogEntry extends DomainResource {
   static readonly typeName: string = "CatalogEntry";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "orderable",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "referencedItem",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "additionalIdentifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "classification",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "validityPeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "validTo",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "lastUpdated",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "additionalCharacteristic",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "additionalClassification",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "relatedEntry",
+      fieldType: [CatalogEntryRelatedEntry],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

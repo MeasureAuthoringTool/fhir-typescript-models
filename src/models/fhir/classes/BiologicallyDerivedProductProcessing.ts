@@ -8,6 +8,7 @@ import {
   PrimitiveDateTime,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class BiologicallyDerivedProductProcessing extends BackboneElement {
@@ -18,6 +19,26 @@ export class BiologicallyDerivedProductProcessing extends BackboneElement {
   static readonly typeName: string = "BiologicallyDerivedProduct.Processing";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "procedure",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "additive",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "time",
+      fieldType: [PrimitiveDateTime, Period],
+      isArray: false
+    }];
+  }
 
   public description?: PrimitiveString;
 

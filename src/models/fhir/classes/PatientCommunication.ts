@@ -5,6 +5,7 @@ import {
   Extension,
   IPatientCommunication,
   PrimitiveBoolean,
+  FieldMetadata
 } from "../internal";
 
 export class PatientCommunication extends BackboneElement {
@@ -15,6 +16,18 @@ export class PatientCommunication extends BackboneElement {
   static readonly typeName: string = "Patient.Communication";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "language",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "preferred",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public language?: CodeableConcept;
 

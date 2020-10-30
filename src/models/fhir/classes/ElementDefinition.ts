@@ -61,6 +61,7 @@ import {
   Timing,
   TriggerDefinition,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class ElementDefinition extends BackboneElement {
@@ -71,6 +72,146 @@ export class ElementDefinition extends BackboneElement {
   static readonly typeName: string = "ElementDefinition";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "path",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "representation",
+      fieldType: [PropertyRepresentation],
+      isArray: true
+    }, {
+      fieldName: "sliceName",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "sliceIsConstraining",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "label",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [Coding],
+      isArray: true
+    }, {
+      fieldName: "slicing",
+      fieldType: [ElementDefinitionSlicing],
+      isArray: false
+    }, {
+      fieldName: "short",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "definition",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "requirements",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "alias",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "min",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "max",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "base",
+      fieldType: [ElementDefinitionBase],
+      isArray: false
+    }, {
+      fieldName: "contentReference",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [ElementDefinitionType],
+      isArray: true
+    }, {
+      fieldName: "defaultValue",
+      fieldType: [PrimitiveBase64Binary, PrimitiveBoolean, PrimitiveCanonical, PrimitiveCode, PrimitiveDate, PrimitiveDateTime, PrimitiveDecimal, PrimitiveId, PrimitiveInstant, PrimitiveInteger, PrimitiveMarkdown, PrimitiveOid, PrimitivePositiveInt, PrimitiveString, PrimitiveTime, PrimitiveUnsignedInt, PrimitiveUri, PrimitiveUrl, PrimitiveUuid, Address, Age, Annotation, Attachment, CodeableConcept, Coding, ContactPoint, Count, Distance, Duration, HumanName, Identifier, Money, Period, Quantity, Range, Ratio, Reference, SampledData, Signature, Timing, ContactDetail, Contributor, DataRequirement, Expression, ParameterDefinition, RelatedArtifact, TriggerDefinition, UsageContext, Dosage, Meta],
+      isArray: false
+    }, {
+      fieldName: "meaningWhenMissing",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "orderMeaning",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "fixed",
+      fieldType: [PrimitiveBase64Binary, PrimitiveBoolean, PrimitiveCanonical, PrimitiveCode, PrimitiveDate, PrimitiveDateTime, PrimitiveDecimal, PrimitiveId, PrimitiveInstant, PrimitiveInteger, PrimitiveMarkdown, PrimitiveOid, PrimitivePositiveInt, PrimitiveString, PrimitiveTime, PrimitiveUnsignedInt, PrimitiveUri, PrimitiveUrl, PrimitiveUuid, Address, Age, Annotation, Attachment, CodeableConcept, Coding, ContactPoint, Count, Distance, Duration, HumanName, Identifier, Money, Period, Quantity, Range, Ratio, Reference, SampledData, Signature, Timing, ContactDetail, Contributor, DataRequirement, Expression, ParameterDefinition, RelatedArtifact, TriggerDefinition, UsageContext, Dosage, Meta],
+      isArray: false
+    }, {
+      fieldName: "pattern",
+      fieldType: [PrimitiveBase64Binary, PrimitiveBoolean, PrimitiveCanonical, PrimitiveCode, PrimitiveDate, PrimitiveDateTime, PrimitiveDecimal, PrimitiveId, PrimitiveInstant, PrimitiveInteger, PrimitiveMarkdown, PrimitiveOid, PrimitivePositiveInt, PrimitiveString, PrimitiveTime, PrimitiveUnsignedInt, PrimitiveUri, PrimitiveUrl, PrimitiveUuid, Address, Age, Annotation, Attachment, CodeableConcept, Coding, ContactPoint, Count, Distance, Duration, HumanName, Identifier, Money, Period, Quantity, Range, Ratio, Reference, SampledData, Signature, Timing, ContactDetail, Contributor, DataRequirement, Expression, ParameterDefinition, RelatedArtifact, TriggerDefinition, UsageContext, Dosage, Meta],
+      isArray: false
+    }, {
+      fieldName: "example",
+      fieldType: [ElementDefinitionExample],
+      isArray: true
+    }, {
+      fieldName: "minValue",
+      fieldType: [PrimitiveDate, PrimitiveDateTime, PrimitiveInstant, PrimitiveTime, PrimitiveDecimal, PrimitiveInteger, PrimitivePositiveInt, PrimitiveUnsignedInt, Quantity],
+      isArray: false
+    }, {
+      fieldName: "maxValue",
+      fieldType: [PrimitiveDate, PrimitiveDateTime, PrimitiveInstant, PrimitiveTime, PrimitiveDecimal, PrimitiveInteger, PrimitivePositiveInt, PrimitiveUnsignedInt, Quantity],
+      isArray: false
+    }, {
+      fieldName: "maxLength",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "condition",
+      fieldType: [PrimitiveId],
+      isArray: true
+    }, {
+      fieldName: "constraint",
+      fieldType: [ElementDefinitionConstraint],
+      isArray: true
+    }, {
+      fieldName: "mustSupport",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "isModifier",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "isModifierReason",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "isSummary",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "binding",
+      fieldType: [ElementDefinitionBinding],
+      isArray: false
+    }, {
+      fieldName: "mapping",
+      fieldType: [ElementDefinitionMapping],
+      isArray: true
+    }];
+  }
 
   public path?: PrimitiveString;
 

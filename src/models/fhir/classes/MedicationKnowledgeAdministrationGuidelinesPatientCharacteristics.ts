@@ -6,6 +6,7 @@ import {
   IMedicationKnowledgeAdministrationGuidelinesPatientCharacteristics,
   PrimitiveString,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics extends BackboneElement {
@@ -16,6 +17,18 @@ export class MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics e
   static readonly typeName: string = "MedicationKnowledge.AdministrationGuidelines.PatientCharacteristics";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "characteristic",
+      fieldType: [CodeableConcept, SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }];
+  }
 
   public characteristic?: CodeableConcept | SimpleQuantity;
 

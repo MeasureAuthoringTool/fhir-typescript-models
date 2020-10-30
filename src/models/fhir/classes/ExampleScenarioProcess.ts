@@ -6,6 +6,7 @@ import {
   IExampleScenarioProcess,
   PrimitiveMarkdown,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ExampleScenarioProcess extends BackboneElement {
@@ -16,6 +17,30 @@ export class ExampleScenarioProcess extends BackboneElement {
   static readonly typeName: string = "ExampleScenario.Process";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "preConditions",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "postConditions",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "step",
+      fieldType: [ExampleScenarioProcessStep],
+      isArray: true
+    }];
+  }
 
   public title?: PrimitiveString;
 

@@ -7,6 +7,7 @@ import {
   IProdCharacteristic,
   PrimitiveString,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class ProdCharacteristic extends BackboneElement {
@@ -17,6 +18,54 @@ export class ProdCharacteristic extends BackboneElement {
   static readonly typeName: string = "ProdCharacteristic";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "height",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "width",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "depth",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "weight",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "nominalVolume",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "externalDiameter",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "shape",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "color",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "imprint",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "image",
+      fieldType: [Attachment],
+      isArray: true
+    }, {
+      fieldName: "scoring",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public height?: Quantity;
 

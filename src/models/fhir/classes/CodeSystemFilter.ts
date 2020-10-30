@@ -6,6 +6,7 @@ import {
   ICodeSystemFilter,
   PrimitiveCode,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class CodeSystemFilter extends BackboneElement {
@@ -16,6 +17,26 @@ export class CodeSystemFilter extends BackboneElement {
   static readonly typeName: string = "CodeSystem.Filter";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "operator",
+      fieldType: [FilterOperator],
+      isArray: true
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public code?: PrimitiveCode;
 

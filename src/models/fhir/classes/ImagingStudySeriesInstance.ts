@@ -7,6 +7,7 @@ import {
   PrimitiveId,
   PrimitiveString,
   PrimitiveUnsignedInt,
+  FieldMetadata
 } from "../internal";
 
 export class ImagingStudySeriesInstance extends BackboneElement {
@@ -17,6 +18,26 @@ export class ImagingStudySeriesInstance extends BackboneElement {
   static readonly typeName: string = "ImagingStudy.Series.Instance";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "uid",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "sopClass",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "number",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public uid?: PrimitiveId;
 

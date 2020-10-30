@@ -3,6 +3,7 @@ import {
   Element,
   IRange,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class Range extends Element {
@@ -13,6 +14,18 @@ export class Range extends Element {
   static readonly typeName: string = "Range";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "low",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "high",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }];
+  }
 
   public low?: SimpleQuantity;
 

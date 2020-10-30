@@ -4,6 +4,7 @@ import {
   Extension,
   IChargeItemDefinitionApplicability,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ChargeItemDefinitionApplicability extends BackboneElement {
@@ -14,6 +15,22 @@ export class ChargeItemDefinitionApplicability extends BackboneElement {
   static readonly typeName: string = "ChargeItemDefinition.Applicability";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "language",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "expression",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public description?: PrimitiveString;
 

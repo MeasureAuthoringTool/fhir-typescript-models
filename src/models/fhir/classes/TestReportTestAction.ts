@@ -4,6 +4,7 @@ import {
   ITestReportTestAction,
   TestReportSetupActionAssert,
   TestReportSetupActionOperation,
+  FieldMetadata
 } from "../internal";
 
 export class TestReportTestAction extends BackboneElement {
@@ -14,6 +15,18 @@ export class TestReportTestAction extends BackboneElement {
   static readonly typeName: string = "TestReport.Test.Action";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "operation",
+      fieldType: [TestReportSetupActionOperation],
+      isArray: false
+    }, {
+      fieldName: "assert",
+      fieldType: [TestReportSetupActionAssert],
+      isArray: false
+    }];
+  }
 
   public operation?: TestReportSetupActionOperation;
 

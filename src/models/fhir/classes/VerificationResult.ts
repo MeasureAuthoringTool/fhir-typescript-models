@@ -13,6 +13,7 @@ import {
   VerificationResultAttestation,
   VerificationResultPrimarySource,
   VerificationResultValidator,
+  FieldMetadata
 } from "../internal";
 
 export class VerificationResult extends DomainResource {
@@ -23,6 +24,66 @@ export class VerificationResult extends DomainResource {
   static readonly typeName: string = "VerificationResult";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "target",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "targetLocation",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "need",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [Status],
+      isArray: false
+    }, {
+      fieldName: "statusDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "validationType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "validationProcess",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "frequency",
+      fieldType: [Timing],
+      isArray: false
+    }, {
+      fieldName: "lastPerformed",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "nextScheduled",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "failureAction",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "primarySource",
+      fieldType: [VerificationResultPrimarySource],
+      isArray: true
+    }, {
+      fieldName: "attestation",
+      fieldType: [VerificationResultAttestation],
+      isArray: false
+    }, {
+      fieldName: "validator",
+      fieldType: [VerificationResultValidator],
+      isArray: true
+    }];
+  }
 
   public target?: Array<Reference>;
 

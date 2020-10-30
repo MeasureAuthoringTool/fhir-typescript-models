@@ -6,6 +6,7 @@ import {
   Extension,
   IContributor,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class Contributor extends Element {
@@ -16,6 +17,22 @@ export class Contributor extends Element {
   static readonly typeName: string = "Contributor";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "type",
+      fieldType: [ContributorType],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }];
+  }
 
   public type?: ContributorType;
 

@@ -6,6 +6,7 @@ import {
   IElementDefinitionBinding,
   PrimitiveCanonical,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ElementDefinitionBinding extends Element {
@@ -16,6 +17,22 @@ export class ElementDefinitionBinding extends Element {
   static readonly typeName: string = "ElementDefinition.Binding";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "strength",
+      fieldType: [BindingStrength],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "valueSet",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }];
+  }
 
   public strength?: BindingStrength;
 

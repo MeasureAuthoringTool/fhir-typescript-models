@@ -6,6 +6,7 @@ import {
   PrimitiveString,
   PrimitiveUrl,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CapabilityStatementImplementation extends BackboneElement {
@@ -16,6 +17,22 @@ export class CapabilityStatementImplementation extends BackboneElement {
   static readonly typeName: string = "CapabilityStatement.Implementation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "url",
+      fieldType: [PrimitiveUrl],
+      isArray: false
+    }, {
+      fieldName: "custodian",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public description?: PrimitiveString;
 

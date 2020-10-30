@@ -6,6 +6,7 @@ import {
   Extension,
   IDeviceMetricCalibration,
   PrimitiveInstant,
+  FieldMetadata
 } from "../internal";
 
 export class DeviceMetricCalibration extends BackboneElement {
@@ -16,6 +17,22 @@ export class DeviceMetricCalibration extends BackboneElement {
   static readonly typeName: string = "DeviceMetric.Calibration";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [DeviceMetricCalibrationType],
+      isArray: false
+    }, {
+      fieldName: "state",
+      fieldType: [DeviceMetricCalibrationState],
+      isArray: false
+    }, {
+      fieldName: "time",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }];
+  }
 
   public type?: DeviceMetricCalibrationType;
 

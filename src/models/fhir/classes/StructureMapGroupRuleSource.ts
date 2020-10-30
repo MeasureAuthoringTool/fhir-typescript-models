@@ -54,6 +54,7 @@ import {
   Timing,
   TriggerDefinition,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class StructureMapGroupRuleSource extends BackboneElement {
@@ -64,6 +65,54 @@ export class StructureMapGroupRuleSource extends BackboneElement {
   static readonly typeName: string = "StructureMap.Group.Rule.Source";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "context",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "min",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "max",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "defaultValue",
+      fieldType: [PrimitiveBase64Binary, PrimitiveBoolean, PrimitiveCanonical, PrimitiveCode, PrimitiveDate, PrimitiveDateTime, PrimitiveDecimal, PrimitiveId, PrimitiveInstant, PrimitiveInteger, PrimitiveMarkdown, PrimitiveOid, PrimitivePositiveInt, PrimitiveString, PrimitiveTime, PrimitiveUnsignedInt, PrimitiveUri, PrimitiveUrl, PrimitiveUuid, Address, Age, Annotation, Attachment, CodeableConcept, Coding, ContactPoint, Count, Distance, Duration, HumanName, Identifier, Money, Period, Quantity, Range, Ratio, Reference, SampledData, Signature, Timing, ContactDetail, Contributor, DataRequirement, Expression, ParameterDefinition, RelatedArtifact, TriggerDefinition, UsageContext, Dosage, Meta],
+      isArray: false
+    }, {
+      fieldName: "element",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "listMode",
+      fieldType: [StructureMapSourceListMode],
+      isArray: false
+    }, {
+      fieldName: "variable",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "condition",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "check",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "logMessage",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public context?: PrimitiveId;
 

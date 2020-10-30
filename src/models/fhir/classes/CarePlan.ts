@@ -15,6 +15,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CarePlan extends DomainResource {
@@ -25,6 +26,102 @@ export class CarePlan extends DomainResource {
   static readonly typeName: string = "CarePlan";
   
   static readonly primaryCodePath: string | null = "category";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "instantiatesCanonical",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "instantiatesUri",
+      fieldType: [PrimitiveUri],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "replaces",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [CarePlanStatus],
+      isArray: false
+    }, {
+      fieldName: "intent",
+      fieldType: [CarePlanIntent],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "author",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "contributor",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "careTeam",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "addresses",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "supportingInfo",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "goal",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "activity",
+      fieldType: [CarePlanActivity],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

@@ -9,6 +9,7 @@ import {
   PrimitiveString,
   SubstanceIngredient,
   SubstanceInstance,
+  FieldMetadata
 } from "../internal";
 
 export class Substance extends DomainResource {
@@ -19,6 +20,38 @@ export class Substance extends DomainResource {
   static readonly typeName: string = "Substance";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [FHIRSubstanceStatus],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "instance",
+      fieldType: [SubstanceInstance],
+      isArray: true
+    }, {
+      fieldName: "ingredient",
+      fieldType: [SubstanceIngredient],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

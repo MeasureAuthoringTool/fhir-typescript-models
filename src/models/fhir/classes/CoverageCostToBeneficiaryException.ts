@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   ICoverageCostToBeneficiaryException,
   Period,
+  FieldMetadata
 } from "../internal";
 
 export class CoverageCostToBeneficiaryException extends BackboneElement {
@@ -14,6 +15,18 @@ export class CoverageCostToBeneficiaryException extends BackboneElement {
   static readonly typeName: string = "Coverage.CostToBeneficiary.Exception";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

@@ -3,6 +3,7 @@ import {
   BackboneElement,
   CodeableConcept,
   ISubstanceSourceMaterialOrganismOrganismGeneral,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSourceMaterialOrganismOrganismGeneral extends BackboneElement {
@@ -13,6 +14,26 @@ export class SubstanceSourceMaterialOrganismOrganismGeneral extends BackboneElem
   static readonly typeName: string = "SubstanceSourceMaterial.Organism.OrganismGeneral";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "kingdom",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "phylum",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "class",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "order",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public kingdom?: CodeableConcept;
 

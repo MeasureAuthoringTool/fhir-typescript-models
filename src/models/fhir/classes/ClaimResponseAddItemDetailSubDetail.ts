@@ -9,6 +9,7 @@ import {
   PrimitiveDecimal,
   PrimitivePositiveInt,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimResponseAddItemDetailSubDetail extends BackboneElement {
@@ -19,6 +20,42 @@ export class ClaimResponseAddItemDetailSubDetail extends BackboneElement {
   static readonly typeName: string = "ClaimResponse.AddItem.Detail.SubDetail";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "productOrService",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "modifier",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "unitPrice",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "factor",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "net",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "noteNumber",
+      fieldType: [PrimitivePositiveInt],
+      isArray: true
+    }, {
+      fieldName: "adjudication",
+      fieldType: [ClaimResponseItemAdjudication],
+      isArray: true
+    }];
+  }
 
   public productOrService?: CodeableConcept;
 

@@ -4,6 +4,7 @@ import {
   Extension,
   ITerminologyCapabilitiesTranslation,
   PrimitiveBoolean,
+  FieldMetadata
 } from "../internal";
 
 export class TerminologyCapabilitiesTranslation extends BackboneElement {
@@ -14,6 +15,14 @@ export class TerminologyCapabilitiesTranslation extends BackboneElement {
   static readonly typeName: string = "TerminologyCapabilities.Translation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "needsMap",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public needsMap?: PrimitiveBoolean;
 

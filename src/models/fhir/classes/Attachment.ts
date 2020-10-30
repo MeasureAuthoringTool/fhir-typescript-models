@@ -10,6 +10,7 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   PrimitiveUrl,
+  FieldMetadata
 } from "../internal";
 
 export class Attachment extends Element {
@@ -20,6 +21,42 @@ export class Attachment extends Element {
   static readonly typeName: string = "Attachment";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "contentType",
+      fieldType: [MimeType],
+      isArray: false
+    }, {
+      fieldName: "language",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "data",
+      fieldType: [PrimitiveBase64Binary],
+      isArray: false
+    }, {
+      fieldName: "url",
+      fieldType: [PrimitiveUrl],
+      isArray: false
+    }, {
+      fieldName: "size",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "hash",
+      fieldType: [PrimitiveBase64Binary],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "creation",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }];
+  }
 
   public contentType?: MimeType;
 

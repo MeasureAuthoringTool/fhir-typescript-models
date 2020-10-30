@@ -7,6 +7,7 @@ import {
   Population,
   Quantity,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductIndication extends DomainResource {
@@ -17,6 +18,46 @@ export class MedicinalProductIndication extends DomainResource {
   static readonly typeName: string = "MedicinalProductIndication";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "diseaseSymptomProcedure",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "diseaseStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "comorbidity",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "intendedEffect",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "duration",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "otherTherapy",
+      fieldType: [MedicinalProductIndicationOtherTherapy],
+      isArray: true
+    }, {
+      fieldName: "undesirableEffect",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "population",
+      fieldType: [Population],
+      isArray: true
+    }];
+  }
 
   public subject?: Array<Reference>;
 

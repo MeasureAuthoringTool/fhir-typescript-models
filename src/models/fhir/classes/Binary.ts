@@ -6,6 +6,7 @@ import {
   PrimitiveBase64Binary,
   Reference,
   Resource,
+  FieldMetadata
 } from "../internal";
 
 export class Binary extends Resource {
@@ -16,6 +17,22 @@ export class Binary extends Resource {
   static readonly typeName: string = "Binary";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Resource.fieldInfo, {
+      fieldName: "contentType",
+      fieldType: [MimeType],
+      isArray: false
+    }, {
+      fieldName: "securityContext",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "data",
+      fieldType: [PrimitiveBase64Binary],
+      isArray: false
+    }];
+  }
 
   public contentType?: MimeType;
 

@@ -1,15 +1,17 @@
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { IStatementReference } from "../index";
+
 /**
  *  StatementReference notes a CQL Library/Statement which a given Statement (in which it is embedded) relies upon. This
  * is also used for populations/stratifications/SDEs to reference their defining statement.
  */
 export class StatementReference {
-  // tslint:disable-next-line:variable-name
   public library_name?: string;
-  // tslint:disable-next-line:variable-name
+
   public statement_name?: string;
 
   public static parse(
-    json: any,
+    json: IStatementReference,
     providedInstance: StatementReference = new StatementReference()
   ): StatementReference {
     const newInstance: StatementReference = providedInstance;
@@ -23,8 +25,8 @@ export class StatementReference {
     return newInstance;
   }
 
-  toJSON(): any {
-    const result: any = {};
+  toJSON(): IStatementReference {
+    const result: IStatementReference = {};
 
     if (this.library_name) {
       result.library_name = this.library_name;
@@ -35,3 +37,4 @@ export class StatementReference {
     return result;
   }
 }
+/* eslint-enable import/prefer-default-export, import/no-cycle */

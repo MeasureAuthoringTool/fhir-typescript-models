@@ -6,6 +6,7 @@ import {
   ISubstanceSpecificationStructureIsotope,
   Quantity,
   SubstanceSpecificationStructureIsotopeMolecularWeight,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceSpecificationStructureIsotope extends BackboneElement {
@@ -16,6 +17,30 @@ export class SubstanceSpecificationStructureIsotope extends BackboneElement {
   static readonly typeName: string = "SubstanceSpecification.Structure.Isotope";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "substitution",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "halfLife",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "molecularWeight",
+      fieldType: [SubstanceSpecificationStructureIsotopeMolecularWeight],
+      isArray: false
+    }];
+  }
 
   public identifier?: Identifier;
 

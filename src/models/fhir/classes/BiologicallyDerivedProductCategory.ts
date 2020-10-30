@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
 import { 
   PrimitiveCode,
+  FieldMetadata
 } from "../internal";
 
 export class BiologicallyDerivedProductCategory extends PrimitiveCode {
@@ -11,6 +12,11 @@ export class BiologicallyDerivedProductCategory extends PrimitiveCode {
   static readonly typeName: string = "BiologicallyDerivedProductCategory";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...PrimitiveCode.fieldInfo, 
+    ];
+  }
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],

@@ -6,6 +6,7 @@ import {
   IMeasureReportGroupStratifierStratumPopulation,
   PrimitiveInteger,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MeasureReportGroupStratifierStratumPopulation extends BackboneElement {
@@ -16,6 +17,22 @@ export class MeasureReportGroupStratifierStratumPopulation extends BackboneEleme
   static readonly typeName: string = "MeasureReport.Group.Stratifier.Stratum.Population";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "count",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "subjectResults",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public code?: CodeableConcept;
 

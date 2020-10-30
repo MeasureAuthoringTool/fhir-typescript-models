@@ -2,6 +2,7 @@
 import { 
   IDuration,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class Duration extends Quantity {
@@ -12,6 +13,11 @@ export class Duration extends Quantity {
   static readonly typeName: string = "Duration";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Quantity.fieldInfo, 
+    ];
+  }
 
   public static parse(
     json: IDuration,

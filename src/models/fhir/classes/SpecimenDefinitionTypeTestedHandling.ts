@@ -7,6 +7,7 @@ import {
   ISpecimenDefinitionTypeTestedHandling,
   PrimitiveString,
   Range,
+  FieldMetadata
 } from "../internal";
 
 export class SpecimenDefinitionTypeTestedHandling extends BackboneElement {
@@ -17,6 +18,26 @@ export class SpecimenDefinitionTypeTestedHandling extends BackboneElement {
   static readonly typeName: string = "SpecimenDefinition.TypeTested.Handling";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "temperatureQualifier",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "temperatureRange",
+      fieldType: [Range],
+      isArray: false
+    }, {
+      fieldName: "maxDuration",
+      fieldType: [Duration],
+      isArray: false
+    }, {
+      fieldName: "instruction",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public temperatureQualifier?: CodeableConcept;
 

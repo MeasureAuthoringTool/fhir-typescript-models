@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IMedicinalProductInteractionInteractant,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductInteractionInteractant extends BackboneElement {
@@ -14,6 +15,14 @@ export class MedicinalProductInteractionInteractant extends BackboneElement {
   static readonly typeName: string = "MedicinalProductInteraction.Interactant";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "item",
+      fieldType: [Reference, CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public item?: Reference | CodeableConcept;
 

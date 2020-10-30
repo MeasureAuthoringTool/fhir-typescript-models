@@ -9,6 +9,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Identifier extends Element {
@@ -19,6 +20,34 @@ export class Identifier extends Element {
   static readonly typeName: string = "Identifier";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "use",
+      fieldType: [IdentifierUse],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "system",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "assigner",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public use?: IdentifierUse;
 

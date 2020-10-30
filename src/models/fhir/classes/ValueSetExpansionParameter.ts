@@ -10,6 +10,7 @@ import {
   PrimitiveInteger,
   PrimitiveString,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class ValueSetExpansionParameter extends BackboneElement {
@@ -20,6 +21,18 @@ export class ValueSetExpansionParameter extends BackboneElement {
   static readonly typeName: string = "ValueSet.Expansion.Parameter";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString, PrimitiveBoolean, PrimitiveInteger, PrimitiveDecimal, PrimitiveUri, PrimitiveCode, PrimitiveDateTime],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveString;
 

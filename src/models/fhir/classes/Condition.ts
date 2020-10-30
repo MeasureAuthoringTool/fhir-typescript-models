@@ -14,6 +14,7 @@ import {
   PrimitiveString,
   Range,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class Condition extends DomainResource {
@@ -24,6 +25,78 @@ export class Condition extends DomainResource {
   static readonly typeName: string = "Condition";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "clinicalStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "verificationStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "severity",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "bodySite",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "onset",
+      fieldType: [PrimitiveDateTime, Age, Period, Range, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "abatement",
+      fieldType: [PrimitiveDateTime, Age, Period, Range, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "recordedDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "recorder",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "asserter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "stage",
+      fieldType: [ConditionStage],
+      isArray: true
+    }, {
+      fieldName: "evidence",
+      fieldType: [ConditionEvidence],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

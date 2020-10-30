@@ -8,6 +8,7 @@ import {
   PrimitiveId,
   PrimitiveInteger,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class StructureMapGroupRuleTargetParameter extends BackboneElement {
@@ -18,6 +19,14 @@ export class StructureMapGroupRuleTargetParameter extends BackboneElement {
   static readonly typeName: string = "StructureMap.Group.Rule.Target.Parameter";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "value",
+      fieldType: [PrimitiveId, PrimitiveString, PrimitiveBoolean, PrimitiveInteger, PrimitiveDecimal],
+      isArray: false
+    }];
+  }
 
   public value?: PrimitiveId | PrimitiveString | PrimitiveBoolean | PrimitiveInteger | PrimitiveDecimal;
 

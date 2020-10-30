@@ -5,6 +5,7 @@ import {
   Extension,
   ICodeableConcept,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class CodeableConcept extends Element {
@@ -15,6 +16,18 @@ export class CodeableConcept extends Element {
   static readonly typeName: string = "CodeableConcept";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "coding",
+      fieldType: [Coding],
+      isArray: true
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public coding?: Array<Coding>;
 

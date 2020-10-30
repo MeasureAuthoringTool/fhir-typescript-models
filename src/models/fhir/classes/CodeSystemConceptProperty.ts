@@ -10,6 +10,7 @@ import {
   PrimitiveDecimal,
   PrimitiveInteger,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class CodeSystemConceptProperty extends BackboneElement {
@@ -20,6 +21,18 @@ export class CodeSystemConceptProperty extends BackboneElement {
   static readonly typeName: string = "CodeSystem.Concept.Property";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveCode, Coding, PrimitiveString, PrimitiveInteger, PrimitiveBoolean, PrimitiveDateTime, PrimitiveDecimal],
+      isArray: false
+    }];
+  }
 
   public code?: PrimitiveCode;
 

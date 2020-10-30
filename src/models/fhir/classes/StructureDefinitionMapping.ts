@@ -6,6 +6,7 @@ import {
   PrimitiveId,
   PrimitiveString,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class StructureDefinitionMapping extends BackboneElement {
@@ -16,6 +17,26 @@ export class StructureDefinitionMapping extends BackboneElement {
   static readonly typeName: string = "StructureDefinition.Mapping";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identity",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "uri",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public identity?: PrimitiveId;
 

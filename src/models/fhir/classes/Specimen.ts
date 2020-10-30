@@ -12,6 +12,7 @@ import {
   SpecimenContainer,
   SpecimenProcessing,
   SpecimenStatus,
+  FieldMetadata
 } from "../internal";
 
 export class Specimen extends DomainResource {
@@ -22,6 +23,62 @@ export class Specimen extends DomainResource {
   static readonly typeName: string = "Specimen";
   
   static readonly primaryCodePath: string | null = "type";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "accessionIdentifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [SpecimenStatus],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "receivedTime",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "parent",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "request",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "collection",
+      fieldType: [SpecimenCollection],
+      isArray: false
+    }, {
+      fieldName: "processing",
+      fieldType: [SpecimenProcessing],
+      isArray: true
+    }, {
+      fieldName: "container",
+      fieldType: [SpecimenContainer],
+      isArray: true
+    }, {
+      fieldName: "condition",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

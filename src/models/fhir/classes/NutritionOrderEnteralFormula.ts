@@ -7,6 +7,7 @@ import {
   NutritionOrderEnteralFormulaAdministration,
   PrimitiveString,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class NutritionOrderEnteralFormula extends BackboneElement {
@@ -17,6 +18,46 @@ export class NutritionOrderEnteralFormula extends BackboneElement {
   static readonly typeName: string = "NutritionOrder.EnteralFormula";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "baseFormulaType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "baseFormulaProductName",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "additiveType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "additiveProductName",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "caloricDensity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "routeofAdministration",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "administration",
+      fieldType: [NutritionOrderEnteralFormulaAdministration],
+      isArray: true
+    }, {
+      fieldName: "maxVolumeToDeliver",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "administrationInstruction",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public baseFormulaType?: CodeableConcept;
 

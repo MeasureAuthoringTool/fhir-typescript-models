@@ -11,6 +11,7 @@ import {
   Ratio,
   SimpleQuantity,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class Dosage extends BackboneElement {
@@ -21,6 +22,62 @@ export class Dosage extends BackboneElement {
   static readonly typeName: string = "Dosage";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "sequence",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "additionalInstruction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "patientInstruction",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "timing",
+      fieldType: [Timing],
+      isArray: false
+    }, {
+      fieldName: "asNeeded",
+      fieldType: [PrimitiveBoolean, CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "site",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "route",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "method",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "doseAndRate",
+      fieldType: [DosageDoseAndRate],
+      isArray: true
+    }, {
+      fieldName: "maxDosePerPeriod",
+      fieldType: [Ratio],
+      isArray: false
+    }, {
+      fieldName: "maxDosePerAdministration",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "maxDosePerLifetime",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }];
+  }
 
   public sequence?: PrimitiveInteger;
 

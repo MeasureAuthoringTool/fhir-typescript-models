@@ -5,6 +5,7 @@ import {
   IClaimRelated,
   Identifier,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimRelated extends BackboneElement {
@@ -15,6 +16,22 @@ export class ClaimRelated extends BackboneElement {
   static readonly typeName: string = "Claim.Related";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "claim",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "relationship",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "reference",
+      fieldType: [Identifier],
+      isArray: false
+    }];
+  }
 
   public claim?: Reference;
 

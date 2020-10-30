@@ -3,6 +3,7 @@ import {
   Element,
   ISubstanceAmountReferenceRange,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceAmountReferenceRange extends Element {
@@ -13,6 +14,18 @@ export class SubstanceAmountReferenceRange extends Element {
   static readonly typeName: string = "SubstanceAmount.ReferenceRange";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "lowLimit",
+      fieldType: [Quantity],
+      isArray: false
+    }, {
+      fieldName: "highLimit",
+      fieldType: [Quantity],
+      isArray: false
+    }];
+  }
 
   public lowLimit?: Quantity;
 

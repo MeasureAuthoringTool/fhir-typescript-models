@@ -4,6 +4,7 @@ import {
   Extension,
   ITestScriptSetupActionOperationRequestHeader,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class TestScriptSetupActionOperationRequestHeader extends BackboneElement {
@@ -14,6 +15,18 @@ export class TestScriptSetupActionOperationRequestHeader extends BackboneElement
   static readonly typeName: string = "TestScript.Setup.Action.Operation.RequestHeader";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "field",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public field?: PrimitiveString;
 

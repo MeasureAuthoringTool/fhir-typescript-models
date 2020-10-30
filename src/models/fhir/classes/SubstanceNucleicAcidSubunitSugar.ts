@@ -5,6 +5,7 @@ import {
   Identifier,
   ISubstanceNucleicAcidSubunitSugar,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceNucleicAcidSubunitSugar extends BackboneElement {
@@ -15,6 +16,22 @@ export class SubstanceNucleicAcidSubunitSugar extends BackboneElement {
   static readonly typeName: string = "SubstanceNucleicAcid.Subunit.Sugar";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "residueSite",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public identifier?: Identifier;
 

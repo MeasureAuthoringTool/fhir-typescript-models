@@ -5,6 +5,7 @@ import {
   Extension,
   IResearchStudyObjective,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ResearchStudyObjective extends BackboneElement {
@@ -15,6 +16,18 @@ export class ResearchStudyObjective extends BackboneElement {
   static readonly typeName: string = "ResearchStudy.Objective";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveString;
 

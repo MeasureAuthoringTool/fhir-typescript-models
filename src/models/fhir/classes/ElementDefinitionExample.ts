@@ -53,6 +53,7 @@ import {
   Timing,
   TriggerDefinition,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class ElementDefinitionExample extends Element {
@@ -63,6 +64,18 @@ export class ElementDefinitionExample extends Element {
   static readonly typeName: string = "ElementDefinition.Example";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "label",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveBase64Binary, PrimitiveBoolean, PrimitiveCanonical, PrimitiveCode, PrimitiveDate, PrimitiveDateTime, PrimitiveDecimal, PrimitiveId, PrimitiveInstant, PrimitiveInteger, PrimitiveMarkdown, PrimitiveOid, PrimitivePositiveInt, PrimitiveString, PrimitiveTime, PrimitiveUnsignedInt, PrimitiveUri, PrimitiveUrl, PrimitiveUuid, Address, Age, Annotation, Attachment, CodeableConcept, Coding, ContactPoint, Count, Distance, Duration, HumanName, Identifier, Money, Period, Quantity, Range, Ratio, Reference, SampledData, Signature, Timing, ContactDetail, Contributor, DataRequirement, Expression, ParameterDefinition, RelatedArtifact, TriggerDefinition, UsageContext, Dosage, Meta],
+      isArray: false
+    }];
+  }
 
   public label?: PrimitiveString;
 

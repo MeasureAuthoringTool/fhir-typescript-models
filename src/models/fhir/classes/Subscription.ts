@@ -8,6 +8,7 @@ import {
   PrimitiveString,
   SubscriptionChannel,
   SubscriptionStatus,
+  FieldMetadata
 } from "../internal";
 
 export class Subscription extends DomainResource {
@@ -18,6 +19,38 @@ export class Subscription extends DomainResource {
   static readonly typeName: string = "Subscription";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "status",
+      fieldType: [SubscriptionStatus],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "end",
+      fieldType: [PrimitiveInstant],
+      isArray: false
+    }, {
+      fieldName: "reason",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "criteria",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "error",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "channel",
+      fieldType: [SubscriptionChannel],
+      isArray: false
+    }];
+  }
 
   public status?: SubscriptionStatus;
 

@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
 import { 
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class PrimitiveMarkdown extends PrimitiveString {
@@ -11,6 +12,11 @@ export class PrimitiveMarkdown extends PrimitiveString {
   static readonly typeName: string = "markdown";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...PrimitiveString.fieldInfo, 
+    ];
+  }
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveString.parsePrimitive>[0],

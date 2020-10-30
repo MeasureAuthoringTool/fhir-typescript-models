@@ -5,6 +5,7 @@ import {
   Extension,
   IClaimResponseError,
   PrimitivePositiveInt,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimResponseError extends BackboneElement {
@@ -15,6 +16,26 @@ export class ClaimResponseError extends BackboneElement {
   static readonly typeName: string = "ClaimResponse.Error";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "itemSequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "detailSequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "subDetailSequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public itemSequence?: PrimitivePositiveInt;
 

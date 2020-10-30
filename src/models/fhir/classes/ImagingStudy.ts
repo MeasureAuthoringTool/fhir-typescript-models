@@ -13,6 +13,7 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ImagingStudy extends DomainResource {
@@ -23,6 +24,90 @@ export class ImagingStudy extends DomainResource {
   static readonly typeName: string = "ImagingStudy";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [ImagingStudyStatus],
+      isArray: false
+    }, {
+      fieldName: "modality",
+      fieldType: [Coding],
+      isArray: true
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "started",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "referrer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "interpreter",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "endpoint",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "numberOfSeries",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "numberOfInstances",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "procedureReference",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "procedureCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "series",
+      fieldType: [ImagingStudySeries],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

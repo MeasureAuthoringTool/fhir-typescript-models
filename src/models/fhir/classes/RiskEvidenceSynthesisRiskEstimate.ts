@@ -8,6 +8,7 @@ import {
   PrimitiveInteger,
   PrimitiveString,
   RiskEvidenceSynthesisRiskEstimatePrecisionEstimate,
+  FieldMetadata
 } from "../internal";
 
 export class RiskEvidenceSynthesisRiskEstimate extends BackboneElement {
@@ -18,6 +19,38 @@ export class RiskEvidenceSynthesisRiskEstimate extends BackboneElement {
   static readonly typeName: string = "RiskEvidenceSynthesis.RiskEstimate";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "unitOfMeasure",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "denominatorCount",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "numeratorCount",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "precisionEstimate",
+      fieldType: [RiskEvidenceSynthesisRiskEstimatePrecisionEstimate],
+      isArray: true
+    }];
+  }
 
   public description?: PrimitiveString;
 

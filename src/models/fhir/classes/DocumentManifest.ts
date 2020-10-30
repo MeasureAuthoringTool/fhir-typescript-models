@@ -11,6 +11,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class DocumentManifest extends DomainResource {
@@ -21,6 +22,58 @@ export class DocumentManifest extends DomainResource {
   static readonly typeName: string = "DocumentManifest";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "masterIdentifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [DocumentReferenceStatus],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "author",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "recipient",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "source",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "content",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "related",
+      fieldType: [DocumentManifestRelated],
+      isArray: true
+    }];
+  }
 
   public masterIdentifier?: Identifier;
 

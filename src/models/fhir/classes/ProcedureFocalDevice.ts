@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IProcedureFocalDevice,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ProcedureFocalDevice extends BackboneElement {
@@ -14,6 +15,18 @@ export class ProcedureFocalDevice extends BackboneElement {
   static readonly typeName: string = "Procedure.FocalDevice";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "action",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "manipulated",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public action?: CodeableConcept;
 

@@ -5,6 +5,7 @@ import {
   ITestScriptMetadataLink,
   PrimitiveString,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class TestScriptMetadataLink extends BackboneElement {
@@ -15,6 +16,18 @@ export class TestScriptMetadataLink extends BackboneElement {
   static readonly typeName: string = "TestScript.Metadata.Link";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public url?: PrimitiveUri;
 

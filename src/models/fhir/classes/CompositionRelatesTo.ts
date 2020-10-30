@@ -6,6 +6,7 @@ import {
   ICompositionRelatesTo,
   Identifier,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CompositionRelatesTo extends BackboneElement {
@@ -16,6 +17,18 @@ export class CompositionRelatesTo extends BackboneElement {
   static readonly typeName: string = "Composition.RelatesTo";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [DocumentRelationshipType],
+      isArray: false
+    }, {
+      fieldName: "target",
+      fieldType: [Identifier, Reference],
+      isArray: false
+    }];
+  }
 
   public code?: DocumentRelationshipType;
 

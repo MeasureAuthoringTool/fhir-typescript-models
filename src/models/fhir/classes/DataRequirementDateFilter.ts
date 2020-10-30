@@ -7,6 +7,7 @@ import {
   Period,
   PrimitiveDateTime,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class DataRequirementDateFilter extends Element {
@@ -17,6 +18,22 @@ export class DataRequirementDateFilter extends Element {
   static readonly typeName: string = "DataRequirement.DateFilter";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "path",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "searchParam",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveDateTime, Period, Duration],
+      isArray: false
+    }];
+  }
 
   public path?: PrimitiveString;
 

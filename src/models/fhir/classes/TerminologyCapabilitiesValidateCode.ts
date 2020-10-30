@@ -4,6 +4,7 @@ import {
   Extension,
   ITerminologyCapabilitiesValidateCode,
   PrimitiveBoolean,
+  FieldMetadata
 } from "../internal";
 
 export class TerminologyCapabilitiesValidateCode extends BackboneElement {
@@ -14,6 +15,14 @@ export class TerminologyCapabilitiesValidateCode extends BackboneElement {
   static readonly typeName: string = "TerminologyCapabilities.ValidateCode";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "translations",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }];
+  }
 
   public translations?: PrimitiveBoolean;
 

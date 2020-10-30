@@ -5,6 +5,7 @@ import {
   ITerminologyCapabilitiesExpansionParameter,
   PrimitiveCode,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class TerminologyCapabilitiesExpansionParameter extends BackboneElement {
@@ -15,6 +16,18 @@ export class TerminologyCapabilitiesExpansionParameter extends BackboneElement {
   static readonly typeName: string = "TerminologyCapabilities.Expansion.Parameter";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveCode;
 

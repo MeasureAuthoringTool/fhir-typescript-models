@@ -1,27 +1,32 @@
-import { StatementDependency } from "./StatementDependency";
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import {
+  ICqmLogicLibrary,
+  IStatementDependency,
+  StatementDependency
+} from "../index";
 
 /**
  *  CqlElmLibrary encapsulates what used to be a Hash in Ruby, by explicitly specifying
  * a library ID, and the CQL string for that library
  */
 export class CqmLogicLibrary {
-  // tslint:disable-next-line:variable-name
   public library_name?: string;
-  // tslint:disable-next-line:variable-name
+
   public library_version?: string;
+
   public cql?: string;
+
   // ELM json
   public elm?: unknown;
-  // tslint:disable-next-line:variable-name
+
   public elm_annotations?: unknown;
-  // tslint:disable-next-line:variable-name
+
   public is_main_library?: boolean;
 
-  // tslint:disable-next-line:variable-name
   public statement_dependencies?: Array<StatementDependency>;
 
   public static parse(
-    json: any,
+    json: ICqmLogicLibrary,
     providedInstance: CqmLogicLibrary = new CqmLogicLibrary()
   ): CqmLogicLibrary {
     const newInstance: CqmLogicLibrary = providedInstance;
@@ -46,14 +51,14 @@ export class CqmLogicLibrary {
     }
     if (json.statement_dependencies) {
       newInstance.statement_dependencies = json.statement_dependencies.map(
-        (x: any) => StatementDependency.parse(x)
+        (x: IStatementDependency) => StatementDependency.parse(x)
       );
     }
     return newInstance;
   }
 
-  toJSON(): any {
-    const result: any = {};
+  toJSON(): ICqmLogicLibrary {
+    const result: ICqmLogicLibrary = {};
 
     if (this.library_name) {
       result.library_name = this.library_name;
@@ -81,3 +86,5 @@ export class CqmLogicLibrary {
     return result;
   }
 }
+
+/* eslint-enable import/prefer-default-export, import/no-cycle */

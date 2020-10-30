@@ -1,24 +1,34 @@
 /**
  * Representation of a population set (aka. PopulationCriteria)
  */
-import { CqmObservation } from "./CqmObservation";
-import { PopulationMap } from "./PopulationMap";
-import { lookupPopulationMapSubclass } from "./PopulationMapping";
-import { StatementReference } from "./StatementReference";
-import { Stratification } from "./Stratification";
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import {
+  CqmObservation,
+  IPopulationSet,
+  PopulationMap,
+  lookupPopulationMapSubclass,
+  StatementReference,
+  Stratification,
+  IStatementReference,
+  ICqmObservation,
+  IStratification
+} from "../index";
 
 export class PopulationSet {
   public populations?: PopulationMap;
+
   public stratifications?: Array<Stratification>;
-  // tslint:disable-next-line:variable-name
+
   public supplemental_data_elements?: Array<StatementReference>;
+
   public observations?: Array<CqmObservation>;
+
   public title?: string;
-  // tslint:disable-next-line:variable-name
+
   public population_set_id?: string;
 
   public static parse(
-    json: any,
+    json: IPopulationSet,
     providedInstance: PopulationSet = new PopulationSet()
   ): PopulationSet {
     const newInstance: PopulationSet = providedInstance;
@@ -33,17 +43,17 @@ export class PopulationSet {
       }
     }
     if (json.stratifications) {
-      newInstance.stratifications = json.stratifications.map((x: any) =>
+      newInstance.stratifications = json.stratifications.map((x: IStratification) =>
         Stratification.parse(x)
       );
     }
     if (json.supplemental_data_elements) {
       newInstance.supplemental_data_elements = json.supplemental_data_elements.map(
-        (x: any) => StatementReference.parse(x)
+        (x: IStatementReference) => StatementReference.parse(x)
       );
     }
     if (json.observations) {
-      newInstance.observations = json.observations.map((x: any) =>
+      newInstance.observations = json.observations.map((x: ICqmObservation) =>
         CqmObservation.parse(x)
       );
     }
@@ -56,8 +66,8 @@ export class PopulationSet {
     return newInstance;
   }
 
-  toJSON(): any {
-    const result: any = {};
+  toJSON(): IPopulationSet {
+    const result: IPopulationSet = {};
     if (this.populations) {
       result.populations = this.populations.toJSON();
     }
@@ -82,3 +92,5 @@ export class PopulationSet {
     return result;
   }
 }
+
+/* eslint-enable import/prefer-default-export, import/no-cycle */

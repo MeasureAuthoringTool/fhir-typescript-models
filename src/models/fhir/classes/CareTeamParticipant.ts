@@ -5,6 +5,7 @@ import {
   ICareTeamParticipant,
   Period,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CareTeamParticipant extends BackboneElement {
@@ -15,6 +16,26 @@ export class CareTeamParticipant extends BackboneElement {
   static readonly typeName: string = "CareTeam.Participant";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "role",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "member",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "onBehalfOf",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public role?: Array<CodeableConcept>;
 

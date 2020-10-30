@@ -5,6 +5,7 @@ import {
   Extension,
   IElementDefinitionSlicingDiscriminator,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ElementDefinitionSlicingDiscriminator extends Element {
@@ -15,6 +16,18 @@ export class ElementDefinitionSlicingDiscriminator extends Element {
   static readonly typeName: string = "ElementDefinition.Slicing.Discriminator";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "type",
+      fieldType: [DiscriminatorType],
+      isArray: false
+    }, {
+      fieldName: "path",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public type?: DiscriminatorType;
 

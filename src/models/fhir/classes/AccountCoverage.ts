@@ -5,6 +5,7 @@ import {
   IAccountCoverage,
   PrimitivePositiveInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class AccountCoverage extends BackboneElement {
@@ -15,6 +16,18 @@ export class AccountCoverage extends BackboneElement {
   static readonly typeName: string = "Account.Coverage";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "coverage",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "priority",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }];
+  }
 
   public coverage?: Reference;
 

@@ -9,6 +9,7 @@ import {
   PrimitiveCode,
   PrimitiveInteger,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ParameterDefinition extends Element {
@@ -19,6 +20,38 @@ export class ParameterDefinition extends Element {
   static readonly typeName: string = "ParameterDefinition";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "use",
+      fieldType: [ParameterUse],
+      isArray: false
+    }, {
+      fieldName: "min",
+      fieldType: [PrimitiveInteger],
+      isArray: false
+    }, {
+      fieldName: "max",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "documentation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [FHIRAllTypes],
+      isArray: false
+    }, {
+      fieldName: "profile",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveCode;
 

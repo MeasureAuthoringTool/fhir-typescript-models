@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   ISubstanceReferenceInformationClassification,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceReferenceInformationClassification extends BackboneElement {
@@ -14,6 +15,26 @@ export class SubstanceReferenceInformationClassification extends BackboneElement
   static readonly typeName: string = "SubstanceReferenceInformation.Classification";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "domain",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "classification",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "subtype",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "source",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public domain?: CodeableConcept;
 

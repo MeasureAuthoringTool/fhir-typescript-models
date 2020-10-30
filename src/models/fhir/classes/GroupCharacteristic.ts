@@ -9,6 +9,7 @@ import {
   Quantity,
   Range,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class GroupCharacteristic extends BackboneElement {
@@ -19,6 +20,26 @@ export class GroupCharacteristic extends BackboneElement {
   static readonly typeName: string = "Group.Characteristic";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [CodeableConcept, PrimitiveBoolean, Quantity, Range, Reference],
+      isArray: false
+    }, {
+      fieldName: "exclude",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public code?: CodeableConcept;
 

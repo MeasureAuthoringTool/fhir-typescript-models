@@ -4,6 +4,7 @@ import {
   Duration,
   IMedicationRequestDispenseRequestInitialFill,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationRequestDispenseRequestInitialFill extends BackboneElement {
@@ -14,6 +15,18 @@ export class MedicationRequestDispenseRequestInitialFill extends BackboneElement
   static readonly typeName: string = "MedicationRequest.DispenseRequest.InitialFill";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "duration",
+      fieldType: [Duration],
+      isArray: false
+    }];
+  }
 
   public quantity?: SimpleQuantity;
 

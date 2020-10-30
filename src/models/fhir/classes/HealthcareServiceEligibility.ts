@@ -5,6 +5,7 @@ import {
   Extension,
   IHealthcareServiceEligibility,
   PrimitiveMarkdown,
+  FieldMetadata
 } from "../internal";
 
 export class HealthcareServiceEligibility extends BackboneElement {
@@ -15,6 +16,18 @@ export class HealthcareServiceEligibility extends BackboneElement {
   static readonly typeName: string = "HealthcareService.Eligibility";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "comment",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }];
+  }
 
   public code?: CodeableConcept;
 

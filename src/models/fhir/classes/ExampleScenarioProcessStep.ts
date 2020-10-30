@@ -7,6 +7,7 @@ import {
   Extension,
   IExampleScenarioProcessStep,
   PrimitiveBoolean,
+  FieldMetadata
 } from "../internal";
 
 export class ExampleScenarioProcessStep extends BackboneElement {
@@ -17,6 +18,26 @@ export class ExampleScenarioProcessStep extends BackboneElement {
   static readonly typeName: string = "ExampleScenario.Process.Step";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "process",
+      fieldType: [ExampleScenarioProcess],
+      isArray: true
+    }, {
+      fieldName: "pause",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "operation",
+      fieldType: [ExampleScenarioProcessStepOperation],
+      isArray: false
+    }, {
+      fieldName: "alternative",
+      fieldType: [ExampleScenarioProcessStepAlternative],
+      isArray: true
+    }];
+  }
 
   public process?: Array<ExampleScenarioProcess>;
 

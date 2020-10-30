@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IMedicinalProductIndicationOtherTherapy,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductIndicationOtherTherapy extends BackboneElement {
@@ -14,6 +15,18 @@ export class MedicinalProductIndicationOtherTherapy extends BackboneElement {
   static readonly typeName: string = "MedicinalProductIndication.OtherTherapy";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "therapyRelationshipType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "medication",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }];
+  }
 
   public therapyRelationshipType?: CodeableConcept;
 

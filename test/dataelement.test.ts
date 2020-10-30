@@ -1,4 +1,3 @@
-import "jest-extended";
 import { DataElement } from "../src/models/cqm";
 import { MedicationRequest } from "../src/models/fhir/classes/MedicationRequest";
 

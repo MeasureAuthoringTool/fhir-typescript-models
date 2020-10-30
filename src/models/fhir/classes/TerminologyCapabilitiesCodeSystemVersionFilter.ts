@@ -4,6 +4,7 @@ import {
   Extension,
   ITerminologyCapabilitiesCodeSystemVersionFilter,
   PrimitiveCode,
+  FieldMetadata
 } from "../internal";
 
 export class TerminologyCapabilitiesCodeSystemVersionFilter extends BackboneElement {
@@ -14,6 +15,18 @@ export class TerminologyCapabilitiesCodeSystemVersionFilter extends BackboneElem
   static readonly typeName: string = "TerminologyCapabilities.CodeSystem.Version.Filter";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "op",
+      fieldType: [PrimitiveCode],
+      isArray: true
+    }];
+  }
 
   public code?: PrimitiveCode;
 

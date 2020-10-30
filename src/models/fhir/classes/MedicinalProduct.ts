@@ -12,6 +12,7 @@ import {
   MedicinalProductSpecialDesignation,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProduct extends DomainResource {
@@ -22,6 +23,90 @@ export class MedicinalProduct extends DomainResource {
   static readonly typeName: string = "MedicinalProduct";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "domain",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "combinedPharmaceuticalDoseForm",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "legalStatusOfSupply",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "additionalMonitoringIndicator",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "specialMeasures",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "paediatricUseIndicator",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "productClassification",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "marketingStatus",
+      fieldType: [MarketingStatus],
+      isArray: true
+    }, {
+      fieldName: "pharmaceuticalProduct",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "packagedMedicinalProduct",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "attachedDocument",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "masterFile",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "contact",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "clinicalTrial",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "name",
+      fieldType: [MedicinalProductName],
+      isArray: true
+    }, {
+      fieldName: "crossReference",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "manufacturingBusinessOperation",
+      fieldType: [MedicinalProductManufacturingBusinessOperation],
+      isArray: true
+    }, {
+      fieldName: "specialDesignation",
+      fieldType: [MedicinalProductSpecialDesignation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

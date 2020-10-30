@@ -5,6 +5,7 @@ import {
   Extension,
   IAuditEventAgentNetwork,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class AuditEventAgentNetwork extends BackboneElement {
@@ -15,6 +16,18 @@ export class AuditEventAgentNetwork extends BackboneElement {
   static readonly typeName: string = "AuditEvent.Agent.Network";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "address",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [AuditEventAgentNetworkType],
+      isArray: false
+    }];
+  }
 
   public address?: PrimitiveString;
 

@@ -13,6 +13,7 @@ import {
   PractitionerQualification,
   PrimitiveBoolean,
   PrimitiveDate,
+  FieldMetadata
 } from "../internal";
 
 export class Practitioner extends DomainResource {
@@ -23,6 +24,50 @@ export class Practitioner extends DomainResource {
   static readonly typeName: string = "Practitioner";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "active",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [HumanName],
+      isArray: true
+    }, {
+      fieldName: "telecom",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "address",
+      fieldType: [Address],
+      isArray: true
+    }, {
+      fieldName: "gender",
+      fieldType: [AdministrativeGender],
+      isArray: false
+    }, {
+      fieldName: "birthDate",
+      fieldType: [PrimitiveDate],
+      isArray: false
+    }, {
+      fieldName: "photo",
+      fieldType: [Attachment],
+      isArray: true
+    }, {
+      fieldName: "qualification",
+      fieldType: [PractitionerQualification],
+      isArray: true
+    }, {
+      fieldName: "communication",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

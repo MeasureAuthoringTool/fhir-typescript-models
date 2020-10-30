@@ -1,4 +1,3 @@
-import "jest-extended";
 import {
   CohortPopulationMap,
   ContinuousVariablePopulationMap,

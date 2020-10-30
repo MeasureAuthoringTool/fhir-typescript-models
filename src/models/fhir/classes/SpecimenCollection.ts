@@ -9,6 +9,7 @@ import {
   PrimitiveDateTime,
   Reference,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class SpecimenCollection extends BackboneElement {
@@ -19,6 +20,38 @@ export class SpecimenCollection extends BackboneElement {
   static readonly typeName: string = "Specimen.Collection";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "collector",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "collected",
+      fieldType: [PrimitiveDateTime, Period],
+      isArray: false
+    }, {
+      fieldName: "duration",
+      fieldType: [Duration],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "method",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "bodySite",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "fastingStatus",
+      fieldType: [CodeableConcept, Duration],
+      isArray: false
+    }];
+  }
 
   public collector?: Reference;
 

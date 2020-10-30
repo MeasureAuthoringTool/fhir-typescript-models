@@ -9,6 +9,7 @@ import {
   IBundleEntry,
   PrimitiveUri,
   Resource,
+  FieldMetadata
 } from "../internal";
 
 export class BundleEntry extends BackboneElement {
@@ -19,6 +20,34 @@ export class BundleEntry extends BackboneElement {
   static readonly typeName: string = "Bundle.Entry";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "link",
+      fieldType: [BundleLink],
+      isArray: true
+    }, {
+      fieldName: "fullUrl",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "resource",
+      fieldType: [Resource],
+      isArray: false
+    }, {
+      fieldName: "search",
+      fieldType: [BundleEntrySearch],
+      isArray: false
+    }, {
+      fieldName: "request",
+      fieldType: [BundleEntryRequest],
+      isArray: false
+    }, {
+      fieldName: "response",
+      fieldType: [BundleEntryResponse],
+      isArray: false
+    }];
+  }
 
   public link?: Array<BundleLink>;
 

@@ -12,6 +12,7 @@ import {
   PrimitiveString,
   Quantity,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimSupportingInfo extends BackboneElement {
@@ -22,6 +23,34 @@ export class ClaimSupportingInfo extends BackboneElement {
   static readonly typeName: string = "Claim.SupportingInfo";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "sequence",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "timing",
+      fieldType: [PrimitiveDate, Period],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveBoolean, PrimitiveString, Quantity, Attachment, Reference],
+      isArray: false
+    }, {
+      fieldName: "reason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public sequence?: PrimitivePositiveInt;
 

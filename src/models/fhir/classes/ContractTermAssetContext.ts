@@ -6,6 +6,7 @@ import {
   IContractTermAssetContext,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ContractTermAssetContext extends BackboneElement {
@@ -16,6 +17,22 @@ export class ContractTermAssetContext extends BackboneElement {
   static readonly typeName: string = "Contract.Term.Asset.Context";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "reference",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public reference?: Reference;
 

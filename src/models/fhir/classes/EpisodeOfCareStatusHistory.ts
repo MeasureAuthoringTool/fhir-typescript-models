@@ -5,6 +5,7 @@ import {
   Extension,
   IEpisodeOfCareStatusHistory,
   Period,
+  FieldMetadata
 } from "../internal";
 
 export class EpisodeOfCareStatusHistory extends BackboneElement {
@@ -15,6 +16,18 @@ export class EpisodeOfCareStatusHistory extends BackboneElement {
   static readonly typeName: string = "EpisodeOfCare.StatusHistory";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "status",
+      fieldType: [EpisodeOfCareStatus],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public status?: EpisodeOfCareStatus;
 

@@ -20,6 +20,7 @@ import {
   PrimitiveUri,
   PublicationStatus,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class CodeSystem extends DomainResource {
@@ -30,6 +31,114 @@ export class CodeSystem extends DomainResource {
   static readonly typeName: string = "CodeSystem";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "experimental",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "purpose",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "copyright",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "caseSensitive",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "valueSet",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "hierarchyMeaning",
+      fieldType: [CodeSystemHierarchyMeaning],
+      isArray: false
+    }, {
+      fieldName: "compositional",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "versionNeeded",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "content",
+      fieldType: [CodeSystemContentMode],
+      isArray: false
+    }, {
+      fieldName: "supplements",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "count",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "filter",
+      fieldType: [CodeSystemFilter],
+      isArray: true
+    }, {
+      fieldName: "property",
+      fieldType: [CodeSystemProperty],
+      isArray: true
+    }, {
+      fieldName: "concept",
+      fieldType: [CodeSystemConcept],
+      isArray: true
+    }];
+  }
 
   public url?: PrimitiveUri;
 

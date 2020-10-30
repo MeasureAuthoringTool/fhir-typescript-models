@@ -10,6 +10,7 @@ import {
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ImmunizationEvaluation extends DomainResource {
@@ -20,6 +21,62 @@ export class ImmunizationEvaluation extends DomainResource {
   static readonly typeName: string = "ImmunizationEvaluation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [ImmunizationEvaluationStatus],
+      isArray: false
+    }, {
+      fieldName: "patient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "authority",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "targetDisease",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "immunizationEvent",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "doseStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "doseStatusReason",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "series",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "doseNumber",
+      fieldType: [PrimitivePositiveInt, PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "seriesDoses",
+      fieldType: [PrimitivePositiveInt, PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

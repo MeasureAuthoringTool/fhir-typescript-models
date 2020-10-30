@@ -3,6 +3,7 @@ import {
   BackboneElement,
   CodeableConcept,
   INutritionOrderOralDietTexture,
+  FieldMetadata
 } from "../internal";
 
 export class NutritionOrderOralDietTexture extends BackboneElement {
@@ -13,6 +14,18 @@ export class NutritionOrderOralDietTexture extends BackboneElement {
   static readonly typeName: string = "NutritionOrder.OralDiet.Texture";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "modifier",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "foodType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public modifier?: CodeableConcept;
 

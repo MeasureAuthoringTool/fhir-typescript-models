@@ -4,6 +4,7 @@ import {
   Extension,
   IConsentPolicy,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class ConsentPolicy extends BackboneElement {
@@ -14,6 +15,18 @@ export class ConsentPolicy extends BackboneElement {
   static readonly typeName: string = "Consent.Policy";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "authority",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "uri",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }];
+  }
 
   public authority?: PrimitiveUri;
 

@@ -5,6 +5,7 @@ import {
   Extension,
   ICoverageClass,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class CoverageClass extends BackboneElement {
@@ -15,6 +16,22 @@ export class CoverageClass extends BackboneElement {
   static readonly typeName: string = "Coverage.Class";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

@@ -5,6 +5,7 @@ import {
   Extension,
   IDeviceSpecialization,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class DeviceSpecialization extends BackboneElement {
@@ -15,6 +16,18 @@ export class DeviceSpecialization extends BackboneElement {
   static readonly typeName: string = "Device.Specialization";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "systemType",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public systemType?: CodeableConcept;
 

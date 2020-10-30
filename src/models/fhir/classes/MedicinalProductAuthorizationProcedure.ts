@@ -7,6 +7,7 @@ import {
   IMedicinalProductAuthorizationProcedure,
   Period,
   PrimitiveDateTime,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductAuthorizationProcedure extends BackboneElement {
@@ -17,6 +18,26 @@ export class MedicinalProductAuthorizationProcedure extends BackboneElement {
   static readonly typeName: string = "MedicinalProductAuthorization.Procedure";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [Period, PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "application",
+      fieldType: [MedicinalProductAuthorizationProcedure],
+      isArray: true
+    }];
+  }
 
   public identifier?: Identifier;
 

@@ -4,6 +4,7 @@ import {
   ChargeItemDefinitionApplicability,
   ChargeItemDefinitionPropertyGroupPriceComponent,
   IChargeItemDefinitionPropertyGroup,
+  FieldMetadata
 } from "../internal";
 
 export class ChargeItemDefinitionPropertyGroup extends BackboneElement {
@@ -14,6 +15,18 @@ export class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   static readonly typeName: string = "ChargeItemDefinition.PropertyGroup";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "applicability",
+      fieldType: [ChargeItemDefinitionApplicability],
+      isArray: true
+    }, {
+      fieldName: "priceComponent",
+      fieldType: [ChargeItemDefinitionPropertyGroupPriceComponent],
+      isArray: true
+    }];
+  }
 
   public applicability?: Array<ChargeItemDefinitionApplicability>;
 

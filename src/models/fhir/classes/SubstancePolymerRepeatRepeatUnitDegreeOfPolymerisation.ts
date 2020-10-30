@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   ISubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation,
   SubstanceAmount,
+  FieldMetadata
 } from "../internal";
 
 export class SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation extends BackboneElement {
@@ -14,6 +15,18 @@ export class SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation extends Back
   static readonly typeName: string = "SubstancePolymer.Repeat.RepeatUnit.DegreeOfPolymerisation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "degree",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "amount",
+      fieldType: [SubstanceAmount],
+      isArray: false
+    }];
+  }
 
   public degree?: CodeableConcept;
 

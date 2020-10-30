@@ -6,6 +6,7 @@ import {
   IDataRequirementCodeFilter,
   PrimitiveCanonical,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class DataRequirementCodeFilter extends Element {
@@ -16,6 +17,26 @@ export class DataRequirementCodeFilter extends Element {
   static readonly typeName: string = "DataRequirement.CodeFilter";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "path",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "searchParam",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "valueSet",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [Coding],
+      isArray: true
+    }];
+  }
 
   public path?: PrimitiveString;
 

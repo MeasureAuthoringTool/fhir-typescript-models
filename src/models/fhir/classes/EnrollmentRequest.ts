@@ -7,6 +7,7 @@ import {
   IEnrollmentRequest,
   PrimitiveDateTime,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class EnrollmentRequest extends DomainResource {
@@ -17,6 +18,38 @@ export class EnrollmentRequest extends DomainResource {
   static readonly typeName: string = "EnrollmentRequest";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [EnrollmentRequestStatus],
+      isArray: false
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "insurer",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "provider",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "candidate",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "coverage",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

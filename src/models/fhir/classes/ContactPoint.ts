@@ -8,6 +8,7 @@ import {
   Period,
   PrimitivePositiveInt,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ContactPoint extends Element {
@@ -18,6 +19,30 @@ export class ContactPoint extends Element {
   static readonly typeName: string = "ContactPoint";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "system",
+      fieldType: [ContactPointSystem],
+      isArray: false
+    }, {
+      fieldName: "value",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "use",
+      fieldType: [ContactPointUse],
+      isArray: false
+    }, {
+      fieldName: "rank",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }];
+  }
 
   public system?: ContactPointSystem;
 

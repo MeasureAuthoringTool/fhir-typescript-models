@@ -7,6 +7,7 @@ import {
   PrimitiveId,
   PrimitiveString,
   PrimitiveUri,
+  FieldMetadata
 } from "../internal";
 
 export class Expression extends Element {
@@ -17,6 +18,30 @@ export class Expression extends Element {
   static readonly typeName: string = "Expression";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "language",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }, {
+      fieldName: "expression",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "reference",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }];
+  }
 
   public description?: PrimitiveString;
 

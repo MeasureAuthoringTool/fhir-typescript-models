@@ -6,6 +6,7 @@ import {
   IPlanDefinitionGoalTarget,
   Quantity,
   Range,
+  FieldMetadata
 } from "../internal";
 
 export class PlanDefinitionGoalTarget extends BackboneElement {
@@ -16,6 +17,22 @@ export class PlanDefinitionGoalTarget extends BackboneElement {
   static readonly typeName: string = "PlanDefinition.Goal.Target";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "measure",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "detail",
+      fieldType: [Quantity, Range, CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "due",
+      fieldType: [Duration],
+      isArray: false
+    }];
+  }
 
   public measure?: CodeableConcept;
 

@@ -12,6 +12,7 @@ import {
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class DataRequirement extends Element {
@@ -22,6 +23,42 @@ export class DataRequirement extends Element {
   static readonly typeName: string = "DataRequirement";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "type",
+      fieldType: [FHIRAllTypes],
+      isArray: false
+    }, {
+      fieldName: "profile",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "subject",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "mustSupport",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "codeFilter",
+      fieldType: [DataRequirementCodeFilter],
+      isArray: true
+    }, {
+      fieldName: "dateFilter",
+      fieldType: [DataRequirementDateFilter],
+      isArray: true
+    }, {
+      fieldName: "limit",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "sort",
+      fieldType: [DataRequirementSort],
+      isArray: true
+    }];
+  }
 
   public type?: FHIRAllTypes;
 

@@ -9,6 +9,7 @@ import {
   PrimitiveString,
   Reference,
   RemittanceOutcome,
+  FieldMetadata
 } from "../internal";
 
 export class EnrollmentResponse extends DomainResource {
@@ -19,6 +20,42 @@ export class EnrollmentResponse extends DomainResource {
   static readonly typeName: string = "EnrollmentResponse";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [EnrollmentResponseStatus],
+      isArray: false
+    }, {
+      fieldName: "request",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "outcome",
+      fieldType: [RemittanceOutcome],
+      isArray: false
+    }, {
+      fieldName: "disposition",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "created",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "organization",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "requestProvider",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

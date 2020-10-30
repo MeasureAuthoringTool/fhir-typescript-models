@@ -1,14 +1,18 @@
-import { DomainResource, Resource } from "../fhir/internal";
+/* eslint-disable import/prefer-default-export, import/no-cycle */
+import { IDataElement } from "../index";
+import { DomainResource, Resource } from "../../fhir/internal";
 
 export class DataElement {
   public codeListId?: string;
+
   public valueSetTitle?: string;
+
   public description?: string;
-  // tslint:disable-next-line:variable-name
+
   public fhir_resource?: DomainResource;
 
   public static parse(
-    json: any,
+    json: IDataElement,
     providedInstance: DataElement = new DataElement()
   ): DataElement {
     const newInstance: DataElement = providedInstance;
@@ -28,8 +32,8 @@ export class DataElement {
     return newInstance;
   }
 
-  toJSON(): any {
-    const result: any = {};
+  toJSON(): IDataElement {
+    const result: IDataElement = {};
 
     if (this.codeListId) {
       result.codeListId = this.codeListId;
@@ -51,3 +55,5 @@ export class DataElement {
     return DataElement.parse(this.toJSON());
   }
 }
+
+/* eslint-enable import/prefer-default-export, import/no-cycle */

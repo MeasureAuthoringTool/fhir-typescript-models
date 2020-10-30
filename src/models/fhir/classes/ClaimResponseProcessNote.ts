@@ -7,6 +7,7 @@ import {
   NoteType,
   PrimitivePositiveInt,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ClaimResponseProcessNote extends BackboneElement {
@@ -17,6 +18,26 @@ export class ClaimResponseProcessNote extends BackboneElement {
   static readonly typeName: string = "ClaimResponse.ProcessNote";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "number",
+      fieldType: [PrimitivePositiveInt],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [NoteType],
+      isArray: false
+    }, {
+      fieldName: "text",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "language",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public number?: PrimitivePositiveInt;
 

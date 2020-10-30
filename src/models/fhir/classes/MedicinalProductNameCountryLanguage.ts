@@ -3,6 +3,7 @@ import {
   BackboneElement,
   CodeableConcept,
   IMedicinalProductNameCountryLanguage,
+  FieldMetadata
 } from "../internal";
 
 export class MedicinalProductNameCountryLanguage extends BackboneElement {
@@ -13,6 +14,22 @@ export class MedicinalProductNameCountryLanguage extends BackboneElement {
   static readonly typeName: string = "MedicinalProduct.Name.CountryLanguage";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "country",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "language",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public country?: CodeableConcept;
 

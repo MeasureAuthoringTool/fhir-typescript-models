@@ -5,6 +5,7 @@ import {
   Extension,
   IDocumentReferenceRelatesTo,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class DocumentReferenceRelatesTo extends BackboneElement {
@@ -15,6 +16,18 @@ export class DocumentReferenceRelatesTo extends BackboneElement {
   static readonly typeName: string = "DocumentReference.RelatesTo";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [DocumentRelationshipType],
+      isArray: false
+    }, {
+      fieldName: "target",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public code?: DocumentRelationshipType;
 

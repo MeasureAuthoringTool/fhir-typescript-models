@@ -5,6 +5,7 @@ import {
   Extension,
   IDeviceDefinitionDeviceName,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class DeviceDefinitionDeviceName extends BackboneElement {
@@ -15,6 +16,18 @@ export class DeviceDefinitionDeviceName extends BackboneElement {
   static readonly typeName: string = "DeviceDefinition.DeviceName";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [DeviceNameType],
+      isArray: false
+    }];
+  }
 
   public name?: PrimitiveString;
 

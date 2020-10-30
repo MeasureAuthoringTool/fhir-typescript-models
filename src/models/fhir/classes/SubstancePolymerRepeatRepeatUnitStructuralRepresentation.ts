@@ -6,6 +6,7 @@ import {
   Extension,
   ISubstancePolymerRepeatRepeatUnitStructuralRepresentation,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class SubstancePolymerRepeatRepeatUnitStructuralRepresentation extends BackboneElement {
@@ -16,6 +17,22 @@ export class SubstancePolymerRepeatRepeatUnitStructuralRepresentation extends Ba
   static readonly typeName: string = "SubstancePolymer.Repeat.RepeatUnit.StructuralRepresentation";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "representation",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "attachment",
+      fieldType: [Attachment],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

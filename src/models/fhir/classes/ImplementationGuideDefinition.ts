@@ -7,6 +7,7 @@ import {
   ImplementationGuideDefinitionParameter,
   ImplementationGuideDefinitionResource,
   ImplementationGuideDefinitionTemplate,
+  FieldMetadata
 } from "../internal";
 
 export class ImplementationGuideDefinition extends BackboneElement {
@@ -17,6 +18,30 @@ export class ImplementationGuideDefinition extends BackboneElement {
   static readonly typeName: string = "ImplementationGuide.Definition";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "grouping",
+      fieldType: [ImplementationGuideDefinitionGrouping],
+      isArray: true
+    }, {
+      fieldName: "resource",
+      fieldType: [ImplementationGuideDefinitionResource],
+      isArray: true
+    }, {
+      fieldName: "page",
+      fieldType: [ImplementationGuideDefinitionPage],
+      isArray: false
+    }, {
+      fieldName: "parameter",
+      fieldType: [ImplementationGuideDefinitionParameter],
+      isArray: true
+    }, {
+      fieldName: "template",
+      fieldType: [ImplementationGuideDefinitionTemplate],
+      isArray: true
+    }];
+  }
 
   public grouping?: Array<ImplementationGuideDefinitionGrouping>;
 

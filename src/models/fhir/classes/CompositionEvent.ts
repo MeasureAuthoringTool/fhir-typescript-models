@@ -5,6 +5,7 @@ import {
   ICompositionEvent,
   Period,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class CompositionEvent extends BackboneElement {
@@ -15,6 +16,22 @@ export class CompositionEvent extends BackboneElement {
   static readonly typeName: string = "Composition.Event";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "period",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "detail",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public code?: Array<CodeableConcept>;
 

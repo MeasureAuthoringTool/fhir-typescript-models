@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   SimpleQuantity,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class NutritionOrderSupplement extends BackboneElement {
@@ -17,6 +18,30 @@ export class NutritionOrderSupplement extends BackboneElement {
   static readonly typeName: string = "NutritionOrder.Supplement";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "productName",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "schedule",
+      fieldType: [Timing],
+      isArray: true
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "instruction",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }];
+  }
 
   public type?: CodeableConcept;
 

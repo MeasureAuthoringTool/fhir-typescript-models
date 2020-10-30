@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
 import { 
   IType,
+  FieldMetadata
 } from "../internal";
 
 export class Type {
@@ -11,6 +12,11 @@ export class Type {
   static readonly typeName: string = "Type";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [
+    ];
+  }
 
   get primaryCode(): Type | undefined {
     return undefined;

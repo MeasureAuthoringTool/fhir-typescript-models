@@ -5,6 +5,7 @@ import {
   Extension,
   IActivityDefinitionDynamicValue,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ActivityDefinitionDynamicValue extends BackboneElement {
@@ -15,6 +16,18 @@ export class ActivityDefinitionDynamicValue extends BackboneElement {
   static readonly typeName: string = "ActivityDefinition.DynamicValue";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "path",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "expression",
+      fieldType: [Expression],
+      isArray: false
+    }];
+  }
 
   public path?: PrimitiveString;
 

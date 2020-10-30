@@ -11,6 +11,7 @@ import {
   PrimitiveDateTime,
   Reference,
   Timing,
+  FieldMetadata
 } from "../internal";
 
 export class DeviceUseStatement extends DomainResource {
@@ -21,6 +22,62 @@ export class DeviceUseStatement extends DomainResource {
   static readonly typeName: string = "DeviceUseStatement";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [DeviceUseStatementStatus],
+      isArray: false
+    }, {
+      fieldName: "subject",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "derivedFrom",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "timing",
+      fieldType: [Timing, Period, PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "recordedOn",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "device",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "bodySite",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

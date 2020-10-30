@@ -6,6 +6,7 @@ import {
   ContactPoint,
   HumanName,
   IOrganizationContact,
+  FieldMetadata
 } from "../internal";
 
 export class OrganizationContact extends BackboneElement {
@@ -16,6 +17,26 @@ export class OrganizationContact extends BackboneElement {
   static readonly typeName: string = "Organization.Contact";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "purpose",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [HumanName],
+      isArray: false
+    }, {
+      fieldName: "telecom",
+      fieldType: [ContactPoint],
+      isArray: true
+    }, {
+      fieldName: "address",
+      fieldType: [Address],
+      isArray: false
+    }];
+  }
 
   public purpose?: CodeableConcept;
 

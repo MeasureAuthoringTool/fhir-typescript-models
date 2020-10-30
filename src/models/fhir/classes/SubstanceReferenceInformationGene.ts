@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   ISubstanceReferenceInformationGene,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class SubstanceReferenceInformationGene extends BackboneElement {
@@ -14,6 +15,22 @@ export class SubstanceReferenceInformationGene extends BackboneElement {
   static readonly typeName: string = "SubstanceReferenceInformation.Gene";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "geneSequenceOrigin",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "gene",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "source",
+      fieldType: [Reference],
+      isArray: true
+    }];
+  }
 
   public geneSequenceOrigin?: CodeableConcept;
 

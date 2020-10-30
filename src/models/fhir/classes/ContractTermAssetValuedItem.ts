@@ -12,6 +12,7 @@ import {
   PrimitiveUnsignedInt,
   Reference,
   SimpleQuantity,
+  FieldMetadata
 } from "../internal";
 
 export class ContractTermAssetValuedItem extends BackboneElement {
@@ -22,6 +23,66 @@ export class ContractTermAssetValuedItem extends BackboneElement {
   static readonly typeName: string = "Contract.Term.Asset.ValuedItem";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "entity",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "effectiveTime",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "quantity",
+      fieldType: [SimpleQuantity],
+      isArray: false
+    }, {
+      fieldName: "unitPrice",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "factor",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "points",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "net",
+      fieldType: [Money],
+      isArray: false
+    }, {
+      fieldName: "payment",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "paymentDate",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "responsible",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "recipient",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "linkId",
+      fieldType: [PrimitiveString],
+      isArray: true
+    }, {
+      fieldName: "securityLabelNumber",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: true
+    }];
+  }
 
   public entity?: CodeableConcept | Reference;
 

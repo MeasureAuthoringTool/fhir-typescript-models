@@ -4,6 +4,7 @@ import {
   ITestScriptMetadata,
   TestScriptMetadataCapability,
   TestScriptMetadataLink,
+  FieldMetadata
 } from "../internal";
 
 export class TestScriptMetadata extends BackboneElement {
@@ -14,6 +15,18 @@ export class TestScriptMetadata extends BackboneElement {
   static readonly typeName: string = "TestScript.Metadata";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "link",
+      fieldType: [TestScriptMetadataLink],
+      isArray: true
+    }, {
+      fieldName: "capability",
+      fieldType: [TestScriptMetadataCapability],
+      isArray: true
+    }];
+  }
 
   public link?: Array<TestScriptMetadataLink>;
 

@@ -5,6 +5,7 @@ import {
   Identifier,
   IEncounterHospitalization,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class EncounterHospitalization extends BackboneElement {
@@ -15,6 +16,46 @@ export class EncounterHospitalization extends BackboneElement {
   static readonly typeName: string = "Encounter.Hospitalization";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "preAdmissionIdentifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "origin",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "admitSource",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "reAdmission",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "dietPreference",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "specialCourtesy",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "specialArrangement",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "destination",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "dischargeDisposition",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }];
+  }
 
   public preAdmissionIdentifier?: Identifier;
 

@@ -4,6 +4,7 @@ import {
   CodeableConcept,
   IProcedurePerformer,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ProcedurePerformer extends BackboneElement {
@@ -14,6 +15,22 @@ export class ProcedurePerformer extends BackboneElement {
   static readonly typeName: string = "Procedure.Performer";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "function",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "actor",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "onBehalfOf",
+      fieldType: [Reference],
+      isArray: false
+    }];
+  }
 
   public function?: CodeableConcept;
 

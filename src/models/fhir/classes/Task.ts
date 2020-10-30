@@ -18,6 +18,7 @@ import {
   TaskPriority,
   TaskRestriction,
   TaskStatus,
+  FieldMetadata
 } from "../internal";
 
 export class Task extends DomainResource {
@@ -28,6 +29,134 @@ export class Task extends DomainResource {
   static readonly typeName: string = "Task";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "instantiatesCanonical",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "instantiatesUri",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "basedOn",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "groupIdentifier",
+      fieldType: [Identifier],
+      isArray: false
+    }, {
+      fieldName: "partOf",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [TaskStatus],
+      isArray: false
+    }, {
+      fieldName: "statusReason",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "businessStatus",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "intent",
+      fieldType: [TaskIntent],
+      isArray: false
+    }, {
+      fieldName: "priority",
+      fieldType: [TaskPriority],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "focus",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "for",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "encounter",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "executionPeriod",
+      fieldType: [Period],
+      isArray: false
+    }, {
+      fieldName: "authoredOn",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "lastModified",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "requester",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "performerType",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "owner",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "location",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "reasonCode",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "reasonReference",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "insurance",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }, {
+      fieldName: "relevantHistory",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "restriction",
+      fieldType: [TaskRestriction],
+      isArray: false
+    }, {
+      fieldName: "input",
+      fieldType: [TaskInput],
+      isArray: true
+    }, {
+      fieldName: "output",
+      fieldType: [TaskOutput],
+      isArray: true
+    }];
+  }
 
   public identifier?: Array<Identifier>;
 

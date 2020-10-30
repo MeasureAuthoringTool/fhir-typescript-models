@@ -6,6 +6,7 @@ import {
   IExampleScenarioActor,
   PrimitiveMarkdown,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class ExampleScenarioActor extends BackboneElement {
@@ -16,6 +17,26 @@ export class ExampleScenarioActor extends BackboneElement {
   static readonly typeName: string = "ExampleScenario.Actor";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "actorId",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "type",
+      fieldType: [ExampleScenarioActorType],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }];
+  }
 
   public actorId?: PrimitiveString;
 

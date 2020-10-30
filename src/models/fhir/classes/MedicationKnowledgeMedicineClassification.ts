@@ -3,6 +3,7 @@ import {
   BackboneElement,
   CodeableConcept,
   IMedicationKnowledgeMedicineClassification,
+  FieldMetadata
 } from "../internal";
 
 export class MedicationKnowledgeMedicineClassification extends BackboneElement {
@@ -13,6 +14,18 @@ export class MedicationKnowledgeMedicineClassification extends BackboneElement {
   static readonly typeName: string = "MedicationKnowledge.MedicineClassification";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "classification",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }];
+  }
 
   public type?: CodeableConcept;
 

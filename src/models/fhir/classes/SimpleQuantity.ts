@@ -7,6 +7,7 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Quantity,
+  FieldMetadata
 } from "../internal";
 
 export class SimpleQuantity extends Quantity {
@@ -17,6 +18,26 @@ export class SimpleQuantity extends Quantity {
   static readonly typeName: string = "SimpleQuantity";
   
   static readonly primaryCodePath: string | null = "code";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Quantity.fieldInfo, {
+      fieldName: "value",
+      fieldType: [PrimitiveDecimal],
+      isArray: false
+    }, {
+      fieldName: "unit",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "system",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [PrimitiveCode],
+      isArray: false
+    }];
+  }
 
   public value?: PrimitiveDecimal;
 

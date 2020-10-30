@@ -11,6 +11,7 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ImagingStudySeries extends BackboneElement {
@@ -21,6 +22,58 @@ export class ImagingStudySeries extends BackboneElement {
   static readonly typeName: string = "ImagingStudy.Series";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "uid",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }, {
+      fieldName: "number",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "modality",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "numberOfInstances",
+      fieldType: [PrimitiveUnsignedInt],
+      isArray: false
+    }, {
+      fieldName: "endpoint",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "bodySite",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "laterality",
+      fieldType: [Coding],
+      isArray: false
+    }, {
+      fieldName: "specimen",
+      fieldType: [Reference],
+      isArray: true
+    }, {
+      fieldName: "started",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "performer",
+      fieldType: [ImagingStudySeriesPerformer],
+      isArray: true
+    }, {
+      fieldName: "instance",
+      fieldType: [ImagingStudySeriesInstance],
+      isArray: true
+    }];
+  }
 
   public uid?: PrimitiveId;
 

@@ -28,6 +28,7 @@ import {
   RequestPriority,
   Timing,
   TriggerDefinition,
+  FieldMetadata
 } from "../internal";
 
 export class PlanDefinitionAction extends BackboneElement {
@@ -38,6 +39,118 @@ export class PlanDefinitionAction extends BackboneElement {
   static readonly typeName: string = "PlanDefinition.Action";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "prefix",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "textEquivalent",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "priority",
+      fieldType: [RequestPriority],
+      isArray: false
+    }, {
+      fieldName: "code",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "reason",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "documentation",
+      fieldType: [RelatedArtifact],
+      isArray: true
+    }, {
+      fieldName: "goalId",
+      fieldType: [PrimitiveId],
+      isArray: true
+    }, {
+      fieldName: "subject",
+      fieldType: [CodeableConcept, Reference],
+      isArray: false
+    }, {
+      fieldName: "trigger",
+      fieldType: [TriggerDefinition],
+      isArray: true
+    }, {
+      fieldName: "condition",
+      fieldType: [PlanDefinitionActionCondition],
+      isArray: true
+    }, {
+      fieldName: "input",
+      fieldType: [DataRequirement],
+      isArray: true
+    }, {
+      fieldName: "output",
+      fieldType: [DataRequirement],
+      isArray: true
+    }, {
+      fieldName: "relatedAction",
+      fieldType: [PlanDefinitionActionRelatedAction],
+      isArray: true
+    }, {
+      fieldName: "timing",
+      fieldType: [PrimitiveDateTime, Age, Period, Duration, Range, Timing],
+      isArray: false
+    }, {
+      fieldName: "participant",
+      fieldType: [PlanDefinitionActionParticipant],
+      isArray: true
+    }, {
+      fieldName: "type",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "groupingBehavior",
+      fieldType: [ActionGroupingBehavior],
+      isArray: false
+    }, {
+      fieldName: "selectionBehavior",
+      fieldType: [ActionSelectionBehavior],
+      isArray: false
+    }, {
+      fieldName: "requiredBehavior",
+      fieldType: [ActionRequiredBehavior],
+      isArray: false
+    }, {
+      fieldName: "precheckBehavior",
+      fieldType: [ActionPrecheckBehavior],
+      isArray: false
+    }, {
+      fieldName: "cardinalityBehavior",
+      fieldType: [ActionCardinalityBehavior],
+      isArray: false
+    }, {
+      fieldName: "definition",
+      fieldType: [PrimitiveCanonical, PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "transform",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "dynamicValue",
+      fieldType: [PlanDefinitionActionDynamicValue],
+      isArray: true
+    }, {
+      fieldName: "action",
+      fieldType: [PlanDefinitionAction],
+      isArray: true
+    }];
+  }
 
   public prefix?: PrimitiveString;
 

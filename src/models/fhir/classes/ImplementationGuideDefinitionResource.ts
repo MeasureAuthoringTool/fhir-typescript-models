@@ -9,6 +9,7 @@ import {
   PrimitiveId,
   PrimitiveString,
   Reference,
+  FieldMetadata
 } from "../internal";
 
 export class ImplementationGuideDefinitionResource extends BackboneElement {
@@ -19,6 +20,34 @@ export class ImplementationGuideDefinitionResource extends BackboneElement {
   static readonly typeName: string = "ImplementationGuide.Definition.Resource";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "reference",
+      fieldType: [Reference],
+      isArray: false
+    }, {
+      fieldName: "fhirVersion",
+      fieldType: [FHIRVersion],
+      isArray: true
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "example",
+      fieldType: [PrimitiveBoolean, PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "groupingId",
+      fieldType: [PrimitiveId],
+      isArray: false
+    }];
+  }
 
   public reference?: Reference;
 

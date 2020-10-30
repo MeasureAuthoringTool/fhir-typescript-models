@@ -5,6 +5,7 @@ import {
   IDataRequirementSort,
   PrimitiveString,
   SortDirection,
+  FieldMetadata
 } from "../internal";
 
 export class DataRequirementSort extends Element {
@@ -15,6 +16,18 @@ export class DataRequirementSort extends Element {
   static readonly typeName: string = "DataRequirement.Sort";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...Element.fieldInfo, {
+      fieldName: "path",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "direction",
+      fieldType: [SortDirection],
+      isArray: false
+    }];
+  }
 
   public path?: PrimitiveString;
 

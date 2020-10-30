@@ -19,6 +19,7 @@ import {
   PrimitiveUri,
   PublicationStatus,
   UsageContext,
+  FieldMetadata
 } from "../internal";
 
 export class MessageDefinition extends DomainResource {
@@ -29,6 +30,106 @@ export class MessageDefinition extends DomainResource {
   static readonly typeName: string = "MessageDefinition";
   
   static readonly primaryCodePath: string | null = "event";
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...DomainResource.fieldInfo, {
+      fieldName: "url",
+      fieldType: [PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "identifier",
+      fieldType: [Identifier],
+      isArray: true
+    }, {
+      fieldName: "version",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "name",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "title",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "replaces",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "status",
+      fieldType: [PublicationStatus],
+      isArray: false
+    }, {
+      fieldName: "experimental",
+      fieldType: [PrimitiveBoolean],
+      isArray: false
+    }, {
+      fieldName: "date",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "publisher",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "contact",
+      fieldType: [ContactDetail],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "useContext",
+      fieldType: [UsageContext],
+      isArray: true
+    }, {
+      fieldName: "jurisdiction",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "purpose",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "copyright",
+      fieldType: [PrimitiveMarkdown],
+      isArray: false
+    }, {
+      fieldName: "base",
+      fieldType: [PrimitiveCanonical],
+      isArray: false
+    }, {
+      fieldName: "parent",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }, {
+      fieldName: "event",
+      fieldType: [Coding, PrimitiveUri],
+      isArray: false
+    }, {
+      fieldName: "category",
+      fieldType: [MessageSignificanceCategory],
+      isArray: false
+    }, {
+      fieldName: "focus",
+      fieldType: [MessageDefinitionFocus],
+      isArray: true
+    }, {
+      fieldName: "responseRequired",
+      fieldType: [MessageheaderResponseRequest],
+      isArray: false
+    }, {
+      fieldName: "allowedResponse",
+      fieldType: [MessageDefinitionAllowedResponse],
+      isArray: true
+    }, {
+      fieldName: "graph",
+      fieldType: [PrimitiveCanonical],
+      isArray: true
+    }];
+  }
 
   public url?: PrimitiveUri;
 

@@ -8,6 +8,7 @@ import {
   IAllergyIntoleranceReaction,
   PrimitiveDateTime,
   PrimitiveString,
+  FieldMetadata
 } from "../internal";
 
 export class AllergyIntoleranceReaction extends BackboneElement {
@@ -18,6 +19,38 @@ export class AllergyIntoleranceReaction extends BackboneElement {
   static readonly typeName: string = "AllergyIntolerance.Reaction";
   
   static readonly primaryCodePath: string | null = null;
+
+  static get fieldInfo(): Array<FieldMetadata> {
+    return [...BackboneElement.fieldInfo, {
+      fieldName: "substance",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "manifestation",
+      fieldType: [CodeableConcept],
+      isArray: true
+    }, {
+      fieldName: "description",
+      fieldType: [PrimitiveString],
+      isArray: false
+    }, {
+      fieldName: "onset",
+      fieldType: [PrimitiveDateTime],
+      isArray: false
+    }, {
+      fieldName: "severity",
+      fieldType: [AllergyIntoleranceSeverity],
+      isArray: false
+    }, {
+      fieldName: "exposureRoute",
+      fieldType: [CodeableConcept],
+      isArray: false
+    }, {
+      fieldName: "note",
+      fieldType: [Annotation],
+      isArray: true
+    }];
+  }
 
   public substance?: CodeableConcept;
 
