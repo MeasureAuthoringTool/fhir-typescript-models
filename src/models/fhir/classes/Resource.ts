@@ -55,7 +55,7 @@ export class Resource extends Type {
 
   constructor() {
     super();
-    this.resourceType = this.constructor.name;
+    this.resourceType = this.getTypeName();
   }
   
   public static parse(
