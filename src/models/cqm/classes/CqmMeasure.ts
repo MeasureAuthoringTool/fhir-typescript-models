@@ -199,7 +199,8 @@ export class CqmMeasure {
     this.population_sets?.forEach((populationSet) => {
       if (populationSet.stratifications) {
         populationSet.stratifications.forEach((stratification) => {
-          const clonedSet = PopulationSet.parse(populationSet.toJSON());
+          const clonedSet = populationSet.clone();
+          clonedSet.title = stratification.title;
           clonedSet.population_set_id = stratification.stratification_id;
           if (clonedSet.populations) {
             clonedSet.populations.STRAT = stratification.statement;
