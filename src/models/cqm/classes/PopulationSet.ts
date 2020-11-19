@@ -91,6 +91,11 @@ export class PopulationSet {
 
     return result;
   }
+
+  public clone(): PopulationSet {
+    return PopulationSet.parse(this.toJSON());
+  }
+
 }
 
 /* eslint-enable import/prefer-default-export, import/no-cycle */
