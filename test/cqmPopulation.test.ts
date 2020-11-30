@@ -116,4 +116,18 @@ describe("Populations", () => {
     it.NUMER = new StatementReference();
     expect(it.codes).toEqual(["DENEX", "DENEXCEP", "IPP", "NUMER"]);
   });
+  it("codes work properly from dynamic js", () => {
+    const it: ProportionPopulationMap = new ProportionPopulationMap();
+    it.DENEX = new StatementReference();
+    it.DENEXCEP = new StatementReference();
+    it.IPP = new StatementReference();
+    it.NUMER = new StatementReference();
+
+    // Assign a random dynamic property and ensure it's not returned as a code
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+    const js: any = it;
+    // eslint-disable-next-line  @typescript-eslint/no-unsafe-member-access
+    js.observation_values = {};
+    expect(it.codes).toEqual(["DENEX", "DENEXCEP", "IPP", "NUMER"]);
+  });
 });

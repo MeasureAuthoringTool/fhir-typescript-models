@@ -13,6 +13,9 @@ export class PopulationMap {
   // Can be converted into stratification. Not persisted to mongo.
   public STRAT?: StatementReference;
 
+  // All supported codes
+  static readonly ALL_POPULATION_CODES = ['STRAT', 'IPP', 'DENOM', 'DENEX', 'NUMER', 'NUMEX', 'DENEXCEP', 'MSRPOPL', 'OBSERV', 'MSRPOPLEX'];
+
   constructor() {
     this.resource_type = "PopulationMap";
   }
@@ -38,7 +41,7 @@ export class PopulationMap {
   }
 
   get codes(): Array<string> {
-    return Object.keys(this).filter((value) => value !== "resource_type");
+    return Object.keys(this).filter((value) => PopulationMap.ALL_POPULATION_CODES.includes(value));
   }
 }
 
