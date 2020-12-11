@@ -54,6 +54,8 @@ export class CqmMeasure {
   // mongoid updated timestamp
   public updated_at?: string;
 
+  public code_systems_by_name?: Array<string>;
+
   public static parse(
     json: ICqmMeasure,
     providedInstance: CqmMeasure = new CqmMeasure()
@@ -110,6 +112,9 @@ export class CqmMeasure {
     }
     if (json.updated_at) {
       newInstance.updated_at = json.updated_at;
+    }
+    if (json.code_systems_by_name) {
+      newInstance.code_systems_by_name = json.code_systems_by_name;
     }
     if (json.source_data_criteria) {
       newInstance.source_data_criteria = json.source_data_criteria.map(
@@ -177,6 +182,9 @@ export class CqmMeasure {
     }
     if (this.measure_period) {
       result.measure_period = this.measure_period;
+    }
+    if (this.code_systems_by_name) {
+      result.code_systems_by_name = this.code_systems_by_name;
     }
     if (this.created_at) {
       result.created_at = this.created_at;
