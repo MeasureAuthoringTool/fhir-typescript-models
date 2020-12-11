@@ -37,7 +37,7 @@ export interface ICqmMeasure {
 
   updated_at?: string;
 
-  code_systems_by_name?: Array<string>;
+  code_systems_by_name?: Array<Array<string>>;
 
 }
 

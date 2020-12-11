@@ -54,7 +54,7 @@ export class CqmMeasure {
   // mongoid updated timestamp
   public updated_at?: string;
 
-  public code_systems_by_name?: Array<string>;
+  public code_systems_by_name?: Array<Array<string>>;
 
   public static parse(
     json: ICqmMeasure,
