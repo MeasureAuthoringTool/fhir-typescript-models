@@ -36,6 +36,9 @@ export interface ICqmMeasure {
   created_at?: string;
 
   updated_at?: string;
+
+  code_systems_by_name?: Array<Array<string>>;
+
 }
 
 /* eslint-enable @typescript-eslint/naming-convention, import/no-cycle */
