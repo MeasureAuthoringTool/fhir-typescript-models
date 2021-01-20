@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   ClaimResponseAddItem,
   ClaimResponseError,
@@ -13,6 +13,8 @@ import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IClaimResponse,
   Identifier,
   Period,
@@ -21,182 +23,98 @@ import {
   Reference,
   RemittanceOutcome,
   Use,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ClaimResponse", "DomainResource")
 export class ClaimResponse extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClaimResponse";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [ClaimResponseStatus],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "use",
-      fieldType: [Use],
-      isArray: false
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "insurer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "requestor",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "request",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "outcome",
-      fieldType: [RemittanceOutcome],
-      isArray: false
-    }, {
-      fieldName: "disposition",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "preAuthRef",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "preAuthPeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "payeeType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "item",
-      fieldType: [ClaimResponseItem],
-      isArray: true
-    }, {
-      fieldName: "addItem",
-      fieldType: [ClaimResponseAddItem],
-      isArray: true
-    }, {
-      fieldName: "adjudication",
-      fieldType: [ClaimResponseItemAdjudication],
-      isArray: true
-    }, {
-      fieldName: "total",
-      fieldType: [ClaimResponseTotal],
-      isArray: true
-    }, {
-      fieldName: "payment",
-      fieldType: [ClaimResponsePayment],
-      isArray: false
-    }, {
-      fieldName: "fundsReserve",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "formCode",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "form",
-      fieldType: [Attachment],
-      isArray: false
-    }, {
-      fieldName: "processNote",
-      fieldType: [ClaimResponseProcessNote],
-      isArray: true
-    }, {
-      fieldName: "communicationRequest",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "insurance",
-      fieldType: [ClaimResponseInsurance],
-      isArray: true
-    }, {
-      fieldName: "error",
-      fieldType: [ClaimResponseError],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("ClaimResponseStatus")
   public status?: ClaimResponseStatus;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public subType?: CodeableConcept;
 
+  @FhirField("Use")
   public use?: Use;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public insurer?: Reference;
 
+  @FhirField("Reference")
   public requestor?: Reference;
 
+  @FhirField("Reference")
   public request?: Reference;
 
+  @FhirField("RemittanceOutcome")
   public outcome?: RemittanceOutcome;
 
+  @FhirField("PrimitiveString")
   public disposition?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public preAuthRef?: PrimitiveString;
 
+  @FhirField("Period")
   public preAuthPeriod?: Period;
 
+  @FhirField("CodeableConcept")
   public payeeType?: CodeableConcept;
 
+  @FhirList("ClaimResponseItem")
   public item?: Array<ClaimResponseItem>;
 
+  @FhirList("ClaimResponseAddItem")
   public addItem?: Array<ClaimResponseAddItem>;
 
+  @FhirList("ClaimResponseItemAdjudication")
   public adjudication?: Array<ClaimResponseItemAdjudication>;
 
+  @FhirList("ClaimResponseTotal")
   public total?: Array<ClaimResponseTotal>;
 
+  @FhirField("ClaimResponsePayment")
   public payment?: ClaimResponsePayment;
 
+  @FhirField("CodeableConcept")
   public fundsReserve?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public formCode?: CodeableConcept;
 
+  @FhirField("Attachment")
   public form?: Attachment;
 
+  @FhirList("ClaimResponseProcessNote")
   public processNote?: Array<ClaimResponseProcessNote>;
 
+  @FhirList("Reference")
   public communicationRequest?: Array<Reference>;
 
+  @FhirList("ClaimResponseInsurance")
   public insurance?: Array<ClaimResponseInsurance>;
 
+  @FhirList("ClaimResponseError")
   public error?: Array<ClaimResponseError>;
 
   public static parse(

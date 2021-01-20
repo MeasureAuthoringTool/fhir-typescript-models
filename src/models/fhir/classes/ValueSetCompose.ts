@@ -1,49 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IValueSetCompose,
   PrimitiveBoolean,
   PrimitiveDate,
   ValueSetComposeInclude,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ValueSetCompose", "BackboneElement")
 export class ValueSetCompose extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ValueSet.Compose";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "lockedDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "inactive",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "include",
-      fieldType: [ValueSetComposeInclude],
-      isArray: true
-    }, {
-      fieldName: "exclude",
-      fieldType: [ValueSetComposeInclude],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveDate")
   public lockedDate?: PrimitiveDate;
 
+  @FhirField("PrimitiveBoolean")
   public inactive?: PrimitiveBoolean;
 
+  @FhirList("ValueSetComposeInclude")
   public include?: Array<ValueSetComposeInclude>;
 
+  @FhirList("ValueSetComposeInclude")
   public exclude?: Array<ValueSetComposeInclude>;
 
   public static parse(

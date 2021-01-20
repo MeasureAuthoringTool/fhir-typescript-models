@@ -1,74 +1,48 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   BackboneElement,
   Extension,
+  FhirField,
   Identifier,
   ISubstanceProteinSubunit,
   PrimitiveInteger,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceProteinSubunit", "BackboneElement")
 export class SubstanceProteinSubunit extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceProtein.Subunit";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "subunit",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "sequence",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "length",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "sequenceAttachment",
-      fieldType: [Attachment],
-      isArray: false
-    }, {
-      fieldName: "nTerminalModificationId",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "nTerminalModification",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "cTerminalModificationId",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "cTerminalModification",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveInteger")
   public subunit?: PrimitiveInteger;
 
+  @FhirField("PrimitiveString")
   public sequence?: PrimitiveString;
 
+  @FhirField("PrimitiveInteger")
   public length?: PrimitiveInteger;
 
+  @FhirField("Attachment")
   public sequenceAttachment?: Attachment;
 
+  @FhirField("Identifier")
   public nTerminalModificationId?: Identifier;
 
+  @FhirField("PrimitiveString")
   public nTerminalModification?: PrimitiveString;
 
+  @FhirField("Identifier")
   public cTerminalModificationId?: Identifier;
 
+  @FhirField("PrimitiveString")
   public cTerminalModification?: PrimitiveString;
 
   public static parse(

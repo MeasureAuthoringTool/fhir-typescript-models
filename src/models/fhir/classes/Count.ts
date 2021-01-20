@@ -1,23 +1,19 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   ICount,
   Quantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Count", "Quantity")
 export class Count extends Quantity {
   static readonly baseType: string = "FHIR.Quantity";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Count";
-  
-  static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Quantity.fieldInfo, 
-    ];
-  }
+  static readonly primaryCodePath: string | null = null;
 
   public static parse(
     json: ICount,

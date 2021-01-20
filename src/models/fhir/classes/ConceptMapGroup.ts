@@ -1,62 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ConceptMapGroupElement,
   ConceptMapGroupUnmapped,
   Extension,
+  FhirField,
+  FhirList,
   IConceptMapGroup,
   PrimitiveString,
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ConceptMapGroup", "BackboneElement")
 export class ConceptMapGroup extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ConceptMap.Group";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "source",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "sourceVersion",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "target",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "targetVersion",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "element",
-      fieldType: [ConceptMapGroupElement],
-      isArray: true
-    }, {
-      fieldName: "unmapped",
-      fieldType: [ConceptMapGroupUnmapped],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public source?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public sourceVersion?: PrimitiveString;
 
+  @FhirField("PrimitiveUri")
   public target?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public targetVersion?: PrimitiveString;
 
+  @FhirList("ConceptMapGroupElement")
   public element?: Array<ConceptMapGroupElement>;
 
+  @FhirField("ConceptMapGroupUnmapped")
   public unmapped?: ConceptMapGroupUnmapped;
 
   public static parse(

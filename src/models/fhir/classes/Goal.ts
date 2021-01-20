@@ -1,9 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   GoalLifecycleStatus,
   GoalTarget,
   Identifier,
@@ -11,116 +14,65 @@ import {
   PrimitiveDate,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Goal", "DomainResource")
 export class Goal extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Goal";
-  
+
   static readonly primaryCodePath: string | null = "category";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "lifecycleStatus",
-      fieldType: [GoalLifecycleStatus],
-      isArray: false
-    }, {
-      fieldName: "achievementStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "priority",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "start",
-      fieldType: [PrimitiveDate, CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "target",
-      fieldType: [GoalTarget],
-      isArray: true
-    }, {
-      fieldName: "statusDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "statusReason",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "expressedBy",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "addresses",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "outcomeCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "outcomeReference",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("GoalLifecycleStatus")
   public lifecycleStatus?: GoalLifecycleStatus;
 
+  @FhirField("CodeableConcept")
   public achievementStatus?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public priority?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public description?: CodeableConcept;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirChoice("PrimitiveDate", "CodeableConcept")
   public start?: PrimitiveDate | CodeableConcept;
 
+  @FhirList("GoalTarget")
   public target?: Array<GoalTarget>;
 
+  @FhirField("PrimitiveDate")
   public statusDate?: PrimitiveDate;
 
+  @FhirField("PrimitiveString")
   public statusReason?: PrimitiveString;
 
+  @FhirField("Reference")
   public expressedBy?: Reference;
 
+  @FhirList("Reference")
   public addresses?: Array<Reference>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("CodeableConcept")
   public outcomeCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public outcomeReference?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {

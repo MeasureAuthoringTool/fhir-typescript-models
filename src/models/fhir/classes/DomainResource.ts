@@ -1,47 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Extension,
+  FhirField,
+  FhirList,
   IDomainResource,
   Narrative,
   Resource,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DomainResource", "Resource")
 export class DomainResource extends Resource {
   static readonly baseType: string = "FHIR.Resource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DomainResource";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Resource.fieldInfo, {
-      fieldName: "text",
-      fieldType: [Narrative],
-      isArray: false
-    }, {
-      fieldName: "contained",
-      fieldType: [Resource],
-      isArray: true
-    }, {
-      fieldName: "extension",
-      fieldType: [Extension],
-      isArray: true
-    }, {
-      fieldName: "modifierExtension",
-      fieldType: [Extension],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Narrative")
   public text?: Narrative;
 
+  @FhirList("Resource")
   public contained?: Array<Resource>;
 
+  @FhirList("Extension")
   public extension?: Array<Extension>;
 
+  @FhirList("Extension")
   public modifierExtension?: Array<Extension>;
 
   public static parse(

@@ -1,62 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   IObservationReferenceRange,
   PrimitiveString,
   Range,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ObservationReferenceRange", "BackboneElement")
 export class ObservationReferenceRange extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Observation.ReferenceRange";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "low",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "high",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "appliesTo",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "age",
-      fieldType: [Range],
-      isArray: false
-    }, {
-      fieldName: "text",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("SimpleQuantity")
   public low?: SimpleQuantity;
 
+  @FhirField("SimpleQuantity")
   public high?: SimpleQuantity;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public appliesTo?: Array<CodeableConcept>;
 
+  @FhirField("Range")
   public age?: Range;
 
+  @FhirField("PrimitiveString")
   public text?: PrimitiveString;
 
   public static parse(

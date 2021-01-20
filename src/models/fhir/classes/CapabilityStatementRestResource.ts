@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CapabilityStatementRestResourceInteraction,
   CapabilityStatementRestResourceOperation,
@@ -7,6 +7,8 @@ import {
   ConditionalDeleteStatus,
   ConditionalReadStatus,
   Extension,
+  FhirField,
+  FhirList,
   ICapabilityStatementRestResource,
   PrimitiveBoolean,
   PrimitiveCanonical,
@@ -15,122 +17,68 @@ import {
   ReferenceHandlingPolicy,
   ResourceType,
   ResourceVersionPolicy,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CapabilityStatementRestResource", "BackboneElement")
 export class CapabilityStatementRestResource extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Rest.Resource";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [ResourceType],
-      isArray: false
-    }, {
-      fieldName: "profile",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "supportedProfile",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "documentation",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "interaction",
-      fieldType: [CapabilityStatementRestResourceInteraction],
-      isArray: true
-    }, {
-      fieldName: "versioning",
-      fieldType: [ResourceVersionPolicy],
-      isArray: false
-    }, {
-      fieldName: "readHistory",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "updateCreate",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "conditionalCreate",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "conditionalRead",
-      fieldType: [ConditionalReadStatus],
-      isArray: false
-    }, {
-      fieldName: "conditionalUpdate",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "conditionalDelete",
-      fieldType: [ConditionalDeleteStatus],
-      isArray: false
-    }, {
-      fieldName: "referencePolicy",
-      fieldType: [ReferenceHandlingPolicy],
-      isArray: true
-    }, {
-      fieldName: "searchInclude",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "searchRevInclude",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "searchParam",
-      fieldType: [CapabilityStatementRestResourceSearchParam],
-      isArray: true
-    }, {
-      fieldName: "operation",
-      fieldType: [CapabilityStatementRestResourceOperation],
-      isArray: true
-    }];
-  }
-
+  @FhirField("ResourceType")
   public type?: ResourceType;
 
+  @FhirField("PrimitiveCanonical")
   public profile?: PrimitiveCanonical;
 
+  @FhirList("PrimitiveCanonical")
   public supportedProfile?: Array<PrimitiveCanonical>;
 
+  @FhirField("PrimitiveMarkdown")
   public documentation?: PrimitiveMarkdown;
 
+  @FhirList("CapabilityStatementRestResourceInteraction")
   public interaction?: Array<CapabilityStatementRestResourceInteraction>;
 
+  @FhirField("ResourceVersionPolicy")
   public versioning?: ResourceVersionPolicy;
 
+  @FhirField("PrimitiveBoolean")
   public readHistory?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public updateCreate?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public conditionalCreate?: PrimitiveBoolean;
 
+  @FhirField("ConditionalReadStatus")
   public conditionalRead?: ConditionalReadStatus;
 
+  @FhirField("PrimitiveBoolean")
   public conditionalUpdate?: PrimitiveBoolean;
 
+  @FhirField("ConditionalDeleteStatus")
   public conditionalDelete?: ConditionalDeleteStatus;
 
+  @FhirList("ReferenceHandlingPolicy")
   public referencePolicy?: Array<ReferenceHandlingPolicy>;
 
+  @FhirList("PrimitiveString")
   public searchInclude?: Array<PrimitiveString>;
 
+  @FhirList("PrimitiveString")
   public searchRevInclude?: Array<PrimitiveString>;
 
+  @FhirList("CapabilityStatementRestResourceSearchParam")
   public searchParam?: Array<CapabilityStatementRestResourceSearchParam>;
 
+  @FhirList("CapabilityStatementRestResourceOperation")
   public operation?: Array<CapabilityStatementRestResourceOperation>;
 
   public static parse(
@@ -146,10 +94,7 @@ export class CapabilityStatementRestResource extends BackboneElement {
       newInstance.profile = PrimitiveCanonical.parsePrimitive(json.profile, json._profile);
     }
     if (json.supportedProfile !== undefined) {
-      newInstance.supportedProfile = json.supportedProfile.map((x, i) => {
-        const ext = json._supportedProfile && json._supportedProfile[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.supportedProfile = json.supportedProfile.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._supportedProfile?.[i]));
     }
     if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveMarkdown.parsePrimitive(json.documentation, json._documentation);
@@ -179,22 +124,13 @@ export class CapabilityStatementRestResource extends BackboneElement {
       newInstance.conditionalDelete = ConditionalDeleteStatus.parsePrimitive(json.conditionalDelete, json._conditionalDelete);
     }
     if (json.referencePolicy !== undefined) {
-      newInstance.referencePolicy = json.referencePolicy.map((x, i) => {
-        const ext = json._referencePolicy && json._referencePolicy[i];
-        return ReferenceHandlingPolicy.parsePrimitive(x, ext);
-      });
+      newInstance.referencePolicy = json.referencePolicy.map((x, i) => ReferenceHandlingPolicy.parsePrimitive(x, json._referencePolicy?.[i]));
     }
     if (json.searchInclude !== undefined) {
-      newInstance.searchInclude = json.searchInclude.map((x, i) => {
-        const ext = json._searchInclude && json._searchInclude[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.searchInclude = json.searchInclude.map((x, i) => PrimitiveString.parsePrimitive(x, json._searchInclude?.[i]));
     }
     if (json.searchRevInclude !== undefined) {
-      newInstance.searchRevInclude = json.searchRevInclude.map((x, i) => {
-        const ext = json._searchRevInclude && json._searchRevInclude[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.searchRevInclude = json.searchRevInclude.map((x, i) => PrimitiveString.parsePrimitive(x, json._searchRevInclude?.[i]));
     }
     if (json.searchParam !== undefined) {
       newInstance.searchParam = json.searchParam.map((x) => CapabilityStatementRestResourceSearchParam.parse(x));

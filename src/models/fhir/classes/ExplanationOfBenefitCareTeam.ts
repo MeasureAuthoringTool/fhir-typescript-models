@@ -1,56 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IExplanationOfBenefitCareTeam,
   PrimitiveBoolean,
   PrimitivePositiveInt,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExplanationOfBenefitCareTeam", "BackboneElement")
 export class ExplanationOfBenefitCareTeam extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.CareTeam";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "sequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "provider",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "responsible",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "role",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "qualification",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitivePositiveInt")
   public sequence?: PrimitivePositiveInt;
 
+  @FhirField("Reference")
   public provider?: Reference;
 
+  @FhirField("PrimitiveBoolean")
   public responsible?: PrimitiveBoolean;
 
+  @FhirField("CodeableConcept")
   public role?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public qualification?: CodeableConcept;
 
   public static parse(

@@ -1,28 +1,23 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
+  FhirList,
   IParameters,
   ParametersParameter,
   Resource,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Parameters", "Resource")
 export class Parameters extends Resource {
   static readonly baseType: string = "FHIR.Resource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Parameters";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Resource.fieldInfo, {
-      fieldName: "parameter",
-      fieldType: [ParametersParameter],
-      isArray: true
-    }];
-  }
-
+  @FhirList("ParametersParameter")
   public parameter?: Array<ParametersParameter>;
 
   public static parse(

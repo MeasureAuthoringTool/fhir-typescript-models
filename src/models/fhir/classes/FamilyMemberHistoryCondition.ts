@@ -1,59 +1,44 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Age,
   Annotation,
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IFamilyMemberHistoryCondition,
   Period,
   PrimitiveBoolean,
   PrimitiveString,
   Range,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("FamilyMemberHistoryCondition", "BackboneElement")
 export class FamilyMemberHistoryCondition extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "FamilyMemberHistory.Condition";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "outcome",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "contributedToDeath",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "onset",
-      fieldType: [Age, Range, Period, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public outcome?: CodeableConcept;
 
+  @FhirField("PrimitiveBoolean")
   public contributedToDeath?: PrimitiveBoolean;
 
+  @FhirChoice("Age", "Range", "Period", "PrimitiveString")
   public onset?: Age | Range | Period | PrimitiveString;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   public static parse(

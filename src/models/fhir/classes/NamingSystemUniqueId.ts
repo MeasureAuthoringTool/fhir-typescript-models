@@ -1,56 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   INamingSystemUniqueId,
   NamingSystemIdentifierType,
   Period,
   PrimitiveBoolean,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("NamingSystemUniqueId", "BackboneElement")
 export class NamingSystemUniqueId extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "NamingSystem.UniqueId";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [NamingSystemIdentifierType],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "preferred",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "comment",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirField("NamingSystemIdentifierType")
   public type?: NamingSystemIdentifierType;
 
+  @FhirField("PrimitiveString")
   public value?: PrimitiveString;
 
+  @FhirField("PrimitiveBoolean")
   public preferred?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveString")
   public comment?: PrimitiveString;
 
+  @FhirField("Period")
   public period?: Period;
 
   public static parse(

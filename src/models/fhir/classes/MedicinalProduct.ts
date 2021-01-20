@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   Coding,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IMedicinalProduct,
   MarketingStatus,
@@ -12,140 +14,77 @@ import {
   MedicinalProductSpecialDesignation,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProduct", "DomainResource")
 export class MedicinalProduct extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProduct";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "domain",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "combinedPharmaceuticalDoseForm",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "legalStatusOfSupply",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "additionalMonitoringIndicator",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "specialMeasures",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "paediatricUseIndicator",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "productClassification",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "marketingStatus",
-      fieldType: [MarketingStatus],
-      isArray: true
-    }, {
-      fieldName: "pharmaceuticalProduct",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "packagedMedicinalProduct",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "attachedDocument",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "masterFile",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "contact",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "clinicalTrial",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "name",
-      fieldType: [MedicinalProductName],
-      isArray: true
-    }, {
-      fieldName: "crossReference",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "manufacturingBusinessOperation",
-      fieldType: [MedicinalProductManufacturingBusinessOperation],
-      isArray: true
-    }, {
-      fieldName: "specialDesignation",
-      fieldType: [MedicinalProductSpecialDesignation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("Coding")
   public domain?: Coding;
 
+  @FhirField("CodeableConcept")
   public combinedPharmaceuticalDoseForm?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public legalStatusOfSupply?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public additionalMonitoringIndicator?: CodeableConcept;
 
+  @FhirList("PrimitiveString")
   public specialMeasures?: Array<PrimitiveString>;
 
+  @FhirField("CodeableConcept")
   public paediatricUseIndicator?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public productClassification?: Array<CodeableConcept>;
 
+  @FhirList("MarketingStatus")
   public marketingStatus?: Array<MarketingStatus>;
 
+  @FhirList("Reference")
   public pharmaceuticalProduct?: Array<Reference>;
 
+  @FhirList("Reference")
   public packagedMedicinalProduct?: Array<Reference>;
 
+  @FhirList("Reference")
   public attachedDocument?: Array<Reference>;
 
+  @FhirList("Reference")
   public masterFile?: Array<Reference>;
 
+  @FhirList("Reference")
   public contact?: Array<Reference>;
 
+  @FhirList("Reference")
   public clinicalTrial?: Array<Reference>;
 
+  @FhirList("MedicinalProductName")
   public name?: Array<MedicinalProductName>;
 
+  @FhirList("Identifier")
   public crossReference?: Array<Identifier>;
 
+  @FhirList("MedicinalProductManufacturingBusinessOperation")
   public manufacturingBusinessOperation?: Array<MedicinalProductManufacturingBusinessOperation>;
 
+  @FhirList("MedicinalProductSpecialDesignation")
   public specialDesignation?: Array<MedicinalProductSpecialDesignation>;
 
   public static parse(
@@ -173,10 +112,7 @@ export class MedicinalProduct extends DomainResource {
       newInstance.additionalMonitoringIndicator = CodeableConcept.parse(json.additionalMonitoringIndicator);
     }
     if (json.specialMeasures !== undefined) {
-      newInstance.specialMeasures = json.specialMeasures.map((x, i) => {
-        const ext = json._specialMeasures && json._specialMeasures[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.specialMeasures = json.specialMeasures.map((x, i) => PrimitiveString.parsePrimitive(x, json._specialMeasures?.[i]));
     }
     if (json.paediatricUseIndicator !== undefined) {
       newInstance.paediatricUseIndicator = CodeableConcept.parse(json.paediatricUseIndicator);

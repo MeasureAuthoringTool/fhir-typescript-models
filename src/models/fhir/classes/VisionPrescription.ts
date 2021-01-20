@@ -1,75 +1,50 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IVisionPrescription,
   PrimitiveDateTime,
   Reference,
   VisionPrescriptionLensSpecification,
   VisionStatus,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("VisionPrescription", "DomainResource")
 export class VisionPrescription extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "VisionPrescription";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [VisionStatus],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "dateWritten",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "prescriber",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "lensSpecification",
-      fieldType: [VisionPrescriptionLensSpecification],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("VisionStatus")
   public status?: VisionStatus;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public dateWritten?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public prescriber?: Reference;
 
+  @FhirList("VisionPrescriptionLensSpecification")
   public lensSpecification?: Array<VisionPrescriptionLensSpecification>;
 
   public static parse(

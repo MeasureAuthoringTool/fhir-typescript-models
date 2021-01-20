@@ -1,70 +1,48 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Duration,
   Extension,
+  FhirChoice,
+  FhirField,
   ISpecimenCollection,
   Period,
   PrimitiveDateTime,
   Reference,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SpecimenCollection", "BackboneElement")
 export class SpecimenCollection extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Specimen.Collection";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "collector",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "collected",
-      fieldType: [PrimitiveDateTime, Period],
-      isArray: false
-    }, {
-      fieldName: "duration",
-      fieldType: [Duration],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "method",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "bodySite",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "fastingStatus",
-      fieldType: [CodeableConcept, Duration],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public collector?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Period")
   public collected?: PrimitiveDateTime | Period;
 
+  @FhirField("Duration")
   public duration?: Duration;
 
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirField("CodeableConcept")
   public method?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public bodySite?: CodeableConcept;
 
+  @FhirChoice("CodeableConcept", "Duration")
   public fastingStatus?: CodeableConcept | Duration;
 
   public static parse(

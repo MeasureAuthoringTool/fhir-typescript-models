@@ -1,63 +1,44 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
   IRiskAssessmentPrediction,
   Period,
   PrimitiveDecimal,
   PrimitiveString,
   Range,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("RiskAssessmentPrediction", "BackboneElement")
 export class RiskAssessmentPrediction extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RiskAssessment.Prediction";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "outcome",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "probability",
-      fieldType: [PrimitiveDecimal, Range],
-      isArray: false
-    }, {
-      fieldName: "qualitativeRisk",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "relativeRisk",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "when",
-      fieldType: [Period, Range],
-      isArray: false
-    }, {
-      fieldName: "rationale",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public outcome?: CodeableConcept;
 
+  @FhirChoice("PrimitiveDecimal", "Range")
   public probability?: PrimitiveDecimal | Range;
 
+  @FhirField("CodeableConcept")
   public qualitativeRisk?: CodeableConcept;
 
+  @FhirField("PrimitiveDecimal")
   public relativeRisk?: PrimitiveDecimal;
 
+  @FhirChoice("Period", "Range")
   public when?: Period | Range;
 
+  @FhirField("PrimitiveString")
   public rationale?: PrimitiveString;
 
   public static parse(

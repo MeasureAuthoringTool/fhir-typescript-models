@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   ActionConditionKind,
   BackboneElement,
   Expression,
   Extension,
+  FhirField,
   IPlanDefinitionActionCondition,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PlanDefinitionActionCondition", "BackboneElement")
 export class PlanDefinitionActionCondition extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PlanDefinition.Action.Condition";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "kind",
-      fieldType: [ActionConditionKind],
-      isArray: false
-    }, {
-      fieldName: "expression",
-      fieldType: [Expression],
-      isArray: false
-    }];
-  }
-
+  @FhirField("ActionConditionKind")
   public kind?: ActionConditionKind;
 
+  @FhirField("Expression")
   public expression?: Expression;
 
   public static parse(

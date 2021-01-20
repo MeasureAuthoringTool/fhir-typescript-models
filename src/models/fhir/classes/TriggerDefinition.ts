@@ -1,9 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DataRequirement,
   Element,
   Expression,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   ITriggerDefinition,
   PrimitiveDate,
   PrimitiveDateTime,
@@ -11,50 +14,32 @@ import {
   Reference,
   Timing,
   TriggerType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TriggerDefinition", "Element")
 export class TriggerDefinition extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TriggerDefinition";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "type",
-      fieldType: [TriggerType],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "timing",
-      fieldType: [Timing, Reference, PrimitiveDate, PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "data",
-      fieldType: [DataRequirement],
-      isArray: true
-    }, {
-      fieldName: "condition",
-      fieldType: [Expression],
-      isArray: false
-    }];
-  }
-
+  @FhirField("TriggerType")
   public type?: TriggerType;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirChoice("Timing", "Reference", "PrimitiveDate", "PrimitiveDateTime")
   public timing?: Timing | Reference | PrimitiveDate | PrimitiveDateTime;
 
+  @FhirList("DataRequirement")
   public data?: Array<DataRequirement>;
 
+  @FhirField("Expression")
   public condition?: Expression;
 
   public static parse(

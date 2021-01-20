@@ -1,68 +1,46 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IMedicinalProductInteraction,
   MedicinalProductInteractionInteractant,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductInteraction", "DomainResource")
 export class MedicinalProductInteraction extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductInteraction";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "interactant",
-      fieldType: [MedicinalProductInteractionInteractant],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "effect",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "incidence",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "management",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Reference")
   public subject?: Array<Reference>;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirList("MedicinalProductInteractionInteractant")
   public interactant?: Array<MedicinalProductInteractionInteractant>;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public effect?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public incidence?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public management?: CodeableConcept;
 
   public static parse(

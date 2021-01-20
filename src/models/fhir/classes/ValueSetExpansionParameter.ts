@@ -1,7 +1,9 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirChoice,
+  FhirField,
   IValueSetExpansionParameter,
   PrimitiveBoolean,
   PrimitiveCode,
@@ -10,32 +12,23 @@ import {
   PrimitiveInteger,
   PrimitiveString,
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ValueSetExpansionParameter", "BackboneElement")
 export class ValueSetExpansionParameter extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ValueSet.Expansion.Parameter";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveString, PrimitiveBoolean, PrimitiveInteger, PrimitiveDecimal, PrimitiveUri, PrimitiveCode, PrimitiveDateTime],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirChoice("PrimitiveString", "PrimitiveBoolean", "PrimitiveInteger", "PrimitiveDecimal", "PrimitiveUri", "PrimitiveCode", "PrimitiveDateTime")
   public value?: PrimitiveString | PrimitiveBoolean | PrimitiveInteger | PrimitiveDecimal | PrimitiveUri | PrimitiveCode | PrimitiveDateTime;
 
   public static parse(

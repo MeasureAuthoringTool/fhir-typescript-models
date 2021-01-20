@@ -1,56 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IBundleEntryResponse,
   PrimitiveInstant,
   PrimitiveString,
   PrimitiveUri,
   Resource,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("BundleEntryResponse", "BackboneElement")
 export class BundleEntryResponse extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Bundle.Entry.Response";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "status",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "location",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "etag",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "lastModified",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "outcome",
-      fieldType: [Resource],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public status?: PrimitiveString;
 
+  @FhirField("PrimitiveUri")
   public location?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public etag?: PrimitiveString;
 
+  @FhirField("PrimitiveInstant")
   public lastModified?: PrimitiveInstant;
 
+  @FhirField("Resource")
   public outcome?: Resource;
 
   public static parse(

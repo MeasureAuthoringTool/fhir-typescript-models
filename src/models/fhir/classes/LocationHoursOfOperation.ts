@@ -1,49 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   DaysOfWeek,
   Extension,
+  FhirField,
+  FhirList,
   ILocationHoursOfOperation,
   PrimitiveBoolean,
   PrimitiveTime,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("LocationHoursOfOperation", "BackboneElement")
 export class LocationHoursOfOperation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Location.HoursOfOperation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "daysOfWeek",
-      fieldType: [DaysOfWeek],
-      isArray: true
-    }, {
-      fieldName: "allDay",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "openingTime",
-      fieldType: [PrimitiveTime],
-      isArray: false
-    }, {
-      fieldName: "closingTime",
-      fieldType: [PrimitiveTime],
-      isArray: false
-    }];
-  }
-
+  @FhirList("DaysOfWeek")
   public daysOfWeek?: Array<DaysOfWeek>;
 
+  @FhirField("PrimitiveBoolean")
   public allDay?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveTime")
   public openingTime?: PrimitiveTime;
 
+  @FhirField("PrimitiveTime")
   public closingTime?: PrimitiveTime;
 
   public static parse(
@@ -53,10 +40,7 @@ export class LocationHoursOfOperation extends BackboneElement {
     const newInstance: LocationHoursOfOperation = BackboneElement.parse(json, providedInstance);
   
     if (json.daysOfWeek !== undefined) {
-      newInstance.daysOfWeek = json.daysOfWeek.map((x, i) => {
-        const ext = json._daysOfWeek && json._daysOfWeek[i];
-        return DaysOfWeek.parsePrimitive(x, ext);
-      });
+      newInstance.daysOfWeek = json.daysOfWeek.map((x, i) => DaysOfWeek.parsePrimitive(x, json._daysOfWeek?.[i]));
     }
     if (json.allDay !== undefined) {
       newInstance.allDay = PrimitiveBoolean.parsePrimitive(json.allDay, json._allDay);

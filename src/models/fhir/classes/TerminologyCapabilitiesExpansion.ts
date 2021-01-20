@@ -1,55 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   ITerminologyCapabilitiesExpansion,
   PrimitiveBoolean,
   PrimitiveMarkdown,
   TerminologyCapabilitiesExpansionParameter,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TerminologyCapabilitiesExpansion", "BackboneElement")
 export class TerminologyCapabilitiesExpansion extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TerminologyCapabilities.Expansion";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "hierarchical",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "paging",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "incomplete",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "parameter",
-      fieldType: [TerminologyCapabilitiesExpansionParameter],
-      isArray: true
-    }, {
-      fieldName: "textFilter",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveBoolean")
   public hierarchical?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public paging?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public incomplete?: PrimitiveBoolean;
 
+  @FhirList("TerminologyCapabilitiesExpansionParameter")
   public parameter?: Array<TerminologyCapabilitiesExpansionParameter>;
 
+  @FhirField("PrimitiveMarkdown")
   public textFilter?: PrimitiveMarkdown;
 
   public static parse(

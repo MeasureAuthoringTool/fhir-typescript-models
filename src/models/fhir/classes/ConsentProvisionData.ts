@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ConsentDataMeaning,
   Extension,
+  FhirField,
   IConsentProvisionData,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ConsentProvisionData", "BackboneElement")
 export class ConsentProvisionData extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Consent.Provision.Data";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "meaning",
-      fieldType: [ConsentDataMeaning],
-      isArray: false
-    }, {
-      fieldName: "reference",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("ConsentDataMeaning")
   public meaning?: ConsentDataMeaning;
 
+  @FhirField("Reference")
   public reference?: Reference;
 
   public static parse(

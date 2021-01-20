@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
   IMedicationAdministrationPerformer,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationAdministrationPerformer", "BackboneElement")
 export class MedicationAdministrationPerformer extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationAdministration.Performer";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "function",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "actor",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public function?: CodeableConcept;
 
+  @FhirField("Reference")
   public actor?: Reference;
 
   public static parse(

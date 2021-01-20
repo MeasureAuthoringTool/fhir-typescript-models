@@ -1,29 +1,24 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   ITerminologyCapabilitiesClosure,
   PrimitiveBoolean,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TerminologyCapabilitiesClosure", "BackboneElement")
 export class TerminologyCapabilitiesClosure extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TerminologyCapabilities.Closure";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "translation",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveBoolean")
   public translation?: PrimitiveBoolean;
 
   public static parse(

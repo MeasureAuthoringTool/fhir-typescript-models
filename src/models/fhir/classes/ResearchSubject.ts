@@ -1,75 +1,50 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IResearchSubject,
   Period,
   PrimitiveString,
   Reference,
   ResearchSubjectStatus,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ResearchSubject", "DomainResource")
 export class ResearchSubject extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ResearchSubject";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [ResearchSubjectStatus],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "study",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "individual",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "assignedArm",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "actualArm",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "consent",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("ResearchSubjectStatus")
   public status?: ResearchSubjectStatus;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirField("Reference")
   public study?: Reference;
 
+  @FhirField("Reference")
   public individual?: Reference;
 
+  @FhirField("PrimitiveString")
   public assignedArm?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public actualArm?: PrimitiveString;
 
+  @FhirField("Reference")
   public consent?: Reference;
 
   public static parse(

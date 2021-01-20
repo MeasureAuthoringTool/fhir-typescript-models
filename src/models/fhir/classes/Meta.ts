@@ -1,63 +1,44 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Coding,
   Element,
   Extension,
+  FhirField,
+  FhirList,
   IMeta,
   PrimitiveCanonical,
   PrimitiveId,
   PrimitiveInstant,
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Meta", "Element")
 export class Meta extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Meta";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "versionId",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "lastUpdated",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "source",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "profile",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "security",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "tag",
-      fieldType: [Coding],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public versionId?: PrimitiveId;
 
+  @FhirField("PrimitiveInstant")
   public lastUpdated?: PrimitiveInstant;
 
+  @FhirField("PrimitiveUri")
   public source?: PrimitiveUri;
 
+  @FhirList("PrimitiveCanonical")
   public profile?: Array<PrimitiveCanonical>;
 
+  @FhirList("Coding")
   public security?: Array<Coding>;
 
+  @FhirList("Coding")
   public tag?: Array<Coding>;
 
   public static parse(
@@ -76,10 +57,7 @@ export class Meta extends Element {
       newInstance.source = PrimitiveUri.parsePrimitive(json.source, json._source);
     }
     if (json.profile !== undefined) {
-      newInstance.profile = json.profile.map((x, i) => {
-        const ext = json._profile && json._profile[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.profile = json.profile.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._profile?.[i]));
     }
     if (json.security !== undefined) {
       newInstance.security = json.security.map((x) => Coding.parse(x));

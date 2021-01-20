@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   ContactPoint,
@@ -11,6 +11,9 @@ import {
   DeviceDefinitionUdiDeviceIdentifier,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IDeviceDefinition,
   PrimitiveString,
@@ -19,152 +22,83 @@ import {
   ProductShelfLife,
   Quantity,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DeviceDefinition", "DomainResource")
 export class DeviceDefinition extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceDefinition";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "udiDeviceIdentifier",
-      fieldType: [DeviceDefinitionUdiDeviceIdentifier],
-      isArray: true
-    }, {
-      fieldName: "manufacturer",
-      fieldType: [PrimitiveString, Reference],
-      isArray: false
-    }, {
-      fieldName: "deviceName",
-      fieldType: [DeviceDefinitionDeviceName],
-      isArray: true
-    }, {
-      fieldName: "modelNumber",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "specialization",
-      fieldType: [DeviceDefinitionSpecialization],
-      isArray: true
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "safety",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "shelfLifeStorage",
-      fieldType: [ProductShelfLife],
-      isArray: true
-    }, {
-      fieldName: "physicalCharacteristics",
-      fieldType: [ProdCharacteristic],
-      isArray: false
-    }, {
-      fieldName: "languageCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "capability",
-      fieldType: [DeviceDefinitionCapability],
-      isArray: true
-    }, {
-      fieldName: "property",
-      fieldType: [DeviceDefinitionProperty],
-      isArray: true
-    }, {
-      fieldName: "owner",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactPoint],
-      isArray: true
-    }, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "onlineInformation",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "quantity",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "parentDevice",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "material",
-      fieldType: [DeviceDefinitionMaterial],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("DeviceDefinitionUdiDeviceIdentifier")
   public udiDeviceIdentifier?: Array<DeviceDefinitionUdiDeviceIdentifier>;
 
+  @FhirChoice("PrimitiveString", "Reference")
   public manufacturer?: PrimitiveString | Reference;
 
+  @FhirList("DeviceDefinitionDeviceName")
   public deviceName?: Array<DeviceDefinitionDeviceName>;
 
+  @FhirField("PrimitiveString")
   public modelNumber?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("DeviceDefinitionSpecialization")
   public specialization?: Array<DeviceDefinitionSpecialization>;
 
+  @FhirList("PrimitiveString")
   public version?: Array<PrimitiveString>;
 
+  @FhirList("CodeableConcept")
   public safety?: Array<CodeableConcept>;
 
+  @FhirList("ProductShelfLife")
   public shelfLifeStorage?: Array<ProductShelfLife>;
 
+  @FhirField("ProdCharacteristic")
   public physicalCharacteristics?: ProdCharacteristic;
 
+  @FhirList("CodeableConcept")
   public languageCode?: Array<CodeableConcept>;
 
+  @FhirList("DeviceDefinitionCapability")
   public capability?: Array<DeviceDefinitionCapability>;
 
+  @FhirList("DeviceDefinitionProperty")
   public property?: Array<DeviceDefinitionProperty>;
 
+  @FhirField("Reference")
   public owner?: Reference;
 
+  @FhirList("ContactPoint")
   public contact?: Array<ContactPoint>;
 
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirField("PrimitiveUri")
   public onlineInformation?: PrimitiveUri;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirField("Quantity")
   public quantity?: Quantity;
 
+  @FhirField("Reference")
   public parentDevice?: Reference;
 
+  @FhirList("DeviceDefinitionMaterial")
   public material?: Array<DeviceDefinitionMaterial>;
 
   public static parse(
@@ -198,10 +132,7 @@ export class DeviceDefinition extends DomainResource {
       newInstance.specialization = json.specialization.map((x) => DeviceDefinitionSpecialization.parse(x));
     }
     if (json.version !== undefined) {
-      newInstance.version = json.version.map((x, i) => {
-        const ext = json._version && json._version[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.version = json.version.map((x, i) => PrimitiveString.parsePrimitive(x, json._version?.[i]));
     }
     if (json.safety !== undefined) {
       newInstance.safety = json.safety.map((x) => CodeableConcept.parse(x));

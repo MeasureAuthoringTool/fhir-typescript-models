@@ -1,93 +1,59 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   ISubstanceSpecificationName,
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
   SubstanceSpecificationNameOfficial,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSpecificationName", "BackboneElement")
 export class SubstanceSpecificationName extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Name";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "preferred",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "language",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "domain",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "synonym",
-      fieldType: [SubstanceSpecificationName],
-      isArray: true
-    }, {
-      fieldName: "translation",
-      fieldType: [SubstanceSpecificationName],
-      isArray: true
-    }, {
-      fieldName: "official",
-      fieldType: [SubstanceSpecificationNameOfficial],
-      isArray: true
-    }, {
-      fieldName: "source",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public status?: CodeableConcept;
 
+  @FhirField("PrimitiveBoolean")
   public preferred?: PrimitiveBoolean;
 
+  @FhirList("CodeableConcept")
   public language?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public domain?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirList("SubstanceSpecificationName")
   public synonym?: Array<SubstanceSpecificationName>;
 
+  @FhirList("SubstanceSpecificationName")
   public translation?: Array<SubstanceSpecificationName>;
 
+  @FhirList("SubstanceSpecificationNameOfficial")
   public official?: Array<SubstanceSpecificationNameOfficial>;
 
+  @FhirList("Reference")
   public source?: Array<Reference>;
 
   public static parse(

@@ -1,44 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Duration,
   Element,
   Extension,
+  FhirChoice,
+  FhirField,
   IDataRequirementDateFilter,
   Period,
   PrimitiveDateTime,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DataRequirementDateFilter", "Element")
 export class DataRequirementDateFilter extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DataRequirement.DateFilter";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "path",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "searchParam",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveDateTime, Period, Duration],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public path?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public searchParam?: PrimitiveString;
 
+  @FhirChoice("PrimitiveDateTime", "Period", "Duration")
   public value?: PrimitiveDateTime | Period | Duration;
 
   public static parse(

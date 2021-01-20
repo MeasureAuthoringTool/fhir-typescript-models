@@ -1,43 +1,33 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   ILinkage,
   LinkageItem,
   PrimitiveBoolean,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Linkage", "DomainResource")
 export class Linkage extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Linkage";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "active",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "author",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "item",
-      fieldType: [LinkageItem],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveBoolean")
   public active?: PrimitiveBoolean;
 
+  @FhirField("Reference")
   public author?: Reference;
 
+  @FhirList("LinkageItem")
   public item?: Array<LinkageItem>;
 
   public static parse(

@@ -1,56 +1,40 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   INutritionOrderSupplement,
   PrimitiveString,
   SimpleQuantity,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("NutritionOrderSupplement", "BackboneElement")
 export class NutritionOrderSupplement extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "NutritionOrder.Supplement";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "productName",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "schedule",
-      fieldType: [Timing],
-      isArray: true
-    }, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "instruction",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public productName?: PrimitiveString;
 
+  @FhirList("Timing")
   public schedule?: Array<Timing>;
 
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirField("PrimitiveString")
   public instruction?: PrimitiveString;
 
   public static parse(

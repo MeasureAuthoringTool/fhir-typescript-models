@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IConsentPolicy,
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ConsentPolicy", "BackboneElement")
 export class ConsentPolicy extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Consent.Policy";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "authority",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "uri",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public authority?: PrimitiveUri;
 
+  @FhirField("PrimitiveUri")
   public uri?: PrimitiveUri;
 
   public static parse(

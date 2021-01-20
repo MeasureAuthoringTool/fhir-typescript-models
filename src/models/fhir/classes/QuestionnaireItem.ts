@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Coding,
   EnableWhenBehavior,
   Extension,
+  FhirField,
+  FhirList,
   IQuestionnaireItem,
   PrimitiveBoolean,
   PrimitiveCanonical,
@@ -14,116 +16,65 @@ import {
   QuestionnaireItemEnableWhen,
   QuestionnaireItemInitial,
   QuestionnaireItemType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("QuestionnaireItem", "BackboneElement")
 export class QuestionnaireItem extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Questionnaire.Item";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "linkId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "definition",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "prefix",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "text",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [QuestionnaireItemType],
-      isArray: false
-    }, {
-      fieldName: "enableWhen",
-      fieldType: [QuestionnaireItemEnableWhen],
-      isArray: true
-    }, {
-      fieldName: "enableBehavior",
-      fieldType: [EnableWhenBehavior],
-      isArray: false
-    }, {
-      fieldName: "required",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "repeats",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "readOnly",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "maxLength",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "answerValueSet",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "answerOption",
-      fieldType: [QuestionnaireItemAnswerOption],
-      isArray: true
-    }, {
-      fieldName: "initial",
-      fieldType: [QuestionnaireItemInitial],
-      isArray: true
-    }, {
-      fieldName: "item",
-      fieldType: [QuestionnaireItem],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public linkId?: PrimitiveString;
 
+  @FhirField("PrimitiveUri")
   public definition?: PrimitiveUri;
 
+  @FhirList("Coding")
   public code?: Array<Coding>;
 
+  @FhirField("PrimitiveString")
   public prefix?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public text?: PrimitiveString;
 
+  @FhirField("QuestionnaireItemType")
   public type?: QuestionnaireItemType;
 
+  @FhirList("QuestionnaireItemEnableWhen")
   public enableWhen?: Array<QuestionnaireItemEnableWhen>;
 
+  @FhirField("EnableWhenBehavior")
   public enableBehavior?: EnableWhenBehavior;
 
+  @FhirField("PrimitiveBoolean")
   public required?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public repeats?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public readOnly?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveInteger")
   public maxLength?: PrimitiveInteger;
 
+  @FhirField("PrimitiveCanonical")
   public answerValueSet?: PrimitiveCanonical;
 
+  @FhirList("QuestionnaireItemAnswerOption")
   public answerOption?: Array<QuestionnaireItemAnswerOption>;
 
+  @FhirList("QuestionnaireItemInitial")
   public initial?: Array<QuestionnaireItemInitial>;
 
+  @FhirList("QuestionnaireItem")
   public item?: Array<QuestionnaireItem>;
 
   public static parse(

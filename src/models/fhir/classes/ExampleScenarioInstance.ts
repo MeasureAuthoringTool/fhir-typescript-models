@@ -1,63 +1,44 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ExampleScenarioInstanceContainedInstance,
   ExampleScenarioInstanceVersion,
   Extension,
+  FhirField,
+  FhirList,
   FHIRResourceType,
   IExampleScenarioInstance,
   PrimitiveMarkdown,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExampleScenarioInstance", "BackboneElement")
 export class ExampleScenarioInstance extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExampleScenario.Instance";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "resourceId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "resourceType",
-      fieldType: [FHIRResourceType],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "version",
-      fieldType: [ExampleScenarioInstanceVersion],
-      isArray: true
-    }, {
-      fieldName: "containedInstance",
-      fieldType: [ExampleScenarioInstanceContainedInstance],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public resourceId?: PrimitiveString;
 
+  @FhirField("FHIRResourceType")
   public resourceType?: FHIRResourceType;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("ExampleScenarioInstanceVersion")
   public version?: Array<ExampleScenarioInstanceVersion>;
 
+  @FhirList("ExampleScenarioInstanceContainedInstance")
   public containedInstance?: Array<ExampleScenarioInstanceContainedInstance>;
 
   public static parse(

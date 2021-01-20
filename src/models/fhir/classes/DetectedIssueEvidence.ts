@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirList,
   IDetectedIssueEvidence,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DetectedIssueEvidence", "BackboneElement")
 export class DetectedIssueEvidence extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DetectedIssue.Evidence";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "detail",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("CodeableConcept")
   public code?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public detail?: Array<Reference>;
 
   public static parse(

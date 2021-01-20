@@ -1,50 +1,38 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IMedicinalProductAuthorizationProcedure,
   Period,
   PrimitiveDateTime,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductAuthorizationProcedure", "BackboneElement")
 export class MedicinalProductAuthorizationProcedure extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductAuthorization.Procedure";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [Period, PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "application",
-      fieldType: [MedicinalProductAuthorizationProcedure],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirChoice("Period", "PrimitiveDateTime")
   public date?: Period | PrimitiveDateTime;
 
+  @FhirList("MedicinalProductAuthorizationProcedure")
   public application?: Array<MedicinalProductAuthorizationProcedure>;
 
   public static parse(

@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   ISubstanceSourceMaterialOrganismAuthor,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSourceMaterialOrganismAuthor", "BackboneElement")
 export class SubstanceSourceMaterialOrganismAuthor extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSourceMaterial.Organism.Author";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "authorType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "authorDescription",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public authorType?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public authorDescription?: PrimitiveString;
 
   public static parse(

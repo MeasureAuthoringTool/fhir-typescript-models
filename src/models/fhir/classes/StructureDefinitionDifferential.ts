@@ -1,28 +1,23 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ElementDefinition,
+  FhirList,
   IStructureDefinitionDifferential,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("StructureDefinitionDifferential", "BackboneElement")
 export class StructureDefinitionDifferential extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureDefinition.Differential";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "element",
-      fieldType: [ElementDefinition],
-      isArray: true
-    }];
-  }
-
+  @FhirList("ElementDefinition")
   public element?: Array<ElementDefinition>;
 
   public static parse(

@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Coding,
@@ -7,115 +7,69 @@ import {
   ContractTermAssetValuedItem,
   ContractTermOfferAnswer,
   Extension,
+  FhirField,
+  FhirList,
   IContractTermAsset,
   Period,
   PrimitiveString,
   PrimitiveUnsignedInt,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ContractTermAsset", "BackboneElement")
 export class ContractTermAsset extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Term.Asset";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "scope",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "typeReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "subtype",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "relationship",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "context",
-      fieldType: [ContractTermAssetContext],
-      isArray: true
-    }, {
-      fieldName: "condition",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "periodType",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: true
-    }, {
-      fieldName: "usePeriod",
-      fieldType: [Period],
-      isArray: true
-    }, {
-      fieldName: "text",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "linkId",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "answer",
-      fieldType: [ContractTermOfferAnswer],
-      isArray: true
-    }, {
-      fieldName: "securityLabelNumber",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: true
-    }, {
-      fieldName: "valuedItem",
-      fieldType: [ContractTermAssetValuedItem],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public scope?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public type?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public typeReference?: Array<Reference>;
 
+  @FhirList("CodeableConcept")
   public subtype?: Array<CodeableConcept>;
 
+  @FhirField("Coding")
   public relationship?: Coding;
 
+  @FhirList("ContractTermAssetContext")
   public context?: Array<ContractTermAssetContext>;
 
+  @FhirField("PrimitiveString")
   public condition?: PrimitiveString;
 
+  @FhirList("CodeableConcept")
   public periodType?: Array<CodeableConcept>;
 
+  @FhirList("Period")
   public period?: Array<Period>;
 
+  @FhirList("Period")
   public usePeriod?: Array<Period>;
 
+  @FhirField("PrimitiveString")
   public text?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public linkId?: Array<PrimitiveString>;
 
+  @FhirList("ContractTermOfferAnswer")
   public answer?: Array<ContractTermOfferAnswer>;
 
+  @FhirList("PrimitiveUnsignedInt")
   public securityLabelNumber?: Array<PrimitiveUnsignedInt>;
 
+  @FhirList("ContractTermAssetValuedItem")
   public valuedItem?: Array<ContractTermAssetValuedItem>;
 
   public static parse(
@@ -158,19 +112,13 @@ export class ContractTermAsset extends BackboneElement {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
     if (json.linkId !== undefined) {
-      newInstance.linkId = json.linkId.map((x, i) => {
-        const ext = json._linkId && json._linkId[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.linkId = json.linkId.map((x, i) => PrimitiveString.parsePrimitive(x, json._linkId?.[i]));
     }
     if (json.answer !== undefined) {
       newInstance.answer = json.answer.map((x) => ContractTermOfferAnswer.parse(x));
     }
     if (json.securityLabelNumber !== undefined) {
-      newInstance.securityLabelNumber = json.securityLabelNumber.map((x, i) => {
-        const ext = json._securityLabelNumber && json._securityLabelNumber[i];
-        return PrimitiveUnsignedInt.parsePrimitive(x, ext);
-      });
+      newInstance.securityLabelNumber = json.securityLabelNumber.map((x, i) => PrimitiveUnsignedInt.parsePrimitive(x, json._securityLabelNumber?.[i]));
     }
     if (json.valuedItem !== undefined) {
       newInstance.valuedItem = json.valuedItem.map((x) => ContractTermAssetValuedItem.parse(x));

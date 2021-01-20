@@ -1,100 +1,63 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   ContactPoint,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IOrganizationAffiliation,
   Period,
   PrimitiveBoolean,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("OrganizationAffiliation", "DomainResource")
 export class OrganizationAffiliation extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OrganizationAffiliation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "active",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "organization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "participatingOrganization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "network",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "specialty",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "healthcareService",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "telecom",
-      fieldType: [ContactPoint],
-      isArray: true
-    }, {
-      fieldName: "endpoint",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveBoolean")
   public active?: PrimitiveBoolean;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirField("Reference")
   public organization?: Reference;
 
+  @FhirField("Reference")
   public participatingOrganization?: Reference;
 
+  @FhirList("Reference")
   public network?: Array<Reference>;
 
+  @FhirList("CodeableConcept")
   public code?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public specialty?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public location?: Array<Reference>;
 
+  @FhirList("Reference")
   public healthcareService?: Array<Reference>;
 
+  @FhirList("ContactPoint")
   public telecom?: Array<ContactPoint>;
 
+  @FhirList("Reference")
   public endpoint?: Array<Reference>;
 
   public static parse(

@@ -1,8 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IProvenance,
   Period,
   PrimitiveDateTime,
@@ -12,80 +15,47 @@ import {
   ProvenanceEntity,
   Reference,
   Signature,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Provenance", "DomainResource")
 export class Provenance extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Provenance";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "target",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "occurred",
-      fieldType: [Period, PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "recorded",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "policy",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "reason",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "activity",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "agent",
-      fieldType: [ProvenanceAgent],
-      isArray: true
-    }, {
-      fieldName: "entity",
-      fieldType: [ProvenanceEntity],
-      isArray: true
-    }, {
-      fieldName: "signature",
-      fieldType: [Signature],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Reference")
   public target?: Array<Reference>;
 
+  @FhirChoice("Period", "PrimitiveDateTime")
   public occurred?: Period | PrimitiveDateTime;
 
+  @FhirField("PrimitiveInstant")
   public recorded?: PrimitiveInstant;
 
+  @FhirList("PrimitiveUri")
   public policy?: Array<PrimitiveUri>;
 
+  @FhirField("Reference")
   public location?: Reference;
 
+  @FhirList("CodeableConcept")
   public reason?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public activity?: CodeableConcept;
 
+  @FhirList("ProvenanceAgent")
   public agent?: Array<ProvenanceAgent>;
 
+  @FhirList("ProvenanceEntity")
   public entity?: Array<ProvenanceEntity>;
 
+  @FhirList("Signature")
   public signature?: Array<Signature>;
 
   public static parse(
@@ -107,10 +77,7 @@ export class Provenance extends DomainResource {
       newInstance.recorded = PrimitiveInstant.parsePrimitive(json.recorded, json._recorded);
     }
     if (json.policy !== undefined) {
-      newInstance.policy = json.policy.map((x, i) => {
-        const ext = json._policy && json._policy[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.policy = json.policy.map((x, i) => PrimitiveUri.parsePrimitive(x, json._policy?.[i]));
     }
     if (json.location !== undefined) {
       newInstance.location = Reference.parse(json.location);

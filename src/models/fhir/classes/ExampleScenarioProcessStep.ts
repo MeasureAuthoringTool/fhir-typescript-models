@@ -1,50 +1,37 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ExampleScenarioProcess,
   ExampleScenarioProcessStepAlternative,
   ExampleScenarioProcessStepOperation,
   Extension,
+  FhirField,
+  FhirList,
   IExampleScenarioProcessStep,
   PrimitiveBoolean,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExampleScenarioProcessStep", "BackboneElement")
 export class ExampleScenarioProcessStep extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExampleScenario.Process.Step";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "process",
-      fieldType: [ExampleScenarioProcess],
-      isArray: true
-    }, {
-      fieldName: "pause",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "operation",
-      fieldType: [ExampleScenarioProcessStepOperation],
-      isArray: false
-    }, {
-      fieldName: "alternative",
-      fieldType: [ExampleScenarioProcessStepAlternative],
-      isArray: true
-    }];
-  }
-
+  @FhirList("ExampleScenarioProcess")
   public process?: Array<ExampleScenarioProcess>;
 
+  @FhirField("PrimitiveBoolean")
   public pause?: PrimitiveBoolean;
 
+  @FhirField("ExampleScenarioProcessStepOperation")
   public operation?: ExampleScenarioProcessStepOperation;
 
+  @FhirList("ExampleScenarioProcessStepAlternative")
   public alternative?: Array<ExampleScenarioProcessStepAlternative>;
 
   public static parse(

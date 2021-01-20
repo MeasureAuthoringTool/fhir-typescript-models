@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
+  FhirField,
   Identifier,
   IDocumentManifestRelated,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DocumentManifestRelated", "BackboneElement")
 export class DocumentManifestRelated extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DocumentManifest.Related";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "ref",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("Reference")
   public ref?: Reference;
 
   public static parse(

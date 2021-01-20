@@ -1,44 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   ActionRelationshipType,
   BackboneElement,
   Duration,
   Extension,
+  FhirChoice,
+  FhirField,
   IRequestGroupActionRelatedAction,
   PrimitiveId,
   Range,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("RequestGroupActionRelatedAction", "BackboneElement")
 export class RequestGroupActionRelatedAction extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RequestGroup.Action.RelatedAction";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "actionId",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "relationship",
-      fieldType: [ActionRelationshipType],
-      isArray: false
-    }, {
-      fieldName: "offset",
-      fieldType: [Duration, Range],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public actionId?: PrimitiveId;
 
+  @FhirField("ActionRelationshipType")
   public relationship?: ActionRelationshipType;
 
+  @FhirChoice("Duration", "Range")
   public offset?: Duration | Range;
 
   public static parse(

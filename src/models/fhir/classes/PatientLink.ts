@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IPatientLink,
   LinkType,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PatientLink", "BackboneElement")
 export class PatientLink extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Patient.Link";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "other",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [LinkType],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public other?: Reference;
 
+  @FhirField("LinkType")
   public type?: LinkType;
 
   public static parse(

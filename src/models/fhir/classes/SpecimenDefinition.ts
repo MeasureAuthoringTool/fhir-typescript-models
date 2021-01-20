@@ -1,62 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   ISpecimenDefinition,
   PrimitiveString,
   SpecimenDefinitionTypeTested,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SpecimenDefinition", "DomainResource")
 export class SpecimenDefinition extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SpecimenDefinition";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "typeCollected",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "patientPreparation",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "timeAspect",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "collection",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "typeTested",
-      fieldType: [SpecimenDefinitionTypeTested],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("CodeableConcept")
   public typeCollected?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public patientPreparation?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveString")
   public timeAspect?: PrimitiveString;
 
+  @FhirList("CodeableConcept")
   public collection?: Array<CodeableConcept>;
 
+  @FhirList("SpecimenDefinitionTypeTested")
   public typeTested?: Array<SpecimenDefinitionTypeTested>;
 
   public static parse(

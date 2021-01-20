@@ -1,55 +1,38 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
   Identifier,
   ISubstanceSpecificationStructureIsotope,
   Quantity,
   SubstanceSpecificationStructureIsotopeMolecularWeight,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSpecificationStructureIsotope", "BackboneElement")
 export class SubstanceSpecificationStructureIsotope extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Structure.Isotope";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "substitution",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "halfLife",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "molecularWeight",
-      fieldType: [SubstanceSpecificationStructureIsotopeMolecularWeight],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("CodeableConcept")
   public name?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public substitution?: CodeableConcept;
 
+  @FhirField("Quantity")
   public halfLife?: Quantity;
 
+  @FhirField("SubstanceSpecificationStructureIsotopeMolecularWeight")
   public molecularWeight?: SubstanceSpecificationStructureIsotopeMolecularWeight;
 
   public static parse(

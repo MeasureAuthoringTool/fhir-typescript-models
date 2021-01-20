@@ -1,86 +1,55 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   AddressType,
   AddressUse,
   Element,
   Extension,
+  FhirField,
+  FhirList,
   IAddress,
   Period,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Address", "Element")
 export class Address extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Address";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "use",
-      fieldType: [AddressUse],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [AddressType],
-      isArray: false
-    }, {
-      fieldName: "text",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "line",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "city",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "district",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "state",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "postalCode",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "country",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirField("AddressUse")
   public use?: AddressUse;
 
+  @FhirField("AddressType")
   public type?: AddressType;
 
+  @FhirField("PrimitiveString")
   public text?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public line?: Array<PrimitiveString>;
 
+  @FhirField("PrimitiveString")
   public city?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public district?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public state?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public postalCode?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public country?: PrimitiveString;
 
+  @FhirField("Period")
   public period?: Period;
 
   public static parse(
@@ -99,10 +68,7 @@ export class Address extends Element {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
     if (json.line !== undefined) {
-      newInstance.line = json.line.map((x, i) => {
-        const ext = json._line && json._line[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.line = json.line.map((x, i) => PrimitiveString.parsePrimitive(x, json._line?.[i]));
     }
     if (json.city !== undefined) {
       newInstance.city = PrimitiveString.parsePrimitive(json.city, json._city);

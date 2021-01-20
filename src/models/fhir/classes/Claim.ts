@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   ClaimAccident,
   ClaimCareTeam,
   ClaimDiagnosis,
@@ -13,6 +13,8 @@ import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IClaim,
   Identifier,
   Money,
@@ -20,182 +22,98 @@ import {
   PrimitiveDateTime,
   Reference,
   Use,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Claim", "DomainResource")
 export class Claim extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Claim";
-  
+
   static readonly primaryCodePath: string | null = "type";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [ClaimStatus],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "use",
-      fieldType: [Use],
-      isArray: false
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "billablePeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "enterer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "insurer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "provider",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "priority",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "fundsReserve",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "related",
-      fieldType: [ClaimRelated],
-      isArray: true
-    }, {
-      fieldName: "prescription",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "originalPrescription",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "payee",
-      fieldType: [ClaimPayee],
-      isArray: false
-    }, {
-      fieldName: "referral",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "facility",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "careTeam",
-      fieldType: [ClaimCareTeam],
-      isArray: true
-    }, {
-      fieldName: "supportingInfo",
-      fieldType: [ClaimSupportingInfo],
-      isArray: true
-    }, {
-      fieldName: "diagnosis",
-      fieldType: [ClaimDiagnosis],
-      isArray: true
-    }, {
-      fieldName: "procedure",
-      fieldType: [ClaimProcedure],
-      isArray: true
-    }, {
-      fieldName: "insurance",
-      fieldType: [ClaimInsurance],
-      isArray: true
-    }, {
-      fieldName: "accident",
-      fieldType: [ClaimAccident],
-      isArray: false
-    }, {
-      fieldName: "item",
-      fieldType: [ClaimItem],
-      isArray: true
-    }, {
-      fieldName: "total",
-      fieldType: [Money],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("ClaimStatus")
   public status?: ClaimStatus;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public subType?: CodeableConcept;
 
+  @FhirField("Use")
   public use?: Use;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("Period")
   public billablePeriod?: Period;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public enterer?: Reference;
 
+  @FhirField("Reference")
   public insurer?: Reference;
 
+  @FhirField("Reference")
   public provider?: Reference;
 
+  @FhirField("CodeableConcept")
   public priority?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public fundsReserve?: CodeableConcept;
 
+  @FhirList("ClaimRelated")
   public related?: Array<ClaimRelated>;
 
+  @FhirField("Reference")
   public prescription?: Reference;
 
+  @FhirField("Reference")
   public originalPrescription?: Reference;
 
+  @FhirField("ClaimPayee")
   public payee?: ClaimPayee;
 
+  @FhirField("Reference")
   public referral?: Reference;
 
+  @FhirField("Reference")
   public facility?: Reference;
 
+  @FhirList("ClaimCareTeam")
   public careTeam?: Array<ClaimCareTeam>;
 
+  @FhirList("ClaimSupportingInfo")
   public supportingInfo?: Array<ClaimSupportingInfo>;
 
+  @FhirList("ClaimDiagnosis")
   public diagnosis?: Array<ClaimDiagnosis>;
 
+  @FhirList("ClaimProcedure")
   public procedure?: Array<ClaimProcedure>;
 
+  @FhirList("ClaimInsurance")
   public insurance?: Array<ClaimInsurance>;
 
+  @FhirField("ClaimAccident")
   public accident?: ClaimAccident;
 
+  @FhirList("ClaimItem")
   public item?: Array<ClaimItem>;
 
+  @FhirField("Money")
   public total?: Money;
 
   get primaryCode(): CodeableConcept | undefined {

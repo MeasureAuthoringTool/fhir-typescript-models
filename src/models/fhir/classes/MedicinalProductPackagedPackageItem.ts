@@ -1,99 +1,62 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   Identifier,
   IMedicinalProductPackagedPackageItem,
   ProdCharacteristic,
   ProductShelfLife,
   Quantity,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductPackagedPackageItem", "BackboneElement")
 export class MedicinalProductPackagedPackageItem extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductPackaged.PackageItem";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "material",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "alternateMaterial",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "device",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "manufacturedItem",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "packageItem",
-      fieldType: [MedicinalProductPackagedPackageItem],
-      isArray: true
-    }, {
-      fieldName: "physicalCharacteristics",
-      fieldType: [ProdCharacteristic],
-      isArray: false
-    }, {
-      fieldName: "otherCharacteristics",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "shelfLifeStorage",
-      fieldType: [ProductShelfLife],
-      isArray: true
-    }, {
-      fieldName: "manufacturer",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("Quantity")
   public quantity?: Quantity;
 
+  @FhirList("CodeableConcept")
   public material?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public alternateMaterial?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public device?: Array<Reference>;
 
+  @FhirList("Reference")
   public manufacturedItem?: Array<Reference>;
 
+  @FhirList("MedicinalProductPackagedPackageItem")
   public packageItem?: Array<MedicinalProductPackagedPackageItem>;
 
+  @FhirField("ProdCharacteristic")
   public physicalCharacteristics?: ProdCharacteristic;
 
+  @FhirList("CodeableConcept")
   public otherCharacteristics?: Array<CodeableConcept>;
 
+  @FhirList("ProductShelfLife")
   public shelfLifeStorage?: Array<ProductShelfLife>;
 
+  @FhirList("Reference")
   public manufacturer?: Array<Reference>;
 
   public static parse(

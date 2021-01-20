@@ -1,43 +1,33 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IExplanationOfBenefitInsurance,
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExplanationOfBenefitInsurance", "BackboneElement")
 export class ExplanationOfBenefitInsurance extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.Insurance";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "focal",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "coverage",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "preAuthRef",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveBoolean")
   public focal?: PrimitiveBoolean;
 
+  @FhirField("Reference")
   public coverage?: Reference;
 
+  @FhirList("PrimitiveString")
   public preAuthRef?: Array<PrimitiveString>;
 
   public static parse(
@@ -53,10 +43,7 @@ export class ExplanationOfBenefitInsurance extends BackboneElement {
       newInstance.coverage = Reference.parse(json.coverage);
     }
     if (json.preAuthRef !== undefined) {
-      newInstance.preAuthRef = json.preAuthRef.map((x, i) => {
-        const ext = json._preAuthRef && json._preAuthRef[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.preAuthRef = json.preAuthRef.map((x, i) => PrimitiveString.parsePrimitive(x, json._preAuthRef?.[i]));
     }
     return newInstance;
   }

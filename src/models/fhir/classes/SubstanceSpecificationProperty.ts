@@ -1,56 +1,40 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
   ISubstanceSpecificationProperty,
   PrimitiveString,
   Quantity,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSpecificationProperty", "BackboneElement")
 export class SubstanceSpecificationProperty extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Property";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "parameters",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "definingSubstance",
-      fieldType: [Reference, CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [Quantity, PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public category?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public parameters?: PrimitiveString;
 
+  @FhirChoice("Reference", "CodeableConcept")
   public definingSubstance?: Reference | CodeableConcept;
 
+  @FhirChoice("Quantity", "PrimitiveString")
   public amount?: Quantity | PrimitiveString;
 
   public static parse(

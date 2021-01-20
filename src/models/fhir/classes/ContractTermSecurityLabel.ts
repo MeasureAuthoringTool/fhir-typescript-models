@@ -1,48 +1,35 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Coding,
   Extension,
+  FhirField,
+  FhirList,
   IContractTermSecurityLabel,
   PrimitiveUnsignedInt,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ContractTermSecurityLabel", "BackboneElement")
 export class ContractTermSecurityLabel extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Term.SecurityLabel";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "number",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: true
-    }, {
-      fieldName: "classification",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "control",
-      fieldType: [Coding],
-      isArray: true
-    }];
-  }
-
+  @FhirList("PrimitiveUnsignedInt")
   public number?: Array<PrimitiveUnsignedInt>;
 
+  @FhirField("Coding")
   public classification?: Coding;
 
+  @FhirList("Coding")
   public category?: Array<Coding>;
 
+  @FhirList("Coding")
   public control?: Array<Coding>;
 
   public static parse(
@@ -52,10 +39,7 @@ export class ContractTermSecurityLabel extends BackboneElement {
     const newInstance: ContractTermSecurityLabel = BackboneElement.parse(json, providedInstance);
   
     if (json.number !== undefined) {
-      newInstance.number = json.number.map((x, i) => {
-        const ext = json._number && json._number[i];
-        return PrimitiveUnsignedInt.parsePrimitive(x, ext);
-      });
+      newInstance.number = json.number.map((x, i) => PrimitiveUnsignedInt.parsePrimitive(x, json._number?.[i]));
     }
     if (json.classification !== undefined) {
       newInstance.classification = Coding.parse(json.classification);

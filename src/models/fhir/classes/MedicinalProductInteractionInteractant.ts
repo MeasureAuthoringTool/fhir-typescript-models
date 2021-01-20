@@ -1,29 +1,24 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirChoice,
   IMedicinalProductInteractionInteractant,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductInteractionInteractant", "BackboneElement")
 export class MedicinalProductInteractionInteractant extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductInteraction.Interactant";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "item",
-      fieldType: [Reference, CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("Reference", "CodeableConcept")
   public item?: Reference | CodeableConcept;
 
   public static parse(

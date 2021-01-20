@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Coding,
   Extension,
+  FhirField,
   ICapabilityStatementMessagingEndpoint,
   PrimitiveUrl,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CapabilityStatementMessagingEndpoint", "BackboneElement")
 export class CapabilityStatementMessagingEndpoint extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Messaging.Endpoint";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "protocol",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "address",
-      fieldType: [PrimitiveUrl],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Coding")
   public protocol?: Coding;
 
+  @FhirField("PrimitiveUrl")
   public address?: PrimitiveUrl;
 
   public static parse(

@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirField,
   IPeriod,
   PrimitiveDateTime,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Period", "Element")
 export class Period extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Period";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "start",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "end",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveDateTime")
   public start?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveDateTime")
   public end?: PrimitiveDateTime;
 
   public static parse(

@@ -1,11 +1,14 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   ChargeItemPerformer,
   ChargeItemStatus,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IChargeItem,
   Identifier,
   Money,
@@ -18,176 +21,95 @@ import {
   Quantity,
   Reference,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ChargeItem", "DomainResource")
 export class ChargeItem extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ChargeItem";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "definitionUri",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "definitionCanonical",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [ChargeItemStatus],
-      isArray: false
-    }, {
-      fieldName: "partOf",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "context",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "occurrence",
-      fieldType: [PrimitiveDateTime, Period, Timing],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [ChargeItemPerformer],
-      isArray: true
-    }, {
-      fieldName: "performingOrganization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "requestingOrganization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "costCenter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "bodysite",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "factorOverride",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "priceOverride",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "overrideReason",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "enterer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "enteredDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "reason",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "service",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "product",
-      fieldType: [Reference, CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "account",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "supportingInformation",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("PrimitiveUri")
   public definitionUri?: Array<PrimitiveUri>;
 
+  @FhirList("PrimitiveCanonical")
   public definitionCanonical?: Array<PrimitiveCanonical>;
 
+  @FhirField("ChargeItemStatus")
   public status?: ChargeItemStatus;
 
+  @FhirList("Reference")
   public partOf?: Array<Reference>;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public context?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Period", "Timing")
   public occurrence?: PrimitiveDateTime | Period | Timing;
 
+  @FhirList("ChargeItemPerformer")
   public performer?: Array<ChargeItemPerformer>;
 
+  @FhirField("Reference")
   public performingOrganization?: Reference;
 
+  @FhirField("Reference")
   public requestingOrganization?: Reference;
 
+  @FhirField("Reference")
   public costCenter?: Reference;
 
+  @FhirField("Quantity")
   public quantity?: Quantity;
 
+  @FhirList("CodeableConcept")
   public bodysite?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveDecimal")
   public factorOverride?: PrimitiveDecimal;
 
+  @FhirField("Money")
   public priceOverride?: Money;
 
+  @FhirField("PrimitiveString")
   public overrideReason?: PrimitiveString;
 
+  @FhirField("Reference")
   public enterer?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public enteredDate?: PrimitiveDateTime;
 
+  @FhirList("CodeableConcept")
   public reason?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public service?: Array<Reference>;
 
+  @FhirChoice("Reference", "CodeableConcept")
   public product?: Reference | CodeableConcept;
 
+  @FhirList("Reference")
   public account?: Array<Reference>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("Reference")
   public supportingInformation?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -208,16 +130,10 @@ export class ChargeItem extends DomainResource {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
     if (json.definitionUri !== undefined) {
-      newInstance.definitionUri = json.definitionUri.map((x, i) => {
-        const ext = json._definitionUri && json._definitionUri[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.definitionUri = json.definitionUri.map((x, i) => PrimitiveUri.parsePrimitive(x, json._definitionUri?.[i]));
     }
     if (json.definitionCanonical !== undefined) {
-      newInstance.definitionCanonical = json.definitionCanonical.map((x, i) => {
-        const ext = json._definitionCanonical && json._definitionCanonical[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.definitionCanonical = json.definitionCanonical.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._definitionCanonical?.[i]));
     }
     if (json.status !== undefined) {
       newInstance.status = ChargeItemStatus.parsePrimitive(json.status, json._status);

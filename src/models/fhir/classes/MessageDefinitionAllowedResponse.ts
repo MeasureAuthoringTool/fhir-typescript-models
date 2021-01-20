@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IMessageDefinitionAllowedResponse,
   PrimitiveCanonical,
   PrimitiveMarkdown,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MessageDefinitionAllowedResponse", "BackboneElement")
 export class MessageDefinitionAllowedResponse extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MessageDefinition.AllowedResponse";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "message",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "situation",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveCanonical")
   public message?: PrimitiveCanonical;
 
+  @FhirField("PrimitiveMarkdown")
   public situation?: PrimitiveMarkdown;
 
   public static parse(

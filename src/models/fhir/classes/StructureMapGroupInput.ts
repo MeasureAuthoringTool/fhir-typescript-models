@@ -1,49 +1,35 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IStructureMapGroupInput,
   PrimitiveId,
   PrimitiveString,
   StructureMapInputMode,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("StructureMapGroupInput", "BackboneElement")
 export class StructureMapGroupInput extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureMap.Group.Input";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "mode",
-      fieldType: [StructureMapInputMode],
-      isArray: false
-    }, {
-      fieldName: "documentation",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public name?: PrimitiveId;
 
+  @FhirField("PrimitiveString")
   public type?: PrimitiveString;
 
+  @FhirField("StructureMapInputMode")
   public mode?: StructureMapInputMode;
 
+  @FhirField("PrimitiveString")
   public documentation?: PrimitiveString;
 
   public static parse(

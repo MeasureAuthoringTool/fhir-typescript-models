@@ -1,62 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ConceptMapEquivalence,
   ConceptMapGroupElementTargetDependsOn,
   Extension,
+  FhirField,
+  FhirList,
   IConceptMapGroupElementTarget,
   PrimitiveCode,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ConceptMapGroupElementTarget", "BackboneElement")
 export class ConceptMapGroupElementTarget extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ConceptMap.Group.Element.Target";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "display",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "equivalence",
-      fieldType: [ConceptMapEquivalence],
-      isArray: false
-    }, {
-      fieldName: "comment",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "dependsOn",
-      fieldType: [ConceptMapGroupElementTargetDependsOn],
-      isArray: true
-    }, {
-      fieldName: "product",
-      fieldType: [ConceptMapGroupElementTargetDependsOn],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveCode")
   public code?: PrimitiveCode;
 
+  @FhirField("PrimitiveString")
   public display?: PrimitiveString;
 
+  @FhirField("ConceptMapEquivalence")
   public equivalence?: ConceptMapEquivalence;
 
+  @FhirField("PrimitiveString")
   public comment?: PrimitiveString;
 
+  @FhirList("ConceptMapGroupElementTargetDependsOn")
   public dependsOn?: Array<ConceptMapGroupElementTargetDependsOn>;
 
+  @FhirList("ConceptMapGroupElementTargetDependsOn")
   public product?: Array<ConceptMapGroupElementTargetDependsOn>;
 
   public static parse(

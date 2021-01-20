@@ -1,63 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   ContractPublicationStatus,
   Extension,
+  FhirField,
   IContractContentDefinition,
   PrimitiveDateTime,
   PrimitiveMarkdown,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ContractContentDefinition", "BackboneElement")
 export class ContractContentDefinition extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.ContentDefinition";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "publicationDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publicationStatus",
-      fieldType: [ContractPublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "copyright",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public subType?: CodeableConcept;
 
+  @FhirField("Reference")
   public publisher?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public publicationDate?: PrimitiveDateTime;
 
+  @FhirField("ContractPublicationStatus")
   public publicationStatus?: ContractPublicationStatus;
 
+  @FhirField("PrimitiveMarkdown")
   public copyright?: PrimitiveMarkdown;
 
   public static parse(

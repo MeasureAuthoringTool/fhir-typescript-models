@@ -1,10 +1,13 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DomainResource,
   Dosage,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IMedicationDispense,
   MedicationDispensePerformer,
@@ -13,164 +16,89 @@ import {
   PrimitiveDateTime,
   Reference,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationDispense", "DomainResource")
 export class MedicationDispense extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationDispense";
-  
+
   static readonly primaryCodePath: string | null = "medication";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "partOf",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [MedicationDispenseStatus],
-      isArray: false
-    }, {
-      fieldName: "statusReason",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "medication",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "context",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "supportingInformation",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "performer",
-      fieldType: [MedicationDispensePerformer],
-      isArray: true
-    }, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "authorizingPrescription",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "daysSupply",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "whenPrepared",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "whenHandedOver",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "destination",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "receiver",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "dosageInstruction",
-      fieldType: [Dosage],
-      isArray: true
-    }, {
-      fieldName: "substitution",
-      fieldType: [MedicationDispenseSubstitution],
-      isArray: false
-    }, {
-      fieldName: "detectedIssue",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "eventHistory",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("Reference")
   public partOf?: Array<Reference>;
 
+  @FhirField("MedicationDispenseStatus")
   public status?: MedicationDispenseStatus;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public statusReason?: CodeableConcept | Reference;
 
+  @FhirField("CodeableConcept")
   public category?: CodeableConcept;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public medication?: CodeableConcept | Reference;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public context?: Reference;
 
+  @FhirList("Reference")
   public supportingInformation?: Array<Reference>;
 
+  @FhirList("MedicationDispensePerformer")
   public performer?: Array<MedicationDispensePerformer>;
 
+  @FhirField("Reference")
   public location?: Reference;
 
+  @FhirList("Reference")
   public authorizingPrescription?: Array<Reference>;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirField("SimpleQuantity")
   public daysSupply?: SimpleQuantity;
 
+  @FhirField("PrimitiveDateTime")
   public whenPrepared?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveDateTime")
   public whenHandedOver?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public destination?: Reference;
 
+  @FhirList("Reference")
   public receiver?: Array<Reference>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("Dosage")
   public dosageInstruction?: Array<Dosage>;
 
+  @FhirField("MedicationDispenseSubstitution")
   public substitution?: MedicationDispenseSubstitution;
 
+  @FhirList("Reference")
   public detectedIssue?: Array<Reference>;
 
+  @FhirList("Reference")
   public eventHistory?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | Reference | undefined {

@@ -1,57 +1,41 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   ISubstancePolymerRepeatRepeatUnit,
   PrimitiveString,
   SubstanceAmount,
   SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation,
   SubstancePolymerRepeatRepeatUnitStructuralRepresentation,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstancePolymerRepeatRepeatUnit", "BackboneElement")
 export class SubstancePolymerRepeatRepeatUnit extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstancePolymer.Repeat.RepeatUnit";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "orientationOfPolymerisation",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "repeatUnit",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [SubstanceAmount],
-      isArray: false
-    }, {
-      fieldName: "degreeOfPolymerisation",
-      fieldType: [SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation],
-      isArray: true
-    }, {
-      fieldName: "structuralRepresentation",
-      fieldType: [SubstancePolymerRepeatRepeatUnitStructuralRepresentation],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public orientationOfPolymerisation?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public repeatUnit?: PrimitiveString;
 
+  @FhirField("SubstanceAmount")
   public amount?: SubstanceAmount;
 
+  @FhirList("SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation")
   public degreeOfPolymerisation?: Array<SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation>;
 
+  @FhirList("SubstancePolymerRepeatRepeatUnitStructuralRepresentation")
   public structuralRepresentation?: Array<SubstancePolymerRepeatRepeatUnitStructuralRepresentation>;
 
   public static parse(

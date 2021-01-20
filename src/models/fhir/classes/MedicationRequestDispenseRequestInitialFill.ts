@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Duration,
+  FhirField,
   IMedicationRequestDispenseRequestInitialFill,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationRequestDispenseRequestInitialFill", "BackboneElement")
 export class MedicationRequestDispenseRequestInitialFill extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationRequest.DispenseRequest.InitialFill";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "duration",
-      fieldType: [Duration],
-      isArray: false
-    }];
-  }
-
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirField("Duration")
   public duration?: Duration;
 
   public static parse(

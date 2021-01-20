@@ -1,88 +1,57 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   CoverageEligibilityRequestItemDiagnosis,
   Extension,
+  FhirField,
+  FhirList,
   ICoverageEligibilityRequestItem,
   Money,
   PrimitivePositiveInt,
   Reference,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CoverageEligibilityRequestItem", "BackboneElement")
 export class CoverageEligibilityRequestItem extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityRequest.Item";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "supportingInfoSequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: true
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "productOrService",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "modifier",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "provider",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "unitPrice",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "facility",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "diagnosis",
-      fieldType: [CoverageEligibilityRequestItemDiagnosis],
-      isArray: true
-    }, {
-      fieldName: "detail",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("PrimitivePositiveInt")
   public supportingInfoSequence?: Array<PrimitivePositiveInt>;
 
+  @FhirField("CodeableConcept")
   public category?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public productOrService?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public modifier?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public provider?: Reference;
 
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirField("Money")
   public unitPrice?: Money;
 
+  @FhirField("Reference")
   public facility?: Reference;
 
+  @FhirList("CoverageEligibilityRequestItemDiagnosis")
   public diagnosis?: Array<CoverageEligibilityRequestItemDiagnosis>;
 
+  @FhirList("Reference")
   public detail?: Array<Reference>;
 
   public static parse(
@@ -92,10 +61,7 @@ export class CoverageEligibilityRequestItem extends BackboneElement {
     const newInstance: CoverageEligibilityRequestItem = BackboneElement.parse(json, providedInstance);
   
     if (json.supportingInfoSequence !== undefined) {
-      newInstance.supportingInfoSequence = json.supportingInfoSequence.map((x, i) => {
-        const ext = json._supportingInfoSequence && json._supportingInfoSequence[i];
-        return PrimitivePositiveInt.parsePrimitive(x, ext);
-      });
+      newInstance.supportingInfoSequence = json.supportingInfoSequence.map((x, i) => PrimitivePositiveInt.parsePrimitive(x, json._supportingInfoSequence?.[i]));
     }
     if (json.category !== undefined) {
       newInstance.category = CodeableConcept.parse(json.category);

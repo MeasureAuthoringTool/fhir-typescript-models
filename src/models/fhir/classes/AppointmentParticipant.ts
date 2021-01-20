@@ -1,57 +1,41 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   IAppointmentParticipant,
   ParticipantRequired,
   ParticipationStatus,
   Period,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AppointmentParticipant", "BackboneElement")
 export class AppointmentParticipant extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Appointment.Participant";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "actor",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "required",
-      fieldType: [ParticipantRequired],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [ParticipationStatus],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirList("CodeableConcept")
   public type?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public actor?: Reference;
 
+  @FhirField("ParticipantRequired")
   public required?: ParticipantRequired;
 
+  @FhirField("ParticipationStatus")
   public status?: ParticipationStatus;
 
+  @FhirField("Period")
   public period?: Period;
 
   public static parse(

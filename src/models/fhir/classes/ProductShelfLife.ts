@@ -1,48 +1,35 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   Identifier,
   IProductShelfLife,
   Quantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ProductShelfLife", "BackboneElement")
 export class ProductShelfLife extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ProductShelfLife";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "specialPrecautionsForStorage",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("Quantity")
   public period?: Quantity;
 
+  @FhirList("CodeableConcept")
   public specialPrecautionsForStorage?: Array<CodeableConcept>;
 
   public static parse(

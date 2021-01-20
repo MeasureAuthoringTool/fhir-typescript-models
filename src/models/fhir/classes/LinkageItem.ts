@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   ILinkageItem,
   LinkageType,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("LinkageItem", "BackboneElement")
 export class LinkageItem extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Linkage.Item";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [LinkageType],
-      isArray: false
-    }, {
-      fieldName: "resource",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("LinkageType")
   public type?: LinkageType;
 
+  @FhirField("Reference")
   public resource?: Reference;
 
   public static parse(

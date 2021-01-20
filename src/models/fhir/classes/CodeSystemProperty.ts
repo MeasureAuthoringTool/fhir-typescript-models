@@ -1,50 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   ICodeSystemProperty,
   PrimitiveCode,
   PrimitiveString,
   PrimitiveUri,
   PropertyType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CodeSystemProperty", "BackboneElement")
 export class CodeSystemProperty extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CodeSystem.Property";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "uri",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [PropertyType],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveCode")
   public code?: PrimitiveCode;
 
+  @FhirField("PrimitiveUri")
   public uri?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PropertyType")
   public type?: PropertyType;
 
   public static parse(

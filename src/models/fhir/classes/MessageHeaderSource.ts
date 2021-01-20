@@ -1,55 +1,38 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ContactPoint,
   Extension,
+  FhirField,
   IMessageHeaderSource,
   PrimitiveString,
   PrimitiveUrl,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MessageHeaderSource", "BackboneElement")
 export class MessageHeaderSource extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MessageHeader.Source";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "software",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactPoint],
-      isArray: false
-    }, {
-      fieldName: "endpoint",
-      fieldType: [PrimitiveUrl],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public software?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("ContactPoint")
   public contact?: ContactPoint;
 
+  @FhirField("PrimitiveUrl")
   public endpoint?: PrimitiveUrl;
 
   public static parse(

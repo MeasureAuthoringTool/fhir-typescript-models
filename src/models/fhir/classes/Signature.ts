@@ -1,69 +1,47 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Coding,
   Element,
   Extension,
+  FhirField,
+  FhirList,
   ISignature,
   MimeType,
   PrimitiveBase64Binary,
   PrimitiveInstant,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Signature", "Element")
 export class Signature extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Signature";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "type",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "when",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "who",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "onBehalfOf",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "targetFormat",
-      fieldType: [MimeType],
-      isArray: false
-    }, {
-      fieldName: "sigFormat",
-      fieldType: [MimeType],
-      isArray: false
-    }, {
-      fieldName: "data",
-      fieldType: [PrimitiveBase64Binary],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Coding")
   public type?: Array<Coding>;
 
+  @FhirField("PrimitiveInstant")
   public when?: PrimitiveInstant;
 
+  @FhirField("Reference")
   public who?: Reference;
 
+  @FhirField("Reference")
   public onBehalfOf?: Reference;
 
+  @FhirField("MimeType")
   public targetFormat?: MimeType;
 
+  @FhirField("MimeType")
   public sigFormat?: MimeType;
 
+  @FhirField("PrimitiveBase64Binary")
   public data?: PrimitiveBase64Binary;
 
   public static parse(

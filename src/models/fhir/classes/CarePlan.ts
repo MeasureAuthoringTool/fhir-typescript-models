@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CarePlanActivity,
   CarePlanIntent,
@@ -7,6 +7,8 @@ import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   ICarePlan,
   Identifier,
   Period,
@@ -15,158 +17,86 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CarePlan", "DomainResource")
 export class CarePlan extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CarePlan";
-  
+
   static readonly primaryCodePath: string | null = "category";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "instantiatesCanonical",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "instantiatesUri",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "replaces",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "partOf",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [CarePlanStatus],
-      isArray: false
-    }, {
-      fieldName: "intent",
-      fieldType: [CarePlanIntent],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "author",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "contributor",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "careTeam",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "addresses",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "supportingInfo",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "goal",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "activity",
-      fieldType: [CarePlanActivity],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("PrimitiveCanonical")
   public instantiatesCanonical?: Array<PrimitiveCanonical>;
 
+  @FhirList("PrimitiveUri")
   public instantiatesUri?: Array<PrimitiveUri>;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirList("Reference")
   public replaces?: Array<Reference>;
 
+  @FhirList("Reference")
   public partOf?: Array<Reference>;
 
+  @FhirField("CarePlanStatus")
   public status?: CarePlanStatus;
 
+  @FhirField("CarePlanIntent")
   public intent?: CarePlanIntent;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public author?: Reference;
 
+  @FhirList("Reference")
   public contributor?: Array<Reference>;
 
+  @FhirList("Reference")
   public careTeam?: Array<Reference>;
 
+  @FhirList("Reference")
   public addresses?: Array<Reference>;
 
+  @FhirList("Reference")
   public supportingInfo?: Array<Reference>;
 
+  @FhirList("Reference")
   public goal?: Array<Reference>;
 
+  @FhirList("CarePlanActivity")
   public activity?: Array<CarePlanActivity>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -187,16 +117,10 @@ export class CarePlan extends DomainResource {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
     if (json.instantiatesCanonical !== undefined) {
-      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
-        const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._instantiatesCanonical?.[i]));
     }
     if (json.instantiatesUri !== undefined) {
-      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
-        const ext = json._instantiatesUri && json._instantiatesUri[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => PrimitiveUri.parsePrimitive(x, json._instantiatesUri?.[i]));
     }
     if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));

@@ -1,10 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   Coding,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IImagingStudy,
   ImagingStudySeries,
@@ -13,140 +15,77 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImagingStudy", "DomainResource")
 export class ImagingStudy extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImagingStudy";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [ImagingStudyStatus],
-      isArray: false
-    }, {
-      fieldName: "modality",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "started",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "referrer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "interpreter",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "endpoint",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "numberOfSeries",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "numberOfInstances",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "procedureReference",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "procedureCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "series",
-      fieldType: [ImagingStudySeries],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("ImagingStudyStatus")
   public status?: ImagingStudyStatus;
 
+  @FhirList("Coding")
   public modality?: Array<Coding>;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public started?: PrimitiveDateTime;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirField("Reference")
   public referrer?: Reference;
 
+  @FhirList("Reference")
   public interpreter?: Array<Reference>;
 
+  @FhirList("Reference")
   public endpoint?: Array<Reference>;
 
+  @FhirField("PrimitiveUnsignedInt")
   public numberOfSeries?: PrimitiveUnsignedInt;
 
+  @FhirField("PrimitiveUnsignedInt")
   public numberOfInstances?: PrimitiveUnsignedInt;
 
+  @FhirField("Reference")
   public procedureReference?: Reference;
 
+  @FhirList("CodeableConcept")
   public procedureCode?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public location?: Reference;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirList("ImagingStudySeries")
   public series?: Array<ImagingStudySeries>;
 
   public static parse(

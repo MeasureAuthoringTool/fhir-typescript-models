@@ -1,48 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IRiskEvidenceSynthesisRiskEstimatePrecisionEstimate,
   PrimitiveDecimal,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("RiskEvidenceSynthesisRiskEstimatePrecisionEstimate", "BackboneElement")
 export class RiskEvidenceSynthesisRiskEstimatePrecisionEstimate extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RiskEvidenceSynthesis.RiskEstimate.PrecisionEstimate";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "level",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "from",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "to",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("PrimitiveDecimal")
   public level?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public from?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public to?: PrimitiveDecimal;
 
   public static parse(

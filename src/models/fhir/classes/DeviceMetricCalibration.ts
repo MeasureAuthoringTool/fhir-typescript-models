@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   DeviceMetricCalibrationState,
   DeviceMetricCalibrationType,
   Extension,
+  FhirField,
   IDeviceMetricCalibration,
   PrimitiveInstant,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DeviceMetricCalibration", "BackboneElement")
 export class DeviceMetricCalibration extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceMetric.Calibration";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [DeviceMetricCalibrationType],
-      isArray: false
-    }, {
-      fieldName: "state",
-      fieldType: [DeviceMetricCalibrationState],
-      isArray: false
-    }, {
-      fieldName: "time",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }];
-  }
-
+  @FhirField("DeviceMetricCalibrationType")
   public type?: DeviceMetricCalibrationType;
 
+  @FhirField("DeviceMetricCalibrationState")
   public state?: DeviceMetricCalibrationState;
 
+  @FhirField("PrimitiveInstant")
   public time?: PrimitiveInstant;
 
   public static parse(

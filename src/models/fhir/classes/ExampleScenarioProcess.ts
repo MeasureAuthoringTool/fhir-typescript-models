@@ -1,55 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ExampleScenarioProcessStep,
   Extension,
+  FhirField,
+  FhirList,
   IExampleScenarioProcess,
   PrimitiveMarkdown,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExampleScenarioProcess", "BackboneElement")
 export class ExampleScenarioProcess extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExampleScenario.Process";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "preConditions",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "postConditions",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "step",
-      fieldType: [ExampleScenarioProcessStep],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveMarkdown")
   public preConditions?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveMarkdown")
   public postConditions?: PrimitiveMarkdown;
 
+  @FhirList("ExampleScenarioProcessStep")
   public step?: Array<ExampleScenarioProcessStep>;
 
   public static parse(

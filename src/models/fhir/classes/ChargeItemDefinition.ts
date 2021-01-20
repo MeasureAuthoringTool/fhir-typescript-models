@@ -1,11 +1,13 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   ChargeItemDefinitionApplicability,
   ChargeItemDefinitionPropertyGroup,
   CodeableConcept,
   ContactDetail,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IChargeItemDefinition,
   Identifier,
   Period,
@@ -19,158 +21,86 @@ import {
   PublicationStatus,
   Reference,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ChargeItemDefinition", "DomainResource")
 export class ChargeItemDefinition extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ChargeItemDefinition";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "derivedFromUri",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "partOf",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "replaces",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "experimental",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "copyright",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "approvalDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "lastReviewDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "effectivePeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "instance",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "applicability",
-      fieldType: [ChargeItemDefinitionApplicability],
-      isArray: true
-    }, {
-      fieldName: "propertyGroup",
-      fieldType: [ChargeItemDefinitionPropertyGroup],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirList("PrimitiveUri")
   public derivedFromUri?: Array<PrimitiveUri>;
 
+  @FhirList("PrimitiveCanonical")
   public partOf?: Array<PrimitiveCanonical>;
 
+  @FhirList("PrimitiveCanonical")
   public replaces?: Array<PrimitiveCanonical>;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("PrimitiveBoolean")
   public experimental?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public copyright?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveDate")
   public approvalDate?: PrimitiveDate;
 
+  @FhirField("PrimitiveDate")
   public lastReviewDate?: PrimitiveDate;
 
+  @FhirField("Period")
   public effectivePeriod?: Period;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirList("Reference")
   public instance?: Array<Reference>;
 
+  @FhirList("ChargeItemDefinitionApplicability")
   public applicability?: Array<ChargeItemDefinitionApplicability>;
 
+  @FhirList("ChargeItemDefinitionPropertyGroup")
   public propertyGroup?: Array<ChargeItemDefinitionPropertyGroup>;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -200,22 +130,13 @@ export class ChargeItemDefinition extends DomainResource {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
     if (json.derivedFromUri !== undefined) {
-      newInstance.derivedFromUri = json.derivedFromUri.map((x, i) => {
-        const ext = json._derivedFromUri && json._derivedFromUri[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.derivedFromUri = json.derivedFromUri.map((x, i) => PrimitiveUri.parsePrimitive(x, json._derivedFromUri?.[i]));
     }
     if (json.partOf !== undefined) {
-      newInstance.partOf = json.partOf.map((x, i) => {
-        const ext = json._partOf && json._partOf[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.partOf = json.partOf.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._partOf?.[i]));
     }
     if (json.replaces !== undefined) {
-      newInstance.replaces = json.replaces.map((x, i) => {
-        const ext = json._replaces && json._replaces[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.replaces = json.replaces.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._replaces?.[i]));
     }
     if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);

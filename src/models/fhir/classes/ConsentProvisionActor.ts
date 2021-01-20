@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
   IConsentProvisionActor,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ConsentProvisionActor", "BackboneElement")
 export class ConsentProvisionActor extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Consent.Provision.Actor";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "role",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "reference",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public role?: CodeableConcept;
 
+  @FhirField("Reference")
   public reference?: Reference;
 
   public static parse(

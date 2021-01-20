@@ -1,71 +1,49 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Address,
   AdministrativeGender,
   BackboneElement,
   CodeableConcept,
   ContactPoint,
   Extension,
+  FhirField,
+  FhirList,
   HumanName,
   IPatientContact,
   Period,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PatientContact", "BackboneElement")
 export class PatientContact extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Patient.Contact";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "relationship",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "name",
-      fieldType: [HumanName],
-      isArray: false
-    }, {
-      fieldName: "telecom",
-      fieldType: [ContactPoint],
-      isArray: true
-    }, {
-      fieldName: "address",
-      fieldType: [Address],
-      isArray: false
-    }, {
-      fieldName: "gender",
-      fieldType: [AdministrativeGender],
-      isArray: false
-    }, {
-      fieldName: "organization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirList("CodeableConcept")
   public relationship?: Array<CodeableConcept>;
 
+  @FhirField("HumanName")
   public name?: HumanName;
 
+  @FhirList("ContactPoint")
   public telecom?: Array<ContactPoint>;
 
+  @FhirField("Address")
   public address?: Address;
 
+  @FhirField("AdministrativeGender")
   public gender?: AdministrativeGender;
 
+  @FhirField("Reference")
   public organization?: Reference;
 
+  @FhirField("Period")
   public period?: Period;
 
   public static parse(

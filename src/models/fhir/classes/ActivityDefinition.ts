@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   ActivityDefinitionDynamicValue,
   ActivityDefinitionKind,
   ActivityDefinitionParticipant,
@@ -10,6 +10,9 @@ import {
   Dosage,
   Duration,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IActivityDefinition,
   Identifier,
   Period,
@@ -29,296 +32,155 @@ import {
   SimpleQuantity,
   Timing,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ActivityDefinition", "DomainResource")
 export class ActivityDefinition extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ActivityDefinition";
-  
+
   static readonly primaryCodePath: string | null = "topic";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "subtitle",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "experimental",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "purpose",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "usage",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "copyright",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "approvalDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "lastReviewDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "effectivePeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "topic",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "author",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "editor",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "reviewer",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "endorser",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "relatedArtifact",
-      fieldType: [RelatedArtifact],
-      isArray: true
-    }, {
-      fieldName: "library",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "kind",
-      fieldType: [ActivityDefinitionKind],
-      isArray: false
-    }, {
-      fieldName: "profile",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "intent",
-      fieldType: [RequestIntent],
-      isArray: false
-    }, {
-      fieldName: "priority",
-      fieldType: [RequestPriority],
-      isArray: false
-    }, {
-      fieldName: "doNotPerform",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "timing",
-      fieldType: [Timing, PrimitiveDateTime, Age, Period, Range, Duration],
-      isArray: false
-    }, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "participant",
-      fieldType: [ActivityDefinitionParticipant],
-      isArray: true
-    }, {
-      fieldName: "product",
-      fieldType: [Reference, CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "dosage",
-      fieldType: [Dosage],
-      isArray: true
-    }, {
-      fieldName: "bodySite",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "specimenRequirement",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "observationRequirement",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "observationResultRequirement",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "transform",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "dynamicValue",
-      fieldType: [ActivityDefinitionDynamicValue],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public subtitle?: PrimitiveString;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("PrimitiveBoolean")
   public experimental?: PrimitiveBoolean;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public subject?: CodeableConcept | Reference;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public purpose?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveString")
   public usage?: PrimitiveString;
 
+  @FhirField("PrimitiveMarkdown")
   public copyright?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveDate")
   public approvalDate?: PrimitiveDate;
 
+  @FhirField("PrimitiveDate")
   public lastReviewDate?: PrimitiveDate;
 
+  @FhirField("Period")
   public effectivePeriod?: Period;
 
+  @FhirList("CodeableConcept")
   public topic?: Array<CodeableConcept>;
 
+  @FhirList("ContactDetail")
   public author?: Array<ContactDetail>;
 
+  @FhirList("ContactDetail")
   public editor?: Array<ContactDetail>;
 
+  @FhirList("ContactDetail")
   public reviewer?: Array<ContactDetail>;
 
+  @FhirList("ContactDetail")
   public endorser?: Array<ContactDetail>;
 
+  @FhirList("RelatedArtifact")
   public relatedArtifact?: Array<RelatedArtifact>;
 
+  @FhirList("PrimitiveCanonical")
   public library?: Array<PrimitiveCanonical>;
 
+  @FhirField("ActivityDefinitionKind")
   public kind?: ActivityDefinitionKind;
 
+  @FhirField("PrimitiveCanonical")
   public profile?: PrimitiveCanonical;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("RequestIntent")
   public intent?: RequestIntent;
 
+  @FhirField("RequestPriority")
   public priority?: RequestPriority;
 
+  @FhirField("PrimitiveBoolean")
   public doNotPerform?: PrimitiveBoolean;
 
+  @FhirChoice("Timing", "PrimitiveDateTime", "Age", "Period", "Range", "Duration")
   public timing?: Timing | PrimitiveDateTime | Age | Period | Range | Duration;
 
+  @FhirField("Reference")
   public location?: Reference;
 
+  @FhirList("ActivityDefinitionParticipant")
   public participant?: Array<ActivityDefinitionParticipant>;
 
+  @FhirChoice("Reference", "CodeableConcept")
   public product?: Reference | CodeableConcept;
 
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirList("Dosage")
   public dosage?: Array<Dosage>;
 
+  @FhirList("CodeableConcept")
   public bodySite?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public specimenRequirement?: Array<Reference>;
 
+  @FhirList("Reference")
   public observationRequirement?: Array<Reference>;
 
+  @FhirList("Reference")
   public observationResultRequirement?: Array<Reference>;
 
+  @FhirField("PrimitiveCanonical")
   public transform?: PrimitiveCanonical;
 
+  @FhirList("ActivityDefinitionDynamicValue")
   public dynamicValue?: Array<ActivityDefinitionDynamicValue>;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -420,10 +282,7 @@ export class ActivityDefinition extends DomainResource {
       newInstance.relatedArtifact = json.relatedArtifact.map((x) => RelatedArtifact.parse(x));
     }
     if (json.library !== undefined) {
-      newInstance.library = json.library.map((x, i) => {
-        const ext = json._library && json._library[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.library = json.library.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._library?.[i]));
     }
     if (json.kind !== undefined) {
       newInstance.kind = ActivityDefinitionKind.parsePrimitive(json.kind, json._kind);

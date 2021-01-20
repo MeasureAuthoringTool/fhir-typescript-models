@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Extension,
+  FhirField,
   IBinary,
   MimeType,
   PrimitiveBase64Binary,
   Reference,
   Resource,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Binary", "Resource")
 export class Binary extends Resource {
   static readonly baseType: string = "FHIR.Resource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Binary";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Resource.fieldInfo, {
-      fieldName: "contentType",
-      fieldType: [MimeType],
-      isArray: false
-    }, {
-      fieldName: "securityContext",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "data",
-      fieldType: [PrimitiveBase64Binary],
-      isArray: false
-    }];
-  }
-
+  @FhirField("MimeType")
   public contentType?: MimeType;
 
+  @FhirField("Reference")
   public securityContext?: Reference;
 
+  @FhirField("PrimitiveBase64Binary")
   public data?: PrimitiveBase64Binary;
 
   public static parse(

@@ -1,49 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   DaysOfWeek,
   Extension,
+  FhirField,
+  FhirList,
   IHealthcareServiceAvailableTime,
   PrimitiveBoolean,
   PrimitiveTime,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("HealthcareServiceAvailableTime", "BackboneElement")
 export class HealthcareServiceAvailableTime extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "HealthcareService.AvailableTime";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "daysOfWeek",
-      fieldType: [DaysOfWeek],
-      isArray: true
-    }, {
-      fieldName: "allDay",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "availableStartTime",
-      fieldType: [PrimitiveTime],
-      isArray: false
-    }, {
-      fieldName: "availableEndTime",
-      fieldType: [PrimitiveTime],
-      isArray: false
-    }];
-  }
-
+  @FhirList("DaysOfWeek")
   public daysOfWeek?: Array<DaysOfWeek>;
 
+  @FhirField("PrimitiveBoolean")
   public allDay?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveTime")
   public availableStartTime?: PrimitiveTime;
 
+  @FhirField("PrimitiveTime")
   public availableEndTime?: PrimitiveTime;
 
   public static parse(
@@ -53,10 +40,7 @@ export class HealthcareServiceAvailableTime extends BackboneElement {
     const newInstance: HealthcareServiceAvailableTime = BackboneElement.parse(json, providedInstance);
   
     if (json.daysOfWeek !== undefined) {
-      newInstance.daysOfWeek = json.daysOfWeek.map((x, i) => {
-        const ext = json._daysOfWeek && json._daysOfWeek[i];
-        return DaysOfWeek.parsePrimitive(x, ext);
-      });
+      newInstance.daysOfWeek = json.daysOfWeek.map((x, i) => DaysOfWeek.parsePrimitive(x, json._daysOfWeek?.[i]));
     }
     if (json.allDay !== undefined) {
       newInstance.allDay = PrimitiveBoolean.parsePrimitive(json.allDay, json._allDay);

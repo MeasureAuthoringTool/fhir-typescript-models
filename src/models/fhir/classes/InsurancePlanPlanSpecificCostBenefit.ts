@@ -1,35 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   IInsurancePlanPlanSpecificCostBenefit,
   InsurancePlanPlanSpecificCostBenefitCost,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("InsurancePlanPlanSpecificCostBenefit", "BackboneElement")
 export class InsurancePlanPlanSpecificCostBenefit extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "InsurancePlan.Plan.SpecificCost.Benefit";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "cost",
-      fieldType: [InsurancePlanPlanSpecificCostBenefitCost],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("InsurancePlanPlanSpecificCostBenefitCost")
   public cost?: Array<InsurancePlanPlanSpecificCostBenefitCost>;
 
   public static parse(

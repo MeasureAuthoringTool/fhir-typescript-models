@@ -1,22 +1,18 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   PrimitiveCode,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AddressType", "PrimitiveCode")
 export class AddressType extends PrimitiveCode {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AddressType";
-  
-  static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...PrimitiveCode.fieldInfo, 
-    ];
-  }
+  static readonly primaryCodePath: string | null = null;
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveCode.parsePrimitive>[0],

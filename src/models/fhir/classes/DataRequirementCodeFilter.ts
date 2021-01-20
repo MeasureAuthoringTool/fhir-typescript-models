@@ -1,49 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Coding,
   Element,
   Extension,
+  FhirField,
+  FhirList,
   IDataRequirementCodeFilter,
   PrimitiveCanonical,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DataRequirementCodeFilter", "Element")
 export class DataRequirementCodeFilter extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DataRequirement.CodeFilter";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "path",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "searchParam",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "valueSet",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [Coding],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public path?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public searchParam?: PrimitiveString;
 
+  @FhirField("PrimitiveCanonical")
   public valueSet?: PrimitiveCanonical;
 
+  @FhirList("Coding")
   public code?: Array<Coding>;
 
   public static parse(

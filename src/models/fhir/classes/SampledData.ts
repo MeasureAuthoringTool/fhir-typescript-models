@@ -1,68 +1,45 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirField,
   ISampledData,
   PrimitiveDecimal,
   PrimitivePositiveInt,
   PrimitiveString,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SampledData", "Element")
 export class SampledData extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SampledData";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "origin",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "factor",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "lowerLimit",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "upperLimit",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "dimensions",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "data",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("SimpleQuantity")
   public origin?: SimpleQuantity;
 
+  @FhirField("PrimitiveDecimal")
   public period?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public factor?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public lowerLimit?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public upperLimit?: PrimitiveDecimal;
 
+  @FhirField("PrimitivePositiveInt")
   public dimensions?: PrimitivePositiveInt;
 
+  @FhirField("PrimitiveString")
   public data?: PrimitiveString;
 
   public static parse(

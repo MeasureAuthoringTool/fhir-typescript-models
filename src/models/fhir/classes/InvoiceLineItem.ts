@@ -1,44 +1,35 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IInvoiceLineItem,
   InvoiceLineItemPriceComponent,
   PrimitivePositiveInt,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("InvoiceLineItem", "BackboneElement")
 export class InvoiceLineItem extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Invoice.LineItem";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "sequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "chargeItem",
-      fieldType: [Reference, CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "priceComponent",
-      fieldType: [InvoiceLineItemPriceComponent],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitivePositiveInt")
   public sequence?: PrimitivePositiveInt;
 
+  @FhirChoice("Reference", "CodeableConcept")
   public chargeItem?: Reference | CodeableConcept;
 
+  @FhirList("InvoiceLineItemPriceComponent")
   public priceComponent?: Array<InvoiceLineItemPriceComponent>;
 
   public static parse(

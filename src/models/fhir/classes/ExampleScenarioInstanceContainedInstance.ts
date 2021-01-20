@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IExampleScenarioInstanceContainedInstance,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExampleScenarioInstanceContainedInstance", "BackboneElement")
 export class ExampleScenarioInstanceContainedInstance extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExampleScenario.Instance.ContainedInstance";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "resourceId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "versionId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public resourceId?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public versionId?: PrimitiveString;
 
   public static parse(

@@ -1,50 +1,37 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CapabilityStatementMessagingEndpoint,
   CapabilityStatementMessagingSupportedMessage,
   Extension,
+  FhirField,
+  FhirList,
   ICapabilityStatementMessaging,
   PrimitiveMarkdown,
   PrimitiveUnsignedInt,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CapabilityStatementMessaging", "BackboneElement")
 export class CapabilityStatementMessaging extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Messaging";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "endpoint",
-      fieldType: [CapabilityStatementMessagingEndpoint],
-      isArray: true
-    }, {
-      fieldName: "reliableCache",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "documentation",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "supportedMessage",
-      fieldType: [CapabilityStatementMessagingSupportedMessage],
-      isArray: true
-    }];
-  }
-
+  @FhirList("CapabilityStatementMessagingEndpoint")
   public endpoint?: Array<CapabilityStatementMessagingEndpoint>;
 
+  @FhirField("PrimitiveUnsignedInt")
   public reliableCache?: PrimitiveUnsignedInt;
 
+  @FhirField("PrimitiveMarkdown")
   public documentation?: PrimitiveMarkdown;
 
+  @FhirList("CapabilityStatementMessagingSupportedMessage")
   public supportedMessage?: Array<CapabilityStatementMessagingSupportedMessage>;
 
   public static parse(

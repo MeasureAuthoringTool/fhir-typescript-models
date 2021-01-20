@@ -1,57 +1,41 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   ISubstanceReferenceInformation,
   PrimitiveString,
   SubstanceReferenceInformationClassification,
   SubstanceReferenceInformationGene,
   SubstanceReferenceInformationGeneElement,
   SubstanceReferenceInformationTarget,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceReferenceInformation", "DomainResource")
 export class SubstanceReferenceInformation extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceReferenceInformation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "comment",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "gene",
-      fieldType: [SubstanceReferenceInformationGene],
-      isArray: true
-    }, {
-      fieldName: "geneElement",
-      fieldType: [SubstanceReferenceInformationGeneElement],
-      isArray: true
-    }, {
-      fieldName: "classification",
-      fieldType: [SubstanceReferenceInformationClassification],
-      isArray: true
-    }, {
-      fieldName: "target",
-      fieldType: [SubstanceReferenceInformationTarget],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public comment?: PrimitiveString;
 
+  @FhirList("SubstanceReferenceInformationGene")
   public gene?: Array<SubstanceReferenceInformationGene>;
 
+  @FhirList("SubstanceReferenceInformationGeneElement")
   public geneElement?: Array<SubstanceReferenceInformationGeneElement>;
 
+  @FhirList("SubstanceReferenceInformationClassification")
   public classification?: Array<SubstanceReferenceInformationClassification>;
 
+  @FhirList("SubstanceReferenceInformationTarget")
   public target?: Array<SubstanceReferenceInformationTarget>;
 
   public static parse(

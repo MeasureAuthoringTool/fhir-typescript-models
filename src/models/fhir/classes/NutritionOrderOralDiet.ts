@@ -1,63 +1,44 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   INutritionOrderOralDiet,
   NutritionOrderOralDietNutrient,
   NutritionOrderOralDietTexture,
   PrimitiveString,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("NutritionOrderOralDiet", "BackboneElement")
 export class NutritionOrderOralDiet extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "NutritionOrder.OralDiet";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "schedule",
-      fieldType: [Timing],
-      isArray: true
-    }, {
-      fieldName: "nutrient",
-      fieldType: [NutritionOrderOralDietNutrient],
-      isArray: true
-    }, {
-      fieldName: "texture",
-      fieldType: [NutritionOrderOralDietTexture],
-      isArray: true
-    }, {
-      fieldName: "fluidConsistencyType",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "instruction",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirList("CodeableConcept")
   public type?: Array<CodeableConcept>;
 
+  @FhirList("Timing")
   public schedule?: Array<Timing>;
 
+  @FhirList("NutritionOrderOralDietNutrient")
   public nutrient?: Array<NutritionOrderOralDietNutrient>;
 
+  @FhirList("NutritionOrderOralDietTexture")
   public texture?: Array<NutritionOrderOralDietTexture>;
 
+  @FhirList("CodeableConcept")
   public fluidConsistencyType?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveString")
   public instruction?: PrimitiveString;
 
   public static parse(

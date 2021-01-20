@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Coding,
   Extension,
+  FhirChoice,
+  FhirField,
   IQuestionnaireItemEnableWhen,
   PrimitiveBoolean,
   PrimitiveDate,
@@ -14,38 +16,26 @@ import {
   Quantity,
   QuestionnaireItemOperator,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("QuestionnaireItemEnableWhen", "BackboneElement")
 export class QuestionnaireItemEnableWhen extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Questionnaire.Item.EnableWhen";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "question",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "operator",
-      fieldType: [QuestionnaireItemOperator],
-      isArray: false
-    }, {
-      fieldName: "answer",
-      fieldType: [PrimitiveBoolean, PrimitiveDecimal, PrimitiveInteger, PrimitiveDate, PrimitiveDateTime, PrimitiveTime, PrimitiveString, Coding, Quantity, Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public question?: PrimitiveString;
 
+  @FhirField("QuestionnaireItemOperator")
   public operator?: QuestionnaireItemOperator;
 
+  @FhirChoice("PrimitiveBoolean", "PrimitiveDecimal", "PrimitiveInteger", "PrimitiveDate", "PrimitiveDateTime", "PrimitiveTime", "PrimitiveString", "Coding", "Quantity", "Reference")
   public answer?: PrimitiveBoolean | PrimitiveDecimal | PrimitiveInteger | PrimitiveDate | PrimitiveDateTime | PrimitiveTime | PrimitiveString | Coding | Quantity | Reference;
 
   public static parse(

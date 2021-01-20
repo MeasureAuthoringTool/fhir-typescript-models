@@ -1,118 +1,71 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IMolecularSequenceQuality,
   MolecularSequenceQualityRoc,
   PrimitiveDecimal,
   PrimitiveInteger,
   QualityType,
   Quantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MolecularSequenceQuality", "BackboneElement")
 export class MolecularSequenceQuality extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence.Quality";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [QualityType],
-      isArray: false
-    }, {
-      fieldName: "standardSequence",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "start",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "end",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "score",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "method",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "truthTP",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "queryTP",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "truthFN",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "queryFP",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "gtFP",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "precision",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "recall",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "fScore",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "roc",
-      fieldType: [MolecularSequenceQualityRoc],
-      isArray: false
-    }];
-  }
-
+  @FhirField("QualityType")
   public type?: QualityType;
 
+  @FhirField("CodeableConcept")
   public standardSequence?: CodeableConcept;
 
+  @FhirField("PrimitiveInteger")
   public start?: PrimitiveInteger;
 
+  @FhirField("PrimitiveInteger")
   public end?: PrimitiveInteger;
 
+  @FhirField("Quantity")
   public score?: Quantity;
 
+  @FhirField("CodeableConcept")
   public method?: CodeableConcept;
 
+  @FhirField("PrimitiveDecimal")
   public truthTP?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public queryTP?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public truthFN?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public queryFP?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public gtFP?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public precision?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public recall?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public fScore?: PrimitiveDecimal;
 
+  @FhirField("MolecularSequenceQualityRoc")
   public roc?: MolecularSequenceQualityRoc;
 
   public static parse(

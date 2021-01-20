@@ -1,49 +1,35 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IConceptMapGroupElementTargetDependsOn,
   PrimitiveCanonical,
   PrimitiveString,
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ConceptMapGroupElementTargetDependsOn", "BackboneElement")
 export class ConceptMapGroupElementTargetDependsOn extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ConceptMap.Group.Element.Target.DependsOn";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "property",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "system",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "display",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public property?: PrimitiveUri;
 
+  @FhirField("PrimitiveCanonical")
   public system?: PrimitiveCanonical;
 
+  @FhirField("PrimitiveString")
   public value?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public display?: PrimitiveString;
 
   public static parse(

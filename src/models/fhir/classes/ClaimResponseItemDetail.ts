@@ -1,49 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ClaimResponseItemAdjudication,
   ClaimResponseItemDetailSubDetail,
   Extension,
+  FhirField,
+  FhirList,
   IClaimResponseItemDetail,
   PrimitivePositiveInt,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ClaimResponseItemDetail", "BackboneElement")
 export class ClaimResponseItemDetail extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClaimResponse.Item.Detail";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "detailSequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "noteNumber",
-      fieldType: [PrimitivePositiveInt],
-      isArray: true
-    }, {
-      fieldName: "adjudication",
-      fieldType: [ClaimResponseItemAdjudication],
-      isArray: true
-    }, {
-      fieldName: "subDetail",
-      fieldType: [ClaimResponseItemDetailSubDetail],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitivePositiveInt")
   public detailSequence?: PrimitivePositiveInt;
 
+  @FhirList("PrimitivePositiveInt")
   public noteNumber?: Array<PrimitivePositiveInt>;
 
+  @FhirList("ClaimResponseItemAdjudication")
   public adjudication?: Array<ClaimResponseItemAdjudication>;
 
+  @FhirList("ClaimResponseItemDetailSubDetail")
   public subDetail?: Array<ClaimResponseItemDetailSubDetail>;
 
   public static parse(
@@ -56,10 +43,7 @@ export class ClaimResponseItemDetail extends BackboneElement {
       newInstance.detailSequence = PrimitivePositiveInt.parsePrimitive(json.detailSequence, json._detailSequence);
     }
     if (json.noteNumber !== undefined) {
-      newInstance.noteNumber = json.noteNumber.map((x, i) => {
-        const ext = json._noteNumber && json._noteNumber[i];
-        return PrimitivePositiveInt.parsePrimitive(x, ext);
-      });
+      newInstance.noteNumber = json.noteNumber.map((x, i) => PrimitivePositiveInt.parsePrimitive(x, json._noteNumber?.[i]));
     }
     if (json.adjudication !== undefined) {
       newInstance.adjudication = json.adjudication.map((x) => ClaimResponseItemAdjudication.parse(x));

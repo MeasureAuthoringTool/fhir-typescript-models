@@ -1,50 +1,37 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   ISubstanceProtein,
   PrimitiveInteger,
   PrimitiveString,
   SubstanceProteinSubunit,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceProtein", "DomainResource")
 export class SubstanceProtein extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceProtein";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "sequenceType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "numberOfSubunits",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "disulfideLinkage",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "subunit",
-      fieldType: [SubstanceProteinSubunit],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public sequenceType?: CodeableConcept;
 
+  @FhirField("PrimitiveInteger")
   public numberOfSubunits?: PrimitiveInteger;
 
+  @FhirList("PrimitiveString")
   public disulfideLinkage?: Array<PrimitiveString>;
 
+  @FhirList("SubstanceProteinSubunit")
   public subunit?: Array<SubstanceProteinSubunit>;
 
   public static parse(
@@ -60,10 +47,7 @@ export class SubstanceProtein extends DomainResource {
       newInstance.numberOfSubunits = PrimitiveInteger.parsePrimitive(json.numberOfSubunits, json._numberOfSubunits);
     }
     if (json.disulfideLinkage !== undefined) {
-      newInstance.disulfideLinkage = json.disulfideLinkage.map((x, i) => {
-        const ext = json._disulfideLinkage && json._disulfideLinkage[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.disulfideLinkage = json.disulfideLinkage.map((x, i) => PrimitiveString.parsePrimitive(x, json._disulfideLinkage?.[i]));
     }
     if (json.subunit !== undefined) {
       newInstance.subunit = json.subunit.map((x) => SubstanceProteinSubunit.parse(x));

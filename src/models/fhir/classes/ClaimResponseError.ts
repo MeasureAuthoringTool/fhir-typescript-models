@@ -1,48 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IClaimResponseError,
   PrimitivePositiveInt,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ClaimResponseError", "BackboneElement")
 export class ClaimResponseError extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClaimResponse.Error";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "itemSequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "detailSequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "subDetailSequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitivePositiveInt")
   public itemSequence?: PrimitivePositiveInt;
 
+  @FhirField("PrimitivePositiveInt")
   public detailSequence?: PrimitivePositiveInt;
 
+  @FhirField("PrimitivePositiveInt")
   public subDetailSequence?: PrimitivePositiveInt;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
   public static parse(

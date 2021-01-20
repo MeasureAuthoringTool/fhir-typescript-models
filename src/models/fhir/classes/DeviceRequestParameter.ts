@@ -1,38 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
   IDeviceRequestParameter,
   PrimitiveBoolean,
   Quantity,
   Range,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DeviceRequestParameter", "BackboneElement")
 export class DeviceRequestParameter extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceRequest.Parameter";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [CodeableConcept, Quantity, Range, PrimitiveBoolean],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirChoice("CodeableConcept", "Quantity", "Range", "PrimitiveBoolean")
   public value?: CodeableConcept | Quantity | Range | PrimitiveBoolean;
 
   public static parse(

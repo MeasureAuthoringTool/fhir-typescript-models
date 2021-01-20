@@ -1,71 +1,49 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BundleEntry,
   BundleLink,
   BundleType,
   Extension,
+  FhirField,
+  FhirList,
   IBundle,
   Identifier,
   PrimitiveInstant,
   PrimitiveUnsignedInt,
   Resource,
   Signature,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Bundle", "Resource")
 export class Bundle extends Resource {
   static readonly baseType: string = "FHIR.Resource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Bundle";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Resource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [BundleType],
-      isArray: false
-    }, {
-      fieldName: "timestamp",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "total",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "link",
-      fieldType: [BundleLink],
-      isArray: true
-    }, {
-      fieldName: "entry",
-      fieldType: [BundleEntry],
-      isArray: true
-    }, {
-      fieldName: "signature",
-      fieldType: [Signature],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("BundleType")
   public type?: BundleType;
 
+  @FhirField("PrimitiveInstant")
   public timestamp?: PrimitiveInstant;
 
+  @FhirField("PrimitiveUnsignedInt")
   public total?: PrimitiveUnsignedInt;
 
+  @FhirList("BundleLink")
   public link?: Array<BundleLink>;
 
+  @FhirList("BundleEntry")
   public entry?: Array<BundleEntry>;
 
+  @FhirField("Signature")
   public signature?: Signature;
 
   public static parse(

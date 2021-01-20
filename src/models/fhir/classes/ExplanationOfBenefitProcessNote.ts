@@ -1,50 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IExplanationOfBenefitProcessNote,
   NoteType,
   PrimitivePositiveInt,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExplanationOfBenefitProcessNote", "BackboneElement")
 export class ExplanationOfBenefitProcessNote extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.ProcessNote";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "number",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [NoteType],
-      isArray: false
-    }, {
-      fieldName: "text",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "language",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitivePositiveInt")
   public number?: PrimitivePositiveInt;
 
+  @FhirField("NoteType")
   public type?: NoteType;
 
+  @FhirField("PrimitiveString")
   public text?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public language?: CodeableConcept;
 
   public static parse(

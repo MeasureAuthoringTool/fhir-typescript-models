@@ -1,78 +1,50 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   Identifier,
   IEncounterHospitalization,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EncounterHospitalization", "BackboneElement")
 export class EncounterHospitalization extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Encounter.Hospitalization";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "preAdmissionIdentifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "origin",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "admitSource",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "reAdmission",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "dietPreference",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "specialCourtesy",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "specialArrangement",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "destination",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "dischargeDisposition",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Identifier")
   public preAdmissionIdentifier?: Identifier;
 
+  @FhirField("Reference")
   public origin?: Reference;
 
+  @FhirField("CodeableConcept")
   public admitSource?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public reAdmission?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public dietPreference?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public specialCourtesy?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public specialArrangement?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public destination?: Reference;
 
+  @FhirField("CodeableConcept")
   public dischargeDisposition?: CodeableConcept;
 
   public static parse(

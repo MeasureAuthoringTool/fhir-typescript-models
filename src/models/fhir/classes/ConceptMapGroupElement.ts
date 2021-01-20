@@ -1,43 +1,33 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ConceptMapGroupElementTarget,
   Extension,
+  FhirField,
+  FhirList,
   IConceptMapGroupElement,
   PrimitiveCode,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ConceptMapGroupElement", "BackboneElement")
 export class ConceptMapGroupElement extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ConceptMap.Group.Element";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "display",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "target",
-      fieldType: [ConceptMapGroupElementTarget],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveCode")
   public code?: PrimitiveCode;
 
+  @FhirField("PrimitiveString")
   public display?: PrimitiveString;
 
+  @FhirList("ConceptMapGroupElementTarget")
   public target?: Array<ConceptMapGroupElementTarget>;
 
   public static parse(

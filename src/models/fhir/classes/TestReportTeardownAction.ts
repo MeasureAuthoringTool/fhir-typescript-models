@@ -1,28 +1,23 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
+  FhirField,
   ITestReportTeardownAction,
   TestReportSetupActionOperation,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TestReportTeardownAction", "BackboneElement")
 export class TestReportTeardownAction extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestReport.Teardown.Action";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "operation",
-      fieldType: [TestReportSetupActionOperation],
-      isArray: false
-    }];
-  }
-
+  @FhirField("TestReportSetupActionOperation")
   public operation?: TestReportSetupActionOperation;
 
   public static parse(

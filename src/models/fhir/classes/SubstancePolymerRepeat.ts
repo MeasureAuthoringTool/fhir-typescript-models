@@ -1,50 +1,37 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   ISubstancePolymerRepeat,
   PrimitiveInteger,
   PrimitiveString,
   SubstancePolymerRepeatRepeatUnit,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstancePolymerRepeat", "BackboneElement")
 export class SubstancePolymerRepeat extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstancePolymer.Repeat";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "numberOfUnits",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "averageMolecularFormula",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "repeatUnitAmountType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "repeatUnit",
-      fieldType: [SubstancePolymerRepeatRepeatUnit],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveInteger")
   public numberOfUnits?: PrimitiveInteger;
 
+  @FhirField("PrimitiveString")
   public averageMolecularFormula?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public repeatUnitAmountType?: CodeableConcept;
 
+  @FhirList("SubstancePolymerRepeatRepeatUnit")
   public repeatUnit?: Array<SubstancePolymerRepeatRepeatUnit>;
 
   public static parse(

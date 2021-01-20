@@ -1,11 +1,14 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DeviceRequestParameter,
   DeviceRequestStatus,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IDeviceRequest,
   Period,
@@ -16,164 +19,89 @@ import {
   RequestIntent,
   RequestPriority,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DeviceRequest", "DomainResource")
 export class DeviceRequest extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceRequest";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "instantiatesCanonical",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "instantiatesUri",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "priorRequest",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "groupIdentifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [DeviceRequestStatus],
-      isArray: false
-    }, {
-      fieldName: "intent",
-      fieldType: [RequestIntent],
-      isArray: false
-    }, {
-      fieldName: "priority",
-      fieldType: [RequestPriority],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [Reference, CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "parameter",
-      fieldType: [DeviceRequestParameter],
-      isArray: true
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "occurrence",
-      fieldType: [PrimitiveDateTime, Period, Timing],
-      isArray: false
-    }, {
-      fieldName: "authoredOn",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "requester",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "performerType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "insurance",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "supportingInfo",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "relevantHistory",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("PrimitiveCanonical")
   public instantiatesCanonical?: Array<PrimitiveCanonical>;
 
+  @FhirList("PrimitiveUri")
   public instantiatesUri?: Array<PrimitiveUri>;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirList("Reference")
   public priorRequest?: Array<Reference>;
 
+  @FhirField("Identifier")
   public groupIdentifier?: Identifier;
 
+  @FhirField("DeviceRequestStatus")
   public status?: DeviceRequestStatus;
 
+  @FhirField("RequestIntent")
   public intent?: RequestIntent;
 
+  @FhirField("RequestPriority")
   public priority?: RequestPriority;
 
+  @FhirChoice("Reference", "CodeableConcept")
   public code?: Reference | CodeableConcept;
 
+  @FhirList("DeviceRequestParameter")
   public parameter?: Array<DeviceRequestParameter>;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Period", "Timing")
   public occurrence?: PrimitiveDateTime | Period | Timing;
 
+  @FhirField("PrimitiveDateTime")
   public authoredOn?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public requester?: Reference;
 
+  @FhirField("CodeableConcept")
   public performerType?: CodeableConcept;
 
+  @FhirField("Reference")
   public performer?: Reference;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirList("Reference")
   public insurance?: Array<Reference>;
 
+  @FhirList("Reference")
   public supportingInfo?: Array<Reference>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("Reference")
   public relevantHistory?: Array<Reference>;
 
   get primaryCode(): Reference | CodeableConcept | undefined {
@@ -194,16 +122,10 @@ export class DeviceRequest extends DomainResource {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
     if (json.instantiatesCanonical !== undefined) {
-      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
-        const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._instantiatesCanonical?.[i]));
     }
     if (json.instantiatesUri !== undefined) {
-      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
-        const ext = json._instantiatesUri && json._instantiatesUri[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => PrimitiveUri.parsePrimitive(x, json._instantiatesUri?.[i]));
     }
     if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));

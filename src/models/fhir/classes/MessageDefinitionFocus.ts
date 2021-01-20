@@ -1,50 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IMessageDefinitionFocus,
   PrimitiveCanonical,
   PrimitiveString,
   PrimitiveUnsignedInt,
   ResourceType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MessageDefinitionFocus", "BackboneElement")
 export class MessageDefinitionFocus extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MessageDefinition.Focus";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [ResourceType],
-      isArray: false
-    }, {
-      fieldName: "profile",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "min",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "max",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("ResourceType")
   public code?: ResourceType;
 
+  @FhirField("PrimitiveCanonical")
   public profile?: PrimitiveCanonical;
 
+  @FhirField("PrimitiveUnsignedInt")
   public min?: PrimitiveUnsignedInt;
 
+  @FhirField("PrimitiveString")
   public max?: PrimitiveString;
 
   public static parse(

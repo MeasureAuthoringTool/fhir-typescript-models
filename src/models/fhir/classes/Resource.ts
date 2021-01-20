@@ -1,56 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   lookupResourceType,
   Extension,
+  FhirField,
   IResource,
   Meta,
   PrimitiveCode,
   PrimitiveUri,
   Type,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Resource", "Type")
 export class Resource extends Type {
   static readonly baseType: string = "";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Resource";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Type.fieldInfo, {
-      fieldName: "id",
-      fieldType: [String],
-      isArray: false
-    }, {
-      fieldName: "meta",
-      fieldType: [Meta],
-      isArray: false
-    }, {
-      fieldName: "implicitRules",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "language",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "resourceType",
-      fieldType: [String],
-      isArray: false
-    }];
-  }
-
+  @FhirField("SystemString")
   public id?: string;
 
+  @FhirField("Meta")
   public meta?: Meta;
 
+  @FhirField("PrimitiveUri")
   public implicitRules?: PrimitiveUri;
 
+  @FhirField("PrimitiveCode")
   public language?: PrimitiveCode;
 
+  @FhirField("SystemString")
   public resourceType?: string;
 
   constructor() {

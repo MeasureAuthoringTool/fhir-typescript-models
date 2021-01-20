@@ -1,50 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Coding,
   Extension,
+  FhirField,
   IImagingStudySeriesInstance,
   PrimitiveId,
   PrimitiveString,
   PrimitiveUnsignedInt,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImagingStudySeriesInstance", "BackboneElement")
 export class ImagingStudySeriesInstance extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImagingStudy.Series.Instance";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "uid",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "sopClass",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "number",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public uid?: PrimitiveId;
 
+  @FhirField("Coding")
   public sopClass?: Coding;
 
+  @FhirField("PrimitiveUnsignedInt")
   public number?: PrimitiveUnsignedInt;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
   public static parse(

@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Address,
   AdministrativeGender,
   Attachment,
@@ -7,6 +7,9 @@ import {
   ContactPoint,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   HumanName,
   Identifier,
   IPatient,
@@ -18,116 +21,65 @@ import {
   PrimitiveDateTime,
   PrimitiveInteger,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Patient", "DomainResource")
 export class Patient extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Patient";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "active",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [HumanName],
-      isArray: true
-    }, {
-      fieldName: "telecom",
-      fieldType: [ContactPoint],
-      isArray: true
-    }, {
-      fieldName: "gender",
-      fieldType: [AdministrativeGender],
-      isArray: false
-    }, {
-      fieldName: "birthDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "deceased",
-      fieldType: [PrimitiveBoolean, PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "address",
-      fieldType: [Address],
-      isArray: true
-    }, {
-      fieldName: "maritalStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "multipleBirth",
-      fieldType: [PrimitiveBoolean, PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "photo",
-      fieldType: [Attachment],
-      isArray: true
-    }, {
-      fieldName: "contact",
-      fieldType: [PatientContact],
-      isArray: true
-    }, {
-      fieldName: "communication",
-      fieldType: [PatientCommunication],
-      isArray: true
-    }, {
-      fieldName: "generalPractitioner",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "managingOrganization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "link",
-      fieldType: [PatientLink],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveBoolean")
   public active?: PrimitiveBoolean;
 
+  @FhirList("HumanName")
   public name?: Array<HumanName>;
 
+  @FhirList("ContactPoint")
   public telecom?: Array<ContactPoint>;
 
+  @FhirField("AdministrativeGender")
   public gender?: AdministrativeGender;
 
+  @FhirField("PrimitiveDate")
   public birthDate?: PrimitiveDate;
 
+  @FhirChoice("PrimitiveBoolean", "PrimitiveDateTime")
   public deceased?: PrimitiveBoolean | PrimitiveDateTime;
 
+  @FhirList("Address")
   public address?: Array<Address>;
 
+  @FhirField("CodeableConcept")
   public maritalStatus?: CodeableConcept;
 
+  @FhirChoice("PrimitiveBoolean", "PrimitiveInteger")
   public multipleBirth?: PrimitiveBoolean | PrimitiveInteger;
 
+  @FhirList("Attachment")
   public photo?: Array<Attachment>;
 
+  @FhirList("PatientContact")
   public contact?: Array<PatientContact>;
 
+  @FhirList("PatientCommunication")
   public communication?: Array<PatientCommunication>;
 
+  @FhirList("Reference")
   public generalPractitioner?: Array<Reference>;
 
+  @FhirField("Reference")
   public managingOrganization?: Reference;
 
+  @FhirList("PatientLink")
   public link?: Array<PatientLink>;
 
   public static parse(

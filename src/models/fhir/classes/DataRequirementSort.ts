@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirField,
   IDataRequirementSort,
   PrimitiveString,
   SortDirection,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DataRequirementSort", "Element")
 export class DataRequirementSort extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DataRequirement.Sort";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "path",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "direction",
-      fieldType: [SortDirection],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public path?: PrimitiveString;
 
+  @FhirField("SortDirection")
   public direction?: SortDirection;
 
   public static parse(

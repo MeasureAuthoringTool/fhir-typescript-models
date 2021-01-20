@@ -1,50 +1,38 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   GuidePageGeneration,
   IImplementationGuideDefinitionPage,
   PrimitiveString,
   PrimitiveUrl,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImplementationGuideDefinitionPage", "BackboneElement")
 export class ImplementationGuideDefinitionPage extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.Definition.Page";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveUrl, Reference],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "generation",
-      fieldType: [GuidePageGeneration],
-      isArray: false
-    }, {
-      fieldName: "page",
-      fieldType: [ImplementationGuideDefinitionPage],
-      isArray: true
-    }];
-  }
-
+  @FhirChoice("PrimitiveUrl", "Reference")
   public name?: PrimitiveUrl | Reference;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("GuidePageGeneration")
   public generation?: GuidePageGeneration;
 
+  @FhirList("ImplementationGuideDefinitionPage")
   public page?: Array<ImplementationGuideDefinitionPage>;
 
   public static parse(

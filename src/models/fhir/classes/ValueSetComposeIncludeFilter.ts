@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   FilterOperator,
   IValueSetComposeIncludeFilter,
   PrimitiveCode,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ValueSetComposeIncludeFilter", "BackboneElement")
 export class ValueSetComposeIncludeFilter extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ValueSet.Compose.Include.Filter";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "property",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "op",
-      fieldType: [FilterOperator],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveCode")
   public property?: PrimitiveCode;
 
+  @FhirField("FilterOperator")
   public op?: FilterOperator;
 
+  @FhirField("PrimitiveString")
   public value?: PrimitiveString;
 
   public static parse(

@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CatalogEntryRelationType,
   Extension,
+  FhirField,
   ICatalogEntryRelatedEntry,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CatalogEntryRelatedEntry", "BackboneElement")
 export class CatalogEntryRelatedEntry extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CatalogEntry.RelatedEntry";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "relationtype",
-      fieldType: [CatalogEntryRelationType],
-      isArray: false
-    }, {
-      fieldName: "item",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CatalogEntryRelationType")
   public relationtype?: CatalogEntryRelationType;
 
+  @FhirField("Reference")
   public item?: Reference;
 
   public static parse(

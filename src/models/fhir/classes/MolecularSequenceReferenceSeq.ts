@@ -1,82 +1,53 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IMolecularSequenceReferenceSeq,
   OrientationType,
   PrimitiveInteger,
   PrimitiveString,
   Reference,
   StrandType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MolecularSequenceReferenceSeq", "BackboneElement")
 export class MolecularSequenceReferenceSeq extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence.ReferenceSeq";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "chromosome",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "genomeBuild",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "orientation",
-      fieldType: [OrientationType],
-      isArray: false
-    }, {
-      fieldName: "referenceSeqId",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "referenceSeqPointer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "referenceSeqString",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "strand",
-      fieldType: [StrandType],
-      isArray: false
-    }, {
-      fieldName: "windowStart",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "windowEnd",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public chromosome?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public genomeBuild?: PrimitiveString;
 
+  @FhirField("OrientationType")
   public orientation?: OrientationType;
 
+  @FhirField("CodeableConcept")
   public referenceSeqId?: CodeableConcept;
 
+  @FhirField("Reference")
   public referenceSeqPointer?: Reference;
 
+  @FhirField("PrimitiveString")
   public referenceSeqString?: PrimitiveString;
 
+  @FhirField("StrandType")
   public strand?: StrandType;
 
+  @FhirField("PrimitiveInteger")
   public windowStart?: PrimitiveInteger;
 
+  @FhirField("PrimitiveInteger")
   public windowEnd?: PrimitiveInteger;
 
   public static parse(

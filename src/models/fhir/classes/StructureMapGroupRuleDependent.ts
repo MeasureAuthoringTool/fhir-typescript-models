@@ -1,36 +1,29 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IStructureMapGroupRuleDependent,
   PrimitiveId,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("StructureMapGroupRuleDependent", "BackboneElement")
 export class StructureMapGroupRuleDependent extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureMap.Group.Rule.Dependent";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "variable",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public name?: PrimitiveId;
 
+  @FhirList("PrimitiveString")
   public variable?: Array<PrimitiveString>;
 
   public static parse(
@@ -43,10 +36,7 @@ export class StructureMapGroupRuleDependent extends BackboneElement {
       newInstance.name = PrimitiveId.parsePrimitive(json.name, json._name);
     }
     if (json.variable !== undefined) {
-      newInstance.variable = json.variable.map((x, i) => {
-        const ext = json._variable && json._variable[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.variable = json.variable.map((x, i) => PrimitiveString.parsePrimitive(x, json._variable?.[i]));
     }
     return newInstance;
   }

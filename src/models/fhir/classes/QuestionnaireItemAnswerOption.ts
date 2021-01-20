@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Coding,
   Extension,
+  FhirChoice,
+  FhirField,
   IQuestionnaireItemAnswerOption,
   PrimitiveBoolean,
   PrimitiveDate,
@@ -10,32 +12,23 @@ import {
   PrimitiveString,
   PrimitiveTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("QuestionnaireItemAnswerOption", "BackboneElement")
 export class QuestionnaireItemAnswerOption extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Questionnaire.Item.AnswerOption";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "value",
-      fieldType: [PrimitiveInteger, PrimitiveDate, PrimitiveTime, PrimitiveString, Coding, Reference],
-      isArray: false
-    }, {
-      fieldName: "initialSelected",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("PrimitiveInteger", "PrimitiveDate", "PrimitiveTime", "PrimitiveString", "Coding", "Reference")
   public value?: PrimitiveInteger | PrimitiveDate | PrimitiveTime | PrimitiveString | Coding | Reference;
 
+  @FhirField("PrimitiveBoolean")
   public initialSelected?: PrimitiveBoolean;
 
   public static parse(

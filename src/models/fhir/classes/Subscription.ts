@@ -1,69 +1,47 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   ContactPoint,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   ISubscription,
   PrimitiveInstant,
   PrimitiveString,
   SubscriptionChannel,
   SubscriptionStatus,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Subscription", "DomainResource")
 export class Subscription extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Subscription";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "status",
-      fieldType: [SubscriptionStatus],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactPoint],
-      isArray: true
-    }, {
-      fieldName: "end",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "reason",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "criteria",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "error",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "channel",
-      fieldType: [SubscriptionChannel],
-      isArray: false
-    }];
-  }
-
+  @FhirField("SubscriptionStatus")
   public status?: SubscriptionStatus;
 
+  @FhirList("ContactPoint")
   public contact?: Array<ContactPoint>;
 
+  @FhirField("PrimitiveInstant")
   public end?: PrimitiveInstant;
 
+  @FhirField("PrimitiveString")
   public reason?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public criteria?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public error?: PrimitiveString;
 
+  @FhirField("SubscriptionChannel")
   public channel?: SubscriptionChannel;
 
   public static parse(

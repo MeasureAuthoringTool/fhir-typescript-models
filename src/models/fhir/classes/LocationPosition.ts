@@ -1,41 +1,30 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   ILocationPosition,
   PrimitiveDecimal,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("LocationPosition", "BackboneElement")
 export class LocationPosition extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Location.Position";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "longitude",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "latitude",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "altitude",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveDecimal")
   public longitude?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public latitude?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public altitude?: PrimitiveDecimal;
 
   public static parse(

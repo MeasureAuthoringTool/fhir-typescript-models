@@ -1,34 +1,26 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
+  FhirField,
   IRatio,
   Quantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Ratio", "Element")
 export class Ratio extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Ratio";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "numerator",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "denominator",
-      fieldType: [Quantity],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Quantity")
   public numerator?: Quantity;
 
+  @FhirField("Quantity")
   public denominator?: Quantity;
 
   public static parse(

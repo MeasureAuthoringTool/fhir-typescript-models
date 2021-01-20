@@ -1,10 +1,13 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   Coding,
   ContactDetail,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IMessageDefinition,
   MessageDefinitionAllowedResponse,
@@ -19,164 +22,89 @@ import {
   PrimitiveUri,
   PublicationStatus,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MessageDefinition", "DomainResource")
 export class MessageDefinition extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MessageDefinition";
-  
+
   static readonly primaryCodePath: string | null = "event";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "replaces",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "experimental",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "purpose",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "copyright",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "base",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "parent",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "event",
-      fieldType: [Coding, PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [MessageSignificanceCategory],
-      isArray: false
-    }, {
-      fieldName: "focus",
-      fieldType: [MessageDefinitionFocus],
-      isArray: true
-    }, {
-      fieldName: "responseRequired",
-      fieldType: [MessageheaderResponseRequest],
-      isArray: false
-    }, {
-      fieldName: "allowedResponse",
-      fieldType: [MessageDefinitionAllowedResponse],
-      isArray: true
-    }, {
-      fieldName: "graph",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirList("PrimitiveCanonical")
   public replaces?: Array<PrimitiveCanonical>;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("PrimitiveBoolean")
   public experimental?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public purpose?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveMarkdown")
   public copyright?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveCanonical")
   public base?: PrimitiveCanonical;
 
+  @FhirList("PrimitiveCanonical")
   public parent?: Array<PrimitiveCanonical>;
 
+  @FhirChoice("Coding", "PrimitiveUri")
   public event?: Coding | PrimitiveUri;
 
+  @FhirField("MessageSignificanceCategory")
   public category?: MessageSignificanceCategory;
 
+  @FhirList("MessageDefinitionFocus")
   public focus?: Array<MessageDefinitionFocus>;
 
+  @FhirField("MessageheaderResponseRequest")
   public responseRequired?: MessageheaderResponseRequest;
 
+  @FhirList("MessageDefinitionAllowedResponse")
   public allowedResponse?: Array<MessageDefinitionAllowedResponse>;
 
+  @FhirList("PrimitiveCanonical")
   public graph?: Array<PrimitiveCanonical>;
 
   get primaryCode(): Coding | PrimitiveUri | undefined {
@@ -209,10 +137,7 @@ export class MessageDefinition extends DomainResource {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
     if (json.replaces !== undefined) {
-      newInstance.replaces = json.replaces.map((x, i) => {
-        const ext = json._replaces && json._replaces[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.replaces = json.replaces.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._replaces?.[i]));
     }
     if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
@@ -248,10 +173,7 @@ export class MessageDefinition extends DomainResource {
       newInstance.base = PrimitiveCanonical.parsePrimitive(json.base, json._base);
     }
     if (json.parent !== undefined) {
-      newInstance.parent = json.parent.map((x, i) => {
-        const ext = json._parent && json._parent[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.parent = json.parent.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._parent?.[i]));
     }
     if (json.eventCoding !== undefined) {
       newInstance.event = Coding.parse(json.eventCoding);
@@ -272,10 +194,7 @@ export class MessageDefinition extends DomainResource {
       newInstance.allowedResponse = json.allowedResponse.map((x) => MessageDefinitionAllowedResponse.parse(x));
     }
     if (json.graph !== undefined) {
-      newInstance.graph = json.graph.map((x, i) => {
-        const ext = json._graph && json._graph[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.graph = json.graph.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._graph?.[i]));
     }
     return newInstance;
   }

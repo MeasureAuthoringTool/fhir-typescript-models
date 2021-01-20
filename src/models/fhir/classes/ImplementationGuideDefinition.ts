@@ -1,56 +1,40 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
+  FhirField,
+  FhirList,
   IImplementationGuideDefinition,
   ImplementationGuideDefinitionGrouping,
   ImplementationGuideDefinitionPage,
   ImplementationGuideDefinitionParameter,
   ImplementationGuideDefinitionResource,
   ImplementationGuideDefinitionTemplate,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImplementationGuideDefinition", "BackboneElement")
 export class ImplementationGuideDefinition extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.Definition";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "grouping",
-      fieldType: [ImplementationGuideDefinitionGrouping],
-      isArray: true
-    }, {
-      fieldName: "resource",
-      fieldType: [ImplementationGuideDefinitionResource],
-      isArray: true
-    }, {
-      fieldName: "page",
-      fieldType: [ImplementationGuideDefinitionPage],
-      isArray: false
-    }, {
-      fieldName: "parameter",
-      fieldType: [ImplementationGuideDefinitionParameter],
-      isArray: true
-    }, {
-      fieldName: "template",
-      fieldType: [ImplementationGuideDefinitionTemplate],
-      isArray: true
-    }];
-  }
-
+  @FhirList("ImplementationGuideDefinitionGrouping")
   public grouping?: Array<ImplementationGuideDefinitionGrouping>;
 
+  @FhirList("ImplementationGuideDefinitionResource")
   public resource?: Array<ImplementationGuideDefinitionResource>;
 
+  @FhirField("ImplementationGuideDefinitionPage")
   public page?: ImplementationGuideDefinitionPage;
 
+  @FhirList("ImplementationGuideDefinitionParameter")
   public parameter?: Array<ImplementationGuideDefinitionParameter>;
 
+  @FhirList("ImplementationGuideDefinitionTemplate")
   public template?: Array<ImplementationGuideDefinitionTemplate>;
 
   public static parse(

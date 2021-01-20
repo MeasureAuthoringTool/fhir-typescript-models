@@ -1,62 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IMedicinalProductManufacturingBusinessOperation,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductManufacturingBusinessOperation", "BackboneElement")
 export class MedicinalProductManufacturingBusinessOperation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProduct.ManufacturingBusinessOperation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "operationType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "authorisationReferenceNumber",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "effectiveDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "confidentialityIndicator",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "manufacturer",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "regulator",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public operationType?: CodeableConcept;
 
+  @FhirField("Identifier")
   public authorisationReferenceNumber?: Identifier;
 
+  @FhirField("PrimitiveDateTime")
   public effectiveDate?: PrimitiveDateTime;
 
+  @FhirField("CodeableConcept")
   public confidentialityIndicator?: CodeableConcept;
 
+  @FhirList("Reference")
   public manufacturer?: Array<Reference>;
 
+  @FhirField("Reference")
   public regulator?: Reference;
 
   public static parse(

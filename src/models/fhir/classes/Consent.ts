@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   CodeableConcept,
   ConsentPolicy,
@@ -8,102 +8,63 @@ import {
   ConsentVerification,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IConsent,
   Identifier,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Consent", "DomainResource")
 export class Consent extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Consent";
-  
+
   static readonly primaryCodePath: string | null = "category";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [ConsentState],
-      isArray: false
-    }, {
-      fieldName: "scope",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "dateTime",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "organization",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "source",
-      fieldType: [Attachment, Reference],
-      isArray: false
-    }, {
-      fieldName: "policy",
-      fieldType: [ConsentPolicy],
-      isArray: true
-    }, {
-      fieldName: "policyRule",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "verification",
-      fieldType: [ConsentVerification],
-      isArray: true
-    }, {
-      fieldName: "provision",
-      fieldType: [ConsentProvision],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("ConsentState")
   public status?: ConsentState;
 
+  @FhirField("CodeableConcept")
   public scope?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public dateTime?: PrimitiveDateTime;
 
+  @FhirList("Reference")
   public performer?: Array<Reference>;
 
+  @FhirList("Reference")
   public organization?: Array<Reference>;
 
+  @FhirChoice("Attachment", "Reference")
   public source?: Attachment | Reference;
 
+  @FhirList("ConsentPolicy")
   public policy?: Array<ConsentPolicy>;
 
+  @FhirField("CodeableConcept")
   public policyRule?: CodeableConcept;
 
+  @FhirList("ConsentVerification")
   public verification?: Array<ConsentVerification>;
 
+  @FhirField("ConsentProvision")
   public provision?: ConsentProvision;
 
   get primaryCode(): CodeableConcept | undefined {

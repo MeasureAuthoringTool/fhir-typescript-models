@@ -1,106 +1,66 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   ISubstanceSourceMaterial,
   PrimitiveString,
   SubstanceSourceMaterialFractionDescription,
   SubstanceSourceMaterialOrganism,
   SubstanceSourceMaterialPartDescription,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSourceMaterial", "DomainResource")
 export class SubstanceSourceMaterial extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSourceMaterial";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "sourceMaterialClass",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "sourceMaterialType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "sourceMaterialState",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "organismId",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "organismName",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "parentSubstanceId",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "parentSubstanceName",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "countryOfOrigin",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "geographicalLocation",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "developmentStage",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "fractionDescription",
-      fieldType: [SubstanceSourceMaterialFractionDescription],
-      isArray: true
-    }, {
-      fieldName: "organism",
-      fieldType: [SubstanceSourceMaterialOrganism],
-      isArray: false
-    }, {
-      fieldName: "partDescription",
-      fieldType: [SubstanceSourceMaterialPartDescription],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public sourceMaterialClass?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public sourceMaterialType?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public sourceMaterialState?: CodeableConcept;
 
+  @FhirField("Identifier")
   public organismId?: Identifier;
 
+  @FhirField("PrimitiveString")
   public organismName?: PrimitiveString;
 
+  @FhirList("Identifier")
   public parentSubstanceId?: Array<Identifier>;
 
+  @FhirList("PrimitiveString")
   public parentSubstanceName?: Array<PrimitiveString>;
 
+  @FhirList("CodeableConcept")
   public countryOfOrigin?: Array<CodeableConcept>;
 
+  @FhirList("PrimitiveString")
   public geographicalLocation?: Array<PrimitiveString>;
 
+  @FhirField("CodeableConcept")
   public developmentStage?: CodeableConcept;
 
+  @FhirList("SubstanceSourceMaterialFractionDescription")
   public fractionDescription?: Array<SubstanceSourceMaterialFractionDescription>;
 
+  @FhirField("SubstanceSourceMaterialOrganism")
   public organism?: SubstanceSourceMaterialOrganism;
 
+  @FhirList("SubstanceSourceMaterialPartDescription")
   public partDescription?: Array<SubstanceSourceMaterialPartDescription>;
 
   public static parse(
@@ -128,19 +88,13 @@ export class SubstanceSourceMaterial extends DomainResource {
       newInstance.parentSubstanceId = json.parentSubstanceId.map((x) => Identifier.parse(x));
     }
     if (json.parentSubstanceName !== undefined) {
-      newInstance.parentSubstanceName = json.parentSubstanceName.map((x, i) => {
-        const ext = json._parentSubstanceName && json._parentSubstanceName[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.parentSubstanceName = json.parentSubstanceName.map((x, i) => PrimitiveString.parsePrimitive(x, json._parentSubstanceName?.[i]));
     }
     if (json.countryOfOrigin !== undefined) {
       newInstance.countryOfOrigin = json.countryOfOrigin.map((x) => CodeableConcept.parse(x));
     }
     if (json.geographicalLocation !== undefined) {
-      newInstance.geographicalLocation = json.geographicalLocation.map((x, i) => {
-        const ext = json._geographicalLocation && json._geographicalLocation[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.geographicalLocation = json.geographicalLocation.map((x, i) => PrimitiveString.parsePrimitive(x, json._geographicalLocation?.[i]));
     }
     if (json.developmentStage !== undefined) {
       newInstance.developmentStage = CodeableConcept.parse(json.developmentStage);

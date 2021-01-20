@@ -1,80 +1,52 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   INutritionOrderEnteralFormula,
   NutritionOrderEnteralFormulaAdministration,
   PrimitiveString,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("NutritionOrderEnteralFormula", "BackboneElement")
 export class NutritionOrderEnteralFormula extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "NutritionOrder.EnteralFormula";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "baseFormulaType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "baseFormulaProductName",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "additiveType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "additiveProductName",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "caloricDensity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "routeofAdministration",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "administration",
-      fieldType: [NutritionOrderEnteralFormulaAdministration],
-      isArray: true
-    }, {
-      fieldName: "maxVolumeToDeliver",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "administrationInstruction",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public baseFormulaType?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public baseFormulaProductName?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public additiveType?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public additiveProductName?: PrimitiveString;
 
+  @FhirField("SimpleQuantity")
   public caloricDensity?: SimpleQuantity;
 
+  @FhirField("CodeableConcept")
   public routeofAdministration?: CodeableConcept;
 
+  @FhirList("NutritionOrderEnteralFormulaAdministration")
   public administration?: Array<NutritionOrderEnteralFormulaAdministration>;
 
+  @FhirField("SimpleQuantity")
   public maxVolumeToDeliver?: SimpleQuantity;
 
+  @FhirField("PrimitiveString")
   public administrationInstruction?: PrimitiveString;
 
   public static parse(

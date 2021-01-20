@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IConsentVerification,
   PrimitiveBoolean,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ConsentVerification", "BackboneElement")
 export class ConsentVerification extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Consent.Verification";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "verified",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "verifiedWith",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "verificationDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveBoolean")
   public verified?: PrimitiveBoolean;
 
+  @FhirField("Reference")
   public verifiedWith?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public verificationDate?: PrimitiveDateTime;
 
   public static parse(

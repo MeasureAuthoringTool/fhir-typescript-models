@@ -1,68 +1,47 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IMedicinalProductSpecialDesignation,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductSpecialDesignation", "BackboneElement")
 export class MedicinalProductSpecialDesignation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProduct.SpecialDesignation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "intendedUse",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "indication",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "species",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public intendedUse?: CodeableConcept;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public indication?: CodeableConcept | Reference;
 
+  @FhirField("CodeableConcept")
   public status?: CodeableConcept;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("CodeableConcept")
   public species?: CodeableConcept;
 
   public static parse(

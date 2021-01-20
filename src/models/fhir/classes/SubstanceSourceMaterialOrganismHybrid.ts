@@ -1,54 +1,37 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   ISubstanceSourceMaterialOrganismHybrid,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSourceMaterialOrganismHybrid", "BackboneElement")
 export class SubstanceSourceMaterialOrganismHybrid extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSourceMaterial.Organism.Hybrid";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "maternalOrganismId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "maternalOrganismName",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "paternalOrganismId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "paternalOrganismName",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "hybridType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public maternalOrganismId?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public maternalOrganismName?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public paternalOrganismId?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public paternalOrganismName?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public hybridType?: CodeableConcept;
 
   public static parse(

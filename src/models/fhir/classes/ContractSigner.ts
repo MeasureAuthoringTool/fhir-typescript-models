@@ -1,42 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Coding,
+  FhirField,
+  FhirList,
   IContractSigner,
   Reference,
   Signature,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ContractSigner", "BackboneElement")
 export class ContractSigner extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Signer";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "party",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "signature",
-      fieldType: [Signature],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Coding")
   public type?: Coding;
 
+  @FhirField("Reference")
   public party?: Reference;
 
+  @FhirList("Signature")
   public signature?: Array<Signature>;
 
   public static parse(

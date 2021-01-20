@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DocumentReferenceContent,
   DocumentReferenceContext,
@@ -7,122 +7,73 @@ import {
   DocumentReferenceStatus,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IDocumentReference,
   PrimitiveInstant,
   PrimitiveString,
   Reference,
   ReferredDocumentStatus,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DocumentReference", "DomainResource")
 export class DocumentReference extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DocumentReference";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "masterIdentifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [DocumentReferenceStatus],
-      isArray: false
-    }, {
-      fieldName: "docStatus",
-      fieldType: [ReferredDocumentStatus],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "author",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "authenticator",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "custodian",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "relatesTo",
-      fieldType: [DocumentReferenceRelatesTo],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "securityLabel",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "content",
-      fieldType: [DocumentReferenceContent],
-      isArray: true
-    }, {
-      fieldName: "context",
-      fieldType: [DocumentReferenceContext],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Identifier")
   public masterIdentifier?: Identifier;
 
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("DocumentReferenceStatus")
   public status?: DocumentReferenceStatus;
 
+  @FhirField("ReferredDocumentStatus")
   public docStatus?: ReferredDocumentStatus;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("PrimitiveInstant")
   public date?: PrimitiveInstant;
 
+  @FhirList("Reference")
   public author?: Array<Reference>;
 
+  @FhirField("Reference")
   public authenticator?: Reference;
 
+  @FhirField("Reference")
   public custodian?: Reference;
 
+  @FhirList("DocumentReferenceRelatesTo")
   public relatesTo?: Array<DocumentReferenceRelatesTo>;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirList("CodeableConcept")
   public securityLabel?: Array<CodeableConcept>;
 
+  @FhirList("DocumentReferenceContent")
   public content?: Array<DocumentReferenceContent>;
 
+  @FhirField("DocumentReferenceContext")
   public context?: DocumentReferenceContext;
 
   public static parse(

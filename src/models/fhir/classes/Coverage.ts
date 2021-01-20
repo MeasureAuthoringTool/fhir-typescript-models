@@ -1,11 +1,13 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   CoverageClass,
   CoverageCostToBeneficiary,
   CoverageStatus,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   ICoverage,
   Identifier,
   Period,
@@ -13,122 +15,68 @@ import {
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Coverage", "DomainResource")
 export class Coverage extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Coverage";
-  
+
   static readonly primaryCodePath: string | null = "type";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [CoverageStatus],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "policyHolder",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "subscriber",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "subscriberId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "beneficiary",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "dependent",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "relationship",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "payor",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "class",
-      fieldType: [CoverageClass],
-      isArray: true
-    }, {
-      fieldName: "order",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "network",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "costToBeneficiary",
-      fieldType: [CoverageCostToBeneficiary],
-      isArray: true
-    }, {
-      fieldName: "subrogation",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "contract",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("CoverageStatus")
   public status?: CoverageStatus;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("Reference")
   public policyHolder?: Reference;
 
+  @FhirField("Reference")
   public subscriber?: Reference;
 
+  @FhirField("PrimitiveString")
   public subscriberId?: PrimitiveString;
 
+  @FhirField("Reference")
   public beneficiary?: Reference;
 
+  @FhirField("PrimitiveString")
   public dependent?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public relationship?: CodeableConcept;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirList("Reference")
   public payor?: Array<Reference>;
 
+  @FhirList("CoverageClass")
   public class?: Array<CoverageClass>;
 
+  @FhirField("PrimitivePositiveInt")
   public order?: PrimitivePositiveInt;
 
+  @FhirField("PrimitiveString")
   public network?: PrimitiveString;
 
+  @FhirList("CoverageCostToBeneficiary")
   public costToBeneficiary?: Array<CoverageCostToBeneficiary>;
 
+  @FhirField("PrimitiveBoolean")
   public subrogation?: PrimitiveBoolean;
 
+  @FhirList("Reference")
   public contract?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {

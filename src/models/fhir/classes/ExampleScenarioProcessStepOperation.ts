@@ -1,86 +1,54 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ExampleScenarioInstanceContainedInstance,
   Extension,
+  FhirField,
   IExampleScenarioProcessStepOperation,
   PrimitiveBoolean,
   PrimitiveMarkdown,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExampleScenarioProcessStepOperation", "BackboneElement")
 export class ExampleScenarioProcessStepOperation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExampleScenario.Process.Step.Operation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "number",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "initiator",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "receiver",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "initiatorActive",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "receiverActive",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "request",
-      fieldType: [ExampleScenarioInstanceContainedInstance],
-      isArray: false
-    }, {
-      fieldName: "response",
-      fieldType: [ExampleScenarioInstanceContainedInstance],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public number?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public type?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public initiator?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public receiver?: PrimitiveString;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveBoolean")
   public initiatorActive?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public receiverActive?: PrimitiveBoolean;
 
+  @FhirField("ExampleScenarioInstanceContainedInstance")
   public request?: ExampleScenarioInstanceContainedInstance;
 
+  @FhirField("ExampleScenarioInstanceContainedInstance")
   public response?: ExampleScenarioInstanceContainedInstance;
 
   public static parse(

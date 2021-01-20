@@ -1,50 +1,37 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   ISubscriptionChannel,
   MimeType,
   PrimitiveString,
   PrimitiveUrl,
   SubscriptionChannelType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubscriptionChannel", "BackboneElement")
 export class SubscriptionChannel extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Subscription.Channel";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [SubscriptionChannelType],
-      isArray: false
-    }, {
-      fieldName: "endpoint",
-      fieldType: [PrimitiveUrl],
-      isArray: false
-    }, {
-      fieldName: "payload",
-      fieldType: [MimeType],
-      isArray: false
-    }, {
-      fieldName: "header",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }];
-  }
-
+  @FhirField("SubscriptionChannelType")
   public type?: SubscriptionChannelType;
 
+  @FhirField("PrimitiveUrl")
   public endpoint?: PrimitiveUrl;
 
+  @FhirField("MimeType")
   public payload?: MimeType;
 
+  @FhirList("PrimitiveString")
   public header?: Array<PrimitiveString>;
 
   public static parse(
@@ -63,10 +50,7 @@ export class SubscriptionChannel extends BackboneElement {
       newInstance.payload = MimeType.parsePrimitive(json.payload, json._payload);
     }
     if (json.header !== undefined) {
-      newInstance.header = json.header.map((x, i) => {
-        const ext = json._header && json._header[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.header = json.header.map((x, i) => PrimitiveString.parsePrimitive(x, json._header?.[i]));
     }
     return newInstance;
   }

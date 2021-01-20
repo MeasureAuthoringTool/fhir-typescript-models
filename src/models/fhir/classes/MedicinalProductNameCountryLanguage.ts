@@ -1,40 +1,29 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
   IMedicinalProductNameCountryLanguage,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductNameCountryLanguage", "BackboneElement")
 export class MedicinalProductNameCountryLanguage extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProduct.Name.CountryLanguage";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "country",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "language",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public country?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public jurisdiction?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public language?: CodeableConcept;
 
   public static parse(

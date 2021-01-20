@@ -1,69 +1,47 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   IRiskEvidenceSynthesisRiskEstimate,
   PrimitiveDecimal,
   PrimitiveInteger,
   PrimitiveString,
   RiskEvidenceSynthesisRiskEstimatePrecisionEstimate,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("RiskEvidenceSynthesisRiskEstimate", "BackboneElement")
 export class RiskEvidenceSynthesisRiskEstimate extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RiskEvidenceSynthesis.RiskEstimate";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "unitOfMeasure",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "denominatorCount",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "numeratorCount",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "precisionEstimate",
-      fieldType: [RiskEvidenceSynthesisRiskEstimatePrecisionEstimate],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("PrimitiveDecimal")
   public value?: PrimitiveDecimal;
 
+  @FhirField("CodeableConcept")
   public unitOfMeasure?: CodeableConcept;
 
+  @FhirField("PrimitiveInteger")
   public denominatorCount?: PrimitiveInteger;
 
+  @FhirField("PrimitiveInteger")
   public numeratorCount?: PrimitiveInteger;
 
+  @FhirList("RiskEvidenceSynthesisRiskEstimatePrecisionEstimate")
   public precisionEstimate?: Array<RiskEvidenceSynthesisRiskEstimatePrecisionEstimate>;
 
   public static parse(

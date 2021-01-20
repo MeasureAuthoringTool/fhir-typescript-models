@@ -1,96 +1,62 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   AccountCoverage,
   AccountGuarantor,
   AccountStatus,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IAccount,
   Identifier,
   Period,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Account", "DomainResource")
 export class Account extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Account";
-  
+
   static readonly primaryCodePath: string | null = "type";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [AccountStatus],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "servicePeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "coverage",
-      fieldType: [AccountCoverage],
-      isArray: true
-    }, {
-      fieldName: "owner",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "guarantor",
-      fieldType: [AccountGuarantor],
-      isArray: true
-    }, {
-      fieldName: "partOf",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("AccountStatus")
   public status?: AccountStatus;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirList("Reference")
   public subject?: Array<Reference>;
 
+  @FhirField("Period")
   public servicePeriod?: Period;
 
+  @FhirList("AccountCoverage")
   public coverage?: Array<AccountCoverage>;
 
+  @FhirField("Reference")
   public owner?: Reference;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirList("AccountGuarantor")
   public guarantor?: Array<AccountGuarantor>;
 
+  @FhirField("Reference")
   public partOf?: Reference;
 
   get primaryCode(): CodeableConcept | undefined {

@@ -1,57 +1,40 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirField,
   IQuantity,
   PrimitiveCode,
   PrimitiveDecimal,
   PrimitiveString,
   PrimitiveUri,
   QuantityComparator,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Quantity", "Element")
 export class Quantity extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Quantity";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "value",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "comparator",
-      fieldType: [QuantityComparator],
-      isArray: false
-    }, {
-      fieldName: "unit",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "system",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveDecimal")
   public value?: PrimitiveDecimal;
 
+  @FhirField("QuantityComparator")
   public comparator?: QuantityComparator;
 
+  @FhirField("PrimitiveString")
   public unit?: PrimitiveString;
 
+  @FhirField("PrimitiveUri")
   public system?: PrimitiveUri;
 
+  @FhirField("PrimitiveCode")
   public code?: PrimitiveCode;
 
   get primaryCode(): PrimitiveCode | undefined {

@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IPaymentNotice,
   Money,
@@ -10,92 +12,53 @@ import {
   PrimitiveDate,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PaymentNotice", "DomainResource")
 export class PaymentNotice extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PaymentNotice";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [PaymentNoticeStatus],
-      isArray: false
-    }, {
-      fieldName: "request",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "response",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "provider",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "payment",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "paymentDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "payee",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "recipient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "paymentStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PaymentNoticeStatus")
   public status?: PaymentNoticeStatus;
 
+  @FhirField("Reference")
   public request?: Reference;
 
+  @FhirField("Reference")
   public response?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public provider?: Reference;
 
+  @FhirField("Reference")
   public payment?: Reference;
 
+  @FhirField("PrimitiveDate")
   public paymentDate?: PrimitiveDate;
 
+  @FhirField("Reference")
   public payee?: Reference;
 
+  @FhirField("Reference")
   public recipient?: Reference;
 
+  @FhirField("Money")
   public amount?: Money;
 
+  @FhirField("CodeableConcept")
   public paymentStatus?: CodeableConcept;
 
   public static parse(

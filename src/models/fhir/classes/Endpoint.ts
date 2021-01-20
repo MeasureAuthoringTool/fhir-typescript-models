@@ -1,11 +1,13 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   Coding,
   ContactPoint,
   DomainResource,
   EndpointStatus,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IEndpoint,
   MimeType,
@@ -13,86 +15,50 @@ import {
   PrimitiveString,
   PrimitiveUrl,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Endpoint", "DomainResource")
 export class Endpoint extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Endpoint";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [EndpointStatus],
-      isArray: false
-    }, {
-      fieldName: "connectionType",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "managingOrganization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactPoint],
-      isArray: true
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "payloadType",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "payloadMimeType",
-      fieldType: [MimeType],
-      isArray: true
-    }, {
-      fieldName: "address",
-      fieldType: [PrimitiveUrl],
-      isArray: false
-    }, {
-      fieldName: "header",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("EndpointStatus")
   public status?: EndpointStatus;
 
+  @FhirField("Coding")
   public connectionType?: Coding;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("Reference")
   public managingOrganization?: Reference;
 
+  @FhirList("ContactPoint")
   public contact?: Array<ContactPoint>;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirList("CodeableConcept")
   public payloadType?: Array<CodeableConcept>;
 
+  @FhirList("MimeType")
   public payloadMimeType?: Array<MimeType>;
 
+  @FhirField("PrimitiveUrl")
   public address?: PrimitiveUrl;
 
+  @FhirList("PrimitiveString")
   public header?: Array<PrimitiveString>;
 
   public static parse(
@@ -126,19 +92,13 @@ export class Endpoint extends DomainResource {
       newInstance.payloadType = json.payloadType.map((x) => CodeableConcept.parse(x));
     }
     if (json.payloadMimeType !== undefined) {
-      newInstance.payloadMimeType = json.payloadMimeType.map((x, i) => {
-        const ext = json._payloadMimeType && json._payloadMimeType[i];
-        return MimeType.parsePrimitive(x, ext);
-      });
+      newInstance.payloadMimeType = json.payloadMimeType.map((x, i) => MimeType.parsePrimitive(x, json._payloadMimeType?.[i]));
     }
     if (json.address !== undefined) {
       newInstance.address = PrimitiveUrl.parsePrimitive(json.address, json._address);
     }
     if (json.header !== undefined) {
-      newInstance.header = json.header.map((x, i) => {
-        const ext = json._header && json._header[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.header = json.header.map((x, i) => PrimitiveString.parsePrimitive(x, json._header?.[i]));
     }
     return newInstance;
   }

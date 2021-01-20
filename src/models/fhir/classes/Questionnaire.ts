@@ -1,10 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   Coding,
   ContactDetail,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IQuestionnaire,
   Period,
@@ -19,152 +21,83 @@ import {
   QuestionnaireItem,
   ResourceType,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Questionnaire", "DomainResource")
 export class Questionnaire extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Questionnaire";
-  
+
   static readonly primaryCodePath: string | null = "name";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "derivedFrom",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "experimental",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "subjectType",
-      fieldType: [ResourceType],
-      isArray: true
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "purpose",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "copyright",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "approvalDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "lastReviewDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "effectivePeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "item",
-      fieldType: [QuestionnaireItem],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirList("PrimitiveCanonical")
   public derivedFrom?: Array<PrimitiveCanonical>;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("PrimitiveBoolean")
   public experimental?: PrimitiveBoolean;
 
+  @FhirList("ResourceType")
   public subjectType?: Array<ResourceType>;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public purpose?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveMarkdown")
   public copyright?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveDate")
   public approvalDate?: PrimitiveDate;
 
+  @FhirField("PrimitiveDate")
   public lastReviewDate?: PrimitiveDate;
 
+  @FhirField("Period")
   public effectivePeriod?: Period;
 
+  @FhirList("Coding")
   public code?: Array<Coding>;
 
+  @FhirList("QuestionnaireItem")
   public item?: Array<QuestionnaireItem>;
 
   get primaryCode(): PrimitiveString | undefined {
@@ -197,10 +130,7 @@ export class Questionnaire extends DomainResource {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
     if (json.derivedFrom !== undefined) {
-      newInstance.derivedFrom = json.derivedFrom.map((x, i) => {
-        const ext = json._derivedFrom && json._derivedFrom[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.derivedFrom = json.derivedFrom.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._derivedFrom?.[i]));
     }
     if (json.status !== undefined) {
       newInstance.status = PublicationStatus.parsePrimitive(json.status, json._status);
@@ -209,10 +139,7 @@ export class Questionnaire extends DomainResource {
       newInstance.experimental = PrimitiveBoolean.parsePrimitive(json.experimental, json._experimental);
     }
     if (json.subjectType !== undefined) {
-      newInstance.subjectType = json.subjectType.map((x, i) => {
-        const ext = json._subjectType && json._subjectType[i];
-        return ResourceType.parsePrimitive(x, ext);
-      });
+      newInstance.subjectType = json.subjectType.map((x, i) => ResourceType.parsePrimitive(x, json._subjectType?.[i]));
     }
     if (json.date !== undefined) {
       newInstance.date = PrimitiveDateTime.parsePrimitive(json.date, json._date);

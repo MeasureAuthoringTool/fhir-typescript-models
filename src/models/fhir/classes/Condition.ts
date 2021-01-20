@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Age,
   Annotation,
   CodeableConcept,
@@ -7,6 +7,9 @@ import {
   ConditionStage,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   ICondition,
   Identifier,
   Period,
@@ -14,122 +17,68 @@ import {
   PrimitiveString,
   Range,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Condition", "DomainResource")
 export class Condition extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Condition";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "clinicalStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "verificationStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "severity",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "bodySite",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "onset",
-      fieldType: [PrimitiveDateTime, Age, Period, Range, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "abatement",
-      fieldType: [PrimitiveDateTime, Age, Period, Range, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "recordedDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "recorder",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "asserter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "stage",
-      fieldType: [ConditionStage],
-      isArray: true
-    }, {
-      fieldName: "evidence",
-      fieldType: [ConditionEvidence],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("CodeableConcept")
   public clinicalStatus?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public verificationStatus?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public severity?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public bodySite?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Age", "Period", "Range", "PrimitiveString")
   public onset?: PrimitiveDateTime | Age | Period | Range | PrimitiveString;
 
+  @FhirChoice("PrimitiveDateTime", "Age", "Period", "Range", "PrimitiveString")
   public abatement?: PrimitiveDateTime | Age | Period | Range | PrimitiveString;
 
+  @FhirField("PrimitiveDateTime")
   public recordedDate?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public recorder?: Reference;
 
+  @FhirField("Reference")
   public asserter?: Reference;
 
+  @FhirList("ConditionStage")
   public stage?: Array<ConditionStage>;
 
+  @FhirList("ConditionEvidence")
   public evidence?: Array<ConditionEvidence>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   get primaryCode(): CodeableConcept | undefined {

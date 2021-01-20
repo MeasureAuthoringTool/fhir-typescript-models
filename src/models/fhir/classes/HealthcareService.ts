@@ -1,10 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   CodeableConcept,
   ContactPoint,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   HealthcareServiceAvailableTime,
   HealthcareServiceEligibility,
   HealthcareServiceNotAvailable,
@@ -14,164 +16,89 @@ import {
   PrimitiveMarkdown,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("HealthcareService", "DomainResource")
 export class HealthcareService extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "HealthcareService";
-  
+
   static readonly primaryCodePath: string | null = "type";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "active",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "providedBy",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "specialty",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "comment",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "extraDetails",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "photo",
-      fieldType: [Attachment],
-      isArray: false
-    }, {
-      fieldName: "telecom",
-      fieldType: [ContactPoint],
-      isArray: true
-    }, {
-      fieldName: "coverageArea",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "serviceProvisionCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "eligibility",
-      fieldType: [HealthcareServiceEligibility],
-      isArray: true
-    }, {
-      fieldName: "program",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "characteristic",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "communication",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "referralMethod",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "appointmentRequired",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "availableTime",
-      fieldType: [HealthcareServiceAvailableTime],
-      isArray: true
-    }, {
-      fieldName: "notAvailable",
-      fieldType: [HealthcareServiceNotAvailable],
-      isArray: true
-    }, {
-      fieldName: "availabilityExceptions",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "endpoint",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveBoolean")
   public active?: PrimitiveBoolean;
 
+  @FhirField("Reference")
   public providedBy?: Reference;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public type?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public specialty?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public location?: Array<Reference>;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public comment?: PrimitiveString;
 
+  @FhirField("PrimitiveMarkdown")
   public extraDetails?: PrimitiveMarkdown;
 
+  @FhirField("Attachment")
   public photo?: Attachment;
 
+  @FhirList("ContactPoint")
   public telecom?: Array<ContactPoint>;
 
+  @FhirList("Reference")
   public coverageArea?: Array<Reference>;
 
+  @FhirList("CodeableConcept")
   public serviceProvisionCode?: Array<CodeableConcept>;
 
+  @FhirList("HealthcareServiceEligibility")
   public eligibility?: Array<HealthcareServiceEligibility>;
 
+  @FhirList("CodeableConcept")
   public program?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public characteristic?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public communication?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public referralMethod?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveBoolean")
   public appointmentRequired?: PrimitiveBoolean;
 
+  @FhirList("HealthcareServiceAvailableTime")
   public availableTime?: Array<HealthcareServiceAvailableTime>;
 
+  @FhirList("HealthcareServiceNotAvailable")
   public notAvailable?: Array<HealthcareServiceNotAvailable>;
 
+  @FhirField("PrimitiveString")
   public availabilityExceptions?: PrimitiveString;
 
+  @FhirList("Reference")
   public endpoint?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {

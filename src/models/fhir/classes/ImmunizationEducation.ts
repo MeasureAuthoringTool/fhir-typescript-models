@@ -1,49 +1,35 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IImmunizationEducation,
   PrimitiveDateTime,
   PrimitiveString,
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImmunizationEducation", "BackboneElement")
 export class ImmunizationEducation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Immunization.Education";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "documentType",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "reference",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "publicationDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "presentationDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public documentType?: PrimitiveString;
 
+  @FhirField("PrimitiveUri")
   public reference?: PrimitiveUri;
 
+  @FhirField("PrimitiveDateTime")
   public publicationDate?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveDateTime")
   public presentationDate?: PrimitiveDateTime;
 
   public static parse(

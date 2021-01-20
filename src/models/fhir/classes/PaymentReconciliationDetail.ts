@@ -1,87 +1,55 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   Identifier,
   IPaymentReconciliationDetail,
   Money,
   PrimitiveDate,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PaymentReconciliationDetail", "BackboneElement")
 export class PaymentReconciliationDetail extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PaymentReconciliation.Detail";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "predecessor",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "request",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "submitter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "response",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "responsible",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "payee",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [Money],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("Identifier")
   public predecessor?: Identifier;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("Reference")
   public request?: Reference;
 
+  @FhirField("Reference")
   public submitter?: Reference;
 
+  @FhirField("Reference")
   public response?: Reference;
 
+  @FhirField("PrimitiveDate")
   public date?: PrimitiveDate;
 
+  @FhirField("Reference")
   public responsible?: Reference;
 
+  @FhirField("Reference")
   public payee?: Reference;
 
+  @FhirField("Money")
   public amount?: Money;
 
   public static parse(

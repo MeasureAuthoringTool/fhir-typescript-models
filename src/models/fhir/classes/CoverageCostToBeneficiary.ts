@@ -1,43 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   CoverageCostToBeneficiaryException,
+  FhirChoice,
+  FhirField,
+  FhirList,
   ICoverageCostToBeneficiary,
   Money,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CoverageCostToBeneficiary", "BackboneElement")
 export class CoverageCostToBeneficiary extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Coverage.CostToBeneficiary";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [SimpleQuantity, Money],
-      isArray: false
-    }, {
-      fieldName: "exception",
-      fieldType: [CoverageCostToBeneficiaryException],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirChoice("SimpleQuantity", "Money")
   public value?: SimpleQuantity | Money;
 
+  @FhirList("CoverageCostToBeneficiaryException")
   public exception?: Array<CoverageCostToBeneficiaryException>;
 
   public static parse(

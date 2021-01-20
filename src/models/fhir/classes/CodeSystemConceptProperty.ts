@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Coding,
   Extension,
+  FhirChoice,
+  FhirField,
   ICodeSystemConceptProperty,
   PrimitiveBoolean,
   PrimitiveCode,
@@ -10,32 +12,23 @@ import {
   PrimitiveDecimal,
   PrimitiveInteger,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CodeSystemConceptProperty", "BackboneElement")
 export class CodeSystemConceptProperty extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CodeSystem.Concept.Property";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveCode, Coding, PrimitiveString, PrimitiveInteger, PrimitiveBoolean, PrimitiveDateTime, PrimitiveDecimal],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveCode")
   public code?: PrimitiveCode;
 
+  @FhirChoice("PrimitiveCode", "Coding", "PrimitiveString", "PrimitiveInteger", "PrimitiveBoolean", "PrimitiveDateTime", "PrimitiveDecimal")
   public value?: PrimitiveCode | Coding | PrimitiveString | PrimitiveInteger | PrimitiveBoolean | PrimitiveDateTime | PrimitiveDecimal;
 
   public static parse(

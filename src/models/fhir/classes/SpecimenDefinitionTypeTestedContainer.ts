@@ -1,74 +1,50 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   ISpecimenDefinitionTypeTestedContainer,
   PrimitiveString,
   SimpleQuantity,
   SpecimenDefinitionTypeTestedContainerAdditive,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SpecimenDefinitionTypeTestedContainer", "BackboneElement")
 export class SpecimenDefinitionTypeTestedContainer extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SpecimenDefinition.TypeTested.Container";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "material",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "cap",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "capacity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "minimumVolume",
-      fieldType: [SimpleQuantity, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "additive",
-      fieldType: [SpecimenDefinitionTypeTestedContainerAdditive],
-      isArray: true
-    }, {
-      fieldName: "preparation",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public material?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public cap?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("SimpleQuantity")
   public capacity?: SimpleQuantity;
 
+  @FhirChoice("SimpleQuantity", "PrimitiveString")
   public minimumVolume?: SimpleQuantity | PrimitiveString;
 
+  @FhirList("SpecimenDefinitionTypeTestedContainerAdditive")
   public additive?: Array<SpecimenDefinitionTypeTestedContainerAdditive>;
 
+  @FhirField("PrimitiveString")
   public preparation?: PrimitiveString;
 
   public static parse(

@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ChargeItemDefinitionApplicability,
   ChargeItemDefinitionPropertyGroupPriceComponent,
+  FhirList,
   IChargeItemDefinitionPropertyGroup,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ChargeItemDefinitionPropertyGroup", "BackboneElement")
 export class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ChargeItemDefinition.PropertyGroup";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "applicability",
-      fieldType: [ChargeItemDefinitionApplicability],
-      isArray: true
-    }, {
-      fieldName: "priceComponent",
-      fieldType: [ChargeItemDefinitionPropertyGroupPriceComponent],
-      isArray: true
-    }];
-  }
-
+  @FhirList("ChargeItemDefinitionApplicability")
   public applicability?: Array<ChargeItemDefinitionApplicability>;
 
+  @FhirList("ChargeItemDefinitionPropertyGroupPriceComponent")
   public priceComponent?: Array<ChargeItemDefinitionPropertyGroupPriceComponent>;
 
   public static parse(

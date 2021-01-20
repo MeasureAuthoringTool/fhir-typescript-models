@@ -1,44 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirChoice,
+  FhirField,
   IImplementationGuideManifestResource,
   PrimitiveBoolean,
   PrimitiveCanonical,
   PrimitiveUrl,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImplementationGuideManifestResource", "BackboneElement")
 export class ImplementationGuideManifestResource extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.Manifest.Resource";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "reference",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "example",
-      fieldType: [PrimitiveBoolean, PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "relativePath",
-      fieldType: [PrimitiveUrl],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public reference?: Reference;
 
+  @FhirChoice("PrimitiveBoolean", "PrimitiveCanonical")
   public example?: PrimitiveBoolean | PrimitiveCanonical;
 
+  @FhirField("PrimitiveUrl")
   public relativePath?: PrimitiveUrl;
 
   public static parse(

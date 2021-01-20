@@ -1,62 +1,42 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IDeviceUdiCarrier,
   PrimitiveBase64Binary,
   PrimitiveString,
   PrimitiveUri,
   UDIEntryType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DeviceUdiCarrier", "BackboneElement")
 export class DeviceUdiCarrier extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Device.UdiCarrier";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "deviceIdentifier",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "issuer",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "carrierAIDC",
-      fieldType: [PrimitiveBase64Binary],
-      isArray: false
-    }, {
-      fieldName: "carrierHRF",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "entryType",
-      fieldType: [UDIEntryType],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public deviceIdentifier?: PrimitiveString;
 
+  @FhirField("PrimitiveUri")
   public issuer?: PrimitiveUri;
 
+  @FhirField("PrimitiveUri")
   public jurisdiction?: PrimitiveUri;
 
+  @FhirField("PrimitiveBase64Binary")
   public carrierAIDC?: PrimitiveBase64Binary;
 
+  @FhirField("PrimitiveString")
   public carrierHRF?: PrimitiveString;
 
+  @FhirField("UDIEntryType")
   public entryType?: UDIEntryType;
 
   public static parse(
