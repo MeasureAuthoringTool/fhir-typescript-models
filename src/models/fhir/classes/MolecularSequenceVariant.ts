@@ -1,61 +1,41 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IMolecularSequenceVariant,
   PrimitiveInteger,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MolecularSequenceVariant", "BackboneElement")
 export class MolecularSequenceVariant extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence.Variant";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "start",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "end",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "observedAllele",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "referenceAllele",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "cigar",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "variantPointer",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveInteger")
   public start?: PrimitiveInteger;
 
+  @FhirField("PrimitiveInteger")
   public end?: PrimitiveInteger;
 
+  @FhirField("PrimitiveString")
   public observedAllele?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public referenceAllele?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public cigar?: PrimitiveString;
 
+  @FhirField("Reference")
   public variantPointer?: Reference;
 
   public static parse(

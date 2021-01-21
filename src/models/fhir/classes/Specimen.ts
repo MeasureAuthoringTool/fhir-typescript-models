@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   ISpecimen,
   PrimitiveDateTime,
@@ -12,98 +14,56 @@ import {
   SpecimenContainer,
   SpecimenProcessing,
   SpecimenStatus,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Specimen", "DomainResource")
 export class Specimen extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Specimen";
-  
+
   static readonly primaryCodePath: string | null = "type";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "accessionIdentifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [SpecimenStatus],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "receivedTime",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "parent",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "request",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "collection",
-      fieldType: [SpecimenCollection],
-      isArray: false
-    }, {
-      fieldName: "processing",
-      fieldType: [SpecimenProcessing],
-      isArray: true
-    }, {
-      fieldName: "container",
-      fieldType: [SpecimenContainer],
-      isArray: true
-    }, {
-      fieldName: "condition",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("Identifier")
   public accessionIdentifier?: Identifier;
 
+  @FhirField("SpecimenStatus")
   public status?: SpecimenStatus;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public receivedTime?: PrimitiveDateTime;
 
+  @FhirList("Reference")
   public parent?: Array<Reference>;
 
+  @FhirList("Reference")
   public request?: Array<Reference>;
 
+  @FhirField("SpecimenCollection")
   public collection?: SpecimenCollection;
 
+  @FhirList("SpecimenProcessing")
   public processing?: Array<SpecimenProcessing>;
 
+  @FhirList("SpecimenContainer")
   public container?: Array<SpecimenContainer>;
 
+  @FhirList("CodeableConcept")
   public condition?: Array<CodeableConcept>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   get primaryCode(): CodeableConcept | undefined {

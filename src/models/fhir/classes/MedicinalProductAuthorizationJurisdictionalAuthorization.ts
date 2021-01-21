@@ -1,54 +1,38 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   Identifier,
   IMedicinalProductAuthorizationJurisdictionalAuthorization,
   Period,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductAuthorizationJurisdictionalAuthorization", "BackboneElement")
 export class MedicinalProductAuthorizationJurisdictionalAuthorization extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductAuthorization.JurisdictionalAuthorization";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "country",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "legalStatusOfSupply",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "validityPeriod",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("CodeableConcept")
   public country?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public legalStatusOfSupply?: CodeableConcept;
 
+  @FhirField("Period")
   public validityPeriod?: Period;
 
   public static parse(

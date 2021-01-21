@@ -1,42 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
   Identifier,
   IExplanationOfBenefitRelated,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExplanationOfBenefitRelated", "BackboneElement")
 export class ExplanationOfBenefitRelated extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.Related";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "claim",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "relationship",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "reference",
-      fieldType: [Identifier],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public claim?: Reference;
 
+  @FhirField("CodeableConcept")
   public relationship?: CodeableConcept;
 
+  @FhirField("Identifier")
   public reference?: Identifier;
 
   public static parse(

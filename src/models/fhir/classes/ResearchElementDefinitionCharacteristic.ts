@@ -1,11 +1,14 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   DataRequirement,
   Duration,
   Expression,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   GroupMeasure,
   IResearchElementDefinitionCharacteristic,
   Period,
@@ -15,92 +18,53 @@ import {
   PrimitiveString,
   Timing,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ResearchElementDefinitionCharacteristic", "BackboneElement")
 export class ResearchElementDefinitionCharacteristic extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ResearchElementDefinition.Characteristic";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "definition",
-      fieldType: [CodeableConcept, PrimitiveCanonical, Expression, DataRequirement],
-      isArray: false
-    }, {
-      fieldName: "usageContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "exclude",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "unitOfMeasure",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "studyEffectiveDescription",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "studyEffective",
-      fieldType: [PrimitiveDateTime, Period, Duration, Timing],
-      isArray: false
-    }, {
-      fieldName: "studyEffectiveTimeFromStart",
-      fieldType: [Duration],
-      isArray: false
-    }, {
-      fieldName: "studyEffectiveGroupMeasure",
-      fieldType: [GroupMeasure],
-      isArray: false
-    }, {
-      fieldName: "participantEffectiveDescription",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "participantEffective",
-      fieldType: [PrimitiveDateTime, Period, Duration, Timing],
-      isArray: false
-    }, {
-      fieldName: "participantEffectiveTimeFromStart",
-      fieldType: [Duration],
-      isArray: false
-    }, {
-      fieldName: "participantEffectiveGroupMeasure",
-      fieldType: [GroupMeasure],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("CodeableConcept", "PrimitiveCanonical", "Expression", "DataRequirement")
   public definition?: CodeableConcept | PrimitiveCanonical | Expression | DataRequirement;
 
+  @FhirList("UsageContext")
   public usageContext?: Array<UsageContext>;
 
+  @FhirField("PrimitiveBoolean")
   public exclude?: PrimitiveBoolean;
 
+  @FhirField("CodeableConcept")
   public unitOfMeasure?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public studyEffectiveDescription?: PrimitiveString;
 
+  @FhirChoice("PrimitiveDateTime", "Period", "Duration", "Timing")
   public studyEffective?: PrimitiveDateTime | Period | Duration | Timing;
 
+  @FhirField("Duration")
   public studyEffectiveTimeFromStart?: Duration;
 
+  @FhirField("GroupMeasure")
   public studyEffectiveGroupMeasure?: GroupMeasure;
 
+  @FhirField("PrimitiveString")
   public participantEffectiveDescription?: PrimitiveString;
 
+  @FhirChoice("PrimitiveDateTime", "Period", "Duration", "Timing")
   public participantEffective?: PrimitiveDateTime | Period | Duration | Timing;
 
+  @FhirField("Duration")
   public participantEffectiveTimeFromStart?: Duration;
 
+  @FhirField("GroupMeasure")
   public participantEffectiveGroupMeasure?: GroupMeasure;
 
   public static parse(

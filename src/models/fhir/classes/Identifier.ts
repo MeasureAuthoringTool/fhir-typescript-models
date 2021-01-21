@@ -1,64 +1,44 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   Element,
   Extension,
+  FhirField,
   IdentifierUse,
   IIdentifier,
   Period,
   PrimitiveString,
   PrimitiveUri,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Identifier", "Element")
 export class Identifier extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Identifier";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "use",
-      fieldType: [IdentifierUse],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "system",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "assigner",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("IdentifierUse")
   public use?: IdentifierUse;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("PrimitiveUri")
   public system?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public value?: PrimitiveString;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirField("Reference")
   public assigner?: Reference;
 
   public static parse(

@@ -1,11 +1,14 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   DataRequirement,
   Duration,
   Expression,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   GroupMeasure,
   IEvidenceVariableCharacteristic,
   Period,
@@ -17,62 +20,38 @@ import {
   Timing,
   TriggerDefinition,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EvidenceVariableCharacteristic", "BackboneElement")
 export class EvidenceVariableCharacteristic extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EvidenceVariable.Characteristic";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "definition",
-      fieldType: [Reference, PrimitiveCanonical, CodeableConcept, Expression, DataRequirement, TriggerDefinition],
-      isArray: false
-    }, {
-      fieldName: "usageContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "exclude",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "participantEffective",
-      fieldType: [PrimitiveDateTime, Period, Duration, Timing],
-      isArray: false
-    }, {
-      fieldName: "timeFromStart",
-      fieldType: [Duration],
-      isArray: false
-    }, {
-      fieldName: "groupMeasure",
-      fieldType: [GroupMeasure],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirChoice("Reference", "PrimitiveCanonical", "CodeableConcept", "Expression", "DataRequirement", "TriggerDefinition")
   public definition?: Reference | PrimitiveCanonical | CodeableConcept | Expression | DataRequirement | TriggerDefinition;
 
+  @FhirList("UsageContext")
   public usageContext?: Array<UsageContext>;
 
+  @FhirField("PrimitiveBoolean")
   public exclude?: PrimitiveBoolean;
 
+  @FhirChoice("PrimitiveDateTime", "Period", "Duration", "Timing")
   public participantEffective?: PrimitiveDateTime | Period | Duration | Timing;
 
+  @FhirField("Duration")
   public timeFromStart?: Duration;
 
+  @FhirField("GroupMeasure")
   public groupMeasure?: GroupMeasure;
 
   public static parse(

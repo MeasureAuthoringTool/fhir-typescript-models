@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IEncounterDiagnosis,
   PrimitivePositiveInt,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EncounterDiagnosis", "BackboneElement")
 export class EncounterDiagnosis extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Encounter.Diagnosis";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "condition",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "use",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "rank",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public condition?: Reference;
 
+  @FhirField("CodeableConcept")
   public use?: CodeableConcept;
 
+  @FhirField("PrimitivePositiveInt")
   public rank?: PrimitivePositiveInt;
 
   public static parse(

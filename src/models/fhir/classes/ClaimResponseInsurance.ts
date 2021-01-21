@@ -1,56 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IClaimResponseInsurance,
   PrimitiveBoolean,
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ClaimResponseInsurance", "BackboneElement")
 export class ClaimResponseInsurance extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClaimResponse.Insurance";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "sequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "focal",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "coverage",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "businessArrangement",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "claimResponse",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitivePositiveInt")
   public sequence?: PrimitivePositiveInt;
 
+  @FhirField("PrimitiveBoolean")
   public focal?: PrimitiveBoolean;
 
+  @FhirField("Reference")
   public coverage?: Reference;
 
+  @FhirField("PrimitiveString")
   public businessArrangement?: PrimitiveString;
 
+  @FhirField("Reference")
   public claimResponse?: Reference;
 
   public static parse(

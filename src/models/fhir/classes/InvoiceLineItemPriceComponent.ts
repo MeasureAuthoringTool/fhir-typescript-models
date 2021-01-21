@@ -1,50 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IInvoiceLineItemPriceComponent,
   InvoicePriceComponentType,
   Money,
   PrimitiveDecimal,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("InvoiceLineItemPriceComponent", "BackboneElement")
 export class InvoiceLineItemPriceComponent extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Invoice.LineItem.PriceComponent";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [InvoicePriceComponentType],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "factor",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [Money],
-      isArray: false
-    }];
-  }
-
+  @FhirField("InvoicePriceComponentType")
   public type?: InvoicePriceComponentType;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("PrimitiveDecimal")
   public factor?: PrimitiveDecimal;
 
+  @FhirField("Money")
   public amount?: Money;
 
   public static parse(

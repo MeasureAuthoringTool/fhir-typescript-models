@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IBundleEntrySearch,
   PrimitiveDecimal,
   SearchEntryMode,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("BundleEntrySearch", "BackboneElement")
 export class BundleEntrySearch extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Bundle.Entry.Search";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "mode",
-      fieldType: [SearchEntryMode],
-      isArray: false
-    }, {
-      fieldName: "score",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }];
-  }
-
+  @FhirField("SearchEntryMode")
   public mode?: SearchEntryMode;
 
+  @FhirField("PrimitiveDecimal")
   public score?: PrimitiveDecimal;
 
   public static parse(

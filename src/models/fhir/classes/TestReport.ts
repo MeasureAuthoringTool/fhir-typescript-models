@@ -1,7 +1,9 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   ITestReport,
   PrimitiveDateTime,
@@ -14,92 +16,53 @@ import {
   TestReportStatus,
   TestReportTeardown,
   TestReportTest,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TestReport", "DomainResource")
 export class TestReport extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestReport";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [TestReportStatus],
-      isArray: false
-    }, {
-      fieldName: "testScript",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "result",
-      fieldType: [TestReportResult],
-      isArray: false
-    }, {
-      fieldName: "score",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "tester",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "issued",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "participant",
-      fieldType: [TestReportParticipant],
-      isArray: true
-    }, {
-      fieldName: "setup",
-      fieldType: [TestReportSetup],
-      isArray: false
-    }, {
-      fieldName: "test",
-      fieldType: [TestReportTest],
-      isArray: true
-    }, {
-      fieldName: "teardown",
-      fieldType: [TestReportTeardown],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("TestReportStatus")
   public status?: TestReportStatus;
 
+  @FhirField("Reference")
   public testScript?: Reference;
 
+  @FhirField("TestReportResult")
   public result?: TestReportResult;
 
+  @FhirField("PrimitiveDecimal")
   public score?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveString")
   public tester?: PrimitiveString;
 
+  @FhirField("PrimitiveDateTime")
   public issued?: PrimitiveDateTime;
 
+  @FhirList("TestReportParticipant")
   public participant?: Array<TestReportParticipant>;
 
+  @FhirField("TestReportSetup")
   public setup?: TestReportSetup;
 
+  @FhirList("TestReportTest")
   public test?: Array<TestReportTest>;
 
+  @FhirField("TestReportTeardown")
   public teardown?: TestReportTeardown;
 
   public static parse(

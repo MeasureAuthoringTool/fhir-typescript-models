@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IImplementationGuideDependsOn,
   PrimitiveCanonical,
   PrimitiveId,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImplementationGuideDependsOn", "BackboneElement")
 export class ImplementationGuideDependsOn extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.DependsOn";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "uri",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "packageId",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveCanonical")
   public uri?: PrimitiveCanonical;
 
+  @FhirField("PrimitiveId")
   public packageId?: PrimitiveId;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
   public static parse(

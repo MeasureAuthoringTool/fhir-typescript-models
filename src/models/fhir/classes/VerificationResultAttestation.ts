@@ -1,75 +1,49 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IVerificationResultAttestation,
   PrimitiveDate,
   PrimitiveString,
   Reference,
   Signature,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("VerificationResultAttestation", "BackboneElement")
 export class VerificationResultAttestation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "VerificationResult.Attestation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "who",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "onBehalfOf",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "communicationMethod",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "sourceIdentityCertificate",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "proxyIdentityCertificate",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "proxySignature",
-      fieldType: [Signature],
-      isArray: false
-    }, {
-      fieldName: "sourceSignature",
-      fieldType: [Signature],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public who?: Reference;
 
+  @FhirField("Reference")
   public onBehalfOf?: Reference;
 
+  @FhirField("CodeableConcept")
   public communicationMethod?: CodeableConcept;
 
+  @FhirField("PrimitiveDate")
   public date?: PrimitiveDate;
 
+  @FhirField("PrimitiveString")
   public sourceIdentityCertificate?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public proxyIdentityCertificate?: PrimitiveString;
 
+  @FhirField("Signature")
   public proxySignature?: Signature;
 
+  @FhirField("Signature")
   public sourceSignature?: Signature;
 
   public static parse(

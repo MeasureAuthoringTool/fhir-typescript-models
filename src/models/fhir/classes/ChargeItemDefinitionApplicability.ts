@@ -1,41 +1,30 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IChargeItemDefinitionApplicability,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ChargeItemDefinitionApplicability", "BackboneElement")
 export class ChargeItemDefinitionApplicability extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ChargeItemDefinition.Applicability";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "language",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "expression",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public language?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public expression?: PrimitiveString;
 
   public static parse(

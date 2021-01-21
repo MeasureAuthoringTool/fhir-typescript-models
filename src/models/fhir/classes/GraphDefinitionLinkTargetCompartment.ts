@@ -1,56 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CompartmentCode,
   Extension,
+  FhirField,
   GraphCompartmentRule,
   GraphCompartmentUse,
   IGraphDefinitionLinkTargetCompartment,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("GraphDefinitionLinkTargetCompartment", "BackboneElement")
 export class GraphDefinitionLinkTargetCompartment extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "GraphDefinition.Link.Target.Compartment";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "use",
-      fieldType: [GraphCompartmentUse],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CompartmentCode],
-      isArray: false
-    }, {
-      fieldName: "rule",
-      fieldType: [GraphCompartmentRule],
-      isArray: false
-    }, {
-      fieldName: "expression",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("GraphCompartmentUse")
   public use?: GraphCompartmentUse;
 
+  @FhirField("CompartmentCode")
   public code?: CompartmentCode;
 
+  @FhirField("GraphCompartmentRule")
   public rule?: GraphCompartmentRule;
 
+  @FhirField("PrimitiveString")
   public expression?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
   public static parse(

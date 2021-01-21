@@ -1,77 +1,52 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Duration,
   Extension,
+  FhirField,
+  FhirList,
   ISpecimenDefinitionTypeTested,
   PrimitiveBoolean,
   PrimitiveString,
   SpecimenContainedPreference,
   SpecimenDefinitionTypeTestedContainer,
   SpecimenDefinitionTypeTestedHandling,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SpecimenDefinitionTypeTested", "BackboneElement")
 export class SpecimenDefinitionTypeTested extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SpecimenDefinition.TypeTested";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "isDerived",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "preference",
-      fieldType: [SpecimenContainedPreference],
-      isArray: false
-    }, {
-      fieldName: "container",
-      fieldType: [SpecimenDefinitionTypeTestedContainer],
-      isArray: false
-    }, {
-      fieldName: "requirement",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "retentionTime",
-      fieldType: [Duration],
-      isArray: false
-    }, {
-      fieldName: "rejectionCriterion",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "handling",
-      fieldType: [SpecimenDefinitionTypeTestedHandling],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveBoolean")
   public isDerived?: PrimitiveBoolean;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("SpecimenContainedPreference")
   public preference?: SpecimenContainedPreference;
 
+  @FhirField("SpecimenDefinitionTypeTestedContainer")
   public container?: SpecimenDefinitionTypeTestedContainer;
 
+  @FhirField("PrimitiveString")
   public requirement?: PrimitiveString;
 
+  @FhirField("Duration")
   public retentionTime?: Duration;
 
+  @FhirList("CodeableConcept")
   public rejectionCriterion?: Array<CodeableConcept>;
 
+  @FhirList("SpecimenDefinitionTypeTestedHandling")
   public handling?: Array<SpecimenDefinitionTypeTestedHandling>;
 
   public static parse(

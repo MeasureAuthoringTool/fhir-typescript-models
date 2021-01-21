@@ -1,66 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirList,
   IMolecularSequenceQualityRoc,
   PrimitiveDecimal,
   PrimitiveInteger,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MolecularSequenceQualityRoc", "BackboneElement")
 export class MolecularSequenceQualityRoc extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence.Quality.Roc";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "score",
-      fieldType: [PrimitiveInteger],
-      isArray: true
-    }, {
-      fieldName: "numTP",
-      fieldType: [PrimitiveInteger],
-      isArray: true
-    }, {
-      fieldName: "numFP",
-      fieldType: [PrimitiveInteger],
-      isArray: true
-    }, {
-      fieldName: "numFN",
-      fieldType: [PrimitiveInteger],
-      isArray: true
-    }, {
-      fieldName: "precision",
-      fieldType: [PrimitiveDecimal],
-      isArray: true
-    }, {
-      fieldName: "sensitivity",
-      fieldType: [PrimitiveDecimal],
-      isArray: true
-    }, {
-      fieldName: "fMeasure",
-      fieldType: [PrimitiveDecimal],
-      isArray: true
-    }];
-  }
-
+  @FhirList("PrimitiveInteger")
   public score?: Array<PrimitiveInteger>;
 
+  @FhirList("PrimitiveInteger")
   public numTP?: Array<PrimitiveInteger>;
 
+  @FhirList("PrimitiveInteger")
   public numFP?: Array<PrimitiveInteger>;
 
+  @FhirList("PrimitiveInteger")
   public numFN?: Array<PrimitiveInteger>;
 
+  @FhirList("PrimitiveDecimal")
   public precision?: Array<PrimitiveDecimal>;
 
+  @FhirList("PrimitiveDecimal")
   public sensitivity?: Array<PrimitiveDecimal>;
 
+  @FhirList("PrimitiveDecimal")
   public fMeasure?: Array<PrimitiveDecimal>;
 
   public static parse(
@@ -70,46 +47,25 @@ export class MolecularSequenceQualityRoc extends BackboneElement {
     const newInstance: MolecularSequenceQualityRoc = BackboneElement.parse(json, providedInstance);
   
     if (json.score !== undefined) {
-      newInstance.score = json.score.map((x, i) => {
-        const ext = json._score && json._score[i];
-        return PrimitiveInteger.parsePrimitive(x, ext);
-      });
+      newInstance.score = json.score.map((x, i) => PrimitiveInteger.parsePrimitive(x, json._score?.[i]));
     }
     if (json.numTP !== undefined) {
-      newInstance.numTP = json.numTP.map((x, i) => {
-        const ext = json._numTP && json._numTP[i];
-        return PrimitiveInteger.parsePrimitive(x, ext);
-      });
+      newInstance.numTP = json.numTP.map((x, i) => PrimitiveInteger.parsePrimitive(x, json._numTP?.[i]));
     }
     if (json.numFP !== undefined) {
-      newInstance.numFP = json.numFP.map((x, i) => {
-        const ext = json._numFP && json._numFP[i];
-        return PrimitiveInteger.parsePrimitive(x, ext);
-      });
+      newInstance.numFP = json.numFP.map((x, i) => PrimitiveInteger.parsePrimitive(x, json._numFP?.[i]));
     }
     if (json.numFN !== undefined) {
-      newInstance.numFN = json.numFN.map((x, i) => {
-        const ext = json._numFN && json._numFN[i];
-        return PrimitiveInteger.parsePrimitive(x, ext);
-      });
+      newInstance.numFN = json.numFN.map((x, i) => PrimitiveInteger.parsePrimitive(x, json._numFN?.[i]));
     }
     if (json.precision !== undefined) {
-      newInstance.precision = json.precision.map((x, i) => {
-        const ext = json._precision && json._precision[i];
-        return PrimitiveDecimal.parsePrimitive(x, ext);
-      });
+      newInstance.precision = json.precision.map((x, i) => PrimitiveDecimal.parsePrimitive(x, json._precision?.[i]));
     }
     if (json.sensitivity !== undefined) {
-      newInstance.sensitivity = json.sensitivity.map((x, i) => {
-        const ext = json._sensitivity && json._sensitivity[i];
-        return PrimitiveDecimal.parsePrimitive(x, ext);
-      });
+      newInstance.sensitivity = json.sensitivity.map((x, i) => PrimitiveDecimal.parsePrimitive(x, json._sensitivity?.[i]));
     }
     if (json.fMeasure !== undefined) {
-      newInstance.fMeasure = json.fMeasure.map((x, i) => {
-        const ext = json._fMeasure && json._fMeasure[i];
-        return PrimitiveDecimal.parsePrimitive(x, ext);
-      });
+      newInstance.fMeasure = json.fMeasure.map((x, i) => PrimitiveDecimal.parsePrimitive(x, json._fMeasure?.[i]));
     }
     return newInstance;
   }

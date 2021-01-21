@@ -1,8 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IContractTermAssetValuedItem,
   Identifier,
   Money,
@@ -12,104 +15,59 @@ import {
   PrimitiveUnsignedInt,
   Reference,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ContractTermAssetValuedItem", "BackboneElement")
 export class ContractTermAssetValuedItem extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Term.Asset.ValuedItem";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "entity",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "effectiveTime",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "unitPrice",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "factor",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "points",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "net",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "payment",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "paymentDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "responsible",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "recipient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "linkId",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "securityLabelNumber",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: true
-    }];
-  }
-
+  @FhirChoice("CodeableConcept", "Reference")
   public entity?: CodeableConcept | Reference;
 
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("PrimitiveDateTime")
   public effectiveTime?: PrimitiveDateTime;
 
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirField("Money")
   public unitPrice?: Money;
 
+  @FhirField("PrimitiveDecimal")
   public factor?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public points?: PrimitiveDecimal;
 
+  @FhirField("Money")
   public net?: Money;
 
+  @FhirField("PrimitiveString")
   public payment?: PrimitiveString;
 
+  @FhirField("PrimitiveDateTime")
   public paymentDate?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public responsible?: Reference;
 
+  @FhirField("Reference")
   public recipient?: Reference;
 
+  @FhirList("PrimitiveString")
   public linkId?: Array<PrimitiveString>;
 
+  @FhirList("PrimitiveUnsignedInt")
   public securityLabelNumber?: Array<PrimitiveUnsignedInt>;
 
   public static parse(
@@ -158,16 +116,10 @@ export class ContractTermAssetValuedItem extends BackboneElement {
       newInstance.recipient = Reference.parse(json.recipient);
     }
     if (json.linkId !== undefined) {
-      newInstance.linkId = json.linkId.map((x, i) => {
-        const ext = json._linkId && json._linkId[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.linkId = json.linkId.map((x, i) => PrimitiveString.parsePrimitive(x, json._linkId?.[i]));
     }
     if (json.securityLabelNumber !== undefined) {
-      newInstance.securityLabelNumber = json.securityLabelNumber.map((x, i) => {
-        const ext = json._securityLabelNumber && json._securityLabelNumber[i];
-        return PrimitiveUnsignedInt.parsePrimitive(x, ext);
-      });
+      newInstance.securityLabelNumber = json.securityLabelNumber.map((x, i) => PrimitiveUnsignedInt.parsePrimitive(x, json._securityLabelNumber?.[i]));
     }
     return newInstance;
   }

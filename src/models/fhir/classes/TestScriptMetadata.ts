@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
+  FhirList,
   ITestScriptMetadata,
   TestScriptMetadataCapability,
   TestScriptMetadataLink,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TestScriptMetadata", "BackboneElement")
 export class TestScriptMetadata extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Metadata";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "link",
-      fieldType: [TestScriptMetadataLink],
-      isArray: true
-    }, {
-      fieldName: "capability",
-      fieldType: [TestScriptMetadataCapability],
-      isArray: true
-    }];
-  }
-
+  @FhirList("TestScriptMetadataLink")
   public link?: Array<TestScriptMetadataLink>;
 
+  @FhirList("TestScriptMetadataCapability")
   public capability?: Array<TestScriptMetadataCapability>;
 
   public static parse(

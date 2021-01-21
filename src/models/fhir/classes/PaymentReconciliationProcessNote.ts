@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IPaymentReconciliationProcessNote,
   NoteType,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PaymentReconciliationProcessNote", "BackboneElement")
 export class PaymentReconciliationProcessNote extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PaymentReconciliation.ProcessNote";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [NoteType],
-      isArray: false
-    }, {
-      fieldName: "text",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("NoteType")
   public type?: NoteType;
 
+  @FhirField("PrimitiveString")
   public text?: PrimitiveString;
 
   public static parse(

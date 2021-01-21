@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IMolecularSequenceStructureVariantOuter,
   PrimitiveInteger,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MolecularSequenceStructureVariantOuter", "BackboneElement")
 export class MolecularSequenceStructureVariantOuter extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence.StructureVariant.Outer";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "start",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "end",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveInteger")
   public start?: PrimitiveInteger;
 
+  @FhirField("PrimitiveInteger")
   public end?: PrimitiveInteger;
 
   public static parse(

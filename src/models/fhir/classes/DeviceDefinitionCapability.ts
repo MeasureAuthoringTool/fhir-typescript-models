@@ -1,34 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   IDeviceDefinitionCapability,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DeviceDefinitionCapability", "BackboneElement")
 export class DeviceDefinitionCapability extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceDefinition.Capability";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public description?: Array<CodeableConcept>;
 
   public static parse(

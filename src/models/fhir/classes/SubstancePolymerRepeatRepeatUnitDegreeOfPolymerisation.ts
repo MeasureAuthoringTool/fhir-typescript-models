@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
   ISubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation,
   SubstanceAmount,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation", "BackboneElement")
 export class SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstancePolymer.Repeat.RepeatUnit.DegreeOfPolymerisation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "degree",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [SubstanceAmount],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public degree?: CodeableConcept;
 
+  @FhirField("SubstanceAmount")
   public amount?: SubstanceAmount;
 
   public static parse(

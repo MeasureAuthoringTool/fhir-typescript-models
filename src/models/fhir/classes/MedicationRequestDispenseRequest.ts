@@ -1,70 +1,47 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Duration,
   Extension,
+  FhirField,
   IMedicationRequestDispenseRequest,
   MedicationRequestDispenseRequestInitialFill,
   Period,
   PrimitiveUnsignedInt,
   Reference,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationRequestDispenseRequest", "BackboneElement")
 export class MedicationRequestDispenseRequest extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationRequest.DispenseRequest";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "initialFill",
-      fieldType: [MedicationRequestDispenseRequestInitialFill],
-      isArray: false
-    }, {
-      fieldName: "dispenseInterval",
-      fieldType: [Duration],
-      isArray: false
-    }, {
-      fieldName: "validityPeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "numberOfRepeatsAllowed",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "expectedSupplyDuration",
-      fieldType: [Duration],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("MedicationRequestDispenseRequestInitialFill")
   public initialFill?: MedicationRequestDispenseRequestInitialFill;
 
+  @FhirField("Duration")
   public dispenseInterval?: Duration;
 
+  @FhirField("Period")
   public validityPeriod?: Period;
 
+  @FhirField("PrimitiveUnsignedInt")
   public numberOfRepeatsAllowed?: PrimitiveUnsignedInt;
 
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirField("Duration")
   public expectedSupplyDuration?: Duration;
 
+  @FhirField("Reference")
   public performer?: Reference;
 
   public static parse(

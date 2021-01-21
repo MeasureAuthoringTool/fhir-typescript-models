@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IRequestGroup,
   PrimitiveCanonical,
@@ -14,128 +16,71 @@ import {
   RequestIntent,
   RequestPriority,
   RequestStatus,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("RequestGroup", "DomainResource")
 export class RequestGroup extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RequestGroup";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "instantiatesCanonical",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "instantiatesUri",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "replaces",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "groupIdentifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [RequestStatus],
-      isArray: false
-    }, {
-      fieldName: "intent",
-      fieldType: [RequestIntent],
-      isArray: false
-    }, {
-      fieldName: "priority",
-      fieldType: [RequestPriority],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "authoredOn",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "author",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "action",
-      fieldType: [RequestGroupAction],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("PrimitiveCanonical")
   public instantiatesCanonical?: Array<PrimitiveCanonical>;
 
+  @FhirList("PrimitiveUri")
   public instantiatesUri?: Array<PrimitiveUri>;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirList("Reference")
   public replaces?: Array<Reference>;
 
+  @FhirField("Identifier")
   public groupIdentifier?: Identifier;
 
+  @FhirField("RequestStatus")
   public status?: RequestStatus;
 
+  @FhirField("RequestIntent")
   public intent?: RequestIntent;
 
+  @FhirField("RequestPriority")
   public priority?: RequestPriority;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public authoredOn?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public author?: Reference;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("RequestGroupAction")
   public action?: Array<RequestGroupAction>;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -156,16 +101,10 @@ export class RequestGroup extends DomainResource {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
     if (json.instantiatesCanonical !== undefined) {
-      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
-        const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._instantiatesCanonical?.[i]));
     }
     if (json.instantiatesUri !== undefined) {
-      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
-        const ext = json._instantiatesUri && json._instantiatesUri[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => PrimitiveUri.parsePrimitive(x, json._instantiatesUri?.[i]));
     }
     if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));

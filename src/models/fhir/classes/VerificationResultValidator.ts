@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IVerificationResultValidator,
   PrimitiveString,
   Reference,
   Signature,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("VerificationResultValidator", "BackboneElement")
 export class VerificationResultValidator extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "VerificationResult.Validator";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "organization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "identityCertificate",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "attestationSignature",
-      fieldType: [Signature],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public organization?: Reference;
 
+  @FhirField("PrimitiveString")
   public identityCertificate?: PrimitiveString;
 
+  @FhirField("Signature")
   public attestationSignature?: Signature;
 
   public static parse(

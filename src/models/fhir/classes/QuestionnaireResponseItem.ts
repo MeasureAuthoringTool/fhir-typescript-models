@@ -1,55 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IQuestionnaireResponseItem,
   PrimitiveString,
   PrimitiveUri,
   QuestionnaireResponseItemAnswer,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("QuestionnaireResponseItem", "BackboneElement")
 export class QuestionnaireResponseItem extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "QuestionnaireResponse.Item";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "linkId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "definition",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "text",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "answer",
-      fieldType: [QuestionnaireResponseItemAnswer],
-      isArray: true
-    }, {
-      fieldName: "item",
-      fieldType: [QuestionnaireResponseItem],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public linkId?: PrimitiveString;
 
+  @FhirField("PrimitiveUri")
   public definition?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public text?: PrimitiveString;
 
+  @FhirList("QuestionnaireResponseItemAnswer")
   public answer?: Array<QuestionnaireResponseItemAnswer>;
 
+  @FhirList("QuestionnaireResponseItem")
   public item?: Array<QuestionnaireResponseItem>;
 
   public static parse(

@@ -1,68 +1,46 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   IMedicinalProductIngredientSpecifiedSubstanceStrength,
   MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength,
   PrimitiveString,
   Ratio,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductIngredientSpecifiedSubstanceStrength", "BackboneElement")
 export class MedicinalProductIngredientSpecifiedSubstanceStrength extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductIngredient.SpecifiedSubstance.Strength";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "presentation",
-      fieldType: [Ratio],
-      isArray: false
-    }, {
-      fieldName: "presentationLowLimit",
-      fieldType: [Ratio],
-      isArray: false
-    }, {
-      fieldName: "concentration",
-      fieldType: [Ratio],
-      isArray: false
-    }, {
-      fieldName: "concentrationLowLimit",
-      fieldType: [Ratio],
-      isArray: false
-    }, {
-      fieldName: "measurementPoint",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "country",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "referenceStrength",
-      fieldType: [MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Ratio")
   public presentation?: Ratio;
 
+  @FhirField("Ratio")
   public presentationLowLimit?: Ratio;
 
+  @FhirField("Ratio")
   public concentration?: Ratio;
 
+  @FhirField("Ratio")
   public concentrationLowLimit?: Ratio;
 
+  @FhirField("PrimitiveString")
   public measurementPoint?: PrimitiveString;
 
+  @FhirList("CodeableConcept")
   public country?: Array<CodeableConcept>;
 
+  @FhirList("MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength")
   public referenceStrength?: Array<MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength>;
 
   public static parse(

@@ -1,41 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   IEffectEvidenceSynthesisCertaintyCertaintySubcomponent,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EffectEvidenceSynthesisCertaintyCertaintySubcomponent", "BackboneElement")
 export class EffectEvidenceSynthesisCertaintyCertaintySubcomponent extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EffectEvidenceSynthesis.Certainty.CertaintySubcomponent";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "rating",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public rating?: Array<CodeableConcept>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   public static parse(

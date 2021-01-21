@@ -1,76 +1,51 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DomainResource,
   EnrollmentResponseStatus,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IEnrollmentResponse,
   PrimitiveDateTime,
   PrimitiveString,
   Reference,
   RemittanceOutcome,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EnrollmentResponse", "DomainResource")
 export class EnrollmentResponse extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EnrollmentResponse";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [EnrollmentResponseStatus],
-      isArray: false
-    }, {
-      fieldName: "request",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "outcome",
-      fieldType: [RemittanceOutcome],
-      isArray: false
-    }, {
-      fieldName: "disposition",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "organization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "requestProvider",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("EnrollmentResponseStatus")
   public status?: EnrollmentResponseStatus;
 
+  @FhirField("Reference")
   public request?: Reference;
 
+  @FhirField("RemittanceOutcome")
   public outcome?: RemittanceOutcome;
 
+  @FhirField("PrimitiveString")
   public disposition?: PrimitiveString;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public organization?: Reference;
 
+  @FhirField("Reference")
   public requestProvider?: Reference;
 
   public static parse(

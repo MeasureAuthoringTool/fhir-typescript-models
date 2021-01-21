@@ -1,10 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   AppointmentParticipant,
   AppointmentStatus,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IAppointment,
   Identifier,
   Period,
@@ -14,152 +16,83 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Appointment", "DomainResource")
 export class Appointment extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Appointment";
-  
+
   static readonly primaryCodePath: string | null = "serviceType";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [AppointmentStatus],
-      isArray: false
-    }, {
-      fieldName: "cancelationReason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "serviceCategory",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "serviceType",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "specialty",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "appointmentType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "priority",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "supportingInformation",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "start",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "end",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "minutesDuration",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "slot",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "comment",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "patientInstruction",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "participant",
-      fieldType: [AppointmentParticipant],
-      isArray: true
-    }, {
-      fieldName: "requestedPeriod",
-      fieldType: [Period],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("AppointmentStatus")
   public status?: AppointmentStatus;
 
+  @FhirField("CodeableConcept")
   public cancelationReason?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public serviceCategory?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public serviceType?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public specialty?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public appointmentType?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirField("PrimitiveUnsignedInt")
   public priority?: PrimitiveUnsignedInt;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirList("Reference")
   public supportingInformation?: Array<Reference>;
 
+  @FhirField("PrimitiveInstant")
   public start?: PrimitiveInstant;
 
+  @FhirField("PrimitiveInstant")
   public end?: PrimitiveInstant;
 
+  @FhirField("PrimitivePositiveInt")
   public minutesDuration?: PrimitivePositiveInt;
 
+  @FhirList("Reference")
   public slot?: Array<Reference>;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public comment?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public patientInstruction?: PrimitiveString;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirList("AppointmentParticipant")
   public participant?: Array<AppointmentParticipant>;
 
+  @FhirList("Period")
   public requestedPeriod?: Array<Period>;
 
   get primaryCode(): CodeableConcept | undefined {

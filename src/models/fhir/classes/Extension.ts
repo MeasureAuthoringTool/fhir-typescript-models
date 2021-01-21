@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Address,
   Age,
   Annotation,
@@ -16,6 +16,8 @@ import {
   Duration,
   Element,
   Expression,
+  FhirChoice,
+  FhirField,
   HumanName,
   Identifier,
   IElement,
@@ -53,32 +55,23 @@ import {
   Timing,
   TriggerDefinition,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Extension", "Element")
 export class Extension extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Extension";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveBase64Binary, PrimitiveBoolean, PrimitiveCanonical, PrimitiveCode, PrimitiveDate, PrimitiveDateTime, PrimitiveDecimal, PrimitiveId, PrimitiveInstant, PrimitiveInteger, PrimitiveMarkdown, PrimitiveOid, PrimitivePositiveInt, PrimitiveString, PrimitiveTime, PrimitiveUnsignedInt, PrimitiveUri, PrimitiveUrl, PrimitiveUuid, Address, Age, Annotation, Attachment, CodeableConcept, Coding, ContactPoint, Count, Distance, Duration, HumanName, Identifier, Money, Period, Quantity, Range, Ratio, Reference, SampledData, Signature, Timing, ContactDetail, Contributor, DataRequirement, Expression, ParameterDefinition, RelatedArtifact, TriggerDefinition, UsageContext, Dosage, Meta],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirChoice("PrimitiveBase64Binary", "PrimitiveBoolean", "PrimitiveCanonical", "PrimitiveCode", "PrimitiveDate", "PrimitiveDateTime", "PrimitiveDecimal", "PrimitiveId", "PrimitiveInstant", "PrimitiveInteger", "PrimitiveMarkdown", "PrimitiveOid", "PrimitivePositiveInt", "PrimitiveString", "PrimitiveTime", "PrimitiveUnsignedInt", "PrimitiveUri", "PrimitiveUrl", "PrimitiveUuid", "Address", "Age", "Annotation", "Attachment", "CodeableConcept", "Coding", "ContactPoint", "Count", "Distance", "Duration", "HumanName", "Identifier", "Money", "Period", "Quantity", "Range", "Ratio", "Reference", "SampledData", "Signature", "Timing", "ContactDetail", "Contributor", "DataRequirement", "Expression", "ParameterDefinition", "RelatedArtifact", "TriggerDefinition", "UsageContext", "Dosage", "Meta")
   public value?: PrimitiveBase64Binary | PrimitiveBoolean | PrimitiveCanonical | PrimitiveCode | PrimitiveDate | PrimitiveDateTime | PrimitiveDecimal | PrimitiveId | PrimitiveInstant | PrimitiveInteger | PrimitiveMarkdown | PrimitiveOid | PrimitivePositiveInt | PrimitiveString | PrimitiveTime | PrimitiveUnsignedInt | PrimitiveUri | PrimitiveUrl | PrimitiveUuid | Address | Age | Annotation | Attachment | CodeableConcept | Coding | ContactPoint | Count | Distance | Duration | HumanName | Identifier | Money | Period | Quantity | Range | Ratio | Reference | SampledData | Signature | Timing | ContactDetail | Contributor | DataRequirement | Expression | ParameterDefinition | RelatedArtifact | TriggerDefinition | UsageContext | Dosage | Meta;
 
   public static parse(

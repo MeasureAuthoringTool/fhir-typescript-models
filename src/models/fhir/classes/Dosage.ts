@@ -1,9 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   DosageDoseAndRate,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IDosage,
   PrimitiveBoolean,
   PrimitiveInteger,
@@ -11,98 +14,56 @@ import {
   Ratio,
   SimpleQuantity,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Dosage", "BackboneElement")
 export class Dosage extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Dosage";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "sequence",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "text",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "additionalInstruction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "patientInstruction",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "timing",
-      fieldType: [Timing],
-      isArray: false
-    }, {
-      fieldName: "asNeeded",
-      fieldType: [PrimitiveBoolean, CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "site",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "route",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "method",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "doseAndRate",
-      fieldType: [DosageDoseAndRate],
-      isArray: true
-    }, {
-      fieldName: "maxDosePerPeriod",
-      fieldType: [Ratio],
-      isArray: false
-    }, {
-      fieldName: "maxDosePerAdministration",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "maxDosePerLifetime",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveInteger")
   public sequence?: PrimitiveInteger;
 
+  @FhirField("PrimitiveString")
   public text?: PrimitiveString;
 
+  @FhirList("CodeableConcept")
   public additionalInstruction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveString")
   public patientInstruction?: PrimitiveString;
 
+  @FhirField("Timing")
   public timing?: Timing;
 
+  @FhirChoice("PrimitiveBoolean", "CodeableConcept")
   public asNeeded?: PrimitiveBoolean | CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public site?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public route?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public method?: CodeableConcept;
 
+  @FhirList("DosageDoseAndRate")
   public doseAndRate?: Array<DosageDoseAndRate>;
 
+  @FhirField("Ratio")
   public maxDosePerPeriod?: Ratio;
 
+  @FhirField("SimpleQuantity")
   public maxDosePerAdministration?: SimpleQuantity;
 
+  @FhirField("SimpleQuantity")
   public maxDosePerLifetime?: SimpleQuantity;
 
   public static parse(

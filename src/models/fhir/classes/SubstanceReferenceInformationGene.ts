@@ -1,41 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   ISubstanceReferenceInformationGene,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceReferenceInformationGene", "BackboneElement")
 export class SubstanceReferenceInformationGene extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceReferenceInformation.Gene";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "geneSequenceOrigin",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "gene",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "source",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public geneSequenceOrigin?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public gene?: CodeableConcept;
 
+  @FhirList("Reference")
   public source?: Array<Reference>;
 
   public static parse(

@@ -1,42 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IDeviceDefinitionUdiDeviceIdentifier,
   PrimitiveString,
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DeviceDefinitionUdiDeviceIdentifier", "BackboneElement")
 export class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceDefinition.UdiDeviceIdentifier";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "deviceIdentifier",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "issuer",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public deviceIdentifier?: PrimitiveString;
 
+  @FhirField("PrimitiveUri")
   public issuer?: PrimitiveUri;
 
+  @FhirField("PrimitiveUri")
   public jurisdiction?: PrimitiveUri;
 
   public static parse(

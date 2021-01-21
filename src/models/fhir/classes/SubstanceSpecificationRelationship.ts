@@ -1,8 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   ISubstanceSpecificationRelationship,
   PrimitiveBoolean,
   PrimitiveString,
@@ -10,62 +13,38 @@ import {
   Range,
   Ratio,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSpecificationRelationship", "BackboneElement")
 export class SubstanceSpecificationRelationship extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Relationship";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "substance",
-      fieldType: [Reference, CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "relationship",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "isDefining",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [Quantity, Range, Ratio, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "amountRatioLowLimit",
-      fieldType: [Ratio],
-      isArray: false
-    }, {
-      fieldName: "amountType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "source",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirChoice("Reference", "CodeableConcept")
   public substance?: Reference | CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public relationship?: CodeableConcept;
 
+  @FhirField("PrimitiveBoolean")
   public isDefining?: PrimitiveBoolean;
 
+  @FhirChoice("Quantity", "Range", "Ratio", "PrimitiveString")
   public amount?: Quantity | Range | Ratio | PrimitiveString;
 
+  @FhirField("Ratio")
   public amountRatioLowLimit?: Ratio;
 
+  @FhirField("CodeableConcept")
   public amountType?: CodeableConcept;
 
+  @FhirList("Reference")
   public source?: Array<Reference>;
 
   public static parse(

@@ -1,68 +1,46 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DomainResource,
   EnrollmentRequestStatus,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IEnrollmentRequest,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EnrollmentRequest", "DomainResource")
 export class EnrollmentRequest extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EnrollmentRequest";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [EnrollmentRequestStatus],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "insurer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "provider",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "candidate",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "coverage",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("EnrollmentRequestStatus")
   public status?: EnrollmentRequestStatus;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public insurer?: Reference;
 
+  @FhirField("Reference")
   public provider?: Reference;
 
+  @FhirField("Reference")
   public candidate?: Reference;
 
+  @FhirField("Reference")
   public coverage?: Reference;
 
   public static parse(

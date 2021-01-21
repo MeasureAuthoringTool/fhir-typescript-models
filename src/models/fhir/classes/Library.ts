@@ -1,11 +1,14 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   CodeableConcept,
   ContactDetail,
   DataRequirement,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   ILibrary,
   ParameterDefinition,
@@ -20,206 +23,110 @@ import {
   Reference,
   RelatedArtifact,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Library", "DomainResource")
 export class Library extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Library";
-  
+
   static readonly primaryCodePath: string | null = "topic";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "subtitle",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "experimental",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "purpose",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "usage",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "copyright",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "approvalDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "lastReviewDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "effectivePeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "topic",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "author",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "editor",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "reviewer",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "endorser",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "relatedArtifact",
-      fieldType: [RelatedArtifact],
-      isArray: true
-    }, {
-      fieldName: "parameter",
-      fieldType: [ParameterDefinition],
-      isArray: true
-    }, {
-      fieldName: "dataRequirement",
-      fieldType: [DataRequirement],
-      isArray: true
-    }, {
-      fieldName: "content",
-      fieldType: [Attachment],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public subtitle?: PrimitiveString;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("PrimitiveBoolean")
   public experimental?: PrimitiveBoolean;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public subject?: CodeableConcept | Reference;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public purpose?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveString")
   public usage?: PrimitiveString;
 
+  @FhirField("PrimitiveMarkdown")
   public copyright?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveDate")
   public approvalDate?: PrimitiveDate;
 
+  @FhirField("PrimitiveDate")
   public lastReviewDate?: PrimitiveDate;
 
+  @FhirField("Period")
   public effectivePeriod?: Period;
 
+  @FhirList("CodeableConcept")
   public topic?: Array<CodeableConcept>;
 
+  @FhirList("ContactDetail")
   public author?: Array<ContactDetail>;
 
+  @FhirList("ContactDetail")
   public editor?: Array<ContactDetail>;
 
+  @FhirList("ContactDetail")
   public reviewer?: Array<ContactDetail>;
 
+  @FhirList("ContactDetail")
   public endorser?: Array<ContactDetail>;
 
+  @FhirList("RelatedArtifact")
   public relatedArtifact?: Array<RelatedArtifact>;
 
+  @FhirList("ParameterDefinition")
   public parameter?: Array<ParameterDefinition>;
 
+  @FhirList("DataRequirement")
   public dataRequirement?: Array<DataRequirement>;
 
+  @FhirList("Attachment")
   public content?: Array<Attachment>;
 
   get primaryCode(): CodeableConcept | undefined {

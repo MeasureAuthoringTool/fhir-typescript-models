@@ -1,36 +1,29 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Coding,
   Element,
   Extension,
+  FhirField,
+  FhirList,
   ICodeableConcept,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CodeableConcept", "Element")
 export class CodeableConcept extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CodeableConcept";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "coding",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "text",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Coding")
   public coding?: Array<Coding>;
 
+  @FhirField("PrimitiveString")
   public text?: PrimitiveString;
 
   public static parse(

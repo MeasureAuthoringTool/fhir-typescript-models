@@ -1,9 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IRiskAssessment,
   Period,
@@ -12,122 +15,68 @@ import {
   Reference,
   RiskAssessmentPrediction,
   RiskAssessmentStatus,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("RiskAssessment", "DomainResource")
 export class RiskAssessment extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RiskAssessment";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "parent",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [RiskAssessmentStatus],
-      isArray: false
-    }, {
-      fieldName: "method",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "occurrence",
-      fieldType: [PrimitiveDateTime, Period],
-      isArray: false
-    }, {
-      fieldName: "condition",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "basis",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "prediction",
-      fieldType: [RiskAssessmentPrediction],
-      isArray: true
-    }, {
-      fieldName: "mitigation",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("Reference")
   public basedOn?: Reference;
 
+  @FhirField("Reference")
   public parent?: Reference;
 
+  @FhirField("RiskAssessmentStatus")
   public status?: RiskAssessmentStatus;
 
+  @FhirField("CodeableConcept")
   public method?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Period")
   public occurrence?: PrimitiveDateTime | Period;
 
+  @FhirField("Reference")
   public condition?: Reference;
 
+  @FhirField("Reference")
   public performer?: Reference;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirList("Reference")
   public basis?: Array<Reference>;
 
+  @FhirList("RiskAssessmentPrediction")
   public prediction?: Array<RiskAssessmentPrediction>;
 
+  @FhirField("PrimitiveString")
   public mitigation?: PrimitiveString;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   get primaryCode(): CodeableConcept | undefined {

@@ -1,76 +1,51 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   ISchedule,
   Period,
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Schedule", "DomainResource")
 export class Schedule extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Schedule";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "active",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "serviceCategory",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "serviceType",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "specialty",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "actor",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "planningHorizon",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "comment",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveBoolean")
   public active?: PrimitiveBoolean;
 
+  @FhirList("CodeableConcept")
   public serviceCategory?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public serviceType?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public specialty?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public actor?: Array<Reference>;
 
+  @FhirField("Period")
   public planningHorizon?: Period;
 
+  @FhirField("PrimitiveString")
   public comment?: PrimitiveString;
 
   public static parse(

@@ -1,34 +1,26 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
   INutritionOrderOralDietTexture,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("NutritionOrderOralDietTexture", "BackboneElement")
 export class NutritionOrderOralDietTexture extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "NutritionOrder.OralDiet.Texture";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "modifier",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "foodType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public modifier?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public foodType?: CodeableConcept;
 
   public static parse(

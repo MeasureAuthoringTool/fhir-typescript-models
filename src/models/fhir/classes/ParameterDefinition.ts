@@ -1,70 +1,47 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
   FHIRAllTypes,
+  FhirField,
   IParameterDefinition,
   ParameterUse,
   PrimitiveCanonical,
   PrimitiveCode,
   PrimitiveInteger,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ParameterDefinition", "Element")
 export class ParameterDefinition extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ParameterDefinition";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "use",
-      fieldType: [ParameterUse],
-      isArray: false
-    }, {
-      fieldName: "min",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "max",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "documentation",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [FHIRAllTypes],
-      isArray: false
-    }, {
-      fieldName: "profile",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveCode")
   public name?: PrimitiveCode;
 
+  @FhirField("ParameterUse")
   public use?: ParameterUse;
 
+  @FhirField("PrimitiveInteger")
   public min?: PrimitiveInteger;
 
+  @FhirField("PrimitiveString")
   public max?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public documentation?: PrimitiveString;
 
+  @FhirField("FHIRAllTypes")
   public type?: FHIRAllTypes;
 
+  @FhirField("PrimitiveCanonical")
   public profile?: PrimitiveCanonical;
 
   public static parse(

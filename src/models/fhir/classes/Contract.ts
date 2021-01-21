@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   CodeableConcept,
   ContractContentDefinition,
@@ -11,6 +11,9 @@ import {
   ContractTerm,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IContract,
   Identifier,
   Period,
@@ -18,218 +21,116 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Contract", "DomainResource")
 export class Contract extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [ContractStatus],
-      isArray: false
-    }, {
-      fieldName: "legalState",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "instantiatesCanonical",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "instantiatesUri",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "contentDerivative",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "issued",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "applies",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "expirationType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "authority",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "domain",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "site",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "subtitle",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "alias",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "author",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "scope",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "topic",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subType",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "contentDefinition",
-      fieldType: [ContractContentDefinition],
-      isArray: false
-    }, {
-      fieldName: "term",
-      fieldType: [ContractTerm],
-      isArray: true
-    }, {
-      fieldName: "supportingInfo",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "relevantHistory",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "signer",
-      fieldType: [ContractSigner],
-      isArray: true
-    }, {
-      fieldName: "friendly",
-      fieldType: [ContractFriendly],
-      isArray: true
-    }, {
-      fieldName: "legal",
-      fieldType: [ContractLegal],
-      isArray: true
-    }, {
-      fieldName: "rule",
-      fieldType: [ContractRule],
-      isArray: true
-    }, {
-      fieldName: "legallyBinding",
-      fieldType: [Attachment, Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("ContractStatus")
   public status?: ContractStatus;
 
+  @FhirField("CodeableConcept")
   public legalState?: CodeableConcept;
 
+  @FhirField("Reference")
   public instantiatesCanonical?: Reference;
 
+  @FhirField("PrimitiveUri")
   public instantiatesUri?: PrimitiveUri;
 
+  @FhirField("CodeableConcept")
   public contentDerivative?: CodeableConcept;
 
+  @FhirField("PrimitiveDateTime")
   public issued?: PrimitiveDateTime;
 
+  @FhirField("Period")
   public applies?: Period;
 
+  @FhirField("CodeableConcept")
   public expirationType?: CodeableConcept;
 
+  @FhirList("Reference")
   public subject?: Array<Reference>;
 
+  @FhirList("Reference")
   public authority?: Array<Reference>;
 
+  @FhirList("Reference")
   public domain?: Array<Reference>;
 
+  @FhirList("Reference")
   public site?: Array<Reference>;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public subtitle?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public alias?: Array<PrimitiveString>;
 
+  @FhirField("Reference")
   public author?: Reference;
 
+  @FhirField("CodeableConcept")
   public scope?: CodeableConcept;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public topic?: CodeableConcept | Reference;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public subType?: Array<CodeableConcept>;
 
+  @FhirField("ContractContentDefinition")
   public contentDefinition?: ContractContentDefinition;
 
+  @FhirList("ContractTerm")
   public term?: Array<ContractTerm>;
 
+  @FhirList("Reference")
   public supportingInfo?: Array<Reference>;
 
+  @FhirList("Reference")
   public relevantHistory?: Array<Reference>;
 
+  @FhirList("ContractSigner")
   public signer?: Array<ContractSigner>;
 
+  @FhirList("ContractFriendly")
   public friendly?: Array<ContractFriendly>;
 
+  @FhirList("ContractLegal")
   public legal?: Array<ContractLegal>;
 
+  @FhirList("ContractRule")
   public rule?: Array<ContractRule>;
 
+  @FhirChoice("Attachment", "Reference")
   public legallyBinding?: Attachment | Reference;
 
   public static parse(
@@ -293,10 +194,7 @@ export class Contract extends DomainResource {
       newInstance.subtitle = PrimitiveString.parsePrimitive(json.subtitle, json._subtitle);
     }
     if (json.alias !== undefined) {
-      newInstance.alias = json.alias.map((x, i) => {
-        const ext = json._alias && json._alias[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.alias = json.alias.map((x, i) => PrimitiveString.parsePrimitive(x, json._alias?.[i]));
     }
     if (json.author !== undefined) {
       newInstance.author = Reference.parse(json.author);

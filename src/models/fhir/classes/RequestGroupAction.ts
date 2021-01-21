@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   ActionCardinalityBehavior,
   ActionGroupingBehavior,
   ActionPrecheckBehavior,
@@ -10,6 +10,9 @@ import {
   CodeableConcept,
   Duration,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IRequestGroupAction,
   Period,
   PrimitiveDateTime,
@@ -21,134 +24,74 @@ import {
   RequestGroupActionRelatedAction,
   RequestPriority,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("RequestGroupAction", "BackboneElement")
 export class RequestGroupAction extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RequestGroup.Action";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "prefix",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "textEquivalent",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "priority",
-      fieldType: [RequestPriority],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "documentation",
-      fieldType: [RelatedArtifact],
-      isArray: true
-    }, {
-      fieldName: "condition",
-      fieldType: [RequestGroupActionCondition],
-      isArray: true
-    }, {
-      fieldName: "relatedAction",
-      fieldType: [RequestGroupActionRelatedAction],
-      isArray: true
-    }, {
-      fieldName: "timing",
-      fieldType: [PrimitiveDateTime, Age, Period, Duration, Range, Timing],
-      isArray: false
-    }, {
-      fieldName: "participant",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "groupingBehavior",
-      fieldType: [ActionGroupingBehavior],
-      isArray: false
-    }, {
-      fieldName: "selectionBehavior",
-      fieldType: [ActionSelectionBehavior],
-      isArray: false
-    }, {
-      fieldName: "requiredBehavior",
-      fieldType: [ActionRequiredBehavior],
-      isArray: false
-    }, {
-      fieldName: "precheckBehavior",
-      fieldType: [ActionPrecheckBehavior],
-      isArray: false
-    }, {
-      fieldName: "cardinalityBehavior",
-      fieldType: [ActionCardinalityBehavior],
-      isArray: false
-    }, {
-      fieldName: "resource",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "action",
-      fieldType: [RequestGroupAction],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public prefix?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public textEquivalent?: PrimitiveString;
 
+  @FhirField("RequestPriority")
   public priority?: RequestPriority;
 
+  @FhirList("CodeableConcept")
   public code?: Array<CodeableConcept>;
 
+  @FhirList("RelatedArtifact")
   public documentation?: Array<RelatedArtifact>;
 
+  @FhirList("RequestGroupActionCondition")
   public condition?: Array<RequestGroupActionCondition>;
 
+  @FhirList("RequestGroupActionRelatedAction")
   public relatedAction?: Array<RequestGroupActionRelatedAction>;
 
+  @FhirChoice("PrimitiveDateTime", "Age", "Period", "Duration", "Range", "Timing")
   public timing?: PrimitiveDateTime | Age | Period | Duration | Range | Timing;
 
+  @FhirList("Reference")
   public participant?: Array<Reference>;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("ActionGroupingBehavior")
   public groupingBehavior?: ActionGroupingBehavior;
 
+  @FhirField("ActionSelectionBehavior")
   public selectionBehavior?: ActionSelectionBehavior;
 
+  @FhirField("ActionRequiredBehavior")
   public requiredBehavior?: ActionRequiredBehavior;
 
+  @FhirField("ActionPrecheckBehavior")
   public precheckBehavior?: ActionPrecheckBehavior;
 
+  @FhirField("ActionCardinalityBehavior")
   public cardinalityBehavior?: ActionCardinalityBehavior;
 
+  @FhirField("Reference")
   public resource?: Reference;
 
+  @FhirList("RequestGroupAction")
   public action?: Array<RequestGroupAction>;
 
   public static parse(

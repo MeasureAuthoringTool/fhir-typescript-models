@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IAccountGuarantor,
   Period,
   PrimitiveBoolean,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AccountGuarantor", "BackboneElement")
 export class AccountGuarantor extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Account.Guarantor";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "party",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "onHold",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public party?: Reference;
 
+  @FhirField("PrimitiveBoolean")
   public onHold?: PrimitiveBoolean;
 
+  @FhirField("Period")
   public period?: Period;
 
   public static parse(

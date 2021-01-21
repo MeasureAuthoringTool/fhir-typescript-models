@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Address,
   Age,
   Annotation,
@@ -17,6 +17,8 @@ import {
   Duration,
   Expression,
   Extension,
+  FhirChoice,
+  FhirField,
   HumanName,
   Identifier,
   IStructureMapGroupRuleSource,
@@ -54,86 +56,50 @@ import {
   Timing,
   TriggerDefinition,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("StructureMapGroupRuleSource", "BackboneElement")
 export class StructureMapGroupRuleSource extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureMap.Group.Rule.Source";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "context",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "min",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "max",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "defaultValue",
-      fieldType: [PrimitiveBase64Binary, PrimitiveBoolean, PrimitiveCanonical, PrimitiveCode, PrimitiveDate, PrimitiveDateTime, PrimitiveDecimal, PrimitiveId, PrimitiveInstant, PrimitiveInteger, PrimitiveMarkdown, PrimitiveOid, PrimitivePositiveInt, PrimitiveString, PrimitiveTime, PrimitiveUnsignedInt, PrimitiveUri, PrimitiveUrl, PrimitiveUuid, Address, Age, Annotation, Attachment, CodeableConcept, Coding, ContactPoint, Count, Distance, Duration, HumanName, Identifier, Money, Period, Quantity, Range, Ratio, Reference, SampledData, Signature, Timing, ContactDetail, Contributor, DataRequirement, Expression, ParameterDefinition, RelatedArtifact, TriggerDefinition, UsageContext, Dosage, Meta],
-      isArray: false
-    }, {
-      fieldName: "element",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "listMode",
-      fieldType: [StructureMapSourceListMode],
-      isArray: false
-    }, {
-      fieldName: "variable",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "condition",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "check",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "logMessage",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public context?: PrimitiveId;
 
+  @FhirField("PrimitiveInteger")
   public min?: PrimitiveInteger;
 
+  @FhirField("PrimitiveString")
   public max?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public type?: PrimitiveString;
 
+  @FhirChoice("PrimitiveBase64Binary", "PrimitiveBoolean", "PrimitiveCanonical", "PrimitiveCode", "PrimitiveDate", "PrimitiveDateTime", "PrimitiveDecimal", "PrimitiveId", "PrimitiveInstant", "PrimitiveInteger", "PrimitiveMarkdown", "PrimitiveOid", "PrimitivePositiveInt", "PrimitiveString", "PrimitiveTime", "PrimitiveUnsignedInt", "PrimitiveUri", "PrimitiveUrl", "PrimitiveUuid", "Address", "Age", "Annotation", "Attachment", "CodeableConcept", "Coding", "ContactPoint", "Count", "Distance", "Duration", "HumanName", "Identifier", "Money", "Period", "Quantity", "Range", "Ratio", "Reference", "SampledData", "Signature", "Timing", "ContactDetail", "Contributor", "DataRequirement", "Expression", "ParameterDefinition", "RelatedArtifact", "TriggerDefinition", "UsageContext", "Dosage", "Meta")
   public defaultValue?: PrimitiveBase64Binary | PrimitiveBoolean | PrimitiveCanonical | PrimitiveCode | PrimitiveDate | PrimitiveDateTime | PrimitiveDecimal | PrimitiveId | PrimitiveInstant | PrimitiveInteger | PrimitiveMarkdown | PrimitiveOid | PrimitivePositiveInt | PrimitiveString | PrimitiveTime | PrimitiveUnsignedInt | PrimitiveUri | PrimitiveUrl | PrimitiveUuid | Address | Age | Annotation | Attachment | CodeableConcept | Coding | ContactPoint | Count | Distance | Duration | HumanName | Identifier | Money | Period | Quantity | Range | Ratio | Reference | SampledData | Signature | Timing | ContactDetail | Contributor | DataRequirement | Expression | ParameterDefinition | RelatedArtifact | TriggerDefinition | UsageContext | Dosage | Meta;
 
+  @FhirField("PrimitiveString")
   public element?: PrimitiveString;
 
+  @FhirField("StructureMapSourceListMode")
   public listMode?: StructureMapSourceListMode;
 
+  @FhirField("PrimitiveId")
   public variable?: PrimitiveId;
 
+  @FhirField("PrimitiveString")
   public condition?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public check?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public logMessage?: PrimitiveString;
 
   public static parse(

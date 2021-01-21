@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
   ExtensionContextType,
+  FhirField,
   IStructureDefinitionContext,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("StructureDefinitionContext", "BackboneElement")
 export class StructureDefinitionContext extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureDefinition.Context";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [ExtensionContextType],
-      isArray: false
-    }, {
-      fieldName: "expression",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("ExtensionContextType")
   public type?: ExtensionContextType;
 
+  @FhirField("PrimitiveString")
   public expression?: PrimitiveString;
 
   public static parse(

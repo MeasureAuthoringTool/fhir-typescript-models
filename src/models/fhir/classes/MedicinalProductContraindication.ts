@@ -1,67 +1,45 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
+  FhirField,
+  FhirList,
   IMedicinalProductContraindication,
   MedicinalProductContraindicationOtherTherapy,
   Population,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductContraindication", "DomainResource")
 export class MedicinalProductContraindication extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductContraindication";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "disease",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "diseaseStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "comorbidity",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "therapeuticIndication",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "otherTherapy",
-      fieldType: [MedicinalProductContraindicationOtherTherapy],
-      isArray: true
-    }, {
-      fieldName: "population",
-      fieldType: [Population],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Reference")
   public subject?: Array<Reference>;
 
+  @FhirField("CodeableConcept")
   public disease?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public diseaseStatus?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public comorbidity?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public therapeuticIndication?: Array<Reference>;
 
+  @FhirList("MedicinalProductContraindicationOtherTherapy")
   public otherTherapy?: Array<MedicinalProductContraindicationOtherTherapy>;
 
+  @FhirList("Population")
   public population?: Array<Population>;
 
   public static parse(

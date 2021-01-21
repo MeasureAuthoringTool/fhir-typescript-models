@@ -1,42 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirField,
   IElementDefinitionBase,
   PrimitiveString,
   PrimitiveUnsignedInt,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ElementDefinitionBase", "Element")
 export class ElementDefinitionBase extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition.Base";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "path",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "min",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "max",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public path?: PrimitiveString;
 
+  @FhirField("PrimitiveUnsignedInt")
   public min?: PrimitiveUnsignedInt;
 
+  @FhirField("PrimitiveString")
   public max?: PrimitiveString;
 
   public static parse(

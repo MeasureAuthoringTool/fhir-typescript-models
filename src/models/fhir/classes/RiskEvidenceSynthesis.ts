@@ -1,10 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   ContactDetail,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IRiskEvidenceSynthesis,
   Period,
@@ -20,206 +22,110 @@ import {
   RiskEvidenceSynthesisRiskEstimate,
   RiskEvidenceSynthesisSampleSize,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("RiskEvidenceSynthesis", "DomainResource")
 export class RiskEvidenceSynthesis extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RiskEvidenceSynthesis";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "copyright",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "approvalDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "lastReviewDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "effectivePeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "topic",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "author",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "editor",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "reviewer",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "endorser",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "relatedArtifact",
-      fieldType: [RelatedArtifact],
-      isArray: true
-    }, {
-      fieldName: "synthesisType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "studyType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "population",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "exposure",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "outcome",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "sampleSize",
-      fieldType: [RiskEvidenceSynthesisSampleSize],
-      isArray: false
-    }, {
-      fieldName: "riskEstimate",
-      fieldType: [RiskEvidenceSynthesisRiskEstimate],
-      isArray: false
-    }, {
-      fieldName: "certainty",
-      fieldType: [RiskEvidenceSynthesisCertainty],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public copyright?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveDate")
   public approvalDate?: PrimitiveDate;
 
+  @FhirField("PrimitiveDate")
   public lastReviewDate?: PrimitiveDate;
 
+  @FhirField("Period")
   public effectivePeriod?: Period;
 
+  @FhirList("CodeableConcept")
   public topic?: Array<CodeableConcept>;
 
+  @FhirList("ContactDetail")
   public author?: Array<ContactDetail>;
 
+  @FhirList("ContactDetail")
   public editor?: Array<ContactDetail>;
 
+  @FhirList("ContactDetail")
   public reviewer?: Array<ContactDetail>;
 
+  @FhirList("ContactDetail")
   public endorser?: Array<ContactDetail>;
 
+  @FhirList("RelatedArtifact")
   public relatedArtifact?: Array<RelatedArtifact>;
 
+  @FhirField("CodeableConcept")
   public synthesisType?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public studyType?: CodeableConcept;
 
+  @FhirField("Reference")
   public population?: Reference;
 
+  @FhirField("Reference")
   public exposure?: Reference;
 
+  @FhirField("Reference")
   public outcome?: Reference;
 
+  @FhirField("RiskEvidenceSynthesisSampleSize")
   public sampleSize?: RiskEvidenceSynthesisSampleSize;
 
+  @FhirField("RiskEvidenceSynthesisRiskEstimate")
   public riskEstimate?: RiskEvidenceSynthesisRiskEstimate;
 
+  @FhirList("RiskEvidenceSynthesisCertainty")
   public certainty?: Array<RiskEvidenceSynthesisCertainty>;
 
   public static parse(

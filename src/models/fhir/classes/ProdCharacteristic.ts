@@ -1,92 +1,58 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   IProdCharacteristic,
   PrimitiveString,
   Quantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ProdCharacteristic", "BackboneElement")
 export class ProdCharacteristic extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ProdCharacteristic";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "height",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "width",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "depth",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "weight",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "nominalVolume",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "externalDiameter",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "shape",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "color",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "imprint",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "image",
-      fieldType: [Attachment],
-      isArray: true
-    }, {
-      fieldName: "scoring",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Quantity")
   public height?: Quantity;
 
+  @FhirField("Quantity")
   public width?: Quantity;
 
+  @FhirField("Quantity")
   public depth?: Quantity;
 
+  @FhirField("Quantity")
   public weight?: Quantity;
 
+  @FhirField("Quantity")
   public nominalVolume?: Quantity;
 
+  @FhirField("Quantity")
   public externalDiameter?: Quantity;
 
+  @FhirField("PrimitiveString")
   public shape?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public color?: Array<PrimitiveString>;
 
+  @FhirList("PrimitiveString")
   public imprint?: Array<PrimitiveString>;
 
+  @FhirList("Attachment")
   public image?: Array<Attachment>;
 
+  @FhirField("CodeableConcept")
   public scoring?: CodeableConcept;
 
   public static parse(
@@ -117,16 +83,10 @@ export class ProdCharacteristic extends BackboneElement {
       newInstance.shape = PrimitiveString.parsePrimitive(json.shape, json._shape);
     }
     if (json.color !== undefined) {
-      newInstance.color = json.color.map((x, i) => {
-        const ext = json._color && json._color[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.color = json.color.map((x, i) => PrimitiveString.parsePrimitive(x, json._color?.[i]));
     }
     if (json.imprint !== undefined) {
-      newInstance.imprint = json.imprint.map((x, i) => {
-        const ext = json._imprint && json._imprint[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.imprint = json.imprint.map((x, i) => PrimitiveString.parsePrimitive(x, json._imprint?.[i]));
     }
     if (json.image !== undefined) {
       newInstance.image = json.image.map((x) => Attachment.parse(x));

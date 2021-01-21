@@ -1,34 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   IMedicationKnowledgeMedicineClassification,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationKnowledgeMedicineClassification", "BackboneElement")
 export class MedicationKnowledgeMedicineClassification extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.MedicineClassification";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "classification",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public classification?: Array<CodeableConcept>;
 
   public static parse(

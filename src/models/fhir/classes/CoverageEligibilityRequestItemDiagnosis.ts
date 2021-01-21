@@ -1,29 +1,24 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirChoice,
   ICoverageEligibilityRequestItemDiagnosis,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CoverageEligibilityRequestItemDiagnosis", "BackboneElement")
 export class CoverageEligibilityRequestItemDiagnosis extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityRequest.Item.Diagnosis";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "diagnosis",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("CodeableConcept", "Reference")
   public diagnosis?: CodeableConcept | Reference;
 
   public static parse(

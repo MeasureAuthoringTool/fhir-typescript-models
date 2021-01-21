@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   GroupCharacteristic,
   GroupMember,
   GroupType,
@@ -12,80 +14,47 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Group", "DomainResource")
 export class Group extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Group";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "active",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [GroupType],
-      isArray: false
-    }, {
-      fieldName: "actual",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "managingEntity",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "characteristic",
-      fieldType: [GroupCharacteristic],
-      isArray: true
-    }, {
-      fieldName: "member",
-      fieldType: [GroupMember],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveBoolean")
   public active?: PrimitiveBoolean;
 
+  @FhirField("GroupType")
   public type?: GroupType;
 
+  @FhirField("PrimitiveBoolean")
   public actual?: PrimitiveBoolean;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveUnsignedInt")
   public quantity?: PrimitiveUnsignedInt;
 
+  @FhirField("Reference")
   public managingEntity?: Reference;
 
+  @FhirList("GroupCharacteristic")
   public characteristic?: Array<GroupCharacteristic>;
 
+  @FhirList("GroupMember")
   public member?: Array<GroupMember>;
 
   get primaryCode(): CodeableConcept | undefined {

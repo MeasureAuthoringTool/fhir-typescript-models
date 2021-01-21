@@ -1,28 +1,23 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
   ICoverageEligibilityResponseError,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CoverageEligibilityResponseError", "BackboneElement")
 export class CoverageEligibilityResponseError extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityResponse.Error";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
   public static parse(

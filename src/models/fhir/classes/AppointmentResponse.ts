@@ -1,76 +1,51 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IAppointmentResponse,
   Identifier,
   ParticipantStatus,
   PrimitiveInstant,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AppointmentResponse", "DomainResource")
 export class AppointmentResponse extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AppointmentResponse";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "appointment",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "start",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "end",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "participantType",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "actor",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "participantStatus",
-      fieldType: [ParticipantStatus],
-      isArray: false
-    }, {
-      fieldName: "comment",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("Reference")
   public appointment?: Reference;
 
+  @FhirField("PrimitiveInstant")
   public start?: PrimitiveInstant;
 
+  @FhirField("PrimitiveInstant")
   public end?: PrimitiveInstant;
 
+  @FhirList("CodeableConcept")
   public participantType?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public actor?: Reference;
 
+  @FhirField("ParticipantStatus")
   public participantStatus?: ParticipantStatus;
 
+  @FhirField("PrimitiveString")
   public comment?: PrimitiveString;
 
   public static parse(

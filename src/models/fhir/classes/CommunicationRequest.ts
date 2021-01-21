@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   CommunicationPriority,
@@ -7,158 +7,92 @@ import {
   CommunicationRequestStatus,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   ICommunicationRequest,
   Identifier,
   Period,
   PrimitiveBoolean,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CommunicationRequest", "DomainResource")
 export class CommunicationRequest extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CommunicationRequest";
-  
+
   static readonly primaryCodePath: string | null = "category";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "replaces",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "groupIdentifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [CommunicationRequestStatus],
-      isArray: false
-    }, {
-      fieldName: "statusReason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "priority",
-      fieldType: [CommunicationPriority],
-      isArray: false
-    }, {
-      fieldName: "doNotPerform",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "medium",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "about",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "payload",
-      fieldType: [CommunicationRequestPayload],
-      isArray: true
-    }, {
-      fieldName: "occurrence",
-      fieldType: [PrimitiveDateTime, Period],
-      isArray: false
-    }, {
-      fieldName: "authoredOn",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "requester",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "recipient",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "sender",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirList("Reference")
   public replaces?: Array<Reference>;
 
+  @FhirField("Identifier")
   public groupIdentifier?: Identifier;
 
+  @FhirField("CommunicationRequestStatus")
   public status?: CommunicationRequestStatus;
 
+  @FhirField("CodeableConcept")
   public statusReason?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("CommunicationPriority")
   public priority?: CommunicationPriority;
 
+  @FhirField("PrimitiveBoolean")
   public doNotPerform?: PrimitiveBoolean;
 
+  @FhirList("CodeableConcept")
   public medium?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirList("Reference")
   public about?: Array<Reference>;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirList("CommunicationRequestPayload")
   public payload?: Array<CommunicationRequestPayload>;
 
+  @FhirChoice("PrimitiveDateTime", "Period")
   public occurrence?: PrimitiveDateTime | Period;
 
+  @FhirField("PrimitiveDateTime")
   public authoredOn?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public requester?: Reference;
 
+  @FhirList("Reference")
   public recipient?: Array<Reference>;
 
+  @FhirField("Reference")
   public sender?: Reference;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   get primaryCode(): CodeableConcept | undefined {

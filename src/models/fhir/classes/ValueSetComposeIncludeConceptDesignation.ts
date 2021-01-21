@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Coding,
   Extension,
+  FhirField,
   IValueSetComposeIncludeConceptDesignation,
   PrimitiveCode,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ValueSetComposeIncludeConceptDesignation", "BackboneElement")
 export class ValueSetComposeIncludeConceptDesignation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ValueSet.Compose.Include.Concept.Designation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "language",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "use",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveCode")
   public language?: PrimitiveCode;
 
+  @FhirField("Coding")
   public use?: Coding;
 
+  @FhirField("PrimitiveString")
   public value?: PrimitiveString;
 
   public static parse(

@@ -1,10 +1,13 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   Attachment,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IMedia,
   MediaStatus,
@@ -15,152 +18,83 @@ import {
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Media", "DomainResource")
 export class Media extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Media";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "partOf",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [MediaStatus],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "modality",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "view",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime, Period],
-      isArray: false
-    }, {
-      fieldName: "issued",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "operator",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "bodySite",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "deviceName",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "device",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "height",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "width",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "frames",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "duration",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "content",
-      fieldType: [Attachment],
-      isArray: false
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirList("Reference")
   public partOf?: Array<Reference>;
 
+  @FhirField("MediaStatus")
   public status?: MediaStatus;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public modality?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public view?: CodeableConcept;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Period")
   public created?: PrimitiveDateTime | Period;
 
+  @FhirField("PrimitiveInstant")
   public issued?: PrimitiveInstant;
 
+  @FhirField("Reference")
   public operator?: Reference;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public bodySite?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public deviceName?: PrimitiveString;
 
+  @FhirField("Reference")
   public device?: Reference;
 
+  @FhirField("PrimitivePositiveInt")
   public height?: PrimitivePositiveInt;
 
+  @FhirField("PrimitivePositiveInt")
   public width?: PrimitivePositiveInt;
 
+  @FhirField("PrimitivePositiveInt")
   public frames?: PrimitivePositiveInt;
 
+  @FhirField("PrimitiveDecimal")
   public duration?: PrimitiveDecimal;
 
+  @FhirField("Attachment")
   public content?: Attachment;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   public static parse(

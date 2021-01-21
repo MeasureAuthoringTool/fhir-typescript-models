@@ -1,10 +1,13 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CarePlanActivityKind,
   CarePlanActivityStatus,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   ICarePlanActivityDetail,
   Period,
   PrimitiveBoolean,
@@ -14,122 +17,68 @@ import {
   Reference,
   SimpleQuantity,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CarePlanActivityDetail", "BackboneElement")
 export class CarePlanActivityDetail extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CarePlan.Activity.Detail";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "kind",
-      fieldType: [CarePlanActivityKind],
-      isArray: false
-    }, {
-      fieldName: "instantiatesCanonical",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "instantiatesUri",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "goal",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [CarePlanActivityStatus],
-      isArray: false
-    }, {
-      fieldName: "statusReason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "doNotPerform",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "scheduled",
-      fieldType: [Timing, Period, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "product",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }, {
-      fieldName: "dailyAmount",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CarePlanActivityKind")
   public kind?: CarePlanActivityKind;
 
+  @FhirList("PrimitiveCanonical")
   public instantiatesCanonical?: Array<PrimitiveCanonical>;
 
+  @FhirList("PrimitiveUri")
   public instantiatesUri?: Array<PrimitiveUri>;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirList("Reference")
   public goal?: Array<Reference>;
 
+  @FhirField("CarePlanActivityStatus")
   public status?: CarePlanActivityStatus;
 
+  @FhirField("CodeableConcept")
   public statusReason?: CodeableConcept;
 
+  @FhirField("PrimitiveBoolean")
   public doNotPerform?: PrimitiveBoolean;
 
+  @FhirChoice("Timing", "Period", "PrimitiveString")
   public scheduled?: Timing | Period | PrimitiveString;
 
+  @FhirField("Reference")
   public location?: Reference;
 
+  @FhirList("Reference")
   public performer?: Array<Reference>;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public product?: CodeableConcept | Reference;
 
+  @FhirField("SimpleQuantity")
   public dailyAmount?: SimpleQuantity;
 
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
   public static parse(
@@ -142,16 +91,10 @@ export class CarePlanActivityDetail extends BackboneElement {
       newInstance.kind = CarePlanActivityKind.parsePrimitive(json.kind, json._kind);
     }
     if (json.instantiatesCanonical !== undefined) {
-      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
-        const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._instantiatesCanonical?.[i]));
     }
     if (json.instantiatesUri !== undefined) {
-      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
-        const ext = json._instantiatesUri && json._instantiatesUri[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => PrimitiveUri.parsePrimitive(x, json._instantiatesUri?.[i]));
     }
     if (json.code !== undefined) {
       newInstance.code = CodeableConcept.parse(json.code);

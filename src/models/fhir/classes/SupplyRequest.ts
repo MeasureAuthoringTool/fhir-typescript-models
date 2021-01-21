@@ -1,8 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   ISupplyRequest,
   Period,
@@ -13,110 +16,62 @@ import {
   SupplyRequestParameter,
   SupplyRequestStatus,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SupplyRequest", "DomainResource")
 export class SupplyRequest extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SupplyRequest";
-  
+
   static readonly primaryCodePath: string | null = "category";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [SupplyRequestStatus],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "priority",
-      fieldType: [RequestPriority],
-      isArray: false
-    }, {
-      fieldName: "item",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "parameter",
-      fieldType: [SupplyRequestParameter],
-      isArray: true
-    }, {
-      fieldName: "occurrence",
-      fieldType: [PrimitiveDateTime, Period, Timing],
-      isArray: false
-    }, {
-      fieldName: "authoredOn",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "requester",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "supplier",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "deliverFrom",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "deliverTo",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("SupplyRequestStatus")
   public status?: SupplyRequestStatus;
 
+  @FhirField("CodeableConcept")
   public category?: CodeableConcept;
 
+  @FhirField("RequestPriority")
   public priority?: RequestPriority;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public item?: CodeableConcept | Reference;
 
+  @FhirField("Quantity")
   public quantity?: Quantity;
 
+  @FhirList("SupplyRequestParameter")
   public parameter?: Array<SupplyRequestParameter>;
 
+  @FhirChoice("PrimitiveDateTime", "Period", "Timing")
   public occurrence?: PrimitiveDateTime | Period | Timing;
 
+  @FhirField("PrimitiveDateTime")
   public authoredOn?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public requester?: Reference;
 
+  @FhirList("Reference")
   public supplier?: Array<Reference>;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirField("Reference")
   public deliverFrom?: Reference;
 
+  @FhirField("Reference")
   public deliverTo?: Reference;
 
   get primaryCode(): CodeableConcept | undefined {

@@ -1,9 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IImmunization,
   ImmunizationEducation,
@@ -17,188 +20,101 @@ import {
   PrimitiveString,
   Reference,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Immunization", "DomainResource")
 export class Immunization extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Immunization";
-  
+
   static readonly primaryCodePath: string | null = "vaccineCode";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [ImmunizationStatus],
-      isArray: false
-    }, {
-      fieldName: "statusReason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "vaccineCode",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "occurrence",
-      fieldType: [PrimitiveDateTime, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "recorded",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "primarySource",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "reportOrigin",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "manufacturer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "lotNumber",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "expirationDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "site",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "route",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "doseQuantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [ImmunizationPerformer],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "isSubpotent",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "subpotentReason",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "education",
-      fieldType: [ImmunizationEducation],
-      isArray: true
-    }, {
-      fieldName: "programEligibility",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "fundingSource",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "reaction",
-      fieldType: [ImmunizationReaction],
-      isArray: true
-    }, {
-      fieldName: "protocolApplied",
-      fieldType: [ImmunizationProtocolApplied],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("ImmunizationStatus")
   public status?: ImmunizationStatus;
 
+  @FhirField("CodeableConcept")
   public statusReason?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public vaccineCode?: CodeableConcept;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "PrimitiveString")
   public occurrence?: PrimitiveDateTime | PrimitiveString;
 
+  @FhirField("PrimitiveDateTime")
   public recorded?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveBoolean")
   public primarySource?: PrimitiveBoolean;
 
+  @FhirField("CodeableConcept")
   public reportOrigin?: CodeableConcept;
 
+  @FhirField("Reference")
   public location?: Reference;
 
+  @FhirField("Reference")
   public manufacturer?: Reference;
 
+  @FhirField("PrimitiveString")
   public lotNumber?: PrimitiveString;
 
+  @FhirField("PrimitiveDate")
   public expirationDate?: PrimitiveDate;
 
+  @FhirField("CodeableConcept")
   public site?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public route?: CodeableConcept;
 
+  @FhirField("SimpleQuantity")
   public doseQuantity?: SimpleQuantity;
 
+  @FhirList("ImmunizationPerformer")
   public performer?: Array<ImmunizationPerformer>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirField("PrimitiveBoolean")
   public isSubpotent?: PrimitiveBoolean;
 
+  @FhirList("CodeableConcept")
   public subpotentReason?: Array<CodeableConcept>;
 
+  @FhirList("ImmunizationEducation")
   public education?: Array<ImmunizationEducation>;
 
+  @FhirList("CodeableConcept")
   public programEligibility?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public fundingSource?: CodeableConcept;
 
+  @FhirList("ImmunizationReaction")
   public reaction?: Array<ImmunizationReaction>;
 
+  @FhirList("ImmunizationProtocolApplied")
   public protocolApplied?: Array<ImmunizationProtocolApplied>;
 
   get primaryCode(): CodeableConcept | undefined {

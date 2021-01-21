@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirField,
   INarrative,
   NarrativeStatus,
   PrimitiveXhtml,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Narrative", "Element")
 export class Narrative extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Narrative";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "status",
-      fieldType: [NarrativeStatus],
-      isArray: false
-    }, {
-      fieldName: "div",
-      fieldType: [PrimitiveXhtml],
-      isArray: false
-    }];
-  }
-
+  @FhirField("NarrativeStatus")
   public status?: NarrativeStatus;
 
+  @FhirField("PrimitiveXhtml")
   public div?: PrimitiveXhtml;
 
   public static parse(

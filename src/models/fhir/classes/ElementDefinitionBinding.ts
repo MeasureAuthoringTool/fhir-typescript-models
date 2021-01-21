@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BindingStrength,
   Element,
   Extension,
+  FhirField,
   IElementDefinitionBinding,
   PrimitiveCanonical,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ElementDefinitionBinding", "Element")
 export class ElementDefinitionBinding extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition.Binding";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "strength",
-      fieldType: [BindingStrength],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "valueSet",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }];
-  }
-
+  @FhirField("BindingStrength")
   public strength?: BindingStrength;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveCanonical")
   public valueSet?: PrimitiveCanonical;
 
   public static parse(

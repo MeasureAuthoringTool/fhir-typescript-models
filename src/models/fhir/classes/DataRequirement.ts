@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DataRequirementCodeFilter,
   DataRequirementDateFilter,
@@ -7,73 +7,49 @@ import {
   Element,
   Extension,
   FHIRAllTypes,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IDataRequirement,
   PrimitiveCanonical,
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DataRequirement", "Element")
 export class DataRequirement extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DataRequirement";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "type",
-      fieldType: [FHIRAllTypes],
-      isArray: false
-    }, {
-      fieldName: "profile",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "subject",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }, {
-      fieldName: "mustSupport",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "codeFilter",
-      fieldType: [DataRequirementCodeFilter],
-      isArray: true
-    }, {
-      fieldName: "dateFilter",
-      fieldType: [DataRequirementDateFilter],
-      isArray: true
-    }, {
-      fieldName: "limit",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "sort",
-      fieldType: [DataRequirementSort],
-      isArray: true
-    }];
-  }
-
+  @FhirField("FHIRAllTypes")
   public type?: FHIRAllTypes;
 
+  @FhirList("PrimitiveCanonical")
   public profile?: Array<PrimitiveCanonical>;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public subject?: CodeableConcept | Reference;
 
+  @FhirList("PrimitiveString")
   public mustSupport?: Array<PrimitiveString>;
 
+  @FhirList("DataRequirementCodeFilter")
   public codeFilter?: Array<DataRequirementCodeFilter>;
 
+  @FhirList("DataRequirementDateFilter")
   public dateFilter?: Array<DataRequirementDateFilter>;
 
+  @FhirField("PrimitivePositiveInt")
   public limit?: PrimitivePositiveInt;
 
+  @FhirList("DataRequirementSort")
   public sort?: Array<DataRequirementSort>;
 
   public static parse(
@@ -86,10 +62,7 @@ export class DataRequirement extends Element {
       newInstance.type = FHIRAllTypes.parsePrimitive(json.type, json._type);
     }
     if (json.profile !== undefined) {
-      newInstance.profile = json.profile.map((x, i) => {
-        const ext = json._profile && json._profile[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.profile = json.profile.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._profile?.[i]));
     }
     if (json.subjectCodeableConcept !== undefined) {
       newInstance.subject = CodeableConcept.parse(json.subjectCodeableConcept);
@@ -98,10 +71,7 @@ export class DataRequirement extends Element {
       newInstance.subject = Reference.parse(json.subjectReference);
     }
     if (json.mustSupport !== undefined) {
-      newInstance.mustSupport = json.mustSupport.map((x, i) => {
-        const ext = json._mustSupport && json._mustSupport[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.mustSupport = json.mustSupport.map((x, i) => PrimitiveString.parsePrimitive(x, json._mustSupport?.[i]));
     }
     if (json.codeFilter !== undefined) {
       newInstance.codeFilter = json.codeFilter.map((x) => DataRequirementCodeFilter.parse(x));

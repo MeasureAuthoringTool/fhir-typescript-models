@@ -1,43 +1,33 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   ITaskRestriction,
   Period,
   PrimitivePositiveInt,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TaskRestriction", "BackboneElement")
 export class TaskRestriction extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Task.Restriction";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "repetitions",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "recipient",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitivePositiveInt")
   public repetitions?: PrimitivePositiveInt;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirList("Reference")
   public recipient?: Array<Reference>;
 
   public static parse(

@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BiologicallyDerivedProductCategory,
   BiologicallyDerivedProductCollection,
   BiologicallyDerivedProductManipulation,
@@ -9,90 +9,56 @@ import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IBiologicallyDerivedProduct,
   Identifier,
   PrimitiveInteger,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("BiologicallyDerivedProduct", "DomainResource")
 export class BiologicallyDerivedProduct extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "BiologicallyDerivedProduct";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "productCategory",
-      fieldType: [BiologicallyDerivedProductCategory],
-      isArray: false
-    }, {
-      fieldName: "productCode",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [BiologicallyDerivedProductStatus],
-      isArray: false
-    }, {
-      fieldName: "request",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "quantity",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "parent",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "collection",
-      fieldType: [BiologicallyDerivedProductCollection],
-      isArray: false
-    }, {
-      fieldName: "processing",
-      fieldType: [BiologicallyDerivedProductProcessing],
-      isArray: true
-    }, {
-      fieldName: "manipulation",
-      fieldType: [BiologicallyDerivedProductManipulation],
-      isArray: false
-    }, {
-      fieldName: "storage",
-      fieldType: [BiologicallyDerivedProductStorage],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("BiologicallyDerivedProductCategory")
   public productCategory?: BiologicallyDerivedProductCategory;
 
+  @FhirField("CodeableConcept")
   public productCode?: CodeableConcept;
 
+  @FhirField("BiologicallyDerivedProductStatus")
   public status?: BiologicallyDerivedProductStatus;
 
+  @FhirList("Reference")
   public request?: Array<Reference>;
 
+  @FhirField("PrimitiveInteger")
   public quantity?: PrimitiveInteger;
 
+  @FhirList("Reference")
   public parent?: Array<Reference>;
 
+  @FhirField("BiologicallyDerivedProductCollection")
   public collection?: BiologicallyDerivedProductCollection;
 
+  @FhirList("BiologicallyDerivedProductProcessing")
   public processing?: Array<BiologicallyDerivedProductProcessing>;
 
+  @FhirField("BiologicallyDerivedProductManipulation")
   public manipulation?: BiologicallyDerivedProductManipulation;
 
+  @FhirList("BiologicallyDerivedProductStorage")
   public storage?: Array<BiologicallyDerivedProductStorage>;
 
   public static parse(

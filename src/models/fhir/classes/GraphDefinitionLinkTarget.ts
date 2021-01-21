@@ -1,57 +1,41 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   GraphDefinitionLink,
   GraphDefinitionLinkTargetCompartment,
   IGraphDefinitionLinkTarget,
   PrimitiveCanonical,
   PrimitiveString,
   ResourceType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("GraphDefinitionLinkTarget", "BackboneElement")
 export class GraphDefinitionLinkTarget extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "GraphDefinition.Link.Target";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [ResourceType],
-      isArray: false
-    }, {
-      fieldName: "params",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "profile",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "compartment",
-      fieldType: [GraphDefinitionLinkTargetCompartment],
-      isArray: true
-    }, {
-      fieldName: "link",
-      fieldType: [GraphDefinitionLink],
-      isArray: true
-    }];
-  }
-
+  @FhirField("ResourceType")
   public type?: ResourceType;
 
+  @FhirField("PrimitiveString")
   public params?: PrimitiveString;
 
+  @FhirField("PrimitiveCanonical")
   public profile?: PrimitiveCanonical;
 
+  @FhirList("GraphDefinitionLinkTargetCompartment")
   public compartment?: Array<GraphDefinitionLinkTargetCompartment>;
 
+  @FhirList("GraphDefinitionLink")
   public link?: Array<GraphDefinitionLink>;
 
   public static parse(

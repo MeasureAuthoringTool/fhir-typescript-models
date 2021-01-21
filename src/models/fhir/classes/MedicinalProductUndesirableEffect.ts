@@ -1,54 +1,38 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
+  FhirField,
+  FhirList,
   IMedicinalProductUndesirableEffect,
   Population,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductUndesirableEffect", "DomainResource")
 export class MedicinalProductUndesirableEffect extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductUndesirableEffect";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "symptomConditionEffect",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "classification",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "frequencyOfOccurrence",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "population",
-      fieldType: [Population],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Reference")
   public subject?: Array<Reference>;
 
+  @FhirField("CodeableConcept")
   public symptomConditionEffect?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public classification?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public frequencyOfOccurrence?: CodeableConcept;
 
+  @FhirList("Population")
   public population?: Array<Population>;
 
   public static parse(

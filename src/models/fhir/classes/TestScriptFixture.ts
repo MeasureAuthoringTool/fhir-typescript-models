@@ -1,42 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   ITestScriptFixture,
   PrimitiveBoolean,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TestScriptFixture", "BackboneElement")
 export class TestScriptFixture extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Fixture";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "autocreate",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "autodelete",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "resource",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveBoolean")
   public autocreate?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public autodelete?: PrimitiveBoolean;
 
+  @FhirField("Reference")
   public resource?: Reference;
 
   public static parse(

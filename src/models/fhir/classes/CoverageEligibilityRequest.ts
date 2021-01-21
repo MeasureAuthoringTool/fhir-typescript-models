@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   CoverageEligibilityRequestInsurance,
   CoverageEligibilityRequestItem,
@@ -8,110 +8,68 @@ import {
   EligibilityRequestPurpose,
   EligibilityRequestStatus,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   ICoverageEligibilityRequest,
   Identifier,
   Period,
   PrimitiveDate,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CoverageEligibilityRequest", "DomainResource")
 export class CoverageEligibilityRequest extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityRequest";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [EligibilityRequestStatus],
-      isArray: false
-    }, {
-      fieldName: "priority",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "purpose",
-      fieldType: [EligibilityRequestPurpose],
-      isArray: true
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "serviced",
-      fieldType: [PrimitiveDate, Period],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "enterer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "provider",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "insurer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "facility",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "supportingInfo",
-      fieldType: [CoverageEligibilityRequestSupportingInfo],
-      isArray: true
-    }, {
-      fieldName: "insurance",
-      fieldType: [CoverageEligibilityRequestInsurance],
-      isArray: true
-    }, {
-      fieldName: "item",
-      fieldType: [CoverageEligibilityRequestItem],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("EligibilityRequestStatus")
   public status?: EligibilityRequestStatus;
 
+  @FhirField("CodeableConcept")
   public priority?: CodeableConcept;
 
+  @FhirList("EligibilityRequestPurpose")
   public purpose?: Array<EligibilityRequestPurpose>;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirChoice("PrimitiveDate", "Period")
   public serviced?: PrimitiveDate | Period;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public enterer?: Reference;
 
+  @FhirField("Reference")
   public provider?: Reference;
 
+  @FhirField("Reference")
   public insurer?: Reference;
 
+  @FhirField("Reference")
   public facility?: Reference;
 
+  @FhirList("CoverageEligibilityRequestSupportingInfo")
   public supportingInfo?: Array<CoverageEligibilityRequestSupportingInfo>;
 
+  @FhirList("CoverageEligibilityRequestInsurance")
   public insurance?: Array<CoverageEligibilityRequestInsurance>;
 
+  @FhirList("CoverageEligibilityRequestItem")
   public item?: Array<CoverageEligibilityRequestItem>;
 
   public static parse(
@@ -130,10 +88,7 @@ export class CoverageEligibilityRequest extends DomainResource {
       newInstance.priority = CodeableConcept.parse(json.priority);
     }
     if (json.purpose !== undefined) {
-      newInstance.purpose = json.purpose.map((x, i) => {
-        const ext = json._purpose && json._purpose[i];
-        return EligibilityRequestPurpose.parsePrimitive(x, ext);
-      });
+      newInstance.purpose = json.purpose.map((x, i) => EligibilityRequestPurpose.parsePrimitive(x, json._purpose?.[i]));
     }
     if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);

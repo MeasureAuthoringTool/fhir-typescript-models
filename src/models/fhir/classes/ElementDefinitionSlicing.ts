@@ -1,50 +1,37 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   ElementDefinitionSlicingDiscriminator,
   Extension,
+  FhirField,
+  FhirList,
   IElementDefinitionSlicing,
   PrimitiveBoolean,
   PrimitiveString,
   SlicingRules,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ElementDefinitionSlicing", "Element")
 export class ElementDefinitionSlicing extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition.Slicing";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "discriminator",
-      fieldType: [ElementDefinitionSlicingDiscriminator],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "ordered",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "rules",
-      fieldType: [SlicingRules],
-      isArray: false
-    }];
-  }
-
+  @FhirList("ElementDefinitionSlicingDiscriminator")
   public discriminator?: Array<ElementDefinitionSlicingDiscriminator>;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveBoolean")
   public ordered?: PrimitiveBoolean;
 
+  @FhirField("SlicingRules")
   public rules?: SlicingRules;
 
   public static parse(

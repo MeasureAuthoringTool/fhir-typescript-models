@@ -1,61 +1,42 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   GraphDefinitionLinkTarget,
   IGraphDefinitionLink,
   PrimitiveInteger,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("GraphDefinitionLink", "BackboneElement")
 export class GraphDefinitionLink extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "GraphDefinition.Link";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "path",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "sliceName",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "min",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "max",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "target",
-      fieldType: [GraphDefinitionLinkTarget],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public path?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public sliceName?: PrimitiveString;
 
+  @FhirField("PrimitiveInteger")
   public min?: PrimitiveInteger;
 
+  @FhirField("PrimitiveString")
   public max?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirList("GraphDefinitionLinkTarget")
   public target?: Array<GraphDefinitionLinkTarget>;
 
   public static parse(

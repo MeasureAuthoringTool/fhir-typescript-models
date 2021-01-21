@@ -1,89 +1,58 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   ContractTermOfferAnswer,
   ContractTermOfferParty,
   Extension,
+  FhirField,
+  FhirList,
   IContractTermOffer,
   Identifier,
   PrimitiveString,
   PrimitiveUnsignedInt,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ContractTermOffer", "BackboneElement")
 export class ContractTermOffer extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Term.Offer";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "party",
-      fieldType: [ContractTermOfferParty],
-      isArray: true
-    }, {
-      fieldName: "topic",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "decision",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "decisionMode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "answer",
-      fieldType: [ContractTermOfferAnswer],
-      isArray: true
-    }, {
-      fieldName: "text",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "linkId",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "securityLabelNumber",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("ContractTermOfferParty")
   public party?: Array<ContractTermOfferParty>;
 
+  @FhirField("Reference")
   public topic?: Reference;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public decision?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public decisionMode?: Array<CodeableConcept>;
 
+  @FhirList("ContractTermOfferAnswer")
   public answer?: Array<ContractTermOfferAnswer>;
 
+  @FhirField("PrimitiveString")
   public text?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public linkId?: Array<PrimitiveString>;
 
+  @FhirList("PrimitiveUnsignedInt")
   public securityLabelNumber?: Array<PrimitiveUnsignedInt>;
 
   public static parse(
@@ -117,16 +86,10 @@ export class ContractTermOffer extends BackboneElement {
       newInstance.text = PrimitiveString.parsePrimitive(json.text, json._text);
     }
     if (json.linkId !== undefined) {
-      newInstance.linkId = json.linkId.map((x, i) => {
-        const ext = json._linkId && json._linkId[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.linkId = json.linkId.map((x, i) => PrimitiveString.parsePrimitive(x, json._linkId?.[i]));
     }
     if (json.securityLabelNumber !== undefined) {
-      newInstance.securityLabelNumber = json.securityLabelNumber.map((x, i) => {
-        const ext = json._securityLabelNumber && json._securityLabelNumber[i];
-        return PrimitiveUnsignedInt.parsePrimitive(x, ext);
-      });
+      newInstance.securityLabelNumber = json.securityLabelNumber.map((x, i) => PrimitiveUnsignedInt.parsePrimitive(x, json._securityLabelNumber?.[i]));
     }
     return newInstance;
   }

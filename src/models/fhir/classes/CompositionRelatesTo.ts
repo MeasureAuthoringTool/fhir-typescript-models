@@ -1,37 +1,30 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   DocumentRelationshipType,
   Extension,
+  FhirChoice,
+  FhirField,
   ICompositionRelatesTo,
   Identifier,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CompositionRelatesTo", "BackboneElement")
 export class CompositionRelatesTo extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Composition.RelatesTo";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [DocumentRelationshipType],
-      isArray: false
-    }, {
-      fieldName: "target",
-      fieldType: [Identifier, Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("DocumentRelationshipType")
   public code?: DocumentRelationshipType;
 
+  @FhirChoice("Identifier", "Reference")
   public target?: Identifier | Reference;
 
   public static parse(

@@ -1,8 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IObservationComponent,
   ObservationReferenceRange,
   Period,
@@ -15,50 +18,32 @@ import {
   Range,
   Ratio,
   SampledData,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ObservationComponent", "BackboneElement")
 export class ObservationComponent extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Observation.Component";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [Quantity, CodeableConcept, PrimitiveString, PrimitiveBoolean, PrimitiveInteger, Range, Ratio, SampledData, PrimitiveTime, PrimitiveDateTime, Period],
-      isArray: false
-    }, {
-      fieldName: "dataAbsentReason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "interpretation",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "referenceRange",
-      fieldType: [ObservationReferenceRange],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirChoice("Quantity", "CodeableConcept", "PrimitiveString", "PrimitiveBoolean", "PrimitiveInteger", "Range", "Ratio", "SampledData", "PrimitiveTime", "PrimitiveDateTime", "Period")
   public value?: Quantity | CodeableConcept | PrimitiveString | PrimitiveBoolean | PrimitiveInteger | Range | Ratio | SampledData | PrimitiveTime | PrimitiveDateTime | Period;
 
+  @FhirField("CodeableConcept")
   public dataAbsentReason?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public interpretation?: Array<CodeableConcept>;
 
+  @FhirList("ObservationReferenceRange")
   public referenceRange?: Array<ObservationReferenceRange>;
 
   public static parse(

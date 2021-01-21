@@ -1,42 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
+  FhirChoice,
+  FhirField,
   INutritionOrderEnteralFormulaAdministration,
   Ratio,
   SimpleQuantity,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("NutritionOrderEnteralFormulaAdministration", "BackboneElement")
 export class NutritionOrderEnteralFormulaAdministration extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "NutritionOrder.EnteralFormula.Administration";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "schedule",
-      fieldType: [Timing],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "rate",
-      fieldType: [SimpleQuantity, Ratio],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Timing")
   public schedule?: Timing;
 
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirChoice("SimpleQuantity", "Ratio")
   public rate?: SimpleQuantity | Ratio;
 
   public static parse(

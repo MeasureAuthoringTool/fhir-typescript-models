@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Expression,
   Extension,
+  FhirField,
   IActivityDefinitionDynamicValue,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ActivityDefinitionDynamicValue", "BackboneElement")
 export class ActivityDefinitionDynamicValue extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ActivityDefinition.DynamicValue";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "path",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "expression",
-      fieldType: [Expression],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public path?: PrimitiveString;
 
+  @FhirField("Expression")
   public expression?: Expression;
 
   public static parse(

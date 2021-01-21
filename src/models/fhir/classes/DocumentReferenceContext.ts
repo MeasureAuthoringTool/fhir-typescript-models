@@ -1,66 +1,44 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   IDocumentReferenceContext,
   Period,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DocumentReferenceContext", "BackboneElement")
 export class DocumentReferenceContext extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DocumentReference.Context";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "event",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "facilityType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "practiceSetting",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "sourcePatientInfo",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "related",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Reference")
   public encounter?: Array<Reference>;
 
+  @FhirList("CodeableConcept")
   public event?: Array<CodeableConcept>;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirField("CodeableConcept")
   public facilityType?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public practiceSetting?: CodeableConcept;
 
+  @FhirField("Reference")
   public sourcePatientInfo?: Reference;
 
+  @FhirList("Reference")
   public related?: Array<Reference>;
 
   public static parse(

@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CurrencyCode,
   Element,
   Extension,
+  FhirField,
   IMoney,
   PrimitiveDecimal,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Money", "Element")
 export class Money extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Money";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "value",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "currency",
-      fieldType: [CurrencyCode],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveDecimal")
   public value?: PrimitiveDecimal;
 
+  @FhirField("CurrencyCode")
   public currency?: CurrencyCode;
 
   public static parse(

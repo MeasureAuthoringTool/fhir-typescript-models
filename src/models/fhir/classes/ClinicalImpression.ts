@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   ClinicalImpressionFinding,
   ClinicalImpressionInvestigation,
@@ -7,6 +7,9 @@ import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IClinicalImpression,
   Identifier,
   Period,
@@ -14,140 +17,77 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ClinicalImpression", "DomainResource")
 export class ClinicalImpression extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClinicalImpression";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [ClinicalImpressionStatus],
-      isArray: false
-    }, {
-      fieldName: "statusReason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "effective",
-      fieldType: [PrimitiveDateTime, Period],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "assessor",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "previous",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "problem",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "investigation",
-      fieldType: [ClinicalImpressionInvestigation],
-      isArray: true
-    }, {
-      fieldName: "protocol",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "summary",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "finding",
-      fieldType: [ClinicalImpressionFinding],
-      isArray: true
-    }, {
-      fieldName: "prognosisCodeableConcept",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "prognosisReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "supportingInfo",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("ClinicalImpressionStatus")
   public status?: ClinicalImpressionStatus;
 
+  @FhirField("CodeableConcept")
   public statusReason?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Period")
   public effective?: PrimitiveDateTime | Period;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public assessor?: Reference;
 
+  @FhirField("Reference")
   public previous?: Reference;
 
+  @FhirList("Reference")
   public problem?: Array<Reference>;
 
+  @FhirList("ClinicalImpressionInvestigation")
   public investigation?: Array<ClinicalImpressionInvestigation>;
 
+  @FhirList("PrimitiveUri")
   public protocol?: Array<PrimitiveUri>;
 
+  @FhirField("PrimitiveString")
   public summary?: PrimitiveString;
 
+  @FhirList("ClinicalImpressionFinding")
   public finding?: Array<ClinicalImpressionFinding>;
 
+  @FhirList("CodeableConcept")
   public prognosisCodeableConcept?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public prognosisReference?: Array<Reference>;
 
+  @FhirList("Reference")
   public supportingInfo?: Array<Reference>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -207,10 +147,7 @@ export class ClinicalImpression extends DomainResource {
       newInstance.investigation = json.investigation.map((x) => ClinicalImpressionInvestigation.parse(x));
     }
     if (json.protocol !== undefined) {
-      newInstance.protocol = json.protocol.map((x, i) => {
-        const ext = json._protocol && json._protocol[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.protocol = json.protocol.map((x, i) => PrimitiveUri.parsePrimitive(x, json._protocol?.[i]));
     }
     if (json.summary !== undefined) {
       newInstance.summary = PrimitiveString.parsePrimitive(json.summary, json._summary);

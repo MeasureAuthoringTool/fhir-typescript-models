@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IBundleLink,
   PrimitiveString,
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("BundleLink", "BackboneElement")
 export class BundleLink extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Bundle.Link";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "relation",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public relation?: PrimitiveString;
 
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
   public static parse(

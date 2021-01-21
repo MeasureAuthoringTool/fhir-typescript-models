@@ -1,50 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   ConceptMapGroupUnmappedMode,
   Extension,
+  FhirField,
   IConceptMapGroupUnmapped,
   PrimitiveCanonical,
   PrimitiveCode,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ConceptMapGroupUnmapped", "BackboneElement")
 export class ConceptMapGroupUnmapped extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ConceptMap.Group.Unmapped";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "mode",
-      fieldType: [ConceptMapGroupUnmappedMode],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "display",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "url",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }];
-  }
-
+  @FhirField("ConceptMapGroupUnmappedMode")
   public mode?: ConceptMapGroupUnmappedMode;
 
+  @FhirField("PrimitiveCode")
   public code?: PrimitiveCode;
 
+  @FhirField("PrimitiveString")
   public display?: PrimitiveString;
 
+  @FhirField("PrimitiveCanonical")
   public url?: PrimitiveCanonical;
 
   public static parse(

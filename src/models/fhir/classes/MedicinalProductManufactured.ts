@@ -1,67 +1,45 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
+  FhirField,
+  FhirList,
   IMedicinalProductManufactured,
   ProdCharacteristic,
   Quantity,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductManufactured", "DomainResource")
 export class MedicinalProductManufactured extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductManufactured";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "manufacturedDoseForm",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "unitOfPresentation",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "manufacturer",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "ingredient",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "physicalCharacteristics",
-      fieldType: [ProdCharacteristic],
-      isArray: false
-    }, {
-      fieldName: "otherCharacteristics",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public manufacturedDoseForm?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public unitOfPresentation?: CodeableConcept;
 
+  @FhirField("Quantity")
   public quantity?: Quantity;
 
+  @FhirList("Reference")
   public manufacturer?: Array<Reference>;
 
+  @FhirList("Reference")
   public ingredient?: Array<Reference>;
 
+  @FhirField("ProdCharacteristic")
   public physicalCharacteristics?: ProdCharacteristic;
 
+  @FhirList("CodeableConcept")
   public otherCharacteristics?: Array<CodeableConcept>;
 
   public static parse(

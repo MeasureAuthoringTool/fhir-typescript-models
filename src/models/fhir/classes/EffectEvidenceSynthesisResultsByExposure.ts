@@ -1,50 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   ExposureState,
   Extension,
+  FhirField,
   IEffectEvidenceSynthesisResultsByExposure,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EffectEvidenceSynthesisResultsByExposure", "BackboneElement")
 export class EffectEvidenceSynthesisResultsByExposure extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EffectEvidenceSynthesis.ResultsByExposure";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "exposureState",
-      fieldType: [ExposureState],
-      isArray: false
-    }, {
-      fieldName: "variantState",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "riskEvidenceSynthesis",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("ExposureState")
   public exposureState?: ExposureState;
 
+  @FhirField("CodeableConcept")
   public variantState?: CodeableConcept;
 
+  @FhirField("Reference")
   public riskEvidenceSynthesis?: Reference;
 
   public static parse(

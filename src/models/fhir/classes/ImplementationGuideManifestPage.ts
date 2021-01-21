@@ -1,41 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IImplementationGuideManifestPage,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImplementationGuideManifestPage", "BackboneElement")
 export class ImplementationGuideManifestPage extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.Manifest.Page";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "anchor",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public anchor?: Array<PrimitiveString>;
 
   public static parse(
@@ -51,10 +41,7 @@ export class ImplementationGuideManifestPage extends BackboneElement {
       newInstance.title = PrimitiveString.parsePrimitive(json.title, json._title);
     }
     if (json.anchor !== undefined) {
-      newInstance.anchor = json.anchor.map((x, i) => {
-        const ext = json._anchor && json._anchor[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.anchor = json.anchor.map((x, i) => PrimitiveString.parsePrimitive(x, json._anchor?.[i]));
     }
     return newInstance;
   }

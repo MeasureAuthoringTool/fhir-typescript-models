@@ -1,11 +1,13 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Address,
   AdministrativeGender,
   Attachment,
   ContactPoint,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   HumanName,
   Identifier,
   IPerson,
@@ -13,80 +15,47 @@ import {
   PrimitiveBoolean,
   PrimitiveDate,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Person", "DomainResource")
 export class Person extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Person";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "name",
-      fieldType: [HumanName],
-      isArray: true
-    }, {
-      fieldName: "telecom",
-      fieldType: [ContactPoint],
-      isArray: true
-    }, {
-      fieldName: "gender",
-      fieldType: [AdministrativeGender],
-      isArray: false
-    }, {
-      fieldName: "birthDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "address",
-      fieldType: [Address],
-      isArray: true
-    }, {
-      fieldName: "photo",
-      fieldType: [Attachment],
-      isArray: false
-    }, {
-      fieldName: "managingOrganization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "active",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "link",
-      fieldType: [PersonLink],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("HumanName")
   public name?: Array<HumanName>;
 
+  @FhirList("ContactPoint")
   public telecom?: Array<ContactPoint>;
 
+  @FhirField("AdministrativeGender")
   public gender?: AdministrativeGender;
 
+  @FhirField("PrimitiveDate")
   public birthDate?: PrimitiveDate;
 
+  @FhirList("Address")
   public address?: Array<Address>;
 
+  @FhirField("Attachment")
   public photo?: Attachment;
 
+  @FhirField("Reference")
   public managingOrganization?: Reference;
 
+  @FhirField("PrimitiveBoolean")
   public active?: PrimitiveBoolean;
 
+  @FhirList("PersonLink")
   public link?: Array<PersonLink>;
 
   public static parse(

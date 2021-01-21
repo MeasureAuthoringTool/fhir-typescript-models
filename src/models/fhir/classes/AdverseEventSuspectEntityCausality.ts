@@ -1,49 +1,35 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IAdverseEventSuspectEntityCausality,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AdverseEventSuspectEntityCausality", "BackboneElement")
 export class AdverseEventSuspectEntityCausality extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AdverseEvent.SuspectEntity.Causality";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "assessment",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "productRelatedness",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "author",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "method",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public assessment?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public productRelatedness?: PrimitiveString;
 
+  @FhirField("Reference")
   public author?: Reference;
 
+  @FhirField("CodeableConcept")
   public method?: CodeableConcept;
 
   public static parse(

@@ -1,35 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   AdverseEventSuspectEntityCausality,
   BackboneElement,
+  FhirField,
+  FhirList,
   IAdverseEventSuspectEntity,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AdverseEventSuspectEntity", "BackboneElement")
 export class AdverseEventSuspectEntity extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AdverseEvent.SuspectEntity";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "instance",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "causality",
-      fieldType: [AdverseEventSuspectEntityCausality],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Reference")
   public instance?: Reference;
 
+  @FhirList("AdverseEventSuspectEntityCausality")
   public causality?: Array<AdverseEventSuspectEntityCausality>;
 
   public static parse(

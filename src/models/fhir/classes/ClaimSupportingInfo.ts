@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
   IClaimSupportingInfo,
   Period,
   PrimitiveBoolean,
@@ -12,56 +14,35 @@ import {
   PrimitiveString,
   Quantity,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ClaimSupportingInfo", "BackboneElement")
 export class ClaimSupportingInfo extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Claim.SupportingInfo";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "sequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "timing",
-      fieldType: [PrimitiveDate, Period],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveBoolean, PrimitiveString, Quantity, Attachment, Reference],
-      isArray: false
-    }, {
-      fieldName: "reason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitivePositiveInt")
   public sequence?: PrimitivePositiveInt;
 
+  @FhirField("CodeableConcept")
   public category?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirChoice("PrimitiveDate", "Period")
   public timing?: PrimitiveDate | Period;
 
+  @FhirChoice("PrimitiveBoolean", "PrimitiveString", "Quantity", "Attachment", "Reference")
   public value?: PrimitiveBoolean | PrimitiveString | Quantity | Attachment | Reference;
 
+  @FhirField("CodeableConcept")
   public reason?: CodeableConcept;
 
   public static parse(

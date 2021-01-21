@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IImplementationGuideGlobal,
   PrimitiveCanonical,
   ResourceType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImplementationGuideGlobal", "BackboneElement")
 export class ImplementationGuideGlobal extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.Global";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [ResourceType],
-      isArray: false
-    }, {
-      fieldName: "profile",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }];
-  }
-
+  @FhirField("ResourceType")
   public type?: ResourceType;
 
+  @FhirField("PrimitiveCanonical")
   public profile?: PrimitiveCanonical;
 
   public static parse(

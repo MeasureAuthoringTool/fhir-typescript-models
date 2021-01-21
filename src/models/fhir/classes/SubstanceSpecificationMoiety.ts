@@ -1,68 +1,46 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
   Identifier,
   ISubstanceSpecificationMoiety,
   PrimitiveString,
   Quantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSpecificationMoiety", "BackboneElement")
 export class SubstanceSpecificationMoiety extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Moiety";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "role",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "stereochemistry",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "opticalActivity",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "molecularFormula",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [Quantity, PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public role?: CodeableConcept;
 
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public stereochemistry?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public opticalActivity?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public molecularFormula?: PrimitiveString;
 
+  @FhirChoice("Quantity", "PrimitiveString")
   public amount?: Quantity | PrimitiveString;
 
   public static parse(

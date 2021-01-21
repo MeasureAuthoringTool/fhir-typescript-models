@@ -1,27 +1,22 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
+  FhirField,
   IElement,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PrimitiveUri", "Element")
 export class PrimitiveUri extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "uri";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "value",
-      fieldType: [String],
-      isArray: false
-    }];
-  }
-
+  @FhirField("SystemString")
   public value?: string;
 
   public static parsePrimitive(

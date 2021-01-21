@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IHealthcareServiceNotAvailable,
   Period,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("HealthcareServiceNotAvailable", "BackboneElement")
 export class HealthcareServiceNotAvailable extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "HealthcareService.NotAvailable";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "during",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("Period")
   public during?: Period;
 
   public static parse(

@@ -1,11 +1,14 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   CodeableConcept,
   DiagnosticReportMedia,
   DiagnosticReportStatus,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IDiagnosticReport,
   Period,
@@ -13,128 +16,71 @@ import {
   PrimitiveInstant,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DiagnosticReport", "DomainResource")
 export class DiagnosticReport extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DiagnosticReport";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [DiagnosticReportStatus],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "effective",
-      fieldType: [PrimitiveDateTime, Period],
-      isArray: false
-    }, {
-      fieldName: "issued",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "resultsInterpreter",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "specimen",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "result",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "imagingStudy",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "media",
-      fieldType: [DiagnosticReportMedia],
-      isArray: true
-    }, {
-      fieldName: "conclusion",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "conclusionCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "presentedForm",
-      fieldType: [Attachment],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirField("DiagnosticReportStatus")
   public status?: DiagnosticReportStatus;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Period")
   public effective?: PrimitiveDateTime | Period;
 
+  @FhirField("PrimitiveInstant")
   public issued?: PrimitiveInstant;
 
+  @FhirList("Reference")
   public performer?: Array<Reference>;
 
+  @FhirList("Reference")
   public resultsInterpreter?: Array<Reference>;
 
+  @FhirList("Reference")
   public specimen?: Array<Reference>;
 
+  @FhirList("Reference")
   public result?: Array<Reference>;
 
+  @FhirList("Reference")
   public imagingStudy?: Array<Reference>;
 
+  @FhirList("DiagnosticReportMedia")
   public media?: Array<DiagnosticReportMedia>;
 
+  @FhirField("PrimitiveString")
   public conclusion?: PrimitiveString;
 
+  @FhirList("CodeableConcept")
   public conclusionCode?: Array<CodeableConcept>;
 
+  @FhirList("Attachment")
   public presentedForm?: Array<Attachment>;
 
   get primaryCode(): CodeableConcept | undefined {

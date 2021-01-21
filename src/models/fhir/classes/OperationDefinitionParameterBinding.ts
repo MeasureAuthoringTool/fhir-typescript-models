@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   BindingStrength,
   Extension,
+  FhirField,
   IOperationDefinitionParameterBinding,
   PrimitiveCanonical,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("OperationDefinitionParameterBinding", "BackboneElement")
 export class OperationDefinitionParameterBinding extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OperationDefinition.Parameter.Binding";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "strength",
-      fieldType: [BindingStrength],
-      isArray: false
-    }, {
-      fieldName: "valueSet",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }];
-  }
-
+  @FhirField("BindingStrength")
   public strength?: BindingStrength;
 
+  @FhirField("PrimitiveCanonical")
   public valueSet?: PrimitiveCanonical;
 
   public static parse(

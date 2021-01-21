@@ -1,49 +1,35 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IObservationDefinitionQuantitativeDetails,
   PrimitiveDecimal,
   PrimitiveInteger,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ObservationDefinitionQuantitativeDetails", "BackboneElement")
 export class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ObservationDefinition.QuantitativeDetails";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "customaryUnit",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "unit",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "conversionFactor",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "decimalPrecision",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public customaryUnit?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public unit?: CodeableConcept;
 
+  @FhirField("PrimitiveDecimal")
   public conversionFactor?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveInteger")
   public decimalPrecision?: PrimitiveInteger;
 
   public static parse(

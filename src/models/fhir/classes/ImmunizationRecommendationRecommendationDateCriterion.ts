@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IImmunizationRecommendationRecommendationDateCriterion,
   PrimitiveDateTime,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImmunizationRecommendationRecommendationDateCriterion", "BackboneElement")
 export class ImmunizationRecommendationRecommendationDateCriterion extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImmunizationRecommendation.Recommendation.DateCriterion";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("PrimitiveDateTime")
   public value?: PrimitiveDateTime;
 
   public static parse(

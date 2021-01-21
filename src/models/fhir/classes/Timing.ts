@@ -1,43 +1,33 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   ITiming,
   PrimitiveDateTime,
   TimingRepeat,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Timing", "BackboneElement")
 export class Timing extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Timing";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "event",
-      fieldType: [PrimitiveDateTime],
-      isArray: true
-    }, {
-      fieldName: "repeat",
-      fieldType: [TimingRepeat],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirList("PrimitiveDateTime")
   public event?: Array<PrimitiveDateTime>;
 
+  @FhirField("TimingRepeat")
   public repeat?: TimingRepeat;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -55,10 +45,7 @@ export class Timing extends BackboneElement {
     const newInstance: Timing = BackboneElement.parse(json, providedInstance);
   
     if (json.event !== undefined) {
-      newInstance.event = json.event.map((x, i) => {
-        const ext = json._event && json._event[i];
-        return PrimitiveDateTime.parsePrimitive(x, ext);
-      });
+      newInstance.event = json.event.map((x, i) => PrimitiveDateTime.parsePrimitive(x, json._event?.[i]));
     }
     if (json.repeat !== undefined) {
       newInstance.repeat = TimingRepeat.parse(json.repeat);

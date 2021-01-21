@@ -1,75 +1,50 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   AdministrativeGender,
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   IObservationDefinitionQualifiedInterval,
   ObservationRangeCategory,
   PrimitiveString,
   Range,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ObservationDefinitionQualifiedInterval", "BackboneElement")
 export class ObservationDefinitionQualifiedInterval extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ObservationDefinition.QualifiedInterval";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "category",
-      fieldType: [ObservationRangeCategory],
-      isArray: false
-    }, {
-      fieldName: "range",
-      fieldType: [Range],
-      isArray: false
-    }, {
-      fieldName: "context",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "appliesTo",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "gender",
-      fieldType: [AdministrativeGender],
-      isArray: false
-    }, {
-      fieldName: "age",
-      fieldType: [Range],
-      isArray: false
-    }, {
-      fieldName: "gestationalAge",
-      fieldType: [Range],
-      isArray: false
-    }, {
-      fieldName: "condition",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("ObservationRangeCategory")
   public category?: ObservationRangeCategory;
 
+  @FhirField("Range")
   public range?: Range;
 
+  @FhirField("CodeableConcept")
   public context?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public appliesTo?: Array<CodeableConcept>;
 
+  @FhirField("AdministrativeGender")
   public gender?: AdministrativeGender;
 
+  @FhirField("Range")
   public age?: Range;
 
+  @FhirField("Range")
   public gestationalAge?: Range;
 
+  @FhirField("PrimitiveString")
   public condition?: PrimitiveString;
 
   public static parse(

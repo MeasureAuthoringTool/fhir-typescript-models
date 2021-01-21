@@ -1,163 +1,95 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   AssertionDirectionType,
   AssertionOperatorType,
   AssertionResponseTypes,
   BackboneElement,
   Extension,
   FHIRDefinedType,
+  FhirField,
   ITestScriptSetupActionAssert,
   MimeType,
   PrimitiveBoolean,
   PrimitiveId,
   PrimitiveString,
   TestScriptRequestMethodCode,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TestScriptSetupActionAssert", "BackboneElement")
 export class TestScriptSetupActionAssert extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Setup.Action.Assert";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "label",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "direction",
-      fieldType: [AssertionDirectionType],
-      isArray: false
-    }, {
-      fieldName: "compareToSourceId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "compareToSourceExpression",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "compareToSourcePath",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contentType",
-      fieldType: [MimeType],
-      isArray: false
-    }, {
-      fieldName: "expression",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "headerField",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "minimumId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "navigationLinks",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "operator",
-      fieldType: [AssertionOperatorType],
-      isArray: false
-    }, {
-      fieldName: "path",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "requestMethod",
-      fieldType: [TestScriptRequestMethodCode],
-      isArray: false
-    }, {
-      fieldName: "requestURL",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "resource",
-      fieldType: [FHIRDefinedType],
-      isArray: false
-    }, {
-      fieldName: "response",
-      fieldType: [AssertionResponseTypes],
-      isArray: false
-    }, {
-      fieldName: "responseCode",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "sourceId",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "validateProfileId",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "warningOnly",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public label?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("AssertionDirectionType")
   public direction?: AssertionDirectionType;
 
+  @FhirField("PrimitiveString")
   public compareToSourceId?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public compareToSourceExpression?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public compareToSourcePath?: PrimitiveString;
 
+  @FhirField("MimeType")
   public contentType?: MimeType;
 
+  @FhirField("PrimitiveString")
   public expression?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public headerField?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public minimumId?: PrimitiveString;
 
+  @FhirField("PrimitiveBoolean")
   public navigationLinks?: PrimitiveBoolean;
 
+  @FhirField("AssertionOperatorType")
   public operator?: AssertionOperatorType;
 
+  @FhirField("PrimitiveString")
   public path?: PrimitiveString;
 
+  @FhirField("TestScriptRequestMethodCode")
   public requestMethod?: TestScriptRequestMethodCode;
 
+  @FhirField("PrimitiveString")
   public requestURL?: PrimitiveString;
 
+  @FhirField("FHIRDefinedType")
   public resource?: FHIRDefinedType;
 
+  @FhirField("AssertionResponseTypes")
   public response?: AssertionResponseTypes;
 
+  @FhirField("PrimitiveString")
   public responseCode?: PrimitiveString;
 
+  @FhirField("PrimitiveId")
   public sourceId?: PrimitiveId;
 
+  @FhirField("PrimitiveId")
   public validateProfileId?: PrimitiveId;
 
+  @FhirField("PrimitiveString")
   public value?: PrimitiveString;
 
+  @FhirField("PrimitiveBoolean")
   public warningOnly?: PrimitiveBoolean;
 
   public static parse(

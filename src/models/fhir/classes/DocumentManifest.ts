@@ -1,102 +1,65 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DocumentManifestRelated,
   DocumentReferenceStatus,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IDocumentManifest,
   PrimitiveDateTime,
   PrimitiveString,
   PrimitiveUri,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DocumentManifest", "DomainResource")
 export class DocumentManifest extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DocumentManifest";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "masterIdentifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [DocumentReferenceStatus],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "author",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "recipient",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "source",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "content",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "related",
-      fieldType: [DocumentManifestRelated],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Identifier")
   public masterIdentifier?: Identifier;
 
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("DocumentReferenceStatus")
   public status?: DocumentReferenceStatus;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirList("Reference")
   public author?: Array<Reference>;
 
+  @FhirList("Reference")
   public recipient?: Array<Reference>;
 
+  @FhirField("PrimitiveUri")
   public source?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirList("Reference")
   public content?: Array<Reference>;
 
+  @FhirList("DocumentManifestRelated")
   public related?: Array<DocumentManifestRelated>;
 
   public static parse(

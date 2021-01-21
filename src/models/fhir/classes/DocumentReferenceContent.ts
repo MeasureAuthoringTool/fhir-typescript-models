@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   BackboneElement,
   Coding,
+  FhirField,
   IDocumentReferenceContent,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DocumentReferenceContent", "BackboneElement")
 export class DocumentReferenceContent extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DocumentReference.Content";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "attachment",
-      fieldType: [Attachment],
-      isArray: false
-    }, {
-      fieldName: "format",
-      fieldType: [Coding],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Attachment")
   public attachment?: Attachment;
 
+  @FhirField("Coding")
   public format?: Coding;
 
   public static parse(

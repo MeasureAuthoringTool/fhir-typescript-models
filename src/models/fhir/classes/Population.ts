@@ -1,47 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirChoice,
+  FhirField,
   IPopulation,
   Range,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Population", "BackboneElement")
 export class Population extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Population";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "age",
-      fieldType: [Range, CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "gender",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "race",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "physiologicalCondition",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("Range", "CodeableConcept")
   public age?: Range | CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public gender?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public race?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public physiologicalCondition?: CodeableConcept;
 
   public static parse(

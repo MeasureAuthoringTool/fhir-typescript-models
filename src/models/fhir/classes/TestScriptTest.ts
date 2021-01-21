@@ -1,42 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   ITestScriptTest,
   PrimitiveString,
   TestScriptTestAction,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TestScriptTest", "BackboneElement")
 export class TestScriptTest extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Test";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "action",
-      fieldType: [TestScriptTestAction],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirList("TestScriptTestAction")
   public action?: Array<TestScriptTestAction>;
 
   public static parse(

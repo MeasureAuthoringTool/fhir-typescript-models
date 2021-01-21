@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   ICapabilityStatementRestResourceInteraction,
   PrimitiveMarkdown,
   TypeRestfulInteraction,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CapabilityStatementRestResourceInteraction", "BackboneElement")
 export class CapabilityStatementRestResourceInteraction extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Rest.Resource.Interaction";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [TypeRestfulInteraction],
-      isArray: false
-    }, {
-      fieldName: "documentation",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }];
-  }
-
+  @FhirField("TypeRestfulInteraction")
   public code?: TypeRestfulInteraction;
 
+  @FhirField("PrimitiveMarkdown")
   public documentation?: PrimitiveMarkdown;
 
   public static parse(

@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   ContactDetail,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   ISearchParameter,
   PrimitiveBoolean,
   PrimitiveCanonical,
@@ -20,176 +22,95 @@ import {
   SearchParamType,
   UsageContext,
   XPathUsageType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SearchParameter", "DomainResource")
 export class SearchParameter extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SearchParameter";
-  
+
   static readonly primaryCodePath: string | null = "target";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "derivedFrom",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "experimental",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "purpose",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "base",
-      fieldType: [ResourceType],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [SearchParamType],
-      isArray: false
-    }, {
-      fieldName: "expression",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "xpath",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "xpathUsage",
-      fieldType: [XPathUsageType],
-      isArray: false
-    }, {
-      fieldName: "target",
-      fieldType: [ResourceType],
-      isArray: true
-    }, {
-      fieldName: "multipleOr",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "multipleAnd",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "comparator",
-      fieldType: [SearchComparator],
-      isArray: true
-    }, {
-      fieldName: "modifier",
-      fieldType: [SearchModifierCode],
-      isArray: true
-    }, {
-      fieldName: "chain",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "component",
-      fieldType: [SearchParameterComponent],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveCanonical")
   public derivedFrom?: PrimitiveCanonical;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("PrimitiveBoolean")
   public experimental?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public purpose?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveCode")
   public code?: PrimitiveCode;
 
+  @FhirList("ResourceType")
   public base?: Array<ResourceType>;
 
+  @FhirField("SearchParamType")
   public type?: SearchParamType;
 
+  @FhirField("PrimitiveString")
   public expression?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public xpath?: PrimitiveString;
 
+  @FhirField("XPathUsageType")
   public xpathUsage?: XPathUsageType;
 
+  @FhirList("ResourceType")
   public target?: Array<ResourceType>;
 
+  @FhirField("PrimitiveBoolean")
   public multipleOr?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public multipleAnd?: PrimitiveBoolean;
 
+  @FhirList("SearchComparator")
   public comparator?: Array<SearchComparator>;
 
+  @FhirList("SearchModifierCode")
   public modifier?: Array<SearchModifierCode>;
 
+  @FhirList("PrimitiveString")
   public chain?: Array<PrimitiveString>;
 
+  @FhirList("SearchParameterComponent")
   public component?: Array<SearchParameterComponent>;
 
   get primaryCode(): ResourceType | undefined {
@@ -249,10 +170,7 @@ export class SearchParameter extends DomainResource {
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
     if (json.base !== undefined) {
-      newInstance.base = json.base.map((x, i) => {
-        const ext = json._base && json._base[i];
-        return ResourceType.parsePrimitive(x, ext);
-      });
+      newInstance.base = json.base.map((x, i) => ResourceType.parsePrimitive(x, json._base?.[i]));
     }
     if (json.type !== undefined) {
       newInstance.type = SearchParamType.parsePrimitive(json.type, json._type);
@@ -267,10 +185,7 @@ export class SearchParameter extends DomainResource {
       newInstance.xpathUsage = XPathUsageType.parsePrimitive(json.xpathUsage, json._xpathUsage);
     }
     if (json.target !== undefined) {
-      newInstance.target = json.target.map((x, i) => {
-        const ext = json._target && json._target[i];
-        return ResourceType.parsePrimitive(x, ext);
-      });
+      newInstance.target = json.target.map((x, i) => ResourceType.parsePrimitive(x, json._target?.[i]));
     }
     if (json.multipleOr !== undefined) {
       newInstance.multipleOr = PrimitiveBoolean.parsePrimitive(json.multipleOr, json._multipleOr);
@@ -279,22 +194,13 @@ export class SearchParameter extends DomainResource {
       newInstance.multipleAnd = PrimitiveBoolean.parsePrimitive(json.multipleAnd, json._multipleAnd);
     }
     if (json.comparator !== undefined) {
-      newInstance.comparator = json.comparator.map((x, i) => {
-        const ext = json._comparator && json._comparator[i];
-        return SearchComparator.parsePrimitive(x, ext);
-      });
+      newInstance.comparator = json.comparator.map((x, i) => SearchComparator.parsePrimitive(x, json._comparator?.[i]));
     }
     if (json.modifier !== undefined) {
-      newInstance.modifier = json.modifier.map((x, i) => {
-        const ext = json._modifier && json._modifier[i];
-        return SearchModifierCode.parsePrimitive(x, ext);
-      });
+      newInstance.modifier = json.modifier.map((x, i) => SearchModifierCode.parsePrimitive(x, json._modifier?.[i]));
     }
     if (json.chain !== undefined) {
-      newInstance.chain = json.chain.map((x, i) => {
-        const ext = json._chain && json._chain[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.chain = json.chain.map((x, i) => PrimitiveString.parsePrimitive(x, json._chain?.[i]));
     }
     if (json.component !== undefined) {
       newInstance.component = json.component.map((x) => SearchParameterComponent.parse(x));

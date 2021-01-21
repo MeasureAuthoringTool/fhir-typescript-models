@@ -1,49 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   FilterOperator,
   ICodeSystemFilter,
   PrimitiveCode,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CodeSystemFilter", "BackboneElement")
 export class CodeSystemFilter extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CodeSystem.Filter";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "operator",
-      fieldType: [FilterOperator],
-      isArray: true
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveCode")
   public code?: PrimitiveCode;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirList("FilterOperator")
   public operator?: Array<FilterOperator>;
 
+  @FhirField("PrimitiveString")
   public value?: PrimitiveString;
 
   public static parse(
@@ -59,10 +46,7 @@ export class CodeSystemFilter extends BackboneElement {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
     if (json.operator !== undefined) {
-      newInstance.operator = json.operator.map((x, i) => {
-        const ext = json._operator && json._operator[i];
-        return FilterOperator.parsePrimitive(x, ext);
-      });
+      newInstance.operator = json.operator.map((x, i) => FilterOperator.parsePrimitive(x, json._operator?.[i]));
     }
     if (json.value !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.value, json._value);

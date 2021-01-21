@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   ActionCardinalityBehavior,
   ActionGroupingBehavior,
   ActionPrecheckBehavior,
@@ -11,6 +11,9 @@ import {
   DataRequirement,
   Duration,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IPlanDefinitionAction,
   Period,
   PlanDefinitionActionCondition,
@@ -28,182 +31,98 @@ import {
   RequestPriority,
   Timing,
   TriggerDefinition,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PlanDefinitionAction", "BackboneElement")
 export class PlanDefinitionAction extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PlanDefinition.Action";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "prefix",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "textEquivalent",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "priority",
-      fieldType: [RequestPriority],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reason",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "documentation",
-      fieldType: [RelatedArtifact],
-      isArray: true
-    }, {
-      fieldName: "goalId",
-      fieldType: [PrimitiveId],
-      isArray: true
-    }, {
-      fieldName: "subject",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }, {
-      fieldName: "trigger",
-      fieldType: [TriggerDefinition],
-      isArray: true
-    }, {
-      fieldName: "condition",
-      fieldType: [PlanDefinitionActionCondition],
-      isArray: true
-    }, {
-      fieldName: "input",
-      fieldType: [DataRequirement],
-      isArray: true
-    }, {
-      fieldName: "output",
-      fieldType: [DataRequirement],
-      isArray: true
-    }, {
-      fieldName: "relatedAction",
-      fieldType: [PlanDefinitionActionRelatedAction],
-      isArray: true
-    }, {
-      fieldName: "timing",
-      fieldType: [PrimitiveDateTime, Age, Period, Duration, Range, Timing],
-      isArray: false
-    }, {
-      fieldName: "participant",
-      fieldType: [PlanDefinitionActionParticipant],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "groupingBehavior",
-      fieldType: [ActionGroupingBehavior],
-      isArray: false
-    }, {
-      fieldName: "selectionBehavior",
-      fieldType: [ActionSelectionBehavior],
-      isArray: false
-    }, {
-      fieldName: "requiredBehavior",
-      fieldType: [ActionRequiredBehavior],
-      isArray: false
-    }, {
-      fieldName: "precheckBehavior",
-      fieldType: [ActionPrecheckBehavior],
-      isArray: false
-    }, {
-      fieldName: "cardinalityBehavior",
-      fieldType: [ActionCardinalityBehavior],
-      isArray: false
-    }, {
-      fieldName: "definition",
-      fieldType: [PrimitiveCanonical, PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "transform",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "dynamicValue",
-      fieldType: [PlanDefinitionActionDynamicValue],
-      isArray: true
-    }, {
-      fieldName: "action",
-      fieldType: [PlanDefinitionAction],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public prefix?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public textEquivalent?: PrimitiveString;
 
+  @FhirField("RequestPriority")
   public priority?: RequestPriority;
 
+  @FhirList("CodeableConcept")
   public code?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public reason?: Array<CodeableConcept>;
 
+  @FhirList("RelatedArtifact")
   public documentation?: Array<RelatedArtifact>;
 
+  @FhirList("PrimitiveId")
   public goalId?: Array<PrimitiveId>;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public subject?: CodeableConcept | Reference;
 
+  @FhirList("TriggerDefinition")
   public trigger?: Array<TriggerDefinition>;
 
+  @FhirList("PlanDefinitionActionCondition")
   public condition?: Array<PlanDefinitionActionCondition>;
 
+  @FhirList("DataRequirement")
   public input?: Array<DataRequirement>;
 
+  @FhirList("DataRequirement")
   public output?: Array<DataRequirement>;
 
+  @FhirList("PlanDefinitionActionRelatedAction")
   public relatedAction?: Array<PlanDefinitionActionRelatedAction>;
 
+  @FhirChoice("PrimitiveDateTime", "Age", "Period", "Duration", "Range", "Timing")
   public timing?: PrimitiveDateTime | Age | Period | Duration | Range | Timing;
 
+  @FhirList("PlanDefinitionActionParticipant")
   public participant?: Array<PlanDefinitionActionParticipant>;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("ActionGroupingBehavior")
   public groupingBehavior?: ActionGroupingBehavior;
 
+  @FhirField("ActionSelectionBehavior")
   public selectionBehavior?: ActionSelectionBehavior;
 
+  @FhirField("ActionRequiredBehavior")
   public requiredBehavior?: ActionRequiredBehavior;
 
+  @FhirField("ActionPrecheckBehavior")
   public precheckBehavior?: ActionPrecheckBehavior;
 
+  @FhirField("ActionCardinalityBehavior")
   public cardinalityBehavior?: ActionCardinalityBehavior;
 
+  @FhirChoice("PrimitiveCanonical", "PrimitiveUri")
   public definition?: PrimitiveCanonical | PrimitiveUri;
 
+  @FhirField("PrimitiveCanonical")
   public transform?: PrimitiveCanonical;
 
+  @FhirList("PlanDefinitionActionDynamicValue")
   public dynamicValue?: Array<PlanDefinitionActionDynamicValue>;
 
+  @FhirList("PlanDefinitionAction")
   public action?: Array<PlanDefinitionAction>;
 
   public static parse(
@@ -237,10 +156,7 @@ export class PlanDefinitionAction extends BackboneElement {
       newInstance.documentation = json.documentation.map((x) => RelatedArtifact.parse(x));
     }
     if (json.goalId !== undefined) {
-      newInstance.goalId = json.goalId.map((x, i) => {
-        const ext = json._goalId && json._goalId[i];
-        return PrimitiveId.parsePrimitive(x, ext);
-      });
+      newInstance.goalId = json.goalId.map((x, i) => PrimitiveId.parsePrimitive(x, json._goalId?.[i]));
     }
     if (json.subjectCodeableConcept !== undefined) {
       newInstance.subject = CodeableConcept.parse(json.subjectCodeableConcept);

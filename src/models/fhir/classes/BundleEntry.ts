@@ -1,64 +1,45 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   BundleEntryRequest,
   BundleEntryResponse,
   BundleEntrySearch,
   BundleLink,
   Extension,
+  FhirField,
+  FhirList,
   IBundleEntry,
   PrimitiveUri,
   Resource,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("BundleEntry", "BackboneElement")
 export class BundleEntry extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Bundle.Entry";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "link",
-      fieldType: [BundleLink],
-      isArray: true
-    }, {
-      fieldName: "fullUrl",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "resource",
-      fieldType: [Resource],
-      isArray: false
-    }, {
-      fieldName: "search",
-      fieldType: [BundleEntrySearch],
-      isArray: false
-    }, {
-      fieldName: "request",
-      fieldType: [BundleEntryRequest],
-      isArray: false
-    }, {
-      fieldName: "response",
-      fieldType: [BundleEntryResponse],
-      isArray: false
-    }];
-  }
-
+  @FhirList("BundleLink")
   public link?: Array<BundleLink>;
 
+  @FhirField("PrimitiveUri")
   public fullUrl?: PrimitiveUri;
 
+  @FhirField("Resource")
   public resource?: Resource;
 
+  @FhirField("BundleEntrySearch")
   public search?: BundleEntrySearch;
 
+  @FhirField("BundleEntryRequest")
   public request?: BundleEntryRequest;
 
+  @FhirField("BundleEntryResponse")
   public response?: BundleEntryResponse;
 
   public static parse(

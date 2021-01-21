@@ -1,95 +1,61 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   AuditEventAgentNetwork,
   BackboneElement,
   CodeableConcept,
   Coding,
   Extension,
+  FhirField,
+  FhirList,
   IAuditEventAgent,
   PrimitiveBoolean,
   PrimitiveString,
   PrimitiveUri,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AuditEventAgent", "BackboneElement")
 export class AuditEventAgent extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AuditEvent.Agent";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "role",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "who",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "altId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "requestor",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "policy",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "media",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "network",
-      fieldType: [AuditEventAgentNetwork],
-      isArray: false
-    }, {
-      fieldName: "purposeOfUse",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public role?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public who?: Reference;
 
+  @FhirField("PrimitiveString")
   public altId?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveBoolean")
   public requestor?: PrimitiveBoolean;
 
+  @FhirField("Reference")
   public location?: Reference;
 
+  @FhirList("PrimitiveUri")
   public policy?: Array<PrimitiveUri>;
 
+  @FhirField("Coding")
   public media?: Coding;
 
+  @FhirField("AuditEventAgentNetwork")
   public network?: AuditEventAgentNetwork;
 
+  @FhirList("CodeableConcept")
   public purposeOfUse?: Array<CodeableConcept>;
 
   public static parse(
@@ -120,10 +86,7 @@ export class AuditEventAgent extends BackboneElement {
       newInstance.location = Reference.parse(json.location);
     }
     if (json.policy !== undefined) {
-      newInstance.policy = json.policy.map((x, i) => {
-        const ext = json._policy && json._policy[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.policy = json.policy.map((x, i) => PrimitiveUri.parsePrimitive(x, json._policy?.[i]));
     }
     if (json.media !== undefined) {
       newInstance.media = Coding.parse(json.media);

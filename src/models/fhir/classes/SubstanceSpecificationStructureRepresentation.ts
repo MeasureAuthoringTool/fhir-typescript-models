@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   ISubstanceSpecificationStructureRepresentation,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSpecificationStructureRepresentation", "BackboneElement")
 export class SubstanceSpecificationStructureRepresentation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Structure.Representation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "representation",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "attachment",
-      fieldType: [Attachment],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public representation?: PrimitiveString;
 
+  @FhirField("Attachment")
   public attachment?: Attachment;
 
   public static parse(

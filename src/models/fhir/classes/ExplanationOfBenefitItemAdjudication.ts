@@ -1,49 +1,35 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IExplanationOfBenefitItemAdjudication,
   Money,
   PrimitiveDecimal,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExplanationOfBenefitItemAdjudication", "BackboneElement")
 export class ExplanationOfBenefitItemAdjudication extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.Item.Adjudication";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "reason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public category?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public reason?: CodeableConcept;
 
+  @FhirField("Money")
   public amount?: Money;
 
+  @FhirField("PrimitiveDecimal")
   public value?: PrimitiveDecimal;
 
   public static parse(

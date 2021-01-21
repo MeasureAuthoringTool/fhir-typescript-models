@@ -1,62 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   Identifier,
   IInsurancePlanPlan,
   InsurancePlanPlanGeneralCost,
   InsurancePlanPlanSpecificCost,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("InsurancePlanPlan", "BackboneElement")
 export class InsurancePlanPlan extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "InsurancePlan.Plan";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "coverageArea",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "network",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "generalCost",
-      fieldType: [InsurancePlanPlanGeneralCost],
-      isArray: true
-    }, {
-      fieldName: "specificCost",
-      fieldType: [InsurancePlanPlanSpecificCost],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("Reference")
   public coverageArea?: Array<Reference>;
 
+  @FhirList("Reference")
   public network?: Array<Reference>;
 
+  @FhirList("InsurancePlanPlanGeneralCost")
   public generalCost?: Array<InsurancePlanPlanGeneralCost>;
 
+  @FhirList("InsurancePlanPlanSpecificCost")
   public specificCost?: Array<InsurancePlanPlanSpecificCost>;
 
   public static parse(

@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IInsurancePlan,
   InsurancePlanContact,
@@ -12,104 +14,59 @@ import {
   PrimitiveString,
   PublicationStatus,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("InsurancePlan", "DomainResource")
 export class InsurancePlan extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "InsurancePlan";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "alias",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "ownedBy",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "administeredBy",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "coverageArea",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "contact",
-      fieldType: [InsurancePlanContact],
-      isArray: true
-    }, {
-      fieldName: "endpoint",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "network",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "coverage",
-      fieldType: [InsurancePlanCoverage],
-      isArray: true
-    }, {
-      fieldName: "plan",
-      fieldType: [InsurancePlanPlan],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirList("CodeableConcept")
   public type?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public alias?: Array<PrimitiveString>;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirField("Reference")
   public ownedBy?: Reference;
 
+  @FhirField("Reference")
   public administeredBy?: Reference;
 
+  @FhirList("Reference")
   public coverageArea?: Array<Reference>;
 
+  @FhirList("InsurancePlanContact")
   public contact?: Array<InsurancePlanContact>;
 
+  @FhirList("Reference")
   public endpoint?: Array<Reference>;
 
+  @FhirList("Reference")
   public network?: Array<Reference>;
 
+  @FhirList("InsurancePlanCoverage")
   public coverage?: Array<InsurancePlanCoverage>;
 
+  @FhirList("InsurancePlanPlan")
   public plan?: Array<InsurancePlanPlan>;
 
   public static parse(
@@ -131,10 +88,7 @@ export class InsurancePlan extends DomainResource {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
     if (json.alias !== undefined) {
-      newInstance.alias = json.alias.map((x, i) => {
-        const ext = json._alias && json._alias[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.alias = json.alias.map((x, i) => PrimitiveString.parsePrimitive(x, json._alias?.[i]));
     }
     if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);

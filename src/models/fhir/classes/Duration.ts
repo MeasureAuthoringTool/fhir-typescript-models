@@ -1,23 +1,19 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   IDuration,
   Quantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Duration", "Quantity")
 export class Duration extends Quantity {
   static readonly baseType: string = "FHIR.Quantity";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Duration";
-  
-  static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Quantity.fieldInfo, 
-    ];
-  }
+  static readonly primaryCodePath: string | null = null;
 
   public static parse(
     json: IDuration,

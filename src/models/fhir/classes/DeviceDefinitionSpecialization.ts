@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IDeviceDefinitionSpecialization,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DeviceDefinitionSpecialization", "BackboneElement")
 export class DeviceDefinitionSpecialization extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceDefinition.Specialization";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "systemType",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public systemType?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
   public static parse(

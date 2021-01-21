@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   ISubstanceSourceMaterialFractionDescription,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSourceMaterialFractionDescription", "BackboneElement")
 export class SubstanceSourceMaterialFractionDescription extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSourceMaterial.FractionDescription";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "fraction",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "materialType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public fraction?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public materialType?: CodeableConcept;
 
   public static parse(

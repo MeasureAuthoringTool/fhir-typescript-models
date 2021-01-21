@@ -1,68 +1,46 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Duration,
+  FhirField,
+  FhirList,
   IMedicinalProductPharmaceuticalRouteOfAdministration,
   MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies,
   Quantity,
   Ratio,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductPharmaceuticalRouteOfAdministration", "BackboneElement")
 export class MedicinalProductPharmaceuticalRouteOfAdministration extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductPharmaceutical.RouteOfAdministration";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "firstDose",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "maxSingleDose",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "maxDosePerDay",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "maxDosePerTreatmentPeriod",
-      fieldType: [Ratio],
-      isArray: false
-    }, {
-      fieldName: "maxTreatmentPeriod",
-      fieldType: [Duration],
-      isArray: false
-    }, {
-      fieldName: "targetSpecies",
-      fieldType: [MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("Quantity")
   public firstDose?: Quantity;
 
+  @FhirField("Quantity")
   public maxSingleDose?: Quantity;
 
+  @FhirField("Quantity")
   public maxDosePerDay?: Quantity;
 
+  @FhirField("Ratio")
   public maxDosePerTreatmentPeriod?: Ratio;
 
+  @FhirField("Duration")
   public maxTreatmentPeriod?: Duration;
 
+  @FhirList("MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies")
   public targetSpecies?: Array<MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies>;
 
   public static parse(

@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   ActionParticipantType,
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IPlanDefinitionActionParticipant,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PlanDefinitionActionParticipant", "BackboneElement")
 export class PlanDefinitionActionParticipant extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PlanDefinition.Action.Participant";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [ActionParticipantType],
-      isArray: false
-    }, {
-      fieldName: "role",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("ActionParticipantType")
   public type?: ActionParticipantType;
 
+  @FhirField("CodeableConcept")
   public role?: CodeableConcept;
 
   public static parse(

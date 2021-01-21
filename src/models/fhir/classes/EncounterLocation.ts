@@ -1,50 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   EncounterLocationStatus,
   Extension,
+  FhirField,
   IEncounterLocation,
   Period,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EncounterLocation", "BackboneElement")
 export class EncounterLocation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Encounter.Location";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [EncounterLocationStatus],
-      isArray: false
-    }, {
-      fieldName: "physicalType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public location?: Reference;
 
+  @FhirField("EncounterLocationStatus")
   public status?: EncounterLocationStatus;
 
+  @FhirField("CodeableConcept")
   public physicalType?: CodeableConcept;
 
+  @FhirField("Period")
   public period?: Period;
 
   public static parse(

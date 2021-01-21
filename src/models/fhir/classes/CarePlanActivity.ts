@@ -1,55 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   BackboneElement,
   CarePlanActivityDetail,
   CodeableConcept,
+  FhirField,
+  FhirList,
   ICarePlanActivity,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CarePlanActivity", "BackboneElement")
 export class CarePlanActivity extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CarePlan.Activity";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "outcomeCodeableConcept",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "outcomeReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "progress",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "reference",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "detail",
-      fieldType: [CarePlanActivityDetail],
-      isArray: false
-    }];
-  }
-
+  @FhirList("CodeableConcept")
   public outcomeCodeableConcept?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public outcomeReference?: Array<Reference>;
 
+  @FhirList("Annotation")
   public progress?: Array<Annotation>;
 
+  @FhirField("Reference")
   public reference?: Reference;
 
+  @FhirField("CarePlanActivityDetail")
   public detail?: CarePlanActivityDetail;
 
   public static parse(

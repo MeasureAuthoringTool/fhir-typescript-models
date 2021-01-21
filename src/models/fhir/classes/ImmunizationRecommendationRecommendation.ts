@@ -1,99 +1,63 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IImmunizationRecommendationRecommendation,
   ImmunizationRecommendationRecommendationDateCriterion,
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImmunizationRecommendationRecommendation", "BackboneElement")
 export class ImmunizationRecommendationRecommendation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImmunizationRecommendation.Recommendation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "vaccineCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "targetDisease",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "contraindicatedVaccineCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "forecastStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "forecastReason",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "dateCriterion",
-      fieldType: [ImmunizationRecommendationRecommendationDateCriterion],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "series",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "doseNumber",
-      fieldType: [PrimitivePositiveInt, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "seriesDoses",
-      fieldType: [PrimitivePositiveInt, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "supportingImmunization",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "supportingPatientInformation",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("CodeableConcept")
   public vaccineCode?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public targetDisease?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public contraindicatedVaccineCode?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public forecastStatus?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public forecastReason?: Array<CodeableConcept>;
 
+  @FhirList("ImmunizationRecommendationRecommendationDateCriterion")
   public dateCriterion?: Array<ImmunizationRecommendationRecommendationDateCriterion>;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public series?: PrimitiveString;
 
+  @FhirChoice("PrimitivePositiveInt", "PrimitiveString")
   public doseNumber?: PrimitivePositiveInt | PrimitiveString;
 
+  @FhirChoice("PrimitivePositiveInt", "PrimitiveString")
   public seriesDoses?: PrimitivePositiveInt | PrimitiveString;
 
+  @FhirList("Reference")
   public supportingImmunization?: Array<Reference>;
 
+  @FhirList("Reference")
   public supportingPatientInformation?: Array<Reference>;
 
   public static parse(

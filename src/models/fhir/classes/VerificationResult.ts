@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IVerificationResult,
   PrimitiveDate,
   PrimitiveDateTime,
@@ -13,104 +15,59 @@ import {
   VerificationResultAttestation,
   VerificationResultPrimarySource,
   VerificationResultValidator,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("VerificationResult", "DomainResource")
 export class VerificationResult extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "VerificationResult";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "target",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "targetLocation",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "need",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [Status],
-      isArray: false
-    }, {
-      fieldName: "statusDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "validationType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "validationProcess",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "frequency",
-      fieldType: [Timing],
-      isArray: false
-    }, {
-      fieldName: "lastPerformed",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "nextScheduled",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "failureAction",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "primarySource",
-      fieldType: [VerificationResultPrimarySource],
-      isArray: true
-    }, {
-      fieldName: "attestation",
-      fieldType: [VerificationResultAttestation],
-      isArray: false
-    }, {
-      fieldName: "validator",
-      fieldType: [VerificationResultValidator],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Reference")
   public target?: Array<Reference>;
 
+  @FhirList("PrimitiveString")
   public targetLocation?: Array<PrimitiveString>;
 
+  @FhirField("CodeableConcept")
   public need?: CodeableConcept;
 
+  @FhirField("Status")
   public status?: Status;
 
+  @FhirField("PrimitiveDateTime")
   public statusDate?: PrimitiveDateTime;
 
+  @FhirField("CodeableConcept")
   public validationType?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public validationProcess?: Array<CodeableConcept>;
 
+  @FhirField("Timing")
   public frequency?: Timing;
 
+  @FhirField("PrimitiveDateTime")
   public lastPerformed?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveDate")
   public nextScheduled?: PrimitiveDate;
 
+  @FhirField("CodeableConcept")
   public failureAction?: CodeableConcept;
 
+  @FhirList("VerificationResultPrimarySource")
   public primarySource?: Array<VerificationResultPrimarySource>;
 
+  @FhirField("VerificationResultAttestation")
   public attestation?: VerificationResultAttestation;
 
+  @FhirList("VerificationResultValidator")
   public validator?: Array<VerificationResultValidator>;
 
   public static parse(
@@ -123,10 +80,7 @@ export class VerificationResult extends DomainResource {
       newInstance.target = json.target.map((x) => Reference.parse(x));
     }
     if (json.targetLocation !== undefined) {
-      newInstance.targetLocation = json.targetLocation.map((x, i) => {
-        const ext = json._targetLocation && json._targetLocation[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.targetLocation = json.targetLocation.map((x, i) => PrimitiveString.parsePrimitive(x, json._targetLocation?.[i]));
     }
     if (json.need !== undefined) {
       newInstance.need = CodeableConcept.parse(json.need);

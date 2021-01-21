@@ -1,62 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   EffectEvidenceSynthesisEffectEstimatePrecisionEstimate,
   Extension,
+  FhirField,
+  FhirList,
   IEffectEvidenceSynthesisEffectEstimate,
   PrimitiveDecimal,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EffectEvidenceSynthesisEffectEstimate", "BackboneElement")
 export class EffectEvidenceSynthesisEffectEstimate extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EffectEvidenceSynthesis.EffectEstimate";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "variantState",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "unitOfMeasure",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "precisionEstimate",
-      fieldType: [EffectEvidenceSynthesisEffectEstimatePrecisionEstimate],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public variantState?: CodeableConcept;
 
+  @FhirField("PrimitiveDecimal")
   public value?: PrimitiveDecimal;
 
+  @FhirField("CodeableConcept")
   public unitOfMeasure?: CodeableConcept;
 
+  @FhirList("EffectEvidenceSynthesisEffectEstimatePrecisionEstimate")
   public precisionEstimate?: Array<EffectEvidenceSynthesisEffectEstimatePrecisionEstimate>;
 
   public static parse(

@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirList,
   IMeasureReportGroupStratifier,
   MeasureReportGroupStratifierStratum,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MeasureReportGroupStratifier", "BackboneElement")
 export class MeasureReportGroupStratifier extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MeasureReport.Group.Stratifier";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "stratum",
-      fieldType: [MeasureReportGroupStratifierStratum],
-      isArray: true
-    }];
-  }
-
+  @FhirList("CodeableConcept")
   public code?: Array<CodeableConcept>;
 
+  @FhirList("MeasureReportGroupStratifierStratum")
   public stratum?: Array<MeasureReportGroupStratifierStratum>;
 
   public static parse(

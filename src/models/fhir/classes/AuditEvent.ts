@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   AuditEventAction,
   AuditEventAgent,
   AuditEventEntity,
@@ -9,90 +9,56 @@ import {
   Coding,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IAuditEvent,
   Period,
   PrimitiveInstant,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AuditEvent", "DomainResource")
 export class AuditEvent extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AuditEvent";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "type",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "subtype",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "action",
-      fieldType: [AuditEventAction],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "recorded",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "outcome",
-      fieldType: [AuditEventOutcome],
-      isArray: false
-    }, {
-      fieldName: "outcomeDesc",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "purposeOfEvent",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "agent",
-      fieldType: [AuditEventAgent],
-      isArray: true
-    }, {
-      fieldName: "source",
-      fieldType: [AuditEventSource],
-      isArray: false
-    }, {
-      fieldName: "entity",
-      fieldType: [AuditEventEntity],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Coding")
   public type?: Coding;
 
+  @FhirList("Coding")
   public subtype?: Array<Coding>;
 
+  @FhirField("AuditEventAction")
   public action?: AuditEventAction;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirField("PrimitiveInstant")
   public recorded?: PrimitiveInstant;
 
+  @FhirField("AuditEventOutcome")
   public outcome?: AuditEventOutcome;
 
+  @FhirField("PrimitiveString")
   public outcomeDesc?: PrimitiveString;
 
+  @FhirList("CodeableConcept")
   public purposeOfEvent?: Array<CodeableConcept>;
 
+  @FhirList("AuditEventAgent")
   public agent?: Array<AuditEventAgent>;
 
+  @FhirField("AuditEventSource")
   public source?: AuditEventSource;
 
+  @FhirList("AuditEventEntity")
   public entity?: Array<AuditEventEntity>;
 
   public static parse(

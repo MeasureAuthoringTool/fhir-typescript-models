@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   CompositionAttester,
   CompositionEvent,
@@ -9,115 +9,69 @@ import {
   DocumentConfidentiality,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IComposition,
   Identifier,
   PrimitiveDateTime,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Composition", "DomainResource")
 export class Composition extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Composition";
-  
+
   static readonly primaryCodePath: string | null = "type";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [CompositionStatus],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "author",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "confidentiality",
-      fieldType: [DocumentConfidentiality],
-      isArray: false
-    }, {
-      fieldName: "attester",
-      fieldType: [CompositionAttester],
-      isArray: true
-    }, {
-      fieldName: "custodian",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "relatesTo",
-      fieldType: [CompositionRelatesTo],
-      isArray: true
-    }, {
-      fieldName: "event",
-      fieldType: [CompositionEvent],
-      isArray: true
-    }, {
-      fieldName: "section",
-      fieldType: [CompositionSection],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("CompositionStatus")
   public status?: CompositionStatus;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirList("Reference")
   public author?: Array<Reference>;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("DocumentConfidentiality")
   public confidentiality?: DocumentConfidentiality;
 
+  @FhirList("CompositionAttester")
   public attester?: Array<CompositionAttester>;
 
+  @FhirField("Reference")
   public custodian?: Reference;
 
+  @FhirList("CompositionRelatesTo")
   public relatesTo?: Array<CompositionRelatesTo>;
 
+  @FhirList("CompositionEvent")
   public event?: Array<CompositionEvent>;
 
+  @FhirList("CompositionSection")
   public section?: Array<CompositionSection>;
 
   get primaryCode(): CodeableConcept | undefined {

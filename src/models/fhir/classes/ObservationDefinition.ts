@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IObservationDefinition,
   ObservationDataType,
@@ -11,98 +13,56 @@ import {
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ObservationDefinition", "DomainResource")
 export class ObservationDefinition extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ObservationDefinition";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "permittedDataType",
-      fieldType: [ObservationDataType],
-      isArray: true
-    }, {
-      fieldName: "multipleResultsAllowed",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "method",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "preferredReportName",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "quantitativeDetails",
-      fieldType: [ObservationDefinitionQuantitativeDetails],
-      isArray: false
-    }, {
-      fieldName: "qualifiedInterval",
-      fieldType: [ObservationDefinitionQualifiedInterval],
-      isArray: true
-    }, {
-      fieldName: "validCodedValueSet",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "normalCodedValueSet",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "abnormalCodedValueSet",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "criticalCodedValueSet",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("ObservationDataType")
   public permittedDataType?: Array<ObservationDataType>;
 
+  @FhirField("PrimitiveBoolean")
   public multipleResultsAllowed?: PrimitiveBoolean;
 
+  @FhirField("CodeableConcept")
   public method?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public preferredReportName?: PrimitiveString;
 
+  @FhirField("ObservationDefinitionQuantitativeDetails")
   public quantitativeDetails?: ObservationDefinitionQuantitativeDetails;
 
+  @FhirList("ObservationDefinitionQualifiedInterval")
   public qualifiedInterval?: Array<ObservationDefinitionQualifiedInterval>;
 
+  @FhirField("Reference")
   public validCodedValueSet?: Reference;
 
+  @FhirField("Reference")
   public normalCodedValueSet?: Reference;
 
+  @FhirField("Reference")
   public abnormalCodedValueSet?: Reference;
 
+  @FhirField("Reference")
   public criticalCodedValueSet?: Reference;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -129,10 +89,7 @@ export class ObservationDefinition extends DomainResource {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
     if (json.permittedDataType !== undefined) {
-      newInstance.permittedDataType = json.permittedDataType.map((x, i) => {
-        const ext = json._permittedDataType && json._permittedDataType[i];
-        return ObservationDataType.parsePrimitive(x, ext);
-      });
+      newInstance.permittedDataType = json.permittedDataType.map((x, i) => ObservationDataType.parsePrimitive(x, json._permittedDataType?.[i]));
     }
     if (json.multipleResultsAllowed !== undefined) {
       newInstance.multipleResultsAllowed = PrimitiveBoolean.parsePrimitive(json.multipleResultsAllowed, json._multipleResultsAllowed);

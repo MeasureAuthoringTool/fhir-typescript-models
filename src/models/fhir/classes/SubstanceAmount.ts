@@ -1,51 +1,38 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
   ISubstanceAmount,
   PrimitiveString,
   Quantity,
   Range,
   SubstanceAmountReferenceRange,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceAmount", "BackboneElement")
 export class SubstanceAmount extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceAmount";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "amount",
-      fieldType: [Quantity, Range, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "amountType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "amountText",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "referenceRange",
-      fieldType: [SubstanceAmountReferenceRange],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("Quantity", "Range", "PrimitiveString")
   public amount?: Quantity | Range | PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public amountType?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public amountText?: PrimitiveString;
 
+  @FhirField("SubstanceAmountReferenceRange")
   public referenceRange?: SubstanceAmountReferenceRange;
 
   public static parse(

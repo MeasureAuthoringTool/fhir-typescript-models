@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   INutritionOrder,
   NutritiionOrderIntent,
@@ -15,122 +17,68 @@ import {
   PrimitiveDateTime,
   PrimitiveUri,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("NutritionOrder", "DomainResource")
 export class NutritionOrder extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "NutritionOrder";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "instantiatesCanonical",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "instantiatesUri",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "instantiates",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [NutritionOrderStatus],
-      isArray: false
-    }, {
-      fieldName: "intent",
-      fieldType: [NutritiionOrderIntent],
-      isArray: false
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "dateTime",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "orderer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "allergyIntolerance",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "foodPreferenceModifier",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "excludeFoodModifier",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "oralDiet",
-      fieldType: [NutritionOrderOralDiet],
-      isArray: false
-    }, {
-      fieldName: "supplement",
-      fieldType: [NutritionOrderSupplement],
-      isArray: true
-    }, {
-      fieldName: "enteralFormula",
-      fieldType: [NutritionOrderEnteralFormula],
-      isArray: false
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("PrimitiveCanonical")
   public instantiatesCanonical?: Array<PrimitiveCanonical>;
 
+  @FhirList("PrimitiveUri")
   public instantiatesUri?: Array<PrimitiveUri>;
 
+  @FhirList("PrimitiveUri")
   public instantiates?: Array<PrimitiveUri>;
 
+  @FhirField("NutritionOrderStatus")
   public status?: NutritionOrderStatus;
 
+  @FhirField("NutritiionOrderIntent")
   public intent?: NutritiionOrderIntent;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public dateTime?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public orderer?: Reference;
 
+  @FhirList("Reference")
   public allergyIntolerance?: Array<Reference>;
 
+  @FhirList("CodeableConcept")
   public foodPreferenceModifier?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public excludeFoodModifier?: Array<CodeableConcept>;
 
+  @FhirField("NutritionOrderOralDiet")
   public oralDiet?: NutritionOrderOralDiet;
 
+  @FhirList("NutritionOrderSupplement")
   public supplement?: Array<NutritionOrderSupplement>;
 
+  @FhirField("NutritionOrderEnteralFormula")
   public enteralFormula?: NutritionOrderEnteralFormula;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   public static parse(
@@ -143,22 +91,13 @@ export class NutritionOrder extends DomainResource {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
     if (json.instantiatesCanonical !== undefined) {
-      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
-        const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._instantiatesCanonical?.[i]));
     }
     if (json.instantiatesUri !== undefined) {
-      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
-        const ext = json._instantiatesUri && json._instantiatesUri[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => PrimitiveUri.parsePrimitive(x, json._instantiatesUri?.[i]));
     }
     if (json.instantiates !== undefined) {
-      newInstance.instantiates = json.instantiates.map((x, i) => {
-        const ext = json._instantiates && json._instantiates[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.instantiates = json.instantiates.map((x, i) => PrimitiveUri.parsePrimitive(x, json._instantiates?.[i]));
     }
     if (json.status !== undefined) {
       newInstance.status = NutritionOrderStatus.parsePrimitive(json.status, json._status);

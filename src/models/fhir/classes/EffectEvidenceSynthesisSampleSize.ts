@@ -1,42 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IEffectEvidenceSynthesisSampleSize,
   PrimitiveInteger,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EffectEvidenceSynthesisSampleSize", "BackboneElement")
 export class EffectEvidenceSynthesisSampleSize extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EffectEvidenceSynthesis.SampleSize";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "numberOfStudies",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "numberOfParticipants",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveInteger")
   public numberOfStudies?: PrimitiveInteger;
 
+  @FhirField("PrimitiveInteger")
   public numberOfParticipants?: PrimitiveInteger;
 
   public static parse(

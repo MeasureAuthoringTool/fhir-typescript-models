@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IMedicinalProductAuthorization,
   MedicinalProductAuthorizationJurisdictionalAuthorization,
@@ -10,116 +12,65 @@ import {
   Period,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductAuthorization", "DomainResource")
 export class MedicinalProductAuthorization extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductAuthorization";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "country",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "statusDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "restoreDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "validityPeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "dataExclusivityPeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "dateOfFirstAuthorization",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "internationalBirthDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "legalBasis",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "jurisdictionalAuthorization",
-      fieldType: [MedicinalProductAuthorizationJurisdictionalAuthorization],
-      isArray: true
-    }, {
-      fieldName: "holder",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "regulator",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "procedure",
-      fieldType: [MedicinalProductAuthorizationProcedure],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirList("CodeableConcept")
   public country?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public status?: CodeableConcept;
 
+  @FhirField("PrimitiveDateTime")
   public statusDate?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveDateTime")
   public restoreDate?: PrimitiveDateTime;
 
+  @FhirField("Period")
   public validityPeriod?: Period;
 
+  @FhirField("Period")
   public dataExclusivityPeriod?: Period;
 
+  @FhirField("PrimitiveDateTime")
   public dateOfFirstAuthorization?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveDateTime")
   public internationalBirthDate?: PrimitiveDateTime;
 
+  @FhirField("CodeableConcept")
   public legalBasis?: CodeableConcept;
 
+  @FhirList("MedicinalProductAuthorizationJurisdictionalAuthorization")
   public jurisdictionalAuthorization?: Array<MedicinalProductAuthorizationJurisdictionalAuthorization>;
 
+  @FhirField("Reference")
   public holder?: Reference;
 
+  @FhirField("Reference")
   public regulator?: Reference;
 
+  @FhirField("MedicinalProductAuthorizationProcedure")
   public procedure?: MedicinalProductAuthorizationProcedure;
 
   public static parse(

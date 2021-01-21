@@ -1,10 +1,13 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DayOfWeek,
   Duration,
   Element,
   EventTiming,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   ITimingRepeat,
   Period,
   PrimitiveDecimal,
@@ -13,110 +16,62 @@ import {
   PrimitiveUnsignedInt,
   Range,
   UnitsOfTime,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TimingRepeat", "Element")
 export class TimingRepeat extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Timing.Repeat";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "bounds",
-      fieldType: [Duration, Range, Period],
-      isArray: false
-    }, {
-      fieldName: "count",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "countMax",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "duration",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "durationMax",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "durationUnit",
-      fieldType: [UnitsOfTime],
-      isArray: false
-    }, {
-      fieldName: "frequency",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "frequencyMax",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "periodMax",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "periodUnit",
-      fieldType: [UnitsOfTime],
-      isArray: false
-    }, {
-      fieldName: "dayOfWeek",
-      fieldType: [DayOfWeek],
-      isArray: true
-    }, {
-      fieldName: "timeOfDay",
-      fieldType: [PrimitiveTime],
-      isArray: true
-    }, {
-      fieldName: "when",
-      fieldType: [EventTiming],
-      isArray: true
-    }, {
-      fieldName: "offset",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("Duration", "Range", "Period")
   public bounds?: Duration | Range | Period;
 
+  @FhirField("PrimitivePositiveInt")
   public count?: PrimitivePositiveInt;
 
+  @FhirField("PrimitivePositiveInt")
   public countMax?: PrimitivePositiveInt;
 
+  @FhirField("PrimitiveDecimal")
   public duration?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public durationMax?: PrimitiveDecimal;
 
+  @FhirField("UnitsOfTime")
   public durationUnit?: UnitsOfTime;
 
+  @FhirField("PrimitivePositiveInt")
   public frequency?: PrimitivePositiveInt;
 
+  @FhirField("PrimitivePositiveInt")
   public frequencyMax?: PrimitivePositiveInt;
 
+  @FhirField("PrimitiveDecimal")
   public period?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public periodMax?: PrimitiveDecimal;
 
+  @FhirField("UnitsOfTime")
   public periodUnit?: UnitsOfTime;
 
+  @FhirList("DayOfWeek")
   public dayOfWeek?: Array<DayOfWeek>;
 
+  @FhirList("PrimitiveTime")
   public timeOfDay?: Array<PrimitiveTime>;
 
+  @FhirList("EventTiming")
   public when?: Array<EventTiming>;
 
+  @FhirField("PrimitiveUnsignedInt")
   public offset?: PrimitiveUnsignedInt;
 
   public static parse(
@@ -165,22 +120,13 @@ export class TimingRepeat extends Element {
       newInstance.periodUnit = UnitsOfTime.parsePrimitive(json.periodUnit, json._periodUnit);
     }
     if (json.dayOfWeek !== undefined) {
-      newInstance.dayOfWeek = json.dayOfWeek.map((x, i) => {
-        const ext = json._dayOfWeek && json._dayOfWeek[i];
-        return DayOfWeek.parsePrimitive(x, ext);
-      });
+      newInstance.dayOfWeek = json.dayOfWeek.map((x, i) => DayOfWeek.parsePrimitive(x, json._dayOfWeek?.[i]));
     }
     if (json.timeOfDay !== undefined) {
-      newInstance.timeOfDay = json.timeOfDay.map((x, i) => {
-        const ext = json._timeOfDay && json._timeOfDay[i];
-        return PrimitiveTime.parsePrimitive(x, ext);
-      });
+      newInstance.timeOfDay = json.timeOfDay.map((x, i) => PrimitiveTime.parsePrimitive(x, json._timeOfDay?.[i]));
     }
     if (json.when !== undefined) {
-      newInstance.when = json.when.map((x, i) => {
-        const ext = json._when && json._when[i];
-        return EventTiming.parsePrimitive(x, ext);
-      });
+      newInstance.when = json.when.map((x, i) => EventTiming.parsePrimitive(x, json._when?.[i]));
     }
     if (json.offset !== undefined) {
       newInstance.offset = PrimitiveUnsignedInt.parsePrimitive(json.offset, json._offset);

@@ -1,62 +1,42 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   Identifier,
   IExplanationOfBenefitPayment,
   Money,
   PrimitiveDate,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExplanationOfBenefitPayment", "BackboneElement")
 export class ExplanationOfBenefitPayment extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.Payment";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "adjustment",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "adjustmentReason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("Money")
   public adjustment?: Money;
 
+  @FhirField("CodeableConcept")
   public adjustmentReason?: CodeableConcept;
 
+  @FhirField("PrimitiveDate")
   public date?: PrimitiveDate;
 
+  @FhirField("Money")
   public amount?: Money;
 
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
   public static parse(

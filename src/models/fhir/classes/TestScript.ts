@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   ContactDetail,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   ITestScript,
   PrimitiveBoolean,
@@ -22,164 +24,89 @@ import {
   TestScriptTest,
   TestScriptVariable,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TestScript", "DomainResource")
 export class TestScript extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "experimental",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "purpose",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "copyright",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "origin",
-      fieldType: [TestScriptOrigin],
-      isArray: true
-    }, {
-      fieldName: "destination",
-      fieldType: [TestScriptDestination],
-      isArray: true
-    }, {
-      fieldName: "metadata",
-      fieldType: [TestScriptMetadata],
-      isArray: false
-    }, {
-      fieldName: "fixture",
-      fieldType: [TestScriptFixture],
-      isArray: true
-    }, {
-      fieldName: "profile",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "variable",
-      fieldType: [TestScriptVariable],
-      isArray: true
-    }, {
-      fieldName: "setup",
-      fieldType: [TestScriptSetup],
-      isArray: false
-    }, {
-      fieldName: "test",
-      fieldType: [TestScriptTest],
-      isArray: true
-    }, {
-      fieldName: "teardown",
-      fieldType: [TestScriptTeardown],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("PrimitiveBoolean")
   public experimental?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public purpose?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveMarkdown")
   public copyright?: PrimitiveMarkdown;
 
+  @FhirList("TestScriptOrigin")
   public origin?: Array<TestScriptOrigin>;
 
+  @FhirList("TestScriptDestination")
   public destination?: Array<TestScriptDestination>;
 
+  @FhirField("TestScriptMetadata")
   public metadata?: TestScriptMetadata;
 
+  @FhirList("TestScriptFixture")
   public fixture?: Array<TestScriptFixture>;
 
+  @FhirList("Reference")
   public profile?: Array<Reference>;
 
+  @FhirList("TestScriptVariable")
   public variable?: Array<TestScriptVariable>;
 
+  @FhirField("TestScriptSetup")
   public setup?: TestScriptSetup;
 
+  @FhirList("TestScriptTest")
   public test?: Array<TestScriptTest>;
 
+  @FhirField("TestScriptTeardown")
   public teardown?: TestScriptTeardown;
 
   public static parse(

@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   GuideParameterCode,
   IImplementationGuideDefinitionParameter,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImplementationGuideDefinitionParameter", "BackboneElement")
 export class ImplementationGuideDefinitionParameter extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.Definition.Parameter";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [GuideParameterCode],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("GuideParameterCode")
   public code?: GuideParameterCode;
 
+  @FhirField("PrimitiveString")
   public value?: PrimitiveString;
 
   public static parse(

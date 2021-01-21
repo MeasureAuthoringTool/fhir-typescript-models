@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   ContactDetail,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IOperationDefinition,
   OperationDefinitionOverload,
   OperationDefinitionParameter,
@@ -18,176 +20,95 @@ import {
   PublicationStatus,
   ResourceType,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("OperationDefinition", "DomainResource")
 export class OperationDefinition extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OperationDefinition";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "kind",
-      fieldType: [OperationKind],
-      isArray: false
-    }, {
-      fieldName: "experimental",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "purpose",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "affectsState",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "comment",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "base",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "resource",
-      fieldType: [ResourceType],
-      isArray: true
-    }, {
-      fieldName: "system",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "instance",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "inputProfile",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "outputProfile",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "parameter",
-      fieldType: [OperationDefinitionParameter],
-      isArray: true
-    }, {
-      fieldName: "overload",
-      fieldType: [OperationDefinitionOverload],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("OperationKind")
   public kind?: OperationKind;
 
+  @FhirField("PrimitiveBoolean")
   public experimental?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public purpose?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveBoolean")
   public affectsState?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveCode")
   public code?: PrimitiveCode;
 
+  @FhirField("PrimitiveMarkdown")
   public comment?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveCanonical")
   public base?: PrimitiveCanonical;
 
+  @FhirList("ResourceType")
   public resource?: Array<ResourceType>;
 
+  @FhirField("PrimitiveBoolean")
   public system?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public type?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public instance?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveCanonical")
   public inputProfile?: PrimitiveCanonical;
 
+  @FhirField("PrimitiveCanonical")
   public outputProfile?: PrimitiveCanonical;
 
+  @FhirList("OperationDefinitionParameter")
   public parameter?: Array<OperationDefinitionParameter>;
 
+  @FhirList("OperationDefinitionOverload")
   public overload?: Array<OperationDefinitionOverload>;
 
   get primaryCode(): PrimitiveCode | undefined {
@@ -259,10 +180,7 @@ export class OperationDefinition extends DomainResource {
       newInstance.base = PrimitiveCanonical.parsePrimitive(json.base, json._base);
     }
     if (json.resource !== undefined) {
-      newInstance.resource = json.resource.map((x, i) => {
-        const ext = json._resource && json._resource[i];
-        return ResourceType.parsePrimitive(x, ext);
-      });
+      newInstance.resource = json.resource.map((x, i) => ResourceType.parsePrimitive(x, json._resource?.[i]));
     }
     if (json.system !== undefined) {
       newInstance.system = PrimitiveBoolean.parsePrimitive(json.system, json._system);

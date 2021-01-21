@@ -1,47 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   ISubstanceReferenceInformationClassification,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceReferenceInformationClassification", "BackboneElement")
 export class SubstanceReferenceInformationClassification extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceReferenceInformation.Classification";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "domain",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "classification",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subtype",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "source",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public domain?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public classification?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public subtype?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public source?: Array<Reference>;
 
   public static parse(

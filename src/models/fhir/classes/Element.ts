@@ -1,34 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Extension,
+  FhirField,
+  FhirList,
   IElement,
   Type,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Element", "Type")
 export class Element extends Type {
   static readonly baseType: string = "";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Element";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Type.fieldInfo, {
-      fieldName: "id",
-      fieldType: [String],
-      isArray: false
-    }, {
-      fieldName: "extension",
-      fieldType: [Extension],
-      isArray: true
-    }];
-  }
-
+  @FhirField("SystemString")
   public id?: string;
 
+  @FhirList("Extension")
   public extension?: Array<Extension>;
 
   public static parse(

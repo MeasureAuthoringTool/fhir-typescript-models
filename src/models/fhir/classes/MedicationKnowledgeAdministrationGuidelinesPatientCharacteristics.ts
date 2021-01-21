@@ -1,37 +1,30 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirList,
   IMedicationKnowledgeAdministrationGuidelinesPatientCharacteristics,
   PrimitiveString,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics", "BackboneElement")
 export class MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.AdministrationGuidelines.PatientCharacteristics";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "characteristic",
-      fieldType: [CodeableConcept, SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }];
-  }
-
+  @FhirChoice("CodeableConcept", "SimpleQuantity")
   public characteristic?: CodeableConcept | SimpleQuantity;
 
+  @FhirList("PrimitiveString")
   public value?: Array<PrimitiveString>;
 
   public static parse(
@@ -47,10 +40,7 @@ export class MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics e
       newInstance.characteristic = SimpleQuantity.parse(json.characteristicSimpleQuantity);
     }
     if (json.value !== undefined) {
-      newInstance.value = json.value.map((x, i) => {
-        const ext = json._value && json._value[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.value = json.value.map((x, i) => PrimitiveString.parsePrimitive(x, json._value?.[i]));
     }
     return newInstance;
   }

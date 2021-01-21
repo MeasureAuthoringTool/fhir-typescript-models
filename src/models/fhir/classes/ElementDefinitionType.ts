@@ -1,43 +1,33 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirField,
+  FhirList,
   IElementDefinitionType,
   PrimitiveCanonical,
   PrimitiveUri,
   ReferenceVersionRules,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ElementDefinitionType", "Element")
 export class ElementDefinitionType extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition.Type";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "code",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "targetProfile",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "versioning",
-      fieldType: [ReferenceVersionRules],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public code?: PrimitiveUri;
 
+  @FhirList("PrimitiveCanonical")
   public targetProfile?: Array<PrimitiveCanonical>;
 
+  @FhirField("ReferenceVersionRules")
   public versioning?: ReferenceVersionRules;
 
   public static parse(
@@ -50,10 +40,7 @@ export class ElementDefinitionType extends Element {
       newInstance.code = PrimitiveUri.parsePrimitive(json.code, json._code);
     }
     if (json.targetProfile !== undefined) {
-      newInstance.targetProfile = json.targetProfile.map((x, i) => {
-        const ext = json._targetProfile && json._targetProfile[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.targetProfile = json.targetProfile.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._targetProfile?.[i]));
     }
     if (json.versioning !== undefined) {
       newInstance.versioning = ReferenceVersionRules.parsePrimitive(json.versioning, json._versioning);

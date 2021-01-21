@@ -1,49 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
+  FhirField,
+  FhirList,
   IMedicationKnowledgeRegulatory,
   MedicationKnowledgeRegulatoryMaxDispense,
   MedicationKnowledgeRegulatorySchedule,
   MedicationKnowledgeRegulatorySubstitution,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationKnowledgeRegulatory", "BackboneElement")
 export class MedicationKnowledgeRegulatory extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.Regulatory";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "regulatoryAuthority",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "substitution",
-      fieldType: [MedicationKnowledgeRegulatorySubstitution],
-      isArray: true
-    }, {
-      fieldName: "schedule",
-      fieldType: [MedicationKnowledgeRegulatorySchedule],
-      isArray: true
-    }, {
-      fieldName: "maxDispense",
-      fieldType: [MedicationKnowledgeRegulatoryMaxDispense],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public regulatoryAuthority?: Reference;
 
+  @FhirList("MedicationKnowledgeRegulatorySubstitution")
   public substitution?: Array<MedicationKnowledgeRegulatorySubstitution>;
 
+  @FhirList("MedicationKnowledgeRegulatorySchedule")
   public schedule?: Array<MedicationKnowledgeRegulatorySchedule>;
 
+  @FhirField("MedicationKnowledgeRegulatoryMaxDispense")
   public maxDispense?: MedicationKnowledgeRegulatoryMaxDispense;
 
   public static parse(

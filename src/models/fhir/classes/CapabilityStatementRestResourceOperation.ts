@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   ICapabilityStatementRestResourceOperation,
   PrimitiveCanonical,
   PrimitiveMarkdown,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CapabilityStatementRestResourceOperation", "BackboneElement")
 export class CapabilityStatementRestResourceOperation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Rest.Resource.Operation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "definition",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "documentation",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveCanonical")
   public definition?: PrimitiveCanonical;
 
+  @FhirField("PrimitiveMarkdown")
   public documentation?: PrimitiveMarkdown;
 
   public static parse(

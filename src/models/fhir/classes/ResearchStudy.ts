@@ -1,10 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   ContactDetail,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IResearchStudy,
   Period,
@@ -15,164 +17,89 @@ import {
   ResearchStudyArm,
   ResearchStudyObjective,
   ResearchStudyStatus,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ResearchStudy", "DomainResource")
 export class ResearchStudy extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ResearchStudy";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "protocol",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "partOf",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [ResearchStudyStatus],
-      isArray: false
-    }, {
-      fieldName: "primaryPurposeType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "phase",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "focus",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "condition",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "relatedArtifact",
-      fieldType: [RelatedArtifact],
-      isArray: true
-    }, {
-      fieldName: "keyword",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "location",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "enrollment",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "sponsor",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "principalInvestigator",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "site",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "reasonStopped",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "arm",
-      fieldType: [ResearchStudyArm],
-      isArray: true
-    }, {
-      fieldName: "objective",
-      fieldType: [ResearchStudyObjective],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirList("Reference")
   public protocol?: Array<Reference>;
 
+  @FhirList("Reference")
   public partOf?: Array<Reference>;
 
+  @FhirField("ResearchStudyStatus")
   public status?: ResearchStudyStatus;
 
+  @FhirField("CodeableConcept")
   public primaryPurposeType?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public phase?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public focus?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public condition?: Array<CodeableConcept>;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirList("RelatedArtifact")
   public relatedArtifact?: Array<RelatedArtifact>;
 
+  @FhirList("CodeableConcept")
   public keyword?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public location?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("Reference")
   public enrollment?: Array<Reference>;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirField("Reference")
   public sponsor?: Reference;
 
+  @FhirField("Reference")
   public principalInvestigator?: Reference;
 
+  @FhirList("Reference")
   public site?: Array<Reference>;
 
+  @FhirField("CodeableConcept")
   public reasonStopped?: CodeableConcept;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("ResearchStudyArm")
   public arm?: Array<ResearchStudyArm>;
 
+  @FhirList("ResearchStudyObjective")
   public objective?: Array<ResearchStudyObjective>;
 
   public static parse(

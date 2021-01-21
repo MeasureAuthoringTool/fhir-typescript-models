@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   EncounterStatus,
   Extension,
+  FhirField,
   IEncounterStatusHistory,
   Period,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EncounterStatusHistory", "BackboneElement")
 export class EncounterStatusHistory extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Encounter.StatusHistory";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "status",
-      fieldType: [EncounterStatus],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirField("EncounterStatus")
   public status?: EncounterStatus;
 
+  @FhirField("Period")
   public period?: Period;
 
   public static parse(

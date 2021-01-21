@@ -1,43 +1,33 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   Element,
+  FhirChoice,
+  FhirField,
   IDosageDoseAndRate,
   Range,
   Ratio,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DosageDoseAndRate", "Element")
 export class DosageDoseAndRate extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Dosage.DoseAndRate";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "dose",
-      fieldType: [Range, SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "rate",
-      fieldType: [Ratio, Range, SimpleQuantity],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirChoice("Range", "SimpleQuantity")
   public dose?: Range | SimpleQuantity;
 
+  @FhirChoice("Ratio", "Range", "SimpleQuantity")
   public rate?: Ratio | Range | SimpleQuantity;
 
   public static parse(

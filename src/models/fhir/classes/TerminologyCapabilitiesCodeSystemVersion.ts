@@ -1,62 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   ITerminologyCapabilitiesCodeSystemVersion,
   PrimitiveBoolean,
   PrimitiveCode,
   PrimitiveString,
   TerminologyCapabilitiesCodeSystemVersionFilter,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TerminologyCapabilitiesCodeSystemVersion", "BackboneElement")
 export class TerminologyCapabilitiesCodeSystemVersion extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TerminologyCapabilities.CodeSystem.Version";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "isDefault",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "compositional",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "language",
-      fieldType: [PrimitiveCode],
-      isArray: true
-    }, {
-      fieldName: "filter",
-      fieldType: [TerminologyCapabilitiesCodeSystemVersionFilter],
-      isArray: true
-    }, {
-      fieldName: "property",
-      fieldType: [PrimitiveCode],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public code?: PrimitiveString;
 
+  @FhirField("PrimitiveBoolean")
   public isDefault?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public compositional?: PrimitiveBoolean;
 
+  @FhirList("PrimitiveCode")
   public language?: Array<PrimitiveCode>;
 
+  @FhirList("TerminologyCapabilitiesCodeSystemVersionFilter")
   public filter?: Array<TerminologyCapabilitiesCodeSystemVersionFilter>;
 
+  @FhirList("PrimitiveCode")
   public property?: Array<PrimitiveCode>;
 
   public static parse(
@@ -75,19 +56,13 @@ export class TerminologyCapabilitiesCodeSystemVersion extends BackboneElement {
       newInstance.compositional = PrimitiveBoolean.parsePrimitive(json.compositional, json._compositional);
     }
     if (json.language !== undefined) {
-      newInstance.language = json.language.map((x, i) => {
-        const ext = json._language && json._language[i];
-        return PrimitiveCode.parsePrimitive(x, ext);
-      });
+      newInstance.language = json.language.map((x, i) => PrimitiveCode.parsePrimitive(x, json._language?.[i]));
     }
     if (json.filter !== undefined) {
       newInstance.filter = json.filter.map((x) => TerminologyCapabilitiesCodeSystemVersionFilter.parse(x));
     }
     if (json.property !== undefined) {
-      newInstance.property = json.property.map((x, i) => {
-        const ext = json._property && json._property[i];
-        return PrimitiveCode.parsePrimitive(x, ext);
-      });
+      newInstance.property = json.property.map((x, i) => PrimitiveCode.parsePrimitive(x, json._property?.[i]));
     }
     return newInstance;
   }

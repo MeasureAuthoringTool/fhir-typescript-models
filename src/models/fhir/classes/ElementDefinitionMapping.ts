@@ -1,49 +1,35 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirField,
   IElementDefinitionMapping,
   MimeType,
   PrimitiveId,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ElementDefinitionMapping", "Element")
 export class ElementDefinitionMapping extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition.Mapping";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "identity",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "language",
-      fieldType: [MimeType],
-      isArray: false
-    }, {
-      fieldName: "map",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "comment",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public identity?: PrimitiveId;
 
+  @FhirField("MimeType")
   public language?: MimeType;
 
+  @FhirField("PrimitiveString")
   public map?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public comment?: PrimitiveString;
 
   public static parse(

@@ -1,57 +1,41 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IValueSetComposeInclude,
   PrimitiveCanonical,
   PrimitiveString,
   PrimitiveUri,
   ValueSetComposeIncludeConcept,
   ValueSetComposeIncludeFilter,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ValueSetComposeInclude", "BackboneElement")
 export class ValueSetComposeInclude extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ValueSet.Compose.Include";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "system",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "concept",
-      fieldType: [ValueSetComposeIncludeConcept],
-      isArray: true
-    }, {
-      fieldName: "filter",
-      fieldType: [ValueSetComposeIncludeFilter],
-      isArray: true
-    }, {
-      fieldName: "valueSet",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public system?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirList("ValueSetComposeIncludeConcept")
   public concept?: Array<ValueSetComposeIncludeConcept>;
 
+  @FhirList("ValueSetComposeIncludeFilter")
   public filter?: Array<ValueSetComposeIncludeFilter>;
 
+  @FhirList("PrimitiveCanonical")
   public valueSet?: Array<PrimitiveCanonical>;
 
   public static parse(
@@ -73,10 +57,7 @@ export class ValueSetComposeInclude extends BackboneElement {
       newInstance.filter = json.filter.map((x) => ValueSetComposeIncludeFilter.parse(x));
     }
     if (json.valueSet !== undefined) {
-      newInstance.valueSet = json.valueSet.map((x, i) => {
-        const ext = json._valueSet && json._valueSet[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.valueSet = json.valueSet.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._valueSet?.[i]));
     }
     return newInstance;
   }

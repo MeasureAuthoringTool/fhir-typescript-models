@@ -1,56 +1,40 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   ISubstanceNucleicAcid,
   PrimitiveInteger,
   PrimitiveString,
   SubstanceNucleicAcidSubunit,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceNucleicAcid", "DomainResource")
 export class SubstanceNucleicAcid extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceNucleicAcid";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "sequenceType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "numberOfSubunits",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "areaOfHybridisation",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "oligoNucleotideType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subunit",
-      fieldType: [SubstanceNucleicAcidSubunit],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public sequenceType?: CodeableConcept;
 
+  @FhirField("PrimitiveInteger")
   public numberOfSubunits?: PrimitiveInteger;
 
+  @FhirField("PrimitiveString")
   public areaOfHybridisation?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public oligoNucleotideType?: CodeableConcept;
 
+  @FhirList("SubstanceNucleicAcidSubunit")
   public subunit?: Array<SubstanceNucleicAcidSubunit>;
 
   public static parse(

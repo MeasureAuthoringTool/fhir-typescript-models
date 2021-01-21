@@ -1,72 +1,46 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   ITestScriptVariable,
   PrimitiveId,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TestScriptVariable", "BackboneElement")
 export class TestScriptVariable extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Variable";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "defaultValue",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "expression",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "headerField",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "hint",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "path",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "sourceId",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public defaultValue?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public expression?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public headerField?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public hint?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public path?: PrimitiveString;
 
+  @FhirField("PrimitiveId")
   public sourceId?: PrimitiveId;
 
   public static parse(

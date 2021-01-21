@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IMedicationKnowledge,
   MedicationKnowledgeAdministrationGuidelines,
   MedicationKnowledgeCost,
@@ -20,152 +22,83 @@ import {
   PrimitiveString,
   Reference,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationKnowledge", "DomainResource")
 export class MedicationKnowledge extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [MedicationKnowledgeStatus],
-      isArray: false
-    }, {
-      fieldName: "manufacturer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "doseForm",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "synonym",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "relatedMedicationKnowledge",
-      fieldType: [MedicationKnowledgeRelatedMedicationKnowledge],
-      isArray: true
-    }, {
-      fieldName: "associatedMedication",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "productType",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "monograph",
-      fieldType: [MedicationKnowledgeMonograph],
-      isArray: true
-    }, {
-      fieldName: "ingredient",
-      fieldType: [MedicationKnowledgeIngredient],
-      isArray: true
-    }, {
-      fieldName: "preparationInstruction",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "intendedRoute",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "cost",
-      fieldType: [MedicationKnowledgeCost],
-      isArray: true
-    }, {
-      fieldName: "monitoringProgram",
-      fieldType: [MedicationKnowledgeMonitoringProgram],
-      isArray: true
-    }, {
-      fieldName: "administrationGuidelines",
-      fieldType: [MedicationKnowledgeAdministrationGuidelines],
-      isArray: true
-    }, {
-      fieldName: "medicineClassification",
-      fieldType: [MedicationKnowledgeMedicineClassification],
-      isArray: true
-    }, {
-      fieldName: "packaging",
-      fieldType: [MedicationKnowledgePackaging],
-      isArray: false
-    }, {
-      fieldName: "drugCharacteristic",
-      fieldType: [MedicationKnowledgeDrugCharacteristic],
-      isArray: true
-    }, {
-      fieldName: "contraindication",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "regulatory",
-      fieldType: [MedicationKnowledgeRegulatory],
-      isArray: true
-    }, {
-      fieldName: "kinetics",
-      fieldType: [MedicationKnowledgeKinetics],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("MedicationKnowledgeStatus")
   public status?: MedicationKnowledgeStatus;
 
+  @FhirField("Reference")
   public manufacturer?: Reference;
 
+  @FhirField("CodeableConcept")
   public doseForm?: CodeableConcept;
 
+  @FhirField("SimpleQuantity")
   public amount?: SimpleQuantity;
 
+  @FhirList("PrimitiveString")
   public synonym?: Array<PrimitiveString>;
 
+  @FhirList("MedicationKnowledgeRelatedMedicationKnowledge")
   public relatedMedicationKnowledge?: Array<MedicationKnowledgeRelatedMedicationKnowledge>;
 
+  @FhirList("Reference")
   public associatedMedication?: Array<Reference>;
 
+  @FhirList("CodeableConcept")
   public productType?: Array<CodeableConcept>;
 
+  @FhirList("MedicationKnowledgeMonograph")
   public monograph?: Array<MedicationKnowledgeMonograph>;
 
+  @FhirList("MedicationKnowledgeIngredient")
   public ingredient?: Array<MedicationKnowledgeIngredient>;
 
+  @FhirField("PrimitiveMarkdown")
   public preparationInstruction?: PrimitiveMarkdown;
 
+  @FhirList("CodeableConcept")
   public intendedRoute?: Array<CodeableConcept>;
 
+  @FhirList("MedicationKnowledgeCost")
   public cost?: Array<MedicationKnowledgeCost>;
 
+  @FhirList("MedicationKnowledgeMonitoringProgram")
   public monitoringProgram?: Array<MedicationKnowledgeMonitoringProgram>;
 
+  @FhirList("MedicationKnowledgeAdministrationGuidelines")
   public administrationGuidelines?: Array<MedicationKnowledgeAdministrationGuidelines>;
 
+  @FhirList("MedicationKnowledgeMedicineClassification")
   public medicineClassification?: Array<MedicationKnowledgeMedicineClassification>;
 
+  @FhirField("MedicationKnowledgePackaging")
   public packaging?: MedicationKnowledgePackaging;
 
+  @FhirList("MedicationKnowledgeDrugCharacteristic")
   public drugCharacteristic?: Array<MedicationKnowledgeDrugCharacteristic>;
 
+  @FhirList("Reference")
   public contraindication?: Array<Reference>;
 
+  @FhirList("MedicationKnowledgeRegulatory")
   public regulatory?: Array<MedicationKnowledgeRegulatory>;
 
+  @FhirList("MedicationKnowledgeKinetics")
   public kinetics?: Array<MedicationKnowledgeKinetics>;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -198,10 +131,7 @@ export class MedicationKnowledge extends DomainResource {
       newInstance.amount = SimpleQuantity.parse(json.amount);
     }
     if (json.synonym !== undefined) {
-      newInstance.synonym = json.synonym.map((x, i) => {
-        const ext = json._synonym && json._synonym[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.synonym = json.synonym.map((x, i) => PrimitiveString.parsePrimitive(x, json._synonym?.[i]));
     }
     if (json.relatedMedicationKnowledge !== undefined) {
       newInstance.relatedMedicationKnowledge = json.relatedMedicationKnowledge.map((x) => MedicationKnowledgeRelatedMedicationKnowledge.parse(x));

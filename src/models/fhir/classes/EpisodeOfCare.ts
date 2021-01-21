@@ -1,101 +1,64 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   EpisodeOfCareDiagnosis,
   EpisodeOfCareStatus,
   EpisodeOfCareStatusHistory,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IEpisodeOfCare,
   Period,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EpisodeOfCare", "DomainResource")
 export class EpisodeOfCare extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EpisodeOfCare";
-  
+
   static readonly primaryCodePath: string | null = "type";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [EpisodeOfCareStatus],
-      isArray: false
-    }, {
-      fieldName: "statusHistory",
-      fieldType: [EpisodeOfCareStatusHistory],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "diagnosis",
-      fieldType: [EpisodeOfCareDiagnosis],
-      isArray: true
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "managingOrganization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "referralRequest",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "careManager",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "team",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "account",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("EpisodeOfCareStatus")
   public status?: EpisodeOfCareStatus;
 
+  @FhirList("EpisodeOfCareStatusHistory")
   public statusHistory?: Array<EpisodeOfCareStatusHistory>;
 
+  @FhirList("CodeableConcept")
   public type?: Array<CodeableConcept>;
 
+  @FhirList("EpisodeOfCareDiagnosis")
   public diagnosis?: Array<EpisodeOfCareDiagnosis>;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("Reference")
   public managingOrganization?: Reference;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirList("Reference")
   public referralRequest?: Array<Reference>;
 
+  @FhirField("Reference")
   public careManager?: Reference;
 
+  @FhirList("Reference")
   public team?: Array<Reference>;
 
+  @FhirList("Reference")
   public account?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {

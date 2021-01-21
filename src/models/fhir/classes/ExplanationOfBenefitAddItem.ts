@@ -1,11 +1,14 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Address,
   BackboneElement,
   CodeableConcept,
   ExplanationOfBenefitAddItemDetail,
   ExplanationOfBenefitItemAdjudication,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IExplanationOfBenefitAddItem,
   Money,
   Period,
@@ -14,128 +17,71 @@ import {
   PrimitivePositiveInt,
   Reference,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExplanationOfBenefitAddItem", "BackboneElement")
 export class ExplanationOfBenefitAddItem extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.AddItem";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "itemSequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: true
-    }, {
-      fieldName: "detailSequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: true
-    }, {
-      fieldName: "subDetailSequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: true
-    }, {
-      fieldName: "provider",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "productOrService",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "modifier",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "programCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "serviced",
-      fieldType: [PrimitiveDate, Period],
-      isArray: false
-    }, {
-      fieldName: "location",
-      fieldType: [CodeableConcept, Address, Reference],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "unitPrice",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "factor",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "net",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "bodySite",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subSite",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "noteNumber",
-      fieldType: [PrimitivePositiveInt],
-      isArray: true
-    }, {
-      fieldName: "adjudication",
-      fieldType: [ExplanationOfBenefitItemAdjudication],
-      isArray: true
-    }, {
-      fieldName: "detail",
-      fieldType: [ExplanationOfBenefitAddItemDetail],
-      isArray: true
-    }];
-  }
-
+  @FhirList("PrimitivePositiveInt")
   public itemSequence?: Array<PrimitivePositiveInt>;
 
+  @FhirList("PrimitivePositiveInt")
   public detailSequence?: Array<PrimitivePositiveInt>;
 
+  @FhirList("PrimitivePositiveInt")
   public subDetailSequence?: Array<PrimitivePositiveInt>;
 
+  @FhirList("Reference")
   public provider?: Array<Reference>;
 
+  @FhirField("CodeableConcept")
   public productOrService?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public modifier?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public programCode?: Array<CodeableConcept>;
 
+  @FhirChoice("PrimitiveDate", "Period")
   public serviced?: PrimitiveDate | Period;
 
+  @FhirChoice("CodeableConcept", "Address", "Reference")
   public location?: CodeableConcept | Address | Reference;
 
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirField("Money")
   public unitPrice?: Money;
 
+  @FhirField("PrimitiveDecimal")
   public factor?: PrimitiveDecimal;
 
+  @FhirField("Money")
   public net?: Money;
 
+  @FhirField("CodeableConcept")
   public bodySite?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public subSite?: Array<CodeableConcept>;
 
+  @FhirList("PrimitivePositiveInt")
   public noteNumber?: Array<PrimitivePositiveInt>;
 
+  @FhirList("ExplanationOfBenefitItemAdjudication")
   public adjudication?: Array<ExplanationOfBenefitItemAdjudication>;
 
+  @FhirList("ExplanationOfBenefitAddItemDetail")
   public detail?: Array<ExplanationOfBenefitAddItemDetail>;
 
   public static parse(
@@ -145,22 +91,13 @@ export class ExplanationOfBenefitAddItem extends BackboneElement {
     const newInstance: ExplanationOfBenefitAddItem = BackboneElement.parse(json, providedInstance);
   
     if (json.itemSequence !== undefined) {
-      newInstance.itemSequence = json.itemSequence.map((x, i) => {
-        const ext = json._itemSequence && json._itemSequence[i];
-        return PrimitivePositiveInt.parsePrimitive(x, ext);
-      });
+      newInstance.itemSequence = json.itemSequence.map((x, i) => PrimitivePositiveInt.parsePrimitive(x, json._itemSequence?.[i]));
     }
     if (json.detailSequence !== undefined) {
-      newInstance.detailSequence = json.detailSequence.map((x, i) => {
-        const ext = json._detailSequence && json._detailSequence[i];
-        return PrimitivePositiveInt.parsePrimitive(x, ext);
-      });
+      newInstance.detailSequence = json.detailSequence.map((x, i) => PrimitivePositiveInt.parsePrimitive(x, json._detailSequence?.[i]));
     }
     if (json.subDetailSequence !== undefined) {
-      newInstance.subDetailSequence = json.subDetailSequence.map((x, i) => {
-        const ext = json._subDetailSequence && json._subDetailSequence[i];
-        return PrimitivePositiveInt.parsePrimitive(x, ext);
-      });
+      newInstance.subDetailSequence = json.subDetailSequence.map((x, i) => PrimitivePositiveInt.parsePrimitive(x, json._subDetailSequence?.[i]));
     }
     if (json.provider !== undefined) {
       newInstance.provider = json.provider.map((x) => Reference.parse(x));
@@ -208,10 +145,7 @@ export class ExplanationOfBenefitAddItem extends BackboneElement {
       newInstance.subSite = json.subSite.map((x) => CodeableConcept.parse(x));
     }
     if (json.noteNumber !== undefined) {
-      newInstance.noteNumber = json.noteNumber.map((x, i) => {
-        const ext = json._noteNumber && json._noteNumber[i];
-        return PrimitivePositiveInt.parsePrimitive(x, ext);
-      });
+      newInstance.noteNumber = json.noteNumber.map((x, i) => PrimitivePositiveInt.parsePrimitive(x, json._noteNumber?.[i]));
     }
     if (json.adjudication !== undefined) {
       newInstance.adjudication = json.adjudication.map((x) => ExplanationOfBenefitItemAdjudication.parse(x));

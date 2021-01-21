@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IGroupMember,
   Period,
   PrimitiveBoolean,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("GroupMember", "BackboneElement")
 export class GroupMember extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Group.Member";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "entity",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "inactive",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public entity?: Reference;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirField("PrimitiveBoolean")
   public inactive?: PrimitiveBoolean;
 
   public static parse(
