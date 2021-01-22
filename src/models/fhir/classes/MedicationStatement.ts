@@ -1,132 +1,81 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DomainResource,
   Dosage,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IMedicationStatement,
   MedicationStatementStatus,
   Period,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationStatement", "DomainResource")
 export class MedicationStatement extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationStatement";
-  
+
   static readonly primaryCodePath: string | null = "medication";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "partOf",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [MedicationStatementStatus],
-      isArray: false
-    }, {
-      fieldName: "statusReason",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "medication",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "context",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "effective",
-      fieldType: [PrimitiveDateTime, Period],
-      isArray: false
-    }, {
-      fieldName: "dateAsserted",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "informationSource",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "derivedFrom",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "dosage",
-      fieldType: [Dosage],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirList("Reference")
   public partOf?: Array<Reference>;
 
+  @FhirField("MedicationStatementStatus")
   public status?: MedicationStatementStatus;
 
+  @FhirList("CodeableConcept")
   public statusReason?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public category?: CodeableConcept;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public medication?: CodeableConcept | Reference;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public context?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Period")
   public effective?: PrimitiveDateTime | Period;
 
+  @FhirField("PrimitiveDateTime")
   public dateAsserted?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public informationSource?: Reference;
 
+  @FhirList("Reference")
   public derivedFrom?: Array<Reference>;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("Dosage")
   public dosage?: Array<Dosage>;
 
   get primaryCode(): CodeableConcept | Reference | undefined {

@@ -1,7 +1,9 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IMolecularSequence,
   MolecularSequenceQuality,
@@ -14,116 +16,65 @@ import {
   Quantity,
   Reference,
   SequenceType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MolecularSequence", "DomainResource")
 export class MolecularSequence extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [SequenceType],
-      isArray: false
-    }, {
-      fieldName: "coordinateSystem",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "specimen",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "device",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "referenceSeq",
-      fieldType: [MolecularSequenceReferenceSeq],
-      isArray: false
-    }, {
-      fieldName: "variant",
-      fieldType: [MolecularSequenceVariant],
-      isArray: true
-    }, {
-      fieldName: "observedSeq",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "quality",
-      fieldType: [MolecularSequenceQuality],
-      isArray: true
-    }, {
-      fieldName: "readCoverage",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "repository",
-      fieldType: [MolecularSequenceRepository],
-      isArray: true
-    }, {
-      fieldName: "pointer",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "structureVariant",
-      fieldType: [MolecularSequenceStructureVariant],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("SequenceType")
   public type?: SequenceType;
 
+  @FhirField("PrimitiveInteger")
   public coordinateSystem?: PrimitiveInteger;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("Reference")
   public specimen?: Reference;
 
+  @FhirField("Reference")
   public device?: Reference;
 
+  @FhirField("Reference")
   public performer?: Reference;
 
+  @FhirField("Quantity")
   public quantity?: Quantity;
 
+  @FhirField("MolecularSequenceReferenceSeq")
   public referenceSeq?: MolecularSequenceReferenceSeq;
 
+  @FhirList("MolecularSequenceVariant")
   public variant?: Array<MolecularSequenceVariant>;
 
+  @FhirField("PrimitiveString")
   public observedSeq?: PrimitiveString;
 
+  @FhirList("MolecularSequenceQuality")
   public quality?: Array<MolecularSequenceQuality>;
 
+  @FhirField("PrimitiveInteger")
   public readCoverage?: PrimitiveInteger;
 
+  @FhirList("MolecularSequenceRepository")
   public repository?: Array<MolecularSequenceRepository>;
 
+  @FhirList("Reference")
   public pointer?: Array<Reference>;
 
+  @FhirList("MolecularSequenceStructureVariant")
   public structureVariant?: Array<MolecularSequenceStructureVariant>;
 
   public static parse(

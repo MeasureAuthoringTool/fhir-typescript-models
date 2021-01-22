@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Coding,
@@ -7,88 +7,54 @@ import {
   ConsentProvisionData,
   ConsentProvisionType,
   Extension,
+  FhirField,
+  FhirList,
   IConsentProvision,
   Period,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ConsentProvision", "BackboneElement")
 export class ConsentProvision extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Consent.Provision";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [ConsentProvisionType],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "actor",
-      fieldType: [ConsentProvisionActor],
-      isArray: true
-    }, {
-      fieldName: "action",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "securityLabel",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "purpose",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "class",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "dataPeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "data",
-      fieldType: [ConsentProvisionData],
-      isArray: true
-    }, {
-      fieldName: "provision",
-      fieldType: [ConsentProvision],
-      isArray: true
-    }];
-  }
-
+  @FhirField("ConsentProvisionType")
   public type?: ConsentProvisionType;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirList("ConsentProvisionActor")
   public actor?: Array<ConsentProvisionActor>;
 
+  @FhirList("CodeableConcept")
   public action?: Array<CodeableConcept>;
 
+  @FhirList("Coding")
   public securityLabel?: Array<Coding>;
 
+  @FhirList("Coding")
   public purpose?: Array<Coding>;
 
+  @FhirList("Coding")
   public class?: Array<Coding>;
 
+  @FhirList("CodeableConcept")
   public code?: Array<CodeableConcept>;
 
+  @FhirField("Period")
   public dataPeriod?: Period;
 
+  @FhirList("ConsentProvisionData")
   public data?: Array<ConsentProvisionData>;
 
+  @FhirList("ConsentProvision")
   public provision?: Array<ConsentProvision>;
 
   public static parse(

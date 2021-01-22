@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IInvoice,
   InvoiceLineItem,
@@ -15,116 +17,65 @@ import {
   PrimitiveMarkdown,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Invoice", "DomainResource")
 export class Invoice extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Invoice";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [InvoiceStatus],
-      isArray: false
-    }, {
-      fieldName: "cancelledReason",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "recipient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "participant",
-      fieldType: [InvoiceParticipant],
-      isArray: true
-    }, {
-      fieldName: "issuer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "account",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "lineItem",
-      fieldType: [InvoiceLineItem],
-      isArray: true
-    }, {
-      fieldName: "totalPriceComponent",
-      fieldType: [InvoiceLineItemPriceComponent],
-      isArray: true
-    }, {
-      fieldName: "totalNet",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "totalGross",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "paymentTerms",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("InvoiceStatus")
   public status?: InvoiceStatus;
 
+  @FhirField("PrimitiveString")
   public cancelledReason?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public recipient?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirList("InvoiceParticipant")
   public participant?: Array<InvoiceParticipant>;
 
+  @FhirField("Reference")
   public issuer?: Reference;
 
+  @FhirField("Reference")
   public account?: Reference;
 
+  @FhirList("InvoiceLineItem")
   public lineItem?: Array<InvoiceLineItem>;
 
+  @FhirList("InvoiceLineItemPriceComponent")
   public totalPriceComponent?: Array<InvoiceLineItemPriceComponent>;
 
+  @FhirField("Money")
   public totalNet?: Money;
 
+  @FhirField("Money")
   public totalGross?: Money;
 
+  @FhirField("PrimitiveMarkdown")
   public paymentTerms?: PrimitiveMarkdown;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   public static parse(

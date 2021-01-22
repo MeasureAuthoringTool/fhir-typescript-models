@@ -1,55 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   IMedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength,
   PrimitiveString,
   Ratio,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength", "BackboneElement")
 export class MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductIngredient.SpecifiedSubstance.Strength.ReferenceStrength";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "substance",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "strength",
-      fieldType: [Ratio],
-      isArray: false
-    }, {
-      fieldName: "strengthLowLimit",
-      fieldType: [Ratio],
-      isArray: false
-    }, {
-      fieldName: "measurementPoint",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "country",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public substance?: CodeableConcept;
 
+  @FhirField("Ratio")
   public strength?: Ratio;
 
+  @FhirField("Ratio")
   public strengthLowLimit?: Ratio;
 
+  @FhirField("PrimitiveString")
   public measurementPoint?: PrimitiveString;
 
+  @FhirList("CodeableConcept")
   public country?: Array<CodeableConcept>;
 
   public static parse(

@@ -1,42 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IDeviceDefinitionMaterial,
   PrimitiveBoolean,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DeviceDefinitionMaterial", "BackboneElement")
 export class DeviceDefinitionMaterial extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceDefinition.Material";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "substance",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "alternate",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "allergenicIndicator",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public substance?: CodeableConcept;
 
+  @FhirField("PrimitiveBoolean")
   public alternate?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public allergenicIndicator?: PrimitiveBoolean;
 
   public static parse(

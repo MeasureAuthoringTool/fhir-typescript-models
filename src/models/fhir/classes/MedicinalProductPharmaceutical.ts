@@ -1,68 +1,46 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
+  FhirField,
+  FhirList,
   Identifier,
   IMedicinalProductPharmaceutical,
   MedicinalProductPharmaceuticalCharacteristics,
   MedicinalProductPharmaceuticalRouteOfAdministration,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductPharmaceutical", "DomainResource")
 export class MedicinalProductPharmaceutical extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductPharmaceutical";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "administrableDoseForm",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "unitOfPresentation",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "ingredient",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "device",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "characteristics",
-      fieldType: [MedicinalProductPharmaceuticalCharacteristics],
-      isArray: true
-    }, {
-      fieldName: "routeOfAdministration",
-      fieldType: [MedicinalProductPharmaceuticalRouteOfAdministration],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("CodeableConcept")
   public administrableDoseForm?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public unitOfPresentation?: CodeableConcept;
 
+  @FhirList("Reference")
   public ingredient?: Array<Reference>;
 
+  @FhirList("Reference")
   public device?: Array<Reference>;
 
+  @FhirList("MedicinalProductPharmaceuticalCharacteristics")
   public characteristics?: Array<MedicinalProductPharmaceuticalCharacteristics>;
 
+  @FhirList("MedicinalProductPharmaceuticalRouteOfAdministration")
   public routeOfAdministration?: Array<MedicinalProductPharmaceuticalRouteOfAdministration>;
 
   public static parse(

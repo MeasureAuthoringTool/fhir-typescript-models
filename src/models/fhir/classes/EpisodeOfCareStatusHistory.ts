@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   EpisodeOfCareStatus,
   Extension,
+  FhirField,
   IEpisodeOfCareStatusHistory,
   Period,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("EpisodeOfCareStatusHistory", "BackboneElement")
 export class EpisodeOfCareStatusHistory extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "EpisodeOfCare.StatusHistory";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "status",
-      fieldType: [EpisodeOfCareStatus],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirField("EpisodeOfCareStatus")
   public status?: EpisodeOfCareStatus;
 
+  @FhirField("Period")
   public period?: Period;
 
   public static parse(

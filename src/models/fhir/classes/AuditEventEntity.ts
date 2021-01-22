@@ -1,81 +1,53 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   AuditEventEntityDetail,
   BackboneElement,
   Coding,
   Extension,
+  FhirField,
+  FhirList,
   IAuditEventEntity,
   PrimitiveBase64Binary,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AuditEventEntity", "BackboneElement")
 export class AuditEventEntity extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AuditEvent.Entity";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "what",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "role",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "lifecycle",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "securityLabel",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "query",
-      fieldType: [PrimitiveBase64Binary],
-      isArray: false
-    }, {
-      fieldName: "detail",
-      fieldType: [AuditEventEntityDetail],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Reference")
   public what?: Reference;
 
+  @FhirField("Coding")
   public type?: Coding;
 
+  @FhirField("Coding")
   public role?: Coding;
 
+  @FhirField("Coding")
   public lifecycle?: Coding;
 
+  @FhirList("Coding")
   public securityLabel?: Array<Coding>;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveBase64Binary")
   public query?: PrimitiveBase64Binary;
 
+  @FhirList("AuditEventEntityDetail")
   public detail?: Array<AuditEventEntityDetail>;
 
   public static parse(

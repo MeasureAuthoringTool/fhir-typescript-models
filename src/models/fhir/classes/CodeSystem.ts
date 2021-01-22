@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   CodeSystemConcept,
   CodeSystemContentMode,
@@ -9,6 +9,8 @@ import {
   ContactDetail,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   ICodeSystem,
   Identifier,
   PrimitiveBoolean,
@@ -20,176 +22,95 @@ import {
   PrimitiveUri,
   PublicationStatus,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CodeSystem", "DomainResource")
 export class CodeSystem extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CodeSystem";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "experimental",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "purpose",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "copyright",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "caseSensitive",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "valueSet",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "hierarchyMeaning",
-      fieldType: [CodeSystemHierarchyMeaning],
-      isArray: false
-    }, {
-      fieldName: "compositional",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "versionNeeded",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "content",
-      fieldType: [CodeSystemContentMode],
-      isArray: false
-    }, {
-      fieldName: "supplements",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "count",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "filter",
-      fieldType: [CodeSystemFilter],
-      isArray: true
-    }, {
-      fieldName: "property",
-      fieldType: [CodeSystemProperty],
-      isArray: true
-    }, {
-      fieldName: "concept",
-      fieldType: [CodeSystemConcept],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("PrimitiveBoolean")
   public experimental?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public purpose?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveMarkdown")
   public copyright?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveBoolean")
   public caseSensitive?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveCanonical")
   public valueSet?: PrimitiveCanonical;
 
+  @FhirField("CodeSystemHierarchyMeaning")
   public hierarchyMeaning?: CodeSystemHierarchyMeaning;
 
+  @FhirField("PrimitiveBoolean")
   public compositional?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public versionNeeded?: PrimitiveBoolean;
 
+  @FhirField("CodeSystemContentMode")
   public content?: CodeSystemContentMode;
 
+  @FhirField("PrimitiveCanonical")
   public supplements?: PrimitiveCanonical;
 
+  @FhirField("PrimitiveUnsignedInt")
   public count?: PrimitiveUnsignedInt;
 
+  @FhirList("CodeSystemFilter")
   public filter?: Array<CodeSystemFilter>;
 
+  @FhirList("CodeSystemProperty")
   public property?: Array<CodeSystemProperty>;
 
+  @FhirList("CodeSystemConcept")
   public concept?: Array<CodeSystemConcept>;
 
   public static parse(

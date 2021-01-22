@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IVisionPrescriptionLensSpecificationPrism,
   PrimitiveDecimal,
   VisionBase,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("VisionPrescriptionLensSpecificationPrism", "BackboneElement")
 export class VisionPrescriptionLensSpecificationPrism extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "VisionPrescription.LensSpecification.Prism";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "amount",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "base",
-      fieldType: [VisionBase],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveDecimal")
   public amount?: PrimitiveDecimal;
 
+  @FhirField("VisionBase")
   public base?: VisionBase;
 
   public static parse(

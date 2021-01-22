@@ -1,33 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirChoice,
   IStructureMapGroupRuleTargetParameter,
   PrimitiveBoolean,
   PrimitiveDecimal,
   PrimitiveId,
   PrimitiveInteger,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("StructureMapGroupRuleTargetParameter", "BackboneElement")
 export class StructureMapGroupRuleTargetParameter extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureMap.Group.Rule.Target.Parameter";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "value",
-      fieldType: [PrimitiveId, PrimitiveString, PrimitiveBoolean, PrimitiveInteger, PrimitiveDecimal],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("PrimitiveId", "PrimitiveString", "PrimitiveBoolean", "PrimitiveInteger", "PrimitiveDecimal")
   public value?: PrimitiveId | PrimitiveString | PrimitiveBoolean | PrimitiveInteger | PrimitiveDecimal;
 
   public static parse(

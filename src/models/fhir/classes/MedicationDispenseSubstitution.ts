@@ -1,49 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   IMedicationDispenseSubstitution,
   PrimitiveBoolean,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationDispenseSubstitution", "BackboneElement")
 export class MedicationDispenseSubstitution extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationDispense.Substitution";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "wasSubstituted",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "reason",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "responsibleParty",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveBoolean")
   public wasSubstituted?: PrimitiveBoolean;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public reason?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public responsibleParty?: Array<Reference>;
 
   public static parse(

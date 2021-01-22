@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Address,
   AdministrativeGender,
   Attachment,
@@ -7,6 +7,8 @@ import {
   ContactPoint,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   HumanName,
   Identifier,
   IRelatedPerson,
@@ -15,92 +17,53 @@ import {
   PrimitiveDate,
   Reference,
   RelatedPersonCommunication,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("RelatedPerson", "DomainResource")
 export class RelatedPerson extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RelatedPerson";
-  
+
   static readonly primaryCodePath: string | null = "relationship";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "active",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "relationship",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "name",
-      fieldType: [HumanName],
-      isArray: true
-    }, {
-      fieldName: "telecom",
-      fieldType: [ContactPoint],
-      isArray: true
-    }, {
-      fieldName: "gender",
-      fieldType: [AdministrativeGender],
-      isArray: false
-    }, {
-      fieldName: "birthDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "address",
-      fieldType: [Address],
-      isArray: true
-    }, {
-      fieldName: "photo",
-      fieldType: [Attachment],
-      isArray: true
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "communication",
-      fieldType: [RelatedPersonCommunication],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveBoolean")
   public active?: PrimitiveBoolean;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirList("CodeableConcept")
   public relationship?: Array<CodeableConcept>;
 
+  @FhirList("HumanName")
   public name?: Array<HumanName>;
 
+  @FhirList("ContactPoint")
   public telecom?: Array<ContactPoint>;
 
+  @FhirField("AdministrativeGender")
   public gender?: AdministrativeGender;
 
+  @FhirField("PrimitiveDate")
   public birthDate?: PrimitiveDate;
 
+  @FhirList("Address")
   public address?: Array<Address>;
 
+  @FhirList("Attachment")
   public photo?: Array<Attachment>;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirList("RelatedPersonCommunication")
   public communication?: Array<RelatedPersonCommunication>;
 
   get primaryCode(): CodeableConcept | undefined {

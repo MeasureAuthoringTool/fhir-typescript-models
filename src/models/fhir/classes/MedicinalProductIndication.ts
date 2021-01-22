@@ -1,80 +1,52 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
+  FhirField,
+  FhirList,
   IMedicinalProductIndication,
   MedicinalProductIndicationOtherTherapy,
   Population,
   Quantity,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductIndication", "DomainResource")
 export class MedicinalProductIndication extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductIndication";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "diseaseSymptomProcedure",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "diseaseStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "comorbidity",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "intendedEffect",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "duration",
-      fieldType: [Quantity],
-      isArray: false
-    }, {
-      fieldName: "otherTherapy",
-      fieldType: [MedicinalProductIndicationOtherTherapy],
-      isArray: true
-    }, {
-      fieldName: "undesirableEffect",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "population",
-      fieldType: [Population],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Reference")
   public subject?: Array<Reference>;
 
+  @FhirField("CodeableConcept")
   public diseaseSymptomProcedure?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public diseaseStatus?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public comorbidity?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public intendedEffect?: CodeableConcept;
 
+  @FhirField("Quantity")
   public duration?: Quantity;
 
+  @FhirList("MedicinalProductIndicationOtherTherapy")
   public otherTherapy?: Array<MedicinalProductIndicationOtherTherapy>;
 
+  @FhirList("Reference")
   public undesirableEffect?: Array<Reference>;
 
+  @FhirList("Population")
   public population?: Array<Population>;
 
   public static parse(

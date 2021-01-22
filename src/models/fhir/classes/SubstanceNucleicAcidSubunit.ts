@@ -1,76 +1,51 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   ISubstanceNucleicAcidSubunit,
   PrimitiveInteger,
   PrimitiveString,
   SubstanceNucleicAcidSubunitLinkage,
   SubstanceNucleicAcidSubunitSugar,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceNucleicAcidSubunit", "BackboneElement")
 export class SubstanceNucleicAcidSubunit extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceNucleicAcid.Subunit";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "subunit",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "sequence",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "length",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "sequenceAttachment",
-      fieldType: [Attachment],
-      isArray: false
-    }, {
-      fieldName: "fivePrime",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "threePrime",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "linkage",
-      fieldType: [SubstanceNucleicAcidSubunitLinkage],
-      isArray: true
-    }, {
-      fieldName: "sugar",
-      fieldType: [SubstanceNucleicAcidSubunitSugar],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveInteger")
   public subunit?: PrimitiveInteger;
 
+  @FhirField("PrimitiveString")
   public sequence?: PrimitiveString;
 
+  @FhirField("PrimitiveInteger")
   public length?: PrimitiveInteger;
 
+  @FhirField("Attachment")
   public sequenceAttachment?: Attachment;
 
+  @FhirField("CodeableConcept")
   public fivePrime?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public threePrime?: CodeableConcept;
 
+  @FhirList("SubstanceNucleicAcidSubunitLinkage")
   public linkage?: Array<SubstanceNucleicAcidSubunitLinkage>;
 
+  @FhirList("SubstanceNucleicAcidSubunitSugar")
   public sugar?: Array<SubstanceNucleicAcidSubunitSugar>;
 
   public static parse(

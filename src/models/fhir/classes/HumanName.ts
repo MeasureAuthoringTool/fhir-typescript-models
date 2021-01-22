@@ -1,67 +1,45 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirField,
+  FhirList,
   IHumanName,
   NameUse,
   Period,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("HumanName", "Element")
 export class HumanName extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "HumanName";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "use",
-      fieldType: [NameUse],
-      isArray: false
-    }, {
-      fieldName: "text",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "family",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "given",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "prefix",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "suffix",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirField("NameUse")
   public use?: NameUse;
 
+  @FhirField("PrimitiveString")
   public text?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public family?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public given?: Array<PrimitiveString>;
 
+  @FhirList("PrimitiveString")
   public prefix?: Array<PrimitiveString>;
 
+  @FhirList("PrimitiveString")
   public suffix?: Array<PrimitiveString>;
 
+  @FhirField("Period")
   public period?: Period;
 
   public static parse(
@@ -80,22 +58,13 @@ export class HumanName extends Element {
       newInstance.family = PrimitiveString.parsePrimitive(json.family, json._family);
     }
     if (json.given !== undefined) {
-      newInstance.given = json.given.map((x, i) => {
-        const ext = json._given && json._given[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.given = json.given.map((x, i) => PrimitiveString.parsePrimitive(x, json._given?.[i]));
     }
     if (json.prefix !== undefined) {
-      newInstance.prefix = json.prefix.map((x, i) => {
-        const ext = json._prefix && json._prefix[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.prefix = json.prefix.map((x, i) => PrimitiveString.parsePrimitive(x, json._prefix?.[i]));
     }
     if (json.suffix !== undefined) {
-      newInstance.suffix = json.suffix.map((x, i) => {
-        const ext = json._suffix && json._suffix[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.suffix = json.suffix.map((x, i) => PrimitiveString.parsePrimitive(x, json._suffix?.[i]));
     }
     if (json.period !== undefined) {
       newInstance.period = Period.parse(json.period);

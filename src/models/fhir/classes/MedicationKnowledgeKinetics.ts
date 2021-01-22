@@ -1,41 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Duration,
+  FhirField,
+  FhirList,
   IMedicationKnowledgeKinetics,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationKnowledgeKinetics", "BackboneElement")
 export class MedicationKnowledgeKinetics extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.Kinetics";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "areaUnderCurve",
-      fieldType: [SimpleQuantity],
-      isArray: true
-    }, {
-      fieldName: "lethalDose50",
-      fieldType: [SimpleQuantity],
-      isArray: true
-    }, {
-      fieldName: "halfLifePeriod",
-      fieldType: [Duration],
-      isArray: false
-    }];
-  }
-
+  @FhirList("SimpleQuantity")
   public areaUnderCurve?: Array<SimpleQuantity>;
 
+  @FhirList("SimpleQuantity")
   public lethalDose50?: Array<SimpleQuantity>;
 
+  @FhirField("Duration")
   public halfLifePeriod?: Duration;
 
   public static parse(

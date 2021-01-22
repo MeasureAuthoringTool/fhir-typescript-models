@@ -1,49 +1,35 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IStructureDefinitionMapping,
   PrimitiveId,
   PrimitiveString,
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("StructureDefinitionMapping", "BackboneElement")
 export class StructureDefinitionMapping extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureDefinition.Mapping";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "identity",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "uri",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "comment",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public identity?: PrimitiveId;
 
+  @FhirField("PrimitiveUri")
   public uri?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public comment?: PrimitiveString;
 
   public static parse(

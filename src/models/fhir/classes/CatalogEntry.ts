@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CatalogEntryRelatedEntry,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   ICatalogEntry,
   Identifier,
   Period,
@@ -11,98 +13,56 @@ import {
   PrimitiveDateTime,
   PublicationStatus,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CatalogEntry", "DomainResource")
 export class CatalogEntry extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CatalogEntry";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "orderable",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "referencedItem",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "additionalIdentifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "classification",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "validityPeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "validTo",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "lastUpdated",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "additionalCharacteristic",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "additionalClassification",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "relatedEntry",
-      fieldType: [CatalogEntryRelatedEntry],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("PrimitiveBoolean")
   public orderable?: PrimitiveBoolean;
 
+  @FhirField("Reference")
   public referencedItem?: Reference;
 
+  @FhirList("Identifier")
   public additionalIdentifier?: Array<Identifier>;
 
+  @FhirList("CodeableConcept")
   public classification?: Array<CodeableConcept>;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("Period")
   public validityPeriod?: Period;
 
+  @FhirField("PrimitiveDateTime")
   public validTo?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveDateTime")
   public lastUpdated?: PrimitiveDateTime;
 
+  @FhirList("CodeableConcept")
   public additionalCharacteristic?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public additionalClassification?: Array<CodeableConcept>;
 
+  @FhirList("CatalogEntryRelatedEntry")
   public relatedEntry?: Array<CatalogEntryRelatedEntry>;
 
   public static parse(

@@ -1,61 +1,41 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IMolecularSequenceRepository,
   PrimitiveString,
   PrimitiveUri,
   RepositoryType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MolecularSequenceRepository", "BackboneElement")
 export class MolecularSequenceRepository extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence.Repository";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [RepositoryType],
-      isArray: false
-    }, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "datasetId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "variantsetId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "readsetId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("RepositoryType")
   public type?: RepositoryType;
 
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public datasetId?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public variantsetId?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public readsetId?: PrimitiveString;
 
   public static parse(

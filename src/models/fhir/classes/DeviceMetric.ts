@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DeviceMetricCalibration,
   DeviceMetricCategory,
@@ -7,84 +7,53 @@ import {
   DeviceMetricOperationalStatus,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IDeviceMetric,
   Reference,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DeviceMetric", "DomainResource")
 export class DeviceMetric extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceMetric";
-  
+
   static readonly primaryCodePath: string | null = "type";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "unit",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "source",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "parent",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "operationalStatus",
-      fieldType: [DeviceMetricOperationalStatus],
-      isArray: false
-    }, {
-      fieldName: "color",
-      fieldType: [DeviceMetricColor],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [DeviceMetricCategory],
-      isArray: false
-    }, {
-      fieldName: "measurementPeriod",
-      fieldType: [Timing],
-      isArray: false
-    }, {
-      fieldName: "calibration",
-      fieldType: [DeviceMetricCalibration],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public unit?: CodeableConcept;
 
+  @FhirField("Reference")
   public source?: Reference;
 
+  @FhirField("Reference")
   public parent?: Reference;
 
+  @FhirField("DeviceMetricOperationalStatus")
   public operationalStatus?: DeviceMetricOperationalStatus;
 
+  @FhirField("DeviceMetricColor")
   public color?: DeviceMetricColor;
 
+  @FhirField("DeviceMetricCategory")
   public category?: DeviceMetricCategory;
 
+  @FhirField("Timing")
   public measurementPeriod?: Timing;
 
+  @FhirList("DeviceMetricCalibration")
   public calibration?: Array<DeviceMetricCalibration>;
 
   get primaryCode(): CodeableConcept | undefined {

@@ -1,34 +1,26 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
+  FhirField,
   IRange,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Range", "Element")
 export class Range extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Range";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "low",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "high",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }];
-  }
-
+  @FhirField("SimpleQuantity")
   public low?: SimpleQuantity;
 
+  @FhirField("SimpleQuantity")
   public high?: SimpleQuantity;
 
   public static parse(

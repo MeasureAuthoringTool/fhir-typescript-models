@@ -1,70 +1,48 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   FHIRSubstanceStatus,
   Identifier,
   ISubstance,
   PrimitiveString,
   SubstanceIngredient,
   SubstanceInstance,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Substance", "DomainResource")
 export class Substance extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Substance";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [FHIRSubstanceStatus],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "instance",
-      fieldType: [SubstanceInstance],
-      isArray: true
-    }, {
-      fieldName: "ingredient",
-      fieldType: [SubstanceIngredient],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("FHIRSubstanceStatus")
   public status?: FHIRSubstanceStatus;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirList("SubstanceInstance")
   public instance?: Array<SubstanceInstance>;
 
+  @FhirList("SubstanceIngredient")
   public ingredient?: Array<SubstanceIngredient>;
 
   get primaryCode(): CodeableConcept | undefined {

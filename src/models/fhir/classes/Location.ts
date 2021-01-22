@@ -1,11 +1,13 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Address,
   CodeableConcept,
   Coding,
   ContactPoint,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   ILocation,
   LocationHoursOfOperation,
@@ -14,122 +16,68 @@ import {
   LocationStatus,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Location", "DomainResource")
 export class Location extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Location";
-  
+
   static readonly primaryCodePath: string | null = "type";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [LocationStatus],
-      isArray: false
-    }, {
-      fieldName: "operationalStatus",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "alias",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "mode",
-      fieldType: [LocationMode],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "telecom",
-      fieldType: [ContactPoint],
-      isArray: true
-    }, {
-      fieldName: "address",
-      fieldType: [Address],
-      isArray: false
-    }, {
-      fieldName: "physicalType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "position",
-      fieldType: [LocationPosition],
-      isArray: false
-    }, {
-      fieldName: "managingOrganization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "partOf",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "hoursOfOperation",
-      fieldType: [LocationHoursOfOperation],
-      isArray: true
-    }, {
-      fieldName: "availabilityExceptions",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "endpoint",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("LocationStatus")
   public status?: LocationStatus;
 
+  @FhirField("Coding")
   public operationalStatus?: Coding;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public alias?: Array<PrimitiveString>;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("LocationMode")
   public mode?: LocationMode;
 
+  @FhirList("CodeableConcept")
   public type?: Array<CodeableConcept>;
 
+  @FhirList("ContactPoint")
   public telecom?: Array<ContactPoint>;
 
+  @FhirField("Address")
   public address?: Address;
 
+  @FhirField("CodeableConcept")
   public physicalType?: CodeableConcept;
 
+  @FhirField("LocationPosition")
   public position?: LocationPosition;
 
+  @FhirField("Reference")
   public managingOrganization?: Reference;
 
+  @FhirField("Reference")
   public partOf?: Reference;
 
+  @FhirList("LocationHoursOfOperation")
   public hoursOfOperation?: Array<LocationHoursOfOperation>;
 
+  @FhirField("PrimitiveString")
   public availabilityExceptions?: PrimitiveString;
 
+  @FhirList("Reference")
   public endpoint?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -159,10 +107,7 @@ export class Location extends DomainResource {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
     if (json.alias !== undefined) {
-      newInstance.alias = json.alias.map((x, i) => {
-        const ext = json._alias && json._alias[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.alias = json.alias.map((x, i) => PrimitiveString.parsePrimitive(x, json._alias?.[i]));
     }
     if (json.description !== undefined) {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);

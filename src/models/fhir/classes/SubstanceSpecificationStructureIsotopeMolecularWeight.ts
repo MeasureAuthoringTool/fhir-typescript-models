@@ -1,41 +1,30 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
   ISubstanceSpecificationStructureIsotopeMolecularWeight,
   Quantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSpecificationStructureIsotopeMolecularWeight", "BackboneElement")
 export class SubstanceSpecificationStructureIsotopeMolecularWeight extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Structure.Isotope.MolecularWeight";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "method",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [Quantity],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public method?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("Quantity")
   public amount?: Quantity;
 
   public static parse(

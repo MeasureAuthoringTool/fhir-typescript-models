@@ -1,36 +1,29 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirChoice,
+  FhirField,
   ISubstanceIngredient,
   Ratio,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceIngredient", "BackboneElement")
 export class SubstanceIngredient extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Substance.Ingredient";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "quantity",
-      fieldType: [Ratio],
-      isArray: false
-    }, {
-      fieldName: "substance",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Ratio")
   public quantity?: Ratio;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public substance?: CodeableConcept | Reference;
 
   public static parse(

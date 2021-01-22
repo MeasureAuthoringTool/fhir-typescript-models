@@ -1,66 +1,44 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   IPlanDefinitionGoal,
   PlanDefinitionGoalTarget,
   RelatedArtifact,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PlanDefinitionGoal", "BackboneElement")
 export class PlanDefinitionGoal extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PlanDefinition.Goal";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "priority",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "start",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "addresses",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "documentation",
-      fieldType: [RelatedArtifact],
-      isArray: true
-    }, {
-      fieldName: "target",
-      fieldType: [PlanDefinitionGoalTarget],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public category?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public description?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public priority?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public start?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public addresses?: Array<CodeableConcept>;
 
+  @FhirList("RelatedArtifact")
   public documentation?: Array<RelatedArtifact>;
 
+  @FhirList("PlanDefinitionGoalTarget")
   public target?: Array<PlanDefinitionGoalTarget>;
 
   public static parse(

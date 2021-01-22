@@ -1,108 +1,69 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DeviceUseStatementStatus,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IDeviceUseStatement,
   Period,
   PrimitiveDateTime,
   Reference,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DeviceUseStatement", "DomainResource")
 export class DeviceUseStatement extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DeviceUseStatement";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [DeviceUseStatementStatus],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "derivedFrom",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "timing",
-      fieldType: [Timing, Period, PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "recordedOn",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "source",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "device",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "bodySite",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirField("DeviceUseStatementStatus")
   public status?: DeviceUseStatementStatus;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirList("Reference")
   public derivedFrom?: Array<Reference>;
 
+  @FhirChoice("Timing", "Period", "PrimitiveDateTime")
   public timing?: Timing | Period | PrimitiveDateTime;
 
+  @FhirField("PrimitiveDateTime")
   public recordedOn?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public source?: Reference;
 
+  @FhirField("Reference")
   public device?: Reference;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirField("CodeableConcept")
   public bodySite?: CodeableConcept;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   public static parse(

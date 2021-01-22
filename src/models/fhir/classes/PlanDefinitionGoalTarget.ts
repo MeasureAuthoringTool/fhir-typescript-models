@@ -1,43 +1,33 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Duration,
+  FhirChoice,
+  FhirField,
   IPlanDefinitionGoalTarget,
   Quantity,
   Range,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PlanDefinitionGoalTarget", "BackboneElement")
 export class PlanDefinitionGoalTarget extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PlanDefinition.Goal.Target";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "measure",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "detail",
-      fieldType: [Quantity, Range, CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "due",
-      fieldType: [Duration],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public measure?: CodeableConcept;
 
+  @FhirChoice("Quantity", "Range", "CodeableConcept")
   public detail?: Quantity | Range | CodeableConcept;
 
+  @FhirField("Duration")
   public due?: Duration;
 
   public static parse(

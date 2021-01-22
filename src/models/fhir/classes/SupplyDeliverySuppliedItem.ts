@@ -1,36 +1,29 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirChoice,
+  FhirField,
   ISupplyDeliverySuppliedItem,
   Reference,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SupplyDeliverySuppliedItem", "BackboneElement")
 export class SupplyDeliverySuppliedItem extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SupplyDelivery.SuppliedItem";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "item",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public item?: CodeableConcept | Reference;
 
   public static parse(

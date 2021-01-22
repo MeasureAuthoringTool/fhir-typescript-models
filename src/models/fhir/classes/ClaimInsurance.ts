@@ -1,69 +1,47 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IClaimInsurance,
   Identifier,
   PrimitiveBoolean,
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ClaimInsurance", "BackboneElement")
 export class ClaimInsurance extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Claim.Insurance";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "sequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "focal",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "coverage",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "businessArrangement",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "preAuthRef",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "claimResponse",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitivePositiveInt")
   public sequence?: PrimitivePositiveInt;
 
+  @FhirField("PrimitiveBoolean")
   public focal?: PrimitiveBoolean;
 
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("Reference")
   public coverage?: Reference;
 
+  @FhirField("PrimitiveString")
   public businessArrangement?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public preAuthRef?: Array<PrimitiveString>;
 
+  @FhirField("Reference")
   public claimResponse?: Reference;
 
   public static parse(
@@ -88,10 +66,7 @@ export class ClaimInsurance extends BackboneElement {
       newInstance.businessArrangement = PrimitiveString.parsePrimitive(json.businessArrangement, json._businessArrangement);
     }
     if (json.preAuthRef !== undefined) {
-      newInstance.preAuthRef = json.preAuthRef.map((x, i) => {
-        const ext = json._preAuthRef && json._preAuthRef[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.preAuthRef = json.preAuthRef.map((x, i) => PrimitiveString.parsePrimitive(x, json._preAuthRef?.[i]));
     }
     if (json.claimResponse !== undefined) {
       newInstance.claimResponse = Reference.parse(json.claimResponse);

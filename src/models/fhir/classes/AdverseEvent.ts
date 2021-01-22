@@ -1,148 +1,87 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   AdverseEventActuality,
   AdverseEventSuspectEntity,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IAdverseEvent,
   Identifier,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AdverseEvent", "DomainResource")
 export class AdverseEvent extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AdverseEvent";
-  
+
   static readonly primaryCodePath: string | null = "event";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "actuality",
-      fieldType: [AdverseEventActuality],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "event",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "detected",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "recordedDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "resultingCondition",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "seriousness",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "severity",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "outcome",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "recorder",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "contributor",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "suspectEntity",
-      fieldType: [AdverseEventSuspectEntity],
-      isArray: true
-    }, {
-      fieldName: "subjectMedicalHistory",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "referenceDocument",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "study",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("AdverseEventActuality")
   public actuality?: AdverseEventActuality;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public event?: CodeableConcept;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveDateTime")
   public detected?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveDateTime")
   public recordedDate?: PrimitiveDateTime;
 
+  @FhirList("Reference")
   public resultingCondition?: Array<Reference>;
 
+  @FhirField("Reference")
   public location?: Reference;
 
+  @FhirField("CodeableConcept")
   public seriousness?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public severity?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public outcome?: CodeableConcept;
 
+  @FhirField("Reference")
   public recorder?: Reference;
 
+  @FhirList("Reference")
   public contributor?: Array<Reference>;
 
+  @FhirList("AdverseEventSuspectEntity")
   public suspectEntity?: Array<AdverseEventSuspectEntity>;
 
+  @FhirList("Reference")
   public subjectMedicalHistory?: Array<Reference>;
 
+  @FhirList("Reference")
   public referenceDocument?: Array<Reference>;
 
+  @FhirList("Reference")
   public study?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {

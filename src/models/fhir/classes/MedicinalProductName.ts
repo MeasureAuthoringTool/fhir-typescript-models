@@ -1,43 +1,33 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IMedicinalProductName,
   MedicinalProductNameCountryLanguage,
   MedicinalProductNameNamePart,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductName", "BackboneElement")
 export class MedicinalProductName extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProduct.Name";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "productName",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "namePart",
-      fieldType: [MedicinalProductNameNamePart],
-      isArray: true
-    }, {
-      fieldName: "countryLanguage",
-      fieldType: [MedicinalProductNameCountryLanguage],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public productName?: PrimitiveString;
 
+  @FhirList("MedicinalProductNameNamePart")
   public namePart?: Array<MedicinalProductNameNamePart>;
 
+  @FhirList("MedicinalProductNameCountryLanguage")
   public countryLanguage?: Array<MedicinalProductNameCountryLanguage>;
 
   public static parse(

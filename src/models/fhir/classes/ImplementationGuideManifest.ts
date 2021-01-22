@@ -1,56 +1,40 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IImplementationGuideManifest,
   ImplementationGuideManifestPage,
   ImplementationGuideManifestResource,
   PrimitiveString,
   PrimitiveUrl,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImplementationGuideManifest", "BackboneElement")
 export class ImplementationGuideManifest extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.Manifest";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "rendering",
-      fieldType: [PrimitiveUrl],
-      isArray: false
-    }, {
-      fieldName: "resource",
-      fieldType: [ImplementationGuideManifestResource],
-      isArray: true
-    }, {
-      fieldName: "page",
-      fieldType: [ImplementationGuideManifestPage],
-      isArray: true
-    }, {
-      fieldName: "image",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "other",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUrl")
   public rendering?: PrimitiveUrl;
 
+  @FhirList("ImplementationGuideManifestResource")
   public resource?: Array<ImplementationGuideManifestResource>;
 
+  @FhirList("ImplementationGuideManifestPage")
   public page?: Array<ImplementationGuideManifestPage>;
 
+  @FhirList("PrimitiveString")
   public image?: Array<PrimitiveString>;
 
+  @FhirList("PrimitiveString")
   public other?: Array<PrimitiveString>;
 
   public static parse(
@@ -69,16 +53,10 @@ export class ImplementationGuideManifest extends BackboneElement {
       newInstance.page = json.page.map((x) => ImplementationGuideManifestPage.parse(x));
     }
     if (json.image !== undefined) {
-      newInstance.image = json.image.map((x, i) => {
-        const ext = json._image && json._image[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.image = json.image.map((x, i) => PrimitiveString.parsePrimitive(x, json._image?.[i]));
     }
     if (json.other !== undefined) {
-      newInstance.other = json.other.map((x, i) => {
-        const ext = json._other && json._other[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.other = json.other.map((x, i) => PrimitiveString.parsePrimitive(x, json._other?.[i]));
     }
     return newInstance;
   }

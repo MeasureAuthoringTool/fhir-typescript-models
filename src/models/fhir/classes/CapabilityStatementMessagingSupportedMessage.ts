@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   EventCapabilityMode,
   Extension,
+  FhirField,
   ICapabilityStatementMessagingSupportedMessage,
   PrimitiveCanonical,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CapabilityStatementMessagingSupportedMessage", "BackboneElement")
 export class CapabilityStatementMessagingSupportedMessage extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Messaging.SupportedMessage";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "mode",
-      fieldType: [EventCapabilityMode],
-      isArray: false
-    }, {
-      fieldName: "definition",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }];
-  }
-
+  @FhirField("EventCapabilityMode")
   public mode?: EventCapabilityMode;
 
+  @FhirField("PrimitiveCanonical")
   public definition?: PrimitiveCanonical;
 
   public static parse(

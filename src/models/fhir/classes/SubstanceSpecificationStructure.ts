@@ -1,76 +1,51 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   ISubstanceSpecificationStructure,
   PrimitiveString,
   Reference,
   SubstanceSpecificationStructureIsotope,
   SubstanceSpecificationStructureIsotopeMolecularWeight,
   SubstanceSpecificationStructureRepresentation,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSpecificationStructure", "BackboneElement")
 export class SubstanceSpecificationStructure extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSpecification.Structure";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "stereochemistry",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "opticalActivity",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "molecularFormula",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "molecularFormulaByMoiety",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "isotope",
-      fieldType: [SubstanceSpecificationStructureIsotope],
-      isArray: true
-    }, {
-      fieldName: "molecularWeight",
-      fieldType: [SubstanceSpecificationStructureIsotopeMolecularWeight],
-      isArray: false
-    }, {
-      fieldName: "source",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "representation",
-      fieldType: [SubstanceSpecificationStructureRepresentation],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public stereochemistry?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public opticalActivity?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public molecularFormula?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public molecularFormulaByMoiety?: PrimitiveString;
 
+  @FhirList("SubstanceSpecificationStructureIsotope")
   public isotope?: Array<SubstanceSpecificationStructureIsotope>;
 
+  @FhirField("SubstanceSpecificationStructureIsotopeMolecularWeight")
   public molecularWeight?: SubstanceSpecificationStructureIsotopeMolecularWeight;
 
+  @FhirList("Reference")
   public source?: Array<Reference>;
 
+  @FhirList("SubstanceSpecificationStructureRepresentation")
   public representation?: Array<SubstanceSpecificationStructureRepresentation>;
 
   public static parse(

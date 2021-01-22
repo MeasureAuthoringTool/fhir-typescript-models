@@ -1,56 +1,41 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IImmunizationProtocolApplied,
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImmunizationProtocolApplied", "BackboneElement")
 export class ImmunizationProtocolApplied extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Immunization.ProtocolApplied";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "series",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "authority",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "targetDisease",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "doseNumber",
-      fieldType: [PrimitivePositiveInt, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "seriesDoses",
-      fieldType: [PrimitivePositiveInt, PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public series?: PrimitiveString;
 
+  @FhirField("Reference")
   public authority?: Reference;
 
+  @FhirList("CodeableConcept")
   public targetDisease?: Array<CodeableConcept>;
 
+  @FhirChoice("PrimitivePositiveInt", "PrimitiveString")
   public doseNumber?: PrimitivePositiveInt | PrimitiveString;
 
+  @FhirChoice("PrimitivePositiveInt", "PrimitiveString")
   public seriesDoses?: PrimitivePositiveInt | PrimitiveString;
 
   public static parse(

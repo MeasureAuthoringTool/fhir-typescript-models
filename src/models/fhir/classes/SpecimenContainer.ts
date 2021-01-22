@@ -1,63 +1,45 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   ISpecimenContainer,
   PrimitiveString,
   Reference,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SpecimenContainer", "BackboneElement")
 export class SpecimenContainer extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Specimen.Container";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "capacity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "specimenQuantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "additive",
-      fieldType: [CodeableConcept, Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("SimpleQuantity")
   public capacity?: SimpleQuantity;
 
+  @FhirField("SimpleQuantity")
   public specimenQuantity?: SimpleQuantity;
 
+  @FhirChoice("CodeableConcept", "Reference")
   public additive?: CodeableConcept | Reference;
 
   public static parse(

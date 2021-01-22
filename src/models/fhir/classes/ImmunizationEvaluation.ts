@@ -1,8 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IImmunizationEvaluation,
   ImmunizationEvaluationStatus,
@@ -10,98 +13,56 @@ import {
   PrimitivePositiveInt,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImmunizationEvaluation", "DomainResource")
 export class ImmunizationEvaluation extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImmunizationEvaluation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [ImmunizationEvaluationStatus],
-      isArray: false
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "authority",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "targetDisease",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "immunizationEvent",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "doseStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "doseStatusReason",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "series",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "doseNumber",
-      fieldType: [PrimitivePositiveInt, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "seriesDoses",
-      fieldType: [PrimitivePositiveInt, PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("ImmunizationEvaluationStatus")
   public status?: ImmunizationEvaluationStatus;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public authority?: Reference;
 
+  @FhirField("CodeableConcept")
   public targetDisease?: CodeableConcept;
 
+  @FhirField("Reference")
   public immunizationEvent?: Reference;
 
+  @FhirField("CodeableConcept")
   public doseStatus?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public doseStatusReason?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public series?: PrimitiveString;
 
+  @FhirChoice("PrimitivePositiveInt", "PrimitiveString")
   public doseNumber?: PrimitivePositiveInt | PrimitiveString;
 
+  @FhirChoice("PrimitivePositiveInt", "PrimitiveString")
   public seriesDoses?: PrimitivePositiveInt | PrimitiveString;
 
   public static parse(

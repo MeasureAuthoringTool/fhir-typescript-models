@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IPatientCommunication,
   PrimitiveBoolean,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PatientCommunication", "BackboneElement")
 export class PatientCommunication extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Patient.Communication";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "language",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "preferred",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public language?: CodeableConcept;
 
+  @FhirField("PrimitiveBoolean")
   public preferred?: PrimitiveBoolean;
 
   public static parse(

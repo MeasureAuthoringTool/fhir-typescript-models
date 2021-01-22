@@ -1,31 +1,26 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   BackboneElement,
   Extension,
+  FhirChoice,
   ICommunicationRequestPayload,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CommunicationRequestPayload", "BackboneElement")
 export class CommunicationRequestPayload extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CommunicationRequest.Payload";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "content",
-      fieldType: [PrimitiveString, Attachment, Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("PrimitiveString", "Attachment", "Reference")
   public content?: PrimitiveString | Attachment | Reference;
 
   public static parse(

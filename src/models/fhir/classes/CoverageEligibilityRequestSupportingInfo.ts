@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   ICoverageEligibilityRequestSupportingInfo,
   PrimitiveBoolean,
   PrimitivePositiveInt,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CoverageEligibilityRequestSupportingInfo", "BackboneElement")
 export class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityRequest.SupportingInfo";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "sequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "information",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "appliesToAll",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitivePositiveInt")
   public sequence?: PrimitivePositiveInt;
 
+  @FhirField("Reference")
   public information?: Reference;
 
+  @FhirField("PrimitiveBoolean")
   public appliesToAll?: PrimitiveBoolean;
 
   public static parse(

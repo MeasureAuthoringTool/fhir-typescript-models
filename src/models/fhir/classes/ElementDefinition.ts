@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Address,
   Age,
   Annotation,
@@ -24,6 +24,9 @@ import {
   ElementDefinitionType,
   Expression,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   HumanName,
   Identifier,
   IElementDefinition,
@@ -61,224 +64,119 @@ import {
   Timing,
   TriggerDefinition,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ElementDefinition", "BackboneElement")
 export class ElementDefinition extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "path",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "representation",
-      fieldType: [PropertyRepresentation],
-      isArray: true
-    }, {
-      fieldName: "sliceName",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "sliceIsConstraining",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "label",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "slicing",
-      fieldType: [ElementDefinitionSlicing],
-      isArray: false
-    }, {
-      fieldName: "short",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "definition",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "comment",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "requirements",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "alias",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "min",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "max",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "base",
-      fieldType: [ElementDefinitionBase],
-      isArray: false
-    }, {
-      fieldName: "contentReference",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [ElementDefinitionType],
-      isArray: true
-    }, {
-      fieldName: "defaultValue",
-      fieldType: [PrimitiveBase64Binary, PrimitiveBoolean, PrimitiveCanonical, PrimitiveCode, PrimitiveDate, PrimitiveDateTime, PrimitiveDecimal, PrimitiveId, PrimitiveInstant, PrimitiveInteger, PrimitiveMarkdown, PrimitiveOid, PrimitivePositiveInt, PrimitiveString, PrimitiveTime, PrimitiveUnsignedInt, PrimitiveUri, PrimitiveUrl, PrimitiveUuid, Address, Age, Annotation, Attachment, CodeableConcept, Coding, ContactPoint, Count, Distance, Duration, HumanName, Identifier, Money, Period, Quantity, Range, Ratio, Reference, SampledData, Signature, Timing, ContactDetail, Contributor, DataRequirement, Expression, ParameterDefinition, RelatedArtifact, TriggerDefinition, UsageContext, Dosage, Meta],
-      isArray: false
-    }, {
-      fieldName: "meaningWhenMissing",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "orderMeaning",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "fixed",
-      fieldType: [PrimitiveBase64Binary, PrimitiveBoolean, PrimitiveCanonical, PrimitiveCode, PrimitiveDate, PrimitiveDateTime, PrimitiveDecimal, PrimitiveId, PrimitiveInstant, PrimitiveInteger, PrimitiveMarkdown, PrimitiveOid, PrimitivePositiveInt, PrimitiveString, PrimitiveTime, PrimitiveUnsignedInt, PrimitiveUri, PrimitiveUrl, PrimitiveUuid, Address, Age, Annotation, Attachment, CodeableConcept, Coding, ContactPoint, Count, Distance, Duration, HumanName, Identifier, Money, Period, Quantity, Range, Ratio, Reference, SampledData, Signature, Timing, ContactDetail, Contributor, DataRequirement, Expression, ParameterDefinition, RelatedArtifact, TriggerDefinition, UsageContext, Dosage, Meta],
-      isArray: false
-    }, {
-      fieldName: "pattern",
-      fieldType: [PrimitiveBase64Binary, PrimitiveBoolean, PrimitiveCanonical, PrimitiveCode, PrimitiveDate, PrimitiveDateTime, PrimitiveDecimal, PrimitiveId, PrimitiveInstant, PrimitiveInteger, PrimitiveMarkdown, PrimitiveOid, PrimitivePositiveInt, PrimitiveString, PrimitiveTime, PrimitiveUnsignedInt, PrimitiveUri, PrimitiveUrl, PrimitiveUuid, Address, Age, Annotation, Attachment, CodeableConcept, Coding, ContactPoint, Count, Distance, Duration, HumanName, Identifier, Money, Period, Quantity, Range, Ratio, Reference, SampledData, Signature, Timing, ContactDetail, Contributor, DataRequirement, Expression, ParameterDefinition, RelatedArtifact, TriggerDefinition, UsageContext, Dosage, Meta],
-      isArray: false
-    }, {
-      fieldName: "example",
-      fieldType: [ElementDefinitionExample],
-      isArray: true
-    }, {
-      fieldName: "minValue",
-      fieldType: [PrimitiveDate, PrimitiveDateTime, PrimitiveInstant, PrimitiveTime, PrimitiveDecimal, PrimitiveInteger, PrimitivePositiveInt, PrimitiveUnsignedInt, Quantity],
-      isArray: false
-    }, {
-      fieldName: "maxValue",
-      fieldType: [PrimitiveDate, PrimitiveDateTime, PrimitiveInstant, PrimitiveTime, PrimitiveDecimal, PrimitiveInteger, PrimitivePositiveInt, PrimitiveUnsignedInt, Quantity],
-      isArray: false
-    }, {
-      fieldName: "maxLength",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "condition",
-      fieldType: [PrimitiveId],
-      isArray: true
-    }, {
-      fieldName: "constraint",
-      fieldType: [ElementDefinitionConstraint],
-      isArray: true
-    }, {
-      fieldName: "mustSupport",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "isModifier",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "isModifierReason",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "isSummary",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "binding",
-      fieldType: [ElementDefinitionBinding],
-      isArray: false
-    }, {
-      fieldName: "mapping",
-      fieldType: [ElementDefinitionMapping],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public path?: PrimitiveString;
 
+  @FhirList("PropertyRepresentation")
   public representation?: Array<PropertyRepresentation>;
 
+  @FhirField("PrimitiveString")
   public sliceName?: PrimitiveString;
 
+  @FhirField("PrimitiveBoolean")
   public sliceIsConstraining?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveString")
   public label?: PrimitiveString;
 
+  @FhirList("Coding")
   public code?: Array<Coding>;
 
+  @FhirField("ElementDefinitionSlicing")
   public slicing?: ElementDefinitionSlicing;
 
+  @FhirField("PrimitiveString")
   public short?: PrimitiveString;
 
+  @FhirField("PrimitiveMarkdown")
   public definition?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveMarkdown")
   public comment?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveMarkdown")
   public requirements?: PrimitiveMarkdown;
 
+  @FhirList("PrimitiveString")
   public alias?: Array<PrimitiveString>;
 
+  @FhirField("PrimitiveUnsignedInt")
   public min?: PrimitiveUnsignedInt;
 
+  @FhirField("PrimitiveString")
   public max?: PrimitiveString;
 
+  @FhirField("ElementDefinitionBase")
   public base?: ElementDefinitionBase;
 
+  @FhirField("PrimitiveUri")
   public contentReference?: PrimitiveUri;
 
+  @FhirList("ElementDefinitionType")
   public type?: Array<ElementDefinitionType>;
 
+  @FhirChoice("PrimitiveBase64Binary", "PrimitiveBoolean", "PrimitiveCanonical", "PrimitiveCode", "PrimitiveDate", "PrimitiveDateTime", "PrimitiveDecimal", "PrimitiveId", "PrimitiveInstant", "PrimitiveInteger", "PrimitiveMarkdown", "PrimitiveOid", "PrimitivePositiveInt", "PrimitiveString", "PrimitiveTime", "PrimitiveUnsignedInt", "PrimitiveUri", "PrimitiveUrl", "PrimitiveUuid", "Address", "Age", "Annotation", "Attachment", "CodeableConcept", "Coding", "ContactPoint", "Count", "Distance", "Duration", "HumanName", "Identifier", "Money", "Period", "Quantity", "Range", "Ratio", "Reference", "SampledData", "Signature", "Timing", "ContactDetail", "Contributor", "DataRequirement", "Expression", "ParameterDefinition", "RelatedArtifact", "TriggerDefinition", "UsageContext", "Dosage", "Meta")
   public defaultValue?: PrimitiveBase64Binary | PrimitiveBoolean | PrimitiveCanonical | PrimitiveCode | PrimitiveDate | PrimitiveDateTime | PrimitiveDecimal | PrimitiveId | PrimitiveInstant | PrimitiveInteger | PrimitiveMarkdown | PrimitiveOid | PrimitivePositiveInt | PrimitiveString | PrimitiveTime | PrimitiveUnsignedInt | PrimitiveUri | PrimitiveUrl | PrimitiveUuid | Address | Age | Annotation | Attachment | CodeableConcept | Coding | ContactPoint | Count | Distance | Duration | HumanName | Identifier | Money | Period | Quantity | Range | Ratio | Reference | SampledData | Signature | Timing | ContactDetail | Contributor | DataRequirement | Expression | ParameterDefinition | RelatedArtifact | TriggerDefinition | UsageContext | Dosage | Meta;
 
+  @FhirField("PrimitiveMarkdown")
   public meaningWhenMissing?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveString")
   public orderMeaning?: PrimitiveString;
 
+  @FhirChoice("PrimitiveBase64Binary", "PrimitiveBoolean", "PrimitiveCanonical", "PrimitiveCode", "PrimitiveDate", "PrimitiveDateTime", "PrimitiveDecimal", "PrimitiveId", "PrimitiveInstant", "PrimitiveInteger", "PrimitiveMarkdown", "PrimitiveOid", "PrimitivePositiveInt", "PrimitiveString", "PrimitiveTime", "PrimitiveUnsignedInt", "PrimitiveUri", "PrimitiveUrl", "PrimitiveUuid", "Address", "Age", "Annotation", "Attachment", "CodeableConcept", "Coding", "ContactPoint", "Count", "Distance", "Duration", "HumanName", "Identifier", "Money", "Period", "Quantity", "Range", "Ratio", "Reference", "SampledData", "Signature", "Timing", "ContactDetail", "Contributor", "DataRequirement", "Expression", "ParameterDefinition", "RelatedArtifact", "TriggerDefinition", "UsageContext", "Dosage", "Meta")
   public fixed?: PrimitiveBase64Binary | PrimitiveBoolean | PrimitiveCanonical | PrimitiveCode | PrimitiveDate | PrimitiveDateTime | PrimitiveDecimal | PrimitiveId | PrimitiveInstant | PrimitiveInteger | PrimitiveMarkdown | PrimitiveOid | PrimitivePositiveInt | PrimitiveString | PrimitiveTime | PrimitiveUnsignedInt | PrimitiveUri | PrimitiveUrl | PrimitiveUuid | Address | Age | Annotation | Attachment | CodeableConcept | Coding | ContactPoint | Count | Distance | Duration | HumanName | Identifier | Money | Period | Quantity | Range | Ratio | Reference | SampledData | Signature | Timing | ContactDetail | Contributor | DataRequirement | Expression | ParameterDefinition | RelatedArtifact | TriggerDefinition | UsageContext | Dosage | Meta;
 
+  @FhirChoice("PrimitiveBase64Binary", "PrimitiveBoolean", "PrimitiveCanonical", "PrimitiveCode", "PrimitiveDate", "PrimitiveDateTime", "PrimitiveDecimal", "PrimitiveId", "PrimitiveInstant", "PrimitiveInteger", "PrimitiveMarkdown", "PrimitiveOid", "PrimitivePositiveInt", "PrimitiveString", "PrimitiveTime", "PrimitiveUnsignedInt", "PrimitiveUri", "PrimitiveUrl", "PrimitiveUuid", "Address", "Age", "Annotation", "Attachment", "CodeableConcept", "Coding", "ContactPoint", "Count", "Distance", "Duration", "HumanName", "Identifier", "Money", "Period", "Quantity", "Range", "Ratio", "Reference", "SampledData", "Signature", "Timing", "ContactDetail", "Contributor", "DataRequirement", "Expression", "ParameterDefinition", "RelatedArtifact", "TriggerDefinition", "UsageContext", "Dosage", "Meta")
   public pattern?: PrimitiveBase64Binary | PrimitiveBoolean | PrimitiveCanonical | PrimitiveCode | PrimitiveDate | PrimitiveDateTime | PrimitiveDecimal | PrimitiveId | PrimitiveInstant | PrimitiveInteger | PrimitiveMarkdown | PrimitiveOid | PrimitivePositiveInt | PrimitiveString | PrimitiveTime | PrimitiveUnsignedInt | PrimitiveUri | PrimitiveUrl | PrimitiveUuid | Address | Age | Annotation | Attachment | CodeableConcept | Coding | ContactPoint | Count | Distance | Duration | HumanName | Identifier | Money | Period | Quantity | Range | Ratio | Reference | SampledData | Signature | Timing | ContactDetail | Contributor | DataRequirement | Expression | ParameterDefinition | RelatedArtifact | TriggerDefinition | UsageContext | Dosage | Meta;
 
+  @FhirList("ElementDefinitionExample")
   public example?: Array<ElementDefinitionExample>;
 
+  @FhirChoice("PrimitiveDate", "PrimitiveDateTime", "PrimitiveInstant", "PrimitiveTime", "PrimitiveDecimal", "PrimitiveInteger", "PrimitivePositiveInt", "PrimitiveUnsignedInt", "Quantity")
   public minValue?: PrimitiveDate | PrimitiveDateTime | PrimitiveInstant | PrimitiveTime | PrimitiveDecimal | PrimitiveInteger | PrimitivePositiveInt | PrimitiveUnsignedInt | Quantity;
 
+  @FhirChoice("PrimitiveDate", "PrimitiveDateTime", "PrimitiveInstant", "PrimitiveTime", "PrimitiveDecimal", "PrimitiveInteger", "PrimitivePositiveInt", "PrimitiveUnsignedInt", "Quantity")
   public maxValue?: PrimitiveDate | PrimitiveDateTime | PrimitiveInstant | PrimitiveTime | PrimitiveDecimal | PrimitiveInteger | PrimitivePositiveInt | PrimitiveUnsignedInt | Quantity;
 
+  @FhirField("PrimitiveInteger")
   public maxLength?: PrimitiveInteger;
 
+  @FhirList("PrimitiveId")
   public condition?: Array<PrimitiveId>;
 
+  @FhirList("ElementDefinitionConstraint")
   public constraint?: Array<ElementDefinitionConstraint>;
 
+  @FhirField("PrimitiveBoolean")
   public mustSupport?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public isModifier?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveString")
   public isModifierReason?: PrimitiveString;
 
+  @FhirField("PrimitiveBoolean")
   public isSummary?: PrimitiveBoolean;
 
+  @FhirField("ElementDefinitionBinding")
   public binding?: ElementDefinitionBinding;
 
+  @FhirList("ElementDefinitionMapping")
   public mapping?: Array<ElementDefinitionMapping>;
 
   public static parse(
@@ -291,10 +189,7 @@ export class ElementDefinition extends BackboneElement {
       newInstance.path = PrimitiveString.parsePrimitive(json.path, json._path);
     }
     if (json.representation !== undefined) {
-      newInstance.representation = json.representation.map((x, i) => {
-        const ext = json._representation && json._representation[i];
-        return PropertyRepresentation.parsePrimitive(x, ext);
-      });
+      newInstance.representation = json.representation.map((x, i) => PropertyRepresentation.parsePrimitive(x, json._representation?.[i]));
     }
     if (json.sliceName !== undefined) {
       newInstance.sliceName = PrimitiveString.parsePrimitive(json.sliceName, json._sliceName);
@@ -324,10 +219,7 @@ export class ElementDefinition extends BackboneElement {
       newInstance.requirements = PrimitiveMarkdown.parsePrimitive(json.requirements, json._requirements);
     }
     if (json.alias !== undefined) {
-      newInstance.alias = json.alias.map((x, i) => {
-        const ext = json._alias && json._alias[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.alias = json.alias.map((x, i) => PrimitiveString.parsePrimitive(x, json._alias?.[i]));
     }
     if (json.min !== undefined) {
       newInstance.min = PrimitiveUnsignedInt.parsePrimitive(json.min, json._min);
@@ -861,10 +753,7 @@ export class ElementDefinition extends BackboneElement {
       newInstance.maxLength = PrimitiveInteger.parsePrimitive(json.maxLength, json._maxLength);
     }
     if (json.condition !== undefined) {
-      newInstance.condition = json.condition.map((x, i) => {
-        const ext = json._condition && json._condition[i];
-        return PrimitiveId.parsePrimitive(x, ext);
-      });
+      newInstance.condition = json.condition.map((x, i) => PrimitiveId.parsePrimitive(x, json._condition?.[i]));
     }
     if (json.constraint !== undefined) {
       newInstance.constraint = json.constraint.map((x) => ElementDefinitionConstraint.parse(x));

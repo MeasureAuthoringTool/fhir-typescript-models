@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DetectedIssueEvidence,
   DetectedIssueMitigation,
@@ -7,6 +7,9 @@ import {
   DetectedIssueStatus,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IDetectedIssue,
   Period,
@@ -14,92 +17,53 @@ import {
   PrimitiveString,
   PrimitiveUri,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("DetectedIssue", "DomainResource")
 export class DetectedIssue extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "DetectedIssue";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [DetectedIssueStatus],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "severity",
-      fieldType: [DetectedIssueSeverity],
-      isArray: false
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "identified",
-      fieldType: [PrimitiveDateTime, Period],
-      isArray: false
-    }, {
-      fieldName: "author",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "implicated",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "evidence",
-      fieldType: [DetectedIssueEvidence],
-      isArray: true
-    }, {
-      fieldName: "detail",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "reference",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "mitigation",
-      fieldType: [DetectedIssueMitigation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("DetectedIssueStatus")
   public status?: DetectedIssueStatus;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("DetectedIssueSeverity")
   public severity?: DetectedIssueSeverity;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Period")
   public identified?: PrimitiveDateTime | Period;
 
+  @FhirField("Reference")
   public author?: Reference;
 
+  @FhirList("Reference")
   public implicated?: Array<Reference>;
 
+  @FhirList("DetectedIssueEvidence")
   public evidence?: Array<DetectedIssueEvidence>;
 
+  @FhirField("PrimitiveString")
   public detail?: PrimitiveString;
 
+  @FhirField("PrimitiveUri")
   public reference?: PrimitiveUri;
 
+  @FhirList("DetectedIssueMitigation")
   public mitigation?: Array<DetectedIssueMitigation>;
 
   get primaryCode(): CodeableConcept | undefined {

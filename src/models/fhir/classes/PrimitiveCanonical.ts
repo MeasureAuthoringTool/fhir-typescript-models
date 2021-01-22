@@ -1,22 +1,18 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PrimitiveCanonical", "PrimitiveUri")
 export class PrimitiveCanonical extends PrimitiveUri {
   static readonly baseType: string = "FHIR.uri";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "canonical";
-  
-  static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...PrimitiveUri.fieldInfo, 
-    ];
-  }
+  static readonly primaryCodePath: string | null = null;
 
   public static parsePrimitive(
     value: Parameters<typeof PrimitiveUri.parsePrimitive>[0],

@@ -1,62 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   ISubstancePolymer,
   PrimitiveString,
   SubstancePolymerMonomerSet,
   SubstancePolymerRepeat,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstancePolymer", "DomainResource")
 export class SubstancePolymer extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstancePolymer";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "class",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "geometry",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "copolymerConnectivity",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "modification",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "monomerSet",
-      fieldType: [SubstancePolymerMonomerSet],
-      isArray: true
-    }, {
-      fieldName: "repeat",
-      fieldType: [SubstancePolymerRepeat],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public class?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public geometry?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public copolymerConnectivity?: Array<CodeableConcept>;
 
+  @FhirList("PrimitiveString")
   public modification?: Array<PrimitiveString>;
 
+  @FhirList("SubstancePolymerMonomerSet")
   public monomerSet?: Array<SubstancePolymerMonomerSet>;
 
+  @FhirList("SubstancePolymerRepeat")
   public repeat?: Array<SubstancePolymerRepeat>;
 
   public static parse(
@@ -75,10 +56,7 @@ export class SubstancePolymer extends DomainResource {
       newInstance.copolymerConnectivity = json.copolymerConnectivity.map((x) => CodeableConcept.parse(x));
     }
     if (json.modification !== undefined) {
-      newInstance.modification = json.modification.map((x, i) => {
-        const ext = json._modification && json._modification[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.modification = json.modification.map((x, i) => PrimitiveString.parsePrimitive(x, json._modification?.[i]));
     }
     if (json.monomerSet !== undefined) {
       newInstance.monomerSet = json.monomerSet.map((x) => SubstancePolymerMonomerSet.parse(x));

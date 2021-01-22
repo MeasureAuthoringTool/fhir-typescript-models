@@ -1,69 +1,47 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   ITestScriptMetadataCapability,
   PrimitiveBoolean,
   PrimitiveCanonical,
   PrimitiveInteger,
   PrimitiveString,
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TestScriptMetadataCapability", "BackboneElement")
 export class TestScriptMetadataCapability extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Metadata.Capability";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "required",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "validated",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "origin",
-      fieldType: [PrimitiveInteger],
-      isArray: true
-    }, {
-      fieldName: "destination",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "link",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "capabilities",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveBoolean")
   public required?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public validated?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirList("PrimitiveInteger")
   public origin?: Array<PrimitiveInteger>;
 
+  @FhirField("PrimitiveInteger")
   public destination?: PrimitiveInteger;
 
+  @FhirList("PrimitiveUri")
   public link?: Array<PrimitiveUri>;
 
+  @FhirField("PrimitiveCanonical")
   public capabilities?: PrimitiveCanonical;
 
   public static parse(
@@ -82,19 +60,13 @@ export class TestScriptMetadataCapability extends BackboneElement {
       newInstance.description = PrimitiveString.parsePrimitive(json.description, json._description);
     }
     if (json.origin !== undefined) {
-      newInstance.origin = json.origin.map((x, i) => {
-        const ext = json._origin && json._origin[i];
-        return PrimitiveInteger.parsePrimitive(x, ext);
-      });
+      newInstance.origin = json.origin.map((x, i) => PrimitiveInteger.parsePrimitive(x, json._origin?.[i]));
     }
     if (json.destination !== undefined) {
       newInstance.destination = PrimitiveInteger.parsePrimitive(json.destination, json._destination);
     }
     if (json.link !== undefined) {
-      newInstance.link = json.link.map((x, i) => {
-        const ext = json._link && json._link[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.link = json.link.map((x, i) => PrimitiveUri.parsePrimitive(x, json._link?.[i]));
     }
     if (json.capabilities !== undefined) {
       newInstance.capabilities = PrimitiveCanonical.parsePrimitive(json.capabilities, json._capabilities);

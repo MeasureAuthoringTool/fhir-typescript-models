@@ -1,28 +1,23 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirList,
   IBackboneElement,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("BackboneElement", "Element")
 export class BackboneElement extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "BackboneElement";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "modifierExtension",
-      fieldType: [Extension],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Extension")
   public modifierExtension?: Array<Extension>;
 
   public static parse(

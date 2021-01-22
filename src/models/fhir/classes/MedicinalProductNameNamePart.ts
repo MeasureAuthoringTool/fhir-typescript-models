@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Coding,
   Extension,
+  FhirField,
   IMedicinalProductNameNamePart,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductNameNamePart", "BackboneElement")
 export class MedicinalProductNameNamePart extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProduct.Name.NamePart";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "part",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [Coding],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public part?: PrimitiveString;
 
+  @FhirField("Coding")
   public type?: Coding;
 
   public static parse(

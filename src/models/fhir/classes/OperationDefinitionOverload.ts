@@ -1,35 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IOperationDefinitionOverload,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("OperationDefinitionOverload", "BackboneElement")
 export class OperationDefinitionOverload extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OperationDefinition.Overload";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "parameterName",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "comment",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirList("PrimitiveString")
   public parameterName?: Array<PrimitiveString>;
 
+  @FhirField("PrimitiveString")
   public comment?: PrimitiveString;
 
   public static parse(
@@ -39,10 +32,7 @@ export class OperationDefinitionOverload extends BackboneElement {
     const newInstance: OperationDefinitionOverload = BackboneElement.parse(json, providedInstance);
   
     if (json.parameterName !== undefined) {
-      newInstance.parameterName = json.parameterName.map((x, i) => {
-        const ext = json._parameterName && json._parameterName[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.parameterName = json.parameterName.map((x, i) => PrimitiveString.parsePrimitive(x, json._parameterName?.[i]));
     }
     if (json.comment !== undefined) {
       newInstance.comment = PrimitiveString.parsePrimitive(json.comment, json._comment);

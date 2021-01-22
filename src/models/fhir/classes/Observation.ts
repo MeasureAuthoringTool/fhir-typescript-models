@@ -1,9 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IObservation,
   ObservationComponent,
@@ -22,164 +25,89 @@ import {
   Reference,
   SampledData,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Observation", "DomainResource")
 export class Observation extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Observation";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "partOf",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [ObservationStatus],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "focus",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "effective",
-      fieldType: [PrimitiveDateTime, Period, Timing, PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "issued",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "value",
-      fieldType: [Quantity, CodeableConcept, PrimitiveString, PrimitiveBoolean, PrimitiveInteger, Range, Ratio, SampledData, PrimitiveTime, PrimitiveDateTime, Period],
-      isArray: false
-    }, {
-      fieldName: "dataAbsentReason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "interpretation",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "bodySite",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "method",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "specimen",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "device",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "referenceRange",
-      fieldType: [ObservationReferenceRange],
-      isArray: true
-    }, {
-      fieldName: "hasMember",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "derivedFrom",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "component",
-      fieldType: [ObservationComponent],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirList("Reference")
   public partOf?: Array<Reference>;
 
+  @FhirField("ObservationStatus")
   public status?: ObservationStatus;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirList("Reference")
   public focus?: Array<Reference>;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Period", "Timing", "PrimitiveInstant")
   public effective?: PrimitiveDateTime | Period | Timing | PrimitiveInstant;
 
+  @FhirField("PrimitiveInstant")
   public issued?: PrimitiveInstant;
 
+  @FhirList("Reference")
   public performer?: Array<Reference>;
 
+  @FhirChoice("Quantity", "CodeableConcept", "PrimitiveString", "PrimitiveBoolean", "PrimitiveInteger", "Range", "Ratio", "SampledData", "PrimitiveTime", "PrimitiveDateTime", "Period")
   public value?: Quantity | CodeableConcept | PrimitiveString | PrimitiveBoolean | PrimitiveInteger | Range | Ratio | SampledData | PrimitiveTime | PrimitiveDateTime | Period;
 
+  @FhirField("CodeableConcept")
   public dataAbsentReason?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public interpretation?: Array<CodeableConcept>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirField("CodeableConcept")
   public bodySite?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public method?: CodeableConcept;
 
+  @FhirField("Reference")
   public specimen?: Reference;
 
+  @FhirField("Reference")
   public device?: Reference;
 
+  @FhirList("ObservationReferenceRange")
   public referenceRange?: Array<ObservationReferenceRange>;
 
+  @FhirList("Reference")
   public hasMember?: Array<Reference>;
 
+  @FhirList("Reference")
   public derivedFrom?: Array<Reference>;
 
+  @FhirList("ObservationComponent")
   public component?: Array<ObservationComponent>;
 
   get primaryCode(): CodeableConcept | undefined {

@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CompositionAttestationMode,
   Extension,
+  FhirField,
   ICompositionAttester,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CompositionAttester", "BackboneElement")
 export class CompositionAttester extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Composition.Attester";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "mode",
-      fieldType: [CompositionAttestationMode],
-      isArray: false
-    }, {
-      fieldName: "time",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "party",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CompositionAttestationMode")
   public mode?: CompositionAttestationMode;
 
+  @FhirField("PrimitiveDateTime")
   public time?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public party?: Reference;
 
   public static parse(

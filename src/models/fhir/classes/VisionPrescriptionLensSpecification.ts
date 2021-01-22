@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   IVisionPrescriptionLensSpecification,
   PrimitiveDecimal,
   PrimitiveInteger,
@@ -11,104 +13,59 @@ import {
   SimpleQuantity,
   VisionEyes,
   VisionPrescriptionLensSpecificationPrism,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("VisionPrescriptionLensSpecification", "BackboneElement")
 export class VisionPrescriptionLensSpecification extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "VisionPrescription.LensSpecification";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "product",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "eye",
-      fieldType: [VisionEyes],
-      isArray: false
-    }, {
-      fieldName: "sphere",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "cylinder",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "axis",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "prism",
-      fieldType: [VisionPrescriptionLensSpecificationPrism],
-      isArray: true
-    }, {
-      fieldName: "add",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "power",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "backCurve",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "diameter",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "duration",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "color",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "brand",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public product?: CodeableConcept;
 
+  @FhirField("VisionEyes")
   public eye?: VisionEyes;
 
+  @FhirField("PrimitiveDecimal")
   public sphere?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public cylinder?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveInteger")
   public axis?: PrimitiveInteger;
 
+  @FhirList("VisionPrescriptionLensSpecificationPrism")
   public prism?: Array<VisionPrescriptionLensSpecificationPrism>;
 
+  @FhirField("PrimitiveDecimal")
   public add?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public power?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public backCurve?: PrimitiveDecimal;
 
+  @FhirField("PrimitiveDecimal")
   public diameter?: PrimitiveDecimal;
 
+  @FhirField("SimpleQuantity")
   public duration?: SimpleQuantity;
 
+  @FhirField("PrimitiveString")
   public color?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public brand?: PrimitiveString;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   public static parse(

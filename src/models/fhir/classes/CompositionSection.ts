@@ -1,87 +1,56 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   ICompositionSection,
   Narrative,
   PrimitiveString,
   Reference,
   SectionMode,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CompositionSection", "BackboneElement")
 export class CompositionSection extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Composition.Section";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "author",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "focus",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "text",
-      fieldType: [Narrative],
-      isArray: false
-    }, {
-      fieldName: "mode",
-      fieldType: [SectionMode],
-      isArray: false
-    }, {
-      fieldName: "orderedBy",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "entry",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "emptyReason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "section",
-      fieldType: [CompositionSection],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirList("Reference")
   public author?: Array<Reference>;
 
+  @FhirField("Reference")
   public focus?: Reference;
 
+  @FhirField("Narrative")
   public text?: Narrative;
 
+  @FhirField("SectionMode")
   public mode?: SectionMode;
 
+  @FhirField("CodeableConcept")
   public orderedBy?: CodeableConcept;
 
+  @FhirList("Reference")
   public entry?: Array<Reference>;
 
+  @FhirField("CodeableConcept")
   public emptyReason?: CodeableConcept;
 
+  @FhirList("CompositionSection")
   public section?: Array<CompositionSection>;
 
   public static parse(

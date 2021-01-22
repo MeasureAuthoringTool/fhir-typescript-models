@@ -1,27 +1,22 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
+  FhirField,
   IElement,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PrimitiveBoolean", "Element")
 export class PrimitiveBoolean extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "boolean";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "value",
-      fieldType: [Boolean],
-      isArray: false
-    }];
-  }
-
+  @FhirField("SystemBoolean")
   public value?: boolean;
 
   public static parsePrimitive(

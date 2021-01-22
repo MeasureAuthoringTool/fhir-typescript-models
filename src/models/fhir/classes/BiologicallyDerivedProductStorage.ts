@@ -1,50 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   BiologicallyDerivedProductStorageScale,
   Extension,
+  FhirField,
   IBiologicallyDerivedProductStorage,
   Period,
   PrimitiveDecimal,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("BiologicallyDerivedProductStorage", "BackboneElement")
 export class BiologicallyDerivedProductStorage extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "BiologicallyDerivedProduct.Storage";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "temperature",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "scale",
-      fieldType: [BiologicallyDerivedProductStorageScale],
-      isArray: false
-    }, {
-      fieldName: "duration",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveDecimal")
   public temperature?: PrimitiveDecimal;
 
+  @FhirField("BiologicallyDerivedProductStorageScale")
   public scale?: BiologicallyDerivedProductStorageScale;
 
+  @FhirField("Period")
   public duration?: Period;
 
   public static parse(

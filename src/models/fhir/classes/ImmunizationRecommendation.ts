@@ -1,56 +1,40 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IImmunizationRecommendation,
   ImmunizationRecommendationRecommendation,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImmunizationRecommendation", "DomainResource")
 export class ImmunizationRecommendation extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImmunizationRecommendation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "authority",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "recommendation",
-      fieldType: [ImmunizationRecommendationRecommendation],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public authority?: Reference;
 
+  @FhirList("ImmunizationRecommendationRecommendation")
   public recommendation?: Array<ImmunizationRecommendationRecommendation>;
 
   public static parse(

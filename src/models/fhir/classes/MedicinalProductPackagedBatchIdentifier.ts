@@ -1,34 +1,26 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
+  FhirField,
   Identifier,
   IMedicinalProductPackagedBatchIdentifier,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductPackagedBatchIdentifier", "BackboneElement")
 export class MedicinalProductPackagedBatchIdentifier extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductPackaged.BatchIdentifier";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "outerPackaging",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "immediatePackaging",
-      fieldType: [Identifier],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Identifier")
   public outerPackaging?: Identifier;
 
+  @FhirField("Identifier")
   public immediatePackaging?: Identifier;
 
   public static parse(

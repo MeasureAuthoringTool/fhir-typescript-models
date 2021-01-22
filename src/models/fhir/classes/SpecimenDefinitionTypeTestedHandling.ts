@@ -1,50 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Duration,
   Extension,
+  FhirField,
   ISpecimenDefinitionTypeTestedHandling,
   PrimitiveString,
   Range,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SpecimenDefinitionTypeTestedHandling", "BackboneElement")
 export class SpecimenDefinitionTypeTestedHandling extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SpecimenDefinition.TypeTested.Handling";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "temperatureQualifier",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "temperatureRange",
-      fieldType: [Range],
-      isArray: false
-    }, {
-      fieldName: "maxDuration",
-      fieldType: [Duration],
-      isArray: false
-    }, {
-      fieldName: "instruction",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public temperatureQualifier?: CodeableConcept;
 
+  @FhirField("Range")
   public temperatureRange?: Range;
 
+  @FhirField("Duration")
   public maxDuration?: Duration;
 
+  @FhirField("PrimitiveString")
   public instruction?: PrimitiveString;
 
   public static parse(

@@ -1,38 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
   IMedicationKnowledgeDrugCharacteristic,
   PrimitiveBase64Binary,
   PrimitiveString,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationKnowledgeDrugCharacteristic", "BackboneElement")
 export class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicationKnowledge.DrugCharacteristic";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [CodeableConcept, PrimitiveString, SimpleQuantity, PrimitiveBase64Binary],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirChoice("CodeableConcept", "PrimitiveString", "SimpleQuantity", "PrimitiveBase64Binary")
   public value?: CodeableConcept | PrimitiveString | SimpleQuantity | PrimitiveBase64Binary;
 
   public static parse(

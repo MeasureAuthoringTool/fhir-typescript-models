@@ -1,7 +1,9 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IQuestionnaireResponse,
   PrimitiveCanonical,
@@ -9,86 +11,50 @@ import {
   QuestionnaireResponseItem,
   QuestionnaireResponseStatus,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("QuestionnaireResponse", "DomainResource")
 export class QuestionnaireResponse extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "QuestionnaireResponse";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "partOf",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "questionnaire",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [QuestionnaireResponseStatus],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "authored",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "author",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "source",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "item",
-      fieldType: [QuestionnaireResponseItem],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirList("Reference")
   public partOf?: Array<Reference>;
 
+  @FhirField("PrimitiveCanonical")
   public questionnaire?: PrimitiveCanonical;
 
+  @FhirField("QuestionnaireResponseStatus")
   public status?: QuestionnaireResponseStatus;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public authored?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public author?: Reference;
 
+  @FhirField("Reference")
   public source?: Reference;
 
+  @FhirList("QuestionnaireResponseItem")
   public item?: Array<QuestionnaireResponseItem>;
 
   public static parse(

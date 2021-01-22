@@ -1,67 +1,45 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   IVerificationResultPrimarySource,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("VerificationResultPrimarySource", "BackboneElement")
 export class VerificationResultPrimarySource extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "VerificationResult.PrimarySource";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "who",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "communicationMethod",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "validationStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "validationDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "canPushUpdates",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "pushTypeAvailable",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Reference")
   public who?: Reference;
 
+  @FhirList("CodeableConcept")
   public type?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public communicationMethod?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public validationStatus?: CodeableConcept;
 
+  @FhirField("PrimitiveDateTime")
   public validationDate?: PrimitiveDateTime;
 
+  @FhirField("CodeableConcept")
   public canPushUpdates?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public pushTypeAvailable?: Array<CodeableConcept>;
 
   public static parse(

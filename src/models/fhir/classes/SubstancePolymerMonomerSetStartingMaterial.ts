@@ -1,49 +1,35 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   ISubstancePolymerMonomerSetStartingMaterial,
   PrimitiveBoolean,
   SubstanceAmount,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstancePolymerMonomerSetStartingMaterial", "BackboneElement")
 export class SubstancePolymerMonomerSetStartingMaterial extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstancePolymer.MonomerSet.StartingMaterial";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "material",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "isDefining",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [SubstanceAmount],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public material?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("PrimitiveBoolean")
   public isDefining?: PrimitiveBoolean;
 
+  @FhirField("SubstanceAmount")
   public amount?: SubstanceAmount;
 
   public static parse(

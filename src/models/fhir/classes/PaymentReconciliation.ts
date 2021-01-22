@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IPaymentReconciliation,
   Money,
@@ -15,110 +17,62 @@ import {
   PrimitiveString,
   Reference,
   RemittanceOutcome,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PaymentReconciliation", "DomainResource")
 export class PaymentReconciliation extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PaymentReconciliation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [PaymentReconciliationStatus],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "paymentIssuer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "request",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "requestor",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "outcome",
-      fieldType: [RemittanceOutcome],
-      isArray: false
-    }, {
-      fieldName: "disposition",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "paymentDate",
-      fieldType: [PrimitiveDate],
-      isArray: false
-    }, {
-      fieldName: "paymentAmount",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "paymentIdentifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "detail",
-      fieldType: [PaymentReconciliationDetail],
-      isArray: true
-    }, {
-      fieldName: "formCode",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "processNote",
-      fieldType: [PaymentReconciliationProcessNote],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PaymentReconciliationStatus")
   public status?: PaymentReconciliationStatus;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public paymentIssuer?: Reference;
 
+  @FhirField("Reference")
   public request?: Reference;
 
+  @FhirField("Reference")
   public requestor?: Reference;
 
+  @FhirField("RemittanceOutcome")
   public outcome?: RemittanceOutcome;
 
+  @FhirField("PrimitiveString")
   public disposition?: PrimitiveString;
 
+  @FhirField("PrimitiveDate")
   public paymentDate?: PrimitiveDate;
 
+  @FhirField("Money")
   public paymentAmount?: Money;
 
+  @FhirField("Identifier")
   public paymentIdentifier?: Identifier;
 
+  @FhirList("PaymentReconciliationDetail")
   public detail?: Array<PaymentReconciliationDetail>;
 
+  @FhirField("CodeableConcept")
   public formCode?: CodeableConcept;
 
+  @FhirList("PaymentReconciliationProcessNote")
   public processNote?: Array<PaymentReconciliationProcessNote>;
 
   public static parse(

@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Age,
   Annotation,
   CodeableConcept,
@@ -7,6 +7,9 @@ import {
   Extension,
   FamilyHistoryStatus,
   FamilyMemberHistoryCondition,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IFamilyMemberHistory,
   Period,
@@ -18,128 +21,71 @@ import {
   PrimitiveUri,
   Range,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("FamilyMemberHistory", "DomainResource")
 export class FamilyMemberHistory extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "FamilyMemberHistory";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "instantiatesCanonical",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "instantiatesUri",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [FamilyHistoryStatus],
-      isArray: false
-    }, {
-      fieldName: "dataAbsentReason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "relationship",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "sex",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "born",
-      fieldType: [Period, PrimitiveDate, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "age",
-      fieldType: [Age, Range, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "estimatedAge",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "deceased",
-      fieldType: [PrimitiveBoolean, Age, Range, PrimitiveDate, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "condition",
-      fieldType: [FamilyMemberHistoryCondition],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("PrimitiveCanonical")
   public instantiatesCanonical?: Array<PrimitiveCanonical>;
 
+  @FhirList("PrimitiveUri")
   public instantiatesUri?: Array<PrimitiveUri>;
 
+  @FhirField("FamilyHistoryStatus")
   public status?: FamilyHistoryStatus;
 
+  @FhirField("CodeableConcept")
   public dataAbsentReason?: CodeableConcept;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public relationship?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public sex?: CodeableConcept;
 
+  @FhirChoice("Period", "PrimitiveDate", "PrimitiveString")
   public born?: Period | PrimitiveDate | PrimitiveString;
 
+  @FhirChoice("Age", "Range", "PrimitiveString")
   public age?: Age | Range | PrimitiveString;
 
+  @FhirField("PrimitiveBoolean")
   public estimatedAge?: PrimitiveBoolean;
 
+  @FhirChoice("PrimitiveBoolean", "Age", "Range", "PrimitiveDate", "PrimitiveString")
   public deceased?: PrimitiveBoolean | Age | Range | PrimitiveDate | PrimitiveString;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("FamilyMemberHistoryCondition")
   public condition?: Array<FamilyMemberHistoryCondition>;
 
   public static parse(
@@ -152,16 +98,10 @@ export class FamilyMemberHistory extends DomainResource {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
     if (json.instantiatesCanonical !== undefined) {
-      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
-        const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._instantiatesCanonical?.[i]));
     }
     if (json.instantiatesUri !== undefined) {
-      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
-        const ext = json._instantiatesUri && json._instantiatesUri[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => PrimitiveUri.parsePrimitive(x, json._instantiatesUri?.[i]));
     }
     if (json.status !== undefined) {
       newInstance.status = FamilyHistoryStatus.parsePrimitive(json.status, json._status);

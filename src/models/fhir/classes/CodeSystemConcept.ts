@@ -1,62 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeSystemConceptDesignation,
   CodeSystemConceptProperty,
   Extension,
+  FhirField,
+  FhirList,
   ICodeSystemConcept,
   PrimitiveCode,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CodeSystemConcept", "BackboneElement")
 export class CodeSystemConcept extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CodeSystem.Concept";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "display",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "definition",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "designation",
-      fieldType: [CodeSystemConceptDesignation],
-      isArray: true
-    }, {
-      fieldName: "property",
-      fieldType: [CodeSystemConceptProperty],
-      isArray: true
-    }, {
-      fieldName: "concept",
-      fieldType: [CodeSystemConcept],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveCode")
   public code?: PrimitiveCode;
 
+  @FhirField("PrimitiveString")
   public display?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public definition?: PrimitiveString;
 
+  @FhirList("CodeSystemConceptDesignation")
   public designation?: Array<CodeSystemConceptDesignation>;
 
+  @FhirList("CodeSystemConceptProperty")
   public property?: Array<CodeSystemConceptProperty>;
 
+  @FhirList("CodeSystemConcept")
   public concept?: Array<CodeSystemConcept>;
 
   public static parse(

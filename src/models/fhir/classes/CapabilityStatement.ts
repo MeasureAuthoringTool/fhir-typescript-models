@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CapabilityStatementDocument,
   CapabilityStatementImplementation,
   CapabilityStatementKind,
@@ -10,6 +10,8 @@ import {
   ContactDetail,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   FHIRVersion,
   ICapabilityStatement,
   MimeType,
@@ -21,176 +23,95 @@ import {
   PrimitiveUri,
   PublicationStatus,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CapabilityStatement", "DomainResource")
 export class CapabilityStatement extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "experimental",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "purpose",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "copyright",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "kind",
-      fieldType: [CapabilityStatementKind],
-      isArray: false
-    }, {
-      fieldName: "instantiates",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "imports",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "software",
-      fieldType: [CapabilityStatementSoftware],
-      isArray: false
-    }, {
-      fieldName: "implementation",
-      fieldType: [CapabilityStatementImplementation],
-      isArray: false
-    }, {
-      fieldName: "fhirVersion",
-      fieldType: [FHIRVersion],
-      isArray: false
-    }, {
-      fieldName: "format",
-      fieldType: [MimeType],
-      isArray: true
-    }, {
-      fieldName: "patchFormat",
-      fieldType: [MimeType],
-      isArray: true
-    }, {
-      fieldName: "implementationGuide",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "rest",
-      fieldType: [CapabilityStatementRest],
-      isArray: true
-    }, {
-      fieldName: "messaging",
-      fieldType: [CapabilityStatementMessaging],
-      isArray: true
-    }, {
-      fieldName: "document",
-      fieldType: [CapabilityStatementDocument],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("PrimitiveBoolean")
   public experimental?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public purpose?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveMarkdown")
   public copyright?: PrimitiveMarkdown;
 
+  @FhirField("CapabilityStatementKind")
   public kind?: CapabilityStatementKind;
 
+  @FhirList("PrimitiveCanonical")
   public instantiates?: Array<PrimitiveCanonical>;
 
+  @FhirList("PrimitiveCanonical")
   public imports?: Array<PrimitiveCanonical>;
 
+  @FhirField("CapabilityStatementSoftware")
   public software?: CapabilityStatementSoftware;
 
+  @FhirField("CapabilityStatementImplementation")
   public implementation?: CapabilityStatementImplementation;
 
+  @FhirField("FHIRVersion")
   public fhirVersion?: FHIRVersion;
 
+  @FhirList("MimeType")
   public format?: Array<MimeType>;
 
+  @FhirList("MimeType")
   public patchFormat?: Array<MimeType>;
 
+  @FhirList("PrimitiveCanonical")
   public implementationGuide?: Array<PrimitiveCanonical>;
 
+  @FhirList("CapabilityStatementRest")
   public rest?: Array<CapabilityStatementRest>;
 
+  @FhirList("CapabilityStatementMessaging")
   public messaging?: Array<CapabilityStatementMessaging>;
 
+  @FhirList("CapabilityStatementDocument")
   public document?: Array<CapabilityStatementDocument>;
 
   public static parse(
@@ -245,16 +166,10 @@ export class CapabilityStatement extends DomainResource {
       newInstance.kind = CapabilityStatementKind.parsePrimitive(json.kind, json._kind);
     }
     if (json.instantiates !== undefined) {
-      newInstance.instantiates = json.instantiates.map((x, i) => {
-        const ext = json._instantiates && json._instantiates[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.instantiates = json.instantiates.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._instantiates?.[i]));
     }
     if (json.imports !== undefined) {
-      newInstance.imports = json.imports.map((x, i) => {
-        const ext = json._imports && json._imports[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.imports = json.imports.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._imports?.[i]));
     }
     if (json.software !== undefined) {
       newInstance.software = CapabilityStatementSoftware.parse(json.software);
@@ -266,22 +181,13 @@ export class CapabilityStatement extends DomainResource {
       newInstance.fhirVersion = FHIRVersion.parsePrimitive(json.fhirVersion, json._fhirVersion);
     }
     if (json.format !== undefined) {
-      newInstance.format = json.format.map((x, i) => {
-        const ext = json._format && json._format[i];
-        return MimeType.parsePrimitive(x, ext);
-      });
+      newInstance.format = json.format.map((x, i) => MimeType.parsePrimitive(x, json._format?.[i]));
     }
     if (json.patchFormat !== undefined) {
-      newInstance.patchFormat = json.patchFormat.map((x, i) => {
-        const ext = json._patchFormat && json._patchFormat[i];
-        return MimeType.parsePrimitive(x, ext);
-      });
+      newInstance.patchFormat = json.patchFormat.map((x, i) => MimeType.parsePrimitive(x, json._patchFormat?.[i]));
     }
     if (json.implementationGuide !== undefined) {
-      newInstance.implementationGuide = json.implementationGuide.map((x, i) => {
-        const ext = json._implementationGuide && json._implementationGuide[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.implementationGuide = json.implementationGuide.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._implementationGuide?.[i]));
     }
     if (json.rest !== undefined) {
       newInstance.rest = json.rest.map((x) => CapabilityStatementRest.parse(x));

@@ -1,9 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   IServiceRequest,
   Period,
@@ -20,218 +23,116 @@ import {
   ServiceRequestPriority,
   ServiceRequestStatus,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ServiceRequest", "DomainResource")
 export class ServiceRequest extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ServiceRequest";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "instantiatesCanonical",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "instantiatesUri",
-      fieldType: [PrimitiveUri],
-      isArray: true
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "replaces",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "requisition",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [ServiceRequestStatus],
-      isArray: false
-    }, {
-      fieldName: "intent",
-      fieldType: [ServiceRequestIntent],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "priority",
-      fieldType: [ServiceRequestPriority],
-      isArray: false
-    }, {
-      fieldName: "doNotPerform",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "orderDetail",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "quantity",
-      fieldType: [Quantity, Ratio, Range],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "occurrence",
-      fieldType: [PrimitiveDateTime, Period, Timing],
-      isArray: false
-    }, {
-      fieldName: "asNeeded",
-      fieldType: [PrimitiveBoolean, CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "authoredOn",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "requester",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "performerType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "locationCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "locationReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "insurance",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "supportingInfo",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "specimen",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "bodySite",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "patientInstruction",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "relevantHistory",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("PrimitiveCanonical")
   public instantiatesCanonical?: Array<PrimitiveCanonical>;
 
+  @FhirList("PrimitiveUri")
   public instantiatesUri?: Array<PrimitiveUri>;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirList("Reference")
   public replaces?: Array<Reference>;
 
+  @FhirField("Identifier")
   public requisition?: Identifier;
 
+  @FhirField("ServiceRequestStatus")
   public status?: ServiceRequestStatus;
 
+  @FhirField("ServiceRequestIntent")
   public intent?: ServiceRequestIntent;
 
+  @FhirList("CodeableConcept")
   public category?: Array<CodeableConcept>;
 
+  @FhirField("ServiceRequestPriority")
   public priority?: ServiceRequestPriority;
 
+  @FhirField("PrimitiveBoolean")
   public doNotPerform?: PrimitiveBoolean;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public orderDetail?: Array<CodeableConcept>;
 
+  @FhirChoice("Quantity", "Ratio", "Range")
   public quantity?: Quantity | Ratio | Range;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Period", "Timing")
   public occurrence?: PrimitiveDateTime | Period | Timing;
 
+  @FhirChoice("PrimitiveBoolean", "CodeableConcept")
   public asNeeded?: PrimitiveBoolean | CodeableConcept;
 
+  @FhirField("PrimitiveDateTime")
   public authoredOn?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public requester?: Reference;
 
+  @FhirField("CodeableConcept")
   public performerType?: CodeableConcept;
 
+  @FhirList("Reference")
   public performer?: Array<Reference>;
 
+  @FhirList("CodeableConcept")
   public locationCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public locationReference?: Array<Reference>;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirList("Reference")
   public insurance?: Array<Reference>;
 
+  @FhirList("Reference")
   public supportingInfo?: Array<Reference>;
 
+  @FhirList("Reference")
   public specimen?: Array<Reference>;
 
+  @FhirList("CodeableConcept")
   public bodySite?: Array<CodeableConcept>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirField("PrimitiveString")
   public patientInstruction?: PrimitiveString;
 
+  @FhirList("Reference")
   public relevantHistory?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -252,16 +153,10 @@ export class ServiceRequest extends DomainResource {
       newInstance.identifier = json.identifier.map((x) => Identifier.parse(x));
     }
     if (json.instantiatesCanonical !== undefined) {
-      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => {
-        const ext = json._instantiatesCanonical && json._instantiatesCanonical[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesCanonical = json.instantiatesCanonical.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._instantiatesCanonical?.[i]));
     }
     if (json.instantiatesUri !== undefined) {
-      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => {
-        const ext = json._instantiatesUri && json._instantiatesUri[i];
-        return PrimitiveUri.parsePrimitive(x, ext);
-      });
+      newInstance.instantiatesUri = json.instantiatesUri.map((x, i) => PrimitiveUri.parsePrimitive(x, json._instantiatesUri?.[i]));
     }
     if (json.basedOn !== undefined) {
       newInstance.basedOn = json.basedOn.map((x) => Reference.parse(x));

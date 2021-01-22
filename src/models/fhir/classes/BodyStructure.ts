@@ -1,76 +1,51 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   IBodyStructure,
   Identifier,
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("BodyStructure", "DomainResource")
 export class BodyStructure extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "BodyStructure";
-  
+
   static readonly primaryCodePath: string | null = "location";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "active",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "morphology",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "location",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "locationQualifier",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "image",
-      fieldType: [Attachment],
-      isArray: true
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveBoolean")
   public active?: PrimitiveBoolean;
 
+  @FhirField("CodeableConcept")
   public morphology?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public location?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public locationQualifier?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirList("Attachment")
   public image?: Array<Attachment>;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
   get primaryCode(): CodeableConcept | undefined {

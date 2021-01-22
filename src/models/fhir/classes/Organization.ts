@@ -1,90 +1,59 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Address,
   CodeableConcept,
   ContactPoint,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IOrganization,
   OrganizationContact,
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Organization", "DomainResource")
 export class Organization extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Organization";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "active",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "alias",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "telecom",
-      fieldType: [ContactPoint],
-      isArray: true
-    }, {
-      fieldName: "address",
-      fieldType: [Address],
-      isArray: true
-    }, {
-      fieldName: "partOf",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [OrganizationContact],
-      isArray: true
-    }, {
-      fieldName: "endpoint",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveBoolean")
   public active?: PrimitiveBoolean;
 
+  @FhirList("CodeableConcept")
   public type?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public alias?: Array<PrimitiveString>;
 
+  @FhirList("ContactPoint")
   public telecom?: Array<ContactPoint>;
 
+  @FhirList("Address")
   public address?: Array<Address>;
 
+  @FhirField("Reference")
   public partOf?: Reference;
 
+  @FhirList("OrganizationContact")
   public contact?: Array<OrganizationContact>;
 
+  @FhirList("Reference")
   public endpoint?: Array<Reference>;
 
   public static parse(
@@ -106,10 +75,7 @@ export class Organization extends DomainResource {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);
     }
     if (json.alias !== undefined) {
-      newInstance.alias = json.alias.map((x, i) => {
-        const ext = json._alias && json._alias[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.alias = json.alias.map((x, i) => PrimitiveString.parsePrimitive(x, json._alias?.[i]));
     }
     if (json.telecom !== undefined) {
       newInstance.telecom = json.telecom.map((x) => ContactPoint.parse(x));

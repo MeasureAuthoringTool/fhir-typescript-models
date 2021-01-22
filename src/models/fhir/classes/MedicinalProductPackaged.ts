@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IMedicinalProductPackaged,
   MarketingStatus,
@@ -10,74 +12,44 @@ import {
   MedicinalProductPackagedPackageItem,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductPackaged", "DomainResource")
 export class MedicinalProductPackaged extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductPackaged";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "legalStatusOfSupply",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "marketingStatus",
-      fieldType: [MarketingStatus],
-      isArray: true
-    }, {
-      fieldName: "marketingAuthorization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "manufacturer",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "batchIdentifier",
-      fieldType: [MedicinalProductPackagedBatchIdentifier],
-      isArray: true
-    }, {
-      fieldName: "packageItem",
-      fieldType: [MedicinalProductPackagedPackageItem],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirList("Reference")
   public subject?: Array<Reference>;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public legalStatusOfSupply?: CodeableConcept;
 
+  @FhirList("MarketingStatus")
   public marketingStatus?: Array<MarketingStatus>;
 
+  @FhirField("Reference")
   public marketingAuthorization?: Reference;
 
+  @FhirList("Reference")
   public manufacturer?: Array<Reference>;
 
+  @FhirList("MedicinalProductPackagedBatchIdentifier")
   public batchIdentifier?: Array<MedicinalProductPackagedBatchIdentifier>;
 
+  @FhirList("MedicinalProductPackagedPackageItem")
   public packageItem?: Array<MedicinalProductPackagedPackageItem>;
 
   public static parse(

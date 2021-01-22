@@ -1,52 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
   IGroupCharacteristic,
   Period,
   PrimitiveBoolean,
   Quantity,
   Range,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("GroupCharacteristic", "BackboneElement")
 export class GroupCharacteristic extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Group.Characteristic";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [CodeableConcept, PrimitiveBoolean, Quantity, Range, Reference],
-      isArray: false
-    }, {
-      fieldName: "exclude",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirChoice("CodeableConcept", "PrimitiveBoolean", "Quantity", "Range", "Reference")
   public value?: CodeableConcept | PrimitiveBoolean | Quantity | Range | Reference;
 
+  @FhirField("PrimitiveBoolean")
   public exclude?: PrimitiveBoolean;
 
+  @FhirField("Period")
   public period?: Period;
 
   public static parse(

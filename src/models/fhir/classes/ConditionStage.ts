@@ -1,41 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   IConditionStage,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ConditionStage", "BackboneElement")
 export class ConditionStage extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Condition.Stage";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "summary",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "assessment",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public summary?: CodeableConcept;
 
+  @FhirList("Reference")
   public assessment?: Array<Reference>;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
   public static parse(

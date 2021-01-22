@@ -1,43 +1,33 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   ITerminologyCapabilitiesCodeSystem,
   PrimitiveBoolean,
   PrimitiveCanonical,
   TerminologyCapabilitiesCodeSystemVersion,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TerminologyCapabilitiesCodeSystem", "BackboneElement")
 export class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TerminologyCapabilities.CodeSystem";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "uri",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "version",
-      fieldType: [TerminologyCapabilitiesCodeSystemVersion],
-      isArray: true
-    }, {
-      fieldName: "subsumption",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveCanonical")
   public uri?: PrimitiveCanonical;
 
+  @FhirList("TerminologyCapabilitiesCodeSystemVersion")
   public version?: Array<TerminologyCapabilitiesCodeSystemVersion>;
 
+  @FhirField("PrimitiveBoolean")
   public subsumption?: PrimitiveBoolean;
 
   public static parse(

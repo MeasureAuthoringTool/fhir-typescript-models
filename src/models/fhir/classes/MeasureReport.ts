@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IMeasureReport,
   MeasureReportGroup,
@@ -12,86 +14,50 @@ import {
   PrimitiveCanonical,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MeasureReport", "DomainResource")
 export class MeasureReport extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MeasureReport";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [MeasureReportStatus],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [MeasureReportType],
-      isArray: false
-    }, {
-      fieldName: "measure",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "reporter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "improvementNotation",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "group",
-      fieldType: [MeasureReportGroup],
-      isArray: true
-    }, {
-      fieldName: "evaluatedResource",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("MeasureReportStatus")
   public status?: MeasureReportStatus;
 
+  @FhirField("MeasureReportType")
   public type?: MeasureReportType;
 
+  @FhirField("PrimitiveCanonical")
   public measure?: PrimitiveCanonical;
 
+  @FhirField("Reference")
   public subject?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public reporter?: Reference;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirField("CodeableConcept")
   public improvementNotation?: CodeableConcept;
 
+  @FhirList("MeasureReportGroup")
   public group?: Array<MeasureReportGroup>;
 
+  @FhirList("Reference")
   public evaluatedResource?: Array<Reference>;
 
   public static parse(

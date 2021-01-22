@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Age,
   AllergyIntoleranceCategory,
   AllergyIntoleranceCriticality,
@@ -9,6 +9,9 @@ import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IAllergyIntolerance,
   Identifier,
   Period,
@@ -16,116 +19,65 @@ import {
   PrimitiveString,
   Range,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AllergyIntolerance", "DomainResource")
 export class AllergyIntolerance extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AllergyIntolerance";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "clinicalStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "verificationStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [AllergyIntoleranceType],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [AllergyIntoleranceCategory],
-      isArray: true
-    }, {
-      fieldName: "criticality",
-      fieldType: [AllergyIntoleranceCriticality],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "onset",
-      fieldType: [PrimitiveDateTime, Age, Period, Range, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "recordedDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "recorder",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "asserter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "lastOccurrence",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "reaction",
-      fieldType: [AllergyIntoleranceReaction],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("CodeableConcept")
   public clinicalStatus?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public verificationStatus?: CodeableConcept;
 
+  @FhirField("AllergyIntoleranceType")
   public type?: AllergyIntoleranceType;
 
+  @FhirList("AllergyIntoleranceCategory")
   public category?: Array<AllergyIntoleranceCategory>;
 
+  @FhirField("AllergyIntoleranceCriticality")
   public criticality?: AllergyIntoleranceCriticality;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Age", "Period", "Range", "PrimitiveString")
   public onset?: PrimitiveDateTime | Age | Period | Range | PrimitiveString;
 
+  @FhirField("PrimitiveDateTime")
   public recordedDate?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public recorder?: Reference;
 
+  @FhirField("Reference")
   public asserter?: Reference;
 
+  @FhirField("PrimitiveDateTime")
   public lastOccurrence?: PrimitiveDateTime;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("AllergyIntoleranceReaction")
   public reaction?: Array<AllergyIntoleranceReaction>;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -155,10 +107,7 @@ export class AllergyIntolerance extends DomainResource {
       newInstance.type = AllergyIntoleranceType.parsePrimitive(json.type, json._type);
     }
     if (json.category !== undefined) {
-      newInstance.category = json.category.map((x, i) => {
-        const ext = json._category && json._category[i];
-        return AllergyIntoleranceCategory.parsePrimitive(x, ext);
-      });
+      newInstance.category = json.category.map((x, i) => AllergyIntoleranceCategory.parsePrimitive(x, json._category?.[i]));
     }
     if (json.criticality !== undefined) {
       newInstance.criticality = AllergyIntoleranceCriticality.parsePrimitive(json.criticality, json._criticality);

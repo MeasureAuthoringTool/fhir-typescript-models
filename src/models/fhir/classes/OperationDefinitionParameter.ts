@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
   FHIRAllTypes,
+  FhirField,
+  FhirList,
   IOperationDefinitionParameter,
   OperationDefinitionParameterBinding,
   OperationDefinitionParameterReferencedFrom,
@@ -12,86 +14,50 @@ import {
   PrimitiveInteger,
   PrimitiveString,
   SearchParamType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("OperationDefinitionParameter", "BackboneElement")
 export class OperationDefinitionParameter extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OperationDefinition.Parameter";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "use",
-      fieldType: [OperationParameterUse],
-      isArray: false
-    }, {
-      fieldName: "min",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "max",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "documentation",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [FHIRAllTypes],
-      isArray: false
-    }, {
-      fieldName: "targetProfile",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }, {
-      fieldName: "searchType",
-      fieldType: [SearchParamType],
-      isArray: false
-    }, {
-      fieldName: "binding",
-      fieldType: [OperationDefinitionParameterBinding],
-      isArray: false
-    }, {
-      fieldName: "referencedFrom",
-      fieldType: [OperationDefinitionParameterReferencedFrom],
-      isArray: true
-    }, {
-      fieldName: "part",
-      fieldType: [OperationDefinitionParameter],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveCode")
   public name?: PrimitiveCode;
 
+  @FhirField("OperationParameterUse")
   public use?: OperationParameterUse;
 
+  @FhirField("PrimitiveInteger")
   public min?: PrimitiveInteger;
 
+  @FhirField("PrimitiveString")
   public max?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public documentation?: PrimitiveString;
 
+  @FhirField("FHIRAllTypes")
   public type?: FHIRAllTypes;
 
+  @FhirList("PrimitiveCanonical")
   public targetProfile?: Array<PrimitiveCanonical>;
 
+  @FhirField("SearchParamType")
   public searchType?: SearchParamType;
 
+  @FhirField("OperationDefinitionParameterBinding")
   public binding?: OperationDefinitionParameterBinding;
 
+  @FhirList("OperationDefinitionParameterReferencedFrom")
   public referencedFrom?: Array<OperationDefinitionParameterReferencedFrom>;
 
+  @FhirList("OperationDefinitionParameter")
   public part?: Array<OperationDefinitionParameter>;
 
   public static parse(
@@ -119,10 +85,7 @@ export class OperationDefinitionParameter extends BackboneElement {
       newInstance.type = FHIRAllTypes.parsePrimitive(json.type, json._type);
     }
     if (json.targetProfile !== undefined) {
-      newInstance.targetProfile = json.targetProfile.map((x, i) => {
-        const ext = json._targetProfile && json._targetProfile[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.targetProfile = json.targetProfile.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._targetProfile?.[i]));
     }
     if (json.searchType !== undefined) {
       newInstance.searchType = SearchParamType.parsePrimitive(json.searchType, json._searchType);

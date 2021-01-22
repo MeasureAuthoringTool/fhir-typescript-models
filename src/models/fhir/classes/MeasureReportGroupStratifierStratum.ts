@@ -1,49 +1,36 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   IMeasureReportGroupStratifierStratum,
   MeasureReportGroupStratifierStratumComponent,
   MeasureReportGroupStratifierStratumPopulation,
   Quantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MeasureReportGroupStratifierStratum", "BackboneElement")
 export class MeasureReportGroupStratifierStratum extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MeasureReport.Group.Stratifier.Stratum";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "value",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "component",
-      fieldType: [MeasureReportGroupStratifierStratumComponent],
-      isArray: true
-    }, {
-      fieldName: "population",
-      fieldType: [MeasureReportGroupStratifierStratumPopulation],
-      isArray: true
-    }, {
-      fieldName: "measureScore",
-      fieldType: [Quantity],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public value?: CodeableConcept;
 
+  @FhirList("MeasureReportGroupStratifierStratumComponent")
   public component?: Array<MeasureReportGroupStratifierStratumComponent>;
 
+  @FhirList("MeasureReportGroupStratifierStratumPopulation")
   public population?: Array<MeasureReportGroupStratifierStratumPopulation>;
 
+  @FhirField("Quantity")
   public measureScore?: Quantity;
 
   public static parse(

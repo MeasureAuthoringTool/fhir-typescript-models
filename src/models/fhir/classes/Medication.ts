@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IMedication,
   MedicationBatch,
@@ -10,68 +12,41 @@ import {
   MedicationStatus,
   Ratio,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Medication", "DomainResource")
 export class Medication extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Medication";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [MedicationStatus],
-      isArray: false
-    }, {
-      fieldName: "manufacturer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "form",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [Ratio],
-      isArray: false
-    }, {
-      fieldName: "ingredient",
-      fieldType: [MedicationIngredient],
-      isArray: true
-    }, {
-      fieldName: "batch",
-      fieldType: [MedicationBatch],
-      isArray: false
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("MedicationStatus")
   public status?: MedicationStatus;
 
+  @FhirField("Reference")
   public manufacturer?: Reference;
 
+  @FhirField("CodeableConcept")
   public form?: CodeableConcept;
 
+  @FhirField("Ratio")
   public amount?: Ratio;
 
+  @FhirList("MedicationIngredient")
   public ingredient?: Array<MedicationIngredient>;
 
+  @FhirField("MedicationBatch")
   public batch?: MedicationBatch;
 
   get primaryCode(): CodeableConcept | undefined {

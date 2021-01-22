@@ -1,10 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   Coding,
   ContactDetail,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   FHIRVersion,
   Identifier,
   IStructureDefinition,
@@ -22,182 +24,98 @@ import {
   StructureDefinitionSnapshot,
   TypeDerivationRule,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("StructureDefinition", "DomainResource")
 export class StructureDefinition extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureDefinition";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "experimental",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "purpose",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "copyright",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "keyword",
-      fieldType: [Coding],
-      isArray: true
-    }, {
-      fieldName: "fhirVersion",
-      fieldType: [FHIRVersion],
-      isArray: false
-    }, {
-      fieldName: "mapping",
-      fieldType: [StructureDefinitionMapping],
-      isArray: true
-    }, {
-      fieldName: "kind",
-      fieldType: [StructureDefinitionKind],
-      isArray: false
-    }, {
-      fieldName: "abstract",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "context",
-      fieldType: [StructureDefinitionContext],
-      isArray: true
-    }, {
-      fieldName: "contextInvariant",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "type",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "baseDefinition",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "derivation",
-      fieldType: [TypeDerivationRule],
-      isArray: false
-    }, {
-      fieldName: "snapshot",
-      fieldType: [StructureDefinitionSnapshot],
-      isArray: false
-    }, {
-      fieldName: "differential",
-      fieldType: [StructureDefinitionDifferential],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("PrimitiveBoolean")
   public experimental?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirField("PrimitiveMarkdown")
   public description?: PrimitiveMarkdown;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public purpose?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveMarkdown")
   public copyright?: PrimitiveMarkdown;
 
+  @FhirList("Coding")
   public keyword?: Array<Coding>;
 
+  @FhirField("FHIRVersion")
   public fhirVersion?: FHIRVersion;
 
+  @FhirList("StructureDefinitionMapping")
   public mapping?: Array<StructureDefinitionMapping>;
 
+  @FhirField("StructureDefinitionKind")
   public kind?: StructureDefinitionKind;
 
+  @FhirField("PrimitiveBoolean")
   public abstract?: PrimitiveBoolean;
 
+  @FhirList("StructureDefinitionContext")
   public context?: Array<StructureDefinitionContext>;
 
+  @FhirList("PrimitiveString")
   public contextInvariant?: Array<PrimitiveString>;
 
+  @FhirField("PrimitiveUri")
   public type?: PrimitiveUri;
 
+  @FhirField("PrimitiveCanonical")
   public baseDefinition?: PrimitiveCanonical;
 
+  @FhirField("TypeDerivationRule")
   public derivation?: TypeDerivationRule;
 
+  @FhirField("StructureDefinitionSnapshot")
   public snapshot?: StructureDefinitionSnapshot;
 
+  @FhirField("StructureDefinitionDifferential")
   public differential?: StructureDefinitionDifferential;
 
   public static parse(
@@ -270,10 +188,7 @@ export class StructureDefinition extends DomainResource {
       newInstance.context = json.context.map((x) => StructureDefinitionContext.parse(x));
     }
     if (json.contextInvariant !== undefined) {
-      newInstance.contextInvariant = json.contextInvariant.map((x, i) => {
-        const ext = json._contextInvariant && json._contextInvariant[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.contextInvariant = json.contextInvariant.map((x, i) => PrimitiveString.parsePrimitive(x, json._contextInvariant?.[i]));
     }
     if (json.type !== undefined) {
       newInstance.type = PrimitiveUri.parsePrimitive(json.type, json._type);

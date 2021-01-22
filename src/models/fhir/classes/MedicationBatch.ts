@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IMedicationBatch,
   PrimitiveDateTime,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicationBatch", "BackboneElement")
 export class MedicationBatch extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Medication.Batch";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "lotNumber",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "expirationDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public lotNumber?: PrimitiveString;
 
+  @FhirField("PrimitiveDateTime")
   public expirationDate?: PrimitiveDateTime;
 
   public static parse(

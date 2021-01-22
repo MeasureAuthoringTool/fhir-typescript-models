@@ -1,55 +1,38 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IMarketingStatus,
   Period,
   PrimitiveDateTime,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MarketingStatus", "BackboneElement")
 export class MarketingStatus extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MarketingStatus";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "country",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "dateRange",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "restoreDate",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public country?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public jurisdiction?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public status?: CodeableConcept;
 
+  @FhirField("Period")
   public dateRange?: Period;
 
+  @FhirField("PrimitiveDateTime")
   public restoreDate?: PrimitiveDateTime;
 
   public static parse(

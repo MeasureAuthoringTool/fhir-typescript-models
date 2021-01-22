@@ -1,83 +1,55 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   ExplanationOfBenefitAddItemDetailSubDetail,
   ExplanationOfBenefitItemAdjudication,
   Extension,
+  FhirField,
+  FhirList,
   IExplanationOfBenefitAddItemDetail,
   Money,
   PrimitiveDecimal,
   PrimitivePositiveInt,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExplanationOfBenefitAddItemDetail", "BackboneElement")
 export class ExplanationOfBenefitAddItemDetail extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.AddItem.Detail";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "productOrService",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "modifier",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "unitPrice",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "factor",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "net",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "noteNumber",
-      fieldType: [PrimitivePositiveInt],
-      isArray: true
-    }, {
-      fieldName: "adjudication",
-      fieldType: [ExplanationOfBenefitItemAdjudication],
-      isArray: true
-    }, {
-      fieldName: "subDetail",
-      fieldType: [ExplanationOfBenefitAddItemDetailSubDetail],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public productOrService?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public modifier?: Array<CodeableConcept>;
 
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirField("Money")
   public unitPrice?: Money;
 
+  @FhirField("PrimitiveDecimal")
   public factor?: PrimitiveDecimal;
 
+  @FhirField("Money")
   public net?: Money;
 
+  @FhirList("PrimitivePositiveInt")
   public noteNumber?: Array<PrimitivePositiveInt>;
 
+  @FhirList("ExplanationOfBenefitItemAdjudication")
   public adjudication?: Array<ExplanationOfBenefitItemAdjudication>;
 
+  @FhirList("ExplanationOfBenefitAddItemDetailSubDetail")
   public subDetail?: Array<ExplanationOfBenefitAddItemDetailSubDetail>;
 
   public static parse(
@@ -105,10 +77,7 @@ export class ExplanationOfBenefitAddItemDetail extends BackboneElement {
       newInstance.net = Money.parse(json.net);
     }
     if (json.noteNumber !== undefined) {
-      newInstance.noteNumber = json.noteNumber.map((x, i) => {
-        const ext = json._noteNumber && json._noteNumber[i];
-        return PrimitivePositiveInt.parsePrimitive(x, ext);
-      });
+      newInstance.noteNumber = json.noteNumber.map((x, i) => PrimitivePositiveInt.parsePrimitive(x, json._noteNumber?.[i]));
     }
     if (json.adjudication !== undefined) {
       newInstance.adjudication = json.adjudication.map((x) => ExplanationOfBenefitItemAdjudication.parse(x));

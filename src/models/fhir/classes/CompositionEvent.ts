@@ -1,42 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   ICompositionEvent,
   Period,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CompositionEvent", "BackboneElement")
 export class CompositionEvent extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Composition.Event";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "detail",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("CodeableConcept")
   public code?: Array<CodeableConcept>;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirList("Reference")
   public detail?: Array<Reference>;
 
   public static parse(

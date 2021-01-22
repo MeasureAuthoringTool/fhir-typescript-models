@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   CodeableConcept,
   DomainResource,
@@ -20,6 +20,8 @@ import {
   ExplanationOfBenefitSupportingInfo,
   ExplanationOfBenefitTotal,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IExplanationOfBenefit,
   Period,
@@ -29,278 +31,146 @@ import {
   Reference,
   RemittanceOutcome,
   Use,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExplanationOfBenefit", "DomainResource")
 export class ExplanationOfBenefit extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit";
-  
+
   static readonly primaryCodePath: string | null = "type";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [ExplanationOfBenefitStatus],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "use",
-      fieldType: [Use],
-      isArray: false
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "billablePeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "enterer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "insurer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "provider",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "priority",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "fundsReserveRequested",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "fundsReserve",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "related",
-      fieldType: [ExplanationOfBenefitRelated],
-      isArray: true
-    }, {
-      fieldName: "prescription",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "originalPrescription",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "payee",
-      fieldType: [ExplanationOfBenefitPayee],
-      isArray: false
-    }, {
-      fieldName: "referral",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "facility",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "claim",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "claimResponse",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "outcome",
-      fieldType: [RemittanceOutcome],
-      isArray: false
-    }, {
-      fieldName: "disposition",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "preAuthRef",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "preAuthRefPeriod",
-      fieldType: [Period],
-      isArray: true
-    }, {
-      fieldName: "careTeam",
-      fieldType: [ExplanationOfBenefitCareTeam],
-      isArray: true
-    }, {
-      fieldName: "supportingInfo",
-      fieldType: [ExplanationOfBenefitSupportingInfo],
-      isArray: true
-    }, {
-      fieldName: "diagnosis",
-      fieldType: [ExplanationOfBenefitDiagnosis],
-      isArray: true
-    }, {
-      fieldName: "procedure",
-      fieldType: [ExplanationOfBenefitProcedure],
-      isArray: true
-    }, {
-      fieldName: "precedence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "insurance",
-      fieldType: [ExplanationOfBenefitInsurance],
-      isArray: true
-    }, {
-      fieldName: "accident",
-      fieldType: [ExplanationOfBenefitAccident],
-      isArray: false
-    }, {
-      fieldName: "item",
-      fieldType: [ExplanationOfBenefitItem],
-      isArray: true
-    }, {
-      fieldName: "addItem",
-      fieldType: [ExplanationOfBenefitAddItem],
-      isArray: true
-    }, {
-      fieldName: "adjudication",
-      fieldType: [ExplanationOfBenefitItemAdjudication],
-      isArray: true
-    }, {
-      fieldName: "total",
-      fieldType: [ExplanationOfBenefitTotal],
-      isArray: true
-    }, {
-      fieldName: "payment",
-      fieldType: [ExplanationOfBenefitPayment],
-      isArray: false
-    }, {
-      fieldName: "formCode",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "form",
-      fieldType: [Attachment],
-      isArray: false
-    }, {
-      fieldName: "processNote",
-      fieldType: [ExplanationOfBenefitProcessNote],
-      isArray: true
-    }, {
-      fieldName: "benefitPeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "benefitBalance",
-      fieldType: [ExplanationOfBenefitBenefitBalance],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("ExplanationOfBenefitStatus")
   public status?: ExplanationOfBenefitStatus;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public subType?: CodeableConcept;
 
+  @FhirField("Use")
   public use?: Use;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirField("Period")
   public billablePeriod?: Period;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public enterer?: Reference;
 
+  @FhirField("Reference")
   public insurer?: Reference;
 
+  @FhirField("Reference")
   public provider?: Reference;
 
+  @FhirField("CodeableConcept")
   public priority?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public fundsReserveRequested?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public fundsReserve?: CodeableConcept;
 
+  @FhirList("ExplanationOfBenefitRelated")
   public related?: Array<ExplanationOfBenefitRelated>;
 
+  @FhirField("Reference")
   public prescription?: Reference;
 
+  @FhirField("Reference")
   public originalPrescription?: Reference;
 
+  @FhirField("ExplanationOfBenefitPayee")
   public payee?: ExplanationOfBenefitPayee;
 
+  @FhirField("Reference")
   public referral?: Reference;
 
+  @FhirField("Reference")
   public facility?: Reference;
 
+  @FhirField("Reference")
   public claim?: Reference;
 
+  @FhirField("Reference")
   public claimResponse?: Reference;
 
+  @FhirField("RemittanceOutcome")
   public outcome?: RemittanceOutcome;
 
+  @FhirField("PrimitiveString")
   public disposition?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public preAuthRef?: Array<PrimitiveString>;
 
+  @FhirList("Period")
   public preAuthRefPeriod?: Array<Period>;
 
+  @FhirList("ExplanationOfBenefitCareTeam")
   public careTeam?: Array<ExplanationOfBenefitCareTeam>;
 
+  @FhirList("ExplanationOfBenefitSupportingInfo")
   public supportingInfo?: Array<ExplanationOfBenefitSupportingInfo>;
 
+  @FhirList("ExplanationOfBenefitDiagnosis")
   public diagnosis?: Array<ExplanationOfBenefitDiagnosis>;
 
+  @FhirList("ExplanationOfBenefitProcedure")
   public procedure?: Array<ExplanationOfBenefitProcedure>;
 
+  @FhirField("PrimitivePositiveInt")
   public precedence?: PrimitivePositiveInt;
 
+  @FhirList("ExplanationOfBenefitInsurance")
   public insurance?: Array<ExplanationOfBenefitInsurance>;
 
+  @FhirField("ExplanationOfBenefitAccident")
   public accident?: ExplanationOfBenefitAccident;
 
+  @FhirList("ExplanationOfBenefitItem")
   public item?: Array<ExplanationOfBenefitItem>;
 
+  @FhirList("ExplanationOfBenefitAddItem")
   public addItem?: Array<ExplanationOfBenefitAddItem>;
 
+  @FhirList("ExplanationOfBenefitItemAdjudication")
   public adjudication?: Array<ExplanationOfBenefitItemAdjudication>;
 
+  @FhirList("ExplanationOfBenefitTotal")
   public total?: Array<ExplanationOfBenefitTotal>;
 
+  @FhirField("ExplanationOfBenefitPayment")
   public payment?: ExplanationOfBenefitPayment;
 
+  @FhirField("CodeableConcept")
   public formCode?: CodeableConcept;
 
+  @FhirField("Attachment")
   public form?: Attachment;
 
+  @FhirList("ExplanationOfBenefitProcessNote")
   public processNote?: Array<ExplanationOfBenefitProcessNote>;
 
+  @FhirField("Period")
   public benefitPeriod?: Period;
 
+  @FhirList("ExplanationOfBenefitBenefitBalance")
   public benefitBalance?: Array<ExplanationOfBenefitBenefitBalance>;
 
   get primaryCode(): CodeableConcept | undefined {
@@ -390,10 +260,7 @@ export class ExplanationOfBenefit extends DomainResource {
       newInstance.disposition = PrimitiveString.parsePrimitive(json.disposition, json._disposition);
     }
     if (json.preAuthRef !== undefined) {
-      newInstance.preAuthRef = json.preAuthRef.map((x, i) => {
-        const ext = json._preAuthRef && json._preAuthRef[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.preAuthRef = json.preAuthRef.map((x, i) => PrimitiveString.parsePrimitive(x, json._preAuthRef?.[i]));
     }
     if (json.preAuthRefPeriod !== undefined) {
       newInstance.preAuthRefPeriod = json.preAuthRefPeriod.map((x) => Period.parse(x));

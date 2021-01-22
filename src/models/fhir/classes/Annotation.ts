@@ -1,44 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirChoice,
+  FhirField,
   IAnnotation,
   PrimitiveDateTime,
   PrimitiveMarkdown,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Annotation", "Element")
 export class Annotation extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Annotation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "author",
-      fieldType: [Reference, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "time",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "text",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("Reference", "PrimitiveString")
   public author?: Reference | PrimitiveString;
 
+  @FhirField("PrimitiveDateTime")
   public time?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveMarkdown")
   public text?: PrimitiveMarkdown;
 
   public static parse(

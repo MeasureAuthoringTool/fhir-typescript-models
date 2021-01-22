@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   ContactDetail,
   DomainResource,
@@ -7,6 +7,8 @@ import {
   ExampleScenarioInstance,
   ExampleScenarioProcess,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IExampleScenario,
   PrimitiveBoolean,
@@ -17,122 +19,68 @@ import {
   PrimitiveUri,
   PublicationStatus,
   UsageContext,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExampleScenario", "DomainResource")
 export class ExampleScenario extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExampleScenario";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "status",
-      fieldType: [PublicationStatus],
-      isArray: false
-    }, {
-      fieldName: "experimental",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "date",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "publisher",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "contact",
-      fieldType: [ContactDetail],
-      isArray: true
-    }, {
-      fieldName: "useContext",
-      fieldType: [UsageContext],
-      isArray: true
-    }, {
-      fieldName: "jurisdiction",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "copyright",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "purpose",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "actor",
-      fieldType: [ExampleScenarioActor],
-      isArray: true
-    }, {
-      fieldName: "instance",
-      fieldType: [ExampleScenarioInstance],
-      isArray: true
-    }, {
-      fieldName: "process",
-      fieldType: [ExampleScenarioProcess],
-      isArray: true
-    }, {
-      fieldName: "workflow",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PublicationStatus")
   public status?: PublicationStatus;
 
+  @FhirField("PrimitiveBoolean")
   public experimental?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveDateTime")
   public date?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveString")
   public publisher?: PrimitiveString;
 
+  @FhirList("ContactDetail")
   public contact?: Array<ContactDetail>;
 
+  @FhirList("UsageContext")
   public useContext?: Array<UsageContext>;
 
+  @FhirList("CodeableConcept")
   public jurisdiction?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveMarkdown")
   public copyright?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveMarkdown")
   public purpose?: PrimitiveMarkdown;
 
+  @FhirList("ExampleScenarioActor")
   public actor?: Array<ExampleScenarioActor>;
 
+  @FhirList("ExampleScenarioInstance")
   public instance?: Array<ExampleScenarioInstance>;
 
+  @FhirList("ExampleScenarioProcess")
   public process?: Array<ExampleScenarioProcess>;
 
+  @FhirList("PrimitiveCanonical")
   public workflow?: Array<PrimitiveCanonical>;
 
   public static parse(
@@ -190,10 +138,7 @@ export class ExampleScenario extends DomainResource {
       newInstance.process = json.process.map((x) => ExampleScenarioProcess.parse(x));
     }
     if (json.workflow !== undefined) {
-      newInstance.workflow = json.workflow.map((x, i) => {
-        const ext = json._workflow && json._workflow[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.workflow = json.workflow.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._workflow?.[i]));
     }
     return newInstance;
   }

@@ -1,75 +1,50 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   ISubstanceSourceMaterialOrganism,
   PrimitiveString,
   SubstanceSourceMaterialOrganismAuthor,
   SubstanceSourceMaterialOrganismHybrid,
   SubstanceSourceMaterialOrganismOrganismGeneral,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceSourceMaterialOrganism", "BackboneElement")
 export class SubstanceSourceMaterialOrganism extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceSourceMaterial.Organism";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "family",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "genus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "species",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "intraspecificType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "intraspecificDescription",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "author",
-      fieldType: [SubstanceSourceMaterialOrganismAuthor],
-      isArray: true
-    }, {
-      fieldName: "hybrid",
-      fieldType: [SubstanceSourceMaterialOrganismHybrid],
-      isArray: false
-    }, {
-      fieldName: "organismGeneral",
-      fieldType: [SubstanceSourceMaterialOrganismOrganismGeneral],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public family?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public genus?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public species?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public intraspecificType?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public intraspecificDescription?: PrimitiveString;
 
+  @FhirList("SubstanceSourceMaterialOrganismAuthor")
   public author?: Array<SubstanceSourceMaterialOrganismAuthor>;
 
+  @FhirField("SubstanceSourceMaterialOrganismHybrid")
   public hybrid?: SubstanceSourceMaterialOrganismHybrid;
 
+  @FhirField("SubstanceSourceMaterialOrganismOrganismGeneral")
   public organismGeneral?: SubstanceSourceMaterialOrganismOrganismGeneral;
 
   public static parse(

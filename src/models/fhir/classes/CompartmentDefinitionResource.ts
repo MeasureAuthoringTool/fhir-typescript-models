@@ -1,42 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   ICompartmentDefinitionResource,
   PrimitiveString,
   ResourceType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CompartmentDefinitionResource", "BackboneElement")
 export class CompartmentDefinitionResource extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CompartmentDefinition.Resource";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [ResourceType],
-      isArray: false
-    }, {
-      fieldName: "param",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "documentation",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("ResourceType")
   public code?: ResourceType;
 
+  @FhirList("PrimitiveString")
   public param?: Array<PrimitiveString>;
 
+  @FhirField("PrimitiveString")
   public documentation?: PrimitiveString;
 
   public static parse(
@@ -49,10 +39,7 @@ export class CompartmentDefinitionResource extends BackboneElement {
       newInstance.code = ResourceType.parsePrimitive(json.code, json._code);
     }
     if (json.param !== undefined) {
-      newInstance.param = json.param.map((x, i) => {
-        const ext = json._param && json._param[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.param = json.param.map((x, i) => PrimitiveString.parsePrimitive(x, json._param?.[i]));
     }
     if (json.documentation !== undefined) {
       newInstance.documentation = PrimitiveString.parsePrimitive(json.documentation, json._documentation);

@@ -1,47 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   IMedicinalProductIngredientSpecifiedSubstance,
   MedicinalProductIngredientSpecifiedSubstanceStrength,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductIngredientSpecifiedSubstance", "BackboneElement")
 export class MedicinalProductIngredientSpecifiedSubstance extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductIngredient.SpecifiedSubstance";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "group",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "confidentiality",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "strength",
-      fieldType: [MedicinalProductIngredientSpecifiedSubstanceStrength],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public group?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public confidentiality?: CodeableConcept;
 
+  @FhirList("MedicinalProductIngredientSpecifiedSubstanceStrength")
   public strength?: Array<MedicinalProductIngredientSpecifiedSubstanceStrength>;
 
   public static parse(

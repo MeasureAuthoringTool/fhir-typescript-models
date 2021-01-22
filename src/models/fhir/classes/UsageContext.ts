@@ -1,38 +1,31 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   Coding,
   Element,
+  FhirChoice,
+  FhirField,
   IUsageContext,
   Quantity,
   Range,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("UsageContext", "Element")
 export class UsageContext extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "UsageContext";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "code",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [CodeableConcept, Quantity, Range, Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Coding")
   public code?: Coding;
 
+  @FhirChoice("CodeableConcept", "Quantity", "Range", "Reference")
   public value?: CodeableConcept | Quantity | Range | Reference;
 
   get primaryCode(): Coding | undefined {

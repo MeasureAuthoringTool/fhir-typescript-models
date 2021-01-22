@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IOperationDefinitionParameterReferencedFrom,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("OperationDefinitionParameterReferencedFrom", "BackboneElement")
 export class OperationDefinitionParameterReferencedFrom extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OperationDefinition.Parameter.ReferencedFrom";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "source",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "sourceId",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public source?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public sourceId?: PrimitiveString;
 
   public static parse(

@@ -1,7 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   FHIRVersion,
   IImplementationGuideDefinitionResource,
   PrimitiveBoolean,
@@ -9,56 +12,35 @@ import {
   PrimitiveId,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImplementationGuideDefinitionResource", "BackboneElement")
 export class ImplementationGuideDefinitionResource extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImplementationGuide.Definition.Resource";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "reference",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "fhirVersion",
-      fieldType: [FHIRVersion],
-      isArray: true
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "example",
-      fieldType: [PrimitiveBoolean, PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "groupingId",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public reference?: Reference;
 
+  @FhirList("FHIRVersion")
   public fhirVersion?: Array<FHIRVersion>;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirChoice("PrimitiveBoolean", "PrimitiveCanonical")
   public example?: PrimitiveBoolean | PrimitiveCanonical;
 
+  @FhirField("PrimitiveId")
   public groupingId?: PrimitiveId;
 
   public static parse(
@@ -71,10 +53,7 @@ export class ImplementationGuideDefinitionResource extends BackboneElement {
       newInstance.reference = Reference.parse(json.reference);
     }
     if (json.fhirVersion !== undefined) {
-      newInstance.fhirVersion = json.fhirVersion.map((x, i) => {
-        const ext = json._fhirVersion && json._fhirVersion[i];
-        return FHIRVersion.parsePrimitive(x, ext);
-      });
+      newInstance.fhirVersion = json.fhirVersion.map((x, i) => FHIRVersion.parsePrimitive(x, json._fhirVersion?.[i]));
     }
     if (json.name !== undefined) {
       newInstance.name = PrimitiveString.parsePrimitive(json.name, json._name);

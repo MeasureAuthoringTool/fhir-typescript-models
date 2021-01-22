@@ -1,7 +1,9 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IStructureMapGroupRuleTarget,
   PrimitiveId,
   PrimitiveString,
@@ -9,68 +11,41 @@ import {
   StructureMapGroupRuleTargetParameter,
   StructureMapTargetListMode,
   StructureMapTransform,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("StructureMapGroupRuleTarget", "BackboneElement")
 export class StructureMapGroupRuleTarget extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureMap.Group.Rule.Target";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "context",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "contextType",
-      fieldType: [StructureMapContextType],
-      isArray: false
-    }, {
-      fieldName: "element",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "variable",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "listMode",
-      fieldType: [StructureMapTargetListMode],
-      isArray: true
-    }, {
-      fieldName: "listRuleId",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "transform",
-      fieldType: [StructureMapTransform],
-      isArray: false
-    }, {
-      fieldName: "parameter",
-      fieldType: [StructureMapGroupRuleTargetParameter],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public context?: PrimitiveId;
 
+  @FhirField("StructureMapContextType")
   public contextType?: StructureMapContextType;
 
+  @FhirField("PrimitiveString")
   public element?: PrimitiveString;
 
+  @FhirField("PrimitiveId")
   public variable?: PrimitiveId;
 
+  @FhirList("StructureMapTargetListMode")
   public listMode?: Array<StructureMapTargetListMode>;
 
+  @FhirField("PrimitiveId")
   public listRuleId?: PrimitiveId;
 
+  @FhirField("StructureMapTransform")
   public transform?: StructureMapTransform;
 
+  @FhirList("StructureMapGroupRuleTargetParameter")
   public parameter?: Array<StructureMapGroupRuleTargetParameter>;
 
   public static parse(
@@ -92,10 +67,7 @@ export class StructureMapGroupRuleTarget extends BackboneElement {
       newInstance.variable = PrimitiveId.parsePrimitive(json.variable, json._variable);
     }
     if (json.listMode !== undefined) {
-      newInstance.listMode = json.listMode.map((x, i) => {
-        const ext = json._listMode && json._listMode[i];
-        return StructureMapTargetListMode.parsePrimitive(x, ext);
-      });
+      newInstance.listMode = json.listMode.map((x, i) => StructureMapTargetListMode.parsePrimitive(x, json._listMode?.[i]));
     }
     if (json.listRuleId !== undefined) {
       newInstance.listRuleId = PrimitiveId.parsePrimitive(json.listRuleId, json._listRuleId);

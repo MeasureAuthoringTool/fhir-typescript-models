@@ -1,35 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   ITerminologyCapabilitiesCodeSystemVersionFilter,
   PrimitiveCode,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TerminologyCapabilitiesCodeSystemVersionFilter", "BackboneElement")
 export class TerminologyCapabilitiesCodeSystemVersionFilter extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TerminologyCapabilities.CodeSystem.Version.Filter";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "code",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "op",
-      fieldType: [PrimitiveCode],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveCode")
   public code?: PrimitiveCode;
 
+  @FhirList("PrimitiveCode")
   public op?: Array<PrimitiveCode>;
 
   public static parse(
@@ -42,10 +35,7 @@ export class TerminologyCapabilitiesCodeSystemVersionFilter extends BackboneElem
       newInstance.code = PrimitiveCode.parsePrimitive(json.code, json._code);
     }
     if (json.op !== undefined) {
-      newInstance.op = json.op.map((x, i) => {
-        const ext = json._op && json._op[i];
-        return PrimitiveCode.parsePrimitive(x, ext);
-      });
+      newInstance.op = json.op.map((x, i) => PrimitiveCode.parsePrimitive(x, json._op?.[i]));
     }
     return newInstance;
   }

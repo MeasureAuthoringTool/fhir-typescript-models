@@ -1,50 +1,37 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CoverageEligibilityResponseInsuranceItem,
   Extension,
+  FhirField,
+  FhirList,
   ICoverageEligibilityResponseInsurance,
   Period,
   PrimitiveBoolean,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CoverageEligibilityResponseInsurance", "BackboneElement")
 export class CoverageEligibilityResponseInsurance extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityResponse.Insurance";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "coverage",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "inforce",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "benefitPeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "item",
-      fieldType: [CoverageEligibilityResponseInsuranceItem],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Reference")
   public coverage?: Reference;
 
+  @FhirField("PrimitiveBoolean")
   public inforce?: PrimitiveBoolean;
 
+  @FhirField("Period")
   public benefitPeriod?: Period;
 
+  @FhirList("CoverageEligibilityResponseInsuranceItem")
   public item?: Array<CoverageEligibilityResponseInsuranceItem>;
 
   public static parse(

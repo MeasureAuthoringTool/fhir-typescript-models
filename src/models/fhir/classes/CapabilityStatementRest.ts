@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CapabilityStatementRestInteraction,
   CapabilityStatementRestResource,
@@ -7,72 +7,47 @@ import {
   CapabilityStatementRestResourceSearchParam,
   CapabilityStatementRestSecurity,
   Extension,
+  FhirField,
+  FhirList,
   ICapabilityStatementRest,
   PrimitiveCanonical,
   PrimitiveMarkdown,
   RestfulCapabilityMode,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CapabilityStatementRest", "BackboneElement")
 export class CapabilityStatementRest extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CapabilityStatement.Rest";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "mode",
-      fieldType: [RestfulCapabilityMode],
-      isArray: false
-    }, {
-      fieldName: "documentation",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "security",
-      fieldType: [CapabilityStatementRestSecurity],
-      isArray: false
-    }, {
-      fieldName: "resource",
-      fieldType: [CapabilityStatementRestResource],
-      isArray: true
-    }, {
-      fieldName: "interaction",
-      fieldType: [CapabilityStatementRestInteraction],
-      isArray: true
-    }, {
-      fieldName: "searchParam",
-      fieldType: [CapabilityStatementRestResourceSearchParam],
-      isArray: true
-    }, {
-      fieldName: "operation",
-      fieldType: [CapabilityStatementRestResourceOperation],
-      isArray: true
-    }, {
-      fieldName: "compartment",
-      fieldType: [PrimitiveCanonical],
-      isArray: true
-    }];
-  }
-
+  @FhirField("RestfulCapabilityMode")
   public mode?: RestfulCapabilityMode;
 
+  @FhirField("PrimitiveMarkdown")
   public documentation?: PrimitiveMarkdown;
 
+  @FhirField("CapabilityStatementRestSecurity")
   public security?: CapabilityStatementRestSecurity;
 
+  @FhirList("CapabilityStatementRestResource")
   public resource?: Array<CapabilityStatementRestResource>;
 
+  @FhirList("CapabilityStatementRestInteraction")
   public interaction?: Array<CapabilityStatementRestInteraction>;
 
+  @FhirList("CapabilityStatementRestResourceSearchParam")
   public searchParam?: Array<CapabilityStatementRestResourceSearchParam>;
 
+  @FhirList("CapabilityStatementRestResourceOperation")
   public operation?: Array<CapabilityStatementRestResourceOperation>;
 
+  @FhirList("PrimitiveCanonical")
   public compartment?: Array<PrimitiveCanonical>;
 
   public static parse(
@@ -103,10 +78,7 @@ export class CapabilityStatementRest extends BackboneElement {
       newInstance.operation = json.operation.map((x) => CapabilityStatementRestResourceOperation.parse(x));
     }
     if (json.compartment !== undefined) {
-      newInstance.compartment = json.compartment.map((x, i) => {
-        const ext = json._compartment && json._compartment[i];
-        return PrimitiveCanonical.parsePrimitive(x, ext);
-      });
+      newInstance.compartment = json.compartment.map((x, i) => PrimitiveCanonical.parsePrimitive(x, json._compartment?.[i]));
     }
     return newInstance;
   }

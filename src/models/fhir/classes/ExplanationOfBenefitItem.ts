@@ -1,11 +1,14 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Address,
   BackboneElement,
   CodeableConcept,
   ExplanationOfBenefitItemAdjudication,
   ExplanationOfBenefitItemDetail,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IExplanationOfBenefitItem,
   Money,
   Period,
@@ -14,158 +17,86 @@ import {
   PrimitivePositiveInt,
   Reference,
   SimpleQuantity,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExplanationOfBenefitItem", "BackboneElement")
 export class ExplanationOfBenefitItem extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.Item";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "sequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "careTeamSequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: true
-    }, {
-      fieldName: "diagnosisSequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: true
-    }, {
-      fieldName: "procedureSequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: true
-    }, {
-      fieldName: "informationSequence",
-      fieldType: [PrimitivePositiveInt],
-      isArray: true
-    }, {
-      fieldName: "revenue",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "productOrService",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "modifier",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "programCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "serviced",
-      fieldType: [PrimitiveDate, Period],
-      isArray: false
-    }, {
-      fieldName: "location",
-      fieldType: [CodeableConcept, Address, Reference],
-      isArray: false
-    }, {
-      fieldName: "quantity",
-      fieldType: [SimpleQuantity],
-      isArray: false
-    }, {
-      fieldName: "unitPrice",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "factor",
-      fieldType: [PrimitiveDecimal],
-      isArray: false
-    }, {
-      fieldName: "net",
-      fieldType: [Money],
-      isArray: false
-    }, {
-      fieldName: "udi",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "bodySite",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subSite",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "noteNumber",
-      fieldType: [PrimitivePositiveInt],
-      isArray: true
-    }, {
-      fieldName: "adjudication",
-      fieldType: [ExplanationOfBenefitItemAdjudication],
-      isArray: true
-    }, {
-      fieldName: "detail",
-      fieldType: [ExplanationOfBenefitItemDetail],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitivePositiveInt")
   public sequence?: PrimitivePositiveInt;
 
+  @FhirList("PrimitivePositiveInt")
   public careTeamSequence?: Array<PrimitivePositiveInt>;
 
+  @FhirList("PrimitivePositiveInt")
   public diagnosisSequence?: Array<PrimitivePositiveInt>;
 
+  @FhirList("PrimitivePositiveInt")
   public procedureSequence?: Array<PrimitivePositiveInt>;
 
+  @FhirList("PrimitivePositiveInt")
   public informationSequence?: Array<PrimitivePositiveInt>;
 
+  @FhirField("CodeableConcept")
   public revenue?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public category?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public productOrService?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public modifier?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public programCode?: Array<CodeableConcept>;
 
+  @FhirChoice("PrimitiveDate", "Period")
   public serviced?: PrimitiveDate | Period;
 
+  @FhirChoice("CodeableConcept", "Address", "Reference")
   public location?: CodeableConcept | Address | Reference;
 
+  @FhirField("SimpleQuantity")
   public quantity?: SimpleQuantity;
 
+  @FhirField("Money")
   public unitPrice?: Money;
 
+  @FhirField("PrimitiveDecimal")
   public factor?: PrimitiveDecimal;
 
+  @FhirField("Money")
   public net?: Money;
 
+  @FhirList("Reference")
   public udi?: Array<Reference>;
 
+  @FhirField("CodeableConcept")
   public bodySite?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public subSite?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public encounter?: Array<Reference>;
 
+  @FhirList("PrimitivePositiveInt")
   public noteNumber?: Array<PrimitivePositiveInt>;
 
+  @FhirList("ExplanationOfBenefitItemAdjudication")
   public adjudication?: Array<ExplanationOfBenefitItemAdjudication>;
 
+  @FhirList("ExplanationOfBenefitItemDetail")
   public detail?: Array<ExplanationOfBenefitItemDetail>;
 
   public static parse(
@@ -178,28 +109,16 @@ export class ExplanationOfBenefitItem extends BackboneElement {
       newInstance.sequence = PrimitivePositiveInt.parsePrimitive(json.sequence, json._sequence);
     }
     if (json.careTeamSequence !== undefined) {
-      newInstance.careTeamSequence = json.careTeamSequence.map((x, i) => {
-        const ext = json._careTeamSequence && json._careTeamSequence[i];
-        return PrimitivePositiveInt.parsePrimitive(x, ext);
-      });
+      newInstance.careTeamSequence = json.careTeamSequence.map((x, i) => PrimitivePositiveInt.parsePrimitive(x, json._careTeamSequence?.[i]));
     }
     if (json.diagnosisSequence !== undefined) {
-      newInstance.diagnosisSequence = json.diagnosisSequence.map((x, i) => {
-        const ext = json._diagnosisSequence && json._diagnosisSequence[i];
-        return PrimitivePositiveInt.parsePrimitive(x, ext);
-      });
+      newInstance.diagnosisSequence = json.diagnosisSequence.map((x, i) => PrimitivePositiveInt.parsePrimitive(x, json._diagnosisSequence?.[i]));
     }
     if (json.procedureSequence !== undefined) {
-      newInstance.procedureSequence = json.procedureSequence.map((x, i) => {
-        const ext = json._procedureSequence && json._procedureSequence[i];
-        return PrimitivePositiveInt.parsePrimitive(x, ext);
-      });
+      newInstance.procedureSequence = json.procedureSequence.map((x, i) => PrimitivePositiveInt.parsePrimitive(x, json._procedureSequence?.[i]));
     }
     if (json.informationSequence !== undefined) {
-      newInstance.informationSequence = json.informationSequence.map((x, i) => {
-        const ext = json._informationSequence && json._informationSequence[i];
-        return PrimitivePositiveInt.parsePrimitive(x, ext);
-      });
+      newInstance.informationSequence = json.informationSequence.map((x, i) => PrimitivePositiveInt.parsePrimitive(x, json._informationSequence?.[i]));
     }
     if (json.revenue !== undefined) {
       newInstance.revenue = CodeableConcept.parse(json.revenue);
@@ -256,10 +175,7 @@ export class ExplanationOfBenefitItem extends BackboneElement {
       newInstance.encounter = json.encounter.map((x) => Reference.parse(x));
     }
     if (json.noteNumber !== undefined) {
-      newInstance.noteNumber = json.noteNumber.map((x, i) => {
-        const ext = json._noteNumber && json._noteNumber[i];
-        return PrimitivePositiveInt.parsePrimitive(x, ext);
-      });
+      newInstance.noteNumber = json.noteNumber.map((x, i) => PrimitivePositiveInt.parsePrimitive(x, json._noteNumber?.[i]));
     }
     if (json.adjudication !== undefined) {
       newInstance.adjudication = json.adjudication.map((x) => ExplanationOfBenefitItemAdjudication.parse(x));

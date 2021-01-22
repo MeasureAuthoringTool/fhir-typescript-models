@@ -1,76 +1,52 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   Identifier,
   ISubstanceReferenceInformationTarget,
   PrimitiveString,
   Quantity,
   Range,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("SubstanceReferenceInformationTarget", "BackboneElement")
 export class SubstanceReferenceInformationTarget extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "SubstanceReferenceInformation.Target";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "target",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "interaction",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "organism",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "organismType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "amount",
-      fieldType: [Quantity, Range, PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "amountType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "source",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirField("Identifier")
   public target?: Identifier;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public interaction?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public organism?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public organismType?: CodeableConcept;
 
+  @FhirChoice("Quantity", "Range", "PrimitiveString")
   public amount?: Quantity | Range | PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public amountType?: CodeableConcept;
 
+  @FhirList("Reference")
   public source?: Array<Reference>;
 
   public static parse(

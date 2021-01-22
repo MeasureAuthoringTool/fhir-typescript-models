@@ -1,9 +1,12 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   Coding,
   DomainResource,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IMessageHeader,
   MessageHeaderDestination,
   MessageHeaderResponse,
@@ -11,86 +14,50 @@ import {
   PrimitiveCanonical,
   PrimitiveUri,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MessageHeader", "DomainResource")
 export class MessageHeader extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MessageHeader";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "event",
-      fieldType: [Coding, PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "destination",
-      fieldType: [MessageHeaderDestination],
-      isArray: true
-    }, {
-      fieldName: "sender",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "enterer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "author",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "source",
-      fieldType: [MessageHeaderSource],
-      isArray: false
-    }, {
-      fieldName: "responsible",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "reason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "response",
-      fieldType: [MessageHeaderResponse],
-      isArray: false
-    }, {
-      fieldName: "focus",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "definition",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("Coding", "PrimitiveUri")
   public event?: Coding | PrimitiveUri;
 
+  @FhirList("MessageHeaderDestination")
   public destination?: Array<MessageHeaderDestination>;
 
+  @FhirField("Reference")
   public sender?: Reference;
 
+  @FhirField("Reference")
   public enterer?: Reference;
 
+  @FhirField("Reference")
   public author?: Reference;
 
+  @FhirField("MessageHeaderSource")
   public source?: MessageHeaderSource;
 
+  @FhirField("Reference")
   public responsible?: Reference;
 
+  @FhirField("CodeableConcept")
   public reason?: CodeableConcept;
 
+  @FhirField("MessageHeaderResponse")
   public response?: MessageHeaderResponse;
 
+  @FhirList("Reference")
   public focus?: Array<Reference>;
 
+  @FhirField("PrimitiveCanonical")
   public definition?: PrimitiveCanonical;
 
   public static parse(

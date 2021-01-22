@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Coding,
   Extension,
+  FhirField,
+  FhirList,
   IImagingStudySeries,
   ImagingStudySeriesInstance,
   ImagingStudySeriesPerformer,
@@ -11,92 +13,53 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ImagingStudySeries", "BackboneElement")
 export class ImagingStudySeries extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ImagingStudy.Series";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "uid",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "number",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "modality",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "numberOfInstances",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "endpoint",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "bodySite",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "laterality",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "specimen",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "started",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [ImagingStudySeriesPerformer],
-      isArray: true
-    }, {
-      fieldName: "instance",
-      fieldType: [ImagingStudySeriesInstance],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public uid?: PrimitiveId;
 
+  @FhirField("PrimitiveUnsignedInt")
   public number?: PrimitiveUnsignedInt;
 
+  @FhirField("Coding")
   public modality?: Coding;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveUnsignedInt")
   public numberOfInstances?: PrimitiveUnsignedInt;
 
+  @FhirList("Reference")
   public endpoint?: Array<Reference>;
 
+  @FhirField("Coding")
   public bodySite?: Coding;
 
+  @FhirField("Coding")
   public laterality?: Coding;
 
+  @FhirList("Reference")
   public specimen?: Array<Reference>;
 
+  @FhirField("PrimitiveDateTime")
   public started?: PrimitiveDateTime;
 
+  @FhirList("ImagingStudySeriesPerformer")
   public performer?: Array<ImagingStudySeriesPerformer>;
 
+  @FhirList("ImagingStudySeriesInstance")
   public instance?: Array<ImagingStudySeriesInstance>;
 
   public static parse(

@@ -1,47 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
+  FhirField,
+  FhirList,
   IProvenanceAgent,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ProvenanceAgent", "BackboneElement")
 export class ProvenanceAgent extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Provenance.Agent";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "role",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "who",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "onBehalfOf",
-      fieldType: [Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public role?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public who?: Reference;
 
+  @FhirField("Reference")
   public onBehalfOf?: Reference;
 
   public static parse(

@@ -1,29 +1,24 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   BackboneElement,
+  FhirChoice,
   IContractLegal,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ContractLegal", "BackboneElement")
 export class ContractLegal extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Legal";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "content",
-      fieldType: [Attachment, Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("Attachment", "Reference")
   public content?: Attachment | Reference;
 
   public static parse(

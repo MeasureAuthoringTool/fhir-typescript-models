@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   ContactPoint,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IPractitionerRole,
   Period,
@@ -12,104 +14,59 @@ import {
   PrimitiveBoolean,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PractitionerRole", "DomainResource")
 export class PractitionerRole extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "PractitionerRole";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "active",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "practitioner",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "organization",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "specialty",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "healthcareService",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "telecom",
-      fieldType: [ContactPoint],
-      isArray: true
-    }, {
-      fieldName: "availableTime",
-      fieldType: [PractitionerRoleAvailableTime],
-      isArray: true
-    }, {
-      fieldName: "notAvailable",
-      fieldType: [PractitionerRoleNotAvailable],
-      isArray: true
-    }, {
-      fieldName: "availabilityExceptions",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "endpoint",
-      fieldType: [Reference],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveBoolean")
   public active?: PrimitiveBoolean;
 
+  @FhirField("Period")
   public period?: Period;
 
+  @FhirField("Reference")
   public practitioner?: Reference;
 
+  @FhirField("Reference")
   public organization?: Reference;
 
+  @FhirList("CodeableConcept")
   public code?: Array<CodeableConcept>;
 
+  @FhirList("CodeableConcept")
   public specialty?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public location?: Array<Reference>;
 
+  @FhirList("Reference")
   public healthcareService?: Array<Reference>;
 
+  @FhirList("ContactPoint")
   public telecom?: Array<ContactPoint>;
 
+  @FhirList("PractitionerRoleAvailableTime")
   public availableTime?: Array<PractitionerRoleAvailableTime>;
 
+  @FhirList("PractitionerRoleNotAvailable")
   public notAvailable?: Array<PractitionerRoleNotAvailable>;
 
+  @FhirField("PrimitiveString")
   public availabilityExceptions?: PrimitiveString;
 
+  @FhirList("Reference")
   public endpoint?: Array<Reference>;
 
   get primaryCode(): CodeableConcept | undefined {

@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Duration,
   Extension,
+  FhirChoice,
+  FhirField,
   IGoalTarget,
   PrimitiveBoolean,
   PrimitiveDate,
@@ -12,38 +14,26 @@ import {
   Quantity,
   Range,
   Ratio,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("GoalTarget", "BackboneElement")
 export class GoalTarget extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Goal.Target";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "measure",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "detail",
-      fieldType: [Quantity, Range, CodeableConcept, PrimitiveString, PrimitiveBoolean, PrimitiveInteger, Ratio],
-      isArray: false
-    }, {
-      fieldName: "due",
-      fieldType: [PrimitiveDate, Duration],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public measure?: CodeableConcept;
 
+  @FhirChoice("Quantity", "Range", "CodeableConcept", "PrimitiveString", "PrimitiveBoolean", "PrimitiveInteger", "Ratio")
   public detail?: Quantity | Range | CodeableConcept | PrimitiveString | PrimitiveBoolean | PrimitiveInteger | Ratio;
 
+  @FhirChoice("PrimitiveDate", "Duration")
   public due?: PrimitiveDate | Duration;
 
   public static parse(

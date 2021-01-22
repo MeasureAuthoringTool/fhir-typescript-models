@@ -1,44 +1,34 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirChoice,
+  FhirField,
   IExplanationOfBenefitBenefitBalanceFinancial,
   Money,
   PrimitiveString,
   PrimitiveUnsignedInt,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ExplanationOfBenefitBenefitBalanceFinancial", "BackboneElement")
 export class ExplanationOfBenefitBenefitBalanceFinancial extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ExplanationOfBenefit.BenefitBalance.Financial";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "allowed",
-      fieldType: [PrimitiveUnsignedInt, PrimitiveString, Money],
-      isArray: false
-    }, {
-      fieldName: "used",
-      fieldType: [PrimitiveUnsignedInt, Money],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirChoice("PrimitiveUnsignedInt", "PrimitiveString", "Money")
   public allowed?: PrimitiveUnsignedInt | PrimitiveString | Money;
 
+  @FhirChoice("PrimitiveUnsignedInt", "Money")
   public used?: PrimitiveUnsignedInt | Money;
 
   public static parse(

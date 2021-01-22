@@ -1,43 +1,33 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirChoice,
+  FhirField,
   IBiologicallyDerivedProductCollection,
   Period,
   PrimitiveDateTime,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("BiologicallyDerivedProductCollection", "BackboneElement")
 export class BiologicallyDerivedProductCollection extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "BiologicallyDerivedProduct.Collection";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "collector",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "source",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "collected",
-      fieldType: [PrimitiveDateTime, Period],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public collector?: Reference;
 
+  @FhirField("Reference")
   public source?: Reference;
 
+  @FhirChoice("PrimitiveDateTime", "Period")
   public collected?: PrimitiveDateTime | Period;
 
   public static parse(

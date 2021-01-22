@@ -1,43 +1,32 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IClinicalImpressionFinding,
   PrimitiveString,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ClinicalImpressionFinding", "BackboneElement")
 export class ClinicalImpressionFinding extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ClinicalImpression.Finding";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "itemCodeableConcept",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "itemReference",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "basis",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public itemCodeableConcept?: CodeableConcept;
 
+  @FhirField("Reference")
   public itemReference?: Reference;
 
+  @FhirField("PrimitiveString")
   public basis?: PrimitiveString;
 
   public static parse(

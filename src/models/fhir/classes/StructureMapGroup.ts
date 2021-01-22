@@ -1,63 +1,44 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IStructureMapGroup,
   PrimitiveId,
   PrimitiveString,
   StructureMapGroupInput,
   StructureMapGroupRule,
   StructureMapGroupTypeMode,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("StructureMapGroup", "BackboneElement")
 export class StructureMapGroup extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureMap.Group";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "extends",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "typeMode",
-      fieldType: [StructureMapGroupTypeMode],
-      isArray: false
-    }, {
-      fieldName: "documentation",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "input",
-      fieldType: [StructureMapGroupInput],
-      isArray: true
-    }, {
-      fieldName: "rule",
-      fieldType: [StructureMapGroupRule],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public name?: PrimitiveId;
 
+  @FhirField("PrimitiveId")
   public extends?: PrimitiveId;
 
+  @FhirField("StructureMapGroupTypeMode")
   public typeMode?: StructureMapGroupTypeMode;
 
+  @FhirField("PrimitiveString")
   public documentation?: PrimitiveString;
 
+  @FhirList("StructureMapGroupInput")
   public input?: Array<StructureMapGroupInput>;
 
+  @FhirList("StructureMapGroupRule")
   public rule?: Array<StructureMapGroupRule>;
 
   public static parse(

@@ -1,36 +1,29 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirChoice,
+  FhirField,
   IAuditEventEntityDetail,
   PrimitiveBase64Binary,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AuditEventEntityDetail", "BackboneElement")
 export class AuditEventEntityDetail extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AuditEvent.Entity.Detail";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveString, PrimitiveBase64Binary],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public type?: PrimitiveString;
 
+  @FhirChoice("PrimitiveString", "PrimitiveBase64Binary")
   public value?: PrimitiveString | PrimitiveBase64Binary;
 
   public static parse(

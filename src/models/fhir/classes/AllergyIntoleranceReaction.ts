@@ -1,69 +1,47 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   AllergyIntoleranceSeverity,
   Annotation,
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   IAllergyIntoleranceReaction,
   PrimitiveDateTime,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("AllergyIntoleranceReaction", "BackboneElement")
 export class AllergyIntoleranceReaction extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "AllergyIntolerance.Reaction";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "substance",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "manifestation",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "onset",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "severity",
-      fieldType: [AllergyIntoleranceSeverity],
-      isArray: false
-    }, {
-      fieldName: "exposureRoute",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public substance?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public manifestation?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveDateTime")
   public onset?: PrimitiveDateTime;
 
+  @FhirField("AllergyIntoleranceSeverity")
   public severity?: AllergyIntoleranceSeverity;
 
+  @FhirField("CodeableConcept")
   public exposureRoute?: CodeableConcept;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
   public static parse(

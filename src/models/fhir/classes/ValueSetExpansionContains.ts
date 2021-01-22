@@ -1,75 +1,50 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IValueSetExpansionContains,
   PrimitiveBoolean,
   PrimitiveCode,
   PrimitiveString,
   PrimitiveUri,
   ValueSetComposeIncludeConceptDesignation,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ValueSetExpansionContains", "BackboneElement")
 export class ValueSetExpansionContains extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ValueSet.Expansion.Contains";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "system",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "abstract",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "inactive",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "version",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "display",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "designation",
-      fieldType: [ValueSetComposeIncludeConceptDesignation],
-      isArray: true
-    }, {
-      fieldName: "contains",
-      fieldType: [ValueSetExpansionContains],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveUri")
   public system?: PrimitiveUri;
 
+  @FhirField("PrimitiveBoolean")
   public abstract?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveBoolean")
   public inactive?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveString")
   public version?: PrimitiveString;
 
+  @FhirField("PrimitiveCode")
   public code?: PrimitiveCode;
 
+  @FhirField("PrimitiveString")
   public display?: PrimitiveString;
 
+  @FhirList("ValueSetComposeIncludeConceptDesignation")
   public designation?: Array<ValueSetComposeIncludeConceptDesignation>;
 
+  @FhirList("ValueSetExpansionContains")
   public contains?: Array<ValueSetExpansionContains>;
 
   public static parse(

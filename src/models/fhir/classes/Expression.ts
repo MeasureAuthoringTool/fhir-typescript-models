@@ -1,56 +1,39 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirField,
   IExpression,
   PrimitiveCode,
   PrimitiveId,
   PrimitiveString,
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Expression", "Element")
 export class Expression extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Expression";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "language",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "expression",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "reference",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("PrimitiveId")
   public name?: PrimitiveId;
 
+  @FhirField("PrimitiveCode")
   public language?: PrimitiveCode;
 
+  @FhirField("PrimitiveString")
   public expression?: PrimitiveString;
 
+  @FhirField("PrimitiveUri")
   public reference?: PrimitiveUri;
 
   public static parse(

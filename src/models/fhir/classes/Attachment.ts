@@ -1,7 +1,8 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Element,
   Extension,
+  FhirField,
   IAttachment,
   MimeType,
   PrimitiveBase64Binary,
@@ -10,68 +11,41 @@ import {
   PrimitiveString,
   PrimitiveUnsignedInt,
   PrimitiveUrl,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Attachment", "Element")
 export class Attachment extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Attachment";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "contentType",
-      fieldType: [MimeType],
-      isArray: false
-    }, {
-      fieldName: "language",
-      fieldType: [PrimitiveCode],
-      isArray: false
-    }, {
-      fieldName: "data",
-      fieldType: [PrimitiveBase64Binary],
-      isArray: false
-    }, {
-      fieldName: "url",
-      fieldType: [PrimitiveUrl],
-      isArray: false
-    }, {
-      fieldName: "size",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: false
-    }, {
-      fieldName: "hash",
-      fieldType: [PrimitiveBase64Binary],
-      isArray: false
-    }, {
-      fieldName: "title",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "creation",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }];
-  }
-
+  @FhirField("MimeType")
   public contentType?: MimeType;
 
+  @FhirField("PrimitiveCode")
   public language?: PrimitiveCode;
 
+  @FhirField("PrimitiveBase64Binary")
   public data?: PrimitiveBase64Binary;
 
+  @FhirField("PrimitiveUrl")
   public url?: PrimitiveUrl;
 
+  @FhirField("PrimitiveUnsignedInt")
   public size?: PrimitiveUnsignedInt;
 
+  @FhirField("PrimitiveBase64Binary")
   public hash?: PrimitiveBase64Binary;
 
+  @FhirField("PrimitiveString")
   public title?: PrimitiveString;
 
+  @FhirField("PrimitiveDateTime")
   public creation?: PrimitiveDateTime;
 
   public static parse(

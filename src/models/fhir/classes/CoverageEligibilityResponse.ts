@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   CoverageEligibilityResponseError,
   CoverageEligibilityResponseInsurance,
@@ -7,6 +7,9 @@ import {
   EligibilityResponsePurpose,
   EligibilityResponseStatus,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   ICoverageEligibilityResponse,
   Identifier,
   Period,
@@ -15,110 +18,62 @@ import {
   PrimitiveString,
   Reference,
   RemittanceOutcome,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CoverageEligibilityResponse", "DomainResource")
 export class CoverageEligibilityResponse extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityResponse";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [EligibilityResponseStatus],
-      isArray: false
-    }, {
-      fieldName: "purpose",
-      fieldType: [EligibilityResponsePurpose],
-      isArray: true
-    }, {
-      fieldName: "patient",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "serviced",
-      fieldType: [PrimitiveDate, Period],
-      isArray: false
-    }, {
-      fieldName: "created",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "requestor",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "request",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "outcome",
-      fieldType: [RemittanceOutcome],
-      isArray: false
-    }, {
-      fieldName: "disposition",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "insurer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "insurance",
-      fieldType: [CoverageEligibilityResponseInsurance],
-      isArray: true
-    }, {
-      fieldName: "preAuthRef",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "form",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "error",
-      fieldType: [CoverageEligibilityResponseError],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("EligibilityResponseStatus")
   public status?: EligibilityResponseStatus;
 
+  @FhirList("EligibilityResponsePurpose")
   public purpose?: Array<EligibilityResponsePurpose>;
 
+  @FhirField("Reference")
   public patient?: Reference;
 
+  @FhirChoice("PrimitiveDate", "Period")
   public serviced?: PrimitiveDate | Period;
 
+  @FhirField("PrimitiveDateTime")
   public created?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public requestor?: Reference;
 
+  @FhirField("Reference")
   public request?: Reference;
 
+  @FhirField("RemittanceOutcome")
   public outcome?: RemittanceOutcome;
 
+  @FhirField("PrimitiveString")
   public disposition?: PrimitiveString;
 
+  @FhirField("Reference")
   public insurer?: Reference;
 
+  @FhirList("CoverageEligibilityResponseInsurance")
   public insurance?: Array<CoverageEligibilityResponseInsurance>;
 
+  @FhirField("PrimitiveString")
   public preAuthRef?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public form?: CodeableConcept;
 
+  @FhirList("CoverageEligibilityResponseError")
   public error?: Array<CoverageEligibilityResponseError>;
 
   public static parse(
@@ -134,10 +89,7 @@ export class CoverageEligibilityResponse extends DomainResource {
       newInstance.status = EligibilityResponseStatus.parsePrimitive(json.status, json._status);
     }
     if (json.purpose !== undefined) {
-      newInstance.purpose = json.purpose.map((x, i) => {
-        const ext = json._purpose && json._purpose[i];
-        return EligibilityResponsePurpose.parsePrimitive(x, ext);
-      });
+      newInstance.purpose = json.purpose.map((x, i) => EligibilityResponsePurpose.parsePrimitive(x, json._purpose?.[i]));
     }
     if (json.patient !== undefined) {
       newInstance.patient = Reference.parse(json.patient);

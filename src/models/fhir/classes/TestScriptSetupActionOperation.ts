@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Coding,
   Extension,
   FHIRDefinedType,
+  FhirField,
+  FhirList,
   ITestScriptSetupActionOperation,
   MimeType,
   PrimitiveBoolean,
@@ -12,122 +14,68 @@ import {
   PrimitiveString,
   TestScriptRequestMethodCode,
   TestScriptSetupActionOperationRequestHeader,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("TestScriptSetupActionOperation", "BackboneElement")
 export class TestScriptSetupActionOperation extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "TestScript.Setup.Action.Operation";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "type",
-      fieldType: [Coding],
-      isArray: false
-    }, {
-      fieldName: "resource",
-      fieldType: [FHIRDefinedType],
-      isArray: false
-    }, {
-      fieldName: "label",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "accept",
-      fieldType: [MimeType],
-      isArray: false
-    }, {
-      fieldName: "contentType",
-      fieldType: [MimeType],
-      isArray: false
-    }, {
-      fieldName: "destination",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "encodeRequestUrl",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "method",
-      fieldType: [TestScriptRequestMethodCode],
-      isArray: false
-    }, {
-      fieldName: "origin",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "params",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "requestHeader",
-      fieldType: [TestScriptSetupActionOperationRequestHeader],
-      isArray: true
-    }, {
-      fieldName: "requestId",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "responseId",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "sourceId",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "targetId",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "url",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Coding")
   public type?: Coding;
 
+  @FhirField("FHIRDefinedType")
   public resource?: FHIRDefinedType;
 
+  @FhirField("PrimitiveString")
   public label?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("MimeType")
   public accept?: MimeType;
 
+  @FhirField("MimeType")
   public contentType?: MimeType;
 
+  @FhirField("PrimitiveInteger")
   public destination?: PrimitiveInteger;
 
+  @FhirField("PrimitiveBoolean")
   public encodeRequestUrl?: PrimitiveBoolean;
 
+  @FhirField("TestScriptRequestMethodCode")
   public method?: TestScriptRequestMethodCode;
 
+  @FhirField("PrimitiveInteger")
   public origin?: PrimitiveInteger;
 
+  @FhirField("PrimitiveString")
   public params?: PrimitiveString;
 
+  @FhirList("TestScriptSetupActionOperationRequestHeader")
   public requestHeader?: Array<TestScriptSetupActionOperationRequestHeader>;
 
+  @FhirField("PrimitiveId")
   public requestId?: PrimitiveId;
 
+  @FhirField("PrimitiveId")
   public responseId?: PrimitiveId;
 
+  @FhirField("PrimitiveId")
   public sourceId?: PrimitiveId;
 
+  @FhirField("PrimitiveId")
   public targetId?: PrimitiveId;
 
+  @FhirField("PrimitiveString")
   public url?: PrimitiveString;
 
   public static parse(

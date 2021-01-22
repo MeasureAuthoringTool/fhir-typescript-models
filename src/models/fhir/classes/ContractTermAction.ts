@@ -1,10 +1,13 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   BackboneElement,
   CodeableConcept,
   ContractTermActionSubject,
   Extension,
+  FhirChoice,
+  FhirField,
+  FhirList,
   IContractTermAction,
   Period,
   PrimitiveBoolean,
@@ -13,146 +16,80 @@ import {
   PrimitiveUnsignedInt,
   Reference,
   Timing,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ContractTermAction", "BackboneElement")
 export class ContractTermAction extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Contract.Term.Action";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "doNotPerform",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "type",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "subject",
-      fieldType: [ContractTermActionSubject],
-      isArray: true
-    }, {
-      fieldName: "intent",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "linkId",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "context",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "contextLinkId",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "occurrence",
-      fieldType: [PrimitiveDateTime, Period, Timing],
-      isArray: false
-    }, {
-      fieldName: "requester",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "requesterLinkId",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "performerType",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "performerRole",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "performer",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "performerLinkId",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "reason",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "reasonLinkId",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "securityLabelNumber",
-      fieldType: [PrimitiveUnsignedInt],
-      isArray: true
-    }];
-  }
-
+  @FhirField("PrimitiveBoolean")
   public doNotPerform?: PrimitiveBoolean;
 
+  @FhirField("CodeableConcept")
   public type?: CodeableConcept;
 
+  @FhirList("ContractTermActionSubject")
   public subject?: Array<ContractTermActionSubject>;
 
+  @FhirField("CodeableConcept")
   public intent?: CodeableConcept;
 
+  @FhirList("PrimitiveString")
   public linkId?: Array<PrimitiveString>;
 
+  @FhirField("CodeableConcept")
   public status?: CodeableConcept;
 
+  @FhirField("Reference")
   public context?: Reference;
 
+  @FhirList("PrimitiveString")
   public contextLinkId?: Array<PrimitiveString>;
 
+  @FhirChoice("PrimitiveDateTime", "Period", "Timing")
   public occurrence?: PrimitiveDateTime | Period | Timing;
 
+  @FhirList("Reference")
   public requester?: Array<Reference>;
 
+  @FhirList("PrimitiveString")
   public requesterLinkId?: Array<PrimitiveString>;
 
+  @FhirList("CodeableConcept")
   public performerType?: Array<CodeableConcept>;
 
+  @FhirField("CodeableConcept")
   public performerRole?: CodeableConcept;
 
+  @FhirField("Reference")
   public performer?: Reference;
 
+  @FhirList("PrimitiveString")
   public performerLinkId?: Array<PrimitiveString>;
 
+  @FhirList("CodeableConcept")
   public reasonCode?: Array<CodeableConcept>;
 
+  @FhirList("Reference")
   public reasonReference?: Array<Reference>;
 
+  @FhirList("PrimitiveString")
   public reason?: Array<PrimitiveString>;
 
+  @FhirList("PrimitiveString")
   public reasonLinkId?: Array<PrimitiveString>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("PrimitiveUnsignedInt")
   public securityLabelNumber?: Array<PrimitiveUnsignedInt>;
 
   public static parse(
@@ -174,10 +111,7 @@ export class ContractTermAction extends BackboneElement {
       newInstance.intent = CodeableConcept.parse(json.intent);
     }
     if (json.linkId !== undefined) {
-      newInstance.linkId = json.linkId.map((x, i) => {
-        const ext = json._linkId && json._linkId[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.linkId = json.linkId.map((x, i) => PrimitiveString.parsePrimitive(x, json._linkId?.[i]));
     }
     if (json.status !== undefined) {
       newInstance.status = CodeableConcept.parse(json.status);
@@ -186,10 +120,7 @@ export class ContractTermAction extends BackboneElement {
       newInstance.context = Reference.parse(json.context);
     }
     if (json.contextLinkId !== undefined) {
-      newInstance.contextLinkId = json.contextLinkId.map((x, i) => {
-        const ext = json._contextLinkId && json._contextLinkId[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.contextLinkId = json.contextLinkId.map((x, i) => PrimitiveString.parsePrimitive(x, json._contextLinkId?.[i]));
     }
     if (json.occurrenceDateTime !== undefined) {
       newInstance.occurrence = PrimitiveDateTime.parsePrimitive(json.occurrenceDateTime, json._occurrenceDateTime);
@@ -204,10 +135,7 @@ export class ContractTermAction extends BackboneElement {
       newInstance.requester = json.requester.map((x) => Reference.parse(x));
     }
     if (json.requesterLinkId !== undefined) {
-      newInstance.requesterLinkId = json.requesterLinkId.map((x, i) => {
-        const ext = json._requesterLinkId && json._requesterLinkId[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.requesterLinkId = json.requesterLinkId.map((x, i) => PrimitiveString.parsePrimitive(x, json._requesterLinkId?.[i]));
     }
     if (json.performerType !== undefined) {
       newInstance.performerType = json.performerType.map((x) => CodeableConcept.parse(x));
@@ -219,10 +147,7 @@ export class ContractTermAction extends BackboneElement {
       newInstance.performer = Reference.parse(json.performer);
     }
     if (json.performerLinkId !== undefined) {
-      newInstance.performerLinkId = json.performerLinkId.map((x, i) => {
-        const ext = json._performerLinkId && json._performerLinkId[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.performerLinkId = json.performerLinkId.map((x, i) => PrimitiveString.parsePrimitive(x, json._performerLinkId?.[i]));
     }
     if (json.reasonCode !== undefined) {
       newInstance.reasonCode = json.reasonCode.map((x) => CodeableConcept.parse(x));
@@ -231,25 +156,16 @@ export class ContractTermAction extends BackboneElement {
       newInstance.reasonReference = json.reasonReference.map((x) => Reference.parse(x));
     }
     if (json.reason !== undefined) {
-      newInstance.reason = json.reason.map((x, i) => {
-        const ext = json._reason && json._reason[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.reason = json.reason.map((x, i) => PrimitiveString.parsePrimitive(x, json._reason?.[i]));
     }
     if (json.reasonLinkId !== undefined) {
-      newInstance.reasonLinkId = json.reasonLinkId.map((x, i) => {
-        const ext = json._reasonLinkId && json._reasonLinkId[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.reasonLinkId = json.reasonLinkId.map((x, i) => PrimitiveString.parsePrimitive(x, json._reasonLinkId?.[i]));
     }
     if (json.note !== undefined) {
       newInstance.note = json.note.map((x) => Annotation.parse(x));
     }
     if (json.securityLabelNumber !== undefined) {
-      newInstance.securityLabelNumber = json.securityLabelNumber.map((x, i) => {
-        const ext = json._securityLabelNumber && json._securityLabelNumber[i];
-        return PrimitiveUnsignedInt.parsePrimitive(x, ext);
-      });
+      newInstance.securityLabelNumber = json.securityLabelNumber.map((x, i) => PrimitiveUnsignedInt.parsePrimitive(x, json._securityLabelNumber?.[i]));
     }
     return newInstance;
   }

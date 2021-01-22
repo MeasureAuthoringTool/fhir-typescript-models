@@ -1,112 +1,69 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   CoverageEligibilityResponseInsuranceItemBenefit,
   Extension,
+  FhirField,
+  FhirList,
   ICoverageEligibilityResponseInsuranceItem,
   PrimitiveBoolean,
   PrimitiveString,
   PrimitiveUri,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("CoverageEligibilityResponseInsuranceItem", "BackboneElement")
 export class CoverageEligibilityResponseInsuranceItem extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "CoverageEligibilityResponse.Insurance.Item";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "category",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "productOrService",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "modifier",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "provider",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "excluded",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "name",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "network",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "unit",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "term",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "benefit",
-      fieldType: [CoverageEligibilityResponseInsuranceItemBenefit],
-      isArray: true
-    }, {
-      fieldName: "authorizationRequired",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "authorizationSupporting",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "authorizationUrl",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public category?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public productOrService?: CodeableConcept;
 
+  @FhirList("CodeableConcept")
   public modifier?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public provider?: Reference;
 
+  @FhirField("PrimitiveBoolean")
   public excluded?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveString")
   public name?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("CodeableConcept")
   public network?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public unit?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public term?: CodeableConcept;
 
+  @FhirList("CoverageEligibilityResponseInsuranceItemBenefit")
   public benefit?: Array<CoverageEligibilityResponseInsuranceItemBenefit>;
 
+  @FhirField("PrimitiveBoolean")
   public authorizationRequired?: PrimitiveBoolean;
 
+  @FhirList("CodeableConcept")
   public authorizationSupporting?: Array<CodeableConcept>;
 
+  @FhirField("PrimitiveUri")
   public authorizationUrl?: PrimitiveUri;
 
   public static parse(

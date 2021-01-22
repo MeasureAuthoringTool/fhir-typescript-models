@@ -1,36 +1,28 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   IdentityAssuranceLevel,
   IPersonLink,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("PersonLink", "BackboneElement")
 export class PersonLink extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Person.Link";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "target",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "assurance",
-      fieldType: [IdentityAssuranceLevel],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Reference")
   public target?: Reference;
 
+  @FhirField("IdentityAssuranceLevel")
   public assurance?: IdentityAssuranceLevel;
 
   public static parse(

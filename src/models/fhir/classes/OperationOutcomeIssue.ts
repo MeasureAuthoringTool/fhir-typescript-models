@@ -1,62 +1,43 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
+  FhirList,
   IOperationOutcomeIssue,
   IssueSeverity,
   IssueType,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("OperationOutcomeIssue", "BackboneElement")
 export class OperationOutcomeIssue extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OperationOutcome.Issue";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "severity",
-      fieldType: [IssueSeverity],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [IssueType],
-      isArray: false
-    }, {
-      fieldName: "details",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "diagnostics",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "location",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }, {
-      fieldName: "expression",
-      fieldType: [PrimitiveString],
-      isArray: true
-    }];
-  }
-
+  @FhirField("IssueSeverity")
   public severity?: IssueSeverity;
 
+  @FhirField("IssueType")
   public code?: IssueType;
 
+  @FhirField("CodeableConcept")
   public details?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public diagnostics?: PrimitiveString;
 
+  @FhirList("PrimitiveString")
   public location?: Array<PrimitiveString>;
 
+  @FhirList("PrimitiveString")
   public expression?: Array<PrimitiveString>;
 
   public static parse(
@@ -78,16 +59,10 @@ export class OperationOutcomeIssue extends BackboneElement {
       newInstance.diagnostics = PrimitiveString.parsePrimitive(json.diagnostics, json._diagnostics);
     }
     if (json.location !== undefined) {
-      newInstance.location = json.location.map((x, i) => {
-        const ext = json._location && json._location[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.location = json.location.map((x, i) => PrimitiveString.parsePrimitive(x, json._location?.[i]));
     }
     if (json.expression !== undefined) {
-      newInstance.expression = json.expression.map((x, i) => {
-        const ext = json._expression && json._expression[i];
-        return PrimitiveString.parsePrimitive(x, ext);
-      });
+      newInstance.expression = json.expression.map((x, i) => PrimitiveString.parsePrimitive(x, json._expression?.[i]));
     }
     return newInstance;
   }

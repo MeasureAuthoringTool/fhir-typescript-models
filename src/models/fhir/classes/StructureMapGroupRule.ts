@@ -1,63 +1,44 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
+  FhirList,
   IStructureMapGroupRule,
   PrimitiveId,
   PrimitiveString,
   StructureMapGroupRuleDependent,
   StructureMapGroupRuleSource,
   StructureMapGroupRuleTarget,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("StructureMapGroupRule", "BackboneElement")
 export class StructureMapGroupRule extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "StructureMap.Group.Rule";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "name",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "source",
-      fieldType: [StructureMapGroupRuleSource],
-      isArray: true
-    }, {
-      fieldName: "target",
-      fieldType: [StructureMapGroupRuleTarget],
-      isArray: true
-    }, {
-      fieldName: "rule",
-      fieldType: [StructureMapGroupRule],
-      isArray: true
-    }, {
-      fieldName: "dependent",
-      fieldType: [StructureMapGroupRuleDependent],
-      isArray: true
-    }, {
-      fieldName: "documentation",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public name?: PrimitiveId;
 
+  @FhirList("StructureMapGroupRuleSource")
   public source?: Array<StructureMapGroupRuleSource>;
 
+  @FhirList("StructureMapGroupRuleTarget")
   public target?: Array<StructureMapGroupRuleTarget>;
 
+  @FhirList("StructureMapGroupRule")
   public rule?: Array<StructureMapGroupRule>;
 
+  @FhirList("StructureMapGroupRuleDependent")
   public dependent?: Array<StructureMapGroupRuleDependent>;
 
+  @FhirField("PrimitiveString")
   public documentation?: PrimitiveString;
 
   public static parse(

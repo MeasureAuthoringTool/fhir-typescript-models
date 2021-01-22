@@ -1,62 +1,42 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   Extension,
+  FhirField,
   HTTPVerb,
   IBundleEntryRequest,
   PrimitiveInstant,
   PrimitiveString,
   PrimitiveUri,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("BundleEntryRequest", "BackboneElement")
 export class BundleEntryRequest extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Bundle.Entry.Request";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "method",
-      fieldType: [HTTPVerb],
-      isArray: false
-    }, {
-      fieldName: "url",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "ifNoneMatch",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "ifModifiedSince",
-      fieldType: [PrimitiveInstant],
-      isArray: false
-    }, {
-      fieldName: "ifMatch",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "ifNoneExist",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }];
-  }
-
+  @FhirField("HTTPVerb")
   public method?: HTTPVerb;
 
+  @FhirField("PrimitiveUri")
   public url?: PrimitiveUri;
 
+  @FhirField("PrimitiveString")
   public ifNoneMatch?: PrimitiveString;
 
+  @FhirField("PrimitiveInstant")
   public ifModifiedSince?: PrimitiveInstant;
 
+  @FhirField("PrimitiveString")
   public ifMatch?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public ifNoneExist?: PrimitiveString;
 
   public static parse(

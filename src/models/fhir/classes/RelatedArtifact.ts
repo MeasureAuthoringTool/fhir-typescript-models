@@ -1,70 +1,47 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   Element,
   Extension,
+  FhirField,
   IRelatedArtifact,
   PrimitiveCanonical,
   PrimitiveMarkdown,
   PrimitiveString,
   PrimitiveUrl,
   RelatedArtifactType,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("RelatedArtifact", "Element")
 export class RelatedArtifact extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "RelatedArtifact";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "type",
-      fieldType: [RelatedArtifactType],
-      isArray: false
-    }, {
-      fieldName: "label",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "display",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "citation",
-      fieldType: [PrimitiveMarkdown],
-      isArray: false
-    }, {
-      fieldName: "url",
-      fieldType: [PrimitiveUrl],
-      isArray: false
-    }, {
-      fieldName: "document",
-      fieldType: [Attachment],
-      isArray: false
-    }, {
-      fieldName: "resource",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }];
-  }
-
+  @FhirField("RelatedArtifactType")
   public type?: RelatedArtifactType;
 
+  @FhirField("PrimitiveString")
   public label?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public display?: PrimitiveString;
 
+  @FhirField("PrimitiveMarkdown")
   public citation?: PrimitiveMarkdown;
 
+  @FhirField("PrimitiveUrl")
   public url?: PrimitiveUrl;
 
+  @FhirField("Attachment")
   public document?: Attachment;
 
+  @FhirField("PrimitiveCanonical")
   public resource?: PrimitiveCanonical;
 
   public static parse(

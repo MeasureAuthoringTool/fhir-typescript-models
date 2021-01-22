@@ -1,68 +1,45 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   ConstraintSeverity,
   Element,
   Extension,
+  FhirField,
   IElementDefinitionConstraint,
   PrimitiveCanonical,
   PrimitiveId,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ElementDefinitionConstraint", "Element")
 export class ElementDefinitionConstraint extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ElementDefinition.Constraint";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "key",
-      fieldType: [PrimitiveId],
-      isArray: false
-    }, {
-      fieldName: "requirements",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "severity",
-      fieldType: [ConstraintSeverity],
-      isArray: false
-    }, {
-      fieldName: "human",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "expression",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "xpath",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "source",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }];
-  }
-
+  @FhirField("PrimitiveId")
   public key?: PrimitiveId;
 
+  @FhirField("PrimitiveString")
   public requirements?: PrimitiveString;
 
+  @FhirField("ConstraintSeverity")
   public severity?: ConstraintSeverity;
 
+  @FhirField("PrimitiveString")
   public human?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public expression?: PrimitiveString;
 
+  @FhirField("PrimitiveString")
   public xpath?: PrimitiveString;
 
+  @FhirField("PrimitiveCanonical")
   public source?: PrimitiveCanonical;
 
   public static parse(

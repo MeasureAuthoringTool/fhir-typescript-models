@@ -1,29 +1,24 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   DomainResource,
+  FhirList,
   IOperationOutcome,
   IssueType,
   OperationOutcomeIssue,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("OperationOutcome", "DomainResource")
 export class OperationOutcome extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "OperationOutcome";
-  
+
   static readonly primaryCodePath: string | null = "issue.code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "issue",
-      fieldType: [OperationOutcomeIssue],
-      isArray: true
-    }];
-  }
-
+  @FhirList("OperationOutcomeIssue")
   public issue?: Array<OperationOutcomeIssue>;
 
   get primaryCode(): IssueType | undefined {

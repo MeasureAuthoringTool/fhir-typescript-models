@@ -1,9 +1,10 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Attachment,
   BackboneElement,
   Coding,
   Extension,
+  FhirChoice,
   IQuestionnaireItemInitial,
   PrimitiveBoolean,
   PrimitiveDate,
@@ -15,26 +16,20 @@ import {
   PrimitiveUri,
   Quantity,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("QuestionnaireItemInitial", "BackboneElement")
 export class QuestionnaireItemInitial extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Questionnaire.Item.Initial";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "value",
-      fieldType: [PrimitiveBoolean, PrimitiveDecimal, PrimitiveInteger, PrimitiveDate, PrimitiveDateTime, PrimitiveTime, PrimitiveString, PrimitiveUri, Attachment, Coding, Quantity, Reference],
-      isArray: false
-    }];
-  }
-
+  @FhirChoice("PrimitiveBoolean", "PrimitiveDecimal", "PrimitiveInteger", "PrimitiveDate", "PrimitiveDateTime", "PrimitiveTime", "PrimitiveString", "PrimitiveUri", "Attachment", "Coding", "Quantity", "Reference")
   public value?: PrimitiveBoolean | PrimitiveDecimal | PrimitiveInteger | PrimitiveDate | PrimitiveDateTime | PrimitiveTime | PrimitiveString | PrimitiveUri | Attachment | Coding | Quantity | Reference;
 
   public static parse(

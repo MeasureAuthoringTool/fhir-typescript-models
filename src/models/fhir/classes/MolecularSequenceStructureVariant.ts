@@ -1,57 +1,40 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   BackboneElement,
   CodeableConcept,
   Extension,
+  FhirField,
   IMolecularSequenceStructureVariant,
   MolecularSequenceStructureVariantInner,
   MolecularSequenceStructureVariantOuter,
   PrimitiveBoolean,
   PrimitiveInteger,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MolecularSequenceStructureVariant", "BackboneElement")
 export class MolecularSequenceStructureVariant extends BackboneElement {
   static readonly baseType: string = "FHIR.BackboneElement";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MolecularSequence.StructureVariant";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...BackboneElement.fieldInfo, {
-      fieldName: "variantType",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "exact",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "length",
-      fieldType: [PrimitiveInteger],
-      isArray: false
-    }, {
-      fieldName: "outer",
-      fieldType: [MolecularSequenceStructureVariantOuter],
-      isArray: false
-    }, {
-      fieldName: "inner",
-      fieldType: [MolecularSequenceStructureVariantInner],
-      isArray: false
-    }];
-  }
-
+  @FhirField("CodeableConcept")
   public variantType?: CodeableConcept;
 
+  @FhirField("PrimitiveBoolean")
   public exact?: PrimitiveBoolean;
 
+  @FhirField("PrimitiveInteger")
   public length?: PrimitiveInteger;
 
+  @FhirField("MolecularSequenceStructureVariantOuter")
   public outer?: MolecularSequenceStructureVariantOuter;
 
+  @FhirField("MolecularSequenceStructureVariantInner")
   public inner?: MolecularSequenceStructureVariantInner;
 
   public static parse(

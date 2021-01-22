@@ -1,57 +1,40 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   ContactPointSystem,
   ContactPointUse,
   Element,
   Extension,
+  FhirField,
   IContactPoint,
   Period,
   PrimitivePositiveInt,
   PrimitiveString,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("ContactPoint", "Element")
 export class ContactPoint extends Element {
   static readonly baseType: string = "FHIR.Element";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "ContactPoint";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...Element.fieldInfo, {
-      fieldName: "system",
-      fieldType: [ContactPointSystem],
-      isArray: false
-    }, {
-      fieldName: "value",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "use",
-      fieldType: [ContactPointUse],
-      isArray: false
-    }, {
-      fieldName: "rank",
-      fieldType: [PrimitivePositiveInt],
-      isArray: false
-    }, {
-      fieldName: "period",
-      fieldType: [Period],
-      isArray: false
-    }];
-  }
-
+  @FhirField("ContactPointSystem")
   public system?: ContactPointSystem;
 
+  @FhirField("PrimitiveString")
   public value?: PrimitiveString;
 
+  @FhirField("ContactPointUse")
   public use?: ContactPointUse;
 
+  @FhirField("PrimitivePositiveInt")
   public rank?: PrimitivePositiveInt;
 
+  @FhirField("Period")
   public period?: Period;
 
   public static parse(

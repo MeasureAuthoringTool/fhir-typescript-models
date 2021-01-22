@@ -1,64 +1,45 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   IMedicinalProductIngredient,
   MedicinalProductIngredientSpecifiedSubstance,
   MedicinalProductIngredientSubstance,
   PrimitiveBoolean,
   Reference,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("MedicinalProductIngredient", "DomainResource")
 export class MedicinalProductIngredient extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "MedicinalProductIngredient";
-  
+
   static readonly primaryCodePath: string | null = null;
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "role",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "allergenicIndicator",
-      fieldType: [PrimitiveBoolean],
-      isArray: false
-    }, {
-      fieldName: "manufacturer",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "specifiedSubstance",
-      fieldType: [MedicinalProductIngredientSpecifiedSubstance],
-      isArray: true
-    }, {
-      fieldName: "substance",
-      fieldType: [MedicinalProductIngredientSubstance],
-      isArray: false
-    }];
-  }
-
+  @FhirField("Identifier")
   public identifier?: Identifier;
 
+  @FhirField("CodeableConcept")
   public role?: CodeableConcept;
 
+  @FhirField("PrimitiveBoolean")
   public allergenicIndicator?: PrimitiveBoolean;
 
+  @FhirList("Reference")
   public manufacturer?: Array<Reference>;
 
+  @FhirList("MedicinalProductIngredientSpecifiedSubstance")
   public specifiedSubstance?: Array<MedicinalProductIngredientSpecifiedSubstance>;
 
+  @FhirField("MedicinalProductIngredientSubstance")
   public substance?: MedicinalProductIngredientSubstance;
 
   public static parse(

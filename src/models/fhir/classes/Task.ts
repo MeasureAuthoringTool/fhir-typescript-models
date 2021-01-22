@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { 
+import {
   Annotation,
   CodeableConcept,
   DomainResource,
   Extension,
+  FhirField,
+  FhirList,
   Identifier,
   ITask,
   Period,
@@ -18,206 +20,110 @@ import {
   TaskPriority,
   TaskRestriction,
   TaskStatus,
-  FieldMetadata
+  FhirType
 } from "../internal";
 
+@FhirType("Task", "DomainResource")
 export class Task extends DomainResource {
   static readonly baseType: string = "FHIR.DomainResource";
 
   static readonly namespace: string = "FHIR";
 
   static readonly typeName: string = "Task";
-  
+
   static readonly primaryCodePath: string | null = "code";
 
-  static get fieldInfo(): Array<FieldMetadata> {
-    return [...DomainResource.fieldInfo, {
-      fieldName: "identifier",
-      fieldType: [Identifier],
-      isArray: true
-    }, {
-      fieldName: "instantiatesCanonical",
-      fieldType: [PrimitiveCanonical],
-      isArray: false
-    }, {
-      fieldName: "instantiatesUri",
-      fieldType: [PrimitiveUri],
-      isArray: false
-    }, {
-      fieldName: "basedOn",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "groupIdentifier",
-      fieldType: [Identifier],
-      isArray: false
-    }, {
-      fieldName: "partOf",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "status",
-      fieldType: [TaskStatus],
-      isArray: false
-    }, {
-      fieldName: "statusReason",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "businessStatus",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "intent",
-      fieldType: [TaskIntent],
-      isArray: false
-    }, {
-      fieldName: "priority",
-      fieldType: [TaskPriority],
-      isArray: false
-    }, {
-      fieldName: "code",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "description",
-      fieldType: [PrimitiveString],
-      isArray: false
-    }, {
-      fieldName: "focus",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "for",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "encounter",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "executionPeriod",
-      fieldType: [Period],
-      isArray: false
-    }, {
-      fieldName: "authoredOn",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "lastModified",
-      fieldType: [PrimitiveDateTime],
-      isArray: false
-    }, {
-      fieldName: "requester",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "performerType",
-      fieldType: [CodeableConcept],
-      isArray: true
-    }, {
-      fieldName: "owner",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "location",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "reasonCode",
-      fieldType: [CodeableConcept],
-      isArray: false
-    }, {
-      fieldName: "reasonReference",
-      fieldType: [Reference],
-      isArray: false
-    }, {
-      fieldName: "insurance",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "note",
-      fieldType: [Annotation],
-      isArray: true
-    }, {
-      fieldName: "relevantHistory",
-      fieldType: [Reference],
-      isArray: true
-    }, {
-      fieldName: "restriction",
-      fieldType: [TaskRestriction],
-      isArray: false
-    }, {
-      fieldName: "input",
-      fieldType: [TaskInput],
-      isArray: true
-    }, {
-      fieldName: "output",
-      fieldType: [TaskOutput],
-      isArray: true
-    }];
-  }
-
+  @FhirList("Identifier")
   public identifier?: Array<Identifier>;
 
+  @FhirField("PrimitiveCanonical")
   public instantiatesCanonical?: PrimitiveCanonical;
 
+  @FhirField("PrimitiveUri")
   public instantiatesUri?: PrimitiveUri;
 
+  @FhirList("Reference")
   public basedOn?: Array<Reference>;
 
+  @FhirField("Identifier")
   public groupIdentifier?: Identifier;
 
+  @FhirList("Reference")
   public partOf?: Array<Reference>;
 
+  @FhirField("TaskStatus")
   public status?: TaskStatus;
 
+  @FhirField("CodeableConcept")
   public statusReason?: CodeableConcept;
 
+  @FhirField("CodeableConcept")
   public businessStatus?: CodeableConcept;
 
+  @FhirField("TaskIntent")
   public intent?: TaskIntent;
 
+  @FhirField("TaskPriority")
   public priority?: TaskPriority;
 
+  @FhirField("CodeableConcept")
   public code?: CodeableConcept;
 
+  @FhirField("PrimitiveString")
   public description?: PrimitiveString;
 
+  @FhirField("Reference")
   public focus?: Reference;
 
+  @FhirField("Reference")
   public for?: Reference;
 
+  @FhirField("Reference")
   public encounter?: Reference;
 
+  @FhirField("Period")
   public executionPeriod?: Period;
 
+  @FhirField("PrimitiveDateTime")
   public authoredOn?: PrimitiveDateTime;
 
+  @FhirField("PrimitiveDateTime")
   public lastModified?: PrimitiveDateTime;
 
+  @FhirField("Reference")
   public requester?: Reference;
 
+  @FhirList("CodeableConcept")
   public performerType?: Array<CodeableConcept>;
 
+  @FhirField("Reference")
   public owner?: Reference;
 
+  @FhirField("Reference")
   public location?: Reference;
 
+  @FhirField("CodeableConcept")
   public reasonCode?: CodeableConcept;
 
+  @FhirField("Reference")
   public reasonReference?: Reference;
 
+  @FhirList("Reference")
   public insurance?: Array<Reference>;
 
+  @FhirList("Annotation")
   public note?: Array<Annotation>;
 
+  @FhirList("Reference")
   public relevantHistory?: Array<Reference>;
 
+  @FhirField("TaskRestriction")
   public restriction?: TaskRestriction;
 
+  @FhirList("TaskInput")
   public input?: Array<TaskInput>;
 
+  @FhirList("TaskOutput")
   public output?: Array<TaskOutput>;
 
   get primaryCode(): CodeableConcept | undefined {
