@@ -13,7 +13,6 @@ module.exports = {
     "plugin:jest/recommended",
     "plugin:promise/recommended",
     "prettier",
-    "prettier/@typescript-eslint",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
   ],
   env: {
