@@ -11,7 +11,7 @@ import {
   Stratification,
   IStatementReference,
   ICqmObservation,
-  IStratification
+  IStratification,
 } from "../index";
 
 export class PopulationSet {
@@ -29,14 +29,14 @@ export class PopulationSet {
 
   public static parse(
     json: IPopulationSet,
-    providedInstance: PopulationSet = new PopulationSet()
+    providedInstance: PopulationSet = new PopulationSet(),
   ): PopulationSet {
     const newInstance: PopulationSet = providedInstance;
     if (json.populations && json.populations.resource_type) {
       // Circular dependency workaround: invoke a lookup method directly,
       // than indirectly through PopulationSet::parse
       const subclass = lookupPopulationMapSubclass(
-        json.populations.resource_type
+        json.populations.resource_type,
       );
       if (subclass) {
         newInstance.populations = subclass.parse(json.populations);
@@ -44,17 +44,17 @@ export class PopulationSet {
     }
     if (json.stratifications) {
       newInstance.stratifications = json.stratifications.map((x: IStratification) =>
-        Stratification.parse(x)
+        Stratification.parse(x),
       );
     }
     if (json.supplemental_data_elements) {
       newInstance.supplemental_data_elements = json.supplemental_data_elements.map(
-        (x: IStatementReference) => StatementReference.parse(x)
+        (x: IStatementReference) => StatementReference.parse(x),
       );
     }
     if (json.observations) {
       newInstance.observations = json.observations.map((x: ICqmObservation) =>
-        CqmObservation.parse(x)
+        CqmObservation.parse(x),
       );
     }
     if (json.title) {
@@ -76,7 +76,7 @@ export class PopulationSet {
     }
     if (this.supplemental_data_elements) {
       result.supplemental_data_elements = this.supplemental_data_elements.map(
-        (x) => x.toJSON()
+        (x) => x.toJSON(),
       );
     }
     if (this.observations) {

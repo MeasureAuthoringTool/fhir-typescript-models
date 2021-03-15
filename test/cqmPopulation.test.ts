@@ -13,16 +13,16 @@ describe("Populations", () => {
     expect(lookupPopulationMapSubclass("unknown")).toBeUndefined();
     expect(lookupPopulationMapSubclass("CohortPopulationMap")).toBeDefined();
     expect(lookupPopulationMapSubclass("CohortPopulationMap")).toEqual(
-      CohortPopulationMap
+      CohortPopulationMap,
     );
     expect(
-      lookupPopulationMapSubclass("ContinuousVariablePopulationMap")
+      lookupPopulationMapSubclass("ContinuousVariablePopulationMap"),
     ).toEqual(ContinuousVariablePopulationMap);
     expect(lookupPopulationMapSubclass("ProportionPopulationMap")).toEqual(
-      ProportionPopulationMap
+      ProportionPopulationMap,
     );
     expect(lookupPopulationMapSubclass("RatioPopulationMap")).toEqual(
-      RatioPopulationMap
+      RatioPopulationMap,
     );
   });
 

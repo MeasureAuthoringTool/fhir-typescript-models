@@ -13,7 +13,7 @@ export class DataElement {
 
   public static parse(
     json: IDataElement,
-    providedInstance: DataElement = new DataElement()
+    providedInstance: DataElement = new DataElement(),
   ): DataElement {
     const newInstance: DataElement = providedInstance;
 

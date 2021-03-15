@@ -87,25 +87,25 @@ describe("Parsing CQM Measure JSON", () => {
     expect(cqmMeasure.stratificationsAsPopulationSets.length).toEqual(1);
     expect(cqmMeasure.allPopulationSetsAndStratifications).toEqual(
       cqmMeasure.population_sets?.concat(
-        cqmMeasure.stratificationsAsPopulationSets
-      )
+        cqmMeasure.stratificationsAsPopulationSets,
+      ),
     );
     expect(
-      cqmMeasure.stratificationsAsPopulationSets[0].population_set_id
+      cqmMeasure.stratificationsAsPopulationSets[0].population_set_id,
     ).toEqual("random_stratification_id");
     expect(
-      cqmMeasure.stratificationsAsPopulationSets[0].populations?.codes
+      cqmMeasure.stratificationsAsPopulationSets[0].populations?.codes,
     ).toEqual(["IPP", "STRAT"]);
     expect(
-      cqmMeasure.stratificationsAsPopulationSets[0].populations?.STRAT
+      cqmMeasure.stratificationsAsPopulationSets[0].populations?.STRAT,
     ).toBeDefined();
     expect(
       cqmMeasure.stratificationsAsPopulationSets[0].populations?.STRAT
-        ?.library_name
+        ?.library_name,
     ).toEqual("library_Stratification");
     expect(
       cqmMeasure.stratificationsAsPopulationSets[0].populations?.STRAT
-        ?.statement_name
+        ?.statement_name,
     ).toEqual("name_Stratification");
     expect(cqmMeasure.toJSON()).toEqual(updatedMeasureJson);
   });

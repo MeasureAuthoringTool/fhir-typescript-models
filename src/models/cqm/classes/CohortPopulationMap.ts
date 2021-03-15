@@ -2,7 +2,7 @@
 import {
   ICohortPopulationMap,
   PopulationMap,
-  StatementReference
+  StatementReference,
 } from "../index";
 
 /**
@@ -18,11 +18,11 @@ export class CohortPopulationMap extends PopulationMap {
 
   public static parse(
     json: ICohortPopulationMap,
-    providedInstance: CohortPopulationMap = new CohortPopulationMap()
+    providedInstance: CohortPopulationMap = new CohortPopulationMap(),
   ): CohortPopulationMap {
     const newInstance: CohortPopulationMap = PopulationMap.parse(
       json,
-      providedInstance
+      providedInstance,
     );
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);
