@@ -2,7 +2,7 @@
 import {
   ICqmLogicLibrary,
   IStatementDependency,
-  StatementDependency
+  StatementDependency,
 } from "../index";
 
 /**
@@ -27,7 +27,7 @@ export class CqmLogicLibrary {
 
   public static parse(
     json: ICqmLogicLibrary,
-    providedInstance: CqmLogicLibrary = new CqmLogicLibrary()
+    providedInstance: CqmLogicLibrary = new CqmLogicLibrary(),
   ): CqmLogicLibrary {
     const newInstance: CqmLogicLibrary = providedInstance;
 
@@ -51,7 +51,7 @@ export class CqmLogicLibrary {
     }
     if (json.statement_dependencies) {
       newInstance.statement_dependencies = json.statement_dependencies.map(
-        (x: IStatementDependency) => StatementDependency.parse(x)
+        (x: IStatementDependency) => StatementDependency.parse(x),
       );
     }
     return newInstance;
@@ -80,7 +80,7 @@ export class CqmLogicLibrary {
     }
     if (this.statement_dependencies) {
       result.statement_dependencies = this.statement_dependencies.map(
-        (x: StatementDependency) => x.toJSON()
+        (x: StatementDependency) => x.toJSON(),
       );
     }
     return result;

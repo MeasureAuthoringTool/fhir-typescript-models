@@ -12,7 +12,7 @@ export class StatementReference {
 
   public static parse(
     json: IStatementReference,
-    providedInstance: StatementReference = new StatementReference()
+    providedInstance: StatementReference = new StatementReference(),
   ): StatementReference {
     const newInstance: StatementReference = providedInstance;
 

@@ -5,7 +5,7 @@ module.exports = {
   modulePathIgnorePatterns: ["<rootDir>/dist/"],
   collectCoverageFrom: [
     "src/**/*.ts",
-    "!**/node_modules/**"
+    "!**/node_modules/**",
   ],
-  setupFilesAfterEnv: ["jest-extended"]
+  setupFilesAfterEnv: ["jest-extended"],
 };

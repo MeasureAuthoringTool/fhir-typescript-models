@@ -13,7 +13,7 @@ import {
   ICqmLogicLibrary,
   ICqmMeasure,
   IPopulationSet,
-  PopulationSet
+  PopulationSet,
 } from "../index";
 
 export class CqmMeasure {
@@ -58,7 +58,7 @@ export class CqmMeasure {
 
   public static parse(
     json: ICqmMeasure,
-    providedInstance: CqmMeasure = new CqmMeasure()
+    providedInstance: CqmMeasure = new CqmMeasure(),
   ): CqmMeasure {
     const newInstance: CqmMeasure = providedInstance;
 
@@ -88,17 +88,17 @@ export class CqmMeasure {
     }
     if (json.libraries) {
       newInstance.libraries = json.libraries.map((x: ILibrary) =>
-        Library.parse(x)
+        Library.parse(x),
       );
     }
     if (json.value_sets) {
       newInstance.value_sets = json.value_sets.map((x: IValueSet) =>
-        ValueSet.parse(x)
+        ValueSet.parse(x),
       );
     }
     if (json.cql_libraries) {
       newInstance.cql_libraries = json.cql_libraries.map((x: ICqmLogicLibrary) =>
-        CqmLogicLibrary.parse(x)
+        CqmLogicLibrary.parse(x),
       );
     }
     if (json.main_cql_library) {
@@ -118,12 +118,12 @@ export class CqmMeasure {
     }
     if (json.source_data_criteria) {
       newInstance.source_data_criteria = json.source_data_criteria.map(
-        (x: IDataElement) => DataElement.parse(x)
+        (x: IDataElement) => DataElement.parse(x),
       );
     }
     if (json.population_sets) {
       newInstance.population_sets = json.population_sets.map((x: IPopulationSet) =>
-        PopulationSet.parse(x)
+        PopulationSet.parse(x),
       );
     }
 
@@ -174,7 +174,7 @@ export class CqmMeasure {
     }
     if (this.source_data_criteria) {
       result.source_data_criteria = this.source_data_criteria.map((x) =>
-        x.toJSON()
+        x.toJSON(),
       );
     }
     if (this.population_sets) {

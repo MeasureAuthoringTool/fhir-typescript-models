@@ -15,18 +15,18 @@ export class CqmObservation {
 
   public static parse(
     json: ICqmObservation,
-    providedInstance: CqmObservation = new CqmObservation()
+    providedInstance: CqmObservation = new CqmObservation(),
   ): CqmObservation {
     const newInstance: CqmObservation = providedInstance;
 
     if (json.observation_function) {
       newInstance.observation_function = StatementReference.parse(
-        json.observation_function
+        json.observation_function,
       );
     }
     if (json.observation_parameter) {
       newInstance.observation_parameter = StatementReference.parse(
-        json.observation_parameter
+        json.observation_parameter,
       );
     }
     if (json.aggregation_type) {

@@ -24,7 +24,7 @@ export class CqmPatient {
 
   public static parse(
     json: ICqmPatient,
-    providedInstance: CqmPatient = new CqmPatient()
+    providedInstance: CqmPatient = new CqmPatient(),
   ): CqmPatient {
     const newInstance: CqmPatient = providedInstance;
 
@@ -45,7 +45,7 @@ export class CqmPatient {
     }
     if (json.data_elements) {
       newInstance.data_elements = json.data_elements.map((x) =>
-        DataElement.parse(x)
+        DataElement.parse(x),
       );
     }
     if (json.created_at) {

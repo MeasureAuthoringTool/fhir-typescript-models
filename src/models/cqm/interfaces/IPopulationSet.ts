@@ -3,7 +3,7 @@ import {
   ICqmObservation,
   IPopulationMap,
   IStatementReference,
-  IStratification
+  IStratification,
 } from "../index";
 
 export interface IPopulationSet {

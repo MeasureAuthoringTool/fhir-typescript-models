@@ -13,7 +13,7 @@ const populationSubclasses: Record<string, typeof PopulationMap> = {
 };
 
 export function lookupPopulationMapSubclass(
-  typeName: string
+  typeName: string,
 ): typeof PopulationMap | undefined {
   return populationSubclasses[typeName];
 }
