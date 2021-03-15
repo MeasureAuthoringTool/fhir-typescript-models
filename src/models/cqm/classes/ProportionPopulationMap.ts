@@ -24,11 +24,11 @@ export class ProportionPopulationMap extends PopulationMap {
 
   public static parse(
     json: IProportionPopulationMap,
-    providedInstance: ProportionPopulationMap = new ProportionPopulationMap()
+    providedInstance: ProportionPopulationMap = new ProportionPopulationMap(),
   ): ProportionPopulationMap {
     const newInstance: ProportionPopulationMap = PopulationMap.parse(
       json,
-      providedInstance
+      providedInstance,
     );
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);

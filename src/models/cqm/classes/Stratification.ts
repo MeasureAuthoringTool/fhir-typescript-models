@@ -13,7 +13,7 @@ export class Stratification {
 
   public static parse(
     json: IStratification,
-    providedInstance: Stratification = new Stratification()
+    providedInstance: Stratification = new Stratification(),
   ): Stratification {
     const newInstance: Stratification = providedInstance;
     if (json.title) {

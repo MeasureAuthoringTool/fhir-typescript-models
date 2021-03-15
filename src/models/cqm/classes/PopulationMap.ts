@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
 import {
   IPopulationMap,
-  StatementReference
+  StatementReference,
 } from "../index";
 
 /**
@@ -14,7 +14,7 @@ export class PopulationMap {
   public STRAT?: StatementReference;
 
   // All supported codes
-  static readonly ALL_POPULATION_CODES = ['STRAT', 'IPP', 'DENOM', 'DENEX', 'NUMER', 'NUMEX', 'DENEXCEP', 'MSRPOPL', 'OBSERV', 'MSRPOPLEX'];
+  static readonly ALL_POPULATION_CODES = ["STRAT", "IPP", "DENOM", "DENEX", "NUMER", "NUMEX", "DENEXCEP", "MSRPOPL", "OBSERV", "MSRPOPLEX"];
 
   constructor() {
     this.resource_type = "PopulationMap";
@@ -22,7 +22,7 @@ export class PopulationMap {
 
   public static parse(
     json: IPopulationMap,
-    providedInstance: PopulationMap = new PopulationMap()
+    providedInstance: PopulationMap = new PopulationMap(),
   ): PopulationMap {
     const newInstance: PopulationMap = providedInstance;
     if (json.STRAT) {

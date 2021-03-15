@@ -2,7 +2,7 @@
 import {
   IContinuousVariablePopulationMap,
   PopulationMap,
-  StatementReference
+  StatementReference,
 } from "../index";
 
 /**
@@ -22,11 +22,11 @@ export class ContinuousVariablePopulationMap extends PopulationMap {
 
   public static parse(
     json: IContinuousVariablePopulationMap,
-    providedInstance: ContinuousVariablePopulationMap = new ContinuousVariablePopulationMap()
+    providedInstance: ContinuousVariablePopulationMap = new ContinuousVariablePopulationMap(),
   ): ContinuousVariablePopulationMap {
     const newInstance: ContinuousVariablePopulationMap = PopulationMap.parse(
       json,
-      providedInstance
+      providedInstance,
     );
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);

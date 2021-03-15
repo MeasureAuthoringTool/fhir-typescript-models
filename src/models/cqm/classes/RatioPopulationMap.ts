@@ -22,11 +22,11 @@ export class RatioPopulationMap extends PopulationMap {
 
   public static parse(
     json: IRatioPopulationMap,
-    providedInstance: RatioPopulationMap = new RatioPopulationMap()
+    providedInstance: RatioPopulationMap = new RatioPopulationMap(),
   ): RatioPopulationMap {
     const newInstance: RatioPopulationMap = PopulationMap.parse(
       json,
-      providedInstance
+      providedInstance,
     );
     if (json.IPP) {
       newInstance.IPP = StatementReference.parse(json.IPP);

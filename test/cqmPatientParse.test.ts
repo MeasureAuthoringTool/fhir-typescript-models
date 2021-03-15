@@ -70,7 +70,7 @@ describe("Parsing CQM Patient JSON", () => {
     expect(clonedPatient).toBeDefined();
     expect(clonedPatient.toJSON()).toEqual(patientJson);
     expect(clonedPatient.toJSON()).toEqual(cqmPatient.toJSON());
-    expect(clonedPatient.fhir_patient?.resourceType).toEqual('Patient');
+    expect(clonedPatient.fhir_patient?.resourceType).toEqual("Patient");
   });
 
   it("Should parse a CQM Patient with FHIR Resources as Data Elements", () => {
@@ -83,7 +83,7 @@ describe("Parsing CQM Patient JSON", () => {
 
   it("Patient resource type", () => {
     const p = new Patient();
-    expect(p.resourceType).toEqual('Patient');
+    expect(p.resourceType).toEqual("Patient");
   });
 
   it("Should serialize CQM patient into a FHIR bundle with data elements", () => {

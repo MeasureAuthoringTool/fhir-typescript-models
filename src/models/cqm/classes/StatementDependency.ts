@@ -2,7 +2,7 @@
 import {
   IStatementDependency,
   IStatementReference,
-  StatementReference
+  StatementReference,
 } from "../index";
 
 /**
@@ -15,7 +15,7 @@ export class StatementDependency {
 
   public static parse(
     json: IStatementDependency,
-    providedInstance: StatementDependency = new StatementDependency()
+    providedInstance: StatementDependency = new StatementDependency(),
   ): StatementDependency {
     const newInstance: StatementDependency = providedInstance;
 
@@ -25,7 +25,7 @@ export class StatementDependency {
 
     if (json.statement_references) {
       newInstance.statement_references = json.statement_references.map(
-        (x: IStatementReference) => StatementReference.parse(x)
+        (x: IStatementReference) => StatementReference.parse(x),
       );
     }
     return newInstance;
@@ -39,7 +39,7 @@ export class StatementDependency {
     }
     if (this.statement_references) {
       result.statement_references = this.statement_references.map(
-        (x: StatementReference) => x.toJSON()
+        (x: StatementReference) => x.toJSON(),
       );
     }
     return result;
