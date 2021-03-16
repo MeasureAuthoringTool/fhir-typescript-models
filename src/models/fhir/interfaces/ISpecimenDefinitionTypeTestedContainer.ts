@@ -20,7 +20,7 @@ export interface ISpecimenDefinitionTypeTestedContainer extends IBackboneElement
 
   capacity?: ISimpleQuantity;
 
-  minimumVolumeSimpleQuantity?: ISimpleQuantity;
+  minimumVolumeQuantity?: ISimpleQuantity;
   
   minimumVolumeString?: IPrimitiveString;
   _minimumVolumeString?: IElement;

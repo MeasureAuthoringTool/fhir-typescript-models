@@ -41,8 +41,8 @@ export class NutritionOrderEnteralFormulaAdministration extends BackboneElement 
     if (json.quantity !== undefined) {
       newInstance.quantity = SimpleQuantity.parse(json.quantity);
     }
-    if (json.rateSimpleQuantity !== undefined) {
-      newInstance.rate = SimpleQuantity.parse(json.rateSimpleQuantity);
+    if (json.rateQuantity !== undefined) {
+      newInstance.rate = SimpleQuantity.parse(json.rateQuantity);
     }
     if (json.rateRatio !== undefined) {
       newInstance.rate = Ratio.parse(json.rateRatio);
@@ -67,7 +67,7 @@ export class NutritionOrderEnteralFormulaAdministration extends BackboneElement 
     }
 
     if (this.rate && SimpleQuantity.isSimpleQuantity(this.rate)) {
-      result.rateSimpleQuantity = this.rate.toJSON();
+      result.rateQuantity = this.rate.toJSON();
     }
 
     if (this.rate && Ratio.isRatio(this.rate)) {

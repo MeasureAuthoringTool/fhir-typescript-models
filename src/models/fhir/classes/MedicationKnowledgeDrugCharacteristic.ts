@@ -43,8 +43,8 @@ export class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     if (json.valueString !== undefined) {
       newInstance.value = PrimitiveString.parsePrimitive(json.valueString, json._valueString);
     }
-    if (json.valueSimpleQuantity !== undefined) {
-      newInstance.value = SimpleQuantity.parse(json.valueSimpleQuantity);
+    if (json.valueQuantity !== undefined) {
+      newInstance.value = SimpleQuantity.parse(json.valueQuantity);
     }
     if (json.valueBase64Binary !== undefined) {
       newInstance.value = PrimitiveBase64Binary.parsePrimitive(json.valueBase64Binary, json._valueBase64Binary);
@@ -74,7 +74,7 @@ export class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     }
 
     if (this.value && SimpleQuantity.isSimpleQuantity(this.value)) {
-      result.valueSimpleQuantity = this.value.toJSON();
+      result.valueQuantity = this.value.toJSON();
     }
 
     if (this.value && PrimitiveBase64Binary.isPrimitiveBase64Binary(this.value)) {

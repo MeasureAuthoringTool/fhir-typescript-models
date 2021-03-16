@@ -16,7 +16,7 @@ export interface IMedicationKnowledgeDrugCharacteristic extends IBackboneElement
   valueString?: IPrimitiveString;
   _valueString?: IElement;
   
-  valueSimpleQuantity?: ISimpleQuantity;
+  valueQuantity?: ISimpleQuantity;
   
   valueBase64Binary?: IPrimitiveBase64Binary;
   _valueBase64Binary?: IElement;

@@ -12,13 +12,13 @@ export interface IDosageDoseAndRate extends IElement {
 
   doseRange?: IRange;
   
-  doseSimpleQuantity?: ISimpleQuantity;
+  doseQuantity?: ISimpleQuantity;
 
   rateRatio?: IRatio;
   
   rateRange?: IRange;
   
-  rateSimpleQuantity?: ISimpleQuantity;
+  rateQuantity?: ISimpleQuantity;
 
 }
 /* eslint-enable import/prefer-default-export, import/no-cycle, @typescript-eslint/naming-convention, @typescript-eslint/no-empty-interface */
