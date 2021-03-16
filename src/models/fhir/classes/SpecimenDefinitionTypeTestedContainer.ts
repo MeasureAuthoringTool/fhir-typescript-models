@@ -68,8 +68,8 @@ export class SpecimenDefinitionTypeTestedContainer extends BackboneElement {
     if (json.capacity !== undefined) {
       newInstance.capacity = SimpleQuantity.parse(json.capacity);
     }
-    if (json.minimumVolumeSimpleQuantity !== undefined) {
-      newInstance.minimumVolume = SimpleQuantity.parse(json.minimumVolumeSimpleQuantity);
+    if (json.minimumVolumeQuantity !== undefined) {
+      newInstance.minimumVolume = SimpleQuantity.parse(json.minimumVolumeQuantity);
     }
     if (json.minimumVolumeString !== undefined) {
       newInstance.minimumVolume = PrimitiveString.parsePrimitive(json.minimumVolumeString, json._minimumVolumeString);
@@ -113,7 +113,7 @@ export class SpecimenDefinitionTypeTestedContainer extends BackboneElement {
     }
 
     if (this.minimumVolume && SimpleQuantity.isSimpleQuantity(this.minimumVolume)) {
-      result.minimumVolumeSimpleQuantity = this.minimumVolume.toJSON();
+      result.minimumVolumeQuantity = this.minimumVolume.toJSON();
     }
 
     if (this.minimumVolume && PrimitiveString.isPrimitiveString(this.minimumVolume)) {

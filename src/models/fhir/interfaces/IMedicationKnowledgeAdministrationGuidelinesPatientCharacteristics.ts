@@ -10,7 +10,7 @@ import {
 export interface IMedicationKnowledgeAdministrationGuidelinesPatientCharacteristics extends IBackboneElement {
   characteristicCodeableConcept?: ICodeableConcept;
   
-  characteristicSimpleQuantity?: ISimpleQuantity;
+  characteristicQuantity?: ISimpleQuantity;
 
   value?: Array<IPrimitiveString>;
   _value?: Array<IElement | null>;
