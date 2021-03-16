@@ -42,8 +42,8 @@ export class DosageDoseAndRate extends Element {
     if (json.doseRange !== undefined) {
       newInstance.dose = Range.parse(json.doseRange);
     }
-    if (json.doseSimpleQuantity !== undefined) {
-      newInstance.dose = SimpleQuantity.parse(json.doseSimpleQuantity);
+    if (json.doseQuantity !== undefined) {
+      newInstance.dose = SimpleQuantity.parse(json.doseQuantity);
     }
     if (json.rateRatio !== undefined) {
       newInstance.rate = Ratio.parse(json.rateRatio);
@@ -51,8 +51,8 @@ export class DosageDoseAndRate extends Element {
     if (json.rateRange !== undefined) {
       newInstance.rate = Range.parse(json.rateRange);
     }
-    if (json.rateSimpleQuantity !== undefined) {
-      newInstance.rate = SimpleQuantity.parse(json.rateSimpleQuantity);
+    if (json.rateQuantity !== undefined) {
+      newInstance.rate = SimpleQuantity.parse(json.rateQuantity);
     }
     return newInstance;
   }
@@ -74,7 +74,7 @@ export class DosageDoseAndRate extends Element {
     }
 
     if (this.dose && SimpleQuantity.isSimpleQuantity(this.dose)) {
-      result.doseSimpleQuantity = this.dose.toJSON();
+      result.doseQuantity = this.dose.toJSON();
     }
 
     if (this.rate && Ratio.isRatio(this.rate)) {
@@ -86,7 +86,7 @@ export class DosageDoseAndRate extends Element {
     }
 
     if (this.rate && SimpleQuantity.isSimpleQuantity(this.rate)) {
-      result.rateSimpleQuantity = this.rate.toJSON();
+      result.rateQuantity = this.rate.toJSON();
     }
 
     return result;

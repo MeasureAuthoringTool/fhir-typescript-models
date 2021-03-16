@@ -36,8 +36,8 @@ export class MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics e
     if (json.characteristicCodeableConcept !== undefined) {
       newInstance.characteristic = CodeableConcept.parse(json.characteristicCodeableConcept);
     }
-    if (json.characteristicSimpleQuantity !== undefined) {
-      newInstance.characteristic = SimpleQuantity.parse(json.characteristicSimpleQuantity);
+    if (json.characteristicQuantity !== undefined) {
+      newInstance.characteristic = SimpleQuantity.parse(json.characteristicQuantity);
     }
     if (json.value !== undefined) {
       newInstance.value = json.value.map((x, i) => PrimitiveString.parsePrimitive(x, json._value?.[i]));
@@ -58,7 +58,7 @@ export class MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics e
     }
 
     if (this.characteristic && SimpleQuantity.isSimpleQuantity(this.characteristic)) {
-      result.characteristicSimpleQuantity = this.characteristic.toJSON();
+      result.characteristicQuantity = this.characteristic.toJSON();
     }
 
     if (this.value) {

@@ -40,8 +40,8 @@ export class CoverageCostToBeneficiary extends BackboneElement {
     if (json.type !== undefined) {
       newInstance.type = CodeableConcept.parse(json.type);
     }
-    if (json.valueSimpleQuantity !== undefined) {
-      newInstance.value = SimpleQuantity.parse(json.valueSimpleQuantity);
+    if (json.valueQuantity !== undefined) {
+      newInstance.value = SimpleQuantity.parse(json.valueQuantity);
     }
     if (json.valueMoney !== undefined) {
       newInstance.value = Money.parse(json.valueMoney);
@@ -65,7 +65,7 @@ export class CoverageCostToBeneficiary extends BackboneElement {
     }
 
     if (this.value && SimpleQuantity.isSimpleQuantity(this.value)) {
-      result.valueSimpleQuantity = this.value.toJSON();
+      result.valueQuantity = this.value.toJSON();
     }
 
     if (this.value && Money.isMoney(this.value)) {

@@ -64,8 +64,8 @@ export class MedicationAdministrationDosage extends BackboneElement {
     if (json.rateRatio !== undefined) {
       newInstance.rate = Ratio.parse(json.rateRatio);
     }
-    if (json.rateSimpleQuantity !== undefined) {
-      newInstance.rate = SimpleQuantity.parse(json.rateSimpleQuantity);
+    if (json.rateQuantity !== undefined) {
+      newInstance.rate = SimpleQuantity.parse(json.rateQuantity);
     }
     return newInstance;
   }
@@ -104,7 +104,7 @@ export class MedicationAdministrationDosage extends BackboneElement {
     }
 
     if (this.rate && SimpleQuantity.isSimpleQuantity(this.rate)) {
-      result.rateSimpleQuantity = this.rate.toJSON();
+      result.rateQuantity = this.rate.toJSON();
     }
 
     return result;

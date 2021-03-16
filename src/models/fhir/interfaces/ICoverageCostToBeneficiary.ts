@@ -10,7 +10,7 @@ import {
 export interface ICoverageCostToBeneficiary extends IBackboneElement {
   type?: ICodeableConcept;
 
-  valueSimpleQuantity?: ISimpleQuantity;
+  valueQuantity?: ISimpleQuantity;
   
   valueMoney?: IMoney;
 

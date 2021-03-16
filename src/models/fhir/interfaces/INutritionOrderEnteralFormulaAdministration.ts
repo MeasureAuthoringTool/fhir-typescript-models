@@ -11,7 +11,7 @@ export interface INutritionOrderEnteralFormulaAdministration extends IBackboneEl
 
   quantity?: ISimpleQuantity;
 
-  rateSimpleQuantity?: ISimpleQuantity;
+  rateQuantity?: ISimpleQuantity;
   
   rateRatio?: IRatio;
 
