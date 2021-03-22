@@ -38,7 +38,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "jest": "^26.6.3",
     "jest-extended": "^0.11.5",
-    "model-info-parser": "^1.0.6",
+    "model-info-parser": "^1.0.7",
     "prettier": "^2.2.1",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.1.1",
