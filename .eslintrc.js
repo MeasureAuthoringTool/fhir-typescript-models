@@ -5,7 +5,13 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ["./tsconfig.json"],
   },
-  plugins: ["@typescript-eslint", "eslint-comments", "jest", "promise"],
+  plugins: [
+    "import",
+    "@typescript-eslint",
+    "eslint-comments",
+    "jest",
+    "promise",
+  ],
   extends: [
     "airbnb-typescript/base",
     "plugin:@typescript-eslint/recommended",
@@ -22,7 +28,7 @@ module.exports = {
   },
   rules: {
     // note you must disable the base rule as it can report incorrect errors
-    "quotes": ["error", "double"],
+    quotes: ["error", "double"],
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
     "no-underscore-dangle": "off",
@@ -51,6 +57,6 @@ module.exports = {
       },
     ],
     "class-methods-use-this": "off",
-    "jest/no-conditional-expect": "off"
+    "jest/no-conditional-expect": "off",
   },
 };
