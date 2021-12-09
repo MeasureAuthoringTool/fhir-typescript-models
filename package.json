@@ -22,7 +22,7 @@
   "author": "SemanticBits sb-mat-help@semanticbits.com",
   "license": "CC0-1.0",
   "dependencies": {
-    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb": "^19.0.2",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
