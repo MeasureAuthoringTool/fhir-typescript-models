@@ -23,7 +23,7 @@
   "license": "CC0-1.0",
   "dependencies": {
     "eslint-config-airbnb": "^18.2.1",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.14"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
